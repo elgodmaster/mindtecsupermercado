@@ -27,3 +27,32 @@ C:\Users\MAVB\Documents\Visual Studio 2008\Projects\SuperMercado\SuperMercado\ob
 C:\Users\MAVB\Documents\Visual Studio 2008\Projects\SuperMercado\SuperMercado\obj\Debug\SuperMercado.Movimiento_Entradas.resources
 C:\Users\MAVB\Documents\Visual Studio 2008\Projects\SuperMercado\SuperMercado\obj\Debug\SuperMercado.Movimiento_Salidas.resources
 C:\Users\MAVB\Documents\Visual Studio 2008\Projects\SuperMercado\SuperMercado\obj\Debug\SuperMercado.InventarioEntradas.resources
+C:\Users\MAVB\Desktop\mindtecsupermercado\SuperMercado\SuperMercado\bin\Debug\SuperMercado.exe.config
+C:\Users\MAVB\Desktop\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.exe
+C:\Users\MAVB\Desktop\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.xml
+C:\Users\MAVB\Desktop\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.pdb
+C:\Users\MAVB\Desktop\mindtecsupermercado\SuperMercado\SuperMercado\bin\Debug\SuperMercado.exe
+C:\Users\MAVB\Desktop\mindtecsupermercado\SuperMercado\SuperMercado\bin\Debug\SuperMercado.pdb
+C:\Users\MAVB\Desktop\mindtecsupermercado\SuperMercado\SuperMercado\bin\Debug\SuperMercado.xml
+C:\Users\MAVB\Desktop\mindtecsupermercado\SuperMercado\SuperMercado\bin\Debug\DevAge.Core.dll
+C:\Users\MAVB\Desktop\mindtecsupermercado\SuperMercado\SuperMercado\bin\Debug\log4net.dll
+C:\Users\MAVB\Desktop\mindtecsupermercado\SuperMercado\SuperMercado\bin\Debug\Componentes.pdb
+C:\Users\MAVB\Desktop\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\MAVB\Desktop\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.Cat_Categorias.resources
+C:\Users\MAVB\Desktop\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.Cat_Clientes.resources
+C:\Users\MAVB\Desktop\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.Cat_Marcas.resources
+C:\Users\MAVB\Desktop\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.Cat_Productos.resources
+C:\Users\MAVB\Desktop\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.Cat_Proveedores.resources
+C:\Users\MAVB\Desktop\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.Cat_Departamentos.resources
+C:\Users\MAVB\Desktop\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.Cat_Unidades.resources
+C:\Users\MAVB\Desktop\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.consulta_Entradas.resources
+C:\Users\MAVB\Desktop\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.Consulta_Existencias.resources
+C:\Users\MAVB\Desktop\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.consulta_Salidas.resources
+C:\Users\MAVB\Desktop\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.InventarioEntradas.resources
+C:\Users\MAVB\Desktop\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.Movimiento_Entradas.resources
+C:\Users\MAVB\Desktop\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.Movimiento_Salidas.resources
+C:\Users\MAVB\Desktop\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.inicial.resources
+C:\Users\MAVB\Desktop\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.Login.resources
+C:\Users\MAVB\Desktop\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.Principal.resources
+C:\Users\MAVB\Desktop\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.Resources.resources
+C:\Users\MAVB\Desktop\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.vbproj.GenerateResource.Cache
