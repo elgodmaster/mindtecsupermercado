@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "SuperMercado", "SuperMercado\SuperMercado.vbproj", "{A5266432-8B8D-4D73-B1DA-44989E32C694}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FA6819B4-6BF4-47FF-BB88-3C2BD747806D} = {FA6819B4-6BF4-47FF-BB88-3C2BD747806D}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComponentesMindtec", "Componentes\ComponentesMindtec.csproj", "{FA6819B4-6BF4-47FF-BB88-3C2BD747806D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A5266432-8B8D-4D73-B1DA-44989E32C694}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5266432-8B8D-4D73-B1DA-44989E32C694}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5266432-8B8D-4D73-B1DA-44989E32C694}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5266432-8B8D-4D73-B1DA-44989E32C694}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA6819B4-6BF4-47FF-BB88-3C2BD747806D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA6819B4-6BF4-47FF-BB88-3C2BD747806D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA6819B4-6BF4-47FF-BB88-3C2BD747806D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA6819B4-6BF4-47FF-BB88-3C2BD747806D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
