@@ -179,7 +179,7 @@ Partial Class InventarioEntradas
         Me.NombreProveedor.AutoEllipsis = True
         Me.NombreProveedor.BackColor = System.Drawing.Color.Transparent
         Me.NombreProveedor.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NombreProveedor.Location = New System.Drawing.Point(181, 66)
+        Me.NombreProveedor.Location = New System.Drawing.Point(181, 53)
         Me.NombreProveedor.Name = "NombreProveedor"
         Me.NombreProveedor.Size = New System.Drawing.Size(755, 22)
         Me.NombreProveedor.TabIndex = 242
@@ -188,7 +188,7 @@ Partial Class InventarioEntradas
         'CodigoProveedor
         '
         Me.CodigoProveedor.BackColor = System.Drawing.SystemColors.Info
-        Me.CodigoProveedor.Location = New System.Drawing.Point(91, 66)
+        Me.CodigoProveedor.Location = New System.Drawing.Point(91, 53)
         Me.CodigoProveedor.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.CodigoProveedor.Name = "CodigoProveedor"
         Me.CodigoProveedor.Size = New System.Drawing.Size(83, 22)
@@ -198,7 +198,7 @@ Partial Class InventarioEntradas
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Verdana", 9.0!)
-        Me.Label3.Location = New System.Drawing.Point(6, 70)
+        Me.Label3.Location = New System.Drawing.Point(6, 57)
         Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(77, 14)
@@ -207,7 +207,7 @@ Partial Class InventarioEntradas
         '
         'txtFactura
         '
-        Me.txtFactura.Location = New System.Drawing.Point(91, 94)
+        Me.txtFactura.Location = New System.Drawing.Point(91, 81)
         Me.txtFactura.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.txtFactura.Name = "txtFactura"
         Me.txtFactura.Size = New System.Drawing.Size(262, 22)
@@ -217,7 +217,7 @@ Partial Class InventarioEntradas
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Verdana", 9.0!)
-        Me.Label5.Location = New System.Drawing.Point(24, 98)
+        Me.Label5.Location = New System.Drawing.Point(24, 85)
         Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(59, 14)
@@ -226,7 +226,7 @@ Partial Class InventarioEntradas
         '
         'Fecha
         '
-        Me.Fecha.Location = New System.Drawing.Point(91, 38)
+        Me.Fecha.Location = New System.Drawing.Point(91, 25)
         Me.Fecha.Name = "Fecha"
         Me.Fecha.Size = New System.Drawing.Size(262, 22)
         Me.Fecha.TabIndex = 243
@@ -235,7 +235,7 @@ Partial Class InventarioEntradas
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Verdana", 9.0!)
-        Me.Label2.Location = New System.Drawing.Point(34, 44)
+        Me.Label2.Location = New System.Drawing.Point(34, 31)
         Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(49, 14)
@@ -254,7 +254,7 @@ Partial Class InventarioEntradas
         Me.GroupBox1.Controls.Add(Me.CodigoProveedor)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 149)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(985, 534)
+        Me.GroupBox1.Size = New System.Drawing.Size(985, 524)
         Me.GroupBox1.TabIndex = 245
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Entrada inventario"
@@ -264,10 +264,10 @@ Partial Class InventarioEntradas
         '
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
-        Me.TabControl1.Location = New System.Drawing.Point(15, 134)
+        Me.TabControl1.Location = New System.Drawing.Point(15, 113)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(958, 394)
+        Me.TabControl1.Size = New System.Drawing.Size(958, 405)
         Me.TabControl1.TabIndex = 245
         '
         'TabPage1
@@ -276,7 +276,7 @@ Partial Class InventarioEntradas
         Me.TabPage1.Location = New System.Drawing.Point(4, 23)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(950, 367)
+        Me.TabPage1.Size = New System.Drawing.Size(950, 378)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Productos"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -302,7 +302,7 @@ Partial Class InventarioEntradas
         Me.TabPage2.Location = New System.Drawing.Point(4, 23)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(950, 359)
+        Me.TabPage2.Size = New System.Drawing.Size(950, 367)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Finanzas"
         Me.TabPage2.UseVisualStyleBackColor = True

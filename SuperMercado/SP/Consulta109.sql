@@ -110,18 +110,20 @@ BEGIN
  If @Validar = 2
    Begin
      Select @Desc1 = IsNull(a.Fecha,GETDATE()),
-            @Desc2 = ISNULL(b.idproveedor,''),
+            @Desc2 = ISNULL(a.idproveedor,''),
             @Desc3 = ISNULL(b.Nombre,''),
             @Desc4 = IsNull(a.FolioFactura,'')
      From SMercado..Entradas a (NoLock) 
      Left Join SMercado..Cat_Proveedores b (NoLock) On b.IdProveedor = a.idproveedor
-     
+     Where a.idEntrada = @Valor1 
      
      Select C1 = IsNull(a.IdProducto,''),
             C2 = IsNull(b.Descripcion,''),
-            C3 = ISNULL(a.cantidad,0)
+            C3 = ISNULL(a.cantidad,0),
+            C4 = ISNULL(c.Descripcion,'')
      From SMercado..Entrada_detalles a (NoLock)
      Left Join Smercado..Cat_Productos b (NoLock) On b.IdProducto = a.IdProducto
+     Left Join SMercado..Cat_Unidades c (NoLock) on c.IdUnidad = b.IdUnidad 
      Where a.idEntrada= @Valor1 
      
      
@@ -198,7 +200,11 @@ BEGIN
       If @Validar = 1 
          Select @Resul = '2R=ERROR|2M=No existe una entrada con el codigo especificado|'
 	  If @Validar = 2
-		 Select @Resul = '2R=ERROR|2M=El catalogo de productos esta vacio|'
+		 Select @Resul = '2R=OK|V1=' + @Desc1 + 
+							  '|V2=' + @Desc2 + 
+							  '|V3=' + @Desc3 +
+							  '|V4=' + @Desc4 + 
+							  '|V5=' + @Desc5 + '|'
 	  If @Validar = 3
 		 Select @Resul = '2R=ERROR|2M=El producto no existe|'
 	  If @Validar = 4 
@@ -213,7 +219,11 @@ BEGIN
 							  '|V2=' + @Desc2 + 
 							  '|V3=' + @Desc3 + '|'
 	  If @Validar = 2 
-	     Select @Resul = '2R=OK|CATALOGO=Catálogo de productos|'
+	     Select @Resul = '2R=OK|V1=' + @Desc1 + 
+							  '|V2=' + @Desc2 + 
+							  '|V3=' + @Desc3 +
+							  '|V4=' + @Desc4 + 
+							  '|V5=' + @Desc5 + '|'
 	  If @Validar = 3
 		 Select @Resul = '2R=OK|V1=' + @Desc1 + 
 							  '|V2=' + @Desc2 + 

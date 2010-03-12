@@ -35,6 +35,8 @@ Public Class InventarioEntradas
         Select Case e.KeyCode
             Case Keys.Escape
                 Me.Close()
+            Case Keys.F2
+                CatalogoEntradas()
         End Select
     End Sub
 
@@ -53,8 +55,57 @@ Public Class InventarioEntradas
         Me.FolioEntrada.Focus()
 
     End Sub
+    Sub LlenarGrid()
+        For i As Integer = 0 To ObjRet.DS.Tables(0).Rows.Count - 1
+            DsDatos.Tables("Table").ImportRow(ObjRet.DS.Tables(0).Rows(i))
+        Next
+        DsDatos.Tables("Table").AcceptChanges()
+        DsView = DsDatos.Tables(0).DefaultView
+    End Sub
+
+    Sub FilaVacia()
+        Dim grid As SourceGrid.DataGrid = GridDatos
+        Dim rows() As Object = grid.SelectedDataRows
+        Dim row As DataRowView = Nothing
+
+        If DsDatos.Tables("Table").Rows.Count <= 0 Then
+            
+            'Variable de Trabajo
+            Dim Codigo As String = ""
+            Dim Producto As String = ""
+            Dim Cantidad As Double = 0
+            Dim Unidad As String = ""
+
+            Dim registro As DataRow = Me.DsDatos.Tables("Table").NewRow
+            Me.DsDatos.Tables("Table").Rows.Add(registro)
+            registro!C1 = Codigo
+            registro!C2 = Producto
+            registro!C3 = Cantidad
+            registro!C4 = Unidad
 
 
+            DsDatos.Tables("Table").AcceptChanges()
+
+        End If
+
+    End Sub
+
+    Sub LlenarFila()
+        Dim Codigo As String = ""
+        Dim Producto As String = ""
+        Dim Cantidad As Double = 0
+        Dim Unidad As String = ""
+
+        Dim registro As DataRow = Me.DsDatos.Tables("Table").NewRow
+        Me.DsDatos.Tables("Table").Rows.Add(registro)
+        registro!C1 = Codigo
+        registro!C2 = Producto
+        registro!C3 = Cantidad
+        registro!C4 = Unidad
+
+
+        DsDatos.Tables("Table").AcceptChanges()
+    End Sub
     Sub Cerrar()
         Dim Result As DialogResult
         Result = MessageBox.Show("¿Deseas salir de esta pantalla?", "SuperMercado", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
@@ -64,7 +115,7 @@ Public Class InventarioEntradas
     End Sub
 
     Sub CatalogoEntradas()
-        Caja = "Consulta114" : Parametros = ""
+        Caja = "Consulta109" : Parametros = ""
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
         ObjRet = lConsulta.LlamarCaja(Caja, "0", Parametros)
         If ObjRet.bOk Then
@@ -93,12 +144,9 @@ Public Class InventarioEntradas
         DsDatos.Tables("Table").Columns.Add("C0", GetType(String))
         DsDatos.Tables("Table").Columns.Add("C1", GetType(String))
         DsDatos.Tables("Table").Columns.Add("C2", GetType(String))
-        DsDatos.Tables("Table").Columns.Add("C3", GetType(String))
-        DsDatos.Tables("Table").Columns.Add("C4", GetType(Double))
-        DsDatos.Tables("Table").Columns.Add("C5", GetType(Double))
-        DsDatos.Tables("Table").Columns.Add("C6", GetType(String))
-        DsDatos.Tables("Table").Columns.Add("C7", GetType(String))
-        DsDatos.Tables("Table").Columns.Add("C8", GetType(Int32))
+        DsDatos.Tables("Table").Columns.Add("C3", GetType(Double))
+        DsDatos.Tables("Table").Columns.Add("C4", GetType(String))
+        DsDatos.Tables("Table").Columns.Add("C5", GetType(String))
 
     End Sub
 
@@ -144,7 +192,6 @@ Public Class InventarioEntradas
         GridDatos.GetCell(0, 3).View = viewcolumnheader
         GridDatos.GetCell(0, 4).View = viewcolumnheader
         GridDatos.GetCell(0, 5).View = viewcolumnheader
-        GridDatos.GetCell(0, 6).View = viewcolumnheader
 
     End Sub
 
@@ -202,30 +249,21 @@ Public Class InventarioEntradas
         GridColumn.DataCell.View = viewNormal
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
-        GridColumn = GridDatos.Columns.Add("C3", "Descripción", EditorCustom)
+        GridColumn = GridDatos.Columns.Add("C3", "Cantidad", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
         GridColumn.DataCell.View = viewNormal
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
-        GridColumn = GridDatos.Columns.Add("C4", "Cantidad", EditorCustom)
+        GridColumn = GridDatos.Columns.Add("C4", "Unidad", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
         GridColumn.DataCell.View = viewNormal
-        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.EnableStretch
 
-        GridColumn = GridDatos.Columns.Add("C5", "Precio Unitario", EditorCustom)
-        GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormal
-        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
-
-        'GridColumn = GridDatos.Columns.Add("C6", "Observaciones", EditorCustom)
+        'GridColumn = GridDatos.Columns.Add("C5", "Precio Unitario", EditorCustom)
         'GridColumn.DataCell.AddController(gridKeydown)
         'GridColumn.DataCell.View = viewNormal
         'GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
-        GridColumn = GridDatos.Columns.Add("C8", "Id", EditorCustom)
-        GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormal
-        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
 
         GridDatos.Columns(0).Visible = False
@@ -234,8 +272,6 @@ Public Class InventarioEntradas
         GridDatos.Columns.SetWidth(3, 300)
         GridDatos.Columns.SetWidth(4, 240)
         GridDatos.Columns.SetWidth(5, 150)
-        GridDatos.Columns.SetWidth(6, 150)
-        GridDatos.Columns.SetWidth(7, 0)
     End Sub
 
 #End Region
@@ -255,40 +291,39 @@ Public Class InventarioEntradas
                 Else
                     MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
                 End If
-                If Len(LTrim(RTrim(FolioEntrada.Text))) = 0 Then
-                    Nuevo.PerformClick()
-                End If
         End Select
     End Sub
 
     Private Sub btnAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAceptar.Click
-        Caja = "Consulta109" : Parametros = "V1=" & Me.FolioEntrada.Text
-        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
-        ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
-        'Estatus
-        If ObjRet.bOk Then
-            Me.FolioEntrada.Enabled = False
-            Me.Nuevo.Visible = False
-            Me.btnAceptar.Enabled = False
+        If Len(LTrim(RTrim(Me.FolioEntrada.Text))) = 0 Then
+            Nuevo.PerformClick()
+        Else
+            Caja = "Consulta109" : Parametros = "V1=" & Me.FolioEntrada.Text
+            If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+            ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
+            'Estatus
+            If ObjRet.bOk Then
+                Me.FolioEntrada.Enabled = False
+                Me.Nuevo.Visible = False
+                Me.btnAceptar.Enabled = False
 
-            Me.Grabar.Visible = True
-            Me.Eliminar.Visible = True
-            Me.GroupBox1.Visible = True
+                Me.Grabar.Visible = True
+                Me.Eliminar.Visible = True
+                Me.GroupBox1.Visible = True
 
-
-
-            Me.Fecha.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
-            Me.CodigoProveedor.Text = lConsulta.ObtenerValor("V2", ObjRet.sResultado, "|")
-            Me.NombreProveedor.Text = lConsulta.ObtenerValor("V3", ObjRet.sResultado, "|")
-            Me.txtFactura.Text = lConsulta.ObtenerValor("V4", ObjRet.sResultado, "|")
-            If Not ObjRet.DS Is DBNull.Value Then
-                If Not ObjRet.DS.Tables Is DBNull.Value Then
-                    If ObjRet.DS.Tables.Count > 0 Then
-                        For i As Integer = 0 To ObjRet.DS.Tables(0).Rows.Count - 1
-                            DsDatos.Tables("Table").ImportRow(ObjRet.DS.Tables(0).Rows(i))
-                        Next
-                        DsDatos.Tables("Table").AcceptChanges()
-                        DsView = DsDatos.Tables(0).DefaultView
+                Me.Fecha.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
+                Me.CodigoProveedor.Text = lConsulta.ObtenerValor("V2", ObjRet.sResultado, "|")
+                Me.NombreProveedor.Text = lConsulta.ObtenerValor("V3", ObjRet.sResultado, "|")
+                Me.txtFactura.Text = lConsulta.ObtenerValor("V4", ObjRet.sResultado, "|")
+                ''LLenar Grid
+                If Not ObjRet.DS Is DBNull.Value Then
+                    If Not ObjRet.DS.Tables Is DBNull.Value Then
+                        If ObjRet.DS.Tables.Count > 0 Then
+                            LlenarGrid()
+                            FilaVacia()
+                        Else
+                            FilaVacia()
+                        End If
                     End If
                 End If
             End If
