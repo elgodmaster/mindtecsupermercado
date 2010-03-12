@@ -1,0 +1,15 @@
+C:\Users\MAVB\Desktop\pvfmindtec\Componentes\bin\Debug\Componentes.dll
+C:\Users\MAVB\Desktop\pvfmindtec\Componentes\bin\Debug\Componentes.pdb
+C:\Users\MAVB\Desktop\pvfmindtec\Componentes\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\MAVB\Desktop\pvfmindtec\Componentes\obj\Debug\MindTec.Componentes.Grid.resources
+C:\Users\MAVB\Desktop\pvfmindtec\Componentes\obj\Debug\Componentes.csproj.GenerateResource.Cache
+C:\Users\MAVB\Desktop\pvfmindtec\Componentes\obj\Debug\Componentes.dll
+C:\Users\MAVB\Desktop\pvfmindtec\Componentes\obj\Debug\Componentes.pdb
+F:\MindTec\PRUEBAS_PROYECTOS\pvfmindtec\Componentes\bin\Debug\Componentes.dll
+F:\MindTec\PRUEBAS_PROYECTOS\pvfmindtec\Componentes\bin\Debug\Componentes.pdb
+F:\MindTec\PRUEBAS_PROYECTOS\pvfmindtec\Componentes\obj\Debug\ResolveAssemblyReference.cache
+F:\MindTec\PRUEBAS_PROYECTOS\pvfmindtec\Componentes\obj\Debug\MindTec.Componentes.Grid.resources
+F:\MindTec\PRUEBAS_PROYECTOS\pvfmindtec\Componentes\obj\Debug\Componentes.Properties.Resources.resources
+F:\MindTec\PRUEBAS_PROYECTOS\pvfmindtec\Componentes\obj\Debug\Componentes.csproj.GenerateResource.Cache
+F:\MindTec\PRUEBAS_PROYECTOS\pvfmindtec\Componentes\obj\Debug\Componentes.dll
+F:\MindTec\PRUEBAS_PROYECTOS\pvfmindtec\Componentes\obj\Debug\Componentes.pdb

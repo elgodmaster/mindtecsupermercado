@@ -1,0 +1,15 @@
+C:\Users\MAVB\Documents\Visual Studio 2008\Projects\SuperMercado\Componentes\obj\Release\ResolveAssemblyReference.cache
+C:\Users\MAVB\Documents\Visual Studio 2008\Projects\SuperMercado\Componentes\obj\Release\MindTec.Componentes.Grid.resources
+C:\Users\MAVB\Documents\Visual Studio 2008\Projects\SuperMercado\Componentes\obj\Release\Componentes.Properties.Resources.resources
+C:\Users\MAVB\Documents\Visual Studio 2008\Projects\SuperMercado\Componentes\obj\Release\Componentes.csproj.GenerateResource.Cache
+C:\Users\MAVB\Documents\Visual Studio 2008\Projects\SuperMercado\Componentes\bin\Release\Componentes.dll
+C:\Users\MAVB\Documents\Visual Studio 2008\Projects\SuperMercado\Componentes\bin\Release\Componentes.pdb
+C:\Users\MAVB\Documents\Visual Studio 2008\Projects\SuperMercado\Componentes\bin\Release\DevAge.Core.dll
+C:\Users\MAVB\Documents\Visual Studio 2008\Projects\SuperMercado\Componentes\bin\Release\DevAge.Windows.Forms.dll
+C:\Users\MAVB\Documents\Visual Studio 2008\Projects\SuperMercado\Componentes\bin\Release\itextsharp.dll
+C:\Users\MAVB\Documents\Visual Studio 2008\Projects\SuperMercado\Componentes\bin\Release\log4net.dll
+C:\Users\MAVB\Documents\Visual Studio 2008\Projects\SuperMercado\Componentes\bin\Release\nunit.framework.dll
+C:\Users\MAVB\Documents\Visual Studio 2008\Projects\SuperMercado\Componentes\bin\Release\SourceGrid.dll
+C:\Users\MAVB\Documents\Visual Studio 2008\Projects\SuperMercado\Componentes\bin\Release\SourceGrid.Extensions.dll
+C:\Users\MAVB\Documents\Visual Studio 2008\Projects\SuperMercado\Componentes\obj\Release\Componentes.dll
+C:\Users\MAVB\Documents\Visual Studio 2008\Projects\SuperMercado\Componentes\obj\Release\Componentes.pdb
