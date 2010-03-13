@@ -12,6 +12,7 @@ Public Class InventarioEntradas
     Dim ObjRet As CRetorno
 #End Region
 
+#Region "Eventos Principales"
     Private Sub InventarioEntradas_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
         Select Case e.KeyCode
             Case Keys.Escape
@@ -28,6 +29,7 @@ Public Class InventarioEntradas
         CrearDsDatos()
         ConfiguraGridDatos()
     End Sub
+#End Region
 
 
 #Region " Rutinas "
@@ -38,6 +40,10 @@ Public Class InventarioEntradas
             Case Keys.F2
                 CatalogoEntradas()
         End Select
+    End Sub
+
+    Private Sub Limpiar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Limpiar.Click
+        LimpiarPantalla()
     End Sub
 
     Sub LimpiarPantalla()
@@ -61,6 +67,16 @@ Public Class InventarioEntradas
         Next
         DsDatos.Tables("Table").AcceptChanges()
         DsView = DsDatos.Tables(0).DefaultView
+        If Not ObjRet.DS Is DBNull.Value Then
+            If Not ObjRet.DS.Tables Is DBNull.Value Then
+                If ObjRet.DS.Tables.Count > 0 Then
+                    LlenarGrid()
+                    FilaVacia()
+                Else
+                    FilaVacia()
+                End If
+            End If
+        End If
     End Sub
 
     Sub FilaVacia()
@@ -69,7 +85,7 @@ Public Class InventarioEntradas
         Dim row As DataRowView = Nothing
 
         If DsDatos.Tables("Table").Rows.Count <= 0 Then
-            
+
             'Variable de Trabajo
             Dim Codigo As String = ""
             Dim Producto As String = ""
@@ -130,6 +146,23 @@ Public Class InventarioEntradas
         End If
     End Sub
 
+
+    Sub CatalogoProveedor()
+        Caja = "Consulta106" : Parametros = ""
+        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+        ObjRet = lConsulta.LlamarCaja(Caja, "0", Parametros)
+        If ObjRet.bOk Then
+            Dim nuevo As Grid = New Grid(ObjRet.DS)
+
+            Me.CodigoProveedor.Text = nuevo.resultado
+            Dim e As KeyEventArgs
+            e = New KeyEventArgs(Keys.Enter)
+            Me.CodigoProveedor_KeyDown(DBNull.Value, e)
+        Else
+            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+
+        End If
+    End Sub
 #End Region
 
 #Region " Grid Datos "
@@ -141,12 +174,12 @@ Public Class InventarioEntradas
         dt = New DataTable("Table")
         DsDatos.Tables.Add(dt)
 
-        DsDatos.Tables("Table").Columns.Add("C0", GetType(String))
+        'DsDatos.Tables("Table").Columns.Add("C0", GetType(String))
         DsDatos.Tables("Table").Columns.Add("C1", GetType(String))
         DsDatos.Tables("Table").Columns.Add("C2", GetType(String))
         DsDatos.Tables("Table").Columns.Add("C3", GetType(Double))
         DsDatos.Tables("Table").Columns.Add("C4", GetType(String))
-        DsDatos.Tables("Table").Columns.Add("C5", GetType(String))
+        'DsDatos.Tables("Table").Columns.Add("C5", GetType(String))
 
     End Sub
 
@@ -191,7 +224,7 @@ Public Class InventarioEntradas
         GridDatos.GetCell(0, 2).View = viewcolumnheader
         GridDatos.GetCell(0, 3).View = viewcolumnheader
         GridDatos.GetCell(0, 4).View = viewcolumnheader
-        GridDatos.GetCell(0, 5).View = viewcolumnheader
+        'GridDatos.GetCell(0, 5).View = viewcolumnheader
 
     End Sub
 
@@ -224,14 +257,16 @@ Public Class InventarioEntradas
         Dim EditorCustom As SourceGrid.Cells.Editors.TextBox = New SourceGrid.Cells.Editors.TextBox(GetType(String))
         EditorCustom.EditableMode = SourceGrid.EditableMode.None
 
+        Dim Editable As SourceGrid.Cells.Editors.TextBox = New SourceGrid.Cells.Editors.TextBox(GetType(String))
+        Editable.EditableMode = SourceGrid.EditableMode.Focus
         'Crear columnas
         Dim GridColumn As SourceGrid.DataGridColumn
-
-        GridColumn = GridDatos.Columns.Add(Nothing, "", New SourceGrid.Cells.Button("+"))
-        GridColumn.DataCell.AddController(gridKeydown)
+        ''AGRAGAR BOTON
+        ' GridColumn = GridDatos.Columns.Add(Nothing, "", New SourceGrid.Cells.Button("+"))
+        ' GridColumn.DataCell.AddController(gridKeydown)
         'GridColumn.DataCell.AddController(clickEvent2)
-        GridColumn.DataCell.View = viewBtn
-        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+        'GridColumn.DataCell.View = viewBtn
+        'GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
 
         'GridColumn = GridDatos.Columns.Add("C0", "Fecha", EditorCustom)
@@ -239,7 +274,7 @@ Public Class InventarioEntradas
         'GridColumn.DataCell.View = viewNormal
         'GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
-        GridColumn = GridDatos.Columns.Add("C1", "Código", EditorCustom)
+        GridColumn = GridDatos.Columns.Add("C1", "Código", Editable)
         GridColumn.DataCell.AddController(gridKeydown)
         GridColumn.DataCell.View = viewNormal
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
@@ -249,8 +284,8 @@ Public Class InventarioEntradas
         GridColumn.DataCell.View = viewNormal
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
-        GridColumn = GridDatos.Columns.Add("C3", "Cantidad", EditorCustom)
-        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn = GridDatos.Columns.Add("C3", "Cantidad", GetType(Double))
+        'GridColumn.DataCell.AddController(gridKeydown)
         GridColumn.DataCell.View = viewNormal
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
@@ -267,16 +302,16 @@ Public Class InventarioEntradas
 
 
         GridDatos.Columns(0).Visible = False
-        GridDatos.Columns.SetWidth(1, 30)
-        GridDatos.Columns.SetWidth(2, 150)
-        GridDatos.Columns.SetWidth(3, 300)
-        GridDatos.Columns.SetWidth(4, 240)
-        GridDatos.Columns.SetWidth(5, 150)
+        GridDatos.Columns.SetWidth(1, 200)
+        GridDatos.Columns.SetWidth(2, 350)
+        GridDatos.Columns.SetWidth(3, 70)
+        GridDatos.Columns.SetWidth(4, 150)
+        'GridDatos.Columns.SetWidth(5, 150)
     End Sub
 
 #End Region
 
-
+#Region " Folio Entrada "
     Private Sub FolioEntrada_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles FolioEntrada.KeyDown
         Select Case e.KeyCode
             Case Keys.F2
@@ -293,7 +328,9 @@ Public Class InventarioEntradas
                 End If
         End Select
     End Sub
+#End Region
 
+#Region " Aceptar "
     Private Sub btnAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAceptar.Click
         If Len(LTrim(RTrim(Me.FolioEntrada.Text))) = 0 Then
             Nuevo.PerformClick()
@@ -315,20 +352,15 @@ Public Class InventarioEntradas
                 Me.CodigoProveedor.Text = lConsulta.ObtenerValor("V2", ObjRet.sResultado, "|")
                 Me.NombreProveedor.Text = lConsulta.ObtenerValor("V3", ObjRet.sResultado, "|")
                 Me.txtFactura.Text = lConsulta.ObtenerValor("V4", ObjRet.sResultado, "|")
-                ''LLenar Grid
-                If Not ObjRet.DS Is DBNull.Value Then
-                    If Not ObjRet.DS.Tables Is DBNull.Value Then
-                        If ObjRet.DS.Tables.Count > 0 Then
-                            LlenarGrid()
-                            FilaVacia()
-                        Else
-                            FilaVacia()
-                        End If
-                    End If
-                End If
+                LlenarGrid()
+               
             End If
         End If
+        ObjRet = Nothing
     End Sub
+#End Region
+
+#Region " Grabar "
 
     Private Sub Grabar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Grabar.Click
         Caja = "Grabar109" : Parametros = "V1=" & Me.FolioEntrada.Text & "|V2=" & Me.Fecha.Value.ToString("dd/MM/yyyy") & "|V3=|V4=" & Me.txtFactura.Text & "|V5=" & Me.CodigoProveedor.Text & "|"
@@ -339,27 +371,54 @@ Public Class InventarioEntradas
             MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
         Else
             MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+            Me.CodigoProveedor.Focus()
         End If
     End Sub
+#End Region
 
-    Private Sub Limpiar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Limpiar.Click
-        LimpiarPantalla()
-    End Sub
 
+#Region " Nuevo "
     Private Sub Nuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Nuevo.Click
         Caja = "Consulta109" : Parametros = "V1=" & Me.FolioEntrada.Text
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
         ObjRet = lConsulta.LlamarCaja(Caja, "5", Parametros)
         'Estatus
         If ObjRet.bOk Then
-
             Me.FolioEntrada.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|", False)
             Me.btnAceptar.Enabled = False
             Me.FolioEntrada.Enabled = False
+            Me.Nuevo.Visible = False
             Me.Grabar.Visible = True
             Me.GroupBox1.Visible = True
+            FilaVacia()
             Me.CodigoProveedor.Focus()
 
         End If
+        ObjRet = Nothing
     End Sub
+#End Region
+
+#Region " Proveedor "
+    Private Sub CodigoProveedor_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles CodigoProveedor.KeyDown
+        Select Case e.KeyCode
+            Case Keys.F2
+                CatalogoProveedor()
+            Case Keys.Enter
+                Caja = "Consulta106" : Parametros = "V1=" & Me.CodigoProveedor.Text
+                If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+                ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
+                'Estatus
+                If ObjRet.bOk Then
+                    If Len(LTrim(RTrim(lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|", False)))) = 0 Then
+                        MessageBox.Show("El codigo del proveedor no esta registrado")
+                    Else
+                        Me.NombreProveedor.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|", False)
+                    End If
+
+
+                End If
+        End Select
+    End Sub
+#End Region
+
 End Class

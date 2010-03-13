@@ -74,6 +74,29 @@ BEGIN
      Return    
    End 
 
+------------------------------------------------------------------------
+    --Caja de proveedores
+    ------------------------------------------------------------------------
+     Select @Desc0 = 'V1=' + @Valor5 + '|'
+     Exec Consulta106 @Desc0,@Resul2 Output,'',1
+     Exec Emulador_SepararCadena '2R', @Resul2, '|', @Desc0 Output
+     If Upper (@Desc0) <> 'OK'
+      Begin
+        Select @Resul = @Resul2
+        Return
+      End
+
+     --obtenemos el valor
+     Exec Emulador_SepararCadena 'V1', @Resul2, '|', @Desc1 Output
+     If LEN(LTrim(RTrim(@Desc1))) = 0 
+      Begin
+       Select @Resul= '2R=Error|2M=El codigo del proveedor no esta registrado|'
+       Return
+      End
+     --------------------------------------------------------------------------
+     -------------------------------------------------------------------------- 
+
+
 	select * from SMercado..entradas e 
 	inner join SMercado..entrada_detalles ed on e.identrada=ed.identrada
 	inner join SMercado..cat_proveedores p on  e.idproveedor=p.idproveedor and p.codigo=@Valor5 and e.folioFactura=@Valor4
