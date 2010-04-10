@@ -246,4 +246,13 @@ Public Class Principal
         frm_sal.StartPosition = FormStartPosition.CenterScreen
         frm_sal.Show()
     End Sub
+
+    Private Sub corteToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles corteToolStripMenuItem.Click
+        Dim cajaActual As New Caja
+        cajaActual.MdiParent = Me
+        cajaActual.WindowState = FormWindowState.Maximized
+
+        cajaActual.StartPosition = FormStartPosition.CenterScreen
+        cajaActual.Show()
+    End Sub
 End Class
