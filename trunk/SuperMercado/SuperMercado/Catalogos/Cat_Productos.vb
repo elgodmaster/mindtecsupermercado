@@ -126,6 +126,7 @@ Public Class Cat_Productos
         Me.CodigoUnidad.Text = ""
         Me.NombreUnidad.Text = ""
         Me.TxtStock.Text = ""
+        Me.Txt_InvIni.Text = ""
         'Me.CodigoTCambio.Text = ""
         'Me.TxtTCambio.Text = ""
         Me.TxtCostoCompra.Text = ""
@@ -273,6 +274,7 @@ Public Class Cat_Productos
             Me.TxtMargen.Text = lConsulta.ObtenerValor("V7", ObjRet.sResultado, "|")
             Me.TxtCostoVenta.Text = lConsulta.ObtenerValor("V8", ObjRet.sResultado, "|")
             Me.TxtPrecio.Text = lConsulta.ObtenerValor("V8", ObjRet.sResultado, "|")
+            Me.Txt_InvIni.Text = lConsulta.ObtenerValor("V15", ObjRet.sResultado, "|", False)
             'Habilitar
             Me.Grabar.Visible = True
             Me.Eliminar.Visible = True
@@ -421,7 +423,8 @@ Public Class Cat_Productos
                                               "|V8=" & Me.TxtMargen.Text.Trim & _
                                               "|V9=" & Me.CodigoUnidad.Text.Trim & _
                                               "|V10=" & Me.TxtStock.Text.Trim & _
-                                              "|V11=" & Me.TxtPrecio.Text & "|"
+                                              "|V11=" & Me.TxtPrecio.Text & _
+                                              "|V12=" & Me.Txt_InvIni.Text & "|"
             If lConsulta Is Nothing Then lConsulta = New ClsConsultas
             ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
             If ObjRet.bOk Then
@@ -470,11 +473,12 @@ Public Class Cat_Productos
         Dim Result As DialogResult
         Result = MessageBox.Show("¿Deseas eliminar el producto?", "PVFacturacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
         If Result = Windows.Forms.DialogResult.Yes Then
-            Caja = "Eliminar103" : Parametros = "V1=" & Me.CodigoCategoria.Text.Trim & _
-                                                "|V2=" & Me.CodigoMarca.Text.Trim & _
-                                                "|V3=" & Me.CodigoProducto.Text.Trim & "|"
+            Caja = "Eliminar103" : Parametros = "V1=" & Me.CodigoProducto.Text.Trim & "|"
+            '"V2=" & Me.TxtDepto.Text.Trim & _
+            '"|V3=" & Me.CodigoCategoria.Text.Trim & _
+            '"|V4=" & Me.CodigoMarca.Text.Trim & "|"
             If lConsulta Is Nothing Then lConsulta = New ClsConsultas
-            ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
+            ObjRet = lConsulta.LlamarCaja(Caja, "0", Parametros)
             If ObjRet.bOk Then
                 MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
                 LimpiarPantalla()

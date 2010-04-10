@@ -26,14 +26,8 @@ Partial Class Cat_Productos
         Me.Eliminar = New System.Windows.Forms.ToolStripButton
         Me.Barra = New System.Windows.Forms.PictureBox
         Me.btnAceptar = New System.Windows.Forms.Button
-        Me.CodigoMarca = New System.Windows.Forms.TextBox
-        Me.Label1 = New System.Windows.Forms.Label
-        Me.Label2 = New System.Windows.Forms.Label
         Me.Producto = New System.Windows.Forms.Label
-        Me.CodigoCategoria = New System.Windows.Forms.TextBox
         Me.CodigoProducto = New System.Windows.Forms.TextBox
-        Me.NombreMarca = New System.Windows.Forms.Label
-        Me.NombreCategoria = New System.Windows.Forms.Label
         Me.NombreProducto = New System.Windows.Forms.Label
         Me.GroupBoxDescripcion = New System.Windows.Forms.GroupBox
         Me.NombreUnidad = New System.Windows.Forms.Label
@@ -56,9 +50,17 @@ Partial Class Cat_Productos
         Me.PiePagina = New System.Windows.Forms.StatusStrip
         Me.MensajePiePagina = New System.Windows.Forms.ToolStripStatusLabel
         Me.Label8 = New System.Windows.Forms.Label
-        Me.Lbl_Depto = New System.Windows.Forms.Label
-        Me.TxtDepto = New System.Windows.Forms.TextBox
+        Me.Label1 = New System.Windows.Forms.Label
+        Me.CodigoMarca = New System.Windows.Forms.TextBox
+        Me.Label2 = New System.Windows.Forms.Label
+        Me.CodigoCategoria = New System.Windows.Forms.TextBox
+        Me.NombreMarca = New System.Windows.Forms.Label
+        Me.NombreCategoria = New System.Windows.Forms.Label
         Me.Label9 = New System.Windows.Forms.Label
+        Me.TxtDepto = New System.Windows.Forms.TextBox
+        Me.Lbl_Depto = New System.Windows.Forms.Label
+        Me.Txt_InvIni = New System.Windows.Forms.TextBox
+        Me.Label3 = New System.Windows.Forms.Label
         Me.ToolStrip1.SuspendLayout()
         CType(Me.Barra, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBoxDescripcion.SuspendLayout()
@@ -133,38 +135,6 @@ Partial Class Cat_Productos
         Me.btnAceptar.Text = "Aceptar"
         Me.btnAceptar.UseVisualStyleBackColor = False
         '
-        'CodigoMarca
-        '
-        Me.CodigoMarca.BackColor = System.Drawing.SystemColors.Info
-        Me.CodigoMarca.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CodigoMarca.Location = New System.Drawing.Point(116, 150)
-        Me.CodigoMarca.MaxLength = 9
-        Me.CodigoMarca.Name = "CodigoMarca"
-        Me.CodigoMarca.Size = New System.Drawing.Size(126, 22)
-        Me.CodigoMarca.TabIndex = 2
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.BackColor = System.Drawing.Color.Transparent
-        Me.Label1.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(66, 154)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(44, 14)
-        Me.Label1.TabIndex = 287
-        Me.Label1.Text = "Marca"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.BackColor = System.Drawing.Color.Transparent
-        Me.Label2.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(41, 125)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(69, 14)
-        Me.Label2.TabIndex = 289
-        Me.Label2.Text = "Categoría"
-        '
         'Producto
         '
         Me.Producto.AutoSize = True
@@ -176,16 +146,6 @@ Partial Class Cat_Productos
         Me.Producto.TabIndex = 290
         Me.Producto.Text = "Producto"
         '
-        'CodigoCategoria
-        '
-        Me.CodigoCategoria.BackColor = System.Drawing.SystemColors.Info
-        Me.CodigoCategoria.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CodigoCategoria.Location = New System.Drawing.Point(115, 121)
-        Me.CodigoCategoria.MaxLength = 9
-        Me.CodigoCategoria.Name = "CodigoCategoria"
-        Me.CodigoCategoria.Size = New System.Drawing.Size(126, 22)
-        Me.CodigoCategoria.TabIndex = 1
-        '
         'CodigoProducto
         '
         Me.CodigoProducto.BackColor = System.Drawing.SystemColors.Info
@@ -196,22 +156,6 @@ Partial Class Cat_Productos
         Me.CodigoProducto.Name = "CodigoProducto"
         Me.CodigoProducto.Size = New System.Drawing.Size(126, 22)
         Me.CodigoProducto.TabIndex = 3
-        '
-        'NombreMarca
-        '
-        Me.NombreMarca.BackColor = System.Drawing.Color.Transparent
-        Me.NombreMarca.Location = New System.Drawing.Point(250, 150)
-        Me.NombreMarca.Name = "NombreMarca"
-        Me.NombreMarca.Size = New System.Drawing.Size(660, 22)
-        Me.NombreMarca.TabIndex = 293
-        '
-        'NombreCategoria
-        '
-        Me.NombreCategoria.BackColor = System.Drawing.Color.Transparent
-        Me.NombreCategoria.Location = New System.Drawing.Point(250, 121)
-        Me.NombreCategoria.Name = "NombreCategoria"
-        Me.NombreCategoria.Size = New System.Drawing.Size(660, 22)
-        Me.NombreCategoria.TabIndex = 294
         '
         'NombreProducto
         '
@@ -226,6 +170,8 @@ Partial Class Cat_Productos
         Me.GroupBoxDescripcion.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBoxDescripcion.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBoxDescripcion.Controls.Add(Me.Txt_InvIni)
+        Me.GroupBoxDescripcion.Controls.Add(Me.Label3)
         Me.GroupBoxDescripcion.Controls.Add(Me.NombreUnidad)
         Me.GroupBoxDescripcion.Controls.Add(Me.CodigoUnidad)
         Me.GroupBoxDescripcion.Controls.Add(Me.Label5)
@@ -235,7 +181,7 @@ Partial Class Cat_Productos
         Me.GroupBoxDescripcion.Controls.Add(Me.LblNombres)
         Me.GroupBoxDescripcion.Location = New System.Drawing.Point(12, 236)
         Me.GroupBoxDescripcion.Name = "GroupBoxDescripcion"
-        Me.GroupBoxDescripcion.Size = New System.Drawing.Size(969, 112)
+        Me.GroupBoxDescripcion.Size = New System.Drawing.Size(969, 145)
         Me.GroupBoxDescripcion.TabIndex = 296
         Me.GroupBoxDescripcion.TabStop = False
         Me.GroupBoxDescripcion.Text = "Datos generales"
@@ -266,7 +212,7 @@ Partial Class Cat_Productos
         Me.Label5.AutoSize = True
         Me.Label5.BackColor = System.Drawing.Color.Transparent
         Me.Label5.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(58, 57)
+        Me.Label5.Location = New System.Drawing.Point(58, 58)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(51, 14)
         Me.Label5.TabIndex = 278
@@ -278,18 +224,18 @@ Partial Class Cat_Productos
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TxtStock.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TxtStock.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtStock.Location = New System.Drawing.Point(113, 85)
+        Me.TxtStock.Location = New System.Drawing.Point(113, 110)
         Me.TxtStock.MaxLength = 50
         Me.TxtStock.Name = "TxtStock"
-        Me.TxtStock.Size = New System.Drawing.Size(847, 22)
-        Me.TxtStock.TabIndex = 2
+        Me.TxtStock.Size = New System.Drawing.Size(81, 22)
+        Me.TxtStock.TabIndex = 3
         '
         'Label4
         '
         Me.Label4.AutoSize = True
         Me.Label4.BackColor = System.Drawing.Color.Transparent
         Me.Label4.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(19, 85)
+        Me.Label4.Location = New System.Drawing.Point(19, 114)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(88, 14)
         Me.Label4.TabIndex = 277
@@ -312,7 +258,7 @@ Partial Class Cat_Productos
         Me.LblNombres.AutoSize = True
         Me.LblNombres.BackColor = System.Drawing.Color.Transparent
         Me.LblNombres.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblNombres.Location = New System.Drawing.Point(31, 29)
+        Me.LblNombres.Location = New System.Drawing.Point(31, 30)
         Me.LblNombres.Name = "LblNombres"
         Me.LblNombres.Size = New System.Drawing.Size(78, 14)
         Me.LblNombres.TabIndex = 268
@@ -333,9 +279,9 @@ Partial Class Cat_Productos
         Me.GroupBoxdVenta.Controls.Add(Me.Label10)
         Me.GroupBoxdVenta.Controls.Add(Me.TxtMargen)
         Me.GroupBoxdVenta.Controls.Add(Me.Label7)
-        Me.GroupBoxdVenta.Location = New System.Drawing.Point(11, 355)
+        Me.GroupBoxdVenta.Location = New System.Drawing.Point(11, 399)
         Me.GroupBoxdVenta.Name = "GroupBoxdVenta"
-        Me.GroupBoxdVenta.Size = New System.Drawing.Size(970, 300)
+        Me.GroupBoxdVenta.Size = New System.Drawing.Size(970, 256)
         Me.GroupBoxdVenta.TabIndex = 297
         Me.GroupBoxdVenta.TabStop = False
         Me.GroupBoxdVenta.Text = "Datos de venta"
@@ -464,23 +410,63 @@ Partial Class Cat_Productos
         Me.Label8.TabIndex = 299
         Me.Label8.Text = "Catálogo de Productos"
         '
-        'Lbl_Depto
+        'Label1
         '
-        Me.Lbl_Depto.BackColor = System.Drawing.Color.Transparent
-        Me.Lbl_Depto.Location = New System.Drawing.Point(250, 93)
-        Me.Lbl_Depto.Name = "Lbl_Depto"
-        Me.Lbl_Depto.Size = New System.Drawing.Size(660, 22)
-        Me.Lbl_Depto.TabIndex = 302
+        Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(66, 154)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(44, 14)
+        Me.Label1.TabIndex = 287
+        Me.Label1.Text = "Marca"
         '
-        'TxtDepto
+        'CodigoMarca
         '
-        Me.TxtDepto.BackColor = System.Drawing.SystemColors.Info
-        Me.TxtDepto.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtDepto.Location = New System.Drawing.Point(115, 93)
-        Me.TxtDepto.MaxLength = 9
-        Me.TxtDepto.Name = "TxtDepto"
-        Me.TxtDepto.Size = New System.Drawing.Size(126, 22)
-        Me.TxtDepto.TabIndex = 0
+        Me.CodigoMarca.BackColor = System.Drawing.SystemColors.Info
+        Me.CodigoMarca.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CodigoMarca.Location = New System.Drawing.Point(116, 150)
+        Me.CodigoMarca.MaxLength = 9
+        Me.CodigoMarca.Name = "CodigoMarca"
+        Me.CodigoMarca.Size = New System.Drawing.Size(126, 22)
+        Me.CodigoMarca.TabIndex = 2
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.BackColor = System.Drawing.Color.Transparent
+        Me.Label2.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(41, 125)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(69, 14)
+        Me.Label2.TabIndex = 289
+        Me.Label2.Text = "Categoría"
+        '
+        'CodigoCategoria
+        '
+        Me.CodigoCategoria.BackColor = System.Drawing.SystemColors.Info
+        Me.CodigoCategoria.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CodigoCategoria.Location = New System.Drawing.Point(115, 121)
+        Me.CodigoCategoria.MaxLength = 9
+        Me.CodigoCategoria.Name = "CodigoCategoria"
+        Me.CodigoCategoria.Size = New System.Drawing.Size(126, 22)
+        Me.CodigoCategoria.TabIndex = 1
+        '
+        'NombreMarca
+        '
+        Me.NombreMarca.BackColor = System.Drawing.Color.Transparent
+        Me.NombreMarca.Location = New System.Drawing.Point(250, 150)
+        Me.NombreMarca.Name = "NombreMarca"
+        Me.NombreMarca.Size = New System.Drawing.Size(660, 22)
+        Me.NombreMarca.TabIndex = 293
+        '
+        'NombreCategoria
+        '
+        Me.NombreCategoria.BackColor = System.Drawing.Color.Transparent
+        Me.NombreCategoria.Location = New System.Drawing.Point(250, 121)
+        Me.NombreCategoria.Name = "NombreCategoria"
+        Me.NombreCategoria.Size = New System.Drawing.Size(660, 22)
+        Me.NombreCategoria.TabIndex = 294
         '
         'Label9
         '
@@ -492,6 +478,47 @@ Partial Class Cat_Productos
         Me.Label9.Size = New System.Drawing.Size(98, 14)
         Me.Label9.TabIndex = 301
         Me.Label9.Text = "Departamento"
+        '
+        'TxtDepto
+        '
+        Me.TxtDepto.BackColor = System.Drawing.SystemColors.Info
+        Me.TxtDepto.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtDepto.Location = New System.Drawing.Point(115, 93)
+        Me.TxtDepto.MaxLength = 9
+        Me.TxtDepto.Name = "TxtDepto"
+        Me.TxtDepto.Size = New System.Drawing.Size(126, 22)
+        Me.TxtDepto.TabIndex = 0
+        '
+        'Lbl_Depto
+        '
+        Me.Lbl_Depto.BackColor = System.Drawing.Color.Transparent
+        Me.Lbl_Depto.Location = New System.Drawing.Point(250, 93)
+        Me.Lbl_Depto.Name = "Lbl_Depto"
+        Me.Lbl_Depto.Size = New System.Drawing.Size(660, 22)
+        Me.Lbl_Depto.TabIndex = 302
+        '
+        'Txt_InvIni
+        '
+        Me.Txt_InvIni.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Txt_InvIni.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.Txt_InvIni.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Txt_InvIni.Location = New System.Drawing.Point(113, 82)
+        Me.Txt_InvIni.MaxLength = 50
+        Me.Txt_InvIni.Name = "Txt_InvIni"
+        Me.Txt_InvIni.Size = New System.Drawing.Size(81, 22)
+        Me.Txt_InvIni.TabIndex = 2
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.BackColor = System.Drawing.Color.Transparent
+        Me.Label3.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(2, 86)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(110, 14)
+        Me.Label3.TabIndex = 297
+        Me.Label3.Text = "Inventario inicial"
         '
         'Cat_Productos
         '
@@ -541,14 +568,8 @@ Partial Class Cat_Productos
     Friend WithEvents Limpiar As System.Windows.Forms.ToolStripButton
     Friend WithEvents Barra As System.Windows.Forms.PictureBox
     Friend WithEvents btnAceptar As System.Windows.Forms.Button
-    Friend WithEvents CodigoMarca As System.Windows.Forms.TextBox
-    Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Producto As System.Windows.Forms.Label
-    Friend WithEvents CodigoCategoria As System.Windows.Forms.TextBox
     Friend WithEvents CodigoProducto As System.Windows.Forms.TextBox
-    Friend WithEvents NombreMarca As System.Windows.Forms.Label
-    Friend WithEvents NombreCategoria As System.Windows.Forms.Label
     Friend WithEvents NombreProducto As System.Windows.Forms.Label
     Friend WithEvents GroupBoxDescripcion As System.Windows.Forms.GroupBox
     Friend WithEvents LblNombres As System.Windows.Forms.Label
@@ -573,7 +594,15 @@ Partial Class Cat_Productos
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents Eliminar As System.Windows.Forms.ToolStripButton
     Friend WithEvents TxtPrecio As System.Windows.Forms.TextBox
-    Friend WithEvents Lbl_Depto As System.Windows.Forms.Label
-    Friend WithEvents TxtDepto As System.Windows.Forms.TextBox
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents CodigoMarca As System.Windows.Forms.TextBox
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents CodigoCategoria As System.Windows.Forms.TextBox
+    Friend WithEvents NombreMarca As System.Windows.Forms.Label
+    Friend WithEvents NombreCategoria As System.Windows.Forms.Label
     Friend WithEvents Label9 As System.Windows.Forms.Label
+    Friend WithEvents TxtDepto As System.Windows.Forms.TextBox
+    Friend WithEvents Lbl_Depto As System.Windows.Forms.Label
+    Friend WithEvents Txt_InvIni As System.Windows.Forms.TextBox
+    Friend WithEvents Label3 As System.Windows.Forms.Label
 End Class

@@ -21,6 +21,8 @@ BEGIN
   Declare @Registro  Int
   Declare @Valor1    VarChar(8000)  
   Declare @Valor2    Varchar(8000)
+  Declare @Valor3    Varchar(8000)
+  Declare @Valor4    Varchar(8000)
   Declare @Desc0     Varchar(8000)
   Declare @Resul2    VarChar(8000)
     
@@ -49,6 +51,3 @@ BEGIN
 
   Set NoCount OFF
 END
-
-
-

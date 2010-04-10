@@ -134,17 +134,11 @@ BEGIN
 
   if @Validar = 3
    Begin
-    select @Desc1 = IsNull(p.codigo,''),
-            @Desc2 = ISNULL(dp.Descripcion,''),
-			@Desc3 = IsNull(c.descripcion,''),
-			@Desc4 = IsNull(p.descripcion,''),
-			@Desc5 = IsNull(m.descripcion,'')
-			
-	from SMercado..Cat_Productos p 
-	inner join SMercado..Cat_Departamentos Dp on Dp.IdDepartamento = p.IDDepartamento 
-	inner join SMercado..Cat_Categorias c on c.IdCategoria=p.IdCategoria and p.codigo=@Valor1
-	inner join SMercado..Cat_Marcas m on  m.IdMarca=p.IdMarca
-
+     Select @Desc1  = IsNull(a.Descripcion,''),
+            @Desc2  = IsNull(b.Descripcion,'')
+    From SMercado..Cat_Productos a (NoLock)
+    Left Join SMercado..Cat_Unidades b (NoLock) On b.IdUnidad = a.IdUnidad
+    Where a.Codigo = @Valor1
 	 Select @Registro = @@RowCount	 
    End
 
@@ -226,10 +220,7 @@ BEGIN
 							  '|V5=' + @Desc5 + '|'
 	  If @Validar = 3
 		 Select @Resul = '2R=OK|V1=' + @Desc1 + 
-							  '|V2=' + @Desc2 + 
-							  '|V3=' + @Desc3 +
-							  '|V4=' + @Desc4 + 
-							  '|V5=' + @Desc5 + '|'
+							  '|V2=' + @Desc2 + '|'
 	  If @Validar = 4 
          Select @Resul = '2R=OK|V1=' + @Desc1 + 
 							  '|V2=' + @Desc2 + 
