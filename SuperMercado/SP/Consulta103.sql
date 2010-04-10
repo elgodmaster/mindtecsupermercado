@@ -187,18 +187,18 @@ BEGIN
      "Where 1 = 1 " 
      If LEN(LTrim(RTrim(@Valor1))) > 0
       Begin
-       Select @Sql = @Sql + "And a.IdDepartamento = @Valor1 "
+       Select @Sql = @Sql + " And a.IdDepartamento =" + @Valor1
       End
      If LEN(LTrim(RTrim(@Valor2))) > 0
       Begin
-       Select @Sql = @Sql + "And a.idcategoria = @Valor2 "
+       Select @Sql = @Sql + " And a.idcategoria =" + @Valor2
       End 
       If LEN(LTRIM(RTrim(@Valor3))) > 0
        Begin
-        Select @Sql = @Sql + "And a.idmarca = @Valor3 "
+        Select @Sql = @Sql + " And a.idmarca =" + @Valor3
        End
       
-     Select @Sql = @Sql + "Order By d.Descripcion,c.Descripcion,b.Descripcion,a.Codigo "
+     Select @Sql = @Sql + " Order By d.Descripcion,c.Descripcion,b.Descripcion,a.Codigo "
      
      Exec(@Sql)
  
@@ -238,7 +238,8 @@ BEGIN
            @Desc11 = IsNull(d.IdMarca,0),                      
            @Desc12 = IsNull(d.Descripcion,''),
            @Desc13 = IsNull(e.IdCategoria,0),
-           @Desc14 = IsNull(e.Descripcion,'')
+           @Desc14 = IsNull(e.Descripcion,''),
+           @Desc15 = ISNULL(a.inventarioInicial,0)
     From SMercado..Cat_Productos a (NoLock)
     Left Join SMercado..Cat_Unidades b (NoLock) On b.IdUnidad = a.IdUnidad
     Left Join SMercado..Cat_Departamentos c (NoLock) on c.IdDepartamento = a.IDDepartamento 
@@ -284,7 +285,7 @@ BEGIN
       If @Validar = 2 
          Select @Resul = '2R=OK|V1=' + @Desc1 + '|V2=' + @Desc2 + '|V3=' + @Desc3 + '|V4=' + @Desc4 + '|V5=' + @Desc5 + '|V6=' + @Desc6 +
                          '|V7=' + @Desc7 + '|V8=' + @Desc8 + '|V9=' + @Desc9 + '|V10=' + @Desc10 + '|V11=' + @Desc11 + '|V12=' + @Desc12 + 
-                         '|V13=' + @Desc13 + '|V14=' + @Desc14 + '|'  
+                         '|V13=' + @Desc13 + '|V14=' + @Desc14 + '|V15=' + @Desc15 + '|'  
     End
 
   Set NoCount OFF

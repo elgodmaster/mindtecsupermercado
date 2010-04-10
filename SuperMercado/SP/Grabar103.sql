@@ -115,13 +115,13 @@ If Len(RTrim(LTrim(@Valor9)))= 0
         
   -- Logica de Negocio      
   Select @Desc1 = Descripcion
-  From PVF..Cat_Productos(NoLock)
-  Where Codigo = @Valor1 And IdCategoria = @Valor2 And IdMarca = @Valor3
+  From SMercado..Cat_Productos(NoLock)
+  Where Codigo = @Valor1 And IDDepartamento = @Valor2 And IdCategoria  = @Valor3 And IdMarca = @Valor4
   
   If @@RowCount = 0
    Begin
-     Insert SMercado..Cat_Productos(Codigo,IDDepartamento,IdCategoria,IdMarca,Descripcion,CostoCompra,Flete,Margen,IdUnidad,StockMinimo,PrecioVenta)
-            Values(@Valor1,@Valor2,@Valor3,@Valor4,@Valor5,@Valor6,@Valor7,@Valor8,@Valor9,@Valor10,@Valor11)
+     Insert SMercado..Cat_Productos(Codigo,IDDepartamento,IdCategoria,IdMarca,Descripcion,CostoCompra,Flete,Margen,IdUnidad,StockMinimo,PrecioVenta,InventarioInicial)
+            Values(@Valor1,@Valor2,@Valor3,@Valor4,@Valor5,@Valor6,@Valor7,@Valor8,@Valor9,@Valor10,@Valor11,@Valor12)
    End
   Else
    Begin
@@ -132,7 +132,8 @@ If Len(RTrim(LTrim(@Valor9)))= 0
                 Margen       = @Valor8,
                 IdUnidad     = @Valor9,
                 StockMinimo  = @Valor10,
-                PrecioVenta  = @Valor11
+                PrecioVenta  = @Valor11,
+                InventarioInicial = @Valor12
      Where Codigo = @Valor1 And IdDepartamento = @Valor2 And IdCategoria = @Valor3 And IdMarca = @Valor4
    End  
 

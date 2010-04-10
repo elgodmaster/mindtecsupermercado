@@ -10,6 +10,8 @@ Public Class InventarioEntradas
     Dim Parametros As String = ""
     Dim lConsulta As New ClsConsultas
     Dim ObjRet As CRetorno
+    Dim identrada As String
+    Dim Codprod As String
 #End Region
 
 #Region "Eventos Principales"
@@ -34,13 +36,40 @@ Public Class InventarioEntradas
 
 #Region " Rutinas "
     Private Sub Grid_KeyDown(ByVal sender As Object, ByVal e As KeyEventArgs)
+        Dim grid As SourceGrid.DataGrid = GridDatos
+        Dim pos As Integer = grid.Selection.ActivePosition.Row
         Select Case e.KeyCode
             Case Keys.Escape
                 Me.Close()
             Case Keys.F2
-                CatalogoEntradas()
+                CatalogoProductos(pos)
         End Select
     End Sub
+
+    'Private Sub GridCantidad_keydown(ByVal Sender As Object, ByVal e As KeyEventArgs)
+
+    '    Select Case e.KeyCode
+    '        Case Keys.F2
+    '            CatalogoProveedor()
+    '        Case Keys.Enter
+    '            FilaVacia()
+
+    '    End Select
+
+    '    'Dim grid As SourceGrid.DataGrid = GridDatos
+    '    'Dim rows As Object = grid.SelectedDataRows
+    '    'Dim Row As DataRowView = Nothing
+    '    'Dim Sender2 As Object = CType(Sender.Control, TextBox)
+    '    'Dim con As TextBox = CType(Sender.control, TextBox)
+    '    ''Dim codigo As String = lConsulta.ObtenerValor(e.KeyChar.ToString, Sender2, "", False)
+    '    'If Not rows Is Nothing And rows.Length > 0 Then
+
+    '    '    Row = CType(rows(0), DataRowView)
+    '    '    Row.DataView.AllowEdit = True
+    '    '    Row.Item("C1") = con.Text
+    '    'End If
+
+    'End Sub
 
     Private Sub Limpiar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Limpiar.Click
         LimpiarPantalla()
@@ -59,7 +88,7 @@ Public Class InventarioEntradas
         Me.NombreProveedor.Text = ""
         Me.txtFactura.Text = ""
         Me.FolioEntrada.Focus()
-
+        'Me.DsDatos.Tables("Table").Clear()
     End Sub
     Sub LlenarGrid()
         For i As Integer = 0 To ObjRet.DS.Tables(0).Rows.Count - 1
@@ -163,7 +192,102 @@ Public Class InventarioEntradas
 
         End If
     End Sub
+
+    Sub CatalogoProductos(ByVal pos As Integer)
+        Caja = "Consulta103" : Parametros = ""
+        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+        ObjRet = lConsulta.LlamarCaja(Caja, "0", Parametros)
+        If ObjRet.bOk Then
+            Dim nuevo As Grid = New Grid(ObjRet.DS)
+            Codprod = nuevo.resultado
+        Else
+            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+
+        End If
+        ''Llenar grid con los datos del catalogo
+        If Len(LTrim(RTrim(Codprod))) > 0 Then
+            Caja = "Consulta109" : Parametros = "V1=" & Codprod & "|"
+            If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+            ObjRet = lConsulta.LlamarCaja(Caja, "3", Parametros)
+            If ObjRet.bOk Then
+                DsDatos.Tables("Table").Rows(pos).Item("C2") = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|", False)
+            Else
+                MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+            End If
+        End If
+    End Sub
 #End Region
+
+#Region " Codigo_KeyDown"
+    Private Sub codigo_keydown(ByVal sender As Object, ByVal e As KeyEventArgs)
+        Dim grid As SourceGrid.DataGrid = GridDatos
+        Dim pos As Integer = grid.Selection.ActivePosition.Row
+        Select Case e.KeyCode
+            Case Keys.F2
+                CatalogoProductos(pos)
+            Case Keys.Enter
+
+                SendKeys.Send("{TAB}")
+                SendKeys.Send("{TAB}")
+
+        End Select
+    End Sub
+#End Region
+
+    Private Sub cant_keydown(ByVal sender As Object, ByVal e As KeyEventArgs)
+        Dim num As Integer
+        num = GridDatos.Rows.Count - 2
+        Select Case e.KeyCode
+            Case Keys.Enter
+                If DsDatos.Tables("Table").Rows(num).Item("C3") = 0 Then
+                    LlenarFila()
+                    SendKeys.Send("{TAB}")
+                    SendKeys.Send("{TAB}")
+
+                Else
+                    SendKeys.Send("{TAB}")
+                    SendKeys.Send("{TAB}")
+                End If
+
+        End Select
+    End Sub
+
+
+    Private Sub GridCantidad_KeyPress(ByVal sender As Object, ByVal e As KeyPressEventArgs)
+
+        Dim grid As SourceGrid.DataGrid = GridDatos
+        Dim rows As Object = grid.Selection.ActivePosition
+        Dim Row As DataRowView = Nothing
+        Dim Sender2 As Object = CType(sender.Control, TextBox)
+        'Dim con As TextBox = CType(sender.control, TextBox)
+        'Dim codigo As String = lConsulta.ObtenerValor(e.KeyChar.ToString, Sender2, "", False)
+        If Not rows Is Nothing And rows.Length > 0 Then
+
+            Row = CType(rows(0), DataRowView)
+            Row.DataView.AllowEdit = True
+            'Row.Item("C4") = con.Text
+        End If
+
+
+    End Sub
+
+    Private Sub GridCodigo_KeyPress(ByVal sender As Object, ByVal e As KeyPressEventArgs)
+        Dim grid As SourceGrid.DataGrid = GridDatos
+        Dim rows As Object = grid.SelectedDataRows
+        Dim Row As DataRowView = Nothing
+        Dim Sender2 As Object = CType(sender.Control, TextBox)
+        'Dim pos As Integer = grid.Selection.ActivePosition.Row
+        'Dim con As TextBox = CType(sender.control, TextBox)
+        'Dim codigo As String = lConsulta.ObtenerValor(e.KeyChar.ToString, Sender2, "", False)
+        If Not rows Is Nothing And rows.Length > 0 Then
+
+            Row = CType(rows(0), DataRowView)
+            Row.DataView.AllowEdit = True
+            ' Row.Item("C1") = con.Text
+        End If
+
+    End Sub
+
 
 #Region " Grid Datos "
 
@@ -253,12 +377,24 @@ Public Class InventarioEntradas
         Dim gridKeydown As SourceGrid.Cells.Controllers.CustomEvents = New SourceGrid.Cells.Controllers.CustomEvents
         AddHandler gridKeydown.KeyDown, New KeyEventHandler(AddressOf Grid_KeyDown)
 
+        Dim Codigokeydown As SourceGrid.Cells.Controllers.CustomEvents = New SourceGrid.Cells.Controllers.CustomEvents
+        AddHandler Codigokeydown.KeyDown, New KeyEventHandler(AddressOf codigo_keydown)
+
+        Dim Cantidadkeydown As SourceGrid.Cells.Controllers.CustomEvents = New SourceGrid.Cells.Controllers.CustomEvents
+        AddHandler Cantidadkeydown.KeyDown, New KeyEventHandler(AddressOf cant_keydown)
+
         'Definicion de la celda
         Dim EditorCustom As SourceGrid.Cells.Editors.TextBox = New SourceGrid.Cells.Editors.TextBox(GetType(String))
         EditorCustom.EditableMode = SourceGrid.EditableMode.None
 
         Dim Editable As SourceGrid.Cells.Editors.TextBox = New SourceGrid.Cells.Editors.TextBox(GetType(String))
-        Editable.EditableMode = SourceGrid.EditableMode.Focus
+        Editable.EditableMode = SourceGrid.EditableMode.AnyKey
+
+        Dim editorCantidad As SourceGrid.Cells.Editors.TextBox = New SourceGrid.Cells.Editors.TextBox(GetType(Double))
+        AddHandler editorCantidad.KeyPress, New KeyPressEventHandler(AddressOf GridCantidad_KeyPress)
+
+        Dim editorCodigo As SourceGrid.Cells.Editors.TextBox = New SourceGrid.Cells.Editors.TextBox(GetType(String))
+        AddHandler editorCodigo.KeyPress, New KeyPressEventHandler(AddressOf GridCodigo_KeyPress)
         'Crear columnas
         Dim GridColumn As SourceGrid.DataGridColumn
         ''AGRAGAR BOTON
@@ -274,8 +410,8 @@ Public Class InventarioEntradas
         'GridColumn.DataCell.View = viewNormal
         'GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
-        GridColumn = GridDatos.Columns.Add("C1", "Código", Editable)
-        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn = GridDatos.Columns.Add("C1", "Código", editorCodigo)
+        GridColumn.DataCell.AddController(Codigokeydown)
         GridColumn.DataCell.View = viewNormal
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
@@ -284,8 +420,8 @@ Public Class InventarioEntradas
         GridColumn.DataCell.View = viewNormal
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
-        GridColumn = GridDatos.Columns.Add("C3", "Cantidad", GetType(Double))
-        'GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn = GridDatos.Columns.Add("C3", "Cantidad", editorCantidad)
+        GridColumn.DataCell.AddController(Cantidadkeydown)
         GridColumn.DataCell.View = viewNormal
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
@@ -353,7 +489,7 @@ Public Class InventarioEntradas
                 Me.NombreProveedor.Text = lConsulta.ObtenerValor("V3", ObjRet.sResultado, "|")
                 Me.txtFactura.Text = lConsulta.ObtenerValor("V4", ObjRet.sResultado, "|")
                 LlenarGrid()
-               
+
             End If
         End If
         ObjRet = Nothing
@@ -363,19 +499,22 @@ Public Class InventarioEntradas
 #Region " Grabar "
 
     Private Sub Grabar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Grabar.Click
-        Caja = "Grabar109" : Parametros = "V1=" & Me.FolioEntrada.Text & "|V2=" & Me.Fecha.Value.ToString("dd/MM/yyyy") & "|V3=|V4=" & Me.txtFactura.Text & "|V5=" & Me.CodigoProveedor.Text & "|"
-        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
-        ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
-        'Estatus
-        If ObjRet.bOk Then
-            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+        If DsDatos.Tables("Table").Rows.Count >= 0 And DsDatos.Tables("Table").Rows(0).Item("C3") <> 0 Then
+            Caja = "Grabar109" : Parametros = "V1=" & Me.FolioEntrada.Text & "|V2=" & Me.Fecha.Value.ToString("dd/MM/yyyy") & "|V3=|V4=" & Me.txtFactura.Text & "|V5=" & Me.CodigoProveedor.Text & "|"
+            If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+            ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros, DsDatos)
+            'Estatus
+            If ObjRet.bOk Then
+                MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+            Else
+                MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+                Me.CodigoProveedor.Focus()
+            End If
         Else
-            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
-            Me.CodigoProveedor.Focus()
+
         End If
     End Sub
 #End Region
-
 
 #Region " Nuevo "
     Private Sub Nuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Nuevo.Click
@@ -420,5 +559,21 @@ Public Class InventarioEntradas
         End Select
     End Sub
 #End Region
+
+    'Sub CodigoEnter()
+    '    Dim grid As SourceGrid.DataGrid = GridDatos
+    '    Dim rows As Object = grid.SelectedDataRows
+    '    Dim Row As DataRowView = Nothing
+    '    Dim Sender2 As Object = CType(sender.Control, TextBox)
+    '    'Dim con As TextBox = CType(sender.control, TextBox)
+    '    'Dim codigo As String = lConsulta.ObtenerValor(e.KeyChar.ToString, Sender2, "", False)
+    '    If Not rows Is Nothing And rows.Length > 0 Then
+
+    '        Row = CType(rows(0), DataRowView)
+    '        Row.DataView.AllowEdit = True
+    '        'Row.Item("C4") = con.Text
+    '    End If
+    'End Sub
+
 
 End Class
