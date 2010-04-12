@@ -1,3 +1,6 @@
+Imports System.Data
+Imports System.Data.SqlClient
+
 Public Class Principal
 
 #Region "Variables De Trabajo"
@@ -7,6 +10,8 @@ Public Class Principal
     Dim Parametros As String = ""
     Dim lConsulta As New ClsConsultas
     Dim ObjRet As CRetorno
+
+    Dim objDineroCaja = Nothing
 #End Region
 
     Private Sub Principal_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -33,7 +38,7 @@ Public Class Principal
 
         'Cotiza.StartPosition = FormStartPosition.CenterScreen
         'Cotiza.Show()
-      
+
 
     End Sub
 
@@ -248,11 +253,76 @@ Public Class Principal
     End Sub
 
     Private Sub corteToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles corteToolStripMenuItem.Click
-        Dim cajaActual As New Caja
-        cajaActual.MdiParent = Me
-        cajaActual.WindowState = FormWindowState.Maximized
 
-        cajaActual.StartPosition = FormStartPosition.CenterScreen
-        cajaActual.Show()
+        ' Se verifica que la fecha más reciente en la tabla caja sea distinta a la actual.
+        ' Si lo es, se procede a ingresar un nuevo registro con la fecha actual.
+
+        ' Conexión.
+        Dim lConexion = New SqlConnection
+
+        '*-- Para conectar desde el servidor.                --*
+        'Dim sCadena As String = String.Empty
+        'sCadena = My.Settings.Servidor
+        'lConexion.ConnectionString = sCadena
+
+        '*-- Para conectarla localmente desde PCLINDORMARIO. --*
+        lConexion.ConnectionString = "Data Source=PCLINDORMARIO;Initial Catalog=PVF_LogicaNegocios;Integrated Security=True"
+
+        Try
+            lConexion.Open()
+        Catch ex As Exception
+            MessageBox.Show("Error en la conexion.")
+        End Try
+
+        ' Valida la fecha para solicitar o no, el dinero inicial en caja.
+        Dim objSqlAdapter As New SqlDataAdapter
+        Dim objDataSet As New DataSet
+        Dim objCommand As New SqlCommand
+
+        objCommand.CommandText = "CONSULTA_FECHA_CAJA"
+        objCommand.CommandType = CommandType.StoredProcedure
+        objCommand.Connection = lConexion
+
+        With objCommand.Parameters
+            .Clear()
+            .Add("@fecha", SqlDbType.VarChar, 20).Value = ""
+            .Item("@fecha").Direction = ParameterDirection.InputOutput
+            .Add("@resul", SqlDbType.VarChar, 20).Value = ""
+            .Item("@resul").Direction = ParameterDirection.InputOutput
+        End With
+
+        objSqlAdapter.SelectCommand = objCommand
+
+        Try
+            objSqlAdapter.Fill(objDataSet)
+        Catch ex As Exception
+            MessageBox.Show("Error al tratar de realizar la conexión.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+        If objCommand.Parameters.Item("@resul").Value = "OK" Then
+            If objCommand.Parameters.Item("@fecha").Value <> Date.Now.Date Then
+                ' Presenta la ventana para ingresar el dinero inicial en la caja.
+                If objDineroCaja Is Nothing Then
+                    Dim objDineroCaja As New dineroCaja
+                    objDineroCaja.numDineroInicial.Focus()
+                    objDineroCaja.numDineroInicial.Select(0, 4)
+                    objDineroCaja.StartPosition = FormStartPosition.CenterScreen
+                    objDineroCaja.Show()
+                End If
+            Else
+                ' Configurar y mostrar la ventana caja.
+                Dim cajaActual As New Caja
+                cajaActual.MdiParent = Me
+                cajaActual.WindowState = FormWindowState.Maximized
+
+                cajaActual.StartPosition = FormStartPosition.CenterScreen
+                cajaActual.Show()
+            End If
+        ElseIf (objCommand.Parameters.Item("@resul").Value = "ERROR") Then
+            MessageBox.Show("No se encontró ningún registro.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
+
+        ' Se cierra la conexión.
+        lConexion.Close()
     End Sub
 End Class
