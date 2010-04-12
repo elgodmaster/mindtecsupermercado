@@ -88,3 +88,4 @@ F:\MindTec\PRUEBAS_PROYECTOS\mindtecsupermercado\SuperMercado\SuperMercado\obj\D
 F:\MindTec\PRUEBAS_PROYECTOS\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.Caja.resources
 F:\MindTec\PRUEBAS_PROYECTOS\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.registroEntrada.resources
 F:\MindTec\PRUEBAS_PROYECTOS\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.registroSalida.resources
+F:\MindTec\PRUEBAS_PROYECTOS\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.dineroCaja.resources

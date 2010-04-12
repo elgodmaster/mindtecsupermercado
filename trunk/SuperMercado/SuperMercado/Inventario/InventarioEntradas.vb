@@ -223,11 +223,10 @@ Public Class InventarioEntradas
         Dim grid As SourceGrid.DataGrid = GridDatos
         Dim pos As Integer = grid.Selection.ActivePosition.Row
         Dim posicion As Object
-
+        posicion = New SourceGrid.Position(pos, 3)
         Dim Context As SourceGrid.CellContext
         Context = New SourceGrid.CellContext(grid, New SourceGrid.Position(pos, 1))
 
-        posicion = New SourceGrid.Position(pos, 3)
         Select Case e.KeyCode
             Case Keys.F2
                 CatalogoProductos(pos)
@@ -235,11 +234,12 @@ Public Class InventarioEntradas
                 Caja = "Consulta109" : Parametros = "V1=" & Context.DisplayText
                 If lConsulta Is Nothing Then lConsulta = New ClsConsultas
                 ObjRet = lConsulta.LlamarCaja(Caja, "3", Parametros)
-
                 If ObjRet.bOk Then
                     DsDatos.Tables("Table").Rows(pos - 1).Item("C2") = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|", False)
                     DsDatos.Tables("Table").Rows(pos - 1).Item("C4") = lConsulta.ObtenerValor("V2", ObjRet.sResultado, "|", False)
                     grid.Selection.Focus(posicion, True)
+                Else
+                    SendKeys.Send("{Enter}")
                 End If
 
         End Select

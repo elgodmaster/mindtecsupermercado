@@ -261,12 +261,12 @@ Public Class Principal
         Dim lConexion = New SqlConnection
 
         '*-- Para conectar desde el servidor.                --*
-        'Dim sCadena As String = String.Empty
-        'sCadena = My.Settings.Servidor
-        'lConexion.ConnectionString = sCadena
+        Dim sCadena As String = String.Empty
+        sCadena = My.Settings.Servidor
+        lConexion.ConnectionString = sCadena
 
         '*-- Para conectarla localmente desde PCLINDORMARIO. --*
-        lConexion.ConnectionString = "Data Source=PCLINDORMARIO;Initial Catalog=PVF_LogicaNegocios;Integrated Security=True"
+        'lConexion.ConnectionString = "Data Source=PCLINDORMARIO;Initial Catalog=PVF_LogicaNegocios;Integrated Security=True"
 
         Try
             lConexion.Open()
