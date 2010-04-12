@@ -275,6 +275,15 @@ Public Class Cat_Productos
             Me.TxtCostoVenta.Text = lConsulta.ObtenerValor("V8", ObjRet.sResultado, "|")
             Me.TxtPrecio.Text = lConsulta.ObtenerValor("V8", ObjRet.sResultado, "|")
             Me.Txt_InvIni.Text = lConsulta.ObtenerValor("V15", ObjRet.sResultado, "|", False)
+            If Len(TxtNombre.Text) > 0 Then
+                Me.TxtDepto.Text = lConsulta.ObtenerValor("V9", ObjRet.sResultado, "|", False)
+                Me.Lbl_Depto.Text = lConsulta.ObtenerValor("V10", ObjRet.sResultado, "|", False)
+                Me.CodigoMarca.Text = lConsulta.ObtenerValor("V11", ObjRet.sResultado, "|", False)
+                Me.NombreMarca.Text = lConsulta.ObtenerValor("V12", ObjRet.sResultado, "|", False)
+                Me.CodigoCategoria.Text = lConsulta.ObtenerValor("V13", ObjRet.sResultado, "|", False)
+                Me.NombreCategoria.Text = lConsulta.ObtenerValor("V14", ObjRet.sResultado, "|", False)
+            End If
+            
             'Habilitar
             Me.Grabar.Visible = True
             Me.Eliminar.Visible = True
@@ -318,12 +327,12 @@ Public Class Cat_Productos
                 If ObjRet.bOk Then
                     'Asignar
                     Me.NombreProducto.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
-                    Me.TxtDepto.Text = lConsulta.ObtenerValor("V2", ObjRet.sResultado, "|")
-                    Me.Lbl_Depto.Text = lConsulta.ObtenerValor("V3", ObjRet.sResultado, "|")
-                    Me.CodigoCategoria.Text = lConsulta.ObtenerValor("V4", ObjRet.sResultado, "|")
-                    Me.NombreCategoria.Text = lConsulta.ObtenerValor("V5", ObjRet.sResultado, "|")
-                    Me.CodigoMarca.Text = lConsulta.ObtenerValor("V6", ObjRet.sResultado, "|")
-                    Me.NombreMarca.Text = lConsulta.ObtenerValor("V7", ObjRet.sResultado, "|")
+                    'Me.TxtDepto.Text = lConsulta.ObtenerValor("V2", ObjRet.sResultado, "|")
+                    'Me.Lbl_Depto.Text = lConsulta.ObtenerValor("V3", ObjRet.sResultado, "|")
+                    'Me.CodigoCategoria.Text = lConsulta.ObtenerValor("V4", ObjRet.sResultado, "|")
+                    'Me.NombreCategoria.Text = lConsulta.ObtenerValor("V5", ObjRet.sResultado, "|")
+                    'Me.CodigoMarca.Text = lConsulta.ObtenerValor("V6", ObjRet.sResultado, "|")
+                    'Me.NombreMarca.Text = lConsulta.ObtenerValor("V7", ObjRet.sResultado, "|")
                     btnAceptar.PerformClick()
                     'SendKeys.Send("{TAB}")
                 Else
