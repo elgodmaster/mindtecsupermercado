@@ -210,7 +210,7 @@ Public Class InventarioEntradas
             If lConsulta Is Nothing Then lConsulta = New ClsConsultas
             ObjRet = lConsulta.LlamarCaja(Caja, "3", Parametros)
             If ObjRet.bOk Then
-                DsDatos.Tables("Table").Rows(pos).Item("C2") = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|", False)
+                DsDatos.Tables("Table").Rows(pos - 1).Item("C2") = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|", False)
             Else
                 MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
             End If
@@ -222,13 +222,25 @@ Public Class InventarioEntradas
     Private Sub codigo_keydown(ByVal sender As Object, ByVal e As KeyEventArgs)
         Dim grid As SourceGrid.DataGrid = GridDatos
         Dim pos As Integer = grid.Selection.ActivePosition.Row
+        Dim posicion As Object
+
+        Dim Context As SourceGrid.CellContext
+        Context = New SourceGrid.CellContext(grid, New SourceGrid.Position(pos, 1))
+
+        posicion = New SourceGrid.Position(pos, 3)
         Select Case e.KeyCode
             Case Keys.F2
                 CatalogoProductos(pos)
             Case Keys.Enter
+                Caja = "Consulta109" : Parametros = "V1=" & Context.DisplayText
+                If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+                ObjRet = lConsulta.LlamarCaja(Caja, "3", Parametros)
 
-                SendKeys.Send("{TAB}")
-                SendKeys.Send("{TAB}")
+                If ObjRet.bOk Then
+                    DsDatos.Tables("Table").Rows(pos - 1).Item("C2") = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|", False)
+                    DsDatos.Tables("Table").Rows(pos - 1).Item("C4") = lConsulta.ObtenerValor("V2", ObjRet.sResultado, "|", False)
+                    grid.Selection.Focus(posicion, True)
+                End If
 
         End Select
     End Sub
@@ -256,7 +268,7 @@ Public Class InventarioEntradas
     Private Sub GridCantidad_KeyPress(ByVal sender As Object, ByVal e As KeyPressEventArgs)
 
         Dim grid As SourceGrid.DataGrid = GridDatos
-        Dim rows As Object = grid.Selection.ActivePosition
+        Dim rows As Object = grid.SelectedDataRows
         Dim Row As DataRowView = Nothing
         Dim Sender2 As Object = CType(sender.Control, TextBox)
         'Dim con As TextBox = CType(sender.control, TextBox)
@@ -276,13 +288,12 @@ Public Class InventarioEntradas
         Dim rows As Object = grid.SelectedDataRows
         Dim Row As DataRowView = Nothing
         Dim Sender2 As Object = CType(sender.Control, TextBox)
-        'Dim pos As Integer = grid.Selection.ActivePosition.Row
-        'Dim con As TextBox = CType(sender.control, TextBox)
-        'Dim codigo As String = lConsulta.ObtenerValor(e.KeyChar.ToString, Sender2, "", False)
+
         If Not rows Is Nothing And rows.Length > 0 Then
 
             Row = CType(rows(0), DataRowView)
             Row.DataView.AllowEdit = True
+            Sender2.ToString()
             ' Row.Item("C1") = con.Text
         End If
 
@@ -559,21 +570,5 @@ Public Class InventarioEntradas
         End Select
     End Sub
 #End Region
-
-    'Sub CodigoEnter()
-    '    Dim grid As SourceGrid.DataGrid = GridDatos
-    '    Dim rows As Object = grid.SelectedDataRows
-    '    Dim Row As DataRowView = Nothing
-    '    Dim Sender2 As Object = CType(sender.Control, TextBox)
-    '    'Dim con As TextBox = CType(sender.control, TextBox)
-    '    'Dim codigo As String = lConsulta.ObtenerValor(e.KeyChar.ToString, Sender2, "", False)
-    '    If Not rows Is Nothing And rows.Length > 0 Then
-
-    '        Row = CType(rows(0), DataRowView)
-    '        Row.DataView.AllowEdit = True
-    '        'Row.Item("C4") = con.Text
-    '    End If
-    'End Sub
-
 
 End Class

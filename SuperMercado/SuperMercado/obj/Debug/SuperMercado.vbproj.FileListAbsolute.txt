@@ -85,3 +85,6 @@ F:\MindTec\PRUEBAS_PROYECTOS\mindtecsupermercado\SuperMercado\SuperMercado\obj\D
 F:\MindTec\PRUEBAS_PROYECTOS\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.Principal.resources
 F:\MindTec\PRUEBAS_PROYECTOS\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.Resources.resources
 F:\MindTec\PRUEBAS_PROYECTOS\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.vbproj.GenerateResource.Cache
+F:\MindTec\PRUEBAS_PROYECTOS\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.Caja.resources
+F:\MindTec\PRUEBAS_PROYECTOS\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.registroEntrada.resources
+F:\MindTec\PRUEBAS_PROYECTOS\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.registroSalida.resources
