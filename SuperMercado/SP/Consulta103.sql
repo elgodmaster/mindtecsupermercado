@@ -187,15 +187,15 @@ BEGIN
      "Where 1 = 1 " 
      If LEN(LTrim(RTrim(@Valor1))) > 0
       Begin
-       Select @Sql = @Sql + " And a.IdDepartamento =" + @Valor1
+       Select @Sql = @Sql + " And a.IdDepartamento = " + @Valor1
       End
      If LEN(LTrim(RTrim(@Valor2))) > 0
       Begin
-       Select @Sql = @Sql + " And a.idcategoria =" + @Valor2
+       Select @Sql = @Sql + " And a.idcategoria = " + @Valor2
       End 
       If LEN(LTRIM(RTrim(@Valor3))) > 0
        Begin
-        Select @Sql = @Sql + " And a.idmarca =" + @Valor3
+        Select @Sql = @Sql + " And a.idmarca = " + @Valor3
        End
       
      Select @Sql = @Sql + " Order By d.Descripcion,c.Descripcion,b.Descripcion,a.Codigo "

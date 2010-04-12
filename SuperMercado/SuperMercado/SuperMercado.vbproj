@@ -85,6 +85,12 @@
     <Compile Include="Caja\Caja.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Caja\dineroCaja.Designer.vb">
+      <DependentUpon>dineroCaja.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Caja\dineroCaja.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Caja\registroEntrada.Designer.vb">
       <DependentUpon>registroEntrada.vb</DependentUpon>
     </Compile>
@@ -221,6 +227,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Caja\Caja.resx">
       <DependentUpon>Caja.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Caja\dineroCaja.resx">
+      <DependentUpon>dineroCaja.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Caja\registroEntrada.resx">
       <DependentUpon>registroEntrada.vb</DependentUpon>
