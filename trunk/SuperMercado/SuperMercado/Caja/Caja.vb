@@ -3,6 +3,7 @@
 #Region " Variables de trabajo "
     Dim objRegistroEntrada = Nothing
     Dim objRegistroSalida = Nothing
+
 #End Region
 
     Private Sub Label1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)

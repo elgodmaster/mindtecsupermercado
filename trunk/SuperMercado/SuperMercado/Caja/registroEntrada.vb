@@ -10,16 +10,19 @@ Public Class registroEntrada
 #End Region
 
     ' Guarda el ingreso registrado.
+#Region "Grabar"
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
 
-        ' Convierte a String el monto de numIngreso.
-        Dim strIngreso As String
-        strIngreso = numIngreso.Value
+        'Validar que se haya tecleado un ingreso
+        If numIngreso.Value <= 0 Then
+            MessageBox.Show("No ha especificado el ingreso.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            Return
+        End If
 
-        Caja = "GRABAR_CAJA_ENTRADA"
-        Parametros = "V1=" & strIngreso.Trim
-        Label1.Text = Parametros
+        Me.Close()
+
     End Sub
+#End Region
 
     Private Sub Cancel_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel_Button.Click
         Me.Close()
