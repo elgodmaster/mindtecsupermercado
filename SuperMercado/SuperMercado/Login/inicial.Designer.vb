@@ -60,9 +60,9 @@ Partial Class inicial
         Me.Label2.Location = New System.Drawing.Point(24, 63)
         Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(445, 35)
+        Me.Label2.Size = New System.Drawing.Size(163, 35)
         Me.Label2.TabIndex = 340
-        Me.Label2.Text = "SISTEMA SUPERMERCADO"
+        Me.Label2.Text = "SISTEMA"
         '
         'Panel2
         '
