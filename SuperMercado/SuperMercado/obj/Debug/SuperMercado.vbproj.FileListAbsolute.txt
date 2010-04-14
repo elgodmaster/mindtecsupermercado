@@ -89,3 +89,38 @@ F:\MindTec\PRUEBAS_PROYECTOS\mindtecsupermercado\SuperMercado\SuperMercado\obj\D
 F:\MindTec\PRUEBAS_PROYECTOS\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.registroEntrada.resources
 F:\MindTec\PRUEBAS_PROYECTOS\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.registroSalida.resources
 F:\MindTec\PRUEBAS_PROYECTOS\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.dineroCaja.resources
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\SuperMercado\bin\Debug\SuperMercado.exe.config
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\SuperMercado\obj\Debug\SuperMercado.exe
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\SuperMercado\obj\Debug\SuperMercado.xml
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\SuperMercado\obj\Debug\SuperMercado.pdb
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\SuperMercado\bin\Debug\SuperMercado.exe
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\SuperMercado\bin\Debug\SuperMercado.pdb
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\SuperMercado\bin\Debug\SuperMercado.xml
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\SuperMercado\bin\Debug\DevAge.Core.dll
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\SuperMercado\bin\Debug\Microsoft.Office.Interop.Excel.dll
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\SuperMercado\bin\Debug\log4net.dll
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\SuperMercado\bin\Debug\office.dll
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\SuperMercado\bin\Debug\Componentes.pdb
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\SuperMercado\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\SuperMercado\obj\Debug\SuperMercado.Caja.resources
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\SuperMercado\obj\Debug\SuperMercado.dineroCaja.resources
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\SuperMercado\obj\Debug\SuperMercado.registroEntrada.resources
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\SuperMercado\obj\Debug\SuperMercado.registroSalida.resources
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\SuperMercado\obj\Debug\SuperMercado.Cat_Categorias.resources
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\SuperMercado\obj\Debug\SuperMercado.Cat_Clientes.resources
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\SuperMercado\obj\Debug\SuperMercado.Cat_Marcas.resources
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\SuperMercado\obj\Debug\SuperMercado.Cat_Productos.resources
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\SuperMercado\obj\Debug\SuperMercado.Cat_Proveedores.resources
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\SuperMercado\obj\Debug\SuperMercado.Cat_Departamentos.resources
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\SuperMercado\obj\Debug\SuperMercado.Cat_Unidades.resources
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\SuperMercado\obj\Debug\SuperMercado.consulta_Entradas.resources
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\SuperMercado\obj\Debug\SuperMercado.Consulta_Existencias.resources
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\SuperMercado\obj\Debug\SuperMercado.consulta_Salidas.resources
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\SuperMercado\obj\Debug\SuperMercado.InventarioEntradas.resources
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\SuperMercado\obj\Debug\SuperMercado.Movimiento_Entradas.resources
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\SuperMercado\obj\Debug\SuperMercado.Movimiento_Salidas.resources
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\SuperMercado\obj\Debug\SuperMercado.inicial.resources
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\SuperMercado\obj\Debug\SuperMercado.Login.resources
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\SuperMercado\obj\Debug\SuperMercado.Principal.resources
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\SuperMercado\obj\Debug\SuperMercado.Resources.resources
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\SuperMercado\obj\Debug\SuperMercado.vbproj.GenerateResource.Cache

@@ -27,7 +27,7 @@ Public Class Principal
         inic.Show()
         Me.MenuStrip1.MdiWindowListItem = Ventanas
         '----------   Muestra la MAC  ------------
-        MessageBox.Show("La dirección MAC de su equipo es: " & obtenMac(), "MAC", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        'MessageBox.Show("La dirección MAC de su equipo es: " & obtenMac(), "MAC", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
     Private Sub SalirToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SalirToolStripMenuItem.Click
@@ -323,7 +323,15 @@ Public Class Principal
                 cajaActual.Show()
             End If
         ElseIf (objCommand.Parameters.Item("@resul").Value = "ERROR") Then
-            MessageBox.Show("No se encontró ningún registro.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            'Se inserta el primer registro de la tabla Caja_Corte con la fecha actual.
+            If objDineroCaja Is Nothing Then
+                Dim objDineroCaja As New dineroCaja
+                objDineroCaja.numDineroInicial.Focus()
+                objDineroCaja.numDineroInicial.Select(0, 4)
+                objDineroCaja.StartPosition = FormStartPosition.CenterScreen
+                objDineroCaja.Show()
+            End If
+            'MessageBox.Show("No se encontró ningún registro.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
 
         ' Se cierra la conexión.
@@ -357,4 +365,20 @@ Public Class Principal
 
         Return str.Substring(23)
     End Function
+
+    Private Sub EntradasToolStripMenuItem2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EntradasToolStripMenuItem2.Click
+        If objRegistroEntrada Is Nothing Then
+            Dim objRegistroEntrada = New registroEntrada()
+            objRegistroEntrada.StartPosition = FormStartPosition.CenterScreen
+            objRegistroEntrada.Show()
+        End If
+    End Sub
+
+    Private Sub SalidasToolStripMenuItem2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SalidasToolStripMenuItem2.Click
+        If objRegistroSalida Is Nothing Then
+            Dim objRegistroSalida = New registroSalida()
+            objRegistroSalida.StartPosition = FormStartPosition.CenterScreen
+            objRegistroSalida.Show()
+        End If
+    End Sub
 End Class

@@ -6,3 +6,11 @@ C:\Users\MAVB\Documents\Visual Studio 2008\Projects\SuperMercado\Componentes\obj
 C:\Users\MAVB\Documents\Visual Studio 2008\Projects\SuperMercado\Componentes\obj\Debug\Componentes.dll
 C:\Users\MAVB\Documents\Visual Studio 2008\Projects\SuperMercado\Componentes\obj\Debug\Componentes.pdb
 C:\Users\MAVB\Documents\Visual Studio 2008\Projects\SuperMercado\Componentes\bin\Debug\Componentes.dll
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\Componentes\bin\Debug\Componentes.dll
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\Componentes\bin\Debug\Componentes.pdb
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\Componentes\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\Componentes\obj\Debug\MindTec.Componentes.Grid.resources
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\Componentes\obj\Debug\Componentes.Properties.Resources.resources
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\Componentes\obj\Debug\ComponentesMindtec.csproj.GenerateResource.Cache
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\Componentes\obj\Debug\Componentes.dll
+C:\Documents and Settings\Mindtecadmin\Escritorio\Dos\SuperMercado\Componentes\obj\Debug\Componentes.pdb
