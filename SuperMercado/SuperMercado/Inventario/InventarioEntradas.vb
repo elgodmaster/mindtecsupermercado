@@ -224,6 +224,8 @@ Public Class InventarioEntradas
         Dim pos As Integer = grid.Selection.ActivePosition.Row
         Dim posicion As Object
         posicion = New SourceGrid.Position(pos, 3)
+        Dim posicion2 As Object
+        posicion2 = New SourceGrid.Position(pos, 1)
         Dim Context As SourceGrid.CellContext
         Context = New SourceGrid.CellContext(grid, New SourceGrid.Position(pos, 1))
 
@@ -231,15 +233,17 @@ Public Class InventarioEntradas
             Case Keys.F2
                 CatalogoProductos(pos)
             Case Keys.Enter
+                Dim a As String = DsDatos.Tables("Table").Rows(pos - 1).Item("C1")
                 Caja = "Consulta109" : Parametros = "V1=" & Context.DisplayText
                 If lConsulta Is Nothing Then lConsulta = New ClsConsultas
                 ObjRet = lConsulta.LlamarCaja(Caja, "3", Parametros)
                 If ObjRet.bOk Then
+                    DsDatos.Tables("Table").Rows(pos - 1).Item("C1") = Context.DisplayText
                     DsDatos.Tables("Table").Rows(pos - 1).Item("C2") = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|", False)
                     DsDatos.Tables("Table").Rows(pos - 1).Item("C4") = lConsulta.ObtenerValor("V2", ObjRet.sResultado, "|", False)
                     grid.Selection.Focus(posicion, True)
                 Else
-                    SendKeys.Send("{Enter}")
+                    grid.Selection.Focus(posicion2, True)
                 End If
 
         End Select
@@ -247,18 +251,20 @@ Public Class InventarioEntradas
 #End Region
 
     Private Sub cant_keydown(ByVal sender As Object, ByVal e As KeyEventArgs)
-        Dim num As Integer
-        num = GridDatos.Rows.Count - 2
+        Dim Grid As SourceGrid.DataGrid = GridDatos
+        Dim posicion As Object
+        Dim num As Integer = Grid.Rows.Count
+        Dim Posicionrow As Integer = Grid.Selection.ActivePosition.Row
+        posicion = New SourceGrid.Position(Posicionrow + 1, 1)
         Select Case e.KeyCode
             Case Keys.Enter
-                If DsDatos.Tables("Table").Rows(num).Item("C3") = 0 Then
+                DsDatos.Tables(0).Rows(0).Item("C3").ToString()
+                If Len(DsDatos.Tables("Table").Rows(num - 2).Item("C1").ToString) = 0 Then
                     LlenarFila()
-                    SendKeys.Send("{TAB}")
-                    SendKeys.Send("{TAB}")
-
+                    Grid.Selection.Focus(posicion, True)
                 Else
-                    SendKeys.Send("{TAB}")
-                    SendKeys.Send("{TAB}")
+                    LlenarFila()
+                    Grid.Selection.Focus(posicion, True)
                 End If
 
         End Select
@@ -280,7 +286,6 @@ Public Class InventarioEntradas
             'Row.Item("C4") = con.Text
         End If
 
-
     End Sub
 
     Private Sub GridCodigo_KeyPress(ByVal sender As Object, ByVal e As KeyPressEventArgs)
@@ -293,7 +298,6 @@ Public Class InventarioEntradas
 
             Row = CType(rows(0), DataRowView)
             Row.DataView.AllowEdit = True
-            Sender2.ToString()
             ' Row.Item("C1") = con.Text
         End If
 
