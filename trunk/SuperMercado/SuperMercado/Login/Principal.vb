@@ -10,6 +10,9 @@ Public Class Principal
     Dim Parametros As String = ""
     Dim lConsulta As New ClsConsultas
     Dim ObjRet As CRetorno
+    'Variables para Caja
+    Dim objRegistroEntrada = Nothing
+    Dim objRegistroSalida = Nothing
 
     Dim objDineroCaja = Nothing
 #End Region
@@ -23,7 +26,8 @@ Public Class Principal
         inic.StartPosition = FormStartPosition.CenterScreen
         inic.Show()
         Me.MenuStrip1.MdiWindowListItem = Ventanas
-
+        '----------   Muestra la MAC  ------------
+        MessageBox.Show("La dirección MAC de su equipo es: " & obtenMac(), "MAC", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
     Private Sub SalirToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SalirToolStripMenuItem.Click
@@ -325,4 +329,32 @@ Public Class Principal
         ' Se cierra la conexión.
         lConexion.Close()
     End Sub
+    Public Function obtenMac() As String
+        Dim str As String
+        Dim p As New Process
+
+        ' StartInfo representa el conjunto de parámetros que se van a
+        ' utilizar en un proceso.
+
+
+        p.StartInfo.UseShellExecute = False
+
+        p.StartInfo.RedirectStandardOutput = True
+
+        p.StartInfo.FileName = "GetMac.exe"
+
+        p.StartInfo.Arguments = "/fo list"
+
+        p.Start()
+
+        'StandardOutput Obtiene una secuencia que se utiliza para leer la salida de la aplicación.
+
+        str = p.StandardOutput.ReadLine
+
+        str = p.StandardOutput.ReadLine
+
+        p.WaitForExit()
+
+        Return str.Substring(23)
+    End Function
 End Class
