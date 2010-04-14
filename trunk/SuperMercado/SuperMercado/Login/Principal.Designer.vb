@@ -61,11 +61,12 @@ Partial Class Principal
         Me.salidasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.cajaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.corteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.EntradasToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem
         Me.Ventanas = New System.Windows.Forms.ToolStripMenuItem
         Me.SeguridadToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
         Me.UsuariosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
         Me.SalirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.EntradasToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem
+        Me.SalidasToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -320,7 +321,7 @@ Partial Class Principal
         '
         'cajaToolStripMenuItem
         '
-        Me.cajaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.corteToolStripMenuItem, Me.EntradasToolStripMenuItem2})
+        Me.cajaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.corteToolStripMenuItem, Me.EntradasToolStripMenuItem2, Me.SalidasToolStripMenuItem2})
         Me.cajaToolStripMenuItem.Image = CType(resources.GetObject("cajaToolStripMenuItem.Image"), System.Drawing.Image)
         Me.cajaToolStripMenuItem.Name = "cajaToolStripMenuItem"
         Me.cajaToolStripMenuItem.Size = New System.Drawing.Size(57, 20)
@@ -331,6 +332,12 @@ Partial Class Principal
         Me.corteToolStripMenuItem.Name = "corteToolStripMenuItem"
         Me.corteToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.corteToolStripMenuItem.Text = "Corte"
+        '
+        'EntradasToolStripMenuItem2
+        '
+        Me.EntradasToolStripMenuItem2.Name = "EntradasToolStripMenuItem2"
+        Me.EntradasToolStripMenuItem2.Size = New System.Drawing.Size(152, 22)
+        Me.EntradasToolStripMenuItem2.Text = "Entradas"
         '
         'Ventanas
         '
@@ -357,11 +364,11 @@ Partial Class Principal
         Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(39, 20)
         Me.SalirToolStripMenuItem.Text = "Salir"
         '
-        'EntradasToolStripMenuItem2
+        'SalidasToolStripMenuItem2
         '
-        Me.EntradasToolStripMenuItem2.Name = "EntradasToolStripMenuItem2"
-        Me.EntradasToolStripMenuItem2.Size = New System.Drawing.Size(152, 22)
-        Me.EntradasToolStripMenuItem2.Text = "Entradas"
+        Me.SalidasToolStripMenuItem2.Name = "SalidasToolStripMenuItem2"
+        Me.SalidasToolStripMenuItem2.Size = New System.Drawing.Size(152, 22)
+        Me.SalidasToolStripMenuItem2.Text = "Salidas"
         '
         'Principal
         '
@@ -427,5 +434,6 @@ Partial Class Principal
     Private WithEvents cajaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Private WithEvents corteToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents EntradasToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SalidasToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
 
 End Class
