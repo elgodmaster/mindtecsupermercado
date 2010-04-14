@@ -218,7 +218,7 @@ Public Class InventarioEntradas
     End Sub
 #End Region
 
-#Region " Codigo_KeyDown"
+#Region " Codigo_KeyDown And KeyPress"
     Private Sub codigo_keydown(ByVal sender As Object, ByVal e As KeyEventArgs)
         Dim grid As SourceGrid.DataGrid = GridDatos
         Dim pos As Integer = grid.Selection.ActivePosition.Row
@@ -248,6 +248,25 @@ Public Class InventarioEntradas
 
         End Select
     End Sub
+
+    Private Sub GridCodigo_KeyPress(ByVal sender As Object, ByVal e As KeyPressEventArgs)
+        Dim grid As SourceGrid.DataGrid = GridDatos
+        Dim rows As Object = grid.SelectedDataRows
+        Dim Row As DataRowView = Nothing
+        Dim Sender2 As Object = CType(sender.Control, TextBox)
+
+        If Not rows Is Nothing And rows.Length > 0 Then
+
+            Row = CType(rows(0), DataRowView)
+            Row.DataView.AllowEdit = True
+            Row.Row.AcceptChanges()
+            DsDatos.AcceptChanges()
+            grid.Refresh()
+            DsDatos.GetChanges()
+        End If
+
+    End Sub
+
 #End Region
 
     Private Sub cant_keydown(ByVal sender As Object, ByVal e As KeyEventArgs)
@@ -288,20 +307,7 @@ Public Class InventarioEntradas
 
     End Sub
 
-    Private Sub GridCodigo_KeyPress(ByVal sender As Object, ByVal e As KeyPressEventArgs)
-        Dim grid As SourceGrid.DataGrid = GridDatos
-        Dim rows As Object = grid.SelectedDataRows
-        Dim Row As DataRowView = Nothing
-        Dim Sender2 As Object = CType(sender.Control, TextBox)
-
-        If Not rows Is Nothing And rows.Length > 0 Then
-
-            Row = CType(rows(0), DataRowView)
-            Row.DataView.AllowEdit = True
-            ' Row.Item("C1") = con.Text
-        End If
-
-    End Sub
+   
 
 
 #Region " Grid Datos "

@@ -79,28 +79,28 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Caja\Caja.Designer.vb">
+    <Compile Include="Cajas\Caja.Designer.vb">
       <DependentUpon>Caja.vb</DependentUpon>
     </Compile>
-    <Compile Include="Caja\Caja.vb">
+    <Compile Include="Cajas\Caja.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Caja\dineroCaja.Designer.vb">
+    <Compile Include="Cajas\dineroCaja.Designer.vb">
       <DependentUpon>dineroCaja.vb</DependentUpon>
     </Compile>
-    <Compile Include="Caja\dineroCaja.vb">
+    <Compile Include="Cajas\dineroCaja.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Caja\registroEntrada.Designer.vb">
+    <Compile Include="Cajas\registroEntrada.Designer.vb">
       <DependentUpon>registroEntrada.vb</DependentUpon>
     </Compile>
-    <Compile Include="Caja\registroEntrada.vb">
+    <Compile Include="Cajas\registroEntrada.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Caja\registroSalida.Designer.vb">
+    <Compile Include="Cajas\registroSalida.Designer.vb">
       <DependentUpon>registroSalida.vb</DependentUpon>
     </Compile>
-    <Compile Include="Caja\registroSalida.vb">
+    <Compile Include="Cajas\registroSalida.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Catalogos\Cat_Categorias.Designer.vb">
@@ -225,16 +225,16 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Caja\Caja.resx">
+    <EmbeddedResource Include="Cajas\Caja.resx">
       <DependentUpon>Caja.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Caja\dineroCaja.resx">
+    <EmbeddedResource Include="Cajas\dineroCaja.resx">
       <DependentUpon>dineroCaja.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Caja\registroEntrada.resx">
+    <EmbeddedResource Include="Cajas\registroEntrada.resx">
       <DependentUpon>registroEntrada.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Caja\registroSalida.resx">
+    <EmbeddedResource Include="Cajas\registroSalida.resx">
       <DependentUpon>registroSalida.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Catalogos\Cat_Categorias.resx">
