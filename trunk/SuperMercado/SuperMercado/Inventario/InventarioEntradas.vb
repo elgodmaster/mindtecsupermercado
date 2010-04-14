@@ -250,20 +250,25 @@ Public Class InventarioEntradas
     End Sub
 
     Private Sub GridCodigo_KeyPress(ByVal sender As Object, ByVal e As KeyPressEventArgs)
-        Dim grid As SourceGrid.DataGrid = GridDatos
-        Dim rows As Object = grid.SelectedDataRows
-        Dim Row As DataRowView = Nothing
-        Dim Sender2 As Object = CType(sender.Control, TextBox)
+        '    Dim grid As SourceGrid.DataGrid = GridDatos
+        '    Dim rows As Object = grid.SelectedDataRows
+        '    Dim Row As DataRowView = Nothing
+        '    Dim Sender2 As Object = CType(sender.Control, TextBox)
 
-        If Not rows Is Nothing And rows.Length > 0 Then
+        '    If Not rows Is Nothing And rows.Length > 0 Then
 
-            Row = CType(rows(0), DataRowView)
-            Row.DataView.AllowEdit = True
-            Row.Row.AcceptChanges()
-            DsDatos.AcceptChanges()
-            grid.Refresh()
-            DsDatos.GetChanges()
-        End If
+        '        Row = CType(rows(0), DataRowView)
+        '        Row.DataView.AllowEdit = True
+        '        Row.Row.AcceptChanges()
+        '        DsDatos.AcceptChanges()
+        '        grid.Refresh()
+        '        DsDatos.GetChanges()
+        '    End If
+        Dim Grid As SourceGrid.DataGrid = GridDatos
+
+        Dim enviado As Object = CType(sender.control, TextBox)
+        Dim posicion As Object = Grid.Selection.ActivePosition
+
 
     End Sub
 
@@ -307,7 +312,7 @@ Public Class InventarioEntradas
 
     End Sub
 
-   
+
 
 
 #Region " Grid Datos "
