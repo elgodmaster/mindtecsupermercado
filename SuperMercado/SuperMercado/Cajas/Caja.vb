@@ -17,7 +17,7 @@
 
     Private Sub fechaCorte_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles fechaCorte.ValueChanged
         ' Obtenemos el formato de hora: 1994-08-18 15:30:30
-        lblPrueba.Text = fechaCorte.Value.ToString("yyyy-MM-dd")
+        lblPrueba.Text = fechaCorte.Value.ToString("dd/MM/yyyy")
         Dim strHora = fechaCorte.Value.ToString("HH:mm:ss")
 
         lblPrueba.Text = lblPrueba.Text & " " & strHora

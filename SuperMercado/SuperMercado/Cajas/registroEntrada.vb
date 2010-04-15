@@ -10,19 +10,6 @@ Public Class registroEntrada
 #End Region
 
     ' Guarda el ingreso registrado.
-#Region "Grabar"
-    Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
-        'Validar que se haya tecleado un ingreso
-        If numIngreso.Value <= 0 Then
-            MessageBox.Show("No ha especificado el ingreso.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-            Return
-        End If
-
-        Me.Close()
-
-    End Sub
-#End Region
 
     Private Sub Cancel_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel_Button.Click
         Me.Close()
@@ -46,7 +33,26 @@ Public Class registroEntrada
             numIngreso.Focus()
             Return
         End If
-        Me.Close()
+        Caja = "Grabar111" : Parametros = "V1=1|" & _
+                                          "V2=1|" & _
+                                          "V3=" & numIngreso.Value & "|" & _
+                                          "V4=" & txtRazonEntrada.Text & "|"
+        ' Donde los parámetros son:
+        ' V1 = IDCaja, por el momento 1.
+        ' V2 = IDUsuario, por el momento 1.
+        ' V3 = Monto a ingresar.
+        ' V4 = Concepto del ingreso.
+
+        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+
+        ' Aquí se llama al procedimiento almacenado GRABAR111
+        ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
+        If (ObjRet.bOk) Then
+            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False), "Ingresos", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Me.Close()
+        End If
+
+
     End Sub
 
     Private Sub numIngreso_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles numIngreso.KeyDown

@@ -87,7 +87,7 @@ Partial Class registroEntrada
         Me.OK_Button.Location = New System.Drawing.Point(367, 29)
         Me.OK_Button.Name = "OK_Button"
         Me.OK_Button.Size = New System.Drawing.Size(108, 34)
-        Me.OK_Button.TabIndex = 11
+        Me.OK_Button.TabIndex = 3
         Me.OK_Button.Text = "Aceptar"
         '
         'registroEntrada

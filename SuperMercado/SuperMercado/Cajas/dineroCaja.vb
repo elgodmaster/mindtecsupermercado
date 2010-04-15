@@ -9,8 +9,10 @@ Public Class dineroCaja
     End Sub
 
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
+
+
         ' Valida la cantidad dinero inical.
-        If numDineroInicial.Value <= 0 Then
+        If numDineroInicial.Value < 0 Then
             MessageBox.Show("No ha ingresado una cantidad inicial.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             numDineroInicial.Focus()
             Return
@@ -58,14 +60,6 @@ Public Class dineroCaja
         lConexion.Close()
 
         Me.Close()
-
-        Dim cajaActual As New Caja
-        cajaActual.MdiParent = Principal
-        cajaActual.WindowState = FormWindowState.Maximized
-
-        cajaActual.StartPosition = FormStartPosition.CenterScreen
-        cajaActual.Focus()
-        cajaActual.Show()
 
     End Sub
 
