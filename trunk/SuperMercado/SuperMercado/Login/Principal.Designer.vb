@@ -62,11 +62,11 @@ Partial Class Principal
         Me.cajaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.corteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.EntradasToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem
+        Me.SalidasToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem
         Me.Ventanas = New System.Windows.Forms.ToolStripMenuItem
         Me.SeguridadToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
         Me.UsuariosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
         Me.SalirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.SalidasToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -339,6 +339,12 @@ Partial Class Principal
         Me.EntradasToolStripMenuItem2.Size = New System.Drawing.Size(152, 22)
         Me.EntradasToolStripMenuItem2.Text = "Entradas"
         '
+        'SalidasToolStripMenuItem2
+        '
+        Me.SalidasToolStripMenuItem2.Name = "SalidasToolStripMenuItem2"
+        Me.SalidasToolStripMenuItem2.Size = New System.Drawing.Size(152, 22)
+        Me.SalidasToolStripMenuItem2.Text = "Salidas"
+        '
         'Ventanas
         '
         Me.Ventanas.Name = "Ventanas"
@@ -363,12 +369,6 @@ Partial Class Principal
         Me.SalirToolStripMenuItem.Name = "SalirToolStripMenuItem"
         Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(39, 20)
         Me.SalirToolStripMenuItem.Text = "Salir"
-        '
-        'SalidasToolStripMenuItem2
-        '
-        Me.SalidasToolStripMenuItem2.Name = "SalidasToolStripMenuItem2"
-        Me.SalidasToolStripMenuItem2.Size = New System.Drawing.Size(152, 22)
-        Me.SalidasToolStripMenuItem2.Text = "Salidas"
         '
         'Principal
         '

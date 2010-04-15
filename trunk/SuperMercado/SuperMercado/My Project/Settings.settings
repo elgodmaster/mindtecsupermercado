@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="Servidor" Type="System.String" Scope="User">
-      <Value Profile="(Default)">data source =Mavbq; initial catalog =SMercado_LogicaNegocio; User = mindtec; Pwd= 123qwe;</Value>
+      <Value Profile="(Default)">data source =mindtec1; initial catalog =SMercado_LogicaNegocio; User = mindtec; Pwd= 123qwe;</Value>
     </Setting>
   </Settings>
 </SettingsFile>
