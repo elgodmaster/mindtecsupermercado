@@ -3,10 +3,13 @@
 drop proc dbo.Consulta110
 go
 
-CREATE PROCEDURE dbo.Consulta110 (
- @fecha		varchar(20) output,
- @resul		varchar(20) output 
- )
+CREATE PROCEDURE dbo.Consulta110
+(
+  @cabezero Varchar(8000),
+  @Resul    Varchar(8000)  OutPut,
+  @DataSet  nText,
+  @Validar  Int
+)
  
  AS
  BEGIN
@@ -16,7 +19,8 @@ CREATE PROCEDURE dbo.Consulta110 (
 	-------------------------
 	
 	Declare @registro	int	
-
+	Declare @fecha      date
+	
 	Select top 1 @fecha =  ISNULL(fecha, '') from SMercado..Caja_Corte
 	Order by fecha DESC
 	
@@ -24,12 +28,12 @@ CREATE PROCEDURE dbo.Consulta110 (
 	
 	IF @registro = 0
 		BEGIN
-			Select @resul = 'ERROR'
+			Select @resul = '2R=ERROR'
 		END
 	ELSE
 		BEGIN
-			Select @resul = 'OK'
+			Select @resul = '2R=OK|2M=' + CONVERT( varchar(8000), @fecha) +'|' 
 		END
-	
+	Select fecha = @fecha 
 	set NoCount OFF	
 END
