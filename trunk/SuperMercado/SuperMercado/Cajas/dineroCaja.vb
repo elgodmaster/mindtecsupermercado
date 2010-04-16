@@ -4,7 +4,49 @@ Imports System.Data.SqlClient
 Public Class dineroCaja
 
     Private Sub Cancel_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel_Button.Click
-        Me.Visible = False
+
+        Dim lConexion As New SqlConnection
+        '*-- Para conectar desde el servidor.                --*
+        Dim sCadena As String = String.Empty
+        sCadena = My.Settings.Servidor
+        lConexion.ConnectionString = sCadena
+
+        '*-- Para conectarla localmente desde PCLINDORMARIO. --*
+        'Dim lConexion As New SqlConnection
+        'lConexion.ConnectionString = "Data Source=PCLINDORMARIO;Initial Catalog=PVF_LogicaNegocios;Integrated Security=True"
+
+        Try
+            lConexion.Open()
+        Catch ex As Exception
+            MessageBox.Show("Error al tratar de conectar a la base de datos.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+        Dim objSqlAdapter As New SqlDataAdapter
+        Dim objDataSet As New DataSet
+        Dim objCommand As New SqlCommand
+
+        objCommand.CommandText = "GRABAR110"
+        objCommand.CommandType = CommandType.StoredProcedure
+        objCommand.Connection = lConexion
+
+        With objCommand.Parameters
+            .Clear()
+            ' En la caja habrá $0.00 si se presiona le botón cancelar.
+            .Add("@dinInicial", SqlDbType.Decimal, "12,2").Value = 0
+        End With
+
+        objSqlAdapter.SelectCommand = objCommand
+
+        Try
+            objSqlAdapter.Fill(objDataSet)
+        Catch ex As Exception
+            MessageBox.Show("Error al tratar de insertar los datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+        lConexion.Close()
+
+        Me.Close()
+
         Me.Close()
     End Sub
 
@@ -67,5 +109,10 @@ Public Class dineroCaja
         If e.KeyCode = Keys.Enter Then
             OK_Button.Focus()
         End If
+    End Sub
+
+    Private Sub dineroCaja_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated
+        numDineroInicial.Focus()
+        numDineroInicial.Select(0, 8)
     End Sub
 End Class
