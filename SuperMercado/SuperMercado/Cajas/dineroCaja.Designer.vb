@@ -74,7 +74,9 @@ Partial Class dineroCaja
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 18.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.CancelButton = Me.Cancel_Button
         Me.ClientSize = New System.Drawing.Size(402, 99)
+        Me.ControlBox = False
         Me.Controls.Add(Me.Cancel_Button)
         Me.Controls.Add(Me.OK_Button)
         Me.Controls.Add(Me.numDineroInicial)

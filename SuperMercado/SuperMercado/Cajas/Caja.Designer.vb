@@ -52,6 +52,10 @@ Partial Class Caja
         Me.Label20 = New System.Windows.Forms.Label
         Me.btnHacerCorte = New System.Windows.Forms.Button
         Me.lblPrueba = New System.Windows.Forms.Label
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
+        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel
+        Me.GridDatos = New SourceGrid.DataGrid
+        Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'fechaCorte
@@ -164,7 +168,7 @@ Partial Class Caja
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.Teal
-        Me.Label5.Location = New System.Drawing.Point(567, 163)
+        Me.Label5.Location = New System.Drawing.Point(653, 163)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(39, 13)
         Me.Label5.TabIndex = 13
@@ -175,7 +179,7 @@ Partial Class Caja
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.Color.Teal
-        Me.Label6.Location = New System.Drawing.Point(567, 146)
+        Me.Label6.Location = New System.Drawing.Point(653, 146)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(39, 13)
         Me.Label6.TabIndex = 12
@@ -184,7 +188,7 @@ Partial Class Caja
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(407, 163)
+        Me.Label7.Location = New System.Drawing.Point(493, 163)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(89, 13)
         Me.Label7.TabIndex = 11
@@ -193,7 +197,7 @@ Partial Class Caja
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(407, 146)
+        Me.Label8.Location = New System.Drawing.Point(493, 146)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(52, 13)
         Me.Label8.TabIndex = 10
@@ -205,7 +209,7 @@ Partial Class Caja
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Label9.Location = New System.Drawing.Point(406, 112)
+        Me.Label9.Location = New System.Drawing.Point(492, 112)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(146, 24)
         Me.Label9.TabIndex = 9
@@ -235,7 +239,7 @@ Partial Class Caja
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(407, 180)
+        Me.Label11.Location = New System.Drawing.Point(493, 180)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(44, 13)
         Me.Label11.TabIndex = 16
@@ -246,7 +250,7 @@ Partial Class Caja
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label12.ForeColor = System.Drawing.Color.Teal
-        Me.Label12.Location = New System.Drawing.Point(567, 180)
+        Me.Label12.Location = New System.Drawing.Point(653, 180)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(39, 13)
         Me.Label12.TabIndex = 17
@@ -257,7 +261,7 @@ Partial Class Caja
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label13.ForeColor = System.Drawing.Color.Teal
-        Me.Label13.Location = New System.Drawing.Point(567, 200)
+        Me.Label13.Location = New System.Drawing.Point(653, 200)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(39, 13)
         Me.Label13.TabIndex = 19
@@ -267,7 +271,7 @@ Partial Class Caja
         '
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.Location = New System.Drawing.Point(494, 200)
+        Me.Label14.Location = New System.Drawing.Point(580, 200)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(40, 13)
         Me.Label14.TabIndex = 18
@@ -291,7 +295,7 @@ Partial Class Caja
         Me.Label16.AutoSize = True
         Me.Label16.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label16.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Label16.Location = New System.Drawing.Point(406, 266)
+        Me.Label16.Location = New System.Drawing.Point(492, 266)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(185, 24)
         Me.Label16.TabIndex = 21
@@ -313,7 +317,7 @@ Partial Class Caja
         '
         Me.Label18.AutoSize = True
         Me.Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label18.Location = New System.Drawing.Point(520, 144)
+        Me.Label18.Location = New System.Drawing.Point(606, 144)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(14, 15)
         Me.Label18.TabIndex = 25
@@ -323,7 +327,7 @@ Partial Class Caja
         '
         Me.Label19.AutoSize = True
         Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label19.Location = New System.Drawing.Point(520, 161)
+        Me.Label19.Location = New System.Drawing.Point(606, 161)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(14, 15)
         Me.Label19.TabIndex = 26
@@ -333,7 +337,7 @@ Partial Class Caja
         '
         Me.Label20.AutoSize = True
         Me.Label20.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label20.Location = New System.Drawing.Point(521, 177)
+        Me.Label20.Location = New System.Drawing.Point(607, 177)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(11, 15)
         Me.Label20.TabIndex = 27
@@ -357,11 +361,44 @@ Partial Class Caja
         Me.lblPrueba.TabIndex = 29
         Me.lblPrueba.Text = "Prueba fecha."
         '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 459)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(1010, 22)
+        Me.StatusStrip1.TabIndex = 30
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'ToolStripStatusLabel1
+        '
+        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(246, 17)
+        Me.ToolStripStatusLabel1.Text = "Haga clic en ""Hacer corte"" para mostrar los datos."
+        '
+        'GridDatos
+        '
+        Me.GridDatos.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GridDatos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.GridDatos.DeleteQuestionMessage = ""
+        Me.GridDatos.DeleteRowsWithDeleteKey = False
+        Me.GridDatos.FixedRows = 1
+        Me.GridDatos.Location = New System.Drawing.Point(46, 293)
+        Me.GridDatos.Name = "GridDatos"
+        Me.GridDatos.SelectionMode = SourceGrid.GridSelectionMode.Row
+        Me.GridDatos.Size = New System.Drawing.Size(427, 129)
+        Me.GridDatos.TabIndex = 31
+        Me.GridDatos.TabStop = True
+        Me.GridDatos.ToolTipText = ""
+        '
         'Caja
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1010, 481)
+        Me.Controls.Add(Me.GridDatos)
+        Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.lblPrueba)
         Me.Controls.Add(Me.btnHacerCorte)
         Me.Controls.Add(Me.Label20)
@@ -391,6 +428,8 @@ Partial Class Caja
         Me.Controls.Add(Me.ShapeContainer1)
         Me.Name = "Caja"
         Me.Text = "Caja"
+        Me.StatusStrip1.ResumeLayout(False)
+        Me.StatusStrip1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -425,4 +464,7 @@ Partial Class Caja
     Friend WithEvents Label20 As System.Windows.Forms.Label
     Friend WithEvents btnHacerCorte As System.Windows.Forms.Button
     Friend WithEvents lblPrueba As System.Windows.Forms.Label
+    Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
+    Friend WithEvents ToolStripStatusLabel1 As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents GridDatos As SourceGrid.DataGrid
 End Class
