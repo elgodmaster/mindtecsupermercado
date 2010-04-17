@@ -72,7 +72,7 @@ exec INSERTAR_DINERO_INICIAL 500.50
 
 delete from pvf..Caja_Corte where fecha = '2010-04-11'
 
-select * from SMercado..Caja_Corte
+select * from SMercado..Caja_entrada
 --drop table Smercado..caja_entrada
 
 
