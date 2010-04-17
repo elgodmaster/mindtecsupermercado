@@ -13,7 +13,10 @@ CREATE PROCEDURE dbo.Consulta111
 AS 
 BEGIN
 
-Select concepto, monto, fecha from SMercado..Caja_Entrada 
+Select C1 = concepto, 
+       C2 = monto, 
+       C3 = fecha 
+From SMercado..Caja_Entrada 
 where convert( date, fecha ) = convert( date, GETDATE() )
 
 END

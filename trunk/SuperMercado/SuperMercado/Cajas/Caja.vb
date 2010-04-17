@@ -7,24 +7,28 @@
     Dim lConsulta As New ClsConsultas
     Dim ObjRet As CRetorno
     ' Variables para el Grid.
-    Dim DsDatos = Nothing
-    Dim ViewDatos = Nothing
+    Dim DsDatos As DataSet
+    Dim ViewDatos As DataView
+    Private DsView As DataView
+
 #End Region
 
     Private Sub Caja_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-
+        CrearDsDatos()
+        ConfiguraGridDatos()
     End Sub
 
     Private Sub btnEspFecha_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
     End Sub
 
-    Private Sub fechaCorte_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles fechaCorte.ValueChanged
-        ' Obtenemos el formato de hora: 1994-08-18 15:30:30
-        lblPrueba.Text = fechaCorte.Value.ToString("dd/MM/yyyy")
-        Dim strHora = fechaCorte.Value.ToString("HH:mm:ss")
+    'Private Sub fechaCorte_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    '    ' Obtenemos el formato de hora: 1994-08-18 15:30:30
+    '    ' Donde "fechaCorte" es un datepicker.
+    '    lblPrueba.Text = fechaCorte.Value.ToString("dd/MM/yyyy")
+    '    Dim strHora = fechaCorte.Value.ToString("HH:mm:ss")
 
-        lblPrueba.Text = lblPrueba.Text & " " & strHora
-    End Sub
+    '    lblPrueba.Text = lblPrueba.Text & " " & strHora
+    'End Sub
 
     Private Sub Caja_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles MyBase.KeyPress
         If e.KeyChar = Convert.ToChar(Keys.Escape) Then
@@ -37,9 +41,30 @@
 
         Caja = "consulta111" : Parametros = ""
         ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
+        DataGridEntradas.DataSource = ObjRet.DS.Tables(0)
+
+        If Not ObjRet.DS Is DBNull.Value Then
+            If Not ObjRet.DS.Tables Is DBNull.Value Then
+                If ObjRet.DS.Tables.Count > 0 Then
+                    For i As Integer = 0 To ObjRet.DS.Tables(0).Rows.Count - 1
+                        DsDatos.Tables("Table").ImportRow(ObjRet.DS.Tables("Table").Rows(i))
+                    Next
+                    DsDatos.Tables("Table").AcceptChanges()
+                    DsView = DsDatos.Tables(0).DefaultView
+                    'Else
+                    '   FilaVacia()
+                End If
+            End If
+        End If
 
     End Sub
 
+#Region "Rutinas"
+    Private Sub llenarGrid()
+        
+        
+    End Sub
+#End Region
 #Region " Grid Datos "
 
     Sub CrearDsDatos()
@@ -52,8 +77,8 @@
         'DsDatos.Tables("Table").Columns.Add("C0", GetType(String))
         DsDatos.Tables("Table").Columns.Add("C1", GetType(String))
         DsDatos.Tables("Table").Columns.Add("C2", GetType(String))
-        DsDatos.Tables("Table").Columns.Add("C3", GetType(Double))
-        DsDatos.Tables("Table").Columns.Add("C4", GetType(String))
+        DsDatos.Tables("Table").Columns.Add("C3", GetType(String))
+        'DsDatos.Tables("Table").Columns.Add("C4", GetType(String))
         'DsDatos.Tables("Table").Columns.Add("C5", GetType(String))
 
     End Sub
@@ -69,7 +94,6 @@
         GridDatos.FixedColumns = 1
         GridDatos.DeleteRowsWithDeleteKey = False
         GridDatos.DeleteQuestionMessage = Nothing
-
 
         'Renglon encabezado
 
@@ -98,7 +122,7 @@
         GridDatos.GetCell(0, 1).View = viewcolumnheader
         GridDatos.GetCell(0, 2).View = viewcolumnheader
         GridDatos.GetCell(0, 3).View = viewcolumnheader
-        GridDatos.GetCell(0, 4).View = viewcolumnheader
+        'GridDatos.GetCell(0, 4).View = viewcolumnheader
         'GridDatos.GetCell(0, 5).View = viewcolumnheader
 
     End Sub
@@ -153,25 +177,25 @@
         'GridColumn.DataCell.View = viewNormal
         'GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
-        GridColumn = GridDatos.Columns.Add("C1", "Código", EditorCustom)
+        GridColumn = GridDatos.Columns.Add("C1", "Razón", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
         GridColumn.DataCell.View = viewNormal
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
-        GridColumn = GridDatos.Columns.Add("C2", "Producto", EditorCustom)
+        GridColumn = GridDatos.Columns.Add("C2", "Monto", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
         GridColumn.DataCell.View = viewNormal
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
-        GridColumn = GridDatos.Columns.Add("C3", "Cantidad", EditorCustom)
+        GridColumn = GridDatos.Columns.Add("C3", "Fecha", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
         GridColumn.DataCell.View = viewNormal
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
-        GridColumn = GridDatos.Columns.Add("C4", "Unidad", EditorCustom)
-        GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormal
-        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.EnableStretch
+        'GridColumn = GridDatos.Columns.Add("C4", "Unidad", EditorCustom)
+        'GridColumn.DataCell.AddController(gridKeydown)
+        'GridColumn.DataCell.View = viewNormal
+        'GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.EnableStretch
 
         'GridColumn = GridDatos.Columns.Add("C5", "Precio Unitario", EditorCustom)
         'GridColumn.DataCell.AddController(gridKeydown)
@@ -181,10 +205,10 @@
 
 
         GridDatos.Columns(0).Visible = False
-        GridDatos.Columns.SetWidth(1, 200)
-        GridDatos.Columns.SetWidth(2, 350)
-        GridDatos.Columns.SetWidth(3, 70)
-        GridDatos.Columns.SetWidth(4, 150)
+        GridDatos.Columns.SetWidth(1, 175)
+        GridDatos.Columns.SetWidth(2, 75)
+        GridDatos.Columns.SetWidth(3, 75)
+        'GridDatos.Columns.SetWidth(4, 150)
         'GridDatos.Columns.SetWidth(5, 150)
     End Sub
 
@@ -196,4 +220,8 @@
     End Sub
 
 #End Region
+
+    Private Sub Limpiar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Limpiar.Click
+
+    End Sub
 End Class
