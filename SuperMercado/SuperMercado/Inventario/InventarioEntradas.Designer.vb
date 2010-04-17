@@ -44,9 +44,16 @@ Partial Class InventarioEntradas
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
         Me.TabControl1 = New System.Windows.Forms.TabControl
         Me.TabPage1 = New System.Windows.Forms.TabPage
+        Me.Label8 = New System.Windows.Forms.Label
+        Me.Txt_Cantidad = New System.Windows.Forms.TextBox
+        Me.Label7 = New System.Windows.Forms.Label
+        Me.LblProducto = New System.Windows.Forms.Label
+        Me.Txt_CodigoProducto = New System.Windows.Forms.TextBox
         Me.GridDatos = New SourceGrid.DataGrid
         Me.TabPage2 = New System.Windows.Forms.TabPage
         Me.Barra = New System.Windows.Forms.PictureBox
+        Me.Label6 = New System.Windows.Forms.Label
+        Me.Txt_TotalEntrada = New System.Windows.Forms.TextBox
         Me.ToolStrip1.SuspendLayout()
         Me.PiePagina.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -244,6 +251,8 @@ Partial Class InventarioEntradas
         '
         'GroupBox1
         '
+        Me.GroupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox1.Controls.Add(Me.TabControl1)
         Me.GroupBox1.Controls.Add(Me.Fecha)
         Me.GroupBox1.Controls.Add(Me.Label2)
@@ -254,7 +263,7 @@ Partial Class InventarioEntradas
         Me.GroupBox1.Controls.Add(Me.CodigoProveedor)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 149)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(985, 524)
+        Me.GroupBox1.Size = New System.Drawing.Size(985, 516)
         Me.GroupBox1.TabIndex = 245
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Entrada inventario"
@@ -262,24 +271,78 @@ Partial Class InventarioEntradas
         '
         'TabControl1
         '
+        Me.TabControl1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Location = New System.Drawing.Point(15, 113)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(958, 405)
+        Me.TabControl1.Size = New System.Drawing.Size(958, 397)
         Me.TabControl1.TabIndex = 245
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.Label6)
+        Me.TabPage1.Controls.Add(Me.Txt_TotalEntrada)
+        Me.TabPage1.Controls.Add(Me.Label8)
+        Me.TabPage1.Controls.Add(Me.Txt_Cantidad)
+        Me.TabPage1.Controls.Add(Me.Label7)
+        Me.TabPage1.Controls.Add(Me.LblProducto)
+        Me.TabPage1.Controls.Add(Me.Txt_CodigoProducto)
         Me.TabPage1.Controls.Add(Me.GridDatos)
         Me.TabPage1.Location = New System.Drawing.Point(4, 23)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(950, 378)
+        Me.TabPage1.Size = New System.Drawing.Size(950, 370)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Productos"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(735, 34)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(64, 14)
+        Me.Label8.TabIndex = 246
+        Me.Label8.Text = "Cantidad"
+        '
+        'Txt_Cantidad
+        '
+        Me.Txt_Cantidad.Location = New System.Drawing.Point(803, 30)
+        Me.Txt_Cantidad.Name = "Txt_Cantidad"
+        Me.Txt_Cantidad.Size = New System.Drawing.Size(128, 22)
+        Me.Txt_Cantidad.TabIndex = 245
+        Me.Txt_Cantidad.Text = "00000000000.00"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(13, 34)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(63, 14)
+        Me.Label7.TabIndex = 244
+        Me.Label7.Text = "Producto"
+        '
+        'LblProducto
+        '
+        Me.LblProducto.AutoEllipsis = True
+        Me.LblProducto.BackColor = System.Drawing.Color.Transparent
+        Me.LblProducto.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblProducto.Location = New System.Drawing.Point(209, 30)
+        Me.LblProducto.Name = "LblProducto"
+        Me.LblProducto.Size = New System.Drawing.Size(457, 22)
+        Me.LblProducto.TabIndex = 243
+        Me.LblProducto.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Txt_CodigoProducto
+        '
+        Me.Txt_CodigoProducto.Location = New System.Drawing.Point(75, 30)
+        Me.Txt_CodigoProducto.Name = "Txt_CodigoProducto"
+        Me.Txt_CodigoProducto.Size = New System.Drawing.Size(128, 22)
+        Me.Txt_CodigoProducto.TabIndex = 6
+        Me.Txt_CodigoProducto.Text = "123456789012345"
         '
         'GridDatos
         '
@@ -289,10 +352,10 @@ Partial Class InventarioEntradas
         Me.GridDatos.DeleteQuestionMessage = ""
         Me.GridDatos.DeleteRowsWithDeleteKey = False
         Me.GridDatos.FixedRows = 1
-        Me.GridDatos.Location = New System.Drawing.Point(6, 6)
+        Me.GridDatos.Location = New System.Drawing.Point(6, 58)
         Me.GridDatos.Name = "GridDatos"
         Me.GridDatos.SelectionMode = SourceGrid.GridSelectionMode.Row
-        Me.GridDatos.Size = New System.Drawing.Size(925, 363)
+        Me.GridDatos.Size = New System.Drawing.Size(925, 265)
         Me.GridDatos.TabIndex = 5
         Me.GridDatos.TabStop = True
         Me.GridDatos.ToolTipText = ""
@@ -302,7 +365,7 @@ Partial Class InventarioEntradas
         Me.TabPage2.Location = New System.Drawing.Point(4, 23)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(950, 367)
+        Me.TabPage2.Size = New System.Drawing.Size(950, 378)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Finanzas"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -318,6 +381,23 @@ Partial Class InventarioEntradas
         Me.Barra.Size = New System.Drawing.Size(1028, 4)
         Me.Barra.TabIndex = 246
         Me.Barra.TabStop = False
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(761, 333)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(38, 14)
+        Me.Label6.TabIndex = 248
+        Me.Label6.Text = "Total"
+        '
+        'Txt_TotalEntrada
+        '
+        Me.Txt_TotalEntrada.Location = New System.Drawing.Point(803, 329)
+        Me.Txt_TotalEntrada.Name = "Txt_TotalEntrada"
+        Me.Txt_TotalEntrada.Size = New System.Drawing.Size(128, 22)
+        Me.Txt_TotalEntrada.TabIndex = 247
+        Me.Txt_TotalEntrada.Text = "00000000000.00"
         '
         'InventarioEntradas
         '
@@ -344,6 +424,7 @@ Partial Class InventarioEntradas
         Me.GroupBox1.PerformLayout()
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
+        Me.TabPage1.PerformLayout()
         CType(Me.Barra, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -373,4 +454,11 @@ Partial Class InventarioEntradas
     Friend WithEvents GridDatos As SourceGrid.DataGrid
     Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
     Friend WithEvents Barra As System.Windows.Forms.PictureBox
+    Friend WithEvents LblProducto As System.Windows.Forms.Label
+    Friend WithEvents Txt_CodigoProducto As System.Windows.Forms.TextBox
+    Friend WithEvents Label7 As System.Windows.Forms.Label
+    Friend WithEvents Label8 As System.Windows.Forms.Label
+    Friend WithEvents Txt_Cantidad As System.Windows.Forms.TextBox
+    Friend WithEvents Label6 As System.Windows.Forms.Label
+    Friend WithEvents Txt_TotalEntrada As System.Windows.Forms.TextBox
 End Class
