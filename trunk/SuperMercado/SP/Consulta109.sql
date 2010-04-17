@@ -72,7 +72,7 @@ BEGIN
      End
    End
   
-  If @Validar = 3
+  If @Validar = 3 or @Validar = 6 
    Begin 
     If Len(RTrim(LTrim(@Valor1))) = 0 
      Begin
@@ -185,6 +185,17 @@ BEGIN
        Select @Registro = 1                  
      End 
 
+    If @Validar = 6
+     Begin
+       Select @Desc1  = IsNull(a.Descripcion,''),
+              @Desc2  = IsNull(b.Descripcion,''),
+              @Desc3  = ISNULL(a.CostoCompra,0)
+       From SMercado..Cat_Productos a (NoLock)
+       Left Join SMercado..Cat_Unidades b (NoLock) On b.IdUnidad = a.IdUnidad
+       Where a.Codigo = @Valor1
+	 Select @Registro = @@RowCount	 
+     End
+
   -- Enviar Resultado 
 
   If @Registro = 0
@@ -200,9 +211,11 @@ BEGIN
 							  '|V4=' + @Desc4 + 
 							  '|V5=' + @Desc5 + '|'
 	  If @Validar = 3
-		 Select @Resul = '2R=ERROR|2M=El producto no existe|'
+		 Select @Resul = '2R=ERROR|2M=El producto no esta registrado|'
 	  If @Validar = 4 
          Select @Resul = '2R=OK|'
+      If @Validar = 6
+         Select @Resul= '2R=ERROR|2M=El producto no esta registrado'
   End
    Else
     Begin
@@ -227,6 +240,10 @@ BEGIN
 							  '|V3=' + @Desc3 + '|'
       If @Validar = 5
          Select @Resul = '2R=OK|V1=' + @Desc1 + '|'
+      If @Validar = 6 
+         Select @Resul = '2R=OK|V1=' + @Desc1 + 
+							  '|V2=' + @Desc2 + 
+							  '|V3=' + @Desc3 + '|'
     End
   Set NoCount OFF
 END
