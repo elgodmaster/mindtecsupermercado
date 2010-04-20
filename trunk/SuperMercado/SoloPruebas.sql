@@ -71,17 +71,20 @@ exec CONSULTA_FECHA_CAJA '', ''
 exec INSERTAR_DINERO_INICIAL 500.50
 
 delete from pvf..Caja_Corte where fecha = '2010-04-11'
+delete from SMercado..Caja_Salida where CONVERT( date, fecha ) = CONVERT ( date, getdate() )
+select * from SMercado..Caja_Salida 
 
-select * from SMercado..Caja_entrada
+select * from SMercado..Caja_corte
 --drop table Smercado..caja_entrada
 
 
 insert into SMercado..Caja_Salida values ( 1, 1, 150.00, 'Ninguno', '14/04/2010 16:21:00')
 insert into SMercado..Caja_Salida values ( 1, 1, 151.00, 'Ninguno', '30-04-2010 16:53:00')
 
-Select * from SMercado..Caja_Entrada
+Select * from SMercado..Caja_entrada
 exec grabar111 'V1=1|V2=1|V3=150.50|V4=ninguno|', '', '', ''
 exec grabar112 'V1=1|V2=1|V3=1.5|V4=|', '', '', ''
 exec grabar112 'V1=1|V2=1|V3=150.5|V4=asalté un banco, tío|', '', '', ''
 exec Consulta110 '','','',''
 exec consulta111 '', '', '', ''
+
