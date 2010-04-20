@@ -159,3 +159,4 @@ C:\Documents and Settings\Mindtecadmin\Mis documentos\SuperMercado\SuperMercado\
 C:\Documents and Settings\Mindtecadmin\Mis documentos\SuperMercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.Principal.resources
 C:\Documents and Settings\Mindtecadmin\Mis documentos\SuperMercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.Resources.resources
 C:\Documents and Settings\Mindtecadmin\Mis documentos\SuperMercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.vbproj.GenerateResource.Cache
+F:\MindTec\PRUEBAS_PROYECTOS\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.InventarioSalidas.resources

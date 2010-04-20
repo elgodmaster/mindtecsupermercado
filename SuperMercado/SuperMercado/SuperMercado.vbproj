@@ -177,6 +177,12 @@
     <Compile Include="Inventario\InventarioEntradas.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Inventario\InventarioSalidas.Designer.vb">
+      <DependentUpon>InventarioSalidas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Inventario\InventarioSalidas.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Inventario\Movimiento_Entradas.Designer.vb">
       <DependentUpon>Movimiento_Entradas.vb</DependentUpon>
     </Compile>
@@ -269,6 +275,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Inventario\InventarioEntradas.resx">
       <DependentUpon>InventarioEntradas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventario\InventarioSalidas.resx">
+      <DependentUpon>InventarioSalidas.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inventario\Movimiento_Entradas.resx">
       <DependentUpon>Movimiento_Entradas.vb</DependentUpon>
