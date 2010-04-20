@@ -1,6 +1,6 @@
 ﻿Module Modulogeneral
 
-    Public gColorRow As Color = Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(193, Byte), Integer))
+    Public gColorRow As Color = Color.FromArgb(CType(CType(254, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(107, Byte), Integer))
 
 #Region " Class CellBackColorAlternate "
     Public Class CellBackColorAlternate

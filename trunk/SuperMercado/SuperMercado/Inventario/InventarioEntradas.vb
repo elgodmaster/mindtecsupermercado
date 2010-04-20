@@ -35,13 +35,9 @@ Public Class InventarioEntradas
 
 #Region " Rutinas "
     Private Sub Grid_KeyDown(ByVal sender As Object, ByVal e As KeyEventArgs)
-        Dim grid As SourceGrid.DataGrid = GridDatos
-        Dim pos As Integer = grid.Selection.ActivePosition.Row
         Select Case e.KeyCode
             Case Keys.Escape
-                Me.Close()
-            Case Keys.F2
-                CatalogoProductos()
+                Cerrar()
         End Select
     End Sub
 
@@ -416,7 +412,7 @@ Public Class InventarioEntradas
         GridDatos.DataSource = BindList2
 
         Dim cColorHeader As Color
-        cColorHeader = Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(168, Byte), Integer))
+        cColorHeader = Color.FromArgb(CType(CType(250, Byte), Integer), CType(CType(194, Byte), Integer), CType(CType(5, Byte), Integer))
 
         'Vista columna encabezado
 
