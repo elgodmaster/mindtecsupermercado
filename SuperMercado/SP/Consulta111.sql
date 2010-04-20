@@ -13,6 +13,13 @@ CREATE PROCEDURE dbo.Consulta111
 
 AS 
 BEGIN
+Set noCount ON
+
+-- Variables de trabajo
+DECLARE @registro int
+DECLARE @entradas decimal(18,2)
+DECLARE @salidas decimal(18,2)
+DECLARE @dineroInicialCaja decimal(18,2)
 
 Select C1 = concepto, 
        C2 = monto, 
@@ -26,14 +33,19 @@ Select C1 = concepto,
 From SMercado..Caja_Salida  
 where convert( date, fecha ) = convert( date, GETDATE() )
 
-Select dineroInicialCaja,
-	   entradas = (select SUM(monto) from SMercado..Caja_Entrada 
+Select @dineroInicialCaja = dineroInicialCaja,
+	   @entradas = (select SUM(monto) from SMercado..Caja_Entrada 
 				  where CONVERT(date, fecha) = CONVERT(date, GETDATE())
-				  group by idCaja, usuario ),
-	   salidas = (select SUM(monto) from SMercado..Caja_Salida 
+				  group by CONVERT(date, fecha)),
+	   @salidas = (select SUM(monto) from SMercado..Caja_Salida 
 				  where CONVERT(date, fecha) = CONVERT(date, GETDATE())
-				  group by idCaja, usuario )
+				  group by CONVERT(date, fecha))
 From SMercado..Caja_Corte
 Where CONVERT(date, fecha) = CONVERT(date, GETDATE())
+
+Select @entradas = ISNULL(@entradas, 0)
+Select @salidas = ISNULL(@salidas, 0)
+
+select dineroCaja = @dineroInicialCaja, entradas = @entradas, salidas = @salidas
 
 END

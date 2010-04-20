@@ -375,19 +375,34 @@
             End If
         End If
 
-        ' Total.
-        Dim totalEntradas As Decimal
-        Dim dinIni As Decimal
+        'Total.
         Dim sumEnt As Decimal
-        dinIni = Decimal.Parse(ObjRet.DS.Tables(2).Rows(0).Item(0).ToString)
-        sumEnt = Decimal.Parse(ObjRet.DS.Tables(2).Rows(0).Item(1).ToString)
+        Dim sumSal As Decimal
+        Dim dinIni As Decimal
+        Dim total As Decimal
 
-        totalEntradas = dinIni + sumEnt
+        sumEnt = Decimal.Parse(ObjRet.DS.Tables(2).Rows(0).Item(1))
+        sumSal = Decimal.Parse(ObjRet.DS.Tables(2).Rows(0).Item(2))
+        dinIni = Decimal.Parse(ObjRet.DS.Tables(2).Rows(0).Item(0))
+
+        If sumEnt = 0 And sumSal = 0 Then
+            MessageBox.Show("No se han registrado entradas o salidas.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ElseIf sumEnt = 0 Then
+            MessageBox.Show("No se han registrado entradas.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ElseIf sumSal = 0 Then
+            MessageBox.Show("No se han registrado salidas.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End If
+
+        lblEntradaDin.Text = "$" & sumEnt
+        lblSalDinero.Text = "$" & sumSal
+
         lblDineroCaja.Text = "$" & ObjRet.DS.Tables(2).Rows(0).Item(0).ToString
-        lblEntradaDin.Text = "$" & ObjRet.DS.Tables(2).Rows(0).Item(1).ToString
-        lblTotalEntEfec.Text = "$" & totalEntradas
-        lblSalidas.Text = "$" & ObjRet.DS.Tables(2).Rows(0).Item(2).ToString
-        lblTotalEntradas.Text = "$" & totalEntradas
+        lblTotalEntradas.Text = "$" & sumEnt
+        lblSalidas.Text = "$" & sumSal
+
+        total = dinIni + sumEnt - sumSal
+
+        lblTotal.Text = "$" & total.ToString
 
     End Sub
 
