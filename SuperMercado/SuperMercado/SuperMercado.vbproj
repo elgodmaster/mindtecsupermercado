@@ -89,7 +89,6 @@
       <DependentUpon>configuracion.vb</DependentUpon>
     </Compile>
     <Compile Include="Cajas\configuracion.vb">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Cajas\dineroCaja.Designer.vb">
       <DependentUpon>dineroCaja.vb</DependentUpon>
