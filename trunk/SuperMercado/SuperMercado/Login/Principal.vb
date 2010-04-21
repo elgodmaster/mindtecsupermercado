@@ -276,7 +276,7 @@ Public Class Principal
     End Sub
 
     Private Sub SalidasToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SalidasToolStripMenuItem1.Click
-        Dim frm_sal As New Movimiento_Salidas
+        Dim frm_sal As New InventarioSalidas
         frm_sal.MdiParent = Me
         frm_sal.WindowState = FormWindowState.Maximized
 
