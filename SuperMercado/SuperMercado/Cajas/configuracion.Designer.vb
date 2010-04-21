@@ -63,6 +63,7 @@ Partial Class configuracion
         '
         Me.GrBxDineroInicial.Controls.Add(Me.dinIniPredeterminado)
         Me.GrBxDineroInicial.Controls.Add(Me.Label2)
+        Me.GrBxDineroInicial.Enabled = False
         Me.GrBxDineroInicial.Location = New System.Drawing.Point(24, 69)
         Me.GrBxDineroInicial.Name = "GrBxDineroInicial"
         Me.GrBxDineroInicial.Size = New System.Drawing.Size(247, 58)
@@ -100,6 +101,7 @@ Partial Class configuracion
         '
         Me.GrBxLimites.Controls.Add(Me.montoMaximo)
         Me.GrBxLimites.Controls.Add(Me.Label3)
+        Me.GrBxLimites.Enabled = False
         Me.GrBxLimites.Location = New System.Drawing.Point(24, 169)
         Me.GrBxLimites.Name = "GrBxLimites"
         Me.GrBxLimites.Size = New System.Drawing.Size(247, 58)
@@ -125,7 +127,7 @@ Partial Class configuracion
         '
         'BtnCancelar
         '
-        Me.BtnCancelar.Location = New System.Drawing.Point(124, 252)
+        Me.BtnCancelar.Location = New System.Drawing.Point(213, 251)
         Me.BtnCancelar.Name = "BtnCancelar"
         Me.BtnCancelar.Size = New System.Drawing.Size(75, 23)
         Me.BtnCancelar.TabIndex = 5
@@ -134,9 +136,9 @@ Partial Class configuracion
         '
         'btnAceptar
         '
-        Me.btnAceptar.Location = New System.Drawing.Point(205, 252)
+        Me.btnAceptar.Location = New System.Drawing.Point(131, 251)
         Me.btnAceptar.Name = "btnAceptar"
-        Me.btnAceptar.Size = New System.Drawing.Size(85, 23)
+        Me.btnAceptar.Size = New System.Drawing.Size(76, 23)
         Me.btnAceptar.TabIndex = 6
         Me.btnAceptar.Text = "Aceptar"
         Me.btnAceptar.UseVisualStyleBackColor = True
@@ -145,7 +147,7 @@ Partial Class configuracion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(300, 298)
+        Me.ClientSize = New System.Drawing.Size(300, 294)
         Me.Controls.Add(Me.btnAceptar)
         Me.Controls.Add(Me.BtnCancelar)
         Me.Controls.Add(Me.GrBxLimites)

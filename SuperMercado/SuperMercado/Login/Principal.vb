@@ -11,12 +11,19 @@ Public Class Principal
     Dim lConsulta As New ClsConsultas
     Dim ObjRet As CRetorno
     'Variables para Caja
-    Dim objRegistroEntrada = Nothing
-    Dim objRegistroSalida = Nothing
-    Dim objDineroCaja = Nothing
+    Dim objRegistroEntrada As New registroEntrada
+    Dim objRegistroSalida As New registroSalida
+    Dim objDineroCaja As New dineroCaja
+    Dim objConfigCaja As configuracion
+
 #End Region
 
     Private Sub Principal_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        ' Configuración para las ventanas de caja.
+        objRegistroEntrada = Nothing
+        objRegistroSalida = Nothing
+        objDineroCaja = Nothing
+        objConfigCaja = Nothing
 
         Dim inic As New inicial
         'Me.WindowState = FormWindowState.Maximized
@@ -340,4 +347,11 @@ Public Class Principal
         End If
     End Sub
 
+    Private Sub ConfiguraciónToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ConfiguraciónToolStripMenuItem.Click
+        If objConfigCaja Is Nothing Then
+            Dim objConfigCaja = New configuracion()
+            objConfigCaja.StartPosition = FormStartPosition.CenterScreen
+            objConfigCaja.Show()
+        End If
+    End Sub
 End Class
