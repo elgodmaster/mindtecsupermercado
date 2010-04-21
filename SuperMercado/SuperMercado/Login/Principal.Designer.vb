@@ -67,6 +67,7 @@ Partial Class Principal
         Me.SeguridadToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
         Me.UsuariosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
         Me.SalirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.ConfiguraciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -321,7 +322,7 @@ Partial Class Principal
         '
         'cajaToolStripMenuItem
         '
-        Me.cajaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.corteToolStripMenuItem, Me.EntradasToolStripMenuItem2, Me.SalidasToolStripMenuItem2})
+        Me.cajaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.corteToolStripMenuItem, Me.EntradasToolStripMenuItem2, Me.SalidasToolStripMenuItem2, Me.ConfiguraciónToolStripMenuItem})
         Me.cajaToolStripMenuItem.Image = CType(resources.GetObject("cajaToolStripMenuItem.Image"), System.Drawing.Image)
         Me.cajaToolStripMenuItem.Name = "cajaToolStripMenuItem"
         Me.cajaToolStripMenuItem.Size = New System.Drawing.Size(57, 20)
@@ -369,6 +370,12 @@ Partial Class Principal
         Me.SalirToolStripMenuItem.Name = "SalirToolStripMenuItem"
         Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(39, 20)
         Me.SalirToolStripMenuItem.Text = "Salir"
+        '
+        'ConfiguraciónToolStripMenuItem
+        '
+        Me.ConfiguraciónToolStripMenuItem.Name = "ConfiguraciónToolStripMenuItem"
+        Me.ConfiguraciónToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ConfiguraciónToolStripMenuItem.Text = "Configuración"
         '
         'Principal
         '
@@ -435,5 +442,6 @@ Partial Class Principal
     Private WithEvents corteToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents EntradasToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SalidasToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ConfiguraciónToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class
