@@ -1,3 +1,5 @@
+-- Ingresa las salidas en la tabla Caja_Salidas
+
 drop proc dbo.GRABAR112
 go
 

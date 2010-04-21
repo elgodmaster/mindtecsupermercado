@@ -22,6 +22,7 @@ Partial Class configuracion
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container
         Me.ChBxDineroInicial = New System.Windows.Forms.CheckBox
         Me.Label1 = New System.Windows.Forms.Label
         Me.GrBxDineroInicial = New System.Windows.Forms.GroupBox
@@ -33,6 +34,7 @@ Partial Class configuracion
         Me.Label3 = New System.Windows.Forms.Label
         Me.BtnCancelar = New System.Windows.Forms.Button
         Me.btnAceptar = New System.Windows.Forms.Button
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.GrBxDineroInicial.SuspendLayout()
         CType(Me.dinIniPredeterminado, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GrBxLimites.SuspendLayout()
@@ -44,9 +46,9 @@ Partial Class configuracion
         Me.ChBxDineroInicial.AutoSize = True
         Me.ChBxDineroInicial.Location = New System.Drawing.Point(24, 46)
         Me.ChBxDineroInicial.Name = "ChBxDineroInicial"
-        Me.ChBxDineroInicial.Size = New System.Drawing.Size(175, 17)
+        Me.ChBxDineroInicial.Size = New System.Drawing.Size(164, 17)
         Me.ChBxDineroInicial.TabIndex = 0
-        Me.ChBxDineroInicial.Text = "Activar ""recordar dinero inicial""."
+        Me.ChBxDineroInicial.Text = "Utilizar el mismo monto inicial."
         Me.ChBxDineroInicial.UseVisualStyleBackColor = True
         '
         'Label1
@@ -74,6 +76,7 @@ Partial Class configuracion
         'dinIniPredeterminado
         '
         Me.dinIniPredeterminado.Location = New System.Drawing.Point(87, 24)
+        Me.dinIniPredeterminado.Maximum = New Decimal(New Integer() {1215752191, 23, 0, 0})
         Me.dinIniPredeterminado.Name = "dinIniPredeterminado"
         Me.dinIniPredeterminado.Size = New System.Drawing.Size(120, 20)
         Me.dinIniPredeterminado.TabIndex = 3
@@ -94,7 +97,7 @@ Partial Class configuracion
         Me.ChBxLimitesMaximos.Name = "ChBxLimitesMaximos"
         Me.ChBxLimitesMaximos.Size = New System.Drawing.Size(173, 17)
         Me.ChBxLimitesMaximos.TabIndex = 3
-        Me.ChBxLimitesMaximos.Text = "Activar monto máxima en caja. "
+        Me.ChBxLimitesMaximos.Text = "Activar monto máximo en caja. "
         Me.ChBxLimitesMaximos.UseVisualStyleBackColor = True
         '
         'GrBxLimites
@@ -112,6 +115,7 @@ Partial Class configuracion
         'montoMaximo
         '
         Me.montoMaximo.Location = New System.Drawing.Point(87, 25)
+        Me.montoMaximo.Maximum = New Decimal(New Integer() {1215752191, 23, 0, 0})
         Me.montoMaximo.Name = "montoMaximo"
         Me.montoMaximo.Size = New System.Drawing.Size(120, 20)
         Me.montoMaximo.TabIndex = 5
@@ -178,4 +182,5 @@ Partial Class configuracion
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents BtnCancelar As System.Windows.Forms.Button
     Friend WithEvents btnAceptar As System.Windows.Forms.Button
+    Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
 End Class
