@@ -1,3 +1,5 @@
+-- Inserciones en la tabla Caja_Entrada
+
 drop proc dbo.GRABAR111
 go
 

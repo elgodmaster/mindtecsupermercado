@@ -25,9 +25,9 @@ Public Class Principal
         objDineroCaja = Nothing
         objConfigCaja = Nothing
 
+        ' Configuración de la ventana principal.
         Dim inic As New inicial
         'Me.WindowState = FormWindowState.Maximized
-
         inic.MdiParent = Me
         inic.WindowState = FormWindowState.Maximized
         inic.StartPosition = FormStartPosition.CenterScreen
@@ -37,31 +37,86 @@ Public Class Principal
         '----------   Muestra la MAC  ------------
         'MessageBox.Show("La dirección MAC de su equipo es: " & obtenMac(), "MAC", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
+        
+        '--- Consulta110: registro con la fecha más reciente en la tabla caja ---
         ' Se verifica que la fecha más reciente en la tabla caja sea distinta a la actual.
         ' Si lo es, se procede a ingresar un nuevo registro con la fecha actual.
+
 
         Caja = "CONSULTA110" : Parametros = ""
 
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
         ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
         ' Se inserta el primer registro.
-        If ObjRet.bOk Then
-            ' Si
+        If lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|", False) = "OK" Then
+            ' Si no hay un registro con la fecha actual en la tabla Caja_Corte,
+            ' se inserta uno con la fecha actual.
             If Date.Parse(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False)) <> Date.Now.Date Then
+
+                ' CONFIGURACION_CAJA
+                ' Si está activado un monto inicial por defecto se inserta
+                ' directamente. Para esto llamamos a la consulta112 y obtenemos
+                ' la configuración.
+                Caja = "Consulta112" : Parametros = ""
+                If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+                ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
+
+                Dim activadoMontoPorDefecto As Boolean
+                Dim montoPorDefecto As Decimal
+                activadoMontoPorDefecto = ObjRet.DS.Tables(0).Rows(0).Item(1)
+                montoPorDefecto = ObjRet.DS.Tables(0).Rows(0).Item(2)
+
+                ' Activado un monto inicial por defecto.
+                If activadoMontoPorDefecto Then
+                    Caja = "GRABAR110" : Parametros = "V1=" & montoPorDefecto & "|"
+
+                    If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+                    ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
+
+                Else ' No se encuentra activado, por lo tanto muestra la ventana
+                    ' DineroCaja para ingresarlo manualmente.
+                    If objDineroCaja Is Nothing Then
+                        Dim objDineroCaja = New dineroCaja()
+                        objDineroCaja.StartPosition = FormStartPosition.CenterParent
+                        objDineroCaja.ShowDialog()
+                    End If
+                End If
+            End If
+
+
+            ' No existe ningún registro en la tabla Caja_Corte, se procede a insertar
+            ' el primer registro.
+        ElseIf lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|", False) = "ERROR" Then
+
+            ' CONFIGURACION_CAJA
+            ' Si está activado un monto inicial por defecto se inserta
+            ' directamente. Para esto llamamos a la consulta112 y obtenemos
+            ' la configuración.
+            Caja = "Consulta112" : Parametros = ""
+            If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+            ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
+
+            Dim activadoMontoPorDefecto As Boolean
+            Dim montoPorDefecto As Decimal
+            activadoMontoPorDefecto = ObjRet.DS.Tables(0).Rows(0).Item(1)
+            montoPorDefecto = ObjRet.DS.Tables(0).Rows(0).Item(2)
+
+            ' Activado un monto inicial por defecto.
+            If activadoMontoPorDefecto Then
+                Caja = "GRABAR110" : Parametros = "V1=" & montoPorDefecto & "|"
+
+                If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+                ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
+
+            Else ' No se encuentra activado, por lo tanto muestra la ventana
+                ' DineroCaja para ingresarlo manualmente.
                 If objDineroCaja Is Nothing Then
                     Dim objDineroCaja = New dineroCaja()
                     objDineroCaja.StartPosition = FormStartPosition.CenterParent
                     objDineroCaja.ShowDialog()
                 End If
             End If
-        Else
-            If objDineroCaja Is Nothing Then
-                Dim objDineroCaja = New dineroCaja()
-                objDineroCaja.StartPosition = FormStartPosition.CenterParent
-                objDineroCaja.ShowDialog()
-            End If
         End If
-
 
     End Sub
 

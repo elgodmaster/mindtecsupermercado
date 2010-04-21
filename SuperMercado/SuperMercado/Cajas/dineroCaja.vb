@@ -1,57 +1,27 @@
 ﻿Imports System.Data
 Imports System.Data.SqlClient
-
 Public Class dineroCaja
+
+#Region "Variables de trabajo"
+    Dim Caja As String = ""
+    Dim Parametros As String = ""
+    Dim lConsulta As New ClsConsultas
+    Dim ObjRet As CRetorno
+#End Region
 
     Private Sub Cancel_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel_Button.Click
 
-        Dim lConexion As New SqlConnection
-        '*-- Para conectar desde el servidor.                --*
-        Dim sCadena As String = String.Empty
-        sCadena = My.Settings.Servidor
-        lConexion.ConnectionString = sCadena
+        'El monto inicial será cero si el usuario hace clic en "Cancelar"
+        Caja = "GRABAR110" : Parametros = "V1=0.0|"
 
-        '*-- Para conectarla localmente desde PCLINDORMARIO. --*
-        'Dim lConexion As New SqlConnection
-        'lConexion.ConnectionString = "Data Source=PCLINDORMARIO;Initial Catalog=PVF_LogicaNegocios;Integrated Security=True"
-
-        Try
-            lConexion.Open()
-        Catch ex As Exception
-            MessageBox.Show("Error al tratar de conectar a la base de datos.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-
-        Dim objSqlAdapter As New SqlDataAdapter
-        Dim objDataSet As New DataSet
-        Dim objCommand As New SqlCommand
-
-        objCommand.CommandText = "GRABAR110"
-        objCommand.CommandType = CommandType.StoredProcedure
-        objCommand.Connection = lConexion
-
-        With objCommand.Parameters
-            .Clear()
-            ' En la caja habrá $0.00 si se presiona le botón cancelar.
-            .Add("@dinInicial", SqlDbType.Decimal, "12,2").Value = 0
-        End With
-
-        objSqlAdapter.SelectCommand = objCommand
-
-        Try
-            objSqlAdapter.Fill(objDataSet)
-        Catch ex As Exception
-            MessageBox.Show("Error al tratar de insertar los datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-
-        lConexion.Close()
+        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+        ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
 
         Me.Close()
 
-        Me.Close()
     End Sub
 
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
-
 
         ' Valida la cantidad dinero inical.
         If numDineroInicial.Value < 0 Then
@@ -62,44 +32,10 @@ Public Class dineroCaja
 
         ' Ingresa el valor a la tabla CORTE_CAJA
 
-        Dim lConexion As New SqlConnection
-        '*-- Para conectar desde el servidor.                --*
-        Dim sCadena As String = String.Empty
-        sCadena = My.Settings.Servidor
-        lConexion.ConnectionString = sCadena
+        Caja = "GRABAR110" : Parametros = "V1=" & numDineroInicial.Value & "|"
 
-        '*-- Para conectarla localmente desde PCLINDORMARIO. --*
-        'Dim lConexion As New SqlConnection
-        'lConexion.ConnectionString = "Data Source=PCLINDORMARIO;Initial Catalog=PVF_LogicaNegocios;Integrated Security=True"
-
-        Try
-            lConexion.Open()
-        Catch ex As Exception
-            MessageBox.Show("Error al tratar de conectar a la base de datos.", "Error.", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-
-        Dim objSqlAdapter As New SqlDataAdapter
-        Dim objDataSet As New DataSet
-        Dim objCommand As New SqlCommand
-
-        objCommand.CommandText = "GRABAR110"
-        objCommand.CommandType = CommandType.StoredProcedure
-        objCommand.Connection = lConexion
-
-        With objCommand.Parameters
-            .Clear()
-            .Add("@dinInicial", SqlDbType.Decimal, "12,2").Value = numDineroInicial.Value
-        End With
-
-        objSqlAdapter.SelectCommand = objCommand
-
-        Try
-            objSqlAdapter.Fill(objDataSet)
-        Catch ex As Exception
-            MessageBox.Show("Error al tratar de insertar los datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-
-        lConexion.Close()
+        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+        ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
 
         Me.Close()
 

@@ -1,5 +1,7 @@
 use SMercado 
 
+DROP table usuarios_cuentas
+-- No implementada.
 CREATE TABLE Usuarios_Cuentas (
 idUsuario int identity not null,
 nombreUsuario char(50) not null,
@@ -17,6 +19,18 @@ monto decimal(18,2),
 concepto varchar(250),
 fecha datetime
 )
+
+CREATE TABLE Caja_Configuracion(
+idCajaConfig int not null,
+dinIniAct bit not null,
+monDinIni decimal(18,2) not null,
+monMaxAct bit not null,
+monMax decimal(18,2) not null
+)
+-- Configurando inicial por defecto.
+Insert into SMercado..Caja_Configuracion values (1, 1, 777.00, 0, 0.00)
+select * from SMercado..Caja_Configuracion 
+
 
 -- CAMBIO EN EL CAMPO CONCEPTO
 CREATE TABLE Caja_Salida(
@@ -54,7 +68,8 @@ Insert into Caja_Corte values (1, 1, 500, 600, '09/04/2010')
 Insert into Caja_Corte values (1, 1, 777, 777, '11/04/2010')
 
 
-Update Caja_Corte set dineroActual = dineroActual + 100
+Update SMercado..Caja_Configuracion  set dinIniPred = 's'
+Update SMercado..Caja_Configuracion  set monDinIni  = 100.00
 where fecha = CONVERT(Date, getdate())
 
 select idCorte, dineroINicialCaja, dineroActual, fecha, fechaActual = convert(date, getdate()) from Caja_Corte 
@@ -84,9 +99,14 @@ insert into SMercado..Caja_Salida values ( 1, 1, 151.00, 'Ninguno', '30-04-2010 
 Select * from SMercado..Caja_corte
 Select * from SMercado..Caja_salida
 Select * from SMercado..Caja_entrada
+exec grabar110 'V1=100|','','',''
 exec grabar111 'V1=1|V2=1|V3=150.50|V4=ninguno|', '', '', ''
 exec grabar112 'V1=1|V2=1|V3=1.5|V4=|', '', '', ''
 exec grabar112 'V1=1|V2=1|V3=150.5|V4=asalté un banco, tío|', '', '', ''
 exec Consulta110 '','','',''
-exec consulta111 '', '', '', ''
+exec consulta111 '','','',''
+select * from SMercado..Caja_Configuracion 
+select * from SMercado..Caja_Corte
+delete from SMercado..Caja_Corte where idCorte = 10
+
 
