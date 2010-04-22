@@ -27,8 +27,6 @@ Partial Class InventarioSalidas
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
         Me.TabControl1 = New System.Windows.Forms.TabControl
         Me.TabPage1 = New System.Windows.Forms.TabPage
-        Me.Label6 = New System.Windows.Forms.Label
-        Me.Txt_TotalEntrada = New System.Windows.Forms.TextBox
         Me.Label8 = New System.Windows.Forms.Label
         Me.Txt_Cantidad = New System.Windows.Forms.TextBox
         Me.Label7 = New System.Windows.Forms.Label
@@ -37,6 +35,8 @@ Partial Class InventarioSalidas
         Me.GridDatos = New SourceGrid.DataGrid
         Me.Fecha = New System.Windows.Forms.DateTimePicker
         Me.Label2 = New System.Windows.Forms.Label
+        Me.Label5 = New System.Windows.Forms.Label
+        Me.txtMotivo = New System.Windows.Forms.TextBox
         Me.Label4 = New System.Windows.Forms.Label
         Me.btnAceptar = New System.Windows.Forms.Button
         Me.MensajePiePagina = New System.Windows.Forms.ToolStripStatusLabel
@@ -48,8 +48,6 @@ Partial Class InventarioSalidas
         Me.Grabar = New System.Windows.Forms.ToolStripButton
         Me.Eliminar = New System.Windows.Forms.ToolStripButton
         Me.PiePagina = New System.Windows.Forms.StatusStrip
-        Me.txtMotivo = New System.Windows.Forms.TextBox
-        Me.Label5 = New System.Windows.Forms.Label
         CType(Me.Barra, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -100,8 +98,6 @@ Partial Class InventarioSalidas
         '
         'TabPage1
         '
-        Me.TabPage1.Controls.Add(Me.Label6)
-        Me.TabPage1.Controls.Add(Me.Txt_TotalEntrada)
         Me.TabPage1.Controls.Add(Me.Label8)
         Me.TabPage1.Controls.Add(Me.Txt_Cantidad)
         Me.TabPage1.Controls.Add(Me.Label7)
@@ -115,23 +111,6 @@ Partial Class InventarioSalidas
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Productos"
         Me.TabPage1.UseVisualStyleBackColor = True
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(761, 333)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(38, 14)
-        Me.Label6.TabIndex = 248
-        Me.Label6.Text = "Total"
-        '
-        'Txt_TotalEntrada
-        '
-        Me.Txt_TotalEntrada.Location = New System.Drawing.Point(803, 329)
-        Me.Txt_TotalEntrada.Name = "Txt_TotalEntrada"
-        Me.Txt_TotalEntrada.Size = New System.Drawing.Size(128, 22)
-        Me.Txt_TotalEntrada.TabIndex = 247
-        Me.Txt_TotalEntrada.Text = "00000000000.00"
         '
         'Label8
         '
@@ -211,6 +190,26 @@ Partial Class InventarioSalidas
         Me.Label2.Size = New System.Drawing.Size(49, 14)
         Me.Label2.TabIndex = 244
         Me.Label2.Text = "Fecha:"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Verdana", 9.0!)
+        Me.Label5.Location = New System.Drawing.Point(24, 57)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(53, 14)
+        Me.Label5.TabIndex = 238
+        Me.Label5.Text = "Motivo:"
+        '
+        'txtMotivo
+        '
+        Me.txtMotivo.Location = New System.Drawing.Point(91, 53)
+        Me.txtMotivo.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.txtMotivo.Multiline = True
+        Me.txtMotivo.Name = "txtMotivo"
+        Me.txtMotivo.Size = New System.Drawing.Size(878, 41)
+        Me.txtMotivo.TabIndex = 239
         '
         'Label4
         '
@@ -331,26 +330,6 @@ Partial Class InventarioSalidas
         Me.PiePagina.TabIndex = 247
         Me.PiePagina.Text = "StatusStrip1"
         '
-        'txtMotivo
-        '
-        Me.txtMotivo.Location = New System.Drawing.Point(91, 53)
-        Me.txtMotivo.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
-        Me.txtMotivo.Multiline = True
-        Me.txtMotivo.Name = "txtMotivo"
-        Me.txtMotivo.Size = New System.Drawing.Size(878, 41)
-        Me.txtMotivo.TabIndex = 239
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Verdana", 9.0!)
-        Me.Label5.Location = New System.Drawing.Point(24, 57)
-        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(53, 14)
-        Me.Label5.TabIndex = 238
-        Me.Label5.Text = "Motivo:"
-        '
         'InventarioSalidas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 14.0!)
@@ -386,8 +365,6 @@ Partial Class InventarioSalidas
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
     Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
-    Friend WithEvents Label6 As System.Windows.Forms.Label
-    Friend WithEvents Txt_TotalEntrada As System.Windows.Forms.TextBox
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents Txt_Cantidad As System.Windows.Forms.TextBox
     Friend WithEvents Label7 As System.Windows.Forms.Label

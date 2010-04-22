@@ -10,8 +10,7 @@ Public Class InventarioSalidas
     Dim Parametros As String = ""
     Dim lConsulta As New ClsConsultas
     Dim ObjRet As CRetorno
-    Dim identrada As String
-    Dim TotalEntrada As Double = 0
+    Dim idSalida As String
 #End Region
 
     Private Sub InventarioSalidas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -92,11 +91,8 @@ Public Class InventarioSalidas
     End Sub
 
 #Region " Llenar Fila "
-    Sub LlenarFila(ByVal Producto As String, ByVal Unidad As String, ByVal Costo As Double)
+    Sub LlenarFila(ByVal Producto As String, ByVal Unidad As String)
         Dim Cantidad As Double = Double.Parse(Me.Txt_Cantidad.Text)
-        Dim TotalCosto As Double = 0
-        Double.Parse(Costo)
-        TotalCosto = Cantidad * Costo
         Dim Igual As Boolean = 0
         Dim Encontro As Boolean = 0
         Dim fila As Integer = 0
@@ -105,7 +101,6 @@ Public Class InventarioSalidas
             If DsDatos.Tables("Table").Rows(i).Item("C1") = Txt_CodigoProducto.Text Then
                 Igual = True
                 DsDatos.Tables("Table").Rows(i).Item("C3") = DsDatos.Tables("Table").Rows(i).Item("C3") + Cantidad
-                DsDatos.Tables("Table").Rows(i).Item("C6") = DsDatos.Tables("Table").Rows(i).Item("C3") * Costo
                 DsDatos.Tables("Table").AcceptChanges()
 
             End If
@@ -130,10 +125,7 @@ Public Class InventarioSalidas
             registro!C2 = Producto
             registro!C3 = Cantidad
             registro!C4 = Unidad
-            registro!C5 = Costo
-            registro!C6 = TotalCosto
-
-
+            registro!C5 = FolioSalida.Text
             DsDatos.Tables("Table").AcceptChanges()
 
         End If
@@ -143,18 +135,10 @@ Public Class InventarioSalidas
             DsDatos.Tables("Table").Rows(fila).Item("C2") = Producto
             DsDatos.Tables("Table").Rows(fila).Item("C3") = Cantidad
             DsDatos.Tables("Table").Rows(fila).Item("C4") = Unidad
-            DsDatos.Tables("Table").Rows(fila).Item("C5") = Costo
-            DsDatos.Tables("Table").Rows(fila).Item("C6") = TotalCosto
+            DsDatos.Tables("Table").Rows(fila).Item("C5") = FolioSalida.Text
             DsDatos.Tables("Table").AcceptChanges()
 
         End If
-
-        For h As Integer = 0 To DsDatos.Tables("Table").Rows.Count - 1
-            TotalEntrada = TotalEntrada + Double.Parse(DsDatos.Tables("Table").Rows(h).Item("C6"))
-        Next
-
-        Me.Txt_TotalEntrada.Text = TotalEntrada
-        TotalEntrada = 0
     End Sub
 
 #End Region
@@ -209,8 +193,7 @@ Public Class InventarioSalidas
         DsDatos.Tables("Table").Columns.Add("C2", GetType(String))
         DsDatos.Tables("Table").Columns.Add("C3", GetType(Double))
         DsDatos.Tables("Table").Columns.Add("C4", GetType(String))
-        DsDatos.Tables("Table").Columns.Add("C5", GetType(Double))
-        DsDatos.Tables("Table").Columns.Add("C6", GetType(Double))
+        DsDatos.Tables("Table").Columns.Add("C5", GetType(Integer))
 
     End Sub
 
@@ -256,8 +239,6 @@ Public Class InventarioSalidas
         GridDatos.GetCell(0, 3).View = viewcolumnheader
         GridDatos.GetCell(0, 4).View = viewcolumnheader
         GridDatos.GetCell(0, 5).View = viewcolumnheader
-        GridDatos.GetCell(0, 6).View = viewcolumnheader
-        GridDatos.GetCell(0, 7).View = viewcolumnheader
     End Sub
 
     Private Sub GridDatosCrearColumnas(ByVal columns As SourceGrid.DataGridColumns, ByVal Bindlist As DevAge.ComponentModel.IBoundList)
@@ -335,15 +316,10 @@ Public Class InventarioSalidas
         GridColumn.DataCell.View = viewNormal
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.EnableStretch
 
-        GridColumn = GridDatos.Columns.Add("C5", "Costo Unitario", EditorCustom)
+        GridColumn = GridDatos.Columns.Add("C5", "Salida", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
         GridColumn.DataCell.View = viewNormal
-        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
-
-        GridColumn = GridDatos.Columns.Add("C6", "Costo Total", EditorCustom)
-        GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormal
-        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.EnableStretch
 
         GridDatos.Columns(0).Visible = False
         GridDatos.Columns.SetWidth(1, 30)
@@ -351,8 +327,7 @@ Public Class InventarioSalidas
         GridDatos.Columns.SetWidth(3, 300)
         GridDatos.Columns.SetWidth(4, 100)
         GridDatos.Columns.SetWidth(5, 100)
-        GridDatos.Columns.SetWidth(6, 100)
-        GridDatos.Columns.SetWidth(7, 150)
+        GridDatos.Columns.SetWidth(6, 0)
     End Sub
 
 #End Region
@@ -379,9 +354,9 @@ Public Class InventarioSalidas
 
 #Region " Nuevo "
     Private Sub Nuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Nuevo.Click
-        Caja = "Consulta109" : Parametros = "V1=" & Me.FolioSalida.Text
+        Caja = "Consulta113" : Parametros = ""
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
-        ObjRet = lConsulta.LlamarCaja(Caja, "5", Parametros)
+        ObjRet = lConsulta.LlamarCaja(Caja, "3", Parametros)
         'Estatus
         If ObjRet.bOk Then
             Me.FolioSalida.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|", False)
@@ -411,17 +386,64 @@ Public Class InventarioSalidas
         DsDatos.Tables("Table").Rows(pos - 1).Item("C2") = ""
         DsDatos.Tables("Table").Rows(pos - 1).Item("C3") = 0
         DsDatos.Tables("Table").Rows(pos - 1).Item("C4") = ""
-        DsDatos.Tables("Table").Rows(pos - 1).Item("C5") = 0
-        DsDatos.Tables("Table").Rows(pos - 1).Item("C6") = 0
-
-        For h As Integer = 0 To DsDatos.Tables("Table").Rows.Count - 1
-            TotalEntrada = TotalEntrada + Double.Parse(DsDatos.Tables("Table").Rows(h).Item("C6"))
-        Next
-
-        Me.Txt_TotalEntrada.Text = TotalEntrada
-        TotalEntrada = 0
 
         ' End If
+    End Sub
+#End Region
+
+#Region " Producto "
+    Private Sub Txt_CodigoProducto_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Txt_CodigoProducto.KeyDown
+        Select Case e.KeyCode
+            Case Keys.F2
+                CatalogoProductos()
+            Case Keys.Enter
+                Caja = "Consulta109" : Parametros = "V1=" & Txt_CodigoProducto.Text & "|"
+                If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+                ObjRet = lConsulta.LlamarCaja(Caja, "3", Parametros)
+                If ObjRet.bOk Then
+                    Me.LblProducto.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|", False)
+                    Txt_Cantidad.Focus()
+                Else
+                    MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+                    Me.Txt_CodigoProducto.Text = ""
+                    Me.Txt_Cantidad.Text = "0.00"
+                    Me.LblProducto.Text = ""
+                    Me.Txt_CodigoProducto.Focus()
+                End If
+        End Select
+    End Sub
+#End Region
+
+#Region " Cantidad "
+    Private Sub Txt_Cantidad_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Txt_Cantidad.KeyDown
+        Dim Codigo As String = ""
+        Dim Producto As String = ""
+        Dim Unidad As String = ""
+        Dim Costo As Double = 0
+
+        Select Case e.KeyCode
+            Case Keys.Enter
+                Caja = "Consulta109" : Parametros = "V1=" & Txt_CodigoProducto.Text & "|"
+                If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+                ObjRet = lConsulta.LlamarCaja(Caja, "6", Parametros)
+                If ObjRet.bOk Then
+                    Producto = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|", False)
+                    Unidad = lConsulta.ObtenerValor("V2", ObjRet.sResultado, "|", False)
+                    ''Mandar Llamar Llenar Fila con los datos necesarios
+                    LlenarFila(Producto, Unidad)
+
+                    Me.Txt_CodigoProducto.Text = ""
+                    Me.LblProducto.Text = ""
+                    Me.Txt_Cantidad.Text = "0.0"
+                    Me.Txt_CodigoProducto.Focus()
+                Else
+                    MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+                    Me.Txt_CodigoProducto.Text = ""
+                    Me.LblProducto.Text = ""
+                    Me.Txt_Cantidad.Text = "0.0"
+                    Me.Txt_CodigoProducto.Focus()
+                End If
+        End Select
     End Sub
 #End Region
 

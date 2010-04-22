@@ -148,6 +148,7 @@ Public Class InventarioEntradas
             registro!C4 = Unidad
             registro!C5 = Costo
             registro!C6 = TotalCosto
+            registro!C7 = Me.FolioEntrada.Text
 
 
             DsDatos.Tables("Table").AcceptChanges()
@@ -161,6 +162,7 @@ Public Class InventarioEntradas
             DsDatos.Tables("Table").Rows(fila).Item("C4") = Unidad
             DsDatos.Tables("Table").Rows(fila).Item("C5") = Costo
             DsDatos.Tables("Table").Rows(fila).Item("C6") = TotalCosto
+            DsDatos.Tables("Table").Rows(fila).Item("C7") = FolioEntrada.Text
             DsDatos.Tables("Table").AcceptChanges()
 
         End If
@@ -385,6 +387,7 @@ Public Class InventarioEntradas
         DsDatos.Tables("Table").Columns.Add("C4", GetType(String))
         DsDatos.Tables("Table").Columns.Add("C5", GetType(Double))
         DsDatos.Tables("Table").Columns.Add("C6", GetType(Double))
+        DsDatos.Tables("Table").Columns.Add("C7", GetType(Integer))
 
     End Sub
 
@@ -523,7 +526,12 @@ Public Class InventarioEntradas
         GridColumn = GridDatos.Columns.Add("C6", "Costo Total", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
         GridColumn.DataCell.View = viewNormal
-        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.EnableAutoSize
+
+        GridColumn = GridDatos.Columns.Add("C7", "Entrada", EditorCustom)
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.View = viewNormal
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.None
 
         GridDatos.Columns(0).Visible = False
         GridDatos.Columns.SetWidth(1, 30)
@@ -533,6 +541,7 @@ Public Class InventarioEntradas
         GridDatos.Columns.SetWidth(5, 100)
         GridDatos.Columns.SetWidth(6, 100)
         GridDatos.Columns.SetWidth(7, 150)
+        GridDatos.Columns.SetWidth(8, 0)
     End Sub
 
 #End Region
