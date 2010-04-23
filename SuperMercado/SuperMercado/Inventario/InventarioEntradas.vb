@@ -60,7 +60,6 @@ Public Class InventarioEntradas
         Me.Txt_CodigoProducto.Text = ""
         Me.Txt_Cantidad.Text = "0.00"
         Me.FolioEntrada.Focus()
-        'DsDatos.Clear()
     End Sub
     Sub LlenarGrid()
         For i As Integer = 0 To ObjRet.DS.Tables(0).Rows.Count - 1
@@ -610,7 +609,8 @@ Public Class InventarioEntradas
                 Me.CodigoProveedor.Focus()
             End If
         Else
-
+            MessageBox.Show("Registre un producto antes de grabar")
+            Me.Txt_CodigoProducto.Focus()
         End If
     End Sub
 #End Region
@@ -628,7 +628,7 @@ Public Class InventarioEntradas
             Me.Nuevo.Visible = False
             Me.Grabar.Visible = True
             Me.GroupBox1.Visible = True
-            ' FilaVacia()
+            FilaVacia()
             Me.CodigoProveedor.Focus()
 
         End If

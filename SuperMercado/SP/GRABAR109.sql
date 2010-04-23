@@ -96,33 +96,65 @@ BEGIN
      --------------------------------------------------------------------------
      -------------------------------------------------------------------------- 
 
-
-	select * from SMercado..entradas e 
-	inner join SMercado..entrada_detalles ed on e.identrada=ed.identrada
-	inner join SMercado..cat_proveedores p on  e.idproveedor=p.idproveedor and p.codigo=@Valor5 and e.folioFactura=@Valor4
+	Select * 
+	From SMercado..entradas e 
+	Inner join SMercado..entrada_detalles ed on e.identrada=ed.identrada
+	Inner join SMercado..cat_proveedores p on  e.idproveedor=p.idproveedor and p.codigo=@Valor5 and e.folioFactura=@Valor4
   If @@RowCount > 0
     Begin
-	  Select @Resul='2R=ERROR|2M=Factura ya existente|'
+	  Select @Resul='2R=ERROR|2M=La Factura ya existe con ese mismo proveedor|'
       Return 
 	End   
 	
 	
-  -- Logica de Negocio      
-  
-  If @@RowCount = 0
-   Begin
-     Update SMercado..Entradas 
-     Set Fecha = @Valor2,
-         IdUsuario = @Valor3,
-         folioFactura = @Valor4,
-         IdProveedor = @Valor5 
- Where idEntrada=@Valor1 
- 
-   End
-   
-   
-   
-   
+	Select @Desc0 = idEntrada 
+	From SMercado..Entradas 
+	Where idEntrada = @Valor1 And foliofactura = 0
+	Select  @Registro = @@ROWCOUNT 
+	
+	If @Registro = 0
+	Begin
+	Insert SMercado..Entradas(fecha,idUsuario,folioFactura,IdProveedor)
+	Values (@Valor2,@Valor3,@Valor4,@Valor5)
+	End
+	 Else
+	  Begin
+	  Update SMercado..Entradas 
+       Set Fecha = @Valor2,
+           IdUsuario = @Valor3,
+           folioFactura = @Valor4,
+           IdProveedor = @Valor5 
+        Where idEntrada=@Valor1 
+	  End
+	 
+-----------------------------------------------------     --Leer XML     -----------------------------------------------------     
+--Validación de dataset 
+Declare @idoc int    
+Exec sp_xml_preparedocument @idoc OUTPUT, @DataSet     
+SELECT  C7  = C7,    --FoliEntrada                 
+        C1  = C1,    --IdProducto
+        C2  = C2,    --Descripcion producto                       
+        C3  = C3,     --Cantidad 
+        C4  = C4,      --Unidad
+        C5  = C5,     --CostoUnitario
+        C6  = C6     --Costototal      
+        Into #TmpGrabar109     
+        FROM OPENXML (@idoc, '/Root/Table',2)          
+        WITH (C7  Int,
+              C1  Varchar(50),
+              C2  Varchar(250),               
+              C3  Decimal(18,2),
+              C4  Varchar (250),
+              C5  Decimal(18,2),
+              C6  Decimal (18,2))    
+        EXEC sp_xml_removedocument @idoc     
+        -----------------------------------------------     -- Fin de XML     -----------------------------------------------
+	
+	--Insert de la tabla temporal..
+	Insert SMercado..Entrada_detalles(idEntrada,IdProducto,Descripcion,cantidad,Unidad,costoUnitario,CostoTotal)
+    Select C7,C1,C2,C3,C4,C5,C6
+    From #TmpGrabar109
+	 
   -- Enviar Resultado
   Select @Resul='2R=OK|2M=Se Grabó Correctamente|'   
 
