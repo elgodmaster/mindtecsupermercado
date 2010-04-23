@@ -47,6 +47,7 @@ Partial Class Caja
         Me.Label5 = New System.Windows.Forms.Label
         Me.Label11 = New System.Windows.Forms.Label
         Me.lblSalidas = New System.Windows.Forms.Label
+        Me.lblRetirar = New System.Windows.Forms.Label
         Me.StatusStrip1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -67,7 +68,7 @@ Partial Class Caja
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(302, 275)
+        Me.Label4.Location = New System.Drawing.Point(274, 276)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(64, 22)
         Me.Label4.TabIndex = 6
@@ -78,7 +79,7 @@ Partial Class Caja
         Me.lblEntradaDin.AutoSize = True
         Me.lblEntradaDin.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblEntradaDin.ForeColor = System.Drawing.Color.Navy
-        Me.lblEntradaDin.Location = New System.Drawing.Point(401, 275)
+        Me.lblEntradaDin.Location = New System.Drawing.Point(373, 276)
         Me.lblEntradaDin.Name = "lblEntradaDin"
         Me.lblEntradaDin.Size = New System.Drawing.Size(59, 22)
         Me.lblEntradaDin.TabIndex = 8
@@ -188,7 +189,7 @@ Partial Class Caja
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(302, 484)
+        Me.Label6.Location = New System.Drawing.Point(274, 485)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(64, 22)
         Me.Label6.TabIndex = 233
@@ -199,7 +200,7 @@ Partial Class Caja
         Me.lblSalDinero.AutoSize = True
         Me.lblSalDinero.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblSalDinero.ForeColor = System.Drawing.Color.Teal
-        Me.lblSalDinero.Location = New System.Drawing.Point(401, 482)
+        Me.lblSalDinero.Location = New System.Drawing.Point(373, 483)
         Me.lblSalDinero.Name = "lblSalDinero"
         Me.lblSalDinero.Size = New System.Drawing.Size(60, 24)
         Me.lblSalDinero.TabIndex = 234
@@ -314,11 +315,24 @@ Partial Class Caja
         Me.lblSalidas.TabIndex = 242
         Me.lblSalidas.Text = "$0.00"
         '
+        'lblRetirar
+        '
+        Me.lblRetirar.AutoSize = True
+        Me.lblRetirar.Font = New System.Drawing.Font("Arial", 12.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblRetirar.ForeColor = System.Drawing.Color.DarkSlateGray
+        Me.lblRetirar.Location = New System.Drawing.Point(500, 351)
+        Me.lblRetirar.Name = "lblRetirar"
+        Me.lblRetirar.Size = New System.Drawing.Size(140, 19)
+        Me.lblRetirar.TabIndex = 245
+        Me.lblRetirar.Text = "Por favor retire: "
+        Me.lblRetirar.Visible = False
+        '
         'Caja
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(797, 549)
+        Me.Controls.Add(Me.lblRetirar)
         Me.Controls.Add(Me.lblTotal)
         Me.Controls.Add(Me.Label14)
         Me.Controls.Add(Me.Label3)
@@ -376,4 +390,5 @@ Partial Class Caja
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents lblSalidas As System.Windows.Forms.Label
+    Friend WithEvents lblRetirar As System.Windows.Forms.Label
 End Class

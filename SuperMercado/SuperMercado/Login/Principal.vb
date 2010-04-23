@@ -6,15 +6,18 @@ Public Class Principal
 #Region "Variables De Trabajo"
     Private DsDatos As DataSet
     Private ViewDatos As DataView
+    ' Variables para las consultas.
     Dim Caja As String = ""
     Dim Parametros As String = ""
     Dim lConsulta As New ClsConsultas
     Dim ObjRet As CRetorno
-    'Variables para Caja
+    ' Variables para Caja
     Dim objRegistroEntrada As New registroEntrada
     Dim objRegistroSalida As New registroSalida
     Dim objDineroCaja As New dineroCaja
     Dim objConfigCaja As configuracion
+    ' Variables para los menús principales.
+    Dim cajaActual As New Caja
 
 #End Region
 
@@ -24,6 +27,7 @@ Public Class Principal
         objRegistroSalida = Nothing
         objDineroCaja = Nothing
         objConfigCaja = Nothing
+        cajaActual = Nothing
 
         ' Configuración de la ventana principal.
         Dim inic As New inicial
@@ -269,11 +273,13 @@ Public Class Principal
 #Region " Catalogos "
     Private Sub MenuDepartamentos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MenuDepartamentos.Click
         Dim Cat_Dep As New Cat_Departamentos
+
         Cat_Dep.MdiParent = Me
         Cat_Dep.WindowState = FormWindowState.Maximized
 
         Cat_Dep.StartPosition = FormStartPosition.CenterScreen
         Cat_Dep.Show()
+
     End Sub
 
     Private Sub MenuCategorias_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MenuCategorias.Click
@@ -349,14 +355,40 @@ Public Class Principal
     Private Sub corteToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles corteToolStripMenuItem.Click
 
         ' Configurar y mostrar la ventana caja.
-        Dim cajaActual As New Caja
-        cajaActual.MdiParent = Me
-        cajaActual.WindowState = FormWindowState.Maximized
+        If cajaActual Is Nothing Then
+            cajaActual = New Caja()
+            cajaActual.MdiParent = Me
+            cajaActual.WindowState = FormWindowState.Maximized
 
-        cajaActual.StartPosition = FormStartPosition.CenterScreen
-        cajaActual.Show()
-        
+            cajaActual.StartPosition = FormStartPosition.CenterScreen
+            cajaActual.Show()
+        End If
     End Sub
+
+    Private Sub EntradasToolStripMenuItem2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EntradasToolStripMenuItem2.Click
+        If objRegistroEntrada Is Nothing Then
+            Dim objRegistroEntrada = New registroEntrada()
+            objRegistroEntrada.StartPosition = FormStartPosition.CenterScreen
+            objRegistroEntrada.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub SalidasToolStripMenuItem2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SalidasToolStripMenuItem2.Click
+        If objRegistroSalida Is Nothing Then
+            Dim objRegistroSalida = New registroSalida()
+            objRegistroSalida.StartPosition = FormStartPosition.CenterScreen
+            objRegistroSalida.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub ConfiguraciónToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ConfiguraciónToolStripMenuItem.Click
+        If objConfigCaja Is Nothing Then
+            Dim objConfigCaja = New configuracion
+            objConfigCaja.StartPosition = FormStartPosition.CenterScreen
+            objConfigCaja.ShowDialog()
+        End If
+    End Sub
+
     Public Function obtenMac() As String
         Dim str As String
         Dim p As New Process
@@ -385,28 +417,4 @@ Public Class Principal
 
         Return str.Substring(23)
     End Function
-
-    Private Sub EntradasToolStripMenuItem2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EntradasToolStripMenuItem2.Click
-        If objRegistroEntrada Is Nothing Then
-            Dim objRegistroEntrada = New registroEntrada()
-            objRegistroEntrada.StartPosition = FormStartPosition.CenterScreen
-            objRegistroEntrada.Show()
-        End If
-    End Sub
-
-    Private Sub SalidasToolStripMenuItem2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SalidasToolStripMenuItem2.Click
-        If objRegistroSalida Is Nothing Then
-            Dim objRegistroSalida = New registroSalida()
-            objRegistroSalida.StartPosition = FormStartPosition.CenterScreen
-            objRegistroSalida.Show()
-        End If
-    End Sub
-
-    Private Sub ConfiguraciónToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ConfiguraciónToolStripMenuItem.Click
-        If objConfigCaja Is Nothing Then
-            Dim objConfigCaja = New configuracion()
-            objConfigCaja.StartPosition = FormStartPosition.CenterScreen
-            objConfigCaja.Show()
-        End If
-    End Sub
 End Class
