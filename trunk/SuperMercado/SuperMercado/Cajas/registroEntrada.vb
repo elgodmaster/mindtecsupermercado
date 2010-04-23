@@ -52,6 +52,40 @@ Public Class registroEntrada
             Me.Close()
         End If
 
+        ' CONFIGURACION_CAJA
+        ' Si está activado un monto máximo por defecto se sugiere
+        ' que se haga el corte.
+        Caja = "Consulta112" : Parametros = ""
+        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+        ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
+
+        Dim activadoMontoMaximo As Boolean
+        Dim montoPorDefecto As Decimal
+        activadoMontoMaximo = ObjRet.DS.Tables(0).Rows(0).Item(3)
+        montoPorDefecto = ObjRet.DS.Tables(0).Rows(0).Item(4)
+
+        If activadoMontoMaximo Then
+            ' Se llama a al consulta111 conocer el total de dinero
+            ' acumulado.
+
+            Caja = "consulta111" : Parametros = ""
+            ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
+
+            Dim sumEnt As Decimal
+            Dim sumSal As Decimal
+            Dim dinIni As Decimal
+            Dim total As Decimal
+
+            sumEnt = Decimal.Parse(ObjRet.DS.Tables(2).Rows(0).Item(1))
+            sumSal = Decimal.Parse(ObjRet.DS.Tables(2).Rows(0).Item(2))
+            dinIni = Decimal.Parse(ObjRet.DS.Tables(2).Rows(0).Item(0))
+            total = dinIni + sumEnt - sumSal
+
+            MessageBox.Show("La cantidad actual en la caja es: $" & total & vbCrLf & _
+                            "La cantidad máxima a tener en caja es: $" & montoPorDefecto & vbCrLf & _
+                            vbCrLf & "Se le sugiere que haga el corte en caja.", "Información", _
+                            MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End If
 
     End Sub
 

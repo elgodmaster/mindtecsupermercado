@@ -21,6 +21,9 @@
 #End Region
 
     Private Sub Caja_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        ' -- Configuración de los componenetes --
+        lblRetirar.Visible = False
+
         ' Entradas
         CrearDsDatosENTRADAS()
         ConfiguraGridDatosENTRADAS()
@@ -340,6 +343,7 @@
 #End Region
 
     Private Sub btnHacerCorte_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnHacerCorte.Click
+        lblRetirar.Visible = False
         ' Se llama a al consulta111 para realizar el corte.
 
         Caja = "consulta111" : Parametros = ""
@@ -403,6 +407,28 @@
         total = dinIni + sumEnt - sumSal
 
         lblTotal.Text = "$" & total.ToString
+
+        ' CONFIGURACION_CAJA
+        ' Si está activado un monto inicial por defecto se sugiere
+        ' una cantidad a retirar: El dinero del corte menos del dinero
+        ' inicial por defecto.
+        Caja = "Consulta112" : Parametros = ""
+        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+        ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
+
+        Dim activadoMontoPorDefecto As Boolean
+        Dim montoPorDefecto As Decimal
+        activadoMontoPorDefecto = ObjRet.DS.Tables(0).Rows(0).Item(1)
+        montoPorDefecto = ObjRet.DS.Tables(0).Rows(0).Item(2)
+
+        If activadoMontoPorDefecto Then
+            Dim montoRetirar As Decimal
+            If total > montoPorDefecto Then
+                montoRetirar = total - montoPorDefecto
+                lblRetirar.Visible = True
+                lblRetirar.Text = "Por favor retire: $" & montoRetirar
+            End If
+        End If
 
     End Sub
 
