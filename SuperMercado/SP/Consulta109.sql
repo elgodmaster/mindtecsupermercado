@@ -87,9 +87,8 @@ BEGIN
             Fecha = IsNull(a.Fecha,''),
             Proveedor = ISNULL(b.Nombre,''),
 			Factura = IsNull(a.folioFactura,'')
-
      From SMercado..Entradas a(NoLock)
-     Left join Smercado..Cat_Proveedores b (NoLock) On b.IdProveedor = a.IdProveedor 
+     Left join Smercado..Cat_Proveedores b (NoLock) On b.Codigo = a.IdProveedor 
     
      Order By a.IdEntrada
 
@@ -109,30 +108,30 @@ BEGIN
 
  If @Validar = 2
    Begin
+   
      Select @Desc1 = IsNull(a.Fecha,GETDATE()),
-            @Desc2 = ISNULL(a.idproveedor,''),
+            @Desc2 = ISNULL(b.Codigo,''),
             @Desc3 = ISNULL(b.Nombre,''),
             @Desc4 = IsNull(a.FolioFactura,'')
      From SMercado..Entradas a (NoLock) 
-     Left Join SMercado..Cat_Proveedores b (NoLock) On b.IdProveedor = a.idproveedor
+     Left Join SMercado..Cat_Proveedores b (NoLock) On b.Codigo = a.idproveedor
      Where a.idEntrada = @Valor1 
-     
+    
      Select C1 = IsNull(a.IdProducto,''),
-            C2 = IsNull(b.Descripcion,''),
+            C2 = IsNull(a.Descripcion,''),
             C3 = ISNULL(a.cantidad,0),
-            C4 = ISNULL(c.Descripcion,'')
+            C4 = ISNULL(a.Unidad,''),
+            C5 = ISNULL(a.CostoUnitario,0),
+            C6 = ISNULL(a.CostoTotal,0)
      From SMercado..Entrada_detalles a (NoLock)
-     Left Join Smercado..Cat_Productos b (NoLock) On b.IdProducto = a.IdProducto
-     Left Join SMercado..Cat_Unidades c (NoLock) on c.IdUnidad = b.IdUnidad 
      Where a.idEntrada= @Valor1 
-     
      
 	 Select @Registro = @@RowCount	 
 	 
    End
 
 
-  if @Validar = 3
+  If @Validar = 3
    Begin
      Select @Desc1  = IsNull(a.Descripcion,''),
             @Desc2  = IsNull(b.Descripcion,'')
@@ -170,7 +169,7 @@ BEGIN
      Begin    
        Select @Desc1 = Isnull(Min(IsNull(IdEntrada,0)),0)
        From SMercado..Entradas (NoLock)
-       Where FolioFactura = 0                   
+       Where FolioFactura = '0'                   
   
        If @Desc1 = 0
         Begin
@@ -179,7 +178,7 @@ BEGIN
         
        Select @Desc1 = Isnull(Min(IsNull(IdEntrada,0)),0)
        From SMercado..Entradas(NoLock)
-       Where folioFactura = 0    
+       Where folioFactura = '0'    
        End
        
        Select @Registro = 1                  
@@ -205,11 +204,7 @@ BEGIN
       If @Validar = 1 
          Select @Resul = '2R=ERROR|2M=No existe una entrada con el codigo especificado|'
 	  If @Validar = 2
-		 Select @Resul = '2R=OK|V1=' + @Desc1 + 
-							  '|V2=' + @Desc2 + 
-							  '|V3=' + @Desc3 +
-							  '|V4=' + @Desc4 + 
-							  '|V5=' + @Desc5 + '|'
+		 Select @Resul = '2R=ERROR|2M=No existe una entrada con el codigo especificado. Clic en Nuevo para crear una nueva entrada'
 	  If @Validar = 3
 		 Select @Resul = '2R=ERROR|2M=El producto no esta registrado|'
 	  If @Validar = 4 

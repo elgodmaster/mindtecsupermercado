@@ -113,12 +113,10 @@ BEGIN
      Where IdSalida = @Valor1
      
      Select C1 = IsNull(a.IdProducto,''),
-            C2 = IsNull(b.Descripcion,''),
+            C2 = IsNull(a.Descripcion,''),
             C3 = ISNULL(a.cantidad,0),
-            C4 = ISNULL(c.Descripcion,'')
+            C4 = ISNULL(a.Unidad,'')
      From SMercado..Salida_detalles a (NoLock)
-     Left Join Smercado..Cat_Productos b (NoLock) On b.IdProducto = a.IdProducto
-     Left Join SMercado..Cat_Unidades c (NoLock) on c.IdUnidad = b.IdUnidad 
      Where a.idSalida = @Valor1 
      
      
@@ -130,7 +128,7 @@ BEGIN
      Begin    
        Select @Desc1 = Isnull(Min(IsNull(IdSalida,0)),0)
        From SMercado..Salidas (NoLock)
-       Where LEN(LTRIM(RTrim(Motivo))) = 0                   
+       Where LEN(LTRIM(RTrim(Motivo))) = '0'                   
   
        If @Desc1 = 0
         Begin
@@ -139,7 +137,7 @@ BEGIN
         
        Select @Desc1 = Isnull(Min(IsNull(IdSalida,0)),0)
        From SMercado..Salidas(NoLock)
-       Where LEN(RTrim(LTrim(Motivo))) = 0    
+       Where LEN(RTrim(LTrim(Motivo))) = '0'    
        End
        
        Select @Registro = 1                  

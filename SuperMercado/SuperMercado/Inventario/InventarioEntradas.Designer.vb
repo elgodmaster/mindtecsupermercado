@@ -44,6 +44,8 @@ Partial Class InventarioEntradas
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
         Me.TabControl1 = New System.Windows.Forms.TabControl
         Me.TabPage1 = New System.Windows.Forms.TabPage
+        Me.Label6 = New System.Windows.Forms.Label
+        Me.Txt_TotalEntrada = New System.Windows.Forms.TextBox
         Me.Label8 = New System.Windows.Forms.Label
         Me.Txt_Cantidad = New System.Windows.Forms.TextBox
         Me.Label7 = New System.Windows.Forms.Label
@@ -52,8 +54,7 @@ Partial Class InventarioEntradas
         Me.GridDatos = New SourceGrid.DataGrid
         Me.TabPage2 = New System.Windows.Forms.TabPage
         Me.Barra = New System.Windows.Forms.PictureBox
-        Me.Label6 = New System.Windows.Forms.Label
-        Me.Txt_TotalEntrada = New System.Windows.Forms.TextBox
+        Me.Button1 = New System.Windows.Forms.Button
         Me.ToolStrip1.SuspendLayout()
         Me.PiePagina.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -186,9 +187,9 @@ Partial Class InventarioEntradas
         Me.NombreProveedor.AutoEllipsis = True
         Me.NombreProveedor.BackColor = System.Drawing.Color.Transparent
         Me.NombreProveedor.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NombreProveedor.Location = New System.Drawing.Point(181, 53)
+        Me.NombreProveedor.Location = New System.Drawing.Point(360, 53)
         Me.NombreProveedor.Name = "NombreProveedor"
-        Me.NombreProveedor.Size = New System.Drawing.Size(755, 22)
+        Me.NombreProveedor.Size = New System.Drawing.Size(576, 22)
         Me.NombreProveedor.TabIndex = 242
         Me.NombreProveedor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -198,7 +199,7 @@ Partial Class InventarioEntradas
         Me.CodigoProveedor.Location = New System.Drawing.Point(91, 53)
         Me.CodigoProveedor.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.CodigoProveedor.Name = "CodigoProveedor"
-        Me.CodigoProveedor.Size = New System.Drawing.Size(83, 22)
+        Me.CodigoProveedor.Size = New System.Drawing.Size(262, 22)
         Me.CodigoProveedor.TabIndex = 241
         '
         'Label3
@@ -283,6 +284,7 @@ Partial Class InventarioEntradas
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.Button1)
         Me.TabPage1.Controls.Add(Me.Label6)
         Me.TabPage1.Controls.Add(Me.Txt_TotalEntrada)
         Me.TabPage1.Controls.Add(Me.Label8)
@@ -298,6 +300,25 @@ Partial Class InventarioEntradas
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Productos"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'Label6
+        '
+        Me.Label6.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(761, 333)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(38, 14)
+        Me.Label6.TabIndex = 248
+        Me.Label6.Text = "Total"
+        '
+        'Txt_TotalEntrada
+        '
+        Me.Txt_TotalEntrada.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Txt_TotalEntrada.Location = New System.Drawing.Point(803, 329)
+        Me.Txt_TotalEntrada.Name = "Txt_TotalEntrada"
+        Me.Txt_TotalEntrada.Size = New System.Drawing.Size(128, 22)
+        Me.Txt_TotalEntrada.TabIndex = 247
+        Me.Txt_TotalEntrada.Text = "00000000000.00"
         '
         'Label8
         '
@@ -365,7 +386,7 @@ Partial Class InventarioEntradas
         Me.TabPage2.Location = New System.Drawing.Point(4, 23)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(950, 378)
+        Me.TabPage2.Size = New System.Drawing.Size(950, 370)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Finanzas"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -382,22 +403,15 @@ Partial Class InventarioEntradas
         Me.Barra.TabIndex = 246
         Me.Barra.TabStop = False
         '
-        'Label6
+        'Button1
         '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(761, 333)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(38, 14)
-        Me.Label6.TabIndex = 248
-        Me.Label6.Text = "Total"
-        '
-        'Txt_TotalEntrada
-        '
-        Me.Txt_TotalEntrada.Location = New System.Drawing.Point(803, 329)
-        Me.Txt_TotalEntrada.Name = "Txt_TotalEntrada"
-        Me.Txt_TotalEntrada.Size = New System.Drawing.Size(128, 22)
-        Me.Txt_TotalEntrada.TabIndex = 247
-        Me.Txt_TotalEntrada.Text = "00000000000.00"
+        Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button1.Location = New System.Drawing.Point(600, 328)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(142, 23)
+        Me.Button1.TabIndex = 249
+        Me.Button1.Text = "Agregar a cuentas"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'InventarioEntradas
         '
@@ -413,6 +427,7 @@ Partial Class InventarioEntradas
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.PiePagina)
         Me.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.KeyPreview = True
         Me.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.Name = "InventarioEntradas"
         Me.Text = "Inventario Entradas"
@@ -461,4 +476,5 @@ Partial Class InventarioEntradas
     Friend WithEvents Txt_Cantidad As System.Windows.Forms.TextBox
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents Txt_TotalEntrada As System.Windows.Forms.TextBox
+    Friend WithEvents Button1 As System.Windows.Forms.Button
 End Class

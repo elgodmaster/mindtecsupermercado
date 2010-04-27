@@ -347,7 +347,7 @@ Partial Class Cat_Clientes
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Txtcp.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.Txtcp.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Txtcp.Location = New System.Drawing.Point(72, 198)
+        Me.Txtcp.Location = New System.Drawing.Point(72, 199)
         Me.Txtcp.MaxLength = 6
         Me.Txtcp.Name = "Txtcp"
         Me.Txtcp.Size = New System.Drawing.Size(110, 22)
@@ -358,7 +358,7 @@ Partial Class Cat_Clientes
         Me.Labelcp.AutoSize = True
         Me.Labelcp.BackColor = System.Drawing.Color.Transparent
         Me.Labelcp.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Labelcp.Location = New System.Drawing.Point(47, 202)
+        Me.Labelcp.Location = New System.Drawing.Point(47, 203)
         Me.Labelcp.Name = "Labelcp"
         Me.Labelcp.Size = New System.Drawing.Size(24, 14)
         Me.Labelcp.TabIndex = 275
@@ -370,7 +370,7 @@ Partial Class Cat_Clientes
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TxtDireccion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TxtDireccion.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtDireccion.Location = New System.Drawing.Point(72, 170)
+        Me.TxtDireccion.Location = New System.Drawing.Point(72, 143)
         Me.TxtDireccion.MaxLength = 100
         Me.TxtDireccion.Name = "TxtDireccion"
         Me.TxtDireccion.Size = New System.Drawing.Size(859, 22)
@@ -381,7 +381,7 @@ Partial Class Cat_Clientes
         Me.Label14.AutoSize = True
         Me.Label14.BackColor = System.Drawing.Color.Transparent
         Me.Label14.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.Location = New System.Drawing.Point(8, 174)
+        Me.Label14.Location = New System.Drawing.Point(8, 147)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(63, 14)
         Me.Label14.TabIndex = 274
@@ -393,7 +393,7 @@ Partial Class Cat_Clientes
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TxtColonia.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TxtColonia.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtColonia.Location = New System.Drawing.Point(72, 142)
+        Me.TxtColonia.Location = New System.Drawing.Point(72, 171)
         Me.TxtColonia.MaxLength = 100
         Me.TxtColonia.Name = "TxtColonia"
         Me.TxtColonia.Size = New System.Drawing.Size(859, 22)
@@ -404,7 +404,7 @@ Partial Class Cat_Clientes
         Me.Label15.AutoSize = True
         Me.Label15.BackColor = System.Drawing.Color.Transparent
         Me.Label15.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label15.Location = New System.Drawing.Point(16, 146)
+        Me.Label15.Location = New System.Drawing.Point(16, 175)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(54, 14)
         Me.Label15.TabIndex = 273

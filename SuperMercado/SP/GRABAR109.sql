@@ -13,7 +13,7 @@ AS
 BEGIN
   Set NoCount On
   --------------------------
-  --Marcas
+  --Entradas
   --------------------------
 
   --Variables de Trabajo
@@ -95,7 +95,7 @@ BEGIN
       End
      --------------------------------------------------------------------------
      -------------------------------------------------------------------------- 
-
+ Begin Tran Grabar109
 	Select * 
 	From SMercado..entradas e 
 	Inner join SMercado..entrada_detalles ed on e.identrada=ed.identrada
@@ -127,6 +127,11 @@ BEGIN
         Where idEntrada=@Valor1 
 	  End
 	 
+	 If @@ERROR <> 0
+	 Begin
+	  Rollback Tran Grabar109
+	  Return
+	 End
 -----------------------------------------------------     --Leer XML     -----------------------------------------------------     
 --Validación de dataset 
 Declare @idoc int    
@@ -154,6 +159,26 @@ SELECT  C7  = C7,    --FoliEntrada
 	Insert SMercado..Entrada_detalles(idEntrada,IdProducto,Descripcion,cantidad,Unidad,costoUnitario,CostoTotal)
     Select C7,C1,C2,C3,C4,C5,C6
     From #TmpGrabar109
+	 
+	 If @@ERROR <> 0
+	 Begin
+	  RollBack Tran Grabar109
+	  Return
+	 End
+	 
+	 Update a
+	    Set a.cantidad = a.cantidad + b.C3
+	    From SMercado..Existencias a 
+	    Left join #TmpGrabar109 b on b.C1 = a.codigo
+	    Where b.C7 = @Valor1
+	   
+	If @@ERROR <> 0
+	 Begin
+	  RollBack Tran Grabar109
+	  Return
+	 End
+	 
+	 Commit Tran Grabar109
 	 
   -- Enviar Resultado
   Select @Resul='2R=OK|2M=Se Grabó Correctamente|'   

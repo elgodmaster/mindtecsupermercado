@@ -152,6 +152,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ClsConsultas.vb" />
+    <Compile Include="Facturacion\Facturacion.Designer.vb">
+      <DependentUpon>Facturacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Facturacion\Facturacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -272,6 +278,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Catalogos\Cat_Unidades.resx">
       <DependentUpon>Cat_Unidades.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Facturacion\Facturacion.resx">
+      <DependentUpon>Facturacion.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inventario\consulta_Entradas.resx">
       <DependentUpon>consulta_Entradas.vb</DependentUpon>

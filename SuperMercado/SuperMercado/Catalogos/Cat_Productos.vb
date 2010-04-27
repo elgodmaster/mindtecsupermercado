@@ -22,7 +22,7 @@ Public Class Cat_Productos
     End Sub
     Private Sub Cat_Categorias_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'Pie de Pagina Mensaje
-        MensajePiePagina.Text = "Esc=Salir Enter=Avanzar F2=Catálogo F4=Limpiar Pantalla"
+        MensajePiePagina.Text = "Esc=Salir F2=Catálogo F4=Limpiar Pantalla"
         'Deshabilitar
         Me.Grabar.Visible = False
     End Sub

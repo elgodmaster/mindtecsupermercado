@@ -118,10 +118,19 @@ If Len(RTrim(LTrim(@Valor9)))= 0
   From SMercado..Cat_Productos(NoLock)
   Where Codigo = @Valor1 And IDDepartamento = @Valor2 And IdCategoria  = @Valor3 And IdMarca = @Valor4
   
+   Begin Tran Grabar103
+   
+   
   If @@RowCount = 0
    Begin
      Insert SMercado..Cat_Productos(Codigo,IDDepartamento,IdCategoria,IdMarca,Descripcion,CostoCompra,Flete,Margen,IdUnidad,StockMinimo,PrecioVenta,InventarioInicial)
             Values(@Valor1,@Valor2,@Valor3,@Valor4,@Valor5,@Valor6,@Valor7,@Valor8,@Valor9,@Valor10,@Valor11,@Valor12)
+            
+            --Insert en Existencias
+     Insert Smercado..Existencias(Codigo,Cantidad)
+            Values(@Valor1,@Valor12)
+            
+            
    End
   Else
    Begin
@@ -136,7 +145,8 @@ If Len(RTrim(LTrim(@Valor9)))= 0
                 InventarioInicial = @Valor12
      Where Codigo = @Valor1 And IdDepartamento = @Valor2 And IdCategoria = @Valor3 And IdMarca = @Valor4
    End  
-
+   
+  Commit Tran Grabar103
   -- Enviar Resultado
   Select @Resul='2R=OK|2M=Se Grabó Correctamente|'   
 
