@@ -417,4 +417,13 @@ Public Class Principal
 
         Return str.Substring(23)
     End Function
+
+    Private Sub FacturaToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles FacturaToolStripMenuItem.Click
+        Dim Facturas As New Facturacion
+        Facturas.MdiParent = Me
+        Facturas.WindowState = FormWindowState.Maximized
+
+        Facturas.StartPosition = FormStartPosition.CenterScreen
+        Facturas.Show()
+    End Sub
 End Class
