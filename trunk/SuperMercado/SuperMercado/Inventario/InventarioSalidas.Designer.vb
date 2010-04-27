@@ -344,6 +344,7 @@ Partial Class InventarioSalidas
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.PiePagina)
         Me.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.KeyPreview = True
         Me.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.Name = "InventarioSalidas"
         Me.Text = "InventarioSalidas"

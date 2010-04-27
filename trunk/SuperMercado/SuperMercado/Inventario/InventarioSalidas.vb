@@ -13,10 +13,23 @@ Public Class InventarioSalidas
     Dim idSalida As String
 #End Region
 
+    Private Sub InventarioSalidas_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
+        Select Case e.KeyCode
+            Case Keys.Escape
+                Cerrar()
+            Case Keys.F4
+                Limpiar.PerformClick()
+            Case Keys.F6
+                Nuevo.PerformClick()
+            Case Keys.F9
+                Grabar.PerformClick()
+        End Select
+    End Sub
+
     Private Sub InventarioSalidas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        LimpiarPantalla()
         CrearDsDatos()
         ConfiguraGridDatos()
+        LimpiarPantalla()
     End Sub
 
 #Region " Rutinas "
@@ -42,8 +55,9 @@ Public Class InventarioSalidas
         Me.FolioSalida.Text = ""
         Me.Txt_CodigoProducto.Text = ""
         Me.Txt_Cantidad.Text = "0.00"
+        Me.txtMotivo.Text = ""
+        DsDatos.Tables("Table").Clear()
         Me.FolioSalida.Focus()
-        'DsDatos.Clear()
     End Sub
     Sub LlenarGrid()
         For i As Integer = 0 To ObjRet.DS.Tables(0).Rows.Count - 1
@@ -333,10 +347,10 @@ Public Class InventarioSalidas
 #End Region
 
 #Region " Grabar "
-
+    'V3 = IdUsuario
     Private Sub Grabar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Grabar.Click
         If DsDatos.Tables("Table").Rows.Count >= 0 And DsDatos.Tables("Table").Rows(0).Item("C3") <> 0 Then
-            Caja = "Grabar109" : Parametros = "V1=" & Me.FolioSalida.Text & "|V2=" & Me.Fecha.Value.ToString("dd/MM/yyyy") & "|V3=|V4=" & Me.txtMotivo.Text & "|"
+            Caja = "Grabar113" : Parametros = "V1=" & Me.FolioSalida.Text & "|V2=" & Me.Fecha.Value.ToString("dd/MM/yyyy") & "|V3=|V4=" & Me.txtMotivo.Text & "|"
             If lConsulta Is Nothing Then lConsulta = New ClsConsultas
             ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros, DsDatos)
             'Estatus
@@ -349,6 +363,7 @@ Public Class InventarioSalidas
         Else
 
         End If
+        LimpiarPantalla()
     End Sub
 #End Region
 
@@ -452,7 +467,45 @@ Public Class InventarioSalidas
             Case Keys.F2
                 CatalogoSalidas()
             Case Keys.Enter
-                ''Caja
+                ''Consulta
+                Caja = "Consulta113" : Parametros = "V1=" & Me.FolioSalida.Text.Trim & "|"
+                If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+                ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
+                'Estatus
+                If ObjRet.bOk Then
+                    btnAceptar.PerformClick()
+                End If
+
         End Select
+    End Sub
+
+    Private Sub btnAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAceptar.Click
+        Caja = "Consulta113" : Parametros = "V1=" & Me.FolioSalida.Text.Trim & "|"
+        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+        ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
+        'Estatus
+        If ObjRet.bOk Then
+            Fecha.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
+            txtMotivo.Text = lConsulta.ObtenerValor("V2", ObjRet.sResultado, "|", False)
+            If Not ObjRet.DS Is DBNull.Value Then
+                If Not ObjRet.DS.Tables Is DBNull.Value Then
+                    If ObjRet.DS.Tables.Count > 0 Then
+                        Me.Grabar.Visible = False
+                        Me.Eliminar.Visible = True
+                        For i As Integer = 0 To ObjRet.DS.Tables(0).Rows.Count - 1
+                            DsDatos.Tables("Table").ImportRow(ObjRet.DS.Tables(0).Rows(i))
+                        Next
+                        DsDatos.Tables("Table").AcceptChanges()
+                    End If
+                  
+                End If
+            End If
+            Me.GroupBox1.Visible = True
+            Me.Nuevo.Visible = False
+            Me.btnAceptar.Enabled = False
+            Me.FolioSalida.Enabled = False
+
+
+        End If
     End Sub
 End Class

@@ -21,15 +21,17 @@ Public Class InventarioEntradas
                 Cerrar()
             Case Keys.F4
                 Limpiar.PerformClick()
+            Case Keys.F6
+                Nuevo.PerformClick()
             Case Keys.F9
                 Grabar.PerformClick()
         End Select
     End Sub
 
     Private Sub InventarioEntradas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        LimpiarPantalla()
         CrearDsDatos()
         ConfiguraGridDatos()
+        LimpiarPantalla()
     End Sub
 #End Region
 
@@ -59,6 +61,8 @@ Public Class InventarioEntradas
         Me.txtFactura.Text = ""
         Me.Txt_CodigoProducto.Text = ""
         Me.Txt_Cantidad.Text = "0.00"
+        Me.DsDatos.Tables("Table").Clear()
+        MensajePiePagina.Text = "Esc=Salir F2=Catálogo F4=Limpiar Pantalla F6=Nuevo"
         Me.FolioEntrada.Focus()
     End Sub
     Sub LlenarGrid()
@@ -166,15 +170,21 @@ Public Class InventarioEntradas
 
         End If
 
+        CalculaTotal()
+    End Sub
+
+#End Region
+
+    Sub CalculaTotal()
+
         For h As Integer = 0 To DsDatos.Tables("Table").Rows.Count - 1
             TotalEntrada = TotalEntrada + Double.Parse(DsDatos.Tables("Table").Rows(h).Item("C6"))
         Next
 
         Me.Txt_TotalEntrada.Text = TotalEntrada
         TotalEntrada = 0
-    End Sub
 
-#End Region
+    End Sub
 
     Sub Cerrar()
         Dim Result As DialogResult
@@ -549,7 +559,7 @@ Public Class InventarioEntradas
     Private Sub FolioEntrada_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles FolioEntrada.KeyDown
         Select Case e.KeyCode
             Case Keys.F2
-                'Catalogo
+                CatalogoEntradas()
             Case Keys.Enter
                 Caja = "Consulta109" : Parametros = "V1=" & Me.FolioEntrada.Text
                 If lConsulta Is Nothing Then lConsulta = New ClsConsultas
@@ -569,26 +579,44 @@ Public Class InventarioEntradas
         If Len(LTrim(RTrim(Me.FolioEntrada.Text))) = 0 Then
             Nuevo.PerformClick()
         Else
-            Caja = "Consulta109" : Parametros = "V1=" & Me.FolioEntrada.Text
+            Caja = "Consulta109" : Parametros = "V1=" & Me.FolioEntrada.Text.Trim & "|"
             If lConsulta Is Nothing Then lConsulta = New ClsConsultas
             ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
             'Estatus
             If ObjRet.bOk Then
+                If Not ObjRet.DS Is DBNull.Value Then
+                    If Not ObjRet.DS.Tables Is DBNull.Value Then
+                        If ObjRet.DS.Tables.Count > 0 Then
+                            Me.Grabar.Visible = False
+                            Me.Eliminar.Visible = True
+                            Me.txtFactura.Enabled = False
+                            Me.Txt_Cantidad.Enabled = False
+                            Me.Fecha.Enabled = False
+                            Me.Txt_CodigoProducto.Enabled = False
+                            Me.CodigoProveedor.Enabled = False
+
+                            For i As Integer = 0 To ObjRet.DS.Tables(0).Rows.Count - 1
+                                DsDatos.Tables("Table").ImportRow(ObjRet.DS.Tables(0).Rows(i))
+                            Next
+                            DsDatos.Tables("Table").AcceptChanges()
+                            CalculaTotal()
+                        End If
+                    End If
+                End If
+
                 Me.FolioEntrada.Enabled = False
                 Me.Nuevo.Visible = False
                 Me.btnAceptar.Enabled = False
-
-                Me.Grabar.Visible = True
-                Me.Eliminar.Visible = True
                 Me.GroupBox1.Visible = True
 
                 Me.Fecha.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
                 Me.CodigoProveedor.Text = lConsulta.ObtenerValor("V2", ObjRet.sResultado, "|")
                 Me.NombreProveedor.Text = lConsulta.ObtenerValor("V3", ObjRet.sResultado, "|")
                 Me.txtFactura.Text = lConsulta.ObtenerValor("V4", ObjRet.sResultado, "|")
-                LlenarGrid()
-
+            Else
+                MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
             End If
+
         End If
         ObjRet = Nothing
     End Sub
@@ -676,12 +704,7 @@ Public Class InventarioEntradas
         DsDatos.Tables("Table").Rows(pos - 1).Item("C5") = 0
         DsDatos.Tables("Table").Rows(pos - 1).Item("C6") = 0
 
-        For h As Integer = 0 To DsDatos.Tables("Table").Rows.Count - 1
-            TotalEntrada = TotalEntrada + Double.Parse(DsDatos.Tables("Table").Rows(h).Item("C6"))
-        Next
-
-        Me.Txt_TotalEntrada.Text = TotalEntrada
-        TotalEntrada = 0
+        CalculaTotal()
 
         ' End If
     End Sub
