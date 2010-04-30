@@ -427,4 +427,13 @@ Public Class Principal
         Facturas.StartPosition = FormStartPosition.CenterScreen
         Facturas.Show()
     End Sub
+
+    Private Sub ModuloDeVentasToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ModuloDeVentasToolStripMenuItem.Click
+        Dim Mventas As New ModuloVentas
+        Mventas.MdiParent = Me
+        Mventas.WindowState = FormWindowState.Maximized
+        Mventas.StartPosition = FormStartPosition.CenterScreen
+        Mventas.Show()
+
+    End Sub
 End Class
