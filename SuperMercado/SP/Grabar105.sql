@@ -35,15 +35,16 @@ BEGIN
   Declare @Valor14   Varchar(8000)
   Declare @Valor15   Varchar(8000)
   Declare @Valor16   Varchar(8000)
+  Declare @Valor17	 Varchar(8000)
   Declare @Desc0     Varchar(8000)
   Declare @Desc1     VarChar(8000)
   Declare @Resul2    VarChar(8000)
     
   --Asignar Valores
-  Select @Desc0  = "" 
-  Select @Desc1  = ""
-  Select @Resul  = ""
-  Select @Resul2 = ""
+  Select @Desc0  = '' 
+  Select @Desc1  = ''
+  Select @Resul  = ''
+  Select @Resul2 = ''
   
   --Obtener los Parametros
   Exec Emulador_SepararCadena 'V1',  @Cabezero, '|', @Valor1 Output --Codigo
@@ -62,6 +63,7 @@ BEGIN
   Exec Emulador_SepararCadena 'V14',  @Cabezero, '|', @Valor14 Output --Cel2
   Exec Emulador_SepararCadena 'V15',  @Cabezero, '|', @Valor15 Output --Fax
   Exec Emulador_SepararCadena 'V16',  @Cabezero, '|', @Valor16 Output --Email
+  Exec Emulador_SepararCadena 'V17',  @Cabezero, '|', @Valor17 Output --Límite de crédito
   
   -- Validar Parametros
   If Len(RTrim(LTrim(@Valor1)))= 0
@@ -119,8 +121,8 @@ If Len(RTrim(LTrim(@Valor8)))= 0
   
   If @@RowCount = 0
    Begin
-     Insert SMercado..Cat_Clientes(Codigo,NombreFiscal,Rfc,Colonia,Direccion,CP,IdEstado,IdCiudad,Telefono1,Extencion1,Telefono2,Extencion2,Cel1,Cel2,Fax,Email)
-            Values(@Valor1,@Valor2,@Valor3,@Valor4,@Valor5,@Valor6,@Valor7,@Valor8,@Valor9,@Valor10,@Valor11,@Valor12,@Valor13,@Valor14,@Valor15,@Valor16)
+     Insert SMercado..Cat_Clientes(Codigo,NombreFiscal,Rfc,Colonia,Direccion,CP,IdEstado,IdCiudad,Telefono1,Extencion1,Telefono2,Extencion2,Cel1,Cel2,Fax,Email,LimiteCredito)
+            Values(@Valor1,@Valor2,@Valor3,@Valor4,@Valor5,@Valor6,@Valor7,@Valor8,@Valor9,@Valor10,@Valor11,@Valor12,@Valor13,@Valor14,@Valor15,@Valor16, CONVERT(decimal(16,2),@Valor17))
    End
   Else
    Begin
@@ -139,7 +141,8 @@ If Len(RTrim(LTrim(@Valor8)))= 0
                 Cel1         = @Valor13,
                 Cel2         = @Valor14,
                 Fax          = @Valor15,
-                Email        = @Valor16
+                Email        = @Valor16,
+                LimiteCredito = @Valor17
      Where Codigo = @Valor1
    End  
 

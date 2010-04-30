@@ -1,6 +1,6 @@
 use SMercado 
 
-DROP table usuarios_cuentas
+
 -- No implementada.
 CREATE TABLE Usuarios_Cuentas (
 idUsuario int identity not null,
@@ -10,6 +10,13 @@ apellidoPaterno char(50),
 apellidoMaterno char(50),
 contraseña int not null
 )
+
+
+
+
+
+
+-- <TABLAS NECESARIAS PARA CAJA> --
 
 CREATE TABLE Caja_Entrada(
 idEntrada int identity not null,
@@ -31,8 +38,6 @@ monMax decimal(18,2) not null
 Insert into SMercado..Caja_Configuracion values (1, 1, 777.00, 0, 0.00)
 select * from SMercado..Caja_Configuracion 
 
-
--- CAMBIO EN EL CAMPO CONCEPTO
 CREATE TABLE Caja_Salida(
 idSalida int identity not null,
 idCaja int not null,
@@ -50,6 +55,41 @@ dineroInicialCaja decimal(18,2),
 dineroActual decimal(18,2),
 fecha date not null
 )
+
+
+-- TABLAS PARA CUENTAS POR COBRAR --
+
+CREATE TABLE CC_Clientes(
+idCliente int identity not null,
+nomCliente varchar(50) not null,
+direccion varchar(250) null,
+telefono varchar(50) null,
+limCredito decimal(16,2)
+)
+
+CREATE TABLE CC_Abonos(
+idAbono int identity not null,
+monto decimal(16,2) not null,
+fecha datetime not null,
+idCliente int not null,
+idUsuario int not null
+)
+
+CREATE TABLE CC_VentasCredito(
+idVenta int not null identity,
+idCliente int not null,
+idUsuario int not null,
+fecha date not null
+)
+
+CREATE TABLE CC_VentasCreditoDetalle(
+idVenta int not null,
+idProducto int not null,
+cantidad int not null,
+precioUnitario int not null
+)
+
+
 
 DROP TABLE SMercado..Caja_Corte
 DROP TABLE SMercado..Caja_Entrada
@@ -109,4 +149,5 @@ select * from SMercado..Caja_Configuracion
 select * from SMercado..Caja_Corte
 delete from SMercado..Caja_Corte where idCorte = 10
 
-
+exec Consulta105 'V1=1|','','','2'
+select * from SMercado..Cat_Clientes 

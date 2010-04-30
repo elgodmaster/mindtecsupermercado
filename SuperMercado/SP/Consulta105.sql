@@ -38,6 +38,7 @@ BEGIN
   Declare @Desc15    VarChar(8000)
   Declare @Desc16    VarChar(8000)
   Declare @Desc17    VarChar(8000)
+  Declare @Desc18	 Varchar(8000)
   Declare @Sql       VarChar(8000)
   Declare @Resul2    Varchar(8000)
   
@@ -60,6 +61,7 @@ BEGIN
   Select @Desc15  = '' 
   Select @Desc16  = '' 
   Select @Desc17  = '' 
+  Select @Desc18  = ''
   Select @Resul   = ''
   Select @Resul2  = ''
 
@@ -111,7 +113,9 @@ BEGIN
             @Desc14 = IsNull(a.Cel1,''),
             @Desc15 = IsNull(a.Cel2,''),
             @Desc16 = IsNull(a.Fax,''),
-            @Desc17 = IsNull(a.Email,'')      
+            @Desc17 = IsNull(a.Email,''),
+            @Desc18 = IsNull(a.LimiteCredito, '0')
+                  
      From SMercado..Cat_Clientes a (NoLock)
      Left Join SMercado..Cat_EstadosdelaRepublica b (NoLock) On b.IdEstado = a.IdEstado
      Left Join SMercado..Cat_Ciudades c (NoLock) On c.IdCiudad = a.IdCiudad And c.IdEstado = a.IdEstado 
@@ -130,14 +134,15 @@ BEGIN
             @Desc7  = IsNull(b.Descripcion,''),
             @Desc8  = IsNull(a.IdCiudad,''),
             @Desc9  = IsNull(c.Descripcion,''),
-            @Desc10  = IsNull(a.Telefono1,''),
+            @Desc10 = IsNull(a.Telefono1,''),
             @Desc11 = IsNull(a.Extencion1,''),
             @Desc12 = IsNull(a.Telefono2,''),
             @Desc13 = IsNull(a.Extencion2,''),
             @Desc14 = IsNull(a.Cel1,''),
             @Desc15 = IsNull(a.Cel2,''),
             @Desc16 = IsNull(a.Fax,''),
-            @Desc17 = IsNull(a.Email,'')      
+			@Desc17 = IsNull(a.Email,''),
+            @Desc18 = IsNull(a.LimiteCredito, '0')
      From SMercado..Cat_Clientes a (NoLock)
      Left Join SMercado..Cat_EstadosdelaRepublica b (NoLock) On b.IdEstado = a.IdEstado
      Left Join SMercado..Cat_Ciudades c (NoLock) On c.IdCiudad = a.IdCiudad And c.IdEstado = a.IdEstado 
@@ -168,15 +173,15 @@ BEGIN
         Begin 
          Select @Resul = '2R=OK|V1=' + @Desc1 + '|V2=' + @Desc2 + '|V3=' + @Desc3 + '|V4=' + @Desc4 + '|V5=' + @Desc5 + '|V6=' + @Desc6 +
                          '|V7=' + @Desc7 + '|V8=' + @Desc8 + '|V9=' + @Desc9 + '|V10=' + @Desc10 + '|V11=' + @Desc11 + '|V12=' + @Desc12 + 
-                         '|V13=' + @Desc13 + '|V14=' + @Desc14 + '|V15=' + @Desc15 + '|V16=' + @Desc16 + '|V17=' + @Desc17 + '|' 
+                         '|V13=' + @Desc13 + '|V14=' + @Desc14 + '|V15=' + @Desc15 + '|V16=' + @Desc16 + '|V17=' + @Desc17 + '|V18=' + @Desc18 + '|' 
         End
 	  If @Validar = 3
         Begin 
          Select @Resul = '2R=OK|V1=' + @Desc1 + '|V2=' + @Desc2 + '|V3=' + @Desc3 + '|V4=' + @Desc4 + '|V5=' + @Desc5 + '|V6=' + @Desc6 +
                          '|V7=' + @Desc7 + '|V8=' + @Desc8 + '|V9=' + @Desc9 + '|V10=' + @Desc10 + '|V11=' + @Desc11 + '|V12=' + @Desc12 + 
-                         '|V13=' + @Desc13 + '|V14=' + @Desc14 + '|V15=' + @Desc15 + '|V16=' + @Desc16 + '|V17=' + @Desc17 + '|' 
+                         '|V13=' + @Desc13 + '|V14=' + @Desc14 + '|V15=' + @Desc15 + '|V16=' + @Desc16 + '|V17=' + @Desc17 + '|V18=' + @Desc18 + '|'  
         End
     End
-
   Set NoCount OFF
+  Select resultado = @Resul 
 END
