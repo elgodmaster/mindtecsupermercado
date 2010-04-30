@@ -58,6 +58,11 @@ Public Class Cat_Clientes
             Me.TxtCel2.Text = lConsulta.ObtenerValor("V15", ObjRet.sResultado, "|")
             Me.TxtFax.Text = lConsulta.ObtenerValor("V16", ObjRet.sResultado, "|")
             Me.TxtMail.Text = lConsulta.ObtenerValor("V17", ObjRet.sResultado, "|")
+            If lConsulta.ObtenerValor("V18", ObjRet.sResultado, "|") = "" Then
+                Me.txtLimCred.Value = 0
+            Else
+                Me.txtLimCred.Value = lConsulta.ObtenerValor("V18", ObjRet.sResultado, "|")
+            End If
 
             'Habilitar
             Me.Grabar.Visible = True
@@ -76,7 +81,7 @@ Public Class Cat_Clientes
             'Foco
             Me.CodigoCliente.Focus()
         End If
-        ObjRet = Nothing
+            ObjRet = Nothing
 
     End Sub
 #End Region
