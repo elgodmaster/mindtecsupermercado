@@ -40,6 +40,7 @@ Partial Class Cat_Clientes
         Me.TxtTel2 = New System.Windows.Forms.TextBox
         Me.Label8 = New System.Windows.Forms.Label
         Me.GroupBoxClientes = New System.Windows.Forms.GroupBox
+        Me.Label5 = New System.Windows.Forms.Label
         Me.txtRfc = New System.Windows.Forms.TextBox
         Me.Label12 = New System.Windows.Forms.Label
         Me.Txtcp = New System.Windows.Forms.TextBox
@@ -65,11 +66,13 @@ Partial Class Cat_Clientes
         Me.Limpiar = New System.Windows.Forms.ToolStripButton
         Me.Grabar = New System.Windows.Forms.ToolStripButton
         Me.Label4 = New System.Windows.Forms.Label
+        Me.txtLimCred = New System.Windows.Forms.NumericUpDown
         Me.PiePagina.SuspendLayout()
         Me.GroupBoxLocalizacion.SuspendLayout()
         Me.GroupBoxClientes.SuspendLayout()
         CType(Me.Barra, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
+        CType(Me.txtLimCred, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PiePagina
@@ -113,7 +116,7 @@ Partial Class Cat_Clientes
         Me.GroupBoxLocalizacion.Controls.Add(Me.TxtCel2)
         Me.GroupBoxLocalizacion.Controls.Add(Me.TxtTel2)
         Me.GroupBoxLocalizacion.Controls.Add(Me.Label8)
-        Me.GroupBoxLocalizacion.Location = New System.Drawing.Point(12, 395)
+        Me.GroupBoxLocalizacion.Location = New System.Drawing.Point(12, 400)
         Me.GroupBoxLocalizacion.Name = "GroupBoxLocalizacion"
         Me.GroupBoxLocalizacion.Size = New System.Drawing.Size(970, 200)
         Me.GroupBoxLocalizacion.TabIndex = 286
@@ -294,6 +297,8 @@ Partial Class Cat_Clientes
         Me.GroupBoxClientes.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBoxClientes.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBoxClientes.Controls.Add(Me.txtLimCred)
+        Me.GroupBoxClientes.Controls.Add(Me.Label5)
         Me.GroupBoxClientes.Controls.Add(Me.txtRfc)
         Me.GroupBoxClientes.Controls.Add(Me.Label12)
         Me.GroupBoxClientes.Controls.Add(Me.Txtcp)
@@ -317,6 +322,15 @@ Partial Class Cat_Clientes
         Me.GroupBoxClientes.TabStop = False
         Me.GroupBoxClientes.Text = "Datos generales"
         Me.GroupBoxClientes.Visible = False
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(206, 203)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(111, 14)
+        Me.Label5.TabIndex = 277
+        Me.Label5.Text = "Límite de crédito"
         '
         'txtRfc
         '
@@ -347,7 +361,7 @@ Partial Class Cat_Clientes
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Txtcp.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.Txtcp.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Txtcp.Location = New System.Drawing.Point(72, 199)
+        Me.Txtcp.Location = New System.Drawing.Point(72, 200)
         Me.Txtcp.MaxLength = 6
         Me.Txtcp.Name = "Txtcp"
         Me.Txtcp.Size = New System.Drawing.Size(110, 22)
@@ -482,7 +496,7 @@ Partial Class Cat_Clientes
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TxtNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TxtNombre.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtNombre.Location = New System.Drawing.Point(72, 30)
+        Me.TxtNombre.Location = New System.Drawing.Point(72, 31)
         Me.TxtNombre.MaxLength = 100
         Me.TxtNombre.Name = "TxtNombre"
         Me.TxtNombre.Size = New System.Drawing.Size(859, 22)
@@ -599,6 +613,15 @@ Partial Class Cat_Clientes
         Me.Label4.TabIndex = 288
         Me.Label4.Text = "Catálogo de Clientes"
         '
+        'txtLimCred
+        '
+        Me.txtLimCred.Location = New System.Drawing.Point(320, 201)
+        Me.txtLimCred.Maximum = New Decimal(New Integer() {1215752191, 23, 0, 0})
+        Me.txtLimCred.Name = "txtLimCred"
+        Me.txtLimCred.Size = New System.Drawing.Size(120, 22)
+        Me.txtLimCred.TabIndex = 278
+        Me.txtLimCred.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
         'Cat_Clientes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 14.0!)
@@ -630,6 +653,7 @@ Partial Class Cat_Clientes
         CType(Me.Barra, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
+        CType(Me.txtLimCred, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -679,4 +703,6 @@ Partial Class Cat_Clientes
     Friend WithEvents Limpiar As System.Windows.Forms.ToolStripButton
     Friend WithEvents Grabar As System.Windows.Forms.ToolStripButton
     Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents txtLimCred As System.Windows.Forms.NumericUpDown
 End Class

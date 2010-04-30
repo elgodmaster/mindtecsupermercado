@@ -162,3 +162,4 @@ C:\Documents and Settings\Mindtecadmin\Mis documentos\SuperMercado\SuperMercado\
 F:\MindTec\PRUEBAS_PROYECTOS\mindtecsupermercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.InventarioSalidas.resources
 C:\Documents and Settings\Mindtecadmin\Mis documentos\SuperMercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.InventarioSalidas.resources
 C:\Documents and Settings\Mindtecadmin\Mis documentos\SuperMercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.configuracion.resources
+C:\Documents and Settings\Mindtecadmin\Mis documentos\SuperMercado\SuperMercado\SuperMercado\obj\Debug\SuperMercado.Facturacion.resources

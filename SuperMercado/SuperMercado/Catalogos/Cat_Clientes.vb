@@ -236,7 +236,8 @@ Public Class Cat_Clientes
                                               "|V13=" & Me.TxtCel.Text.Trim & _
                                               "|V14=" & Me.TxtCel2.Text.Trim & _
                                               "|V15=" & Me.TxtFax.Text.Trim & _
-                                              "|V16=" & Me.TxtMail.Text.Trim & "|"
+                                              "|V16=" & Me.TxtMail.Text.Trim & _
+                                              "|V17=" & Me.txtLimCred.Value & "|"
 
             If lConsulta Is Nothing Then lConsulta = New ClsConsultas
             ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
@@ -323,7 +324,5 @@ Public Class Cat_Clientes
         LimpiarPantalla()
     End Sub
 #End Region
-
-
 
 End Class
