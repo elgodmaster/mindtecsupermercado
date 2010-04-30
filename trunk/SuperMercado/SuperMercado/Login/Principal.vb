@@ -18,6 +18,7 @@ Public Class Principal
     Dim objConfigCaja As configuracion
     ' Variables para los menús principales.
     Dim cajaActual As New Caja
+    ' Variables para Cuentas por Cobrar
 
 #End Region
 
