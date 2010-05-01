@@ -226,6 +226,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ModuloGeneral.vb" />
+    <Compile Include="MVentas\ChecadorPrecios.Designer.vb">
+      <DependentUpon>ChecadorPrecios.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MVentas\ChecadorPrecios.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MVentas\ModuloVentas.Designer.vb">
       <DependentUpon>ModuloVentas.vb</DependentUpon>
     </Compile>
@@ -317,6 +323,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Login\Principal.resx">
       <DependentUpon>Principal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MVentas\ChecadorPrecios.resx">
+      <DependentUpon>ChecadorPrecios.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MVentas\ModuloVentas.resx">
       <DependentUpon>ModuloVentas.vb</DependentUpon>

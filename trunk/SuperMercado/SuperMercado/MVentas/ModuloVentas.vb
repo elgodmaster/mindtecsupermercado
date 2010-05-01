@@ -8,14 +8,14 @@
     Dim Parametros As String = ""
     Dim lConsulta As New ClsConsultas
     Dim ObjRet As CRetorno
-    Dim identrada As String
-    Dim TotalEntrada As Double = 0
+    Dim IdVenta As String = "1"
+    Dim TotalVenta As Double = 0
 #End Region
 
     Private Sub ModuloVentas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        lblFecha.Text = Date.Now.ToLongDateString
         CrearDsDatos()
         ConfiguraGridDatos()
-        FilaVacia()
     End Sub
 
 
@@ -215,11 +215,15 @@
     Sub CalculaTotal()
 
         For h As Integer = 0 To DsDatos.Tables("Table").Rows.Count - 1
-            TotalEntrada = TotalEntrada + Double.Parse(DsDatos.Tables("Table").Rows(h).Item("C6"))
+            TotalVenta = TotalVenta + Double.Parse(DsDatos.Tables("Table").Rows(h).Item("C6"))
         Next
 
-        Me.Txt_Total.Text = "$" & TotalEntrada
-        TotalEntrada = 0
+        If TotalVenta = 0 Then
+            AceptarVenta.Enabled = False
+        End If
+
+        Me.LblTotal.Text = "$" & TotalVenta
+        TotalVenta = 0
 
     End Sub
 #End Region
@@ -260,5 +264,155 @@
     End Sub
 #End Region
 
+#Region " Reloj y Fecha "
+    Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer1.Tick
+        lblhora.Text = Date.Now.ToLongTimeString
+    End Sub
 
+#End Region
+
+
+#Region " Codigo Producto"
+    Private Sub Codigo_Producto_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Codigo_Producto.KeyDown
+        Dim Codigo As String = ""
+        Dim Producto As String = ""
+        Dim Unidad As String = ""
+        Dim Costo As Double = 0
+
+        Select Case e.KeyCode
+            Case Keys.F2
+                'CatalogoProductos
+            Case Keys.Enter
+                Caja = "Consulta109" : Parametros = "V1=" & Codigo_Producto.Text & "|"
+                If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+                ObjRet = lConsulta.LlamarCaja(Caja, "6", Parametros)
+                If ObjRet.bOk Then
+                    Producto = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|", False)
+                    Unidad = lConsulta.ObtenerValor("V2", ObjRet.sResultado, "|", False)
+                    Costo = lConsulta.ObtenerValor("V3", ObjRet.sResultado, "|", False)
+                    ''Mandar Llamar Llenar Fila con los datos necesarios
+                    LlenarFila(Producto, Unidad, Costo)
+
+                    Me.Codigo_Producto.Text = ""
+
+                    Me.TxtCantidad.Text = "0.00"
+                    Me.Codigo_Producto.Focus()
+                Else
+                    MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+                    Me.Codigo_Producto.Text = ""
+                    Me.TxtCantidad.Text = "0.00"
+                    Me.Codigo_Producto.Focus()
+                End If
+        End Select
+    End Sub
+#End Region
+
+#Region " Llenar Fila "
+    Sub LlenarFila(ByVal Producto As String, ByVal Unidad As String, ByVal Costo As Double)
+
+        ''Habilitar Botones de venta
+        If AceptarVenta.Enabled = False Then
+            AceptarVenta.Enabled = True
+            CancelarVenta.Enabled = True
+        End If
+
+
+        Dim cantidad As Double
+        Dim TotalCosto As Double = 0
+        Double.Parse(Costo)
+
+        Dim Igual As Boolean = 0
+        Dim Encontro As Boolean = 0
+        Dim fila As Integer = 0
+
+        If Me.TxtCantidad.Text = "0.00" Or Len(LTrim(RTrim(Me.TxtCantidad.Text))) = 0 Then
+            cantidad = 1
+        Else
+            cantidad = Double.Parse(TxtCantidad.Text)
+        End If
+
+        TotalCosto = cantidad * Costo
+
+        For i As Integer = 0 To DsDatos.Tables("Table").Rows.Count - 1
+
+            If DsDatos.Tables("Table").Rows(i).Item("C1") = Codigo_Producto.Text Then
+                Igual = True
+                DsDatos.Tables("Table").Rows(i).Item("C3") = DsDatos.Tables("Table").Rows(i).Item("C3") + cantidad
+                DsDatos.Tables("Table").Rows(i).Item("C6") = DsDatos.Tables("Table").Rows(i).Item("C3") * Costo
+                DsDatos.Tables("Table").AcceptChanges()
+
+            End If
+        Next
+
+        If Igual = False Then
+            For j As Integer = 0 To DsDatos.Tables("Table").Rows.Count - 1
+                If Len(RTrim(LTrim(DsDatos.Tables("Table").Rows(j).Item("C1")))) = 0 Then
+                    Encontro = True
+                    fila = j
+                    Exit For
+                End If
+
+            Next
+        End If
+
+
+        If Igual = False And Encontro = False Then
+            Dim registro As DataRow = Me.DsDatos.Tables("Table").NewRow
+            Me.DsDatos.Tables("Table").Rows.Add(registro)
+            registro!C1 = Codigo_Producto.Text
+            registro!C2 = Producto
+            registro!C3 = cantidad
+            registro!C4 = Unidad
+            registro!C5 = Costo
+            registro!C6 = TotalCosto
+            registro!C7 = IdVenta  ''Codigo de venta
+
+
+            DsDatos.Tables("Table").AcceptChanges()
+
+        End If
+
+        If Encontro = True Then
+            DsDatos.Tables("Table").Rows(fila).Item("C1") = Codigo_Producto.Text
+            DsDatos.Tables("Table").Rows(fila).Item("C2") = Producto
+            DsDatos.Tables("Table").Rows(fila).Item("C3") = cantidad
+            DsDatos.Tables("Table").Rows(fila).Item("C4") = Unidad
+            DsDatos.Tables("Table").Rows(fila).Item("C5") = Costo
+            DsDatos.Tables("Table").Rows(fila).Item("C6") = TotalCosto
+            DsDatos.Tables("Table").Rows(fila).Item("C7") = IdVenta
+            DsDatos.Tables("Table").AcceptChanges()
+
+        End If
+
+        CalculaTotal()
+    End Sub
+
+#End Region
+    Sub LimpiarPantalla()
+        DsDatos.Tables("Table").Clear()
+        DsDatos.AcceptChanges()
+        Codigo_Producto.Text = ""
+        TxtCantidad.Text = "0.00"
+        LblIva.Text = "$0.00"
+        LblSubTotal.Text = "$0.00"
+        LblTotal.Text = "$0.00"
+        AceptarVenta.Enabled = False
+        CancelarVenta.Enabled = False
+
+    End Sub
+
+    Private Sub CancelarVenta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CancelarVenta.Click
+        Dim Result As DialogResult
+        Result = MessageBox.Show("¿Deseas cancelar la venta?", "SuperMercado", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
+        If Result = Windows.Forms.DialogResult.Yes Then
+            Limpiarpantalla()
+        End If
+    End Sub
+
+    Private Sub ChecarPrecio_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ChecarPrecio.Click
+        Dim Checar = New ChecadorPrecios
+        Checar.StartPosition = FormStartPosition.CenterScreen
+        Checar.ShowDialog()
+
+    End Sub
 End Class
