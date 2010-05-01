@@ -59,14 +59,6 @@ fecha date not null
 
 -- TABLAS PARA CUENTAS POR COBRAR --
 
-CREATE TABLE CC_Clientes(
-idCliente int identity not null,
-nomCliente varchar(50) not null,
-direccion varchar(250) null,
-telefono varchar(50) null,
-limCredito decimal(16,2)
-)
-
 CREATE TABLE CC_Abonos(
 idAbono int identity not null,
 monto decimal(16,2) not null,
@@ -145,9 +137,30 @@ exec grabar112 'V1=1|V2=1|V3=1.5|V4=|', '', '', ''
 exec grabar112 'V1=1|V2=1|V3=150.5|V4=asalté un banco, tío|', '', '', ''
 exec Consulta110 '','','',''
 exec consulta111 '','','',''
+exec consulta114a '','','',''
+exec consulta114b 'V1=Baja California|','','',''
+exec consulta105 'V1=CLIENTE1|','','','2'
+
+
+select * from SMercado..Cat_Clientes
+select * from SMercado..Cat_EstadosdelaRepublica 
+select * from SMercado..Cat_Ciudades where Descripcion = 'Culiacán'
+
 select * from SMercado..Caja_Configuracion 
 select * from SMercado..Caja_Corte
 delete from SMercado..Caja_Corte where idCorte = 10
 
 exec Consulta105 'V1=1|','','','2'
-select * from SMercado..Cat_Clientes 
+
+update SMercado..Cat_Clientes 
+set adeudo = 0.0 
+where Codigo = 'cliente1'
+
+Select E.descripcion 
+from SMercado..Cat_Clientes C
+inner join SMercado..Cat_EstadosdelaRepublica E ON C.IdEstado = E.IdEstado 
+where C.Codigo = 'CLIENTE2'
+
+select E.IdEstado 
+from SMercado..Cat_EstadosdelaRepublica E
+where E.Descripcion = 'Sinaloa'
