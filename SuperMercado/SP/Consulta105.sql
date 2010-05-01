@@ -102,19 +102,17 @@ BEGIN
             @Desc3  = IsNull(a.Colonia,''),
             @Desc4  = IsNull(a.Direccion,''),
             @Desc5  = IsNull(a.Cp,''),
-            @Desc6  = IsNull(a.IdEstado,''),
-            @Desc7  = IsNull(b.Descripcion,''),
-            @Desc8  = IsNull(a.IdCiudad,''),
-            @Desc9  = IsNull(c.Descripcion,''),
-            @Desc10  = IsNull(a.Telefono1,''),
-            @Desc11 = IsNull(a.Extencion1,''),
-            @Desc12 = IsNull(a.Telefono2,''),
-            @Desc13 = IsNull(a.Extencion2,''),
-            @Desc14 = IsNull(a.Cel1,''),
-            @Desc15 = IsNull(a.Cel2,''),
-            @Desc16 = IsNull(a.Fax,''),
-            @Desc17 = IsNull(a.Email,''),
-            @Desc18 = IsNull(a.LimiteCredito, '0')
+            @Desc6  = IsNull(b.Descripcion,''),
+            @Desc7  = IsNull(c.Descripcion,''),
+            @Desc8  = IsNull(a.Telefono1,''),
+            @Desc9 = IsNull(a.Extencion1,''),
+            @Desc10 = IsNull(a.Telefono2,''),
+            @Desc11 = IsNull(a.Extencion2,''),
+            @Desc12 = IsNull(a.Cel1,''),
+            @Desc13 = IsNull(a.Cel2,''),
+            @Desc14 = IsNull(a.Fax,''),
+            @Desc15 = IsNull(a.Email,''),
+            @Desc16 = IsNull(a.LimiteCredito, '0')
                   
      From SMercado..Cat_Clientes a (NoLock)
      Left Join SMercado..Cat_EstadosdelaRepublica b (NoLock) On b.IdEstado = a.IdEstado
@@ -130,19 +128,17 @@ BEGIN
             @Desc3  = IsNull(a.Colonia,''),
             @Desc4  = IsNull(a.Direccion,''),
             @Desc5  = IsNull(a.Cp,''),
-            @Desc6  = IsNull(a.IdEstado,''),
-            @Desc7  = IsNull(b.Descripcion,''),
-            @Desc8  = IsNull(a.IdCiudad,''),
-            @Desc9  = IsNull(c.Descripcion,''),
-            @Desc10 = IsNull(a.Telefono1,''),
-            @Desc11 = IsNull(a.Extencion1,''),
-            @Desc12 = IsNull(a.Telefono2,''),
-            @Desc13 = IsNull(a.Extencion2,''),
-            @Desc14 = IsNull(a.Cel1,''),
-            @Desc15 = IsNull(a.Cel2,''),
-            @Desc16 = IsNull(a.Fax,''),
-			@Desc17 = IsNull(a.Email,''),
-            @Desc18 = IsNull(a.LimiteCredito, '0')
+            @Desc6  = IsNull(b.Descripcion,''),
+            @Desc7  = IsNull(c.Descripcion,''),
+            @Desc8 = IsNull(a.Telefono1,''),
+            @Desc9 = IsNull(a.Extencion1,''),
+            @Desc10 = IsNull(a.Telefono2,''),
+            @Desc11 = IsNull(a.Extencion2,''),
+            @Desc12 = IsNull(a.Cel1,''),
+            @Desc13 = IsNull(a.Cel2,''),
+            @Desc14 = IsNull(a.Fax,''),
+			@Desc15 = IsNull(a.Email,''),
+            @Desc16 = IsNull(a.LimiteCredito, '0')
      From SMercado..Cat_Clientes a (NoLock)
      Left Join SMercado..Cat_EstadosdelaRepublica b (NoLock) On b.IdEstado = a.IdEstado
      Left Join SMercado..Cat_Ciudades c (NoLock) On c.IdCiudad = a.IdCiudad And c.IdEstado = a.IdEstado 
@@ -172,14 +168,14 @@ BEGIN
       If @Validar = 2
         Begin 
          Select @Resul = '2R=OK|V1=' + @Desc1 + '|V2=' + @Desc2 + '|V3=' + @Desc3 + '|V4=' + @Desc4 + '|V5=' + @Desc5 + '|V6=' + @Desc6 +
-                         '|V7=' + @Desc7 + '|V8=' + @Desc8 + '|V9=' + @Desc9 + '|V10=' + @Desc10 + '|V11=' + @Desc11 + '|V12=' + @Desc12 + 
-                         '|V13=' + @Desc13 + '|V14=' + @Desc14 + '|V15=' + @Desc15 + '|V16=' + @Desc16 + '|V17=' + @Desc17 + '|V18=' + @Desc18 + '|' 
+                         '|V7=' + @Desc7 + '|V8=' + @Desc8 + '|V9=' + @Desc9 + '|V10=' + @Desc10 + 
+                         '|V11=' + @Desc11 + '|V12=' + @Desc12 + '|V13=' + @Desc13 + '|V14=' + @Desc14 + '|V15=' + @Desc15 + '|V16=' + @Desc16 + '|' 
         End
 	  If @Validar = 3
         Begin 
          Select @Resul = '2R=OK|V1=' + @Desc1 + '|V2=' + @Desc2 + '|V3=' + @Desc3 + '|V4=' + @Desc4 + '|V5=' + @Desc5 + '|V6=' + @Desc6 +
-                         '|V7=' + @Desc7 + '|V8=' + @Desc8 + '|V9=' + @Desc9 + '|V10=' + @Desc10 + '|V11=' + @Desc11 + '|V12=' + @Desc12 + 
-                         '|V13=' + @Desc13 + '|V14=' + @Desc14 + '|V15=' + @Desc15 + '|V16=' + @Desc16 + '|V17=' + @Desc17 + '|V18=' + @Desc18 + '|'  
+                         '|V7=' + @Desc7 + '|V8=' + @Desc8 + '|V9=' + @Desc9 + '|V10=' + @Desc10 + 
+                         '|V11=' + @Desc11 + '|V12=' + @Desc12 + '|V13=' + @Desc13 + '|V14=' + @Desc14 + '|V15=' + @Desc15 + '|V16=' + @Desc16 + '|' 
         End
     End
   Set NoCount OFF

@@ -39,6 +39,8 @@ BEGIN
   Declare @Desc0     Varchar(8000)
   Declare @Desc1     VarChar(8000)
   Declare @Resul2    VarChar(8000)
+  Declare @estado	 VarChar(8000)
+  Declare @ciudad	 VarChar(8000)
     
   --Asignar Valores
   Select @Desc0  = '' 
@@ -113,6 +115,14 @@ If Len(RTrim(LTrim(@Valor8)))= 0
      Select @Resul='2R=ERROR|2M=Registre la ciudad para continuar|'
      Return    
    End
+   
+  select @estado = ISNULL(e.IdEstado, 0)
+  From SMercado..Cat_EstadosdelaRepublica e
+  where e.Descripcion = @Valor7
+  
+  select @ciudad = ISNULL(c.IdCiudad, 0)
+  From SMercado..Cat_Ciudades c
+  where c.Descripcion = @Valor8
         
   -- Logica de Negocio      
   Select @Desc1 = NombreFiscal
@@ -121,8 +131,8 @@ If Len(RTrim(LTrim(@Valor8)))= 0
   
   If @@RowCount = 0
    Begin
-     Insert SMercado..Cat_Clientes(Codigo,NombreFiscal,Rfc,Colonia,Direccion,CP,IdEstado,IdCiudad,Telefono1,Extencion1,Telefono2,Extencion2,Cel1,Cel2,Fax,Email,LimiteCredito)
-            Values(@Valor1,@Valor2,@Valor3,@Valor4,@Valor5,@Valor6,@Valor7,@Valor8,@Valor9,@Valor10,@Valor11,@Valor12,@Valor13,@Valor14,@Valor15,@Valor16, CONVERT(decimal(16,2),@Valor17))
+     Insert SMercado..Cat_Clientes(Codigo,NombreFiscal,Rfc,Colonia,Direccion,CP,IdEstado,IdCiudad,Telefono1,Extencion1,Telefono2,Extencion2,Cel1,Cel2,Fax,Email,LimiteCredito, Adeudo)
+            Values(@Valor1,@Valor2,@Valor3,@Valor4,@Valor5,@Valor6,@estado,@ciudad,@Valor9,@Valor10,@Valor11,@Valor12,@Valor13,@Valor14,@Valor15,@Valor16, CONVERT(decimal(16,2),@Valor17), 0.00)
    End
   Else
    Begin
@@ -132,8 +142,8 @@ If Len(RTrim(LTrim(@Valor8)))= 0
                 Colonia      = @Valor4,
                 Direccion    = @Valor5,
                 Cp           = @Valor6,
-                IdEstado     = @Valor7,
-                IdCiudad     = @Valor8,
+                IdEstado     = @estado,
+                IdCiudad     = @ciudad,
                 Telefono1    = @Valor9,
                 Extencion1   = @Valor10,
                 Telefono2    = @Valor11,
