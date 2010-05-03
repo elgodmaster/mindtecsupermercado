@@ -1,5 +1,6 @@
-﻿Public Class ModuloVentas
+﻿Imports MindTec.Componentes
 
+Public Class ModuloVentas
 #Region " Variables de trabajo"
     Dim DsDatos As DataSet
     Dim ViewDatos As DataView
@@ -12,12 +13,34 @@
     Dim TotalVenta As Double = 0
 #End Region
 
+#Region " Eventos Principales "
+    Private Sub ModuloVentas_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
+        Select Case e.KeyCode
+            Case Keys.Escape
+                'Cerrar()
+            Case Keys.F4
+                'Limpiar.PerformClick()
+            Case Keys.F5
+                Me.Agregar.PerformClick()
+            Case Keys.F6
+                'Nuevo.PerformClick()
+            Case Keys.F9
+                'Grabar.PerformClick()
+            Case Keys.F10
+                Me.AceptarVenta.PerformClick()
+            Case Keys.F12
+                CancelarVenta.PerformClick()
+        End Select
+    End Sub
+#End Region
+
+#Region " Load "
     Private Sub ModuloVentas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         lblFecha.Text = Date.Now.ToLongDateString
         CrearDsDatos()
         ConfiguraGridDatos()
     End Sub
-
+#End Region
 
 #Region " Grid Datos "
 
@@ -160,12 +183,12 @@
         GridColumn.DataCell.View = viewNormal
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.EnableStretch
 
-        GridColumn = GridDatos.Columns.Add("C5", "Costo Unitario", EditorCustom)
+        GridColumn = GridDatos.Columns.Add("C5", "Precio Unitario", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
         GridColumn.DataCell.View = viewNormal
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
-        GridColumn = GridDatos.Columns.Add("C6", "Costo Total", EditorCustom)
+        GridColumn = GridDatos.Columns.Add("C6", "Precio Total", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
         GridColumn.DataCell.View = viewNormal
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.EnableAutoSize
@@ -188,7 +211,7 @@
 
 #End Region
 
-#Region "Boton Borrar"
+#Region " Boton Borrar "
     Private Sub BotonBorrar_Click(ByVal sender As Object, ByVal e As System.EventArgs)
         Dim grid As SourceGrid.DataGrid = GridDatos
         Dim pos As Integer = grid.Selection.ActivePosition.Row
@@ -228,12 +251,14 @@
     End Sub
 #End Region
 
+#Region " Grid_KeyDown "
     Private Sub Grid_KeyDown(ByVal sender As Object, ByVal e As KeyEventArgs)
         Select Case e.KeyCode
             Case Keys.Escape
                 'Cerrar()
         End Select
     End Sub
+#End Region
 
 #Region " Fila Vacia "
     Sub FilaVacia()
@@ -271,39 +296,45 @@
 
 #End Region
 
-
 #Region " Codigo Producto"
     Private Sub Codigo_Producto_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Codigo_Producto.KeyDown
+        Select Case e.KeyCode
+            Case Keys.F2
+                CatalogoProductos()
+            Case Keys.Enter
+                CajaProductos()
+        End Select
+    End Sub
+#End Region
+
+#Region " Caja Productos "
+
+    Sub CajaProductos()
         Dim Codigo As String = ""
         Dim Producto As String = ""
         Dim Unidad As String = ""
         Dim Costo As Double = 0
 
-        Select Case e.KeyCode
-            Case Keys.F2
-                'CatalogoProductos
-            Case Keys.Enter
-                Caja = "Consulta109" : Parametros = "V1=" & Codigo_Producto.Text & "|"
-                If lConsulta Is Nothing Then lConsulta = New ClsConsultas
-                ObjRet = lConsulta.LlamarCaja(Caja, "6", Parametros)
-                If ObjRet.bOk Then
-                    Producto = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|", False)
-                    Unidad = lConsulta.ObtenerValor("V2", ObjRet.sResultado, "|", False)
-                    Costo = lConsulta.ObtenerValor("V3", ObjRet.sResultado, "|", False)
-                    ''Mandar Llamar Llenar Fila con los datos necesarios
-                    LlenarFila(Producto, Unidad, Costo)
+        Caja = "Consulta115" : Parametros = "V1=" & Codigo_Producto.Text & "|"
+        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+        ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
+        If ObjRet.bOk Then
+            Producto = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|", False)
+            Unidad = lConsulta.ObtenerValor("V2", ObjRet.sResultado, "|", False)
+            Costo = lConsulta.ObtenerValor("V3", ObjRet.sResultado, "|", False)
+            ''Mandar Llamar Llenar Fila con los datos necesarios
+            LlenarFila(Producto, Unidad, Costo)
 
-                    Me.Codigo_Producto.Text = ""
+            Me.Codigo_Producto.Text = ""
 
-                    Me.TxtCantidad.Text = "0.00"
-                    Me.Codigo_Producto.Focus()
-                Else
-                    MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
-                    Me.Codigo_Producto.Text = ""
-                    Me.TxtCantidad.Text = "0.00"
-                    Me.Codigo_Producto.Focus()
-                End If
-        End Select
+            Me.TxtCantidad.Text = "0.00"
+            Me.Codigo_Producto.Focus()
+        Else
+            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+            Me.Codigo_Producto.Text = ""
+            Me.TxtCantidad.Text = "0.00"
+            Me.Codigo_Producto.Focus()
+        End If
     End Sub
 #End Region
 
@@ -388,6 +419,8 @@
     End Sub
 
 #End Region
+
+#Region " Limpiar Pantalla "
     Sub LimpiarPantalla()
         DsDatos.Tables("Table").Clear()
         DsDatos.AcceptChanges()
@@ -396,23 +429,104 @@
         LblIva.Text = "$0.00"
         LblSubTotal.Text = "$0.00"
         LblTotal.Text = "$0.00"
+        Me.LblCambio.Text = "0.00"
+        Me.Txt_Pago.Text = "0.00"
+        Me.GroupBoxPagos.Visible = False
         AceptarVenta.Enabled = False
         CancelarVenta.Enabled = False
-
+        Codigo_Producto.Focus()
     End Sub
+#End Region
 
+#Region " Cancelar Venta "
     Private Sub CancelarVenta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CancelarVenta.Click
         Dim Result As DialogResult
         Result = MessageBox.Show("¿Deseas cancelar la venta?", "SuperMercado", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
         If Result = Windows.Forms.DialogResult.Yes Then
-            Limpiarpantalla()
+            LimpiarPantalla()
         End If
     End Sub
+#End Region
 
+#Region " Checador de precios"
     Private Sub ChecarPrecio_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ChecarPrecio.Click
         Dim Checar = New ChecadorPrecios
         Checar.StartPosition = FormStartPosition.CenterScreen
         Checar.ShowDialog()
 
     End Sub
+#End Region
+
+#Region " Aceptar Venta "
+    Private Sub AceptarVenta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AceptarVenta.Click
+        Me.GroupBoxPagos.Visible = True
+        Me.AceptarVenta.Enabled = False
+        Me.Txt_Pago.Focus()
+    End Sub
+#End Region
+
+#Region " Cantidad "
+    Private Sub TxtCantidad_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles TxtCantidad.KeyDown
+        Select Case e.KeyCode
+            Case Keys.Enter
+                CajaProductos()
+        End Select
+    End Sub
+
+    Private Sub TxtCantidad_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TxtCantidad.KeyPress
+        Dim KeyAscii As Short = CShort(Asc(e.KeyChar))
+        KeyAscii = CShort(SoloNumeros(KeyAscii))
+        If KeyAscii = 0 Then
+            e.Handled = True
+        End If
+    End Sub
+
+#End Region
+
+#Region " Agregar Clic "
+    Private Sub Agregar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Agregar.Click
+        CajaProductos()
+    End Sub
+#End Region
+
+#Region " Descuento "
+    Private Sub Descuento_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Descuento.Click
+        Dim grid As SourceGrid.DataGrid = GridDatos
+        Dim rows() As Object = grid.SelectedDataRows
+        Dim row As DataRowView = Nothing
+
+        If Not rows Is Nothing And rows.Length > 0 Then
+            'Obtener el Renglon
+            row = CType(rows(0), DataRowView)
+
+        End If
+
+    End Sub
+#End Region
+
+#Region " Rutinas - Catalogos "
+    Sub CatalogoProductos()
+        Caja = "Consulta103" : Parametros = ""
+        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+        ObjRet = lConsulta.LlamarCaja(Caja, "0", Parametros)
+        If ObjRet.bOk Then
+            Dim nuevo As Grid = New Grid(ObjRet.DS)
+            Codigo_Producto.Text = nuevo.resultado
+        End If
+    End Sub
+#End Region
+
+
+#Region " Recibí TXT_PAGO "
+    Private Sub Txt_Pago_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles Txt_Pago.KeyPress
+        Dim KeyAscii As Short = CShort(Asc(e.KeyChar))
+        KeyAscii = CShort(SoloNumeros(KeyAscii))
+        If KeyAscii = 0 Then
+            e.Handled = True
+        End If
+    End Sub
+#End Region
+
+
+
 End Class

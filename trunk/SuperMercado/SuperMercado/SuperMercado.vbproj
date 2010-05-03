@@ -165,6 +165,7 @@
       <DependentUpon>Form1.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Funcion SoloNumeros\FuncionSoloNumeros.vb" />
     <Compile Include="Inventario\consulta_Entradas.Designer.vb">
       <DependentUpon>consulta_Entradas.vb</DependentUpon>
     </Compile>
