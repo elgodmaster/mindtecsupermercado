@@ -29,6 +29,11 @@ Partial Class ModuloVentas
         Me.groupBox2 = New System.Windows.Forms.GroupBox
         Me.groupBox1 = New System.Windows.Forms.GroupBox
         Me.GroupBoxPagos = New System.Windows.Forms.GroupBox
+        Me.Btn_Factura = New System.Windows.Forms.Button
+        Me.Btn_Credito = New System.Windows.Forms.Button
+        Me.Btn_Efectivo = New System.Windows.Forms.Button
+        Me.Label5 = New System.Windows.Forms.Label
+        Me.Txt_Pago = New System.Windows.Forms.TextBox
         Me.LblTotal = New System.Windows.Forms.Label
         Me.LblIva = New System.Windows.Forms.Label
         Me.LblSubTotal = New System.Windows.Forms.Label
@@ -56,12 +61,8 @@ Partial Class ModuloVentas
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.lblFecha = New System.Windows.Forms.Label
         Me.lblhora = New System.Windows.Forms.Label
-        Me.Button1 = New System.Windows.Forms.Button
-        Me.Button2 = New System.Windows.Forms.Button
-        Me.LblCambio = New System.Windows.Forms.Label
         Me.Label6 = New System.Windows.Forms.Label
-        Me.Label5 = New System.Windows.Forms.Label
-        Me.Txt_Pago = New System.Windows.Forms.TextBox
+        Me.LblCambio = New System.Windows.Forms.Label
         Me.groupBox2.SuspendLayout()
         Me.groupBox1.SuspendLayout()
         Me.GroupBoxPagos.SuspendLayout()
@@ -87,7 +88,7 @@ Partial Class ModuloVentas
         Me.Borrar.Location = New System.Drawing.Point(838, 29)
         Me.Borrar.Name = "Borrar"
         Me.Borrar.Size = New System.Drawing.Size(95, 31)
-        Me.Borrar.TabIndex = 25
+        Me.Borrar.TabIndex = 4
         Me.Borrar.Text = "F3"
         Me.Borrar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.Borrar.UseVisualStyleBackColor = True
@@ -132,8 +133,9 @@ Partial Class ModuloVentas
         '
         'GroupBoxPagos
         '
-        Me.GroupBoxPagos.Controls.Add(Me.Button1)
-        Me.GroupBoxPagos.Controls.Add(Me.Button2)
+        Me.GroupBoxPagos.Controls.Add(Me.Btn_Factura)
+        Me.GroupBoxPagos.Controls.Add(Me.Btn_Credito)
+        Me.GroupBoxPagos.Controls.Add(Me.Btn_Efectivo)
         Me.GroupBoxPagos.Controls.Add(Me.LblCambio)
         Me.GroupBoxPagos.Controls.Add(Me.Label6)
         Me.GroupBoxPagos.Controls.Add(Me.Label5)
@@ -145,6 +147,65 @@ Partial Class ModuloVentas
         Me.GroupBoxPagos.TabStop = False
         Me.GroupBoxPagos.Text = "Forma de pago"
         Me.GroupBoxPagos.Visible = False
+        '
+        'Btn_Factura
+        '
+        Me.Btn_Factura.BackgroundImage = CType(resources.GetObject("Btn_Factura.BackgroundImage"), System.Drawing.Image)
+        Me.Btn_Factura.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.Btn_Factura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Btn_Factura.Location = New System.Drawing.Point(279, 79)
+        Me.Btn_Factura.Name = "Btn_Factura"
+        Me.Btn_Factura.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.Btn_Factura.Size = New System.Drawing.Size(57, 31)
+        Me.Btn_Factura.TabIndex = 3
+        Me.Btn_Factura.Text = "F9"
+        Me.Btn_Factura.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        Me.Btn_Factura.UseVisualStyleBackColor = True
+        '
+        'Btn_Credito
+        '
+        Me.Btn_Credito.BackgroundImage = CType(resources.GetObject("Btn_Credito.BackgroundImage"), System.Drawing.Image)
+        Me.Btn_Credito.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.Btn_Credito.Location = New System.Drawing.Point(279, 30)
+        Me.Btn_Credito.Name = "Btn_Credito"
+        Me.Btn_Credito.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.Btn_Credito.Size = New System.Drawing.Size(57, 31)
+        Me.Btn_Credito.TabIndex = 2
+        Me.Btn_Credito.Text = "F9"
+        Me.Btn_Credito.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        Me.Btn_Credito.UseVisualStyleBackColor = True
+        '
+        'Btn_Efectivo
+        '
+        Me.Btn_Efectivo.BackgroundImage = CType(resources.GetObject("Btn_Efectivo.BackgroundImage"), System.Drawing.Image)
+        Me.Btn_Efectivo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.Btn_Efectivo.Location = New System.Drawing.Point(216, 30)
+        Me.Btn_Efectivo.Name = "Btn_Efectivo"
+        Me.Btn_Efectivo.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.Btn_Efectivo.Size = New System.Drawing.Size(57, 31)
+        Me.Btn_Efectivo.TabIndex = 1
+        Me.Btn_Efectivo.Text = "F8"
+        Me.Btn_Efectivo.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        Me.Btn_Efectivo.UseVisualStyleBackColor = True
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Verdana", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(53, 36)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(57, 18)
+        Me.Label5.TabIndex = 13
+        Me.Label5.Text = "Recibí"
+        '
+        'Txt_Pago
+        '
+        Me.Txt_Pago.Font = New System.Drawing.Font("Verdana", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Txt_Pago.Location = New System.Drawing.Point(113, 32)
+        Me.Txt_Pago.Name = "Txt_Pago"
+        Me.Txt_Pago.Size = New System.Drawing.Size(100, 27)
+        Me.Txt_Pago.TabIndex = 0
+        Me.Txt_Pago.Text = "0.00"
         '
         'LblTotal
         '
@@ -218,7 +279,7 @@ Partial Class ModuloVentas
         Me.CancelarVenta.Location = New System.Drawing.Point(838, 363)
         Me.CancelarVenta.Name = "CancelarVenta"
         Me.CancelarVenta.Size = New System.Drawing.Size(87, 51)
-        Me.CancelarVenta.TabIndex = 28
+        Me.CancelarVenta.TabIndex = 6
         Me.CancelarVenta.Text = "F12"
         Me.CancelarVenta.TextAlign = System.Drawing.ContentAlignment.BottomRight
         Me.CancelarVenta.UseVisualStyleBackColor = True
@@ -232,7 +293,7 @@ Partial Class ModuloVentas
         Me.AceptarVenta.Location = New System.Drawing.Point(730, 363)
         Me.AceptarVenta.Name = "AceptarVenta"
         Me.AceptarVenta.Size = New System.Drawing.Size(87, 51)
-        Me.AceptarVenta.TabIndex = 27
+        Me.AceptarVenta.TabIndex = 5
         Me.AceptarVenta.Text = "    F10"
         Me.AceptarVenta.TextAlign = System.Drawing.ContentAlignment.BottomRight
         Me.AceptarVenta.UseVisualStyleBackColor = True
@@ -261,7 +322,7 @@ Partial Class ModuloVentas
         Me.Descuento.Location = New System.Drawing.Point(731, 29)
         Me.Descuento.Name = "Descuento"
         Me.Descuento.Size = New System.Drawing.Size(95, 31)
-        Me.Descuento.TabIndex = 10
+        Me.Descuento.TabIndex = 3
         Me.Descuento.Text = "F7"
         Me.Descuento.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.Descuento.UseVisualStyleBackColor = True
@@ -274,7 +335,7 @@ Partial Class ModuloVentas
         Me.Agregar.Name = "Agregar"
         Me.Agregar.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.Agregar.Size = New System.Drawing.Size(57, 31)
-        Me.Agregar.TabIndex = 9
+        Me.Agregar.TabIndex = 2
         Me.Agregar.Text = "F5"
         Me.Agregar.TextAlign = System.Drawing.ContentAlignment.BottomRight
         Me.Agregar.UseVisualStyleBackColor = True
@@ -285,7 +346,7 @@ Partial Class ModuloVentas
         Me.TxtCantidad.Location = New System.Drawing.Point(453, 30)
         Me.TxtCantidad.Name = "TxtCantidad"
         Me.TxtCantidad.Size = New System.Drawing.Size(60, 29)
-        Me.TxtCantidad.TabIndex = 8
+        Me.TxtCantidad.TabIndex = 1
         Me.TxtCantidad.Text = "0.00"
         '
         'Codigo_Producto
@@ -294,7 +355,7 @@ Partial Class ModuloVentas
         Me.Codigo_Producto.Location = New System.Drawing.Point(184, 30)
         Me.Codigo_Producto.Name = "Codigo_Producto"
         Me.Codigo_Producto.Size = New System.Drawing.Size(272, 29)
-        Me.Codigo_Producto.TabIndex = 7
+        Me.Codigo_Producto.TabIndex = 0
         '
         'label1
         '
@@ -436,42 +497,6 @@ Partial Class ModuloVentas
         Me.lblhora.TabIndex = 349
         Me.lblhora.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'Button1
-        '
-        Me.Button1.BackgroundImage = CType(resources.GetObject("Button1.BackgroundImage"), System.Drawing.Image)
-        Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.Button1.Location = New System.Drawing.Point(279, 30)
-        Me.Button1.Name = "Button1"
-        Me.Button1.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Button1.Size = New System.Drawing.Size(57, 31)
-        Me.Button1.TabIndex = 17
-        Me.Button1.Text = "F9"
-        Me.Button1.TextAlign = System.Drawing.ContentAlignment.BottomRight
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'Button2
-        '
-        Me.Button2.BackgroundImage = CType(resources.GetObject("Button2.BackgroundImage"), System.Drawing.Image)
-        Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.Button2.Location = New System.Drawing.Point(216, 30)
-        Me.Button2.Name = "Button2"
-        Me.Button2.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Button2.Size = New System.Drawing.Size(57, 31)
-        Me.Button2.TabIndex = 16
-        Me.Button2.Text = "F8"
-        Me.Button2.TextAlign = System.Drawing.ContentAlignment.BottomRight
-        Me.Button2.UseVisualStyleBackColor = True
-        '
-        'LblCambio
-        '
-        Me.LblCambio.AutoSize = True
-        Me.LblCambio.Font = New System.Drawing.Font("Verdana", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblCambio.Location = New System.Drawing.Point(118, 68)
-        Me.LblCambio.Name = "LblCambio"
-        Me.LblCambio.Size = New System.Drawing.Size(44, 18)
-        Me.LblCambio.TabIndex = 15
-        Me.LblCambio.Text = "0.00"
-        '
         'Label6
         '
         Me.Label6.AutoSize = True
@@ -482,24 +507,15 @@ Partial Class ModuloVentas
         Me.Label6.TabIndex = 14
         Me.Label6.Text = "Cambio/Feria"
         '
-        'Label5
+        'LblCambio
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Verdana", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(53, 36)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(57, 18)
-        Me.Label5.TabIndex = 13
-        Me.Label5.Text = "Recibí"
-        '
-        'Txt_Pago
-        '
-        Me.Txt_Pago.Font = New System.Drawing.Font("Verdana", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Txt_Pago.Location = New System.Drawing.Point(113, 32)
-        Me.Txt_Pago.Name = "Txt_Pago"
-        Me.Txt_Pago.Size = New System.Drawing.Size(100, 27)
-        Me.Txt_Pago.TabIndex = 12
-        Me.Txt_Pago.Text = "0.00"
+        Me.LblCambio.AutoSize = True
+        Me.LblCambio.Font = New System.Drawing.Font("Verdana", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblCambio.Location = New System.Drawing.Point(118, 68)
+        Me.LblCambio.Name = "LblCambio"
+        Me.LblCambio.Size = New System.Drawing.Size(44, 18)
+        Me.LblCambio.TabIndex = 15
+        Me.LblCambio.Text = "0.00"
         '
         'ModuloVentas
         '
@@ -564,10 +580,11 @@ Partial Class ModuloVentas
     Friend WithEvents lblFecha As System.Windows.Forms.Label
     Friend WithEvents lblhora As System.Windows.Forms.Label
     Friend WithEvents GroupBoxPagos As System.Windows.Forms.GroupBox
-    Private WithEvents Button1 As System.Windows.Forms.Button
-    Private WithEvents Button2 As System.Windows.Forms.Button
-    Friend WithEvents LblCambio As System.Windows.Forms.Label
-    Friend WithEvents Label6 As System.Windows.Forms.Label
+    Private WithEvents Btn_Credito As System.Windows.Forms.Button
+    Private WithEvents Btn_Efectivo As System.Windows.Forms.Button
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents Txt_Pago As System.Windows.Forms.TextBox
+    Private WithEvents Btn_Factura As System.Windows.Forms.Button
+    Friend WithEvents LblCambio As System.Windows.Forms.Label
+    Friend WithEvents Label6 As System.Windows.Forms.Label
 End Class

@@ -95,7 +95,7 @@ BEGIN
    Begin
     Select @Desc1  = IsNull(a.Descripcion,''),
            @Desc2  = IsNull(b.Descripcion,''),
-           @Desc3  = ISNULL(a.CostoCompra,0)
+           @Desc3  = ISNULL(a.PrecioVenta,0)
        From SMercado..Cat_Productos a (NoLock)
        Left Join SMercado..Cat_Unidades b (NoLock) On b.IdUnidad = a.IdUnidad
        Where a.Codigo = @Valor1
@@ -120,58 +120,25 @@ BEGIN
    End
 
 
-  If @Validar = 3
-   Begin
-     Select @Desc1  = IsNull(a.Descripcion,''),
-            @Desc2  = IsNull(b.Descripcion,'')
-    From SMercado..Cat_Productos a (NoLock)
-    Left Join SMercado..Cat_Unidades b (NoLock) On b.IdUnidad = a.IdUnidad
-    Where a.Codigo = @Valor1
-	 Select @Registro = @@RowCount	 
-   End
-
- If @Validar = 4
-   Begin
-     Select @Desc1 = IsNull(Fecha,''),
-			@Desc2 = str(IsNull(idUsuario,0)),
-			@Desc3 = IsNull(folioFactura,'')
-     From SMercado..Entradas (NoLock)
-     Where IdEntrada = @Valor1
-
-
-	 select Codigo = IsNull(p.codigo,''),
-			Categoria = IsNull(c.descripcion,''),
-			Producto = IsNull(p.descripcion,''),
-			Marca = IsNull(m.descripcion,''), 
-			Cantidad = IsNull(str(ed.cantidad),'0.0'),
-			Unidad = IsNull(u.descripcion,'')
-			--Proveedor = IsNull(ed.idProveedor,'')
-	from SMercado..Entrada_Detalles ed 
-	inner join SMercado..Cat_Productos p on ed.IdProducto=p.IdProducto and ed.IdEntrada=@valor1
-	inner join SMercado..Cat_Categorias c on c.IdCategoria=p.IdCategoria
-	inner join SMercado..Cat_Marcas m on  m.IdMarca=p.IdMarca
-	inner join SMercado..Cat_Unidades u on u.IdUnidad=p.IdUnidad
-
-	 Select @Registro = @@RowCount	 
-   End
-  If @Validar = 5
-     Begin    
-       Select @Desc1 = Isnull(Min(IsNull(IdEntrada,0)),0)
-       From SMercado..Entradas (NoLock)
-       Where FolioFactura = '0'                   
+ 
+  --If @Validar = 5
+  --   Begin    
+  --     Select @Desc1 = Isnull(Min(IsNull(IdVenta,0)),0)
+  --     From SMercado..Ventas (NoLock)
+  --     Where IdTipoCambio = 10000                 
   
-       If @Desc1 = 0
-        Begin
-          Insert SMercado..Entradas(folioFactura,fecha,IdProveedor) 
-          Values(0,'',0)
+  --     If @Desc1 = 0
+  --      Begin
+  --        Insert SMercado..Ventas(Factura,Fecha,IdCliente,IdUsuario,idTipoCambio) 
+  --        Values(0,'',0,0,10000)
         
-       Select @Desc1 = Isnull(Min(IsNull(IdEntrada,0)),0)
-       From SMercado..Entradas(NoLock)
-       Where folioFactura = '0'    
-       End
+  --     Select @Desc1 = Isnull(Min(IsNull(IdVenta,0)),0)
+  --     From SMercado..Ventas(NoLock)
+  --     Where idTipoCambio = 10000    
+  --     End
        
-       Select @Registro = 1                  
-     End 
+  --     Select @Registro = 1                  
+  --   End 
 
     If @Validar = 6
      Begin
