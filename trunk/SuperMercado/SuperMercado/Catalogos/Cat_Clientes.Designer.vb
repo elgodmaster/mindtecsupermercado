@@ -22,9 +22,7 @@ Partial Class Cat_Clientes
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Cat_Clientes))
         Me.PiePagina = New System.Windows.Forms.StatusStrip
         Me.MensajePiePagina = New System.Windows.Forms.ToolStripStatusLabel
-        Me.Barra = New System.Windows.Forms.PictureBox
         Me.Nombrecliente = New System.Windows.Forms.Label
-        Me.btnAceptar = New System.Windows.Forms.Button
         Me.CodigoCliente = New System.Windows.Forms.TextBox
         Me.Label1 = New System.Windows.Forms.Label
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip
@@ -33,9 +31,9 @@ Partial Class Cat_Clientes
         Me.AbonarToolStripButton = New System.Windows.Forms.ToolStripButton
         Me.Label4 = New System.Windows.Forms.Label
         Me.AdeudosTabPage = New System.Windows.Forms.TabPage
-        Me.GridDatosEntradas = New SourceGrid.DataGrid
+        Me.AbonosGridDatos = New SourceGrid.DataGrid
         Me.Label23 = New System.Windows.Forms.Label
-        Me.GridDatos = New SourceGrid.DataGrid
+        Me.VentaGridDatos = New SourceGrid.DataGrid
         Me.Label22 = New System.Windows.Forms.Label
         Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker
         Me.Label21 = New System.Windows.Forms.Label
@@ -79,8 +77,9 @@ Partial Class Cat_Clientes
         Me.TxtNombre = New System.Windows.Forms.TextBox
         Me.LblNombres = New System.Windows.Forms.Label
         Me.ClientesTabControl = New System.Windows.Forms.TabControl
+        Me.Barra = New System.Windows.Forms.PictureBox
+        Me.btnAceptar = New System.Windows.Forms.Button
         Me.PiePagina.SuspendLayout()
-        CType(Me.Barra, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
         Me.AdeudosTabPage.SuspendLayout()
         Me.DatosTabPage.SuspendLayout()
@@ -88,6 +87,7 @@ Partial Class Cat_Clientes
         Me.GroupBoxClientes.SuspendLayout()
         CType(Me.txtLimCred, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ClientesTabControl.SuspendLayout()
+        CType(Me.Barra, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PiePagina
@@ -109,18 +109,6 @@ Partial Class Cat_Clientes
         Me.MensajePiePagina.Size = New System.Drawing.Size(150, 17)
         Me.MensajePiePagina.Text = "ToolStripStatusLabel1"
         '
-        'Barra
-        '
-        Me.Barra.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Barra.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.Barra.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Barra.Location = New System.Drawing.Point(0, 128)
-        Me.Barra.Name = "Barra"
-        Me.Barra.Size = New System.Drawing.Size(1024, 4)
-        Me.Barra.TabIndex = 284
-        Me.Barra.TabStop = False
-        '
         'Nombrecliente
         '
         Me.Nombrecliente.AutoEllipsis = True
@@ -131,19 +119,6 @@ Partial Class Cat_Clientes
         Me.Nombrecliente.Size = New System.Drawing.Size(688, 22)
         Me.Nombrecliente.TabIndex = 283
         Me.Nombrecliente.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'btnAceptar
-        '
-        Me.btnAceptar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAceptar.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.btnAceptar.BackgroundImage = CType(resources.GetObject("btnAceptar.BackgroundImage"), System.Drawing.Image)
-        Me.btnAceptar.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAceptar.Location = New System.Drawing.Point(914, 91)
-        Me.btnAceptar.Name = "btnAceptar"
-        Me.btnAceptar.Size = New System.Drawing.Size(80, 25)
-        Me.btnAceptar.TabIndex = 2
-        Me.btnAceptar.Text = "Aceptar"
-        Me.btnAceptar.UseVisualStyleBackColor = False
         '
         'CodigoCliente
         '
@@ -202,7 +177,7 @@ Partial Class Cat_Clientes
         '
         Me.AbonarToolStripButton.AutoSize = False
         Me.AbonarToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.AbonarToolStripButton.Image = CType(resources.GetObject("AbonarToolStripButton.Image"), System.Drawing.Image)
+        Me.AbonarToolStripButton.Image = Global.SuperMercado.My.Resources.Resources.money_add1
         Me.AbonarToolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.AbonarToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.AbonarToolStripButton.Name = "AbonarToolStripButton"
@@ -222,9 +197,9 @@ Partial Class Cat_Clientes
         '
         'AdeudosTabPage
         '
-        Me.AdeudosTabPage.Controls.Add(Me.GridDatosEntradas)
+        Me.AdeudosTabPage.Controls.Add(Me.AbonosGridDatos)
         Me.AdeudosTabPage.Controls.Add(Me.Label23)
-        Me.AdeudosTabPage.Controls.Add(Me.GridDatos)
+        Me.AdeudosTabPage.Controls.Add(Me.VentaGridDatos)
         Me.AdeudosTabPage.Controls.Add(Me.Label22)
         Me.AdeudosTabPage.Controls.Add(Me.DateTimePicker1)
         Me.AdeudosTabPage.Controls.Add(Me.Label21)
@@ -235,24 +210,24 @@ Partial Class Cat_Clientes
         Me.AdeudosTabPage.Location = New System.Drawing.Point(4, 23)
         Me.AdeudosTabPage.Name = "AdeudosTabPage"
         Me.AdeudosTabPage.Padding = New System.Windows.Forms.Padding(3)
-        Me.AdeudosTabPage.Size = New System.Drawing.Size(975, 485)
+        Me.AdeudosTabPage.Size = New System.Drawing.Size(975, 518)
         Me.AdeudosTabPage.TabIndex = 1
         Me.AdeudosTabPage.Text = "Adeudos"
         Me.AdeudosTabPage.UseVisualStyleBackColor = True
         '
-        'GridDatosEntradas
+        'AbonosGridDatos
         '
-        Me.GridDatosEntradas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.GridDatosEntradas.DeleteQuestionMessage = ""
-        Me.GridDatosEntradas.DeleteRowsWithDeleteKey = False
-        Me.GridDatosEntradas.FixedRows = 1
-        Me.GridDatosEntradas.Location = New System.Drawing.Point(18, 312)
-        Me.GridDatosEntradas.Name = "GridDatosEntradas"
-        Me.GridDatosEntradas.SelectionMode = SourceGrid.GridSelectionMode.Row
-        Me.GridDatosEntradas.Size = New System.Drawing.Size(350, 129)
-        Me.GridDatosEntradas.TabIndex = 34
-        Me.GridDatosEntradas.TabStop = True
-        Me.GridDatosEntradas.ToolTipText = ""
+        Me.AbonosGridDatos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.AbonosGridDatos.DeleteQuestionMessage = ""
+        Me.AbonosGridDatos.DeleteRowsWithDeleteKey = False
+        Me.AbonosGridDatos.FixedRows = 1
+        Me.AbonosGridDatos.Location = New System.Drawing.Point(18, 312)
+        Me.AbonosGridDatos.Name = "AbonosGridDatos"
+        Me.AbonosGridDatos.SelectionMode = SourceGrid.GridSelectionMode.Row
+        Me.AbonosGridDatos.Size = New System.Drawing.Size(350, 129)
+        Me.AbonosGridDatos.TabIndex = 34
+        Me.AbonosGridDatos.TabStop = True
+        Me.AbonosGridDatos.ToolTipText = ""
         '
         'Label23
         '
@@ -263,19 +238,19 @@ Partial Class Cat_Clientes
         Me.Label23.TabIndex = 33
         Me.Label23.Text = "Abonos: "
         '
-        'GridDatos
+        'VentaGridDatos
         '
-        Me.GridDatos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.GridDatos.DeleteQuestionMessage = ""
-        Me.GridDatos.DeleteRowsWithDeleteKey = False
-        Me.GridDatos.FixedRows = 1
-        Me.GridDatos.Location = New System.Drawing.Point(18, 145)
-        Me.GridDatos.Name = "GridDatos"
-        Me.GridDatos.SelectionMode = SourceGrid.GridSelectionMode.Row
-        Me.GridDatos.Size = New System.Drawing.Size(633, 129)
-        Me.GridDatos.TabIndex = 32
-        Me.GridDatos.TabStop = True
-        Me.GridDatos.ToolTipText = ""
+        Me.VentaGridDatos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.VentaGridDatos.DeleteQuestionMessage = ""
+        Me.VentaGridDatos.DeleteRowsWithDeleteKey = False
+        Me.VentaGridDatos.FixedRows = 1
+        Me.VentaGridDatos.Location = New System.Drawing.Point(18, 145)
+        Me.VentaGridDatos.Name = "VentaGridDatos"
+        Me.VentaGridDatos.SelectionMode = SourceGrid.GridSelectionMode.Row
+        Me.VentaGridDatos.Size = New System.Drawing.Size(633, 129)
+        Me.VentaGridDatos.TabIndex = 32
+        Me.VentaGridDatos.TabStop = True
+        Me.VentaGridDatos.ToolTipText = ""
         '
         'Label22
         '
@@ -348,16 +323,13 @@ Partial Class Cat_Clientes
         Me.DatosTabPage.Location = New System.Drawing.Point(4, 23)
         Me.DatosTabPage.Name = "DatosTabPage"
         Me.DatosTabPage.Padding = New System.Windows.Forms.Padding(3)
-        Me.DatosTabPage.Size = New System.Drawing.Size(975, 485)
+        Me.DatosTabPage.Size = New System.Drawing.Size(975, 518)
         Me.DatosTabPage.TabIndex = 0
         Me.DatosTabPage.Text = "Datos"
         Me.DatosTabPage.UseVisualStyleBackColor = True
         '
         'GroupBoxLocalizacion
         '
-        Me.GroupBoxLocalizacion.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                    Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBoxLocalizacion.BackColor = System.Drawing.Color.Transparent
         Me.GroupBoxLocalizacion.Controls.Add(Me.Label3)
         Me.GroupBoxLocalizacion.Controls.Add(Me.txtext2)
@@ -377,7 +349,7 @@ Partial Class Cat_Clientes
         Me.GroupBoxLocalizacion.Controls.Add(Me.Label8)
         Me.GroupBoxLocalizacion.Location = New System.Drawing.Point(6, 271)
         Me.GroupBoxLocalizacion.Name = "GroupBoxLocalizacion"
-        Me.GroupBoxLocalizacion.Size = New System.Drawing.Size(970, 213)
+        Me.GroupBoxLocalizacion.Size = New System.Drawing.Size(952, 214)
         Me.GroupBoxLocalizacion.TabIndex = 290
         Me.GroupBoxLocalizacion.TabStop = False
         Me.GroupBoxLocalizacion.Text = "Datos de localización"
@@ -399,7 +371,7 @@ Partial Class Cat_Clientes
         Me.txtext2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtext2.Location = New System.Drawing.Point(786, 49)
         Me.txtext2.Name = "txtext2"
-        Me.txtext2.Size = New System.Drawing.Size(138, 22)
+        Me.txtext2.Size = New System.Drawing.Size(120, 22)
         Me.txtext2.TabIndex = 15
         '
         'Label2
@@ -428,7 +400,7 @@ Partial Class Cat_Clientes
         Me.TxtMail.Location = New System.Drawing.Point(72, 21)
         Me.TxtMail.MaxLength = 100
         Me.TxtMail.Name = "TxtMail"
-        Me.TxtMail.Size = New System.Drawing.Size(852, 22)
+        Me.TxtMail.Size = New System.Drawing.Size(834, 22)
         Me.TxtMail.TabIndex = 11
         '
         'TxtFax
@@ -440,7 +412,7 @@ Partial Class Cat_Clientes
         Me.TxtFax.Location = New System.Drawing.Point(72, 138)
         Me.TxtFax.MaxLength = 100
         Me.TxtFax.Name = "TxtFax"
-        Me.TxtFax.Size = New System.Drawing.Size(852, 22)
+        Me.TxtFax.Size = New System.Drawing.Size(834, 22)
         Me.TxtFax.TabIndex = 18
         '
         'Label11
@@ -527,7 +499,7 @@ Partial Class Cat_Clientes
         Me.TxtCel2.Location = New System.Drawing.Point(72, 108)
         Me.TxtCel2.MaxLength = 100
         Me.TxtCel2.Name = "TxtCel2"
-        Me.TxtCel2.Size = New System.Drawing.Size(852, 22)
+        Me.TxtCel2.Size = New System.Drawing.Size(834, 22)
         Me.TxtCel2.TabIndex = 17
         '
         'TxtTel2
@@ -758,8 +730,33 @@ Partial Class Cat_Clientes
         Me.ClientesTabControl.Location = New System.Drawing.Point(11, 138)
         Me.ClientesTabControl.Name = "ClientesTabControl"
         Me.ClientesTabControl.SelectedIndex = 0
-        Me.ClientesTabControl.Size = New System.Drawing.Size(983, 512)
+        Me.ClientesTabControl.Size = New System.Drawing.Size(983, 545)
         Me.ClientesTabControl.TabIndex = 289
+        '
+        'Barra
+        '
+        Me.Barra.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Barra.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.Barra.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Barra.Location = New System.Drawing.Point(0, 128)
+        Me.Barra.Name = "Barra"
+        Me.Barra.Size = New System.Drawing.Size(1024, 4)
+        Me.Barra.TabIndex = 284
+        Me.Barra.TabStop = False
+        '
+        'btnAceptar
+        '
+        Me.btnAceptar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnAceptar.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.btnAceptar.BackgroundImage = CType(resources.GetObject("btnAceptar.BackgroundImage"), System.Drawing.Image)
+        Me.btnAceptar.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAceptar.Location = New System.Drawing.Point(914, 91)
+        Me.btnAceptar.Name = "btnAceptar"
+        Me.btnAceptar.Size = New System.Drawing.Size(80, 25)
+        Me.btnAceptar.TabIndex = 2
+        Me.btnAceptar.Text = "Aceptar"
+        Me.btnAceptar.UseVisualStyleBackColor = False
         '
         'Cat_Clientes
         '
@@ -784,7 +781,6 @@ Partial Class Cat_Clientes
         Me.Text = "Catálogo de clientes"
         Me.PiePagina.ResumeLayout(False)
         Me.PiePagina.PerformLayout()
-        CType(Me.Barra, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
         Me.AdeudosTabPage.ResumeLayout(False)
@@ -796,6 +792,7 @@ Partial Class Cat_Clientes
         Me.GroupBoxClientes.PerformLayout()
         CType(Me.txtLimCred, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ClientesTabControl.ResumeLayout(False)
+        CType(Me.Barra, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -855,8 +852,8 @@ Partial Class Cat_Clientes
     Friend WithEvents Label13 As System.Windows.Forms.Label
     Friend WithEvents DateTimePicker1 As System.Windows.Forms.DateTimePicker
     Friend WithEvents Label22 As System.Windows.Forms.Label
-    Friend WithEvents GridDatosEntradas As SourceGrid.DataGrid
+    Friend WithEvents AbonosGridDatos As SourceGrid.DataGrid
     Friend WithEvents Label23 As System.Windows.Forms.Label
-    Friend WithEvents GridDatos As SourceGrid.DataGrid
+    Friend WithEvents VentaGridDatos As SourceGrid.DataGrid
     Friend WithEvents AbonarToolStripButton As System.Windows.Forms.ToolStripButton
 End Class

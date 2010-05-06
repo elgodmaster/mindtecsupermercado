@@ -34,6 +34,7 @@ monDinIni decimal(18,2) not null,
 monMaxAct bit not null,
 monMax decimal(18,2) not null
 )
+Select * from SMercado..Caja_Configuracion 
 -- Configurando inicial por defecto.
 Insert into SMercado..Caja_Configuracion values (1, 1, 777.00, 0, 0.00)
 select * from SMercado..Caja_Configuracion 
@@ -77,7 +78,7 @@ fecha date not null
 CREATE TABLE CC_VentasCreditoDetalle(
 idVenta int not null,
 idProducto int not null,
-cantidad int not null,
+cantidad decimal(12,2) not null,
 precioUnitario int not null
 )
 
