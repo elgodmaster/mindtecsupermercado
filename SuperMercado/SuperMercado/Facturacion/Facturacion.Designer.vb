@@ -26,6 +26,7 @@ Partial Class Facturacion
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
         Me.Factura = New System.Windows.Forms.TabControl
         Me.TabPage1 = New System.Windows.Forms.TabPage
+        Me.GridDatos = New SourceGrid.DataGrid
         Me.Label14 = New System.Windows.Forms.Label
         Me.Txt_Cantidad = New System.Windows.Forms.TextBox
         Me.Label15 = New System.Windows.Forms.Label
@@ -74,7 +75,8 @@ Partial Class Facturacion
         Me.txtNoFactura = New System.Windows.Forms.TextBox
         Me.PiePagina = New System.Windows.Forms.StatusStrip
         Me.MensajePiePagina = New System.Windows.Forms.ToolStripStatusLabel
-        Me.GridDatos = New SourceGrid.DataGrid
+        Me.CheckBox2 = New System.Windows.Forms.CheckBox
+        Me.TextBox1 = New System.Windows.Forms.TextBox
         Me.GroupBox1.SuspendLayout()
         Me.Factura.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -89,6 +91,8 @@ Partial Class Facturacion
         Me.GroupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox1.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox1.Controls.Add(Me.CheckBox2)
+        Me.GroupBox1.Controls.Add(Me.TextBox1)
         Me.GroupBox1.Controls.Add(Me.Factura)
         Me.GroupBox1.Controls.Add(Me.CheckBox1)
         Me.GroupBox1.Controls.Add(Me.chbGenerar)
@@ -138,6 +142,22 @@ Partial Class Facturacion
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Factura"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'GridDatos
+        '
+        Me.GridDatos.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GridDatos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.GridDatos.DeleteQuestionMessage = ""
+        Me.GridDatos.DeleteRowsWithDeleteKey = False
+        Me.GridDatos.FixedRows = 1
+        Me.GridDatos.Location = New System.Drawing.Point(11, 34)
+        Me.GridDatos.Name = "GridDatos"
+        Me.GridDatos.SelectionMode = SourceGrid.GridSelectionMode.Row
+        Me.GridDatos.Size = New System.Drawing.Size(929, 199)
+        Me.GridDatos.TabIndex = 350
+        Me.GridDatos.TabStop = True
+        Me.GridDatos.ToolTipText = ""
         '
         'Label14
         '
@@ -288,7 +308,7 @@ Partial Class Facturacion
         Me.chbGenerar.Checked = True
         Me.chbGenerar.CheckState = System.Windows.Forms.CheckState.Checked
         Me.chbGenerar.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chbGenerar.Location = New System.Drawing.Point(836, 16)
+        Me.chbGenerar.Location = New System.Drawing.Point(836, 18)
         Me.chbGenerar.Name = "chbGenerar"
         Me.chbGenerar.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.chbGenerar.Size = New System.Drawing.Size(130, 18)
@@ -317,7 +337,7 @@ Partial Class Facturacion
         '
         'txtDescuento
         '
-        Me.txtDescuento.Location = New System.Drawing.Point(766, 13)
+        Me.txtDescuento.Location = New System.Drawing.Point(766, 16)
         Me.txtDescuento.Name = "txtDescuento"
         Me.txtDescuento.Size = New System.Drawing.Size(55, 23)
         Me.txtDescuento.TabIndex = 7
@@ -328,7 +348,7 @@ Partial Class Facturacion
         Me.Label10.AutoSize = True
         Me.Label10.BackColor = System.Drawing.Color.Transparent
         Me.Label10.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(723, 17)
+        Me.Label10.Location = New System.Drawing.Point(723, 20)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(37, 14)
         Me.Label10.TabIndex = 327
@@ -336,7 +356,7 @@ Partial Class Facturacion
         '
         'dtpFecha
         '
-        Me.dtpFecha.Location = New System.Drawing.Point(506, 14)
+        Me.dtpFecha.Location = New System.Drawing.Point(506, 16)
         Me.dtpFecha.Name = "dtpFecha"
         Me.dtpFecha.Size = New System.Drawing.Size(200, 23)
         Me.dtpFecha.TabIndex = 5
@@ -346,7 +366,7 @@ Partial Class Facturacion
         Me.Label7.AutoSize = True
         Me.Label7.BackColor = System.Drawing.Color.Transparent
         Me.Label7.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(451, 21)
+        Me.Label7.Location = New System.Drawing.Point(451, 20)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(49, 14)
         Me.Label7.TabIndex = 323
@@ -682,21 +702,24 @@ Partial Class Facturacion
         Me.MensajePiePagina.Size = New System.Drawing.Size(150, 17)
         Me.MensajePiePagina.Text = "ToolStripStatusLabel1"
         '
-        'GridDatos
+        'CheckBox2
         '
-        Me.GridDatos.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridDatos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.GridDatos.DeleteQuestionMessage = ""
-        Me.GridDatos.DeleteRowsWithDeleteKey = False
-        Me.GridDatos.FixedRows = 1
-        Me.GridDatos.Location = New System.Drawing.Point(11, 34)
-        Me.GridDatos.Name = "GridDatos"
-        Me.GridDatos.SelectionMode = SourceGrid.GridSelectionMode.Row
-        Me.GridDatos.Size = New System.Drawing.Size(929, 199)
-        Me.GridDatos.TabIndex = 350
-        Me.GridDatos.TabStop = True
-        Me.GridDatos.ToolTipText = ""
+        Me.CheckBox2.AutoSize = True
+        Me.CheckBox2.Location = New System.Drawing.Point(225, 17)
+        Me.CheckBox2.Name = "CheckBox2"
+        Me.CheckBox2.Size = New System.Drawing.Size(66, 20)
+        Me.CheckBox2.TabIndex = 335
+        Me.CheckBox2.Text = "Venta"
+        Me.CheckBox2.UseVisualStyleBackColor = True
+        '
+        'TextBox1
+        '
+        Me.TextBox1.BackColor = System.Drawing.SystemColors.Info
+        Me.TextBox1.Location = New System.Drawing.Point(288, 16)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(115, 23)
+        Me.TextBox1.TabIndex = 334
+        Me.TextBox1.Visible = False
         '
         'Facturacion
         '
@@ -784,4 +807,6 @@ Partial Class Facturacion
     Friend WithEvents LNETO As System.Windows.Forms.Label
     Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
     Friend WithEvents GridDatos As SourceGrid.DataGrid
+    Friend WithEvents CheckBox2 As System.Windows.Forms.CheckBox
+    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
 End Class

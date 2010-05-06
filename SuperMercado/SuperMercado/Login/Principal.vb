@@ -432,7 +432,7 @@ Public Class Principal
         Dim Mventas As New ModuloVentas
         Mventas.MdiParent = Me
         Mventas.WindowState = FormWindowState.Maximized
-        Mventas.StartPosition = FormStartPosition.CenterScreen
+        Mventas.StartPosition = FormStartPosition.CenterParent
         Mventas.Show()
 
     End Sub

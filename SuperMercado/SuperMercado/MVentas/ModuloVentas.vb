@@ -1,7 +1,7 @@
 ﻿Imports MindTec.Componentes
 
 Public Class ModuloVentas
-#Region " Variables de trabajo"
+#Region " Variables de trabajo "
     Dim DsDatos As DataSet
     Dim ViewDatos As DataView
     Private DsView As DataView
@@ -24,10 +24,16 @@ Public Class ModuloVentas
                 Me.Agregar.PerformClick()
             Case Keys.F6
                 'Nuevo.PerformClick()
+            Case Keys.F8
+                Btn_Efectivo.PerformClick()
             Case Keys.F9
                 'Grabar.PerformClick()
             Case Keys.F10
-                Me.AceptarVenta.PerformClick()
+                GroupBoxPagos.Visible = True
+                AceptarVenta.Enabled = False
+                Txt_Pago.Focus()
+                Me.Focus()
+                Txt_Pago.Focus()
             Case Keys.F12
                 CancelarVenta.PerformClick()
         End Select
@@ -245,7 +251,7 @@ Public Class ModuloVentas
             AceptarVenta.Enabled = False
         End If
 
-        Me.LblTotal.Text = "$" & TotalVenta
+        Me.LblTotal.Text = FormatCurrency(TotalVenta)
         TotalVenta = 0
 
     End Sub
@@ -428,7 +434,7 @@ Public Class ModuloVentas
         TxtCantidad.Text = "0.00"
         LblIva.Text = "$0.00"
         LblSubTotal.Text = "$0.00"
-        LblTotal.Text = "$0.00"
+        LblTotal.Text = "0.00"
         Me.LblCambio.Text = "0.00"
         Me.Txt_Pago.Text = "0.00"
         Me.GroupBoxPagos.Visible = False
@@ -528,5 +534,42 @@ Public Class ModuloVentas
 #End Region
 
 
+#Region " Boton Efectivo"
+    Private Sub Btn_Efectivo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Btn_Efectivo.Click
+        Dim TotalVenta As Double = 0.0
+        Dim RecibiPago As Double = 0.0
+        Dim Faltante As Double = 0.0
+        Dim Total As String = ""
+        Total = Mid(Me.LblTotal.Text, 2, Len(Me.LblTotal.Text))
+        TotalVenta = Double.Parse(Total)
+        RecibiPago = Double.Parse(Me.Txt_Pago.Text)
+
+        If TotalVenta <= RecibiPago Then
+            Faltante = RecibiPago - TotalVenta
+            Me.LblCambio.Text = FormatCurrency(Faltante)
+
+            ''Imprimir Ticket
+            ''AbrirCajaRegistradora
+            ''ModificarCaja
+            ''ModificarInventario
+            ''GuardarEnVentas
+            If Faltante = 0.0 Then
+                MessageBox.Show("Gracias Por Su Compra, Vuelva pronto", "SuperMercado")
+                LimpiarPantalla()
+            Else
+                MessageBox.Show("Su Cambio es de" & FormatCurrency(Faltante))
+                LimpiarPantalla()
+            End If
+
+        Else
+            Faltante = TotalVenta - RecibiPago
+            Faltante = FormatCurrency(Faltante)
+            MessageBox.Show("No se a realizado el pago, hace falta" & FormatCurrency(Faltante))
+        End If
+
+
+    End Sub
+
+#End Region
 
 End Class
