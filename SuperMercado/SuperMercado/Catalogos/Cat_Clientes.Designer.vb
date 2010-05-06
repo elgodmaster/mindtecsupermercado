@@ -25,10 +25,7 @@ Partial Class Cat_Clientes
         Me.Nombrecliente = New System.Windows.Forms.Label
         Me.CodigoCliente = New System.Windows.Forms.TextBox
         Me.Label1 = New System.Windows.Forms.Label
-        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip
-        Me.Limpiar = New System.Windows.Forms.ToolStripButton
-        Me.Grabar = New System.Windows.Forms.ToolStripButton
-        Me.AbonarToolStripButton = New System.Windows.Forms.ToolStripButton
+        Me.AbonarToolStrip = New System.Windows.Forms.ToolStrip
         Me.Label4 = New System.Windows.Forms.Label
         Me.AdeudosTabPage = New System.Windows.Forms.TabPage
         Me.AbonosGridDatos = New SourceGrid.DataGrid
@@ -77,10 +74,13 @@ Partial Class Cat_Clientes
         Me.TxtNombre = New System.Windows.Forms.TextBox
         Me.LblNombres = New System.Windows.Forms.Label
         Me.ClientesTabControl = New System.Windows.Forms.TabControl
+        Me.Limpiar = New System.Windows.Forms.ToolStripButton
+        Me.Grabar = New System.Windows.Forms.ToolStripButton
+        Me.AbonarToolStripButton = New System.Windows.Forms.ToolStripButton
         Me.Barra = New System.Windows.Forms.PictureBox
         Me.btnAceptar = New System.Windows.Forms.Button
         Me.PiePagina.SuspendLayout()
-        Me.ToolStrip1.SuspendLayout()
+        Me.AbonarToolStrip.SuspendLayout()
         Me.AdeudosTabPage.SuspendLayout()
         Me.DatosTabPage.SuspendLayout()
         Me.GroupBoxLocalizacion.SuspendLayout()
@@ -142,47 +142,15 @@ Partial Class Cat_Clientes
         Me.Label1.TabIndex = 282
         Me.Label1.Text = "Cliente"
         '
-        'ToolStrip1
+        'AbonarToolStrip
         '
-        Me.ToolStrip1.AutoSize = False
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Limpiar, Me.Grabar, Me.AbonarToolStripButton})
-        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1016, 48)
-        Me.ToolStrip1.TabIndex = 287
-        Me.ToolStrip1.Text = "ToolStrip1"
-        '
-        'Limpiar
-        '
-        Me.Limpiar.AutoSize = False
-        Me.Limpiar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.Limpiar.Image = CType(resources.GetObject("Limpiar.Image"), System.Drawing.Image)
-        Me.Limpiar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.Limpiar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.Limpiar.Name = "Limpiar"
-        Me.Limpiar.Size = New System.Drawing.Size(43, 45)
-        Me.Limpiar.Text = "Limpiar"
-        '
-        'Grabar
-        '
-        Me.Grabar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.Grabar.Image = CType(resources.GetObject("Grabar.Image"), System.Drawing.Image)
-        Me.Grabar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.Grabar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.Grabar.Name = "Grabar"
-        Me.Grabar.Size = New System.Drawing.Size(36, 45)
-        Me.Grabar.Text = "Grabar"
-        '
-        'AbonarToolStripButton
-        '
-        Me.AbonarToolStripButton.AutoSize = False
-        Me.AbonarToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.AbonarToolStripButton.Image = Global.SuperMercado.My.Resources.Resources.money_add1
-        Me.AbonarToolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.AbonarToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.AbonarToolStripButton.Name = "AbonarToolStripButton"
-        Me.AbonarToolStripButton.Size = New System.Drawing.Size(43, 45)
-        Me.AbonarToolStripButton.Text = "Abonar"
+        Me.AbonarToolStrip.AutoSize = False
+        Me.AbonarToolStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Limpiar, Me.Grabar, Me.AbonarToolStripButton})
+        Me.AbonarToolStrip.Location = New System.Drawing.Point(0, 0)
+        Me.AbonarToolStrip.Name = "AbonarToolStrip"
+        Me.AbonarToolStrip.Size = New System.Drawing.Size(1016, 48)
+        Me.AbonarToolStrip.TabIndex = 287
+        Me.AbonarToolStrip.Text = "ToolStrip1"
         '
         'Label4
         '
@@ -733,6 +701,37 @@ Partial Class Cat_Clientes
         Me.ClientesTabControl.Size = New System.Drawing.Size(983, 545)
         Me.ClientesTabControl.TabIndex = 289
         '
+        'Limpiar
+        '
+        Me.Limpiar.AutoSize = False
+        Me.Limpiar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.Limpiar.Image = CType(resources.GetObject("Limpiar.Image"), System.Drawing.Image)
+        Me.Limpiar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.Limpiar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.Limpiar.Name = "Limpiar"
+        Me.Limpiar.Size = New System.Drawing.Size(43, 45)
+        Me.Limpiar.Text = "Limpiar"
+        '
+        'Grabar
+        '
+        Me.Grabar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.Grabar.Image = CType(resources.GetObject("Grabar.Image"), System.Drawing.Image)
+        Me.Grabar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.Grabar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.Grabar.Name = "Grabar"
+        Me.Grabar.Size = New System.Drawing.Size(36, 45)
+        Me.Grabar.Text = "Grabar"
+        '
+        'AbonarToolStripButton
+        '
+        Me.AbonarToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.AbonarToolStripButton.Image = Global.SuperMercado.My.Resources.Resources.money_add1
+        Me.AbonarToolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.AbonarToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.AbonarToolStripButton.Name = "AbonarToolStripButton"
+        Me.AbonarToolStripButton.Size = New System.Drawing.Size(36, 45)
+        Me.AbonarToolStripButton.Text = "ToolStripButton1"
+        '
         'Barra
         '
         Me.Barra.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
@@ -766,7 +765,7 @@ Partial Class Cat_Clientes
         Me.ClientSize = New System.Drawing.Size(1016, 708)
         Me.Controls.Add(Me.ClientesTabControl)
         Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.ToolStrip1)
+        Me.Controls.Add(Me.AbonarToolStrip)
         Me.Controls.Add(Me.Barra)
         Me.Controls.Add(Me.Nombrecliente)
         Me.Controls.Add(Me.btnAceptar)
@@ -781,8 +780,8 @@ Partial Class Cat_Clientes
         Me.Text = "Catálogo de clientes"
         Me.PiePagina.ResumeLayout(False)
         Me.PiePagina.PerformLayout()
-        Me.ToolStrip1.ResumeLayout(False)
-        Me.ToolStrip1.PerformLayout()
+        Me.AbonarToolStrip.ResumeLayout(False)
+        Me.AbonarToolStrip.PerformLayout()
         Me.AdeudosTabPage.ResumeLayout(False)
         Me.AdeudosTabPage.PerformLayout()
         Me.DatosTabPage.ResumeLayout(False)
@@ -804,7 +803,7 @@ Partial Class Cat_Clientes
     Friend WithEvents btnAceptar As System.Windows.Forms.Button
     Friend WithEvents CodigoCliente As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
+    Friend WithEvents AbonarToolStrip As System.Windows.Forms.ToolStrip
     Friend WithEvents Limpiar As System.Windows.Forms.ToolStripButton
     Friend WithEvents Grabar As System.Windows.Forms.ToolStripButton
     Friend WithEvents Label4 As System.Windows.Forms.Label
