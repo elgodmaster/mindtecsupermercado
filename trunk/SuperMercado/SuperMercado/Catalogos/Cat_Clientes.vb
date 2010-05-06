@@ -54,10 +54,10 @@ Public Class Cat_Clientes
         ConfiguraGridDatosABONOS()
     End Sub
 
-    Private Sub AbonarToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AbonarToolStripButton.Click
-        Dim objAbonos As New Cat_Clientes_Abonos()
-        objAbonos.StartPosition = FormStartPosition.CenterScreen
-        objAbonos.ShowDialog()
+    Private Sub AbonarToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+        'Dim objAbonos As New Cat_Clientes_Abonos()
+        'objAbonos.StartPosition = FormStartPosition.CenterScreen
+        'objAbonos.ShowDialog()
     End Sub
 #End Region
 
