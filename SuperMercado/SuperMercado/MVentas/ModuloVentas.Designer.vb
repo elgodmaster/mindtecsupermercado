@@ -32,6 +32,8 @@ Partial Class ModuloVentas
         Me.Btn_Factura = New System.Windows.Forms.Button
         Me.Btn_Credito = New System.Windows.Forms.Button
         Me.Btn_Efectivo = New System.Windows.Forms.Button
+        Me.LblCambio = New System.Windows.Forms.Label
+        Me.Label6 = New System.Windows.Forms.Label
         Me.Label5 = New System.Windows.Forms.Label
         Me.Txt_Pago = New System.Windows.Forms.TextBox
         Me.LblTotal = New System.Windows.Forms.Label
@@ -61,8 +63,6 @@ Partial Class ModuloVentas
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.lblFecha = New System.Windows.Forms.Label
         Me.lblhora = New System.Windows.Forms.Label
-        Me.Label6 = New System.Windows.Forms.Label
-        Me.LblCambio = New System.Windows.Forms.Label
         Me.groupBox2.SuspendLayout()
         Me.groupBox1.SuspendLayout()
         Me.GroupBoxPagos.SuspendLayout()
@@ -187,6 +187,26 @@ Partial Class ModuloVentas
         Me.Btn_Efectivo.Text = "F8"
         Me.Btn_Efectivo.TextAlign = System.Drawing.ContentAlignment.BottomRight
         Me.Btn_Efectivo.UseVisualStyleBackColor = True
+        '
+        'LblCambio
+        '
+        Me.LblCambio.AutoSize = True
+        Me.LblCambio.Font = New System.Drawing.Font("Verdana", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblCambio.Location = New System.Drawing.Point(118, 68)
+        Me.LblCambio.Name = "LblCambio"
+        Me.LblCambio.Size = New System.Drawing.Size(44, 18)
+        Me.LblCambio.TabIndex = 15
+        Me.LblCambio.Text = "0.00"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Verdana", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Location = New System.Drawing.Point(-1, 68)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(116, 18)
+        Me.Label6.TabIndex = 14
+        Me.Label6.Text = "Cambio/Feria"
         '
         'Label5
         '
@@ -496,26 +516,6 @@ Partial Class ModuloVentas
         Me.lblhora.Size = New System.Drawing.Size(110, 24)
         Me.lblhora.TabIndex = 349
         Me.lblhora.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Verdana", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(-1, 68)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(116, 18)
-        Me.Label6.TabIndex = 14
-        Me.Label6.Text = "Cambio/Feria"
-        '
-        'LblCambio
-        '
-        Me.LblCambio.AutoSize = True
-        Me.LblCambio.Font = New System.Drawing.Font("Verdana", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblCambio.Location = New System.Drawing.Point(118, 68)
-        Me.LblCambio.Name = "LblCambio"
-        Me.LblCambio.Size = New System.Drawing.Size(44, 18)
-        Me.LblCambio.TabIndex = 15
-        Me.LblCambio.Text = "0.00"
         '
         'ModuloVentas
         '

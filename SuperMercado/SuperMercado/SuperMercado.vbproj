@@ -121,6 +121,12 @@
     <Compile Include="Catalogos\Cat_Clientes.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Catalogos\Cat_Clientes_Abonos.Designer.vb">
+      <DependentUpon>Cat_Clientes_Abonos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Catalogos\Cat_Clientes_Abonos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Catalogos\Cat_Marcas.Designer.vb">
       <DependentUpon>Cat_Marcas.vb</DependentUpon>
     </Compile>
@@ -276,6 +282,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Catalogos\Cat_Clientes.resx">
       <DependentUpon>Cat_Clientes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Catalogos\Cat_Clientes_Abonos.resx">
+      <DependentUpon>Cat_Clientes_Abonos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Catalogos\Cat_Marcas.resx">
       <DependentUpon>Cat_Marcas.vb</DependentUpon>
