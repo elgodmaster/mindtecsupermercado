@@ -26,6 +26,9 @@ Partial Class Cat_Clientes
         Me.CodigoCliente = New System.Windows.Forms.TextBox
         Me.Label1 = New System.Windows.Forms.Label
         Me.AbonarToolStrip = New System.Windows.Forms.ToolStrip
+        Me.Limpiar = New System.Windows.Forms.ToolStripButton
+        Me.Grabar = New System.Windows.Forms.ToolStripButton
+        Me.AbonarToolStripButton = New System.Windows.Forms.ToolStripButton
         Me.Label4 = New System.Windows.Forms.Label
         Me.AdeudosTabPage = New System.Windows.Forms.TabPage
         Me.AbonosGridDatos = New SourceGrid.DataGrid
@@ -74,9 +77,6 @@ Partial Class Cat_Clientes
         Me.TxtNombre = New System.Windows.Forms.TextBox
         Me.LblNombres = New System.Windows.Forms.Label
         Me.ClientesTabControl = New System.Windows.Forms.TabControl
-        Me.Limpiar = New System.Windows.Forms.ToolStripButton
-        Me.Grabar = New System.Windows.Forms.ToolStripButton
-        Me.AbonarToolStripButton = New System.Windows.Forms.ToolStripButton
         Me.Barra = New System.Windows.Forms.PictureBox
         Me.btnAceptar = New System.Windows.Forms.Button
         Me.PiePagina.SuspendLayout()
@@ -152,6 +152,37 @@ Partial Class Cat_Clientes
         Me.AbonarToolStrip.TabIndex = 287
         Me.AbonarToolStrip.Text = "ToolStrip1"
         '
+        'Limpiar
+        '
+        Me.Limpiar.AutoSize = False
+        Me.Limpiar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.Limpiar.Image = CType(resources.GetObject("Limpiar.Image"), System.Drawing.Image)
+        Me.Limpiar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.Limpiar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.Limpiar.Name = "Limpiar"
+        Me.Limpiar.Size = New System.Drawing.Size(43, 45)
+        Me.Limpiar.Text = "Limpiar"
+        '
+        'Grabar
+        '
+        Me.Grabar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.Grabar.Image = CType(resources.GetObject("Grabar.Image"), System.Drawing.Image)
+        Me.Grabar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.Grabar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.Grabar.Name = "Grabar"
+        Me.Grabar.Size = New System.Drawing.Size(36, 45)
+        Me.Grabar.Text = "Grabar"
+        '
+        'AbonarToolStripButton
+        '
+        Me.AbonarToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.AbonarToolStripButton.Image = Global.SuperMercado.My.Resources.Resources.money_add1
+        Me.AbonarToolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.AbonarToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.AbonarToolStripButton.Name = "AbonarToolStripButton"
+        Me.AbonarToolStripButton.Size = New System.Drawing.Size(36, 45)
+        Me.AbonarToolStripButton.Text = "Abonar"
+        '
         'Label4
         '
         Me.Label4.AutoSize = True
@@ -178,7 +209,7 @@ Partial Class Cat_Clientes
         Me.AdeudosTabPage.Location = New System.Drawing.Point(4, 23)
         Me.AdeudosTabPage.Name = "AdeudosTabPage"
         Me.AdeudosTabPage.Padding = New System.Windows.Forms.Padding(3)
-        Me.AdeudosTabPage.Size = New System.Drawing.Size(975, 518)
+        Me.AdeudosTabPage.Size = New System.Drawing.Size(975, 466)
         Me.AdeudosTabPage.TabIndex = 1
         Me.AdeudosTabPage.Text = "Adeudos"
         Me.AdeudosTabPage.UseVisualStyleBackColor = True
@@ -240,6 +271,7 @@ Partial Class Cat_Clientes
         '
         Me.Label21.AutoSize = True
         Me.Label21.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label21.ForeColor = System.Drawing.Color.DarkGreen
         Me.Label21.Location = New System.Drawing.Point(444, 52)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(47, 14)
@@ -250,6 +282,7 @@ Partial Class Cat_Clientes
         '
         Me.Label20.AutoSize = True
         Me.Label20.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label20.ForeColor = System.Drawing.Color.DarkGreen
         Me.Label20.Location = New System.Drawing.Point(161, 52)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(47, 14)
@@ -278,6 +311,7 @@ Partial Class Cat_Clientes
         '
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label13.ForeColor = System.Drawing.SystemColors.Desktop
         Me.Label13.Location = New System.Drawing.Point(15, 17)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(142, 14)
@@ -291,7 +325,7 @@ Partial Class Cat_Clientes
         Me.DatosTabPage.Location = New System.Drawing.Point(4, 23)
         Me.DatosTabPage.Name = "DatosTabPage"
         Me.DatosTabPage.Padding = New System.Windows.Forms.Padding(3)
-        Me.DatosTabPage.Size = New System.Drawing.Size(975, 518)
+        Me.DatosTabPage.Size = New System.Drawing.Size(975, 466)
         Me.DatosTabPage.TabIndex = 0
         Me.DatosTabPage.Text = "Datos"
         Me.DatosTabPage.UseVisualStyleBackColor = True
@@ -315,9 +349,10 @@ Partial Class Cat_Clientes
         Me.GroupBoxLocalizacion.Controls.Add(Me.TxtCel2)
         Me.GroupBoxLocalizacion.Controls.Add(Me.TxtTel2)
         Me.GroupBoxLocalizacion.Controls.Add(Me.Label8)
+        Me.GroupBoxLocalizacion.ForeColor = System.Drawing.SystemColors.Desktop
         Me.GroupBoxLocalizacion.Location = New System.Drawing.Point(6, 271)
         Me.GroupBoxLocalizacion.Name = "GroupBoxLocalizacion"
-        Me.GroupBoxLocalizacion.Size = New System.Drawing.Size(952, 214)
+        Me.GroupBoxLocalizacion.Size = New System.Drawing.Size(952, 181)
         Me.GroupBoxLocalizacion.TabIndex = 290
         Me.GroupBoxLocalizacion.TabStop = False
         Me.GroupBoxLocalizacion.Text = "Datos de localización"
@@ -423,7 +458,7 @@ Partial Class Cat_Clientes
         Me.TxtCel.Location = New System.Drawing.Point(72, 80)
         Me.TxtCel.MaxLength = 100
         Me.TxtCel.Name = "TxtCel"
-        Me.TxtCel.Size = New System.Drawing.Size(852, 22)
+        Me.TxtCel.Size = New System.Drawing.Size(834, 22)
         Me.TxtCel.TabIndex = 16
         '
         'TxtTel
@@ -512,6 +547,7 @@ Partial Class Cat_Clientes
         Me.GroupBoxClientes.Controls.Add(Me.Label19)
         Me.GroupBoxClientes.Controls.Add(Me.TxtNombre)
         Me.GroupBoxClientes.Controls.Add(Me.LblNombres)
+        Me.GroupBoxClientes.ForeColor = System.Drawing.SystemColors.Desktop
         Me.GroupBoxClientes.Location = New System.Drawing.Point(3, 6)
         Me.GroupBoxClientes.Name = "GroupBoxClientes"
         Me.GroupBoxClientes.Size = New System.Drawing.Size(955, 241)
@@ -522,19 +558,23 @@ Partial Class Cat_Clientes
         '
         'CiudadesComboBox
         '
+        Me.CiudadesComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.CiudadesComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CiudadesComboBox.FormattingEnabled = True
         Me.CiudadesComboBox.Location = New System.Drawing.Point(72, 116)
         Me.CiudadesComboBox.Name = "CiudadesComboBox"
         Me.CiudadesComboBox.Size = New System.Drawing.Size(162, 22)
-        Me.CiudadesComboBox.TabIndex = 279
+        Me.CiudadesComboBox.TabIndex = 6
         '
         'EstadosComboBox
         '
+        Me.EstadosComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.EstadosComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.EstadosComboBox.FormattingEnabled = True
         Me.EstadosComboBox.Location = New System.Drawing.Point(72, 87)
         Me.EstadosComboBox.Name = "EstadosComboBox"
         Me.EstadosComboBox.Size = New System.Drawing.Size(162, 22)
-        Me.EstadosComboBox.TabIndex = 278
+        Me.EstadosComboBox.TabIndex = 5
         '
         'txtLimCred
         '
@@ -698,39 +738,8 @@ Partial Class Cat_Clientes
         Me.ClientesTabControl.Location = New System.Drawing.Point(11, 138)
         Me.ClientesTabControl.Name = "ClientesTabControl"
         Me.ClientesTabControl.SelectedIndex = 0
-        Me.ClientesTabControl.Size = New System.Drawing.Size(983, 545)
+        Me.ClientesTabControl.Size = New System.Drawing.Size(983, 493)
         Me.ClientesTabControl.TabIndex = 289
-        '
-        'Limpiar
-        '
-        Me.Limpiar.AutoSize = False
-        Me.Limpiar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.Limpiar.Image = CType(resources.GetObject("Limpiar.Image"), System.Drawing.Image)
-        Me.Limpiar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.Limpiar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.Limpiar.Name = "Limpiar"
-        Me.Limpiar.Size = New System.Drawing.Size(43, 45)
-        Me.Limpiar.Text = "Limpiar"
-        '
-        'Grabar
-        '
-        Me.Grabar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.Grabar.Image = CType(resources.GetObject("Grabar.Image"), System.Drawing.Image)
-        Me.Grabar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.Grabar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.Grabar.Name = "Grabar"
-        Me.Grabar.Size = New System.Drawing.Size(36, 45)
-        Me.Grabar.Text = "Grabar"
-        '
-        'AbonarToolStripButton
-        '
-        Me.AbonarToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.AbonarToolStripButton.Image = Global.SuperMercado.My.Resources.Resources.money_add1
-        Me.AbonarToolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.AbonarToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.AbonarToolStripButton.Name = "AbonarToolStripButton"
-        Me.AbonarToolStripButton.Size = New System.Drawing.Size(36, 45)
-        Me.AbonarToolStripButton.Text = "Abonar"
         '
         'Barra
         '

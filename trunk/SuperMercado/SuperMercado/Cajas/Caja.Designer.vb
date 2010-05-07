@@ -44,7 +44,7 @@ Partial Class Caja
         Me.Label8 = New System.Windows.Forms.Label
         Me.Label7 = New System.Windows.Forms.Label
         Me.lblTotalEntradas = New System.Windows.Forms.Label
-        Me.Label5 = New System.Windows.Forms.Label
+        Me.lblVentasTotales = New System.Windows.Forms.Label
         Me.Label11 = New System.Windows.Forms.Label
         Me.lblSalidas = New System.Windows.Forms.Label
         Me.lblRetirar = New System.Windows.Forms.Label
@@ -282,16 +282,16 @@ Partial Class Caja
         Me.lblTotalEntradas.TabIndex = 239
         Me.lblTotalEntradas.Text = "$0.00"
         '
-        'Label5
+        'lblVentasTotales
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.ForeColor = System.Drawing.Color.Teal
-        Me.Label5.Location = New System.Drawing.Point(725, 202)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(59, 22)
-        Me.Label5.TabIndex = 240
-        Me.Label5.Text = "$0.00"
+        Me.lblVentasTotales.AutoSize = True
+        Me.lblVentasTotales.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblVentasTotales.ForeColor = System.Drawing.Color.Teal
+        Me.lblVentasTotales.Location = New System.Drawing.Point(725, 202)
+        Me.lblVentasTotales.Name = "lblVentasTotales"
+        Me.lblVentasTotales.Size = New System.Drawing.Size(59, 22)
+        Me.lblVentasTotales.TabIndex = 240
+        Me.lblVentasTotales.Text = "$0.00"
         '
         'Label11
         '
@@ -340,7 +340,7 @@ Partial Class Caja
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.lblTotalEntradas)
-        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.lblVentasTotales)
         Me.Controls.Add(Me.Label11)
         Me.Controls.Add(Me.lblSalidas)
         Me.Controls.Add(Me.lblSalDinero)
@@ -387,7 +387,7 @@ Partial Class Caja
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents lblTotalEntradas As System.Windows.Forms.Label
-    Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents lblVentasTotales As System.Windows.Forms.Label
     Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents lblSalidas As System.Windows.Forms.Label
     Friend WithEvents lblRetirar As System.Windows.Forms.Label
