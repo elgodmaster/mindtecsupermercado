@@ -9,7 +9,7 @@ Public Class Cat_Clientes
     Dim ObjRet As CRetorno
     ' Grid datos para ABONOS
     Dim dsDatosAbonos As DataSet
-    Dim dtEntradas As DataTable
+    Dim dtAbonos As DataTable
     Dim viewDatosAbonos As Object
     Dim DsViewEntradas As Object
 #End Region
@@ -283,12 +283,12 @@ Public Class Cat_Clientes
     End Sub
 #End Region
 
-#Region "Grid Datos ENTRADAS"
+#Region "Grid Datos ABONOS"
 
     Sub CrearDsDatosABONOS()
         dsDatosAbonos = New DataSet("Root")
-        dtEntradas = New DataTable("Table")
-        dsDatosAbonos.Tables.Add(dtEntradas)
+        dtAbonos = New DataTable("Table")
+        dsDatosAbonos.Tables.Add(dtAbonos)
 
         'DsDatos.Tables("Table").Columns.Add("C0", GetType(String))
         'COLUMNAS
@@ -384,8 +384,8 @@ Public Class Cat_Clientes
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
         AbonosGridDatos.Columns(0).Visible = False
-        AbonosGridDatos.Columns.SetWidth(1, 100)
-        AbonosGridDatos.Columns.SetWidth(2, 160)
+        AbonosGridDatos.Columns.SetWidth(1, 128)
+        AbonosGridDatos.Columns.SetWidth(2, 220)
 
     End Sub
 
@@ -399,4 +399,9 @@ Public Class Cat_Clientes
 #End Region
 
    
+    Private Sub AbonarToolStripButton_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AbonarToolStripButton.Click
+        Dim objAbono As New Cat_Clientes_Abonos()
+        objAbono.StartPosition = FormStartPosition.CenterScreen
+        objAbono.ShowDialog()
+    End Sub
 End Class

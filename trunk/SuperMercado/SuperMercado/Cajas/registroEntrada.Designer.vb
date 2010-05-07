@@ -84,10 +84,11 @@ Partial Class registroEntrada
         '
         Me.OK_Button.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.OK_Button.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.OK_Button.Location = New System.Drawing.Point(367, 29)
+        Me.OK_Button.Location = New System.Drawing.Point(367, 25)
         Me.OK_Button.Name = "OK_Button"
         Me.OK_Button.Size = New System.Drawing.Size(108, 34)
         Me.OK_Button.TabIndex = 3
+        Me.OK_Button.TabStop = False
         Me.OK_Button.Text = "Aceptar"
         '
         'registroEntrada
@@ -96,13 +97,14 @@ Partial Class registroEntrada
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.Cancel_Button
         Me.ClientSize = New System.Drawing.Size(496, 129)
+        Me.ControlBox = False
         Me.Controls.Add(Me.OK_Button)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.txtRazonEntrada)
         Me.Controls.Add(Me.numIngreso)
         Me.Controls.Add(Me.Cancel_Button)
         Me.Controls.Add(Me.Label1)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "registroEntrada"

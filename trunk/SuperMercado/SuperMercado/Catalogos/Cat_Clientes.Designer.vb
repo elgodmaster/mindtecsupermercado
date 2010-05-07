@@ -192,7 +192,7 @@ Partial Class Cat_Clientes
         Me.AbonosGridDatos.Location = New System.Drawing.Point(18, 312)
         Me.AbonosGridDatos.Name = "AbonosGridDatos"
         Me.AbonosGridDatos.SelectionMode = SourceGrid.GridSelectionMode.Row
-        Me.AbonosGridDatos.Size = New System.Drawing.Size(350, 129)
+        Me.AbonosGridDatos.Size = New System.Drawing.Size(394, 129)
         Me.AbonosGridDatos.TabIndex = 34
         Me.AbonosGridDatos.TabStop = True
         Me.AbonosGridDatos.ToolTipText = ""
@@ -242,9 +242,9 @@ Partial Class Cat_Clientes
         Me.Label21.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label21.Location = New System.Drawing.Point(444, 52)
         Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(38, 14)
+        Me.Label21.Size = New System.Drawing.Size(47, 14)
         Me.Label21.TabIndex = 4
-        Me.Label21.Text = "0.00"
+        Me.Label21.Text = "$0.00"
         '
         'Label20
         '
@@ -730,7 +730,7 @@ Partial Class Cat_Clientes
         Me.AbonarToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.AbonarToolStripButton.Name = "AbonarToolStripButton"
         Me.AbonarToolStripButton.Size = New System.Drawing.Size(36, 45)
-        Me.AbonarToolStripButton.Text = "ToolStripButton1"
+        Me.AbonarToolStripButton.Text = "Abonar"
         '
         'Barra
         '
