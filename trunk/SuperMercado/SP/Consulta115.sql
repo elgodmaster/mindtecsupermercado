@@ -121,24 +121,24 @@ BEGIN
 
 
  
-  --If @Validar = 5
-  --   Begin    
-  --     Select @Desc1 = Isnull(Min(IsNull(IdVenta,0)),0)
-  --     From SMercado..Ventas (NoLock)
-  --     Where IdTipoCambio = 10000                 
+  If @Validar = 5
+     Begin    
+       Select @Desc1 = Isnull(Min(IsNull(IdVenta,0)),0)
+       From SMercado..Ventas (NoLock)
+       Where IdTipoCambio = 10000 And IdUsuario = @Valor1              
   
-  --     If @Desc1 = 0
-  --      Begin
-  --        Insert SMercado..Ventas(Factura,Fecha,IdCliente,IdUsuario,idTipoCambio) 
-  --        Values(0,'',0,0,10000)
+       If @Desc1 = 0
+        Begin
+          Insert SMercado..Ventas(Factura,Fecha,IdCliente,IdUsuario,idTipoCambio) 
+          Values(0,'',0,@Valor1,10000)
         
-  --     Select @Desc1 = Isnull(Min(IsNull(IdVenta,0)),0)
-  --     From SMercado..Ventas(NoLock)
-  --     Where idTipoCambio = 10000    
-  --     End
+       Select @Desc1 = Isnull(Min(IsNull(IdVenta,0)),0)
+       From SMercado..Ventas(NoLock)
+       Where idTipoCambio = 10000 And IdUsuario = @Valor1
+       End
        
-  --     Select @Registro = 1                  
-  --   End 
+       Select @Registro = 1                  
+     End 
 
     If @Validar = 6
      Begin

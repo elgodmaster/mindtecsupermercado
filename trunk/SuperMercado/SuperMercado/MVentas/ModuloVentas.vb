@@ -1,6 +1,7 @@
 ﻿Imports MindTec.Componentes
 
 Public Class ModuloVentas
+
 #Region " Variables de trabajo "
     Dim DsDatos As DataSet
     Dim ViewDatos As DataView
@@ -9,8 +10,9 @@ Public Class ModuloVentas
     Dim Parametros As String = ""
     Dim lConsulta As New ClsConsultas
     Dim ObjRet As CRetorno
-    Dim IdVenta As String = "1"
+    Dim IdVenta As Integer
     Dim TotalVenta As Double = 0
+    Dim Usuario As Integer = 1
 #End Region
 
 #Region " Eventos Principales "
@@ -42,9 +44,22 @@ Public Class ModuloVentas
 
 #Region " Load "
     Private Sub ModuloVentas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        ''Obtener El Numero siguiente de venta 
+        ObtenerIdVenta()
         lblFecha.Text = Date.Now.ToLongDateString
         CrearDsDatos()
         ConfiguraGridDatos()
+    End Sub
+#End Region
+
+#Region " Obtener IdVenta "
+    Sub ObtenerIdVenta()
+        Caja = "Consulta115" : Parametros = "V1=" & Usuario & "|"
+        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+        ObjRet = lConsulta.LlamarCaja(Caja, "5", Parametros)
+        If ObjRet.bOk Then
+            IdVenta = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|", False)
+        End If
     End Sub
 #End Region
 
@@ -65,6 +80,7 @@ Public Class ModuloVentas
         DsDatos.Tables("Table").Columns.Add("C5", GetType(Double))
         DsDatos.Tables("Table").Columns.Add("C6", GetType(Double))
         DsDatos.Tables("Table").Columns.Add("C7", GetType(Integer))
+        DsDatos.Tables("Table").Columns.Add("C8", GetType(Decimal))
 
     End Sub
 
@@ -199,7 +215,12 @@ Public Class ModuloVentas
         GridColumn.DataCell.View = viewNormal
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.EnableAutoSize
 
-        GridColumn = GridDatos.Columns.Add("C7", "Entrada", EditorCustom)
+        GridColumn = GridDatos.Columns.Add("C7", "IdVenta", EditorCustom)
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.View = viewNormal
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.None
+
+        GridColumn = GridDatos.Columns.Add("C8", "Descuento", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
         GridColumn.DataCell.View = viewNormal
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.None
@@ -213,6 +234,7 @@ Public Class ModuloVentas
         GridDatos.Columns.SetWidth(6, 100)
         GridDatos.Columns.SetWidth(7, 150)
         GridDatos.Columns.SetWidth(8, 0)
+        GridDatos.Columns.SetWidth(9, 0)
     End Sub
 
 #End Region
@@ -403,6 +425,7 @@ Public Class ModuloVentas
             registro!C5 = Costo
             registro!C6 = TotalCosto
             registro!C7 = IdVenta  ''Codigo de venta
+            registro!C8 = 1
 
 
             DsDatos.Tables("Table").AcceptChanges()
@@ -417,6 +440,7 @@ Public Class ModuloVentas
             DsDatos.Tables("Table").Rows(fila).Item("C5") = Costo
             DsDatos.Tables("Table").Rows(fila).Item("C6") = TotalCosto
             DsDatos.Tables("Table").Rows(fila).Item("C7") = IdVenta
+            DsDatos.Tables("Table").Rows(fila).Item("C8") = 1
             DsDatos.Tables("Table").AcceptChanges()
 
         End If
@@ -522,7 +546,6 @@ Public Class ModuloVentas
     End Sub
 #End Region
 
-
 #Region " Recibí TXT_PAGO "
     Private Sub Txt_Pago_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles Txt_Pago.KeyPress
         Dim KeyAscii As Short = CShort(Asc(e.KeyChar))
@@ -553,12 +576,23 @@ Public Class ModuloVentas
             ''ModificarCaja
             ''ModificarInventario
             ''GuardarEnVentas
-            If Faltante = 0.0 Then
-                MessageBox.Show("Gracias Por Su Compra, Vuelva pronto", "SuperMercado")
-                LimpiarPantalla()
-            Else
-                MessageBox.Show("Su Cambio es de" & FormatCurrency(Faltante))
-                LimpiarPantalla()
+            ''ObtenerNuevoIdVenta
+
+            ''Aqui se esta guardando la venta que se realizo en efectivo y actualizando las existencias
+            Caja = "Grabar115" : Parametros = "V1=" & IdVenta & "|V3=0|V4=" & Usuario & "|V5=0|"
+            If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+            ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros, DsDatos)
+            'Estatus
+            If ObjRet.bOk Then
+                If Faltante = 0.0 Then
+                    MessageBox.Show("Gracias Por Su Compra, Vuelva pronto", "SuperMercado")
+                    LimpiarPantalla()
+                Else
+                    MessageBox.Show("Su Cambio es de" & FormatCurrency(Faltante))
+                    LimpiarPantalla()
+                End If
+
+                ObtenerIdVenta()
             End If
 
         Else
