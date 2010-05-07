@@ -81,10 +81,12 @@ Public Class registroEntrada
             dinIni = Decimal.Parse(ObjRet.DS.Tables(2).Rows(0).Item(0))
             total = dinIni + sumEnt - sumSal
 
-            MessageBox.Show("La cantidad actual en la caja es: $" & total & vbCrLf & _
+            If total >= montoPorDefecto Then
+                MessageBox.Show("La cantidad actual en la caja es: $" & total & vbCrLf & _
                             "La cantidad máxima a tener en caja es: $" & montoPorDefecto & vbCrLf & _
                             vbCrLf & "Se le sugiere que haga el corte en caja.", "Información", _
                             MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
         End If
 
     End Sub
