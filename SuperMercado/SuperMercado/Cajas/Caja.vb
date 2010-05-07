@@ -344,6 +344,7 @@
 
     Private Sub btnHacerCorte_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnHacerCorte.Click
         lblRetirar.Visible = False
+        limpiarGrids()
         ' Se llama a al consulta111 para realizar el corte.
 
         Caja = "consulta111" : Parametros = ""
@@ -432,4 +433,28 @@
 
     End Sub
 
+    Private Sub Caja_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
+        e.Cancel = True
+        Me.Hide()
+        limpiarCaja()
+    End Sub
+
+    Private Sub limpiarCaja()
+        lblDineroCaja.Text = "$0.00"
+        lblTotalEntradas.Text = "$0.00"
+        lblSalidas.Text = "$0.00"
+
+
+        lblEntradaDin.Text = "$0.00"
+        lblSalDinero.Text = "$0.00"
+        lblTotal.Text = "$0.00"
+        lblRetirar.Visible = False
+
+        limpiarGrids()
+    End Sub
+
+    Private Sub limpiarGrids()
+        dsDatosEntradas.Tables(0).Rows.Clear()
+        dsDatosSalidas.Tables(0).Rows.Clear()
+    End Sub
 End Class

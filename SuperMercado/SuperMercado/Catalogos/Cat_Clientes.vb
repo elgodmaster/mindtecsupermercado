@@ -79,8 +79,6 @@ Public Class Cat_Clientes
             Me.Txtcp.Text = lConsulta.ObtenerValor("V5", ObjRet.sResultado, "|")
             Me.EstadosComboBox.Text = lConsulta.ObtenerValor("V6", ObjRet.sResultado, "|")
             Me.CiudadesComboBox.Text = lConsulta.ObtenerValor("V7", ObjRet.sResultado, "|")
-            'Me.TxtCiudad.Text = lConsulta.ObtenerValor("V8", ObjRet.sResultado, "|")
-            'Me.NombreCiudad.Text = lConsulta.ObtenerValor("V9", ObjRet.sResultado, "|")
             Me.TxtTel.Text = lConsulta.ObtenerValor("V8", ObjRet.sResultado, "|")
             Me.txtext.Text = lConsulta.ObtenerValor("V9", ObjRet.sResultado, "|")
             Me.TxtTel2.Text = lConsulta.ObtenerValor("V10", ObjRet.sResultado, "|")
@@ -101,6 +99,7 @@ Public Class Cat_Clientes
             Me.GroupBoxLocalizacion.Visible = True
             MensajePiePagina.Text = "Esc=Salir Enter=Avanzar F2=Catálogo F4=Limpiar Pantalla F9=Grabar"
             'Foco
+            ClientesTabControl.Visible = True
             Me.TxtNombre.Focus()
         Else
             'Asignar
@@ -113,7 +112,7 @@ Public Class Cat_Clientes
             Me.CodigoCliente.Focus()
         End If
         ObjRet = Nothing
-        ClientesTabControl.Visible = True
+
     End Sub
 #End Region
 

@@ -129,10 +129,12 @@ If Len(RTrim(LTrim(@Valor8)))= 0
   From SMercado..Cat_Clientes(NoLock)
   Where Codigo = @Valor1
   
+  select * from SMercado..Cat_Clientes 
+  
   If @@RowCount = 0
    Begin
-     Insert SMercado..Cat_Clientes(Codigo,NombreFiscal,Rfc,Colonia,Direccion,CP,IdEstado,IdCiudad,Telefono1,Extencion1,Telefono2,Extencion2,Cel1,Cel2,Fax,Email,LimiteCredito, Adeudo)
-            Values(@Valor1,@Valor2,@Valor3,@Valor4,@Valor5,@Valor6,@estado,@ciudad,@Valor9,@Valor10,@Valor11,@Valor12,@Valor13,@Valor14,@Valor15,@Valor16, CONVERT(decimal(16,2),@Valor17), 0.00)
+     Insert SMercado..Cat_Clientes(Codigo,NombreFiscal,Rfc,Colonia,Direccion,CP,IdEstado,IdCiudad,Telefono1,Extencion1,Telefono2,Extencion2,Cel1,Cel2,Fax,Email,LimiteCredito)
+            Values(@Valor1,@Valor2,@Valor3,@Valor4,@Valor5,@Valor6,@estado,@ciudad,@Valor9,@Valor10,@Valor11,@Valor12,@Valor13,@Valor14,@Valor15,@Valor16, CONVERT(decimal(16,2),@Valor17))
    End
   Else
    Begin

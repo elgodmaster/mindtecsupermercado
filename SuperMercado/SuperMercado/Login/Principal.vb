@@ -12,23 +12,14 @@ Public Class Principal
     Dim lConsulta As New ClsConsultas
     Dim ObjRet As CRetorno
     ' Variables para Caja
-    Dim objRegistroEntrada As New registroEntrada
-    Dim objRegistroSalida As New registroSalida
-    Dim objDineroCaja As New dineroCaja
-    Dim objConfigCaja As configuracion
-    ' Variables para los menús principales.
     Dim cajaActual As New Caja
+    Dim objDineroCaja As New dineroCaja
+    ' Variables para los menús principales.
     ' Variables para Cuentas por Cobrar
 
 #End Region
 
     Private Sub Principal_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        ' Configuración para las ventanas de caja.
-        objRegistroEntrada = Nothing
-        objRegistroSalida = Nothing
-        objDineroCaja = Nothing
-        objConfigCaja = Nothing
-        cajaActual = Nothing
 
         ' Configuración de la ventana principal.
         Dim inic As New inicial
@@ -42,7 +33,7 @@ Public Class Principal
         '----------   Muestra la MAC  ------------
         'MessageBox.Show("La dirección MAC de su equipo es: " & obtenMac(), "MAC", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-        
+
         '--- Consulta110: registro con la fecha más reciente en la tabla caja ---
         ' Se verifica que la fecha más reciente en la tabla caja sea distinta a la actual.
         ' Si lo es, se procede a ingresar un nuevo registro con la fecha actual.
@@ -141,136 +132,6 @@ Public Class Principal
 
     End Sub
 
-    'Private Sub EntradasToolStripMenuItem3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EntradasToolStripMenuItem3.Click
-    '   
-    'End Sub
-
-    'Private Sub SalidasToolStripMenuItem3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SalidasToolStripMenuItem3.Click
-    '    
-    'End Sub
-
-    'Private Sub ExistenciasToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExistenciasToolStripMenuItem.Click
-    '    Dim frm_exis As New Consulta_Existencias
-    '    frm_exis.MdiParent = Me
-    '    frm_exis.WindowState = FormWindowState.Maximized
-
-    '    frm_exis.StartPosition = FormStartPosition.CenterScreen
-    '    frm_exis.Show()
-    'End Sub
-
-    'Private Sub EntradasToolStripMenuItem4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EntradasToolStripMenuItem4.Click
-    '    Dim con_ent As New consulta_Entradas
-    '    con_ent.MdiParent = Me
-    '    con_ent.WindowState = FormWindowState.Maximized
-
-    '    con_ent.StartPosition = FormStartPosition.CenterScreen
-    '    con_ent.Show()
-    'End Sub
-
-    'Private Sub SalidasToolStripMenuItem4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SalidasToolStripMenuItem4.Click
-    '    Dim con_ent As New consulta_Salidas
-    '    con_ent.MdiParent = Me
-    '    con_ent.WindowState = FormWindowState.Maximized
-
-    '    con_ent.StartPosition = FormStartPosition.CenterScreen
-    '    con_ent.Show()
-    'End Sub
-
-    'Private Sub FacturarToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles FacturarToolStripMenuItem.Click
-    '    Dim Facturas As New Factura
-    '    Facturas.MdiParent = Me
-    '    Facturas.WindowState = FormWindowState.Maximized
-
-    '    Facturas.StartPosition = FormStartPosition.CenterScreen
-    '    Facturas.Show()
-    'End Sub
-
-    'Private Sub CotizarToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CotizarToolStripMenuItem1.Click
-    '    Dim Cot As New cotizacion
-    '    Cot.MdiParent = Me
-    '    Cot.WindowState = FormWindowState.Maximized
-    '    Cot.StartPosition = FormStartPosition.CenterScreen
-    '    Cot.Show()
-    'End Sub
-
-    'Private Sub DevoluciónToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DevoluciónToolStripMenuItem1.Click
-    '    Dim Dev As New Devolucion
-    '    Dev.MdiParent = Me
-    '    Dev.WindowState = FormWindowState.Maximized
-    '    Dev.StartPosition = FormStartPosition.CenterScreen
-    '    Dev.BackgroundImage = Me.BackgroundImage
-    '    Dev.Show()
-    'End Sub
-
-    'Private Sub UsuariosToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles UsuariosToolStripMenuItem1.Click
-    '    Dim User As New Usuario
-    '    User.MdiParent = Me
-    '    User.WindowState = FormWindowState.Maximized
-    '    User.StartPosition = FormStartPosition.CenterScreen
-    '    User.Show()
-    'End Sub
-
-    'Private Sub ProductosToolStripMenuItem3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ProductosToolStripMenuItem3.Click
-    '    Dim rep_prod As New rep_productos
-    '    rep_prod.StartPosition = FormStartPosition.CenterScreen
-    '    rep_prod.Show()
-    'End Sub
-
-    'Private Sub EntradasDeProductosToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EntradasDeProductosToolStripMenuItem.Click
-    '    Dim rep_ent As New rep_entradas
-    '    rep_ent.StartPosition = FormStartPosition.CenterScreen
-    '    rep_ent.Show()
-    'End Sub
-
-    'Private Sub SalidasDeProductosToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SalidasDeProductosToolStripMenuItem.Click
-    '    Dim rep_sal As New rep_salidas
-    '    rep_sal.StartPosition = FormStartPosition.CenterScreen
-    '    rep_sal.Show()
-    'End Sub
-
-    'Private Sub ClientesToolStripMenuItem3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ClientesToolStripMenuItem3.Click
-    '    Dim rep_cli As New rep_clientes
-    '    rep_cli.StartPosition = FormStartPosition.CenterScreen
-    '    rep_cli.Show()
-    'End Sub
-
-    'Private Sub ProveedoresToolStripMenuItem3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ProveedoresToolStripMenuItem3.Click
-    '    Dim rep_prov As New rep_proveedores
-    '    rep_prov.StartPosition = FormStartPosition.CenterScreen
-    '    rep_prov.Show()
-    'End Sub
-
-    'Private Sub FacturasToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles FacturasToolStripMenuItem1.Click
-    '    Dim rep_fac As New rep_facturas
-    '    rep_fac.StartPosition = FormStartPosition.CenterScreen
-    '    rep_fac.Show()
-    'End Sub
-
-    'Private Sub VentasToolStripMenuItem3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles VentasToolStripMenuItem3.Click
-    '    Dim rep_ven As New rep_ventas
-    '    rep_ven.StartPosition = FormStartPosition.CenterScreen
-    '    rep_ven.Show()
-    'End Sub
-
-    'Private Sub RetirosDeEfectivoToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RetirosDeEfectivoToolStripMenuItem1.Click
-    '    Dim rep_rEfe As New rep_retiroEfe
-    '    rep_rEfe.StartPosition = FormStartPosition.CenterScreen
-    '    rep_rEfe.Show()
-    'End Sub
-
-    'Private Sub DepositosDeEfectivoToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DepositosDeEfectivoToolStripMenuItem1.Click
-    '    Dim rep_dEfe As New rep_entradasEfe
-    '    rep_dEfe.StartPosition = FormStartPosition.CenterScreen
-    '    rep_dEfe.Show()
-    'End Sub
-
-    'Private Sub ModuloDeVentasToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ModuloDeVentasToolStripMenuItem.Click
-    '    Dim ven As New Mod_ventas
-    '    ven.MdiParent = Me
-    '    ven.StartPosition = FormStartPosition.CenterScreen
-    '    ven.Show()
-    'End Sub
-
 #Region " Catalogos "
     Private Sub MenuDepartamentos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MenuDepartamentos.Click
         Dim Cat_Dep As New Cat_Departamentos
@@ -353,42 +214,43 @@ Public Class Principal
         frm_sal.Show()
     End Sub
 
+#Region "Menú Caja "
+
     Private Sub corteToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles corteToolStripMenuItem.Click
-
         ' Configurar y mostrar la ventana caja.
-        If cajaActual Is Nothing Then
-            cajaActual = New Caja()
-            cajaActual.MdiParent = Me
-            cajaActual.WindowState = FormWindowState.Maximized
+        cajaActual.MdiParent = Me
+        cajaActual.WindowState = FormWindowState.Maximized
 
-            cajaActual.StartPosition = FormStartPosition.CenterScreen
-            cajaActual.Show()
-        End If
+        cajaActual.StartPosition = FormStartPosition.CenterScreen
+        cajaActual.Show()
+
     End Sub
 
     Private Sub EntradasToolStripMenuItem2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EntradasToolStripMenuItem2.Click
-        If objRegistroEntrada Is Nothing Then
-            Dim objRegistroEntrada = New registroEntrada()
-            objRegistroEntrada.StartPosition = FormStartPosition.CenterScreen
-            objRegistroEntrada.ShowDialog()
-        End If
+
+        Dim objRegistroEntrada As New registroEntrada
+        objRegistroEntrada.StartPosition = FormStartPosition.CenterScreen
+        objRegistroEntrada.ShowDialog()
+
     End Sub
 
     Private Sub SalidasToolStripMenuItem2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SalidasToolStripMenuItem2.Click
-        If objRegistroSalida Is Nothing Then
-            Dim objRegistroSalida = New registroSalida()
-            objRegistroSalida.StartPosition = FormStartPosition.CenterScreen
-            objRegistroSalida.ShowDialog()
-        End If
+
+        Dim objRegistroSalida As New registroSalida
+        objRegistroSalida.StartPosition = FormStartPosition.CenterScreen
+        objRegistroSalida.ShowDialog()
+
     End Sub
 
     Private Sub ConfiguraciónToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ConfiguraciónToolStripMenuItem.Click
-        If objConfigCaja Is Nothing Then
-            Dim objConfigCaja = New configuracion
-            objConfigCaja.StartPosition = FormStartPosition.CenterScreen
-            objConfigCaja.ShowDialog()
-        End If
+
+        Dim objConfigCaja As New configuracion
+        objConfigCaja.StartPosition = FormStartPosition.CenterScreen
+        objConfigCaja.ShowDialog()
+
     End Sub
+
+#End Region
 
     Public Function obtenMac() As String
         Dim str As String
