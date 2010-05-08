@@ -384,11 +384,13 @@
         Dim sumEnt As Decimal
         Dim sumSal As Decimal
         Dim dinIni As Decimal
+        Dim ventasTotal As Decimal
         Dim total As Decimal
 
         sumEnt = Decimal.Parse(ObjRet.DS.Tables(2).Rows(0).Item(1))
         sumSal = Decimal.Parse(ObjRet.DS.Tables(2).Rows(0).Item(2))
         dinIni = Decimal.Parse(ObjRet.DS.Tables(2).Rows(0).Item(0))
+        ventasTotal = Decimal.Parse(ObjRet.DS.Tables(3).Rows(0).Item(0))
 
         If sumEnt = 0 And sumSal = 0 Then
             MessageBox.Show("No se han registrado entradas o salidas.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -404,8 +406,9 @@
         lblDineroCaja.Text = "$" & ObjRet.DS.Tables(2).Rows(0).Item(0).ToString
         lblTotalEntradas.Text = "$" & sumEnt
         lblSalidas.Text = "$" & sumSal
+        lblVentasTotales.Text = "$" & ventasTotal
 
-        total = dinIni + sumEnt - sumSal
+        total = dinIni + sumEnt + ventasTotal - sumSal
 
         lblTotal.Text = "$" & total.ToString
 
@@ -448,6 +451,7 @@
         lblEntradaDin.Text = "$0.00"
         lblSalDinero.Text = "$0.00"
         lblTotal.Text = "$0.00"
+        lblVentasTotales.Text = "$0.00"
         lblRetirar.Visible = False
 
         limpiarGrids()

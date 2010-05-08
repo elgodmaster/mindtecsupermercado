@@ -149,13 +149,11 @@ select * from SMercado..Cat_Ciudades where Descripcion = 'Culiacán'
 
 select * from SMercado..Caja_Configuracion 
 select * from SMercado..Caja_Corte
-delete from SMercado..Caja_Corte where idCorte = 10
 
-exec Consulta105 'V1=1|','','','2'
+delete from smercado..Caja_Corte where idcorte = 40
 
-update SMercado..Cat_Clientes 
-set adeudo = 0.0 
-where Codigo = 'cliente1'
+
+
 
 Select E.descripcion 
 from SMercado..Cat_Clientes C
@@ -165,3 +163,13 @@ where C.Codigo = 'CLIENTE2'
 select E.IdEstado 
 from SMercado..Cat_EstadosdelaRepublica E
 where E.Descripcion = 'Sinaloa'
+
+select * from SMercado..ventas
+select * from SMercado..Venta_detalles 
+
+Select vd.Descripcion, vd.cantidad, vd.PrecioUni, v.Fecha 
+From SMercado..Venta_detalles vd
+inner join SMercado..Ventas v on vd.IdVenta = v.IdVenta 
+Where CONVERT(date, v.Fecha) = CONVERT(date, GETDATE())
+
+

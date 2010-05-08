@@ -56,6 +56,7 @@ Partial Class Caja
         '
         Me.Label1.AllowDrop = True
         Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.Label1.Location = New System.Drawing.Point(42, 64)
@@ -67,6 +68,7 @@ Partial Class Caja
         'Label4
         '
         Me.Label4.AutoSize = True
+        Me.Label4.BackColor = System.Drawing.Color.Transparent
         Me.Label4.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.Location = New System.Drawing.Point(274, 276)
         Me.Label4.Name = "Label4"
@@ -77,6 +79,7 @@ Partial Class Caja
         'lblEntradaDin
         '
         Me.lblEntradaDin.AutoSize = True
+        Me.lblEntradaDin.BackColor = System.Drawing.Color.Transparent
         Me.lblEntradaDin.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblEntradaDin.ForeColor = System.Drawing.Color.Navy
         Me.lblEntradaDin.Location = New System.Drawing.Point(373, 276)
@@ -89,6 +92,7 @@ Partial Class Caja
         '
         Me.Label9.AllowDrop = True
         Me.Label9.AutoSize = True
+        Me.Label9.BackColor = System.Drawing.Color.Transparent
         Me.Label9.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.Label9.Location = New System.Drawing.Point(500, 105)
@@ -101,6 +105,7 @@ Partial Class Caja
         '
         Me.Label15.AllowDrop = True
         Me.Label15.AutoSize = True
+        Me.Label15.BackColor = System.Drawing.Color.Transparent
         Me.Label15.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label15.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.Label15.Location = New System.Drawing.Point(41, 105)
@@ -113,6 +118,7 @@ Partial Class Caja
         '
         Me.Label16.AllowDrop = True
         Me.Label16.AutoSize = True
+        Me.Label16.BackColor = System.Drawing.Color.Transparent
         Me.Label16.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label16.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.Label16.Location = New System.Drawing.Point(41, 314)
@@ -188,6 +194,7 @@ Partial Class Caja
         'Label6
         '
         Me.Label6.AutoSize = True
+        Me.Label6.BackColor = System.Drawing.Color.Transparent
         Me.Label6.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.Location = New System.Drawing.Point(274, 485)
         Me.Label6.Name = "Label6"
@@ -198,6 +205,7 @@ Partial Class Caja
         'lblSalDinero
         '
         Me.lblSalDinero.AutoSize = True
+        Me.lblSalDinero.BackColor = System.Drawing.Color.Transparent
         Me.lblSalDinero.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblSalDinero.ForeColor = System.Drawing.Color.Teal
         Me.lblSalDinero.Location = New System.Drawing.Point(373, 483)
@@ -209,6 +217,7 @@ Partial Class Caja
         'lblTotal
         '
         Me.lblTotal.AutoSize = True
+        Me.lblTotal.BackColor = System.Drawing.Color.Transparent
         Me.lblTotal.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTotal.ForeColor = System.Drawing.Color.Teal
         Me.lblTotal.Location = New System.Drawing.Point(725, 290)
@@ -220,6 +229,7 @@ Partial Class Caja
         'Label14
         '
         Me.Label14.AutoSize = True
+        Me.Label14.BackColor = System.Drawing.Color.Transparent
         Me.Label14.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label14.Location = New System.Drawing.Point(611, 290)
         Me.Label14.Name = "Label14"
@@ -230,6 +240,7 @@ Partial Class Caja
         'Label3
         '
         Me.Label3.AutoSize = True
+        Me.Label3.BackColor = System.Drawing.Color.Transparent
         Me.Label3.Font = New System.Drawing.Font("Arial", 12.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.Label3.Location = New System.Drawing.Point(500, 144)
@@ -241,6 +252,7 @@ Partial Class Caja
         'lblDineroCaja
         '
         Me.lblDineroCaja.AutoSize = True
+        Me.lblDineroCaja.BackColor = System.Drawing.Color.Transparent
         Me.lblDineroCaja.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblDineroCaja.ForeColor = System.Drawing.Color.Navy
         Me.lblDineroCaja.Location = New System.Drawing.Point(725, 144)
@@ -252,6 +264,7 @@ Partial Class Caja
         'Label8
         '
         Me.Label8.AutoSize = True
+        Me.Label8.BackColor = System.Drawing.Color.Transparent
         Me.Label8.Font = New System.Drawing.Font("Arial", 12.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.Label8.Location = New System.Drawing.Point(500, 173)
@@ -263,6 +276,7 @@ Partial Class Caja
         'Label7
         '
         Me.Label7.AutoSize = True
+        Me.Label7.BackColor = System.Drawing.Color.Transparent
         Me.Label7.Font = New System.Drawing.Font("Arial", 12.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.Label7.Location = New System.Drawing.Point(500, 202)
@@ -274,6 +288,7 @@ Partial Class Caja
         'lblTotalEntradas
         '
         Me.lblTotalEntradas.AutoSize = True
+        Me.lblTotalEntradas.BackColor = System.Drawing.Color.Transparent
         Me.lblTotalEntradas.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTotalEntradas.ForeColor = System.Drawing.Color.Teal
         Me.lblTotalEntradas.Location = New System.Drawing.Point(725, 173)
@@ -285,6 +300,7 @@ Partial Class Caja
         'lblVentasTotales
         '
         Me.lblVentasTotales.AutoSize = True
+        Me.lblVentasTotales.BackColor = System.Drawing.Color.Transparent
         Me.lblVentasTotales.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblVentasTotales.ForeColor = System.Drawing.Color.Teal
         Me.lblVentasTotales.Location = New System.Drawing.Point(725, 202)
@@ -296,6 +312,7 @@ Partial Class Caja
         'Label11
         '
         Me.Label11.AutoSize = True
+        Me.Label11.BackColor = System.Drawing.Color.Transparent
         Me.Label11.Font = New System.Drawing.Font("Arial", 12.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.Label11.Location = New System.Drawing.Point(500, 231)
@@ -307,6 +324,7 @@ Partial Class Caja
         'lblSalidas
         '
         Me.lblSalidas.AutoSize = True
+        Me.lblSalidas.BackColor = System.Drawing.Color.Transparent
         Me.lblSalidas.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblSalidas.ForeColor = System.Drawing.Color.Teal
         Me.lblSalidas.Location = New System.Drawing.Point(725, 231)
@@ -318,6 +336,7 @@ Partial Class Caja
         'lblRetirar
         '
         Me.lblRetirar.AutoSize = True
+        Me.lblRetirar.BackColor = System.Drawing.Color.Transparent
         Me.lblRetirar.Font = New System.Drawing.Font("Arial", 12.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblRetirar.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.lblRetirar.Location = New System.Drawing.Point(500, 351)
@@ -331,6 +350,7 @@ Partial Class Caja
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.ClientSize = New System.Drawing.Size(797, 549)
         Me.Controls.Add(Me.lblRetirar)
         Me.Controls.Add(Me.lblTotal)
