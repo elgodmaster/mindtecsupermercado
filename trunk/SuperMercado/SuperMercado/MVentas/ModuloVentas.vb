@@ -12,7 +12,7 @@ Public Class ModuloVentas
     Dim ObjRet As CRetorno
     Dim IdVenta As Integer
     Dim TotalVenta As Double = 0
-    Dim Usuario As Integer = 1
+    Dim Usuario As Integer = 2
 #End Region
 
 #Region " Eventos Principales "

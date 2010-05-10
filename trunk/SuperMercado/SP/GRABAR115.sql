@@ -84,7 +84,7 @@ BEGIN
 	 Else
 	  Begin
 	  Update SMercado..Ventas
-       Set Fecha = @Valor2,
+       Set Fecha = GetDate(),
            Factura  = @Valor3,
            IdUsuario = @Valor4,
            IdCliente = @Valor5,
