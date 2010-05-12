@@ -182,7 +182,7 @@
         GridDatos.Columns.SetWidth(5, 100)
         GridDatos.Columns.SetWidth(6, 100)
         GridDatos.Columns.SetWidth(7, 150)
-        GridDatos.Columns.SetWidth(8, 0)
+        'GridDatos.Columns.SetWidth(8, 0)
     End Sub
 
 #End Region

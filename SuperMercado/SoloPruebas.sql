@@ -14,8 +14,6 @@ contraseña int not null
 
 
 
-
-
 -- <TABLAS NECESARIAS PARA CAJA> --
 
 CREATE TABLE Caja_Entrada(
@@ -142,18 +140,13 @@ exec consulta114a '','','',''
 exec consulta114b 'V1=Baja California|','','',''
 exec consulta105 'V1=CLIENTE1|','','','2'
 
-
 select * from SMercado..Cat_Clientes
 select * from SMercado..Cat_EstadosdelaRepublica 
 select * from SMercado..Cat_Ciudades where Descripcion = 'Culiacán'
 
 select * from SMercado..Caja_Configuracion 
 select * from SMercado..Caja_Corte
-
-delete from smercado..Caja_Corte where idcorte = 40
-
-
-
+ 
 
 Select E.descripcion 
 from SMercado..Cat_Clientes C
@@ -166,10 +159,40 @@ where E.Descripcion = 'Sinaloa'
 
 select * from SMercado..ventas
 select * from SMercado..Venta_detalles 
+select * from SMercado..Cat_Productos 
+select * from SMercado..Cat_Departamentos 
 
-Select vd.Descripcion, vd.cantidad, vd.PrecioUni, v.Fecha 
+Select Venta = SUM( vd.cantidad * vd.PrecioUni * vd.Descuento )
+					From SMercado..Venta_detalles vd
+					inner join SMercado..Ventas v ON vd.IdVenta = v.IdVenta 
+					--where v.Fecha = CONVERT(date, GETDATE())
+					Group by CONVERT(date, v.Fecha )
+
+
+select * from SMercado..Ventas V
+inner join SMercado..Venta_detalles VD ON V.IdVenta = VD.IdVenta 
+
+Select vd.Descripcion, d.Descripcion, vd.cantidad, vd.PrecioUni, v.Fecha 
 From SMercado..Venta_detalles vd
-inner join SMercado..Ventas v on vd.IdVenta = v.IdVenta 
+inner join SMercado..Ventas v ON vd.IdVenta = v.IdVenta
+inner join SMercado..Cat_Productos p ON vd.IdProducto = p.Codigo 
+inner join SMercado..Cat_Departamentos d ON p.IDDepartamento = d.IdDepartamento 
 Where CONVERT(date, v.Fecha) = CONVERT(date, GETDATE())
+
+Select Departamento = d.Descripcion, Total = SUM(vd.cantidad * vd.PrecioUni)
+From SMercado..Venta_detalles vd
+inner join SMercado..Ventas v ON vd.IdVenta = v.IdVenta
+inner join SMercado..Cat_Productos p ON vd.IdProducto = p.Codigo 
+inner join SMercado..Cat_Departamentos d ON p.IDDepartamento = d.IdDepartamento 
+Where CONVERT(date, v.Fecha) = CONVERT(date, GETDATE())
+Group by d.Descripcion
+
+Select CONVERT(date, v.Fecha), SUM( vd.cantidad * vd.PrecioUni * vd.Descuento )
+From SMercado..Venta_detalles vd
+inner join SMercado..Ventas v ON vd.IdVenta = v.IdVenta 
+Group by CONVERT(date, v.Fecha)
+
+
+
 
 

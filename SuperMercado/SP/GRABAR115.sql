@@ -84,7 +84,7 @@ BEGIN
 	 Else
 	  Begin
 	  Update SMercado..Ventas
-       Set Fecha = GetDate(),
+       Set Fecha = GETDATE(),
            Factura  = @Valor3,
            IdUsuario = @Valor4,
            IdCliente = @Valor5,
@@ -116,7 +116,10 @@ SELECT  C7  = C7,    --FolioVenta
               C5  Decimal(18,2),
               C6  Decimal (18,2),
               C8  Decimal(18,2))    
-        EXEC sp_xml_removedocument @idoc     
+        EXEC sp_xml_removedocument @idoc    
+        
+        
+         
         -----------------------------------------------     -- Fin de XML     -----------------------------------------------
 	
 	--Insert de la tabla temporal..
@@ -136,6 +139,17 @@ SELECT  C7  = C7,    --FolioVenta
 	    Left join #TmpGrabar115 b on b.C1 = a.codigo
 	    Where b.C7 = @Valor1
 	   
+	If @@ERROR <> 0
+	 Begin
+	  RollBack Tran Grabar115
+	  Return
+	 End
+	 
+	Update C
+	    Set C.dineroActual = C.dineroInicialCaja + (Select SUM(C3 * C5 * C8 ) From #TmpGrabar115)
+	    From SMercado..Caja_Corte  C 
+	    Where CONVERT(date, C.fecha) = CONVERT(Date, getdate()) 
+	    
 	If @@ERROR <> 0
 	 Begin
 	  RollBack Tran Grabar115

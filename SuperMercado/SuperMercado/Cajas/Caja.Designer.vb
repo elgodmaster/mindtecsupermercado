@@ -23,10 +23,8 @@ Partial Class Caja
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Caja))
-        Me.Label1 = New System.Windows.Forms.Label
         Me.Label4 = New System.Windows.Forms.Label
         Me.lblEntradaDin = New System.Windows.Forms.Label
-        Me.Label9 = New System.Windows.Forms.Label
         Me.Label15 = New System.Windows.Forms.Label
         Me.Label16 = New System.Windows.Forms.Label
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
@@ -37,6 +35,14 @@ Partial Class Caja
         Me.GridDatosSalidas = New SourceGrid.DataGrid
         Me.Label6 = New System.Windows.Forms.Label
         Me.lblSalDinero = New System.Windows.Forms.Label
+        Me.Label2 = New System.Windows.Forms.Label
+        Me.GridDatosVenta = New SourceGrid.DataGrid
+        Me.Label5 = New System.Windows.Forms.Label
+        Me.Label10 = New System.Windows.Forms.Label
+        Me.Label9 = New System.Windows.Forms.Label
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox
+        Me.lblCanRet = New System.Windows.Forms.Label
+        Me.lblRetirar = New System.Windows.Forms.Label
         Me.lblTotal = New System.Windows.Forms.Label
         Me.Label14 = New System.Windows.Forms.Label
         Me.Label3 = New System.Windows.Forms.Label
@@ -47,32 +53,19 @@ Partial Class Caja
         Me.lblVentasTotales = New System.Windows.Forms.Label
         Me.Label11 = New System.Windows.Forms.Label
         Me.lblSalidas = New System.Windows.Forms.Label
-        Me.lblRetirar = New System.Windows.Forms.Label
         Me.StatusStrip1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'Label1
-        '
-        Me.Label1.AllowDrop = True
-        Me.Label1.AutoSize = True
-        Me.Label1.BackColor = System.Drawing.Color.Transparent
-        Me.Label1.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Label1.Location = New System.Drawing.Point(42, 64)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(78, 22)
-        Me.Label1.TabIndex = 2
-        Me.Label1.Text = "CORTE"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
         Me.Label4.BackColor = System.Drawing.Color.Transparent
-        Me.Label4.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(274, 276)
+        Me.Label4.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(574, 232)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(64, 22)
+        Me.Label4.Size = New System.Drawing.Size(53, 19)
         Me.Label4.TabIndex = 6
         Me.Label4.Text = "Total:"
         '
@@ -80,37 +73,24 @@ Partial Class Caja
         '
         Me.lblEntradaDin.AutoSize = True
         Me.lblEntradaDin.BackColor = System.Drawing.Color.Transparent
-        Me.lblEntradaDin.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblEntradaDin.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblEntradaDin.ForeColor = System.Drawing.Color.Navy
-        Me.lblEntradaDin.Location = New System.Drawing.Point(373, 276)
+        Me.lblEntradaDin.Location = New System.Drawing.Point(673, 232)
         Me.lblEntradaDin.Name = "lblEntradaDin"
-        Me.lblEntradaDin.Size = New System.Drawing.Size(59, 22)
+        Me.lblEntradaDin.Size = New System.Drawing.Size(53, 19)
         Me.lblEntradaDin.TabIndex = 8
-        Me.lblEntradaDin.Text = "$0.00"
-        '
-        'Label9
-        '
-        Me.Label9.AllowDrop = True
-        Me.Label9.AutoSize = True
-        Me.Label9.BackColor = System.Drawing.Color.Transparent
-        Me.Label9.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Label9.Location = New System.Drawing.Point(500, 105)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(143, 22)
-        Me.Label9.TabIndex = 9
-        Me.Label9.Text = "Dinero en caja"
+        Me.lblEntradaDin.Text = "$ 0.00"
         '
         'Label15
         '
         Me.Label15.AllowDrop = True
         Me.Label15.AutoSize = True
         Me.Label15.BackColor = System.Drawing.Color.Transparent
-        Me.Label15.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label15.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Label15.Location = New System.Drawing.Point(41, 105)
+        Me.Label15.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label15.ForeColor = System.Drawing.Color.DarkGreen
+        Me.Label15.Location = New System.Drawing.Point(343, 78)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(200, 22)
+        Me.Label15.Size = New System.Drawing.Size(165, 19)
         Me.Label15.TabIndex = 20
         Me.Label15.Text = "Entradas en efectivo"
         '
@@ -119,20 +99,20 @@ Partial Class Caja
         Me.Label16.AllowDrop = True
         Me.Label16.AutoSize = True
         Me.Label16.BackColor = System.Drawing.Color.Transparent
-        Me.Label16.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label16.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Label16.Location = New System.Drawing.Point(41, 314)
+        Me.Label16.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label16.ForeColor = System.Drawing.Color.DarkGreen
+        Me.Label16.Location = New System.Drawing.Point(343, 269)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(184, 22)
+        Me.Label16.Size = New System.Drawing.Size(152, 19)
         Me.Label16.TabIndex = 21
         Me.Label16.Text = "Salidas en efectivo"
         '
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 527)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 724)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(797, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(811, 22)
         Me.StatusStrip1.TabIndex = 30
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -148,7 +128,7 @@ Partial Class Caja
         Me.GridDatosEntradas.DeleteQuestionMessage = ""
         Me.GridDatosEntradas.DeleteRowsWithDeleteKey = False
         Me.GridDatosEntradas.FixedRows = 1
-        Me.GridDatosEntradas.Location = New System.Drawing.Point(47, 144)
+        Me.GridDatosEntradas.Location = New System.Drawing.Point(347, 100)
         Me.GridDatosEntradas.Name = "GridDatosEntradas"
         Me.GridDatosEntradas.SelectionMode = SourceGrid.GridSelectionMode.Row
         Me.GridDatosEntradas.Size = New System.Drawing.Size(424, 129)
@@ -162,7 +142,7 @@ Partial Class Caja
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnHacerCorte})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(797, 48)
+        Me.ToolStrip1.Size = New System.Drawing.Size(811, 48)
         Me.ToolStrip1.TabIndex = 231
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -183,7 +163,7 @@ Partial Class Caja
         Me.GridDatosSalidas.DeleteQuestionMessage = ""
         Me.GridDatosSalidas.DeleteRowsWithDeleteKey = False
         Me.GridDatosSalidas.FixedRows = 1
-        Me.GridDatosSalidas.Location = New System.Drawing.Point(47, 351)
+        Me.GridDatosSalidas.Location = New System.Drawing.Point(347, 291)
         Me.GridDatosSalidas.Name = "GridDatosSalidas"
         Me.GridDatosSalidas.SelectionMode = SourceGrid.GridSelectionMode.Row
         Me.GridDatosSalidas.Size = New System.Drawing.Size(424, 129)
@@ -195,10 +175,10 @@ Partial Class Caja
         '
         Me.Label6.AutoSize = True
         Me.Label6.BackColor = System.Drawing.Color.Transparent
-        Me.Label6.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(274, 485)
+        Me.Label6.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Location = New System.Drawing.Point(574, 423)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(64, 22)
+        Me.Label6.Size = New System.Drawing.Size(53, 19)
         Me.Label6.TabIndex = 233
         Me.Label6.Text = "Total:"
         '
@@ -206,132 +186,109 @@ Partial Class Caja
         '
         Me.lblSalDinero.AutoSize = True
         Me.lblSalDinero.BackColor = System.Drawing.Color.Transparent
-        Me.lblSalDinero.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSalDinero.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblSalDinero.ForeColor = System.Drawing.Color.Teal
-        Me.lblSalDinero.Location = New System.Drawing.Point(373, 483)
+        Me.lblSalDinero.Location = New System.Drawing.Point(673, 421)
         Me.lblSalDinero.Name = "lblSalDinero"
-        Me.lblSalDinero.Size = New System.Drawing.Size(60, 24)
+        Me.lblSalDinero.Size = New System.Drawing.Size(53, 19)
         Me.lblSalDinero.TabIndex = 234
-        Me.lblSalDinero.Text = "$0.00"
+        Me.lblSalDinero.Text = "$ 0.00"
         '
-        'lblTotal
+        'Label2
         '
-        Me.lblTotal.AutoSize = True
-        Me.lblTotal.BackColor = System.Drawing.Color.Transparent
-        Me.lblTotal.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTotal.ForeColor = System.Drawing.Color.Teal
-        Me.lblTotal.Location = New System.Drawing.Point(725, 290)
-        Me.lblTotal.Name = "lblTotal"
-        Me.lblTotal.Size = New System.Drawing.Size(59, 22)
-        Me.lblTotal.TabIndex = 244
-        Me.lblTotal.Text = "$0.00"
+        Me.Label2.AllowDrop = True
+        Me.Label2.AutoSize = True
+        Me.Label2.BackColor = System.Drawing.Color.Transparent
+        Me.Label2.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.DarkGreen
+        Me.Label2.Location = New System.Drawing.Point(343, 450)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(107, 19)
+        Me.Label2.TabIndex = 246
+        Me.Label2.Text = "Venta del día"
         '
-        'Label14
+        'GridDatosVenta
         '
-        Me.Label14.AutoSize = True
-        Me.Label14.BackColor = System.Drawing.Color.Transparent
-        Me.Label14.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.Location = New System.Drawing.Point(611, 290)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(64, 22)
-        Me.Label14.TabIndex = 243
-        Me.Label14.Text = "Total:"
+        Me.GridDatosVenta.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.GridDatosVenta.DeleteQuestionMessage = ""
+        Me.GridDatosVenta.DeleteRowsWithDeleteKey = False
+        Me.GridDatosVenta.FixedRows = 1
+        Me.GridDatosVenta.Location = New System.Drawing.Point(347, 472)
+        Me.GridDatosVenta.Name = "GridDatosVenta"
+        Me.GridDatosVenta.SelectionMode = SourceGrid.GridSelectionMode.Row
+        Me.GridDatosVenta.Size = New System.Drawing.Size(424, 129)
+        Me.GridDatosVenta.TabIndex = 247
+        Me.GridDatosVenta.TabStop = True
+        Me.GridDatosVenta.ToolTipText = ""
         '
-        'Label3
+        'Label5
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.BackColor = System.Drawing.Color.Transparent
-        Me.Label3.Font = New System.Drawing.Font("Arial", 12.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.Color.DarkSlateGray
-        Me.Label3.Location = New System.Drawing.Point(500, 144)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(116, 19)
-        Me.Label3.TabIndex = 235
-        Me.Label3.Text = "Dinero inicial:"
+        Me.Label5.AutoSize = True
+        Me.Label5.BackColor = System.Drawing.Color.Transparent
+        Me.Label5.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.ForeColor = System.Drawing.Color.Teal
+        Me.Label5.Location = New System.Drawing.Point(673, 602)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(53, 19)
+        Me.Label5.TabIndex = 249
+        Me.Label5.Text = "$ 0.00"
         '
-        'lblDineroCaja
+        'Label10
         '
-        Me.lblDineroCaja.AutoSize = True
-        Me.lblDineroCaja.BackColor = System.Drawing.Color.Transparent
-        Me.lblDineroCaja.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDineroCaja.ForeColor = System.Drawing.Color.Navy
-        Me.lblDineroCaja.Location = New System.Drawing.Point(725, 144)
-        Me.lblDineroCaja.Name = "lblDineroCaja"
-        Me.lblDineroCaja.Size = New System.Drawing.Size(59, 22)
-        Me.lblDineroCaja.TabIndex = 236
-        Me.lblDineroCaja.Text = "$0.00"
+        Me.Label10.AutoSize = True
+        Me.Label10.BackColor = System.Drawing.Color.Transparent
+        Me.Label10.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.Location = New System.Drawing.Point(574, 604)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(53, 19)
+        Me.Label10.TabIndex = 248
+        Me.Label10.Text = "Total:"
         '
-        'Label8
+        'Label9
         '
-        Me.Label8.AutoSize = True
-        Me.Label8.BackColor = System.Drawing.Color.Transparent
-        Me.Label8.Font = New System.Drawing.Font("Arial", 12.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.ForeColor = System.Drawing.Color.DarkSlateGray
-        Me.Label8.Location = New System.Drawing.Point(500, 173)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(86, 19)
-        Me.Label8.TabIndex = 237
-        Me.Label8.Text = "Entradas:"
+        Me.Label9.AllowDrop = True
+        Me.Label9.AutoSize = True
+        Me.Label9.BackColor = System.Drawing.Color.Transparent
+        Me.Label9.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.ForeColor = System.Drawing.Color.DarkGreen
+        Me.Label9.Location = New System.Drawing.Point(29, 61)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(143, 22)
+        Me.Label9.TabIndex = 250
+        Me.Label9.Text = "Dinero en caja"
         '
-        'Label7
+        'GroupBox1
         '
-        Me.Label7.AutoSize = True
-        Me.Label7.BackColor = System.Drawing.Color.Transparent
-        Me.Label7.Font = New System.Drawing.Font("Arial", 12.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.ForeColor = System.Drawing.Color.DarkSlateGray
-        Me.Label7.Location = New System.Drawing.Point(500, 202)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(127, 19)
-        Me.Label7.TabIndex = 238
-        Me.Label7.Text = "Ventas totales:"
+        Me.GroupBox1.Controls.Add(Me.lblCanRet)
+        Me.GroupBox1.Controls.Add(Me.lblRetirar)
+        Me.GroupBox1.Controls.Add(Me.lblTotal)
+        Me.GroupBox1.Controls.Add(Me.Label14)
+        Me.GroupBox1.Controls.Add(Me.Label3)
+        Me.GroupBox1.Controls.Add(Me.lblDineroCaja)
+        Me.GroupBox1.Controls.Add(Me.Label8)
+        Me.GroupBox1.Controls.Add(Me.Label7)
+        Me.GroupBox1.Controls.Add(Me.lblTotalEntradas)
+        Me.GroupBox1.Controls.Add(Me.lblVentasTotales)
+        Me.GroupBox1.Controls.Add(Me.Label11)
+        Me.GroupBox1.Controls.Add(Me.lblSalidas)
+        Me.GroupBox1.Location = New System.Drawing.Point(33, 94)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(289, 348)
+        Me.GroupBox1.TabIndex = 263
+        Me.GroupBox1.TabStop = False
         '
-        'lblTotalEntradas
+        'lblCanRet
         '
-        Me.lblTotalEntradas.AutoSize = True
-        Me.lblTotalEntradas.BackColor = System.Drawing.Color.Transparent
-        Me.lblTotalEntradas.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTotalEntradas.ForeColor = System.Drawing.Color.Teal
-        Me.lblTotalEntradas.Location = New System.Drawing.Point(725, 173)
-        Me.lblTotalEntradas.Name = "lblTotalEntradas"
-        Me.lblTotalEntradas.Size = New System.Drawing.Size(59, 22)
-        Me.lblTotalEntradas.TabIndex = 239
-        Me.lblTotalEntradas.Text = "$0.00"
-        '
-        'lblVentasTotales
-        '
-        Me.lblVentasTotales.AutoSize = True
-        Me.lblVentasTotales.BackColor = System.Drawing.Color.Transparent
-        Me.lblVentasTotales.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblVentasTotales.ForeColor = System.Drawing.Color.Teal
-        Me.lblVentasTotales.Location = New System.Drawing.Point(725, 202)
-        Me.lblVentasTotales.Name = "lblVentasTotales"
-        Me.lblVentasTotales.Size = New System.Drawing.Size(59, 22)
-        Me.lblVentasTotales.TabIndex = 240
-        Me.lblVentasTotales.Text = "$0.00"
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.BackColor = System.Drawing.Color.Transparent
-        Me.Label11.Font = New System.Drawing.Font("Arial", 12.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.ForeColor = System.Drawing.Color.DarkSlateGray
-        Me.Label11.Location = New System.Drawing.Point(500, 231)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(71, 19)
-        Me.Label11.TabIndex = 241
-        Me.Label11.Text = "Salidas:"
-        '
-        'lblSalidas
-        '
-        Me.lblSalidas.AutoSize = True
-        Me.lblSalidas.BackColor = System.Drawing.Color.Transparent
-        Me.lblSalidas.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblSalidas.ForeColor = System.Drawing.Color.Teal
-        Me.lblSalidas.Location = New System.Drawing.Point(725, 231)
-        Me.lblSalidas.Name = "lblSalidas"
-        Me.lblSalidas.Size = New System.Drawing.Size(59, 22)
-        Me.lblSalidas.TabIndex = 242
-        Me.lblSalidas.Text = "$0.00"
+        Me.lblCanRet.AutoSize = True
+        Me.lblCanRet.BackColor = System.Drawing.Color.Transparent
+        Me.lblCanRet.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCanRet.ForeColor = System.Drawing.Color.Navy
+        Me.lblCanRet.Location = New System.Drawing.Point(196, 294)
+        Me.lblCanRet.Name = "lblCanRet"
+        Me.lblCanRet.Size = New System.Drawing.Size(53, 19)
+        Me.lblCanRet.TabIndex = 273
+        Me.lblCanRet.Text = "$ 0.00"
+        Me.lblCanRet.Visible = False
         '
         'lblRetirar
         '
@@ -339,30 +296,144 @@ Partial Class Caja
         Me.lblRetirar.BackColor = System.Drawing.Color.Transparent
         Me.lblRetirar.Font = New System.Drawing.Font("Arial", 12.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblRetirar.ForeColor = System.Drawing.Color.DarkSlateGray
-        Me.lblRetirar.Location = New System.Drawing.Point(500, 351)
+        Me.lblRetirar.Location = New System.Drawing.Point(8, 294)
         Me.lblRetirar.Name = "lblRetirar"
         Me.lblRetirar.Size = New System.Drawing.Size(140, 19)
-        Me.lblRetirar.TabIndex = 245
+        Me.lblRetirar.TabIndex = 272
         Me.lblRetirar.Text = "Por favor retire: "
         Me.lblRetirar.Visible = False
+        '
+        'lblTotal
+        '
+        Me.lblTotal.AutoSize = True
+        Me.lblTotal.BackColor = System.Drawing.Color.Transparent
+        Me.lblTotal.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTotal.ForeColor = System.Drawing.Color.Teal
+        Me.lblTotal.Location = New System.Drawing.Point(196, 212)
+        Me.lblTotal.Name = "lblTotal"
+        Me.lblTotal.Size = New System.Drawing.Size(53, 19)
+        Me.lblTotal.TabIndex = 271
+        Me.lblTotal.Text = "$ 0.00"
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.BackColor = System.Drawing.Color.Transparent
+        Me.Label14.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label14.Location = New System.Drawing.Point(119, 212)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(53, 19)
+        Me.Label14.TabIndex = 270
+        Me.Label14.Text = "Total:"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.BackColor = System.Drawing.Color.Transparent
+        Me.Label3.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.Color.DarkSlateGray
+        Me.Label3.Location = New System.Drawing.Point(8, 31)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(114, 19)
+        Me.Label3.TabIndex = 262
+        Me.Label3.Text = "Dinero inicial:"
+        '
+        'lblDineroCaja
+        '
+        Me.lblDineroCaja.AutoSize = True
+        Me.lblDineroCaja.BackColor = System.Drawing.Color.Transparent
+        Me.lblDineroCaja.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDineroCaja.ForeColor = System.Drawing.Color.Navy
+        Me.lblDineroCaja.Location = New System.Drawing.Point(196, 31)
+        Me.lblDineroCaja.Name = "lblDineroCaja"
+        Me.lblDineroCaja.Size = New System.Drawing.Size(53, 19)
+        Me.lblDineroCaja.TabIndex = 263
+        Me.lblDineroCaja.Text = "$ 0.00"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.BackColor = System.Drawing.Color.Transparent
+        Me.Label8.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.ForeColor = System.Drawing.Color.DarkSlateGray
+        Me.Label8.Location = New System.Drawing.Point(8, 74)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(84, 19)
+        Me.Label8.TabIndex = 264
+        Me.Label8.Text = "Entradas:"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.BackColor = System.Drawing.Color.Transparent
+        Me.Label7.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.ForeColor = System.Drawing.Color.DarkSlateGray
+        Me.Label7.Location = New System.Drawing.Point(8, 103)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(123, 19)
+        Me.Label7.TabIndex = 265
+        Me.Label7.Text = "Ventas totales:"
+        '
+        'lblTotalEntradas
+        '
+        Me.lblTotalEntradas.AutoSize = True
+        Me.lblTotalEntradas.BackColor = System.Drawing.Color.Transparent
+        Me.lblTotalEntradas.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTotalEntradas.ForeColor = System.Drawing.Color.Teal
+        Me.lblTotalEntradas.Location = New System.Drawing.Point(196, 74)
+        Me.lblTotalEntradas.Name = "lblTotalEntradas"
+        Me.lblTotalEntradas.Size = New System.Drawing.Size(53, 19)
+        Me.lblTotalEntradas.TabIndex = 266
+        Me.lblTotalEntradas.Text = "$ 0.00"
+        '
+        'lblVentasTotales
+        '
+        Me.lblVentasTotales.AutoSize = True
+        Me.lblVentasTotales.BackColor = System.Drawing.Color.Transparent
+        Me.lblVentasTotales.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblVentasTotales.ForeColor = System.Drawing.Color.Teal
+        Me.lblVentasTotales.Location = New System.Drawing.Point(196, 103)
+        Me.lblVentasTotales.Name = "lblVentasTotales"
+        Me.lblVentasTotales.Size = New System.Drawing.Size(53, 19)
+        Me.lblVentasTotales.TabIndex = 267
+        Me.lblVentasTotales.Text = "$ 0.00"
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.BackColor = System.Drawing.Color.Transparent
+        Me.Label11.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.ForeColor = System.Drawing.Color.DarkSlateGray
+        Me.Label11.Location = New System.Drawing.Point(8, 153)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(71, 19)
+        Me.Label11.TabIndex = 268
+        Me.Label11.Text = "Salidas:"
+        '
+        'lblSalidas
+        '
+        Me.lblSalidas.AutoSize = True
+        Me.lblSalidas.BackColor = System.Drawing.Color.Transparent
+        Me.lblSalidas.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSalidas.ForeColor = System.Drawing.Color.Teal
+        Me.lblSalidas.Location = New System.Drawing.Point(196, 153)
+        Me.lblSalidas.Name = "lblSalidas"
+        Me.lblSalidas.Size = New System.Drawing.Size(53, 19)
+        Me.lblSalidas.TabIndex = 269
+        Me.lblSalidas.Text = "$ 0.00"
         '
         'Caja
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.ClientSize = New System.Drawing.Size(797, 549)
-        Me.Controls.Add(Me.lblRetirar)
-        Me.Controls.Add(Me.lblTotal)
-        Me.Controls.Add(Me.Label14)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.lblDineroCaja)
-        Me.Controls.Add(Me.Label8)
-        Me.Controls.Add(Me.Label7)
-        Me.Controls.Add(Me.lblTotalEntradas)
-        Me.Controls.Add(Me.lblVentasTotales)
-        Me.Controls.Add(Me.Label11)
-        Me.Controls.Add(Me.lblSalidas)
+        Me.ClientSize = New System.Drawing.Size(811, 746)
+        Me.Controls.Add(Me.Label9)
+        Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.Label10)
+        Me.Controls.Add(Me.GridDatosVenta)
+        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.lblSalDinero)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.GridDatosSalidas)
@@ -371,10 +442,8 @@ Partial Class Caja
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.Label16)
         Me.Controls.Add(Me.Label15)
-        Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.lblEntradaDin)
         Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.Label1)
         Me.ForeColor = System.Drawing.Color.DarkSlateGray
         Me.Name = "Caja"
         Me.Text = "Caja"
@@ -382,14 +451,14 @@ Partial Class Caja
         Me.StatusStrip1.PerformLayout()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents lblEntradaDin As System.Windows.Forms.Label
-    Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents Label15 As System.Windows.Forms.Label
     Friend WithEvents Label16 As System.Windows.Forms.Label
     Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
@@ -400,6 +469,13 @@ Partial Class Caja
     Friend WithEvents GridDatosSalidas As SourceGrid.DataGrid
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents lblSalDinero As System.Windows.Forms.Label
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents GridDatosVenta As SourceGrid.DataGrid
+    Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents Label10 As System.Windows.Forms.Label
+    Friend WithEvents Label9 As System.Windows.Forms.Label
+    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
+    Friend WithEvents lblRetirar As System.Windows.Forms.Label
     Friend WithEvents lblTotal As System.Windows.Forms.Label
     Friend WithEvents Label14 As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label
@@ -410,5 +486,5 @@ Partial Class Caja
     Friend WithEvents lblVentasTotales As System.Windows.Forms.Label
     Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents lblSalidas As System.Windows.Forms.Label
-    Friend WithEvents lblRetirar As System.Windows.Forms.Label
+    Friend WithEvents lblCanRet As System.Windows.Forms.Label
 End Class
