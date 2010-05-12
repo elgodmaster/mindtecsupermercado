@@ -176,7 +176,7 @@ Partial Class Cat_Clientes
         'AbonarToolStripButton
         '
         Me.AbonarToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.AbonarToolStripButton.Image = Global.SuperMercado.My.Resources.Resources.money_add1
+        Me.AbonarToolStripButton.Image = CType(resources.GetObject("AbonarToolStripButton.Image"), System.Drawing.Image)
         Me.AbonarToolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.AbonarToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.AbonarToolStripButton.Name = "AbonarToolStripButton"
