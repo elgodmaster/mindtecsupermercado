@@ -606,4 +606,14 @@ Public Class ModuloVentas
 
 #End Region
 
+#Region " Boton Credito "
+    Private Sub Btn_Credito_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Btn_Credito.Click
+        Dim Total As String = ""
+        Total = Mid(Me.LblTotal.Text, 2, Len(Me.LblTotal.Text))
+        TotalVenta = Double.Parse(Total)
+
+
+    End Sub
+#End Region
+
 End Class
