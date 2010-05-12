@@ -100,7 +100,7 @@
         If Not ObjRet.DS Is DBNull.Value Then
             If Not ObjRet.DS.Tables Is DBNull.Value Then
                 If ObjRet.DS.Tables(2).Rows.Count > 0 Then
-                    For i As Integer = 0 To ObjRet.DS.Tables(1).Rows.Count - 1
+                    For i As Integer = 0 To ObjRet.DS.Tables(2).Rows.Count - 1
                         dsDatosVentas.Tables(0).ImportRow(ObjRet.DS.Tables(2).Rows(i))
                     Next
                     dsDatosVentas.Tables(0).AcceptChanges()
@@ -133,6 +133,7 @@
 
         lblEntradaDin.Text = "$ " & sumEnt
         lblSalDinero.Text = "$ " & sumSal
+        lblGridVentaTotal.Text = "$ " & ventasTotal
 
         lblDineroCaja.Text = "$ " & dinIni
         lblTotalEntradas.Text = "$ " & sumEnt
