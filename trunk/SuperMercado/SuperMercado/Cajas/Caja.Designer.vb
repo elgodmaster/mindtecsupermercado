@@ -37,7 +37,7 @@ Partial Class Caja
         Me.lblSalDinero = New System.Windows.Forms.Label
         Me.Label2 = New System.Windows.Forms.Label
         Me.GridDatosVenta = New SourceGrid.DataGrid
-        Me.Label5 = New System.Windows.Forms.Label
+        Me.lblGridVentaTotal = New System.Windows.Forms.Label
         Me.Label10 = New System.Windows.Forms.Label
         Me.Label9 = New System.Windows.Forms.Label
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
@@ -221,17 +221,17 @@ Partial Class Caja
         Me.GridDatosVenta.TabStop = True
         Me.GridDatosVenta.ToolTipText = ""
         '
-        'Label5
+        'lblGridVentaTotal
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.BackColor = System.Drawing.Color.Transparent
-        Me.Label5.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.ForeColor = System.Drawing.Color.Teal
-        Me.Label5.Location = New System.Drawing.Point(673, 602)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(53, 19)
-        Me.Label5.TabIndex = 249
-        Me.Label5.Text = "$ 0.00"
+        Me.lblGridVentaTotal.AutoSize = True
+        Me.lblGridVentaTotal.BackColor = System.Drawing.Color.Transparent
+        Me.lblGridVentaTotal.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblGridVentaTotal.ForeColor = System.Drawing.Color.Teal
+        Me.lblGridVentaTotal.Location = New System.Drawing.Point(673, 602)
+        Me.lblGridVentaTotal.Name = "lblGridVentaTotal"
+        Me.lblGridVentaTotal.Size = New System.Drawing.Size(53, 19)
+        Me.lblGridVentaTotal.TabIndex = 249
+        Me.lblGridVentaTotal.Text = "$ 0.00"
         '
         'Label10
         '
@@ -430,7 +430,7 @@ Partial Class Caja
         Me.ClientSize = New System.Drawing.Size(811, 746)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.GroupBox1)
-        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.lblGridVentaTotal)
         Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.GridDatosVenta)
         Me.Controls.Add(Me.Label2)
@@ -471,7 +471,7 @@ Partial Class Caja
     Friend WithEvents lblSalDinero As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents GridDatosVenta As SourceGrid.DataGrid
-    Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents lblGridVentaTotal As System.Windows.Forms.Label
     Friend WithEvents Label10 As System.Windows.Forms.Label
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
