@@ -28,12 +28,9 @@ Partial Class Cat_Clientes
         Me.AbonarToolStrip = New System.Windows.Forms.ToolStrip
         Me.Limpiar = New System.Windows.Forms.ToolStripButton
         Me.Grabar = New System.Windows.Forms.ToolStripButton
-        Me.AbonarToolStripButton = New System.Windows.Forms.ToolStripButton
         Me.Label4 = New System.Windows.Forms.Label
         Me.AdeudosTabPage = New System.Windows.Forms.TabPage
-        Me.AbonosGridDatos = New SourceGrid.DataGrid
-        Me.Label23 = New System.Windows.Forms.Label
-        Me.VentaGridDatos = New SourceGrid.DataGrid
+        Me.GridDatosCuentas = New SourceGrid.DataGrid
         Me.Label22 = New System.Windows.Forms.Label
         Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker
         Me.Label21 = New System.Windows.Forms.Label
@@ -145,7 +142,7 @@ Partial Class Cat_Clientes
         'AbonarToolStrip
         '
         Me.AbonarToolStrip.AutoSize = False
-        Me.AbonarToolStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Limpiar, Me.Grabar, Me.AbonarToolStripButton})
+        Me.AbonarToolStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Limpiar, Me.Grabar})
         Me.AbonarToolStrip.Location = New System.Drawing.Point(0, 0)
         Me.AbonarToolStrip.Name = "AbonarToolStrip"
         Me.AbonarToolStrip.Size = New System.Drawing.Size(1016, 48)
@@ -173,16 +170,6 @@ Partial Class Cat_Clientes
         Me.Grabar.Size = New System.Drawing.Size(36, 45)
         Me.Grabar.Text = "Grabar"
         '
-        'AbonarToolStripButton
-        '
-        Me.AbonarToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.AbonarToolStripButton.Image = CType(resources.GetObject("AbonarToolStripButton.Image"), System.Drawing.Image)
-        Me.AbonarToolStripButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.AbonarToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.AbonarToolStripButton.Name = "AbonarToolStripButton"
-        Me.AbonarToolStripButton.Size = New System.Drawing.Size(36, 45)
-        Me.AbonarToolStripButton.Text = "Abonar"
-        '
         'Label4
         '
         Me.Label4.AutoSize = True
@@ -196,9 +183,7 @@ Partial Class Cat_Clientes
         '
         'AdeudosTabPage
         '
-        Me.AdeudosTabPage.Controls.Add(Me.AbonosGridDatos)
-        Me.AdeudosTabPage.Controls.Add(Me.Label23)
-        Me.AdeudosTabPage.Controls.Add(Me.VentaGridDatos)
+        Me.AdeudosTabPage.Controls.Add(Me.GridDatosCuentas)
         Me.AdeudosTabPage.Controls.Add(Me.Label22)
         Me.AdeudosTabPage.Controls.Add(Me.DateTimePicker1)
         Me.AdeudosTabPage.Controls.Add(Me.Label21)
@@ -214,42 +199,19 @@ Partial Class Cat_Clientes
         Me.AdeudosTabPage.Text = "Adeudos"
         Me.AdeudosTabPage.UseVisualStyleBackColor = True
         '
-        'AbonosGridDatos
+        'GridDatosCuentas
         '
-        Me.AbonosGridDatos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.AbonosGridDatos.DeleteQuestionMessage = ""
-        Me.AbonosGridDatos.DeleteRowsWithDeleteKey = False
-        Me.AbonosGridDatos.FixedRows = 1
-        Me.AbonosGridDatos.Location = New System.Drawing.Point(18, 312)
-        Me.AbonosGridDatos.Name = "AbonosGridDatos"
-        Me.AbonosGridDatos.SelectionMode = SourceGrid.GridSelectionMode.Row
-        Me.AbonosGridDatos.Size = New System.Drawing.Size(394, 129)
-        Me.AbonosGridDatos.TabIndex = 34
-        Me.AbonosGridDatos.TabStop = True
-        Me.AbonosGridDatos.ToolTipText = ""
-        '
-        'Label23
-        '
-        Me.Label23.AutoSize = True
-        Me.Label23.Location = New System.Drawing.Point(15, 286)
-        Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(63, 14)
-        Me.Label23.TabIndex = 33
-        Me.Label23.Text = "Abonos: "
-        '
-        'VentaGridDatos
-        '
-        Me.VentaGridDatos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.VentaGridDatos.DeleteQuestionMessage = ""
-        Me.VentaGridDatos.DeleteRowsWithDeleteKey = False
-        Me.VentaGridDatos.FixedRows = 1
-        Me.VentaGridDatos.Location = New System.Drawing.Point(18, 145)
-        Me.VentaGridDatos.Name = "VentaGridDatos"
-        Me.VentaGridDatos.SelectionMode = SourceGrid.GridSelectionMode.Row
-        Me.VentaGridDatos.Size = New System.Drawing.Size(633, 129)
-        Me.VentaGridDatos.TabIndex = 32
-        Me.VentaGridDatos.TabStop = True
-        Me.VentaGridDatos.ToolTipText = ""
+        Me.GridDatosCuentas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.GridDatosCuentas.DeleteQuestionMessage = ""
+        Me.GridDatosCuentas.DeleteRowsWithDeleteKey = False
+        Me.GridDatosCuentas.FixedRows = 1
+        Me.GridDatosCuentas.Location = New System.Drawing.Point(18, 145)
+        Me.GridDatosCuentas.Name = "GridDatosCuentas"
+        Me.GridDatosCuentas.SelectionMode = SourceGrid.GridSelectionMode.Row
+        Me.GridDatosCuentas.Size = New System.Drawing.Size(649, 274)
+        Me.GridDatosCuentas.TabIndex = 32
+        Me.GridDatosCuentas.TabStop = True
+        Me.GridDatosCuentas.ToolTipText = ""
         '
         'Label22
         '
@@ -860,8 +822,5 @@ Partial Class Cat_Clientes
     Friend WithEvents Label13 As System.Windows.Forms.Label
     Friend WithEvents DateTimePicker1 As System.Windows.Forms.DateTimePicker
     Friend WithEvents Label22 As System.Windows.Forms.Label
-    Friend WithEvents AbonosGridDatos As SourceGrid.DataGrid
-    Friend WithEvents Label23 As System.Windows.Forms.Label
-    Friend WithEvents VentaGridDatos As SourceGrid.DataGrid
-    Friend WithEvents AbonarToolStripButton As System.Windows.Forms.ToolStripButton
+    Friend WithEvents GridDatosCuentas As SourceGrid.DataGrid
 End Class

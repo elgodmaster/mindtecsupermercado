@@ -12,6 +12,11 @@ Public Class Cat_Clientes
     Dim dtAbonos As DataTable
     Dim viewDatosAbonos As Object
     Dim DsViewEntradas As Object
+    ' Grid datos para CUENTAS
+    Dim dsDatosCuentas As DataSet
+    Dim dtCuentas As DataTable
+    Dim viewDatosCuentas As Object
+
 #End Region
 
 #Region " Eventos Principales "
@@ -30,7 +35,6 @@ Public Class Cat_Clientes
         'Se crea la ventana para abonos.
 
         ' Ocultar algunos elementos.
-        AbonarToolStripButton.Visible = False
         ClientesTabControl.Visible = False
         ' Pie de Pagina Mensaje
         MensajePiePagina.Text = "Esc=Salir Enter=Avanzar F2=Catálogo F4=Limpiar Pantalla"
@@ -49,9 +53,9 @@ Public Class Cat_Clientes
         CiudadesComboBox.DataSource = ObjRet.DS.Tables(0)
         CiudadesComboBox.DisplayMember = ObjRet.DS.Tables(0).Columns(0).Caption.ToString
 
-        'Se crea el grid 
-        CrearDsDatosABONOS()
-        ConfiguraGridDatosABONOS()
+        CreardsDatosCuentas()
+        ConfiguraGridDatosCuentas()
+
     End Sub
 
     Private Sub AbonarToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -174,7 +178,6 @@ Public Class Cat_Clientes
 
         'Limpia el DSdatosAbonos
         dsDatosAbonos = Nothing
-        AbonarToolStripButton.Visible = False
         ClientesTabControl.Visible = False
 
         'PiePagina
@@ -234,7 +237,6 @@ Public Class Cat_Clientes
     End Sub
 
     Private Sub ClientesTabControl_Selected(ByVal sender As System.Object, ByVal e As System.Windows.Forms.TabControlEventArgs) Handles ClientesTabControl.Selected
-        AbonarToolStripButton.Visible = True
     End Sub
 
 #End Region
@@ -282,45 +284,46 @@ Public Class Cat_Clientes
     End Sub
 #End Region
 
-#Region "Grid Datos ABONOS"
+#Region "  Grid Datos CUENTAS  "
 
-    Sub CrearDsDatosABONOS()
-        dsDatosAbonos = New DataSet("Root")
-        dtAbonos = New DataTable("Table")
-        dsDatosAbonos.Tables.Add(dtAbonos)
+    Sub CreardsDatosCuentas()
+
+        dsDatosCuentas = New DataSet("Root")
+        dtCuentas = New DataTable("Table")
+        dsDatosCuentas.Tables.Add(dtCuentas)
 
         'DsDatos.Tables("Table").Columns.Add("C0", GetType(String))
         'COLUMNAS
-        dsDatosAbonos.Tables("Table").Columns.Add("C1", GetType(String))
-        dsDatosAbonos.Tables("Table").Columns.Add("C2", GetType(String))
+        dsDatosCuentas.Tables("Table").Columns.Add("C1", GetType(String))
+        dsDatosCuentas.Tables("Table").Columns.Add("C2", GetType(String))
 
     End Sub
 
-    Sub ConfiguraGridDatosABONOS()
-        viewDatosAbonos = dsDatosAbonos.Tables("Table").DefaultView
+    Sub ConfiguraGridDatosCuentas()
+        viewDatosCuentas = dsDatosCuentas.Tables("Table").DefaultView
 
-        viewDatosAbonos.AllowEdit = False
-        viewDatosAbonos.AllowNew = False
-        viewDatosAbonos.AllowDelete = True
+        viewDatosCuentas.AllowEdit = False
+        viewDatosCuentas.AllowNew = False
+        viewDatosCuentas.AllowDelete = True
 
-        AbonosGridDatos.FixedRows = 1
-        AbonosGridDatos.FixedColumns = 1
-        AbonosGridDatos.DeleteRowsWithDeleteKey = False
-        AbonosGridDatos.DeleteQuestionMessage = Nothing
+        GridDatosCuentas.FixedRows = 1
+        GridDatosCuentas.FixedColumns = 1
+        GridDatosCuentas.DeleteRowsWithDeleteKey = False
+        GridDatosCuentas.DeleteQuestionMessage = Nothing
 
         ' Renglon encabezado
 
-        AbonosGridDatos.Columns.Insert(0, SourceGrid.DataGridColumn.CreateRowHeader(AbonosGridDatos))
+        GridDatosCuentas.Columns.Insert(0, SourceGrid.DataGridColumn.CreateRowHeader(GridDatosCuentas))
 
-        Dim BindList2 As DevAge.ComponentModel.IBoundList = New DevAge.ComponentModel.BoundDataView(viewDatosAbonos)
+        Dim BindList2 As DevAge.ComponentModel.IBoundList = New DevAge.ComponentModel.BoundDataView(viewDatosCuentas)
 
         ' Se crean las columnas.
-        GridDatosCrearColumnasABONOS(AbonosGridDatos.Columns, BindList2)
+        GridDatosCrearColumnasCUENTAS(GridDatosCuentas.Columns, BindList2)
 
-        AbonosGridDatos.DataSource = BindList2
+        GridDatosCuentas.DataSource = BindList2
 
         Dim cColorHeader As Color
-        cColorHeader = Color.FromArgb(CType(CType(250, Byte), Integer), CType(CType(194, Byte), Integer), CType(CType(5, Byte), Integer))
+        cColorHeader = Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(168, Byte), Integer))
 
         'Vista columna encabezado
 
@@ -334,12 +337,12 @@ Public Class Cat_Clientes
         viewcolumnheader.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
 
         'COLUMNAS
-        AbonosGridDatos.GetCell(0, 1).View = viewcolumnheader
-        AbonosGridDatos.GetCell(0, 2).View = viewcolumnheader
+        GridDatosCuentas.GetCell(0, 1).View = viewcolumnheader
+        GridDatosCuentas.GetCell(0, 2).View = viewcolumnheader
 
     End Sub
 
-    Private Sub GridDatosCrearColumnasABONOS(ByVal columns As SourceGrid.DataGridColumns, ByVal Bindlist As DevAge.ComponentModel.IBoundList)
+    Private Sub GridDatosCrearColumnasCUENTAS(ByVal columns As SourceGrid.DataGridColumns, ByVal Bindlist As DevAge.ComponentModel.IBoundList)
         'Borders
 
         Dim border As DevAge.Drawing.RectangleBorder = New DevAge.Drawing.RectangleBorder(New DevAge.Drawing.BorderLine(Color.Black), New DevAge.Drawing.BorderLine(Color.Black))
@@ -372,19 +375,19 @@ Public Class Cat_Clientes
         Dim GridColumn As SourceGrid.DataGridColumn
 
         'COLUMNAS
-        GridColumn = AbonosGridDatos.Columns.Add("C1", "Monto", EditorCustom)
+        GridColumn = GridDatosCuentas.Columns.Add("C1", "Departamento", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
         GridColumn.DataCell.View = viewNormal
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
-        GridColumn = AbonosGridDatos.Columns.Add("C2", "Fecha", EditorCustom)
+        GridColumn = GridDatosCuentas.Columns.Add("C2", "Total", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
         GridColumn.DataCell.View = viewNormal
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
-        AbonosGridDatos.Columns(0).Visible = False
-        AbonosGridDatos.Columns.SetWidth(1, 128)
-        AbonosGridDatos.Columns.SetWidth(2, 220)
+        GridDatosCuentas.Columns(0).Visible = False
+        GridDatosCuentas.Columns.SetWidth(1, 294)
+        GridDatosCuentas.Columns.SetWidth(2, 128)
 
     End Sub
 
@@ -394,13 +397,6 @@ Public Class Cat_Clientes
                 Me.Close()
         End Select
     End Sub
-
 #End Region
 
-   
-    Private Sub AbonarToolStripButton_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AbonarToolStripButton.Click
-        Dim objAbono As New Cat_Clientes_Abonos()
-        objAbono.StartPosition = FormStartPosition.CenterScreen
-        objAbono.ShowDialog()
-    End Sub
 End Class
