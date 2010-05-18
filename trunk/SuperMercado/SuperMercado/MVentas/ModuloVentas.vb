@@ -21,7 +21,7 @@ Public Class ModuloVentas
             Case Keys.Escape
                 'Cerrar()
             Case Keys.F4
-                'Limpiar.PerformClick()
+                LimpiarPantalla()
             Case Keys.F5
                 Me.Agregar.PerformClick()
             Case Keys.F6
@@ -271,6 +271,7 @@ Public Class ModuloVentas
 
         If TotalVenta = 0 Then
             AceptarVenta.Enabled = False
+            Me.GroupBoxPagos.Visible = False
         End If
 
         Me.LblTotal.Text = FormatCurrency(TotalVenta)
@@ -452,8 +453,8 @@ Public Class ModuloVentas
 
 #Region " Limpiar Pantalla "
     Sub LimpiarPantalla()
-        DsDatos.Tables("Table").Clear()
-        DsDatos.AcceptChanges()
+        Me.DsDatos.Tables("Table").Clear()
+        Me.DsDatos.AcceptChanges()
         Codigo_Producto.Text = ""
         TxtCantidad.Text = "0.00"
         LblIva.Text = "$0.00"
@@ -612,8 +613,21 @@ Public Class ModuloVentas
         Total = Mid(Me.LblTotal.Text, 2, Len(Me.LblTotal.Text))
         TotalVenta = Double.Parse(Total)
 
-
+        Dim Creditos As New Credito
+        Creditos.VentaCreditos(TotalVenta, DsDatos, Usuario)
+        Creditos.WindowState = FormWindowState.Normal
+        Creditos.StartPosition = FormStartPosition.CenterScreen
+        Creditos.Show()
     End Sub
 #End Region
 
+    Private Sub Btn_Factura_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Btn_Factura.Click
+
+    End Sub
+
+    Friend Sub CreditosCerrar(ByVal x As Integer)
+        If x = 1 Then
+            LimpiarPantalla()
+        End If
+    End Sub
 End Class
