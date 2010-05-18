@@ -36,10 +36,8 @@ Partial Class Caja
         Me.Label6 = New System.Windows.Forms.Label
         Me.lblSalDinero = New System.Windows.Forms.Label
         Me.Label2 = New System.Windows.Forms.Label
-        Me.GridDatosVenta = New SourceGrid.DataGrid
         Me.lblGridVentaTotal = New System.Windows.Forms.Label
         Me.Label10 = New System.Windows.Forms.Label
-        Me.Label9 = New System.Windows.Forms.Label
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
         Me.lblCanRet = New System.Windows.Forms.Label
         Me.lblRetirar = New System.Windows.Forms.Label
@@ -53,6 +51,8 @@ Partial Class Caja
         Me.lblVentasTotales = New System.Windows.Forms.Label
         Me.Label11 = New System.Windows.Forms.Label
         Me.lblSalidas = New System.Windows.Forms.Label
+        Me.Label9 = New System.Windows.Forms.Label
+        Me.GridDatosVenta = New SourceGrid.DataGrid
         Me.StatusStrip1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -207,20 +207,6 @@ Partial Class Caja
         Me.Label2.TabIndex = 246
         Me.Label2.Text = "Venta del día"
         '
-        'GridDatosVenta
-        '
-        Me.GridDatosVenta.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.GridDatosVenta.DeleteQuestionMessage = ""
-        Me.GridDatosVenta.DeleteRowsWithDeleteKey = False
-        Me.GridDatosVenta.FixedRows = 1
-        Me.GridDatosVenta.Location = New System.Drawing.Point(347, 472)
-        Me.GridDatosVenta.Name = "GridDatosVenta"
-        Me.GridDatosVenta.SelectionMode = SourceGrid.GridSelectionMode.Row
-        Me.GridDatosVenta.Size = New System.Drawing.Size(424, 129)
-        Me.GridDatosVenta.TabIndex = 247
-        Me.GridDatosVenta.TabStop = True
-        Me.GridDatosVenta.ToolTipText = ""
-        '
         'lblGridVentaTotal
         '
         Me.lblGridVentaTotal.AutoSize = True
@@ -243,19 +229,6 @@ Partial Class Caja
         Me.Label10.Size = New System.Drawing.Size(53, 19)
         Me.Label10.TabIndex = 248
         Me.Label10.Text = "Total:"
-        '
-        'Label9
-        '
-        Me.Label9.AllowDrop = True
-        Me.Label9.AutoSize = True
-        Me.Label9.BackColor = System.Drawing.Color.Transparent
-        Me.Label9.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.ForeColor = System.Drawing.Color.DarkGreen
-        Me.Label9.Location = New System.Drawing.Point(29, 61)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(143, 22)
-        Me.Label9.TabIndex = 250
-        Me.Label9.Text = "Dinero en caja"
         '
         'GroupBox1
         '
@@ -320,7 +293,7 @@ Partial Class Caja
         Me.Label14.AutoSize = True
         Me.Label14.BackColor = System.Drawing.Color.Transparent
         Me.Label14.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.Location = New System.Drawing.Point(119, 212)
+        Me.Label14.Location = New System.Drawing.Point(74, 212)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(53, 19)
         Me.Label14.TabIndex = 270
@@ -332,7 +305,7 @@ Partial Class Caja
         Me.Label3.BackColor = System.Drawing.Color.Transparent
         Me.Label3.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.DarkSlateGray
-        Me.Label3.Location = New System.Drawing.Point(8, 31)
+        Me.Label3.Location = New System.Drawing.Point(13, 31)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(114, 19)
         Me.Label3.TabIndex = 262
@@ -356,7 +329,7 @@ Partial Class Caja
         Me.Label8.BackColor = System.Drawing.Color.Transparent
         Me.Label8.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.ForeColor = System.Drawing.Color.DarkSlateGray
-        Me.Label8.Location = New System.Drawing.Point(8, 74)
+        Me.Label8.Location = New System.Drawing.Point(43, 74)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(84, 19)
         Me.Label8.TabIndex = 264
@@ -368,7 +341,7 @@ Partial Class Caja
         Me.Label7.BackColor = System.Drawing.Color.Transparent
         Me.Label7.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.Color.DarkSlateGray
-        Me.Label7.Location = New System.Drawing.Point(8, 103)
+        Me.Label7.Location = New System.Drawing.Point(4, 103)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(123, 19)
         Me.Label7.TabIndex = 265
@@ -404,7 +377,7 @@ Partial Class Caja
         Me.Label11.BackColor = System.Drawing.Color.Transparent
         Me.Label11.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ForeColor = System.Drawing.Color.DarkSlateGray
-        Me.Label11.Location = New System.Drawing.Point(8, 153)
+        Me.Label11.Location = New System.Drawing.Point(56, 153)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(71, 19)
         Me.Label11.TabIndex = 268
@@ -421,6 +394,33 @@ Partial Class Caja
         Me.lblSalidas.Size = New System.Drawing.Size(53, 19)
         Me.lblSalidas.TabIndex = 269
         Me.lblSalidas.Text = "$ 0.00"
+        '
+        'Label9
+        '
+        Me.Label9.AllowDrop = True
+        Me.Label9.AutoSize = True
+        Me.Label9.BackColor = System.Drawing.Color.Transparent
+        Me.Label9.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.ForeColor = System.Drawing.Color.DarkGreen
+        Me.Label9.Location = New System.Drawing.Point(29, 61)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(143, 22)
+        Me.Label9.TabIndex = 250
+        Me.Label9.Text = "Dinero en caja"
+        '
+        'GridDatosVenta
+        '
+        Me.GridDatosVenta.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.GridDatosVenta.DeleteQuestionMessage = ""
+        Me.GridDatosVenta.DeleteRowsWithDeleteKey = False
+        Me.GridDatosVenta.FixedRows = 1
+        Me.GridDatosVenta.Location = New System.Drawing.Point(347, 472)
+        Me.GridDatosVenta.Name = "GridDatosVenta"
+        Me.GridDatosVenta.SelectionMode = SourceGrid.GridSelectionMode.Row
+        Me.GridDatosVenta.Size = New System.Drawing.Size(424, 129)
+        Me.GridDatosVenta.TabIndex = 247
+        Me.GridDatosVenta.TabStop = True
+        Me.GridDatosVenta.ToolTipText = ""
         '
         'Caja
         '
@@ -470,10 +470,8 @@ Partial Class Caja
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents lblSalDinero As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents GridDatosVenta As SourceGrid.DataGrid
     Friend WithEvents lblGridVentaTotal As System.Windows.Forms.Label
     Friend WithEvents Label10 As System.Windows.Forms.Label
-    Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents lblRetirar As System.Windows.Forms.Label
     Friend WithEvents lblTotal As System.Windows.Forms.Label
@@ -487,4 +485,6 @@ Partial Class Caja
     Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents lblSalidas As System.Windows.Forms.Label
     Friend WithEvents lblCanRet As System.Windows.Forms.Label
+    Friend WithEvents Label9 As System.Windows.Forms.Label
+    Friend WithEvents GridDatosVenta As SourceGrid.DataGrid
 End Class

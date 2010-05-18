@@ -8,14 +8,12 @@ Public Class Cat_Clientes
     Dim lConsulta As New ClsConsultas
     Dim ObjRet As CRetorno
     ' Grid datos para ABONOS
-    Dim dsDatosAbonos As DataSet
-    Dim dtAbonos As DataTable
-    Dim viewDatosAbonos As Object
-    Dim DsViewEntradas As Object
+
     ' Grid datos para CUENTAS
     Dim dsDatosCuentas As DataSet
     Dim dtCuentas As DataTable
     Dim viewDatosCuentas As Object
+    Dim DsViewCuentas As Object
 
 #End Region
 
@@ -97,6 +95,31 @@ Public Class Cat_Clientes
                 Me.txtLimCred.Value = lConsulta.ObtenerValor("V16", ObjRet.sResultado, "|")
             End If
 
+            ' -------------------------------------------
+            '| Obtienen los datos de su estado de cuenta.
+            ' -------------------------------------------
+
+
+
+            Caja = "Consulta117" : Parametros = "V1=" & Me.CodigoCliente.Text.Trim & "|"
+            ObjRet = lConsulta.LlamarCaja(Caja, 1, Parametros)
+
+            ' Se inserta la consulta en el Grid Cuentas.
+            If Not ObjRet.DS Is DBNull.Value Then
+                If Not ObjRet.DS.Tables Is DBNull.Value Then
+                    If ObjRet.DS.Tables.Count > 0 Then
+                        For i As Integer = 0 To ObjRet.DS.Tables(0).Rows.Count - 1
+                            dsDatosCuentas.Tables(0).ImportRow(ObjRet.DS.Tables(0).Rows(i))
+                        Next
+                        dsDatosCuentas.Tables(0).AcceptChanges()
+                        DsViewCuentas = dsDatosCuentas.Tables(0).DefaultView
+                        'Else
+                        '   FilaVacia()
+
+                    End If
+                End If
+            End If
+
             'Habilitar
             Me.Grabar.Visible = True
             Me.GroupBoxClientes.Visible = True
@@ -114,6 +137,7 @@ Public Class Cat_Clientes
             MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
             'Foco
             Me.CodigoCliente.Focus()
+
         End If
         ObjRet = Nothing
 
@@ -176,8 +200,8 @@ Public Class Cat_Clientes
         Me.txtext2.Text = ""
         Me.TxtFax.Text = ""
 
-        'Limpia el DSdatosAbonos
-        dsDatosAbonos = Nothing
+        'Limpia el DSdatosCuentas
+        dsDatosCuentas.Tables(0).Clear()
         ClientesTabControl.Visible = False
 
         'PiePagina
@@ -296,6 +320,9 @@ Public Class Cat_Clientes
         'COLUMNAS
         dsDatosCuentas.Tables("Table").Columns.Add("C1", GetType(String))
         dsDatosCuentas.Tables("Table").Columns.Add("C2", GetType(String))
+        dsDatosCuentas.Tables("Table").Columns.Add("C3", GetType(String))
+        dsDatosCuentas.Tables("Table").Columns.Add("C4", GetType(String))
+        dsDatosCuentas.Tables("Table").Columns.Add("C5", GetType(String))
 
     End Sub
 
@@ -339,6 +366,9 @@ Public Class Cat_Clientes
         'COLUMNAS
         GridDatosCuentas.GetCell(0, 1).View = viewcolumnheader
         GridDatosCuentas.GetCell(0, 2).View = viewcolumnheader
+        GridDatosCuentas.GetCell(0, 3).View = viewcolumnheader
+        GridDatosCuentas.GetCell(0, 4).View = viewcolumnheader
+        GridDatosCuentas.GetCell(0, 5).View = viewcolumnheader
 
     End Sub
 
@@ -375,19 +405,38 @@ Public Class Cat_Clientes
         Dim GridColumn As SourceGrid.DataGridColumn
 
         'COLUMNAS
-        GridColumn = GridDatosCuentas.Columns.Add("C1", "Departamento", EditorCustom)
+        GridColumn = GridDatosCuentas.Columns.Add("C1", "Cuenta", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
         GridColumn.DataCell.View = viewNormal
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
-        GridColumn = GridDatosCuentas.Columns.Add("C2", "Total", EditorCustom)
+        GridColumn = GridDatosCuentas.Columns.Add("C2", "Artículo(s)", EditorCustom)
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.View = viewNormal
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+
+        GridColumn = GridDatosCuentas.Columns.Add("C3", "Monto", EditorCustom)
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.View = viewNormal
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+
+        GridColumn = GridDatosCuentas.Columns.Add("C4", "Adeudo", EditorCustom)
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.View = viewNormal
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+
+        GridColumn = GridDatosCuentas.Columns.Add("C5", "Abonado", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
         GridColumn.DataCell.View = viewNormal
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
         GridDatosCuentas.Columns(0).Visible = False
-        GridDatosCuentas.Columns.SetWidth(1, 294)
+
+        GridDatosCuentas.Columns.SetWidth(1, 80)
         GridDatosCuentas.Columns.SetWidth(2, 128)
+        GridDatosCuentas.Columns.SetWidth(3, 128)
+        GridDatosCuentas.Columns.SetWidth(4, 128)
+        GridDatosCuentas.Columns.SetWidth(5, 128)
 
     End Sub
 

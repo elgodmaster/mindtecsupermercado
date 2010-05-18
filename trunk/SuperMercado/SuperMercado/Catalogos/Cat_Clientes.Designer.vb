@@ -32,9 +32,8 @@ Partial Class Cat_Clientes
         Me.AdeudosTabPage = New System.Windows.Forms.TabPage
         Me.GridDatosCuentas = New SourceGrid.DataGrid
         Me.Label22 = New System.Windows.Forms.Label
-        Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker
-        Me.Label21 = New System.Windows.Forms.Label
-        Me.Label20 = New System.Windows.Forms.Label
+        Me.lblLimiteCredito = New System.Windows.Forms.Label
+        Me.lblSaldoActual = New System.Windows.Forms.Label
         Me.Label18 = New System.Windows.Forms.Label
         Me.Label16 = New System.Windows.Forms.Label
         Me.Label13 = New System.Windows.Forms.Label
@@ -71,11 +70,11 @@ Partial Class Cat_Clientes
         Me.Label15 = New System.Windows.Forms.Label
         Me.Label17 = New System.Windows.Forms.Label
         Me.Label19 = New System.Windows.Forms.Label
-        Me.TxtNombre = New System.Windows.Forms.TextBox
         Me.LblNombres = New System.Windows.Forms.Label
         Me.ClientesTabControl = New System.Windows.Forms.TabControl
         Me.Barra = New System.Windows.Forms.PictureBox
         Me.btnAceptar = New System.Windows.Forms.Button
+        Me.TxtNombre = New System.Windows.Forms.TextBox
         Me.PiePagina.SuspendLayout()
         Me.AbonarToolStrip.SuspendLayout()
         Me.AdeudosTabPage.SuspendLayout()
@@ -185,9 +184,8 @@ Partial Class Cat_Clientes
         '
         Me.AdeudosTabPage.Controls.Add(Me.GridDatosCuentas)
         Me.AdeudosTabPage.Controls.Add(Me.Label22)
-        Me.AdeudosTabPage.Controls.Add(Me.DateTimePicker1)
-        Me.AdeudosTabPage.Controls.Add(Me.Label21)
-        Me.AdeudosTabPage.Controls.Add(Me.Label20)
+        Me.AdeudosTabPage.Controls.Add(Me.lblLimiteCredito)
+        Me.AdeudosTabPage.Controls.Add(Me.lblSaldoActual)
         Me.AdeudosTabPage.Controls.Add(Me.Label18)
         Me.AdeudosTabPage.Controls.Add(Me.Label16)
         Me.AdeudosTabPage.Controls.Add(Me.Label13)
@@ -205,7 +203,7 @@ Partial Class Cat_Clientes
         Me.GridDatosCuentas.DeleteQuestionMessage = ""
         Me.GridDatosCuentas.DeleteRowsWithDeleteKey = False
         Me.GridDatosCuentas.FixedRows = 1
-        Me.GridDatosCuentas.Location = New System.Drawing.Point(18, 145)
+        Me.GridDatosCuentas.Location = New System.Drawing.Point(18, 106)
         Me.GridDatosCuentas.Name = "GridDatosCuentas"
         Me.GridDatosCuentas.SelectionMode = SourceGrid.GridSelectionMode.Row
         Me.GridDatosCuentas.Size = New System.Drawing.Size(649, 274)
@@ -222,39 +220,32 @@ Partial Class Cat_Clientes
         Me.Label22.TabIndex = 6
         Me.Label22.Text = "Detalle venta: "
         '
-        'DateTimePicker1
+        'lblLimiteCredito
         '
-        Me.DateTimePicker1.Location = New System.Drawing.Point(18, 113)
-        Me.DateTimePicker1.Name = "DateTimePicker1"
-        Me.DateTimePicker1.Size = New System.Drawing.Size(200, 22)
-        Me.DateTimePicker1.TabIndex = 5
+        Me.lblLimiteCredito.AutoSize = True
+        Me.lblLimiteCredito.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblLimiteCredito.ForeColor = System.Drawing.Color.DarkGreen
+        Me.lblLimiteCredito.Location = New System.Drawing.Point(423, 52)
+        Me.lblLimiteCredito.Name = "lblLimiteCredito"
+        Me.lblLimiteCredito.Size = New System.Drawing.Size(47, 14)
+        Me.lblLimiteCredito.TabIndex = 4
+        Me.lblLimiteCredito.Text = "$0.00"
         '
-        'Label21
+        'lblSaldoActual
         '
-        Me.Label21.AutoSize = True
-        Me.Label21.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label21.ForeColor = System.Drawing.Color.DarkGreen
-        Me.Label21.Location = New System.Drawing.Point(444, 52)
-        Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(47, 14)
-        Me.Label21.TabIndex = 4
-        Me.Label21.Text = "$0.00"
-        '
-        'Label20
-        '
-        Me.Label20.AutoSize = True
-        Me.Label20.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label20.ForeColor = System.Drawing.Color.DarkGreen
-        Me.Label20.Location = New System.Drawing.Point(161, 52)
-        Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(47, 14)
-        Me.Label20.TabIndex = 3
-        Me.Label20.Text = "$0.00"
+        Me.lblSaldoActual.AutoSize = True
+        Me.lblSaldoActual.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSaldoActual.ForeColor = System.Drawing.Color.DarkGreen
+        Me.lblSaldoActual.Location = New System.Drawing.Point(161, 52)
+        Me.lblSaldoActual.Name = "lblSaldoActual"
+        Me.lblSaldoActual.Size = New System.Drawing.Size(47, 14)
+        Me.lblSaldoActual.TabIndex = 3
+        Me.lblSaldoActual.Text = "$0.00"
         '
         'Label18
         '
         Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(278, 52)
+        Me.Label18.Location = New System.Drawing.Point(257, 52)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(116, 14)
         Me.Label18.TabIndex = 2
@@ -670,18 +661,6 @@ Partial Class Cat_Clientes
         Me.Label19.TabIndex = 269
         Me.Label19.Text = "Estado"
         '
-        'TxtNombre
-        '
-        Me.TxtNombre.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TxtNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TxtNombre.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtNombre.Location = New System.Drawing.Point(72, 31)
-        Me.TxtNombre.MaxLength = 100
-        Me.TxtNombre.Name = "TxtNombre"
-        Me.TxtNombre.Size = New System.Drawing.Size(837, 22)
-        Me.TxtNombre.TabIndex = 3
-        '
         'LblNombres
         '
         Me.LblNombres.AutoSize = True
@@ -727,6 +706,18 @@ Partial Class Cat_Clientes
         Me.btnAceptar.TabIndex = 2
         Me.btnAceptar.Text = "Aceptar"
         Me.btnAceptar.UseVisualStyleBackColor = False
+        '
+        'TxtNombre
+        '
+        Me.TxtNombre.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TxtNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TxtNombre.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtNombre.Location = New System.Drawing.Point(72, 31)
+        Me.TxtNombre.MaxLength = 100
+        Me.TxtNombre.Name = "TxtNombre"
+        Me.TxtNombre.Size = New System.Drawing.Size(837, 22)
+        Me.TxtNombre.TabIndex = 3
         '
         'Cat_Clientes
         '
@@ -810,17 +801,16 @@ Partial Class Cat_Clientes
     Friend WithEvents Label15 As System.Windows.Forms.Label
     Friend WithEvents Label17 As System.Windows.Forms.Label
     Friend WithEvents Label19 As System.Windows.Forms.Label
-    Friend WithEvents TxtNombre As System.Windows.Forms.TextBox
     Friend WithEvents LblNombres As System.Windows.Forms.Label
     Friend WithEvents ClientesTabControl As System.Windows.Forms.TabControl
     Friend WithEvents CiudadesComboBox As System.Windows.Forms.ComboBox
     Friend WithEvents EstadosComboBox As System.Windows.Forms.ComboBox
-    Friend WithEvents Label21 As System.Windows.Forms.Label
-    Friend WithEvents Label20 As System.Windows.Forms.Label
+    Friend WithEvents lblLimiteCredito As System.Windows.Forms.Label
+    Friend WithEvents lblSaldoActual As System.Windows.Forms.Label
     Friend WithEvents Label18 As System.Windows.Forms.Label
     Friend WithEvents Label16 As System.Windows.Forms.Label
     Friend WithEvents Label13 As System.Windows.Forms.Label
-    Friend WithEvents DateTimePicker1 As System.Windows.Forms.DateTimePicker
     Friend WithEvents Label22 As System.Windows.Forms.Label
     Friend WithEvents GridDatosCuentas As SourceGrid.DataGrid
+    Friend WithEvents TxtNombre As System.Windows.Forms.TextBox
 End Class

@@ -180,4 +180,9 @@ BEGIN
     End
   Set NoCount OFF
   Select resultado = @Resul 
+  
+  Select C.Adeudo 
+  From SMercado..Cat_Clientes C
+  Where C.Codigo = @Valor1 
+  
 END
