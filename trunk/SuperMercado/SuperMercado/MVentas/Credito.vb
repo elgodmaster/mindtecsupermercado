@@ -11,12 +11,14 @@ Public Class Credito
     Dim DsDatosCuenta As DataSet
     Dim Usuario As Integer
     Dim IdCuenta As Integer
+    Dim Cventa As New ModuloVentas
 #End Region
 
-    Friend Sub VentaCreditos(ByVal TotalVentas As Double, ByVal DsDatos As DataSet, ByVal User As Integer)
+    Friend Sub VentaCreditos(ByVal TotalVentas As Double, ByVal DsDatos As DataSet, ByVal User As Integer, ByRef ClaseVentas As ModuloVentas)
         Total = TotalVentas
         DsDatosCuenta = DsDatos
         Usuario = User
+        Cventa = ClaseVentas
     End Sub
 
     Sub CatalogoClientes()
@@ -63,17 +65,26 @@ Public Class Credito
             Me.RFC.Text = Me.RFC.Text & " " & lConsulta.ObtenerValor("V2", ObjRet.sResultado, "|")
             Me.Direccion.Text = Me.Direccion.Text & " " & lConsulta.ObtenerValor("V4", ObjRet.sResultado, "|") & " " & lConsulta.ObtenerValor("V3", ObjRet.sResultado, "|")
             Me.Telefono.Text = Me.Telefono.Text & " " & lConsulta.ObtenerValor("V8", ObjRet.sResultado, "|")
-            Me.Email.Text = Me.Email.Text & " " & lConsulta.ObtenerValor("V15", ObjRet.sResultado, "|")
+            Me.CP.Text = Me.CP.Text & " " & lConsulta.ObtenerValor("V5", ObjRet.sResultado, "|")
 
             Me.GroupBox1.Visible = True
             Me.BtnAceptar.Enabled = False
             Me.CodigoCliente.Enabled = False
+            Me.Nuevo.Visible = False
 
         End If
     End Sub
 
     Sub LimpiarPantalla()
-
+        NombreCliente.Text = "Nombre"
+        RFC.Text = "RFC"
+        Direccion.Text = " Direccion "
+        CP.Text = "CP"
+        Telefono.Text = "Teléfono"
+        CodigoCliente.Text = ""
+        BtnAceptar.Enabled = True
+        CodigoCliente.Enabled = True
+        Me.RBUnArticulo.Checked = True
     End Sub
 
     Sub ObtenerIdCuenta()
@@ -108,13 +119,32 @@ Public Class Credito
     End Sub
 #End Region
 
+    Private Sub Credito_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
+        Select Case e.KeyCode
+            Case Keys.F4
+                Limpiar.PerformClick()
+            Case Keys.F5
+                BtnCargar.PerformClick()
+        End Select
+    End Sub
+
     Private Sub Credito_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ObtenerIdCuenta()
-
     End Sub
 
     Sub cerrar()
-        ModuloVentas.CreditosCerrar(1)
+        Cventa.LimpiarPantalla()
         Me.Close()
+    End Sub
+
+    Private Sub Limpiar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Limpiar.Click
+        LimpiarPantalla()
+    End Sub
+
+    Private Sub Nuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Nuevo.Click
+        Dim NCLiente As New Cat_Clientes
+        NCLiente.StartPosition = FormStartPosition.CenterScreen
+        NCLiente.WindowState = FormWindowState.Maximized
+        NCLiente.Show()
     End Sub
 End Class

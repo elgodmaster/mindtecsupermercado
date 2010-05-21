@@ -29,13 +29,11 @@ Public Class ModuloVentas
             Case Keys.F8
                 Btn_Efectivo.PerformClick()
             Case Keys.F9
-                'Grabar.PerformClick()
-            Case Keys.F10
-                GroupBoxPagos.Visible = True
-                AceptarVenta.Enabled = False
-                Txt_Pago.Focus()
-                Me.Focus()
-                Txt_Pago.Focus()
+                Btn_Credito.PerformClick()
+                'Case Keys.F10
+                '    GroupBoxPagos.Visible = True
+                '    AceptarVenta.Enabled = False
+                '    Txt_Pago.Focus()
             Case Keys.F12
                 CancelarVenta.PerformClick()
         End Select
@@ -332,6 +330,10 @@ Public Class ModuloVentas
                 CatalogoProductos()
             Case Keys.Enter
                 CajaProductos()
+            Case Keys.F10
+                GroupBoxPagos.Visible = True
+                AceptarVenta.Enabled = False
+                Txt_Pago.Focus()
         End Select
     End Sub
 #End Region
@@ -557,7 +559,6 @@ Public Class ModuloVentas
     End Sub
 #End Region
 
-
 #Region " Boton Efectivo"
     Private Sub Btn_Efectivo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Btn_Efectivo.Click
         Dim TotalVenta As Double = 0.0
@@ -614,20 +615,16 @@ Public Class ModuloVentas
         TotalVenta = Double.Parse(Total)
 
         Dim Creditos As New Credito
-        Creditos.VentaCreditos(TotalVenta, DsDatos, Usuario)
+        Creditos.VentaCreditos(TotalVenta, DsDatos, Usuario, Me)
         Creditos.WindowState = FormWindowState.Normal
         Creditos.StartPosition = FormStartPosition.CenterScreen
-        Creditos.Show()
+        Creditos.ShowDialog()
     End Sub
 #End Region
 
+#Region " Boton Facturacion "
     Private Sub Btn_Factura_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Btn_Factura.Click
 
     End Sub
-
-    Friend Sub CreditosCerrar(ByVal x As Integer)
-        If x = 1 Then
-            LimpiarPantalla()
-        End If
-    End Sub
+#End Region
 End Class

@@ -26,10 +26,11 @@ Partial Class Credito
         Me.CodigoCliente = New System.Windows.Forms.TextBox
         Me.Label1 = New System.Windows.Forms.Label
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip
+        Me.Limpiar = New System.Windows.Forms.ToolStripButton
         Me.Nuevo = New System.Windows.Forms.ToolStripButton
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
+        Me.CP = New System.Windows.Forms.Label
         Me.NombreCliente = New System.Windows.Forms.Label
-        Me.Email = New System.Windows.Forms.Label
         Me.Telefono = New System.Windows.Forms.Label
         Me.Direccion = New System.Windows.Forms.Label
         Me.RFC = New System.Windows.Forms.Label
@@ -38,9 +39,12 @@ Partial Class Credito
         Me.RBVariosArticulos = New System.Windows.Forms.RadioButton
         Me.GroupBox2 = New System.Windows.Forms.GroupBox
         Me.RBUnArticulo = New System.Windows.Forms.RadioButton
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
+        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel
         Me.ToolStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
+        Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'CodigoCliente
@@ -65,12 +69,23 @@ Partial Class Credito
         'ToolStrip1
         '
         Me.ToolStrip1.AutoSize = False
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Nuevo})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Limpiar, Me.Nuevo})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(599, 39)
         Me.ToolStrip1.TabIndex = 231
         Me.ToolStrip1.Text = "ToolStrip1"
+        '
+        'Limpiar
+        '
+        Me.Limpiar.AutoSize = False
+        Me.Limpiar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.Limpiar.Image = CType(resources.GetObject("Limpiar.Image"), System.Drawing.Image)
+        Me.Limpiar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.Limpiar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.Limpiar.Name = "Limpiar"
+        Me.Limpiar.Size = New System.Drawing.Size(43, 45)
+        Me.Limpiar.Text = "Limpiar"
         '
         'Nuevo
         '
@@ -84,8 +99,8 @@ Partial Class Credito
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.CP)
         Me.GroupBox1.Controls.Add(Me.NombreCliente)
-        Me.GroupBox1.Controls.Add(Me.Email)
         Me.GroupBox1.Controls.Add(Me.Telefono)
         Me.GroupBox1.Controls.Add(Me.Direccion)
         Me.GroupBox1.Controls.Add(Me.RFC)
@@ -96,6 +111,15 @@ Partial Class Credito
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Datos generales"
         '
+        'CP
+        '
+        Me.CP.AutoSize = True
+        Me.CP.Location = New System.Drawing.Point(38, 100)
+        Me.CP.Name = "CP"
+        Me.CP.Size = New System.Drawing.Size(24, 14)
+        Me.CP.TabIndex = 241
+        Me.CP.Text = "CP"
+        '
         'NombreCliente
         '
         Me.NombreCliente.AutoSize = True
@@ -105,19 +129,10 @@ Partial Class Credito
         Me.NombreCliente.TabIndex = 240
         Me.NombreCliente.Text = "Nombre"
         '
-        'Email
-        '
-        Me.Email.AutoSize = True
-        Me.Email.Location = New System.Drawing.Point(17, 125)
-        Me.Email.Name = "Email"
-        Me.Email.Size = New System.Drawing.Size(45, 14)
-        Me.Email.TabIndex = 239
-        Me.Email.Text = "E-mail"
-        '
         'Telefono
         '
         Me.Telefono.AutoSize = True
-        Me.Telefono.Location = New System.Drawing.Point(1, 99)
+        Me.Telefono.Location = New System.Drawing.Point(1, 124)
         Me.Telefono.Name = "Telefono"
         Me.Telefono.Size = New System.Drawing.Size(61, 14)
         Me.Telefono.TabIndex = 238
@@ -195,11 +210,27 @@ Partial Class Credito
         Me.RBUnArticulo.Text = "Un solo articulo"
         Me.RBUnArticulo.UseVisualStyleBackColor = True
         '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 305)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(599, 22)
+        Me.StatusStrip1.TabIndex = 243
+        Me.StatusStrip1.Text = "Pie"
+        '
+        'ToolStripStatusLabel1
+        '
+        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(167, 17)
+        Me.ToolStripStatusLabel1.Text = "F4=LimpiarPantalla F6=Nuevo"
+        '
         'Credito
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(599, 327)
+        Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.BtnAceptar)
         Me.Controls.Add(Me.GroupBox1)
@@ -217,6 +248,8 @@ Partial Class Credito
         Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        Me.StatusStrip1.ResumeLayout(False)
+        Me.StatusStrip1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -227,7 +260,6 @@ Partial Class Credito
     Friend WithEvents Nuevo As System.Windows.Forms.ToolStripButton
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents BtnCargar As System.Windows.Forms.Button
-    Friend WithEvents Email As System.Windows.Forms.Label
     Friend WithEvents Telefono As System.Windows.Forms.Label
     Friend WithEvents Direccion As System.Windows.Forms.Label
     Friend WithEvents RFC As System.Windows.Forms.Label
@@ -236,4 +268,8 @@ Partial Class Credito
     Friend WithEvents RBVariosArticulos As System.Windows.Forms.RadioButton
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
     Friend WithEvents RBUnArticulo As System.Windows.Forms.RadioButton
+    Friend WithEvents Limpiar As System.Windows.Forms.ToolStripButton
+    Friend WithEvents CP As System.Windows.Forms.Label
+    Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
+    Friend WithEvents ToolStripStatusLabel1 As System.Windows.Forms.ToolStripStatusLabel
 End Class
