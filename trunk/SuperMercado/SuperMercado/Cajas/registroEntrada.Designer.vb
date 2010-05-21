@@ -36,7 +36,7 @@ Partial Class registroEntrada
         Me.Cancel_Button.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Cancel_Button.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.Cancel_Button.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Cancel_Button.Location = New System.Drawing.Point(367, 67)
+        Me.Cancel_Button.Location = New System.Drawing.Point(365, 67)
         Me.Cancel_Button.Name = "Cancel_Button"
         Me.Cancel_Button.Size = New System.Drawing.Size(108, 33)
         Me.Cancel_Button.TabIndex = 4
@@ -83,8 +83,9 @@ Partial Class registroEntrada
         'OK_Button
         '
         Me.OK_Button.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.OK_Button.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.OK_Button.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.OK_Button.Location = New System.Drawing.Point(367, 25)
+        Me.OK_Button.Location = New System.Drawing.Point(365, 25)
         Me.OK_Button.Name = "OK_Button"
         Me.OK_Button.Size = New System.Drawing.Size(108, 34)
         Me.OK_Button.TabIndex = 3
@@ -96,7 +97,7 @@ Partial Class registroEntrada
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.Cancel_Button
-        Me.ClientSize = New System.Drawing.Size(496, 129)
+        Me.ClientSize = New System.Drawing.Size(493, 129)
         Me.ControlBox = False
         Me.Controls.Add(Me.OK_Button)
         Me.Controls.Add(Me.Label2)
@@ -110,7 +111,7 @@ Partial Class registroEntrada
         Me.Name = "registroEntrada"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Registro de entradas en efectivo"
+        Me.Text = "  Registro de entradas en efectivo"
         CType(Me.numIngreso, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

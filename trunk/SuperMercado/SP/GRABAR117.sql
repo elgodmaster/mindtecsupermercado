@@ -52,4 +52,10 @@ Values ( 1, 1, CONVERT(decimal(12,2), @monto),
 						Where IdCliente = @idCliente),
 	     GETDATE()
 	     )
+	     
+-- Se actualiza el dinero actual en la caja.
+Update SMercado..Caja_Corte
+Set dineroActual = dineroActual + CONVERT(decimal(12,2), @monto)
+Where CONVERT(date, fecha) = CONVERT(date, getdate())
+
 END

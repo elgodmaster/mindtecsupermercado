@@ -8,6 +8,7 @@ Public Class Cat_Clientes
     Dim lConsulta As New ClsConsultas
     Dim ObjRet As CRetorno
     ' Grid datos para ABONOS
+    Dim montoDef As Decimal
 
     ' Grid datos para CUENTAS
     Dim dsDatosCuentas As DataSet
@@ -89,18 +90,25 @@ Public Class Cat_Clientes
             Me.TxtCel2.Text = lConsulta.ObtenerValor("V13", ObjRet.sResultado, "|")
             Me.TxtFax.Text = lConsulta.ObtenerValor("V14", ObjRet.sResultado, "|")
             Me.TxtMail.Text = lConsulta.ObtenerValor("V15", ObjRet.sResultado, "|")
+
             If lConsulta.ObtenerValor("V16", ObjRet.sResultado, "|") = "" Then
                 Me.txtLimCred.Value = 0
+                lblLimiteCredito.Text = "$ 0.00"
             Else
                 Me.txtLimCred.Value = lConsulta.ObtenerValor("V16", ObjRet.sResultado, "|")
+                lblLimiteCredito.Text = "$ " & lConsulta.ObtenerValor("V16", ObjRet.sResultado, "|")
+            End If
+
+            If lConsulta.ObtenerValor("V17", ObjRet.sResultado, "|") = "" Then
+                lblSaldoActual.Text = "$ 0.00"
+            Else
+                lblSaldoActual.Text = "$ " & lConsulta.ObtenerValor("V17", ObjRet.sResultado, "|")
             End If
 
             ' -------------------------------------------
             '| Obtienen los datos de su estado de cuenta.
             ' -------------------------------------------
-
-
-
+            
             Caja = "Consulta117" : Parametros = "V1=" & Me.CodigoCliente.Text.Trim & "|"
             ObjRet = lConsulta.LlamarCaja(Caja, 1, Parametros)
 
@@ -199,6 +207,11 @@ Public Class Cat_Clientes
         Me.txtext.Text = ""
         Me.txtext2.Text = ""
         Me.TxtFax.Text = ""
+
+        lblSaldoActual.Text = "$ 0.00"
+        lblLimiteCredito.Text = "$ 0.00"
+
+        ClientesTabControl.SelectTab(0)
 
         'Limpia el DSdatosCuentas
         dsDatosCuentas.Tables(0).Clear()
@@ -304,7 +317,6 @@ Public Class Cat_Clientes
 #Region " Limpiar "
     Private Sub Limpiar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Limpiar.Click
         LimpiarPantalla()
-
     End Sub
 #End Region
 
@@ -337,6 +349,7 @@ Public Class Cat_Clientes
         GridDatosCuentas.FixedColumns = 1
         GridDatosCuentas.DeleteRowsWithDeleteKey = False
         GridDatosCuentas.DeleteQuestionMessage = Nothing
+        GridDatosCuentas.Selection.EnableMultiSelection = False
 
         ' Renglon encabezado
 
@@ -369,6 +382,9 @@ Public Class Cat_Clientes
         GridDatosCuentas.GetCell(0, 3).View = viewcolumnheader
         GridDatosCuentas.GetCell(0, 4).View = viewcolumnheader
         GridDatosCuentas.GetCell(0, 5).View = viewcolumnheader
+        GridDatosCuentas.GetCell(0, 6).View = viewcolumnheader
+        GridDatosCuentas.GetCell(0, 7).View = viewcolumnheader
+        GridDatosCuentas.GetCell(0, 8).View = viewcolumnheader
 
     End Sub
 
@@ -392,10 +408,20 @@ Public Class Cat_Clientes
         viewBtn.ForeColor = Color.Black
         viewBtn.TextAlignment = DevAge.Drawing.ContentAlignment.BottomCenter
 
-        'Eventos
+        'EVENTOS
 
         Dim gridKeydown As SourceGrid.Cells.Controllers.CustomEvents = New SourceGrid.Cells.Controllers.CustomEvents
         AddHandler gridKeydown.KeyDown, New KeyEventHandler(AddressOf Grid_KeyDown)
+
+        Dim clickEventAbonar As SourceGrid.Cells.Controllers.CustomEvents = New SourceGrid.Cells.Controllers.CustomEvents()
+        AddHandler clickEventAbonar.Click, New EventHandler(AddressOf ABONAR)
+
+        Dim clickEventDetalle As SourceGrid.Cells.Controllers.CustomEvents = New SourceGrid.Cells.Controllers.CustomEvents()
+        AddHandler clickEventDetalle.Click, New EventHandler(AddressOf DETALLE)
+
+        Dim clickEventAbonos As SourceGrid.Cells.Controllers.CustomEvents = New SourceGrid.Cells.Controllers.CustomEvents()
+        AddHandler clickEventAbonos.Click, New EventHandler(AddressOf ABONOS)
+
 
         'Definicion de la celda
         Dim EditorCustom As SourceGrid.Cells.Editors.TextBox = New SourceGrid.Cells.Editors.TextBox(GetType(String))
@@ -404,7 +430,6 @@ Public Class Cat_Clientes
         'Crear columnas
         Dim GridColumn As SourceGrid.DataGridColumn
 
-        'COLUMNAS
         GridColumn = GridDatosCuentas.Columns.Add("C1", "Cuenta", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
         GridColumn.DataCell.View = viewNormal
@@ -432,11 +457,36 @@ Public Class Cat_Clientes
 
         GridDatosCuentas.Columns(0).Visible = False
 
-        GridDatosCuentas.Columns.SetWidth(1, 80)
+        'COLUMNAS
+        'AGREGAR Abonar
+        GridColumn = GridDatosCuentas.Columns.Add(Nothing, "Abonar", New SourceGrid.Cells.Button("  "))
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.AddController(clickEventAbonar)
+        GridColumn.DataCell.View = viewBtn
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+
+        'AGREGAR Detalle
+        GridColumn = GridDatosCuentas.Columns.Add(Nothing, "Detalle", New SourceGrid.Cells.Button("  "))
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.AddController(clickEventDetalle)
+        GridColumn.DataCell.View = viewBtn
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+
+        'AGREGAR Abonos
+        GridColumn = GridDatosCuentas.Columns.Add(Nothing, "Abonos", New SourceGrid.Cells.Button("  "))
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.AddController(clickEventAbonos)
+        GridColumn.DataCell.View = viewBtn
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+
+        GridDatosCuentas.Columns.SetWidth(1, 70)
         GridDatosCuentas.Columns.SetWidth(2, 128)
         GridDatosCuentas.Columns.SetWidth(3, 128)
         GridDatosCuentas.Columns.SetWidth(4, 128)
         GridDatosCuentas.Columns.SetWidth(5, 128)
+        GridDatosCuentas.Columns.SetWidth(6, 60)
+        GridDatosCuentas.Columns.SetWidth(7, 60)
+        GridDatosCuentas.Columns.SetWidth(8, 60)
 
     End Sub
 
@@ -445,6 +495,54 @@ Public Class Cat_Clientes
             Case Keys.Escape
                 Me.Close()
         End Select
+    End Sub
+#End Region
+
+#Region "  Botón ABONAR  "
+    Private Sub ABONAR()
+        Dim pos As Integer = GridDatosCuentas.Selection.ActivePosition.Row - 1
+
+        Dim idCuenta As String = dsDatosCuentas.Tables(0).Rows(pos).Item(0).ToString
+        Dim idUsuario As String = "1"
+        Dim codigo As String = Me.CodigoCliente.Text.Trim
+
+        Dim objRegistroAbono As New Cat_Clientes_RegistroAbono()
+        objRegistroAbono.StartPosition = FormStartPosition.CenterScreen
+        objRegistroAbono.pasoVariables(pos, _
+                                       idCuenta, _
+                                       idUsuario, _
+                                       codigo, _
+                                       dsDatosCuentas, _
+                                       DsViewCuentas, _
+                                       lblSaldoActual)
+        objRegistroAbono.Show()
+
+    End Sub
+#End Region
+
+#Region "  Botón DETALLE  "
+    Private Sub DETALLE()
+        Dim pos As Integer = GridDatosCuentas.Selection.ActivePosition.Row - 1
+        Dim idCuenta As Integer = dsDatosCuentas.Tables(0).Rows(pos).Item(0)
+
+        Dim objDetalle As New Cat_Clientes_DetalleVenta
+        objDetalle.cargaIdCuenta(idCuenta)
+        objDetalle.StartPosition = FormStartPosition.CenterScreen
+        objDetalle.Show()
+
+    End Sub
+#End Region
+
+#Region "  Botón ABONOS  "
+    Private Sub ABONOS()
+        Dim pos As Integer = GridDatosCuentas.Selection.ActivePosition.Row - 1
+        Dim idCuenta As Integer = dsDatosCuentas.Tables(0).Rows(pos).Item(0)
+
+        Dim objAbonos As New Cat_Cliente_DetalleAbono
+        objAbonos.cargaIdCuenta(idCuenta)
+        objAbonos.StartPosition = FormStartPosition.CenterScreen
+        objAbonos.Show()
+
     End Sub
 #End Region
 
