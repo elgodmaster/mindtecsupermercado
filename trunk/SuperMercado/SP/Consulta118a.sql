@@ -19,9 +19,9 @@ Exec Emulador_SepararCadena 'V1',  @Cabezero, '|', @idCuenta	Output
 
 		Select	C1		= D.Descripcion,
 				C2		= D.cantidad,
-				C3		= D.PrecioUni,
+				C3		= '$ ' + CONVERT(char, D.PrecioUni),
 				C4		= '% ' + CONVERT(char, (100 - D.Descuento * 100)),
-				C5		= CONVERT(decimal(12,2),D.PrecioUni * D.cantidad * D.Descuento)
+				C5		= '$ ' + CONVERT(char, (CONVERT(decimal(12,2),D.PrecioUni * D.cantidad * D.Descuento)))
 		From SMercado..Cuentas_Cobrar_Detalles D
 		Where D.IdCuenta = @idCuenta 
 		

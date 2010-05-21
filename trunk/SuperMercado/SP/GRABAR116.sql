@@ -94,6 +94,12 @@ BEGIN
         Where IdCuenta = @Valor1 
 	  End
 	  
+	 -- Se actualiza el saldoActual que debe el cliente.
+	 Update SMercado..Cat_Clientes 
+	 Set Adeudo = Adeudo + @Valor8
+	 Where Codigo = @Valor5
+	 
+	  
 	 If @@ERROR <> 0
 	 Begin
 	  RollBack Tran Grabar116
@@ -146,7 +152,8 @@ SELECT  C7  = @Valor1,    --FolioCuenta
 	 
 	 Commit Tran Grabar116
 	 
-	 
+	
+		 
   -- Enviar Resultado
   Select @Resul='2R=OK|2M=Se realizo el cargo correctamente '   
 

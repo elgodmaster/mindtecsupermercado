@@ -99,6 +99,8 @@ Public Class Cat_Clientes
                 lblLimiteCredito.Text = "$ " & lConsulta.ObtenerValor("V16", ObjRet.sResultado, "|")
             End If
 
+
+            ' MODIFICAR 
             If lConsulta.ObtenerValor("V17", ObjRet.sResultado, "|") = "" Then
                 lblSaldoActual.Text = "$ 0.00"
             Else
@@ -480,7 +482,7 @@ Public Class Cat_Clientes
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
         GridDatosCuentas.Columns.SetWidth(1, 70)
-        GridDatosCuentas.Columns.SetWidth(2, 128)
+        GridDatosCuentas.Columns.SetWidth(2, 151)
         GridDatosCuentas.Columns.SetWidth(3, 128)
         GridDatosCuentas.Columns.SetWidth(4, 128)
         GridDatosCuentas.Columns.SetWidth(5, 128)

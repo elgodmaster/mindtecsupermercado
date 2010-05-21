@@ -21,22 +21,21 @@ select	C1 = C.IdCuenta,
 
 		C2 = C.Descripcion, 
 		
-		C3 = CONVERT(decimal(18,2), (Select SUM( CD.PrecioUni * CD.cantidad * CD.Descuento )
+		C3 = '$ ' + CONVERT(char, CONVERT(decimal(18,2), (Select SUM( CD.PrecioUni * CD.cantidad * CD.Descuento )
 				 From SMercado..Cuentas_Cobrar_Detalles CD
 				 Where IdCuenta = C.IdCuenta 
-				 Group by IdCuenta )),
+				 Group by IdCuenta ))),
 				 
-		C4 = C.adeudo,
+		C4 = '$ ' + CONVERT(char, C.adeudo),
 				 
-		C5 =  isnull((Select SUM(CA.monto)
+		C5 = '$ ' + CONVERT(char, isnull((Select SUM(CA.monto)
 				  From SMercado..Cuentas_Abonos CA
 				  Where idCuenta = C.IdCuenta 
-				  Group by CA.idCuenta), 0)
+				  Group by CA.idCuenta), 0))
 				  
 from SMercado..Cuentas_Cobrar C
-inner join SMercado..Cuentas_Cobrar_Detalles CD ON C.IdCuenta = CD.IdCuenta  
-
-Where C.CodigoCliente = @idCliente 
+Where	C.CodigoCliente = @idCliente  and
+		C.Adeudo <> 0
 
 Select @Resul = '2R=OK|'
 

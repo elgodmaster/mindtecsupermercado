@@ -177,10 +177,12 @@ Partial Class Credito
         'RBVariosArticulos
         '
         Me.RBVariosArticulos.AutoSize = True
-        Me.RBVariosArticulos.Location = New System.Drawing.Point(9, 45)
+        Me.RBVariosArticulos.Checked = True
+        Me.RBVariosArticulos.Location = New System.Drawing.Point(9, 21)
         Me.RBVariosArticulos.Name = "RBVariosArticulos"
         Me.RBVariosArticulos.Size = New System.Drawing.Size(247, 18)
         Me.RBVariosArticulos.TabIndex = 241
+        Me.RBVariosArticulos.TabStop = True
         Me.RBVariosArticulos.Tag = "2"
         Me.RBVariosArticulos.Text = "Varios articulos en la misma cuenta"
         Me.RBVariosArticulos.UseVisualStyleBackColor = True
@@ -200,12 +202,10 @@ Partial Class Credito
         'RBUnArticulo
         '
         Me.RBUnArticulo.AutoSize = True
-        Me.RBUnArticulo.Checked = True
-        Me.RBUnArticulo.Location = New System.Drawing.Point(9, 21)
+        Me.RBUnArticulo.Location = New System.Drawing.Point(9, 45)
         Me.RBUnArticulo.Name = "RBUnArticulo"
         Me.RBUnArticulo.Size = New System.Drawing.Size(122, 18)
         Me.RBUnArticulo.TabIndex = 242
-        Me.RBUnArticulo.TabStop = True
         Me.RBUnArticulo.Tag = "1"
         Me.RBUnArticulo.Text = "Un solo articulo"
         Me.RBUnArticulo.UseVisualStyleBackColor = True
@@ -213,7 +213,7 @@ Partial Class Credito
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 305)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 317)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(599, 22)
         Me.StatusStrip1.TabIndex = 243
@@ -222,14 +222,14 @@ Partial Class Credito
         'ToolStripStatusLabel1
         '
         Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
-        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(167, 17)
-        Me.ToolStripStatusLabel1.Text = "F4=LimpiarPantalla F6=Nuevo"
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(164, 17)
+        Me.ToolStripStatusLabel1.Text = "F4 = LimpiarPantalla F6 = Nuevo"
         '
         'Credito
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(599, 327)
+        Me.ClientSize = New System.Drawing.Size(599, 339)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.BtnAceptar)
