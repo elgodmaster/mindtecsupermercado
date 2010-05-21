@@ -138,7 +138,7 @@ SELECT  C7  = @Valor1,    --FolioCuenta
 	    From SMercado..Existencias a 
 	    Left join #TmpGrabar116 b on b.C1 = a.codigo
 	    Where b.C7 = @Valor1
-	    If @@ERROR <> 0
+	If @@ERROR <> 0
 	 Begin
 	  RollBack Tran Grabar116
 	  Return

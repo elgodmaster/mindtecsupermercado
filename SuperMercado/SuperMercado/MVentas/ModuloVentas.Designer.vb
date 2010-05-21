@@ -299,7 +299,7 @@ Partial Class ModuloVentas
         Me.CancelarVenta.Location = New System.Drawing.Point(838, 363)
         Me.CancelarVenta.Name = "CancelarVenta"
         Me.CancelarVenta.Size = New System.Drawing.Size(87, 51)
-        Me.CancelarVenta.TabIndex = 6
+        Me.CancelarVenta.TabIndex = 7
         Me.CancelarVenta.Text = "F12"
         Me.CancelarVenta.TextAlign = System.Drawing.ContentAlignment.BottomRight
         Me.CancelarVenta.UseVisualStyleBackColor = True
@@ -313,7 +313,7 @@ Partial Class ModuloVentas
         Me.AceptarVenta.Location = New System.Drawing.Point(730, 363)
         Me.AceptarVenta.Name = "AceptarVenta"
         Me.AceptarVenta.Size = New System.Drawing.Size(87, 51)
-        Me.AceptarVenta.TabIndex = 5
+        Me.AceptarVenta.TabIndex = 6
         Me.AceptarVenta.Text = "    F10"
         Me.AceptarVenta.TextAlign = System.Drawing.ContentAlignment.BottomRight
         Me.AceptarVenta.UseVisualStyleBackColor = True
@@ -330,7 +330,7 @@ Partial Class ModuloVentas
         Me.GridDatos.Name = "GridDatos"
         Me.GridDatos.SelectionMode = SourceGrid.GridSelectionMode.Row
         Me.GridDatos.Size = New System.Drawing.Size(925, 259)
-        Me.GridDatos.TabIndex = 26
+        Me.GridDatos.TabIndex = 5
         Me.GridDatos.TabStop = True
         Me.GridDatos.ToolTipText = ""
         '
@@ -529,7 +529,7 @@ Partial Class ModuloVentas
         Me.Controls.Add(Me.toolStrip1)
         Me.Controls.Add(Me.groupBox2)
         Me.DoubleBuffered = True
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.HelpButton = True
         Me.KeyPreview = True
         Me.Name = "ModuloVentas"

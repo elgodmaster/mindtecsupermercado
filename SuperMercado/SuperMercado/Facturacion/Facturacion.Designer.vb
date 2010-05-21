@@ -24,17 +24,21 @@ Partial Class Facturacion
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Facturacion))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
+        Me.CheckBox2 = New System.Windows.Forms.CheckBox
+        Me.TextBox1 = New System.Windows.Forms.TextBox
         Me.Factura = New System.Windows.Forms.TabControl
         Me.TabPage1 = New System.Windows.Forms.TabPage
+        Me.Descuento = New System.Windows.Forms.Button
+        Me.Agregar = New System.Windows.Forms.Button
         Me.GridDatos = New SourceGrid.DataGrid
         Me.Label14 = New System.Windows.Forms.Label
         Me.Txt_Cantidad = New System.Windows.Forms.TextBox
         Me.Label15 = New System.Windows.Forms.Label
         Me.LblProducto = New System.Windows.Forms.Label
         Me.Txt_CodigoProducto = New System.Windows.Forms.TextBox
-        Me.TOTAL = New System.Windows.Forms.Label
-        Me.IVA = New System.Windows.Forms.Label
-        Me.Neto = New System.Windows.Forms.Label
+        Me.LBLTOTAL = New System.Windows.Forms.Label
+        Me.lblIVA = New System.Windows.Forms.Label
+        Me.LblSubtotal = New System.Windows.Forms.Label
         Me.LTotal = New System.Windows.Forms.Label
         Me.LIVA = New System.Windows.Forms.Label
         Me.LNETO = New System.Windows.Forms.Label
@@ -43,14 +47,14 @@ Partial Class Facturacion
         Me.chbGenerar = New System.Windows.Forms.CheckBox
         Me.CodigoCotizacion = New System.Windows.Forms.TextBox
         Me.lblTC = New System.Windows.Forms.Label
-        Me.txtDescuento = New System.Windows.Forms.TextBox
+        Me.TxtIva = New System.Windows.Forms.TextBox
         Me.Label10 = New System.Windows.Forms.Label
         Me.dtpFecha = New System.Windows.Forms.DateTimePicker
         Me.Label7 = New System.Windows.Forms.Label
         Me.GroupBoxDatosCliente = New System.Windows.Forms.GroupBox
-        Me.Label12 = New System.Windows.Forms.Label
+        Me.LblCP = New System.Windows.Forms.Label
         Me.Label13 = New System.Windows.Forms.Label
-        Me.Label8 = New System.Windows.Forms.Label
+        Me.lblcolonia = New System.Windows.Forms.Label
         Me.Label11 = New System.Windows.Forms.Label
         Me.lblRFCCliente = New System.Windows.Forms.Label
         Me.Label3 = New System.Windows.Forms.Label
@@ -75,8 +79,6 @@ Partial Class Facturacion
         Me.txtNoFactura = New System.Windows.Forms.TextBox
         Me.PiePagina = New System.Windows.Forms.StatusStrip
         Me.MensajePiePagina = New System.Windows.Forms.ToolStripStatusLabel
-        Me.CheckBox2 = New System.Windows.Forms.CheckBox
-        Me.TextBox1 = New System.Windows.Forms.TextBox
         Me.GroupBox1.SuspendLayout()
         Me.Factura.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -98,7 +100,7 @@ Partial Class Facturacion
         Me.GroupBox1.Controls.Add(Me.chbGenerar)
         Me.GroupBox1.Controls.Add(Me.CodigoCotizacion)
         Me.GroupBox1.Controls.Add(Me.lblTC)
-        Me.GroupBox1.Controls.Add(Me.txtDescuento)
+        Me.GroupBox1.Controls.Add(Me.TxtIva)
         Me.GroupBox1.Controls.Add(Me.Label10)
         Me.GroupBox1.Controls.Add(Me.dtpFecha)
         Me.GroupBox1.Controls.Add(Me.Label7)
@@ -108,6 +110,25 @@ Partial Class Facturacion
         Me.GroupBox1.Size = New System.Drawing.Size(972, 545)
         Me.GroupBox1.TabIndex = 327
         Me.GroupBox1.TabStop = False
+        '
+        'CheckBox2
+        '
+        Me.CheckBox2.AutoSize = True
+        Me.CheckBox2.Location = New System.Drawing.Point(225, 17)
+        Me.CheckBox2.Name = "CheckBox2"
+        Me.CheckBox2.Size = New System.Drawing.Size(66, 20)
+        Me.CheckBox2.TabIndex = 335
+        Me.CheckBox2.Text = "Venta"
+        Me.CheckBox2.UseVisualStyleBackColor = True
+        '
+        'TextBox1
+        '
+        Me.TextBox1.BackColor = System.Drawing.SystemColors.Info
+        Me.TextBox1.Location = New System.Drawing.Point(288, 16)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(115, 23)
+        Me.TextBox1.TabIndex = 334
+        Me.TextBox1.Visible = False
         '
         'Factura
         '
@@ -123,15 +144,17 @@ Partial Class Facturacion
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.Descuento)
+        Me.TabPage1.Controls.Add(Me.Agregar)
         Me.TabPage1.Controls.Add(Me.GridDatos)
         Me.TabPage1.Controls.Add(Me.Label14)
         Me.TabPage1.Controls.Add(Me.Txt_Cantidad)
         Me.TabPage1.Controls.Add(Me.Label15)
         Me.TabPage1.Controls.Add(Me.LblProducto)
         Me.TabPage1.Controls.Add(Me.Txt_CodigoProducto)
-        Me.TabPage1.Controls.Add(Me.TOTAL)
-        Me.TabPage1.Controls.Add(Me.IVA)
-        Me.TabPage1.Controls.Add(Me.Neto)
+        Me.TabPage1.Controls.Add(Me.LBLTOTAL)
+        Me.TabPage1.Controls.Add(Me.lblIVA)
+        Me.TabPage1.Controls.Add(Me.LblSubtotal)
         Me.TabPage1.Controls.Add(Me.LTotal)
         Me.TabPage1.Controls.Add(Me.LIVA)
         Me.TabPage1.Controls.Add(Me.LNETO)
@@ -142,6 +165,32 @@ Partial Class Facturacion
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Factura"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'Descuento
+        '
+        Me.Descuento.BackgroundImage = CType(resources.GetObject("Descuento.BackgroundImage"), System.Drawing.Image)
+        Me.Descuento.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.Descuento.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Descuento.Location = New System.Drawing.Point(850, 2)
+        Me.Descuento.Name = "Descuento"
+        Me.Descuento.Size = New System.Drawing.Size(67, 31)
+        Me.Descuento.TabIndex = 352
+        Me.Descuento.Text = "F7"
+        Me.Descuento.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Descuento.UseVisualStyleBackColor = True
+        '
+        'Agregar
+        '
+        Me.Agregar.BackgroundImage = CType(resources.GetObject("Agregar.BackgroundImage"), System.Drawing.Image)
+        Me.Agregar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.Agregar.Location = New System.Drawing.Point(780, 2)
+        Me.Agregar.Name = "Agregar"
+        Me.Agregar.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.Agregar.Size = New System.Drawing.Size(64, 31)
+        Me.Agregar.TabIndex = 351
+        Me.Agregar.Text = "F5"
+        Me.Agregar.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        Me.Agregar.UseVisualStyleBackColor = True
         '
         'GridDatos
         '
@@ -162,7 +211,7 @@ Partial Class Facturacion
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(754, 9)
+        Me.Label14.Location = New System.Drawing.Point(610, 9)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(66, 16)
         Me.Label14.TabIndex = 349
@@ -170,11 +219,11 @@ Partial Class Facturacion
         '
         'Txt_Cantidad
         '
-        Me.Txt_Cantidad.Location = New System.Drawing.Point(822, 5)
+        Me.Txt_Cantidad.Location = New System.Drawing.Point(678, 6)
         Me.Txt_Cantidad.Name = "Txt_Cantidad"
-        Me.Txt_Cantidad.Size = New System.Drawing.Size(128, 23)
+        Me.Txt_Cantidad.Size = New System.Drawing.Size(100, 23)
         Me.Txt_Cantidad.TabIndex = 348
-        Me.Txt_Cantidad.Text = "00000000000.00"
+        Me.Txt_Cantidad.Text = "123456789.00"
         '
         'Label15
         '
@@ -190,58 +239,58 @@ Partial Class Facturacion
         Me.LblProducto.AutoEllipsis = True
         Me.LblProducto.BackColor = System.Drawing.Color.Transparent
         Me.LblProducto.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblProducto.Location = New System.Drawing.Point(204, 5)
+        Me.LblProducto.Location = New System.Drawing.Point(204, 6)
         Me.LblProducto.Name = "LblProducto"
-        Me.LblProducto.Size = New System.Drawing.Size(457, 22)
+        Me.LblProducto.Size = New System.Drawing.Size(358, 22)
         Me.LblProducto.TabIndex = 346
         Me.LblProducto.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Txt_CodigoProducto
         '
-        Me.Txt_CodigoProducto.Location = New System.Drawing.Point(70, 5)
+        Me.Txt_CodigoProducto.Location = New System.Drawing.Point(72, 6)
         Me.Txt_CodigoProducto.Name = "Txt_CodigoProducto"
         Me.Txt_CodigoProducto.Size = New System.Drawing.Size(128, 23)
         Me.Txt_CodigoProducto.TabIndex = 345
         Me.Txt_CodigoProducto.Text = "123456789012345"
         '
-        'TOTAL
+        'LBLTOTAL
         '
-        Me.TOTAL.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.LBLTOTAL.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TOTAL.AutoEllipsis = True
-        Me.TOTAL.BackColor = System.Drawing.Color.Transparent
-        Me.TOTAL.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TOTAL.Location = New System.Drawing.Point(789, 288)
-        Me.TOTAL.Name = "TOTAL"
-        Me.TOTAL.Size = New System.Drawing.Size(160, 22)
-        Me.TOTAL.TabIndex = 344
-        Me.TOTAL.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.LBLTOTAL.AutoEllipsis = True
+        Me.LBLTOTAL.BackColor = System.Drawing.Color.Transparent
+        Me.LBLTOTAL.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBLTOTAL.Location = New System.Drawing.Point(789, 288)
+        Me.LBLTOTAL.Name = "LBLTOTAL"
+        Me.LBLTOTAL.Size = New System.Drawing.Size(160, 22)
+        Me.LBLTOTAL.TabIndex = 344
+        Me.LBLTOTAL.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'IVA
+        'lblIVA
         '
-        Me.IVA.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.lblIVA.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.IVA.AutoEllipsis = True
-        Me.IVA.BackColor = System.Drawing.Color.Transparent
-        Me.IVA.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.IVA.Location = New System.Drawing.Point(789, 258)
-        Me.IVA.Name = "IVA"
-        Me.IVA.Size = New System.Drawing.Size(160, 22)
-        Me.IVA.TabIndex = 343
-        Me.IVA.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.lblIVA.AutoEllipsis = True
+        Me.lblIVA.BackColor = System.Drawing.Color.Transparent
+        Me.lblIVA.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblIVA.Location = New System.Drawing.Point(789, 258)
+        Me.lblIVA.Name = "lblIVA"
+        Me.lblIVA.Size = New System.Drawing.Size(160, 22)
+        Me.lblIVA.TabIndex = 343
+        Me.lblIVA.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'Neto
+        'LblSubtotal
         '
-        Me.Neto.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.LblSubtotal.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Neto.AutoEllipsis = True
-        Me.Neto.BackColor = System.Drawing.Color.Transparent
-        Me.Neto.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Neto.Location = New System.Drawing.Point(789, 232)
-        Me.Neto.Name = "Neto"
-        Me.Neto.Size = New System.Drawing.Size(160, 22)
-        Me.Neto.TabIndex = 342
-        Me.Neto.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.LblSubtotal.AutoEllipsis = True
+        Me.LblSubtotal.BackColor = System.Drawing.Color.Transparent
+        Me.LblSubtotal.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblSubtotal.Location = New System.Drawing.Point(789, 232)
+        Me.LblSubtotal.Name = "LblSubtotal"
+        Me.LblSubtotal.Size = New System.Drawing.Size(160, 22)
+        Me.LblSubtotal.TabIndex = 342
+        Me.LblSubtotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'LTotal
         '
@@ -335,13 +384,13 @@ Partial Class Facturacion
         Me.lblTC.Size = New System.Drawing.Size(0, 14)
         Me.lblTC.TabIndex = 329
         '
-        'txtDescuento
+        'TxtIva
         '
-        Me.txtDescuento.Location = New System.Drawing.Point(766, 16)
-        Me.txtDescuento.Name = "txtDescuento"
-        Me.txtDescuento.Size = New System.Drawing.Size(55, 23)
-        Me.txtDescuento.TabIndex = 7
-        Me.txtDescuento.Text = "16"
+        Me.TxtIva.Location = New System.Drawing.Point(766, 16)
+        Me.TxtIva.Name = "TxtIva"
+        Me.TxtIva.Size = New System.Drawing.Size(55, 23)
+        Me.TxtIva.TabIndex = 7
+        Me.TxtIva.Text = "16"
         '
         'Label10
         '
@@ -375,9 +424,9 @@ Partial Class Facturacion
         'GroupBoxDatosCliente
         '
         Me.GroupBoxDatosCliente.BackColor = System.Drawing.Color.Transparent
-        Me.GroupBoxDatosCliente.Controls.Add(Me.Label12)
+        Me.GroupBoxDatosCliente.Controls.Add(Me.LblCP)
         Me.GroupBoxDatosCliente.Controls.Add(Me.Label13)
-        Me.GroupBoxDatosCliente.Controls.Add(Me.Label8)
+        Me.GroupBoxDatosCliente.Controls.Add(Me.lblcolonia)
         Me.GroupBoxDatosCliente.Controls.Add(Me.Label11)
         Me.GroupBoxDatosCliente.Controls.Add(Me.lblRFCCliente)
         Me.GroupBoxDatosCliente.Controls.Add(Me.Label3)
@@ -398,17 +447,16 @@ Partial Class Facturacion
         Me.GroupBoxDatosCliente.TabStop = False
         Me.GroupBoxDatosCliente.Text = "Datos del cliente"
         '
-        'Label12
+        'LblCP
         '
-        Me.Label12.AutoEllipsis = True
-        Me.Label12.BackColor = System.Drawing.Color.Transparent
-        Me.Label12.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.Location = New System.Drawing.Point(823, 91)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(132, 22)
-        Me.Label12.TabIndex = 296
-        Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Label12.Visible = False
+        Me.LblCP.AutoEllipsis = True
+        Me.LblCP.BackColor = System.Drawing.Color.Transparent
+        Me.LblCP.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblCP.Location = New System.Drawing.Point(823, 91)
+        Me.LblCP.Name = "LblCP"
+        Me.LblCP.Size = New System.Drawing.Size(132, 22)
+        Me.LblCP.TabIndex = 296
+        Me.LblCP.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Label13
         '
@@ -420,19 +468,17 @@ Partial Class Facturacion
         Me.Label13.Size = New System.Drawing.Size(29, 14)
         Me.Label13.TabIndex = 295
         Me.Label13.Text = "CP:"
-        Me.Label13.Visible = False
         '
-        'Label8
+        'lblcolonia
         '
-        Me.Label8.AutoEllipsis = True
-        Me.Label8.BackColor = System.Drawing.Color.Transparent
-        Me.Label8.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(532, 91)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(244, 22)
-        Me.Label8.TabIndex = 294
-        Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Label8.Visible = False
+        Me.lblcolonia.AutoEllipsis = True
+        Me.lblcolonia.BackColor = System.Drawing.Color.Transparent
+        Me.lblcolonia.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblcolonia.Location = New System.Drawing.Point(525, 91)
+        Me.lblcolonia.Name = "lblcolonia"
+        Me.lblcolonia.Size = New System.Drawing.Size(259, 22)
+        Me.lblcolonia.TabIndex = 294
+        Me.lblcolonia.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'Label11
         '
@@ -444,7 +490,6 @@ Partial Class Facturacion
         Me.Label11.Size = New System.Drawing.Size(59, 14)
         Me.Label11.TabIndex = 293
         Me.Label11.Text = "Colonia:"
-        Me.Label11.Visible = False
         '
         'lblRFCCliente
         '
@@ -456,7 +501,6 @@ Partial Class Facturacion
         Me.lblRFCCliente.Size = New System.Drawing.Size(388, 22)
         Me.lblRFCCliente.TabIndex = 292
         Me.lblRFCCliente.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.lblRFCCliente.Visible = False
         '
         'Label3
         '
@@ -468,7 +512,6 @@ Partial Class Facturacion
         Me.Label3.Size = New System.Drawing.Size(36, 14)
         Me.Label3.TabIndex = 291
         Me.Label3.Text = "RFC:"
-        Me.Label3.Visible = False
         '
         'CodigoCliente
         '
@@ -501,7 +544,6 @@ Partial Class Facturacion
         Me.lblCiudadCliente.Size = New System.Drawing.Size(371, 22)
         Me.lblCiudadCliente.TabIndex = 288
         Me.lblCiudadCliente.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.lblCiudadCliente.Visible = False
         '
         'Label2
         '
@@ -513,7 +555,6 @@ Partial Class Facturacion
         Me.Label2.Size = New System.Drawing.Size(56, 14)
         Me.Label2.TabIndex = 287
         Me.Label2.Text = "Ciudad:"
-        Me.Label2.Visible = False
         '
         'lblEstadoCliente
         '
@@ -525,7 +566,6 @@ Partial Class Facturacion
         Me.lblEstadoCliente.Size = New System.Drawing.Size(380, 22)
         Me.lblEstadoCliente.TabIndex = 286
         Me.lblEstadoCliente.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.lblEstadoCliente.Visible = False
         '
         'Label9
         '
@@ -537,7 +577,6 @@ Partial Class Facturacion
         Me.Label9.Size = New System.Drawing.Size(56, 14)
         Me.Label9.TabIndex = 285
         Me.Label9.Text = "Estado:"
-        Me.Label9.Visible = False
         '
         'lblDireccionCliente
         '
@@ -549,7 +588,6 @@ Partial Class Facturacion
         Me.lblDireccionCliente.Size = New System.Drawing.Size(371, 22)
         Me.lblDireccionCliente.TabIndex = 282
         Me.lblDireccionCliente.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.lblDireccionCliente.Visible = False
         '
         'lblNombreCliente
         '
@@ -561,7 +599,6 @@ Partial Class Facturacion
         Me.lblNombreCliente.Size = New System.Drawing.Size(852, 22)
         Me.lblNombreCliente.TabIndex = 281
         Me.lblNombreCliente.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.lblNombreCliente.Visible = False
         '
         'Label5
         '
@@ -573,7 +610,6 @@ Partial Class Facturacion
         Me.Label5.Size = New System.Drawing.Size(68, 14)
         Me.Label5.TabIndex = 278
         Me.Label5.Text = "Dirección:"
-        Me.Label5.Visible = False
         '
         'LblNombres
         '
@@ -585,7 +621,6 @@ Partial Class Facturacion
         Me.LblNombres.Size = New System.Drawing.Size(61, 14)
         Me.LblNombres.TabIndex = 268
         Me.LblNombres.Text = "Nombre:"
-        Me.LblNombres.Visible = False
         '
         'Barra
         '
@@ -702,25 +737,6 @@ Partial Class Facturacion
         Me.MensajePiePagina.Size = New System.Drawing.Size(150, 17)
         Me.MensajePiePagina.Text = "ToolStripStatusLabel1"
         '
-        'CheckBox2
-        '
-        Me.CheckBox2.AutoSize = True
-        Me.CheckBox2.Location = New System.Drawing.Point(225, 17)
-        Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(66, 20)
-        Me.CheckBox2.TabIndex = 335
-        Me.CheckBox2.Text = "Venta"
-        Me.CheckBox2.UseVisualStyleBackColor = True
-        '
-        'TextBox1
-        '
-        Me.TextBox1.BackColor = System.Drawing.SystemColors.Info
-        Me.TextBox1.Location = New System.Drawing.Point(288, 16)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(115, 23)
-        Me.TextBox1.TabIndex = 334
-        Me.TextBox1.Visible = False
-        '
         'Facturacion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -759,7 +775,7 @@ Partial Class Facturacion
     Friend WithEvents chbGenerar As System.Windows.Forms.CheckBox
     Friend WithEvents CodigoCotizacion As System.Windows.Forms.TextBox
     Friend WithEvents lblTC As System.Windows.Forms.Label
-    Friend WithEvents txtDescuento As System.Windows.Forms.TextBox
+    Friend WithEvents TxtIva As System.Windows.Forms.TextBox
     Friend WithEvents Label10 As System.Windows.Forms.Label
     Friend WithEvents dtpFecha As System.Windows.Forms.DateTimePicker
     Friend WithEvents Label7 As System.Windows.Forms.Label
@@ -785,9 +801,9 @@ Partial Class Facturacion
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents CodigoCliente As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents Label12 As System.Windows.Forms.Label
+    Friend WithEvents LblCP As System.Windows.Forms.Label
     Friend WithEvents Label13 As System.Windows.Forms.Label
-    Friend WithEvents Label8 As System.Windows.Forms.Label
+    Friend WithEvents lblcolonia As System.Windows.Forms.Label
     Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents PiePagina As System.Windows.Forms.StatusStrip
     Friend WithEvents MensajePiePagina As System.Windows.Forms.ToolStripStatusLabel
@@ -799,9 +815,9 @@ Partial Class Facturacion
     Friend WithEvents Label15 As System.Windows.Forms.Label
     Friend WithEvents LblProducto As System.Windows.Forms.Label
     Friend WithEvents Txt_CodigoProducto As System.Windows.Forms.TextBox
-    Friend WithEvents TOTAL As System.Windows.Forms.Label
-    Friend WithEvents IVA As System.Windows.Forms.Label
-    Friend WithEvents Neto As System.Windows.Forms.Label
+    Friend WithEvents LBLTOTAL As System.Windows.Forms.Label
+    Friend WithEvents lblIVA As System.Windows.Forms.Label
+    Friend WithEvents LblSubtotal As System.Windows.Forms.Label
     Friend WithEvents LTotal As System.Windows.Forms.Label
     Friend WithEvents LIVA As System.Windows.Forms.Label
     Friend WithEvents LNETO As System.Windows.Forms.Label
@@ -809,4 +825,6 @@ Partial Class Facturacion
     Friend WithEvents GridDatos As SourceGrid.DataGrid
     Friend WithEvents CheckBox2 As System.Windows.Forms.CheckBox
     Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
+    Private WithEvents Agregar As System.Windows.Forms.Button
+    Private WithEvents Descuento As System.Windows.Forms.Button
 End Class

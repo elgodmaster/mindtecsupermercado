@@ -122,6 +122,15 @@ SELECT  C7  = C7,    --FolioVenta
          
         -----------------------------------------------     -- Fin de XML     -----------------------------------------------
 	
+	
+	Delete From #TmpGrabar115 Where C1 = ''
+	
+	If @@ERROR <> 0
+	 Begin
+	  RollBack Tran Grabar115
+	  Return
+	 End
+	
 	--Insert de la tabla temporal..
 	Insert SMercado..Venta_detalles(idVenta,IdProducto,cantidad,PrecioUni,Descripcion,Descuento)
     Select C7,C1,C3,C5,C2,C8
