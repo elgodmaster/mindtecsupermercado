@@ -75,11 +75,13 @@ Public Class registroEntrada
             Dim sumSal As Decimal
             Dim dinIni As Decimal
             Dim total As Decimal
+            Dim ventasTotal As Decimal
 
             sumEnt = Decimal.Parse(ObjRet.DS.Tables(3).Rows(0).Item(1))
             sumSal = Decimal.Parse(ObjRet.DS.Tables(3).Rows(0).Item(2))
             dinIni = Decimal.Parse(ObjRet.DS.Tables(3).Rows(0).Item(0))
-            total = dinIni + sumEnt - sumSal
+            ventasTotal = Decimal.Parse(ObjRet.DS.Tables(3).Rows(0).Item(3))
+            total = dinIni + sumEnt + ventasTotal - sumSal
 
             If total >= montoPorDefecto Then
                 MessageBox.Show("La cantidad actual en la caja es: $" & total & vbCrLf & _

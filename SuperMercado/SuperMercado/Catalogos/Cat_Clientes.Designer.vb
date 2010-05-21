@@ -26,8 +26,6 @@ Partial Class Cat_Clientes
         Me.CodigoCliente = New System.Windows.Forms.TextBox
         Me.Label1 = New System.Windows.Forms.Label
         Me.AbonarToolStrip = New System.Windows.Forms.ToolStrip
-        Me.Limpiar = New System.Windows.Forms.ToolStripButton
-        Me.Grabar = New System.Windows.Forms.ToolStripButton
         Me.Label4 = New System.Windows.Forms.Label
         Me.AdeudosTabPage = New System.Windows.Forms.TabPage
         Me.GridDatosCuentas = New SourceGrid.DataGrid
@@ -70,11 +68,13 @@ Partial Class Cat_Clientes
         Me.Label15 = New System.Windows.Forms.Label
         Me.Label17 = New System.Windows.Forms.Label
         Me.Label19 = New System.Windows.Forms.Label
+        Me.TxtNombre = New System.Windows.Forms.TextBox
         Me.LblNombres = New System.Windows.Forms.Label
         Me.ClientesTabControl = New System.Windows.Forms.TabControl
+        Me.Limpiar = New System.Windows.Forms.ToolStripButton
+        Me.Grabar = New System.Windows.Forms.ToolStripButton
         Me.Barra = New System.Windows.Forms.PictureBox
         Me.btnAceptar = New System.Windows.Forms.Button
-        Me.TxtNombre = New System.Windows.Forms.TextBox
         Me.PiePagina.SuspendLayout()
         Me.AbonarToolStrip.SuspendLayout()
         Me.AdeudosTabPage.SuspendLayout()
@@ -148,27 +148,6 @@ Partial Class Cat_Clientes
         Me.AbonarToolStrip.TabIndex = 287
         Me.AbonarToolStrip.Text = "ToolStrip1"
         '
-        'Limpiar
-        '
-        Me.Limpiar.AutoSize = False
-        Me.Limpiar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.Limpiar.Image = CType(resources.GetObject("Limpiar.Image"), System.Drawing.Image)
-        Me.Limpiar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.Limpiar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.Limpiar.Name = "Limpiar"
-        Me.Limpiar.Size = New System.Drawing.Size(43, 45)
-        Me.Limpiar.Text = "Limpiar"
-        '
-        'Grabar
-        '
-        Me.Grabar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.Grabar.Image = CType(resources.GetObject("Grabar.Image"), System.Drawing.Image)
-        Me.Grabar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.Grabar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.Grabar.Name = "Grabar"
-        Me.Grabar.Size = New System.Drawing.Size(36, 45)
-        Me.Grabar.Text = "Grabar"
-        '
         'Label4
         '
         Me.Label4.AutoSize = True
@@ -203,10 +182,10 @@ Partial Class Cat_Clientes
         Me.GridDatosCuentas.DeleteQuestionMessage = ""
         Me.GridDatosCuentas.DeleteRowsWithDeleteKey = False
         Me.GridDatosCuentas.FixedRows = 1
-        Me.GridDatosCuentas.Location = New System.Drawing.Point(18, 106)
+        Me.GridDatosCuentas.Location = New System.Drawing.Point(18, 114)
         Me.GridDatosCuentas.Name = "GridDatosCuentas"
         Me.GridDatosCuentas.SelectionMode = SourceGrid.GridSelectionMode.Row
-        Me.GridDatosCuentas.Size = New System.Drawing.Size(649, 274)
+        Me.GridDatosCuentas.Size = New System.Drawing.Size(787, 328)
         Me.GridDatosCuentas.TabIndex = 32
         Me.GridDatosCuentas.TabStop = True
         Me.GridDatosCuentas.ToolTipText = ""
@@ -214,7 +193,7 @@ Partial Class Cat_Clientes
         'Label22
         '
         Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(15, 89)
+        Me.Label22.Location = New System.Drawing.Point(15, 97)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(100, 14)
         Me.Label22.TabIndex = 6
@@ -225,7 +204,7 @@ Partial Class Cat_Clientes
         Me.lblLimiteCredito.AutoSize = True
         Me.lblLimiteCredito.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblLimiteCredito.ForeColor = System.Drawing.Color.DarkGreen
-        Me.lblLimiteCredito.Location = New System.Drawing.Point(423, 52)
+        Me.lblLimiteCredito.Location = New System.Drawing.Point(579, 52)
         Me.lblLimiteCredito.Name = "lblLimiteCredito"
         Me.lblLimiteCredito.Size = New System.Drawing.Size(47, 14)
         Me.lblLimiteCredito.TabIndex = 4
@@ -236,7 +215,7 @@ Partial Class Cat_Clientes
         Me.lblSaldoActual.AutoSize = True
         Me.lblSaldoActual.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblSaldoActual.ForeColor = System.Drawing.Color.DarkGreen
-        Me.lblSaldoActual.Location = New System.Drawing.Point(161, 52)
+        Me.lblSaldoActual.Location = New System.Drawing.Point(152, 52)
         Me.lblSaldoActual.Name = "lblSaldoActual"
         Me.lblSaldoActual.Size = New System.Drawing.Size(47, 14)
         Me.lblSaldoActual.TabIndex = 3
@@ -245,7 +224,7 @@ Partial Class Cat_Clientes
         'Label18
         '
         Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(257, 52)
+        Me.Label18.Location = New System.Drawing.Point(413, 52)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(116, 14)
         Me.Label18.TabIndex = 2
@@ -661,6 +640,18 @@ Partial Class Cat_Clientes
         Me.Label19.TabIndex = 269
         Me.Label19.Text = "Estado"
         '
+        'TxtNombre
+        '
+        Me.TxtNombre.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TxtNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TxtNombre.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtNombre.Location = New System.Drawing.Point(72, 31)
+        Me.TxtNombre.MaxLength = 100
+        Me.TxtNombre.Name = "TxtNombre"
+        Me.TxtNombre.Size = New System.Drawing.Size(837, 22)
+        Me.TxtNombre.TabIndex = 3
+        '
         'LblNombres
         '
         Me.LblNombres.AutoSize = True
@@ -681,6 +672,27 @@ Partial Class Cat_Clientes
         Me.ClientesTabControl.SelectedIndex = 0
         Me.ClientesTabControl.Size = New System.Drawing.Size(983, 493)
         Me.ClientesTabControl.TabIndex = 289
+        '
+        'Limpiar
+        '
+        Me.Limpiar.AutoSize = False
+        Me.Limpiar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.Limpiar.Image = CType(resources.GetObject("Limpiar.Image"), System.Drawing.Image)
+        Me.Limpiar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.Limpiar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.Limpiar.Name = "Limpiar"
+        Me.Limpiar.Size = New System.Drawing.Size(43, 45)
+        Me.Limpiar.Text = "Limpiar"
+        '
+        'Grabar
+        '
+        Me.Grabar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.Grabar.Image = CType(resources.GetObject("Grabar.Image"), System.Drawing.Image)
+        Me.Grabar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.Grabar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.Grabar.Name = "Grabar"
+        Me.Grabar.Size = New System.Drawing.Size(36, 45)
+        Me.Grabar.Text = "Grabar"
         '
         'Barra
         '
@@ -706,18 +718,6 @@ Partial Class Cat_Clientes
         Me.btnAceptar.TabIndex = 2
         Me.btnAceptar.Text = "Aceptar"
         Me.btnAceptar.UseVisualStyleBackColor = False
-        '
-        'TxtNombre
-        '
-        Me.TxtNombre.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TxtNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TxtNombre.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtNombre.Location = New System.Drawing.Point(72, 31)
-        Me.TxtNombre.MaxLength = 100
-        Me.TxtNombre.Name = "TxtNombre"
-        Me.TxtNombre.Size = New System.Drawing.Size(837, 22)
-        Me.TxtNombre.TabIndex = 3
         '
         'Cat_Clientes
         '

@@ -21,10 +21,10 @@ select	C1 = C.IdCuenta,
 
 		C2 = C.Descripcion, 
 		
-		C3 = (Select SUM( CD.PrecioUni )
+		C3 = CONVERT(decimal(18,2), (Select SUM( CD.PrecioUni * CD.cantidad * CD.Descuento )
 				 From SMercado..Cuentas_Cobrar_Detalles CD
 				 Where IdCuenta = C.IdCuenta 
-				 Group by IdCuenta ),
+				 Group by IdCuenta )),
 				 
 		C4 = C.adeudo,
 				 

@@ -58,8 +58,9 @@ fecha date not null
 
 -- TABLAS PARA CUENTAS POR COBRAR --
 
-CREATE TABLE CC_Abonos(
+CREATE TABLE Cuentas_Abonos(
 idAbono int identity not null,
+idCuenta int not null,
 monto decimal(16,2) not null,
 fecha datetime not null,
 idCliente int not null,
@@ -138,61 +139,69 @@ exec Consulta110 '','','',''
 exec consulta111 '','','',''
 exec consulta114a '','','',''
 exec consulta114b 'V1=Baja California|','','',''
-exec consulta105 'V1=CLIENTE1|','','','2'
-
-select * from SMercado..Cat_Clientes
-select * from SMercado..Cat_EstadosdelaRepublica 
-select * from SMercado..Cat_Ciudades where Descripcion = 'Culiacán'
-
-select * from SMercado..Caja_Configuracion 
-select * from SMercado..Caja_Corte
- 
-
-Select E.descripcion 
-from SMercado..Cat_Clientes C
-inner join SMercado..Cat_EstadosdelaRepublica E ON C.IdEstado = E.IdEstado 
-where C.Codigo = 'CLIENTE2'
-
-select E.IdEstado 
-from SMercado..Cat_EstadosdelaRepublica E
-where E.Descripcion = 'Sinaloa'
-
-select * from SMercado..ventas
-select * from SMercado..Venta_detalles 
-select * from SMercado..Cat_Productos 
-select * from SMercado..Cat_Departamentos 
-
-Select Venta = SUM( vd.cantidad * vd.PrecioUni * vd.Descuento )
-					From SMercado..Venta_detalles vd
-					inner join SMercado..Ventas v ON vd.IdVenta = v.IdVenta 
-					--where v.Fecha = CONVERT(date, GETDATE())
-					Group by CONVERT(date, v.Fecha )
+exec consulta105 'V1=CLIENTE2|','','','2'
+exec consulta117 'V1=CLIENTE2|','','',''
+exec consulta118a 'V1=9|','','',''
+exec consulta118b 'V1=9|','','',''
 
 
-select * from SMercado..Ventas V
-inner join SMercado..Venta_detalles VD ON V.IdVenta = VD.IdVenta 
-
-Select vd.Descripcion, d.Descripcion, vd.cantidad, vd.PrecioUni, v.Fecha 
-From SMercado..Venta_detalles vd
-inner join SMercado..Ventas v ON vd.IdVenta = v.IdVenta
-inner join SMercado..Cat_Productos p ON vd.IdProducto = p.Codigo 
-inner join SMercado..Cat_Departamentos d ON p.IDDepartamento = d.IdDepartamento 
-Where CONVERT(date, v.Fecha) = CONVERT(date, GETDATE())
-
-Select Departamento = d.Descripcion, Total = SUM(vd.cantidad * vd.PrecioUni)
-From SMercado..Venta_detalles vd
-inner join SMercado..Ventas v ON vd.IdVenta = v.IdVenta
-inner join SMercado..Cat_Productos p ON vd.IdProducto = p.Codigo 
-inner join SMercado..Cat_Departamentos d ON p.IDDepartamento = d.IdDepartamento 
-Where CONVERT(date, v.Fecha) = CONVERT(date, GETDATE())
-Group by d.Descripcion
-
-Select CONVERT(date, v.Fecha), SUM( vd.cantidad * vd.PrecioUni * vd.Descuento )
-From SMercado..Venta_detalles vd
-inner join SMercado..Ventas v ON vd.IdVenta = v.IdVenta 
-Group by CONVERT(date, v.Fecha)
+Select C.Codigo, C.NombreFiscal, C.Adeudo 
+From SMercado..Cat_Clientes C
+Select * from SMercado..Caja_Entrada 
+exec GRABAR117 'V1=9|V2=100|V3=1|V4=CLIENTE2|','','',''
 
 
+select * 
+From SMercado..Cuentas_Cobrar C
+inner join SMercado..Cuentas_Cobrar_Detalles CD ON C.IdCuenta = CD.IdCuenta 
+
+update SMercado..Cat_Clientes 
+set Adeudo = 11200.5
+where Codigo = 'CLIENTE2'
+
+select	Cuenta = C.IdCuenta, 
+
+		Artículo = C.Descripcion, 
+		
+		Monto = (Select SUM( CD.PrecioUni )
+				 From SMercado..Cuentas_Cobrar_Detalles CD
+				 Where IdCuenta = C.IdCuenta 
+				 Group by IdCuenta ),
+				 
+		Adeudo = C.adeudo,
+				 
+		Abonado =  isnull((Select SUM(CA.monto)
+				  From SMercado..Cuentas_Abonos CA
+				  Where idCuenta = C.IdCuenta 
+				  Group by CA.idCuenta), 0),
+				  
+	    C.CodigoCliente 
+				  
 
 
+select * 
+from SMercado..Cuentas_Cobrar C
+inner join SMercado..Cuentas_Cobrar_Detalles D ON C.IdCuenta = D.IdCuenta
+Where D.IdCuenta = 9 
 
+select * from SMercado..Cuentas_Cobrar_Detalles where IdCuenta = 9
+select * from SMercado..Cuentas_Abonos
+
+insert SMercado..Cuentas_Cobrar values ( GETDATE(), 1, 1, 1, 1, 'XBOX 360', 4500, 1)
+
+insert SMercado..Cuentas_Cobrar_Detalles 
+values (9, 777, 1, 4500, 'XBOX 360', NULL, NULL, 1)
+
+insert into SMercado..Cuentas_Abonos values ( 9, 500, GETDATE(), 1, 1 )
+
+
+Select	C1 = A.idAbono, 
+		C2 = '$ ' + CONVERT(char, A.monto), 
+		C3 = CONVERT(date, A.fecha), 
+		C4 = A.idUsuario   
+From SMercado..Cuentas_Abonos A
+Inner join SMercado..Cat_Clientes C ON A.idCliente = C.IdCliente
+Where C.Codigo = 'CLIENTE2'
+
+Select * from SMercado..Cat_Clientes 
+Select * from SMercado..Cuentas_Abonos  

@@ -112,7 +112,8 @@ BEGIN
             @Desc13 = IsNull(a.Cel2,''),
             @Desc14 = IsNull(a.Fax,''),
             @Desc15 = IsNull(a.Email,''),
-            @Desc16 = IsNull(a.LimiteCredito, '0')
+            @Desc16 = IsNull(a.LimiteCredito, '0'),
+            @Desc17 = IsNull(a.Adeudo, '0')
                   
      From SMercado..Cat_Clientes a (NoLock)
      Left Join SMercado..Cat_EstadosdelaRepublica b (NoLock) On b.IdEstado = a.IdEstado
@@ -138,7 +139,8 @@ BEGIN
             @Desc13 = IsNull(a.Cel2,''),
             @Desc14 = IsNull(a.Fax,''),
 			@Desc15 = IsNull(a.Email,''),
-            @Desc16 = IsNull(a.LimiteCredito, '0')
+            @Desc16 = IsNull(a.LimiteCredito, '0'),
+            @Desc17 = IsNull(a.Adeudo, '0')
      From SMercado..Cat_Clientes a (NoLock)
      Left Join SMercado..Cat_EstadosdelaRepublica b (NoLock) On b.IdEstado = a.IdEstado
      Left Join SMercado..Cat_Ciudades c (NoLock) On c.IdCiudad = a.IdCiudad And c.IdEstado = a.IdEstado 
@@ -169,20 +171,20 @@ BEGIN
         Begin 
          Select @Resul = '2R=OK|V1=' + @Desc1 + '|V2=' + @Desc2 + '|V3=' + @Desc3 + '|V4=' + @Desc4 + '|V5=' + @Desc5 + '|V6=' + @Desc6 +
                          '|V7=' + @Desc7 + '|V8=' + @Desc8 + '|V9=' + @Desc9 + '|V10=' + @Desc10 + 
-                         '|V11=' + @Desc11 + '|V12=' + @Desc12 + '|V13=' + @Desc13 + '|V14=' + @Desc14 + '|V15=' + @Desc15 + '|V16=' + @Desc16 + '|' 
+                         '|V11=' + @Desc11 + '|V12=' + @Desc12 + '|V13=' + @Desc13 + '|V14=' + @Desc14 + '|V15=' + @Desc15 + '|V16=' + @Desc16 + 
+                         '|V17=' + @Desc17 
+                         
         End
 	  If @Validar = 3
         Begin 
          Select @Resul = '2R=OK|V1=' + @Desc1 + '|V2=' + @Desc2 + '|V3=' + @Desc3 + '|V4=' + @Desc4 + '|V5=' + @Desc5 + '|V6=' + @Desc6 +
                          '|V7=' + @Desc7 + '|V8=' + @Desc8 + '|V9=' + @Desc9 + '|V10=' + @Desc10 + 
-                         '|V11=' + @Desc11 + '|V12=' + @Desc12 + '|V13=' + @Desc13 + '|V14=' + @Desc14 + '|V15=' + @Desc15 + '|V16=' + @Desc16 + '|' 
+                         '|V11=' + @Desc11 + '|V12=' + @Desc12 + '|V13=' + @Desc13 + '|V14=' + @Desc14 + '|V15=' + @Desc15 + '|V16=' + @Desc16 + 
+                         '|V17=' + @Desc17 
         End
     End
   Set NoCount OFF
   Select resultado = @Resul 
-  
-  Select C.Adeudo 
-  From SMercado..Cat_Clientes C
-  Where C.Codigo = @Valor1 
+ 
   
 END

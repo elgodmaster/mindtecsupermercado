@@ -27,12 +27,14 @@ Select C1 = concepto,
        C3 = fecha 
 From SMercado..Caja_Entrada 
 where convert( date, fecha ) = convert( date, GETDATE() )
+Order by fecha DESC
 
 Select C1 = concepto, 
        C2 = monto, 
        C3 = fecha 
 From SMercado..Caja_Salida  
 where convert( date, fecha ) = convert( date, GETDATE() )
+Order by fecha DESC
 
 Select C1 = d.Descripcion, 
 	   C2 = SUM(vd.cantidad * vd.PrecioUni * vd.Descuento)
