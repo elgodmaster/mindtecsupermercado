@@ -205,3 +205,5 @@ Where C.Codigo = 'CLIENTE2'
 
 Select * from SMercado..Cat_Clientes 
 Select * from SMercado..Cuentas_Abonos  
+
+Select * from SMercado..Cuentas_Cobrar 

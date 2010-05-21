@@ -165,8 +165,8 @@
 
         GridDatosAbonos.Columns(0).Visible = False
         GridDatosAbonos.Columns.SetWidth(1, 60)
-        GridDatosAbonos.Columns.SetWidth(2, 8)
-        GridDatosAbonos.Columns.SetWidth(3, 90)
+        GridDatosAbonos.Columns.SetWidth(2, 81)
+        GridDatosAbonos.Columns.SetWidth(3, 91)
         GridDatosAbonos.Columns.SetWidth(4, 60)
 
     End Sub

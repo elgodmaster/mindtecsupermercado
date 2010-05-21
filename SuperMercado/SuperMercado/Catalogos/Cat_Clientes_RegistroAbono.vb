@@ -21,17 +21,17 @@
 #Region "  Botón ACEPTAR  "
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
         If numAbono.Value < 0 Then
-            MessageBox.Show("No ha registrado una la cantidad del abono.", "Abonos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            MessageBox.Show("No ha registrado una la cantidad del abono.", " Abonos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             numAbono.Focus()
             numAbono.Select(0, 9)
             Return
         End If
 
-        Dim adeudoActual As Integer
+        Dim adeudoActual As Decimal
         adeudoActual = dataSet.Tables(0).Rows(pos).Item(3)
 
         If numAbono.Value > adeudoActual Then
-            MessageBox.Show("El abono es mayor que el adeudo", "Anonos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            MessageBox.Show("El abono es mayor que el adeudo", " Abonos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             numAbono.Focus()
             numAbono.Select(0, 9)
             Return

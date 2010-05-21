@@ -108,6 +108,8 @@ Public Class Credito
         Caja = "Grabar116" : Parametros = "V1=" & IdCuenta & "|V2=|V3=0|V4=" & Usuario & "|V5=" & Me.CodigoCliente.Text & "|V6=0|V7=" & Radio & "|V8=" & Me.Total & "|"
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
         ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros, DsDatosCuenta)
+
+
         'Estatus
         If ObjRet.bOk Then
             MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
