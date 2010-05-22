@@ -124,7 +124,8 @@ Partial Class Caja
         '
         'GridDatosEntradas
         '
-        Me.GridDatosEntradas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.GridDatosEntradas.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.GridDatosEntradas.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GridDatosEntradas.DeleteQuestionMessage = ""
         Me.GridDatosEntradas.DeleteRowsWithDeleteKey = False
         Me.GridDatosEntradas.FixedRows = 1
@@ -159,7 +160,8 @@ Partial Class Caja
         '
         'GridDatosSalidas
         '
-        Me.GridDatosSalidas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.GridDatosSalidas.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.GridDatosSalidas.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GridDatosSalidas.DeleteQuestionMessage = ""
         Me.GridDatosSalidas.DeleteRowsWithDeleteKey = False
         Me.GridDatosSalidas.FixedRows = 1
@@ -410,7 +412,8 @@ Partial Class Caja
         '
         'GridDatosVenta
         '
-        Me.GridDatosVenta.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.GridDatosVenta.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.GridDatosVenta.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GridDatosVenta.DeleteQuestionMessage = ""
         Me.GridDatosVenta.DeleteRowsWithDeleteKey = False
         Me.GridDatosVenta.FixedRows = 1
@@ -426,6 +429,7 @@ Partial Class Caja
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.SystemColors.ControlLight
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.ClientSize = New System.Drawing.Size(811, 746)
         Me.Controls.Add(Me.Label9)

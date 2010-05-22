@@ -26,6 +26,8 @@ Partial Class Cat_Clientes
         Me.CodigoCliente = New System.Windows.Forms.TextBox
         Me.Label1 = New System.Windows.Forms.Label
         Me.AbonarToolStrip = New System.Windows.Forms.ToolStrip
+        Me.Limpiar = New System.Windows.Forms.ToolStripButton
+        Me.Grabar = New System.Windows.Forms.ToolStripButton
         Me.Label4 = New System.Windows.Forms.Label
         Me.AdeudosTabPage = New System.Windows.Forms.TabPage
         Me.GridDatosCuentas = New SourceGrid.DataGrid
@@ -71,8 +73,6 @@ Partial Class Cat_Clientes
         Me.TxtNombre = New System.Windows.Forms.TextBox
         Me.LblNombres = New System.Windows.Forms.Label
         Me.ClientesTabControl = New System.Windows.Forms.TabControl
-        Me.Limpiar = New System.Windows.Forms.ToolStripButton
-        Me.Grabar = New System.Windows.Forms.ToolStripButton
         Me.Barra = New System.Windows.Forms.PictureBox
         Me.btnAceptar = New System.Windows.Forms.Button
         Me.PiePagina.SuspendLayout()
@@ -148,6 +148,27 @@ Partial Class Cat_Clientes
         Me.AbonarToolStrip.TabIndex = 287
         Me.AbonarToolStrip.Text = "ToolStrip1"
         '
+        'Limpiar
+        '
+        Me.Limpiar.AutoSize = False
+        Me.Limpiar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.Limpiar.Image = CType(resources.GetObject("Limpiar.Image"), System.Drawing.Image)
+        Me.Limpiar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.Limpiar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.Limpiar.Name = "Limpiar"
+        Me.Limpiar.Size = New System.Drawing.Size(43, 45)
+        Me.Limpiar.Text = "Limpiar"
+        '
+        'Grabar
+        '
+        Me.Grabar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.Grabar.Image = CType(resources.GetObject("Grabar.Image"), System.Drawing.Image)
+        Me.Grabar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.Grabar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.Grabar.Name = "Grabar"
+        Me.Grabar.Size = New System.Drawing.Size(36, 45)
+        Me.Grabar.Text = "Grabar"
+        '
         'Label4
         '
         Me.Label4.AutoSize = True
@@ -178,7 +199,7 @@ Partial Class Cat_Clientes
         '
         'GridDatosCuentas
         '
-        Me.GridDatosCuentas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.GridDatosCuentas.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GridDatosCuentas.DeleteQuestionMessage = ""
         Me.GridDatosCuentas.DeleteRowsWithDeleteKey = False
         Me.GridDatosCuentas.FixedRows = 1
@@ -672,27 +693,6 @@ Partial Class Cat_Clientes
         Me.ClientesTabControl.SelectedIndex = 0
         Me.ClientesTabControl.Size = New System.Drawing.Size(983, 493)
         Me.ClientesTabControl.TabIndex = 289
-        '
-        'Limpiar
-        '
-        Me.Limpiar.AutoSize = False
-        Me.Limpiar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.Limpiar.Image = CType(resources.GetObject("Limpiar.Image"), System.Drawing.Image)
-        Me.Limpiar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.Limpiar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.Limpiar.Name = "Limpiar"
-        Me.Limpiar.Size = New System.Drawing.Size(43, 45)
-        Me.Limpiar.Text = "Limpiar"
-        '
-        'Grabar
-        '
-        Me.Grabar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.Grabar.Image = CType(resources.GetObject("Grabar.Image"), System.Drawing.Image)
-        Me.Grabar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.Grabar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.Grabar.Name = "Grabar"
-        Me.Grabar.Size = New System.Drawing.Size(36, 45)
-        Me.Grabar.Text = "Grabar"
         '
         'Barra
         '

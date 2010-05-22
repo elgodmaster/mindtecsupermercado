@@ -28,7 +28,7 @@ Partial Class Cat_Clientes_DetalleVenta
         'GridDatosDetalle
         '
         Me.GridDatosDetalle.BackColor = System.Drawing.SystemColors.Control
-        Me.GridDatosDetalle.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.GridDatosDetalle.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GridDatosDetalle.DeleteQuestionMessage = ""
         Me.GridDatosDetalle.DeleteRowsWithDeleteKey = False
         Me.GridDatosDetalle.FixedRows = 1
@@ -40,15 +40,15 @@ Partial Class Cat_Clientes_DetalleVenta
         Me.GridDatosDetalle.TabStop = True
         Me.GridDatosDetalle.ToolTipText = ""
         '
-        'Cat_Clientes_Detalle
+        'Cat_Clientes_DetalleVenta
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(504, 329)
         Me.Controls.Add(Me.GridDatosDetalle)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
-        Me.Name = "Cat_Clientes_Detalle"
-        Me.Text = "Detalle"
+        Me.Name = "Cat_Clientes_DetalleVenta"
+        Me.Text = "  Detalle"
         Me.ResumeLayout(False)
 
     End Sub

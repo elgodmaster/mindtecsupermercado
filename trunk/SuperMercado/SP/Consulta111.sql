@@ -23,21 +23,21 @@ DECLARE @dineroInicialCaja decimal(18,2)
 DECLARE @venta decimal(18,2)
 
 Select C1 = concepto, 
-       C2 = monto, 
+       C2 = '$ ' + CONVERT(char, monto), 
        C3 = fecha 
 From SMercado..Caja_Entrada 
 where convert( date, fecha ) = convert( date, GETDATE() )
 Order by fecha DESC
 
 Select C1 = concepto, 
-       C2 = monto, 
+       C2 = '$ ' + CONVERT(char, monto), 
        C3 = fecha 
 From SMercado..Caja_Salida  
 where convert( date, fecha ) = convert( date, GETDATE() )
 Order by fecha DESC
 
 Select C1 = d.Descripcion, 
-	   C2 = SUM(vd.cantidad * vd.PrecioUni * vd.Descuento)
+	   C2 = '$ ' + CONVERT(char, CONVERT(decimal(12,2),SUM(vd.cantidad * vd.PrecioUni * vd.Descuento)))
 From SMercado..Venta_detalles vd
 inner join SMercado..Ventas v ON vd.IdVenta = v.IdVenta
 inner join SMercado..Cat_Productos p ON vd.IdProducto = p.Codigo 

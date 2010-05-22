@@ -401,6 +401,16 @@ Public Class Cat_Clientes
         viewNormal.Font = New Font("Verdana", 8, FontStyle.Regular)
         viewNormal.Border = border
 
+        Dim viewDinero As CellBackColorAlternate = New CellBackColorAlternate(gColorRow, Color.White)
+        viewDinero.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewDinero.Border = border
+        viewDinero.TextAlignment = DevAge.Drawing.ContentAlignment.BottomRight
+
+        Dim viewNormalCentrado As CellBackColorAlternate = New CellBackColorAlternate(gColorRow, Color.White)
+        viewNormalCentrado.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewNormalCentrado.Border = border
+        viewNormalCentrado.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
+
         Dim myfont As New Font("Verdana", 8, FontStyle.Regular)
 
         Dim viewBtn As SourceGrid.Cells.Views.Button = New SourceGrid.Cells.Views.Button()
@@ -434,7 +444,7 @@ Public Class Cat_Clientes
 
         GridColumn = GridDatosCuentas.Columns.Add("C1", "Cuenta", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormal
+        GridColumn.DataCell.View = viewNormalCentrado
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
         GridColumn = GridDatosCuentas.Columns.Add("C2", "Artículo(s)", EditorCustom)
@@ -444,17 +454,17 @@ Public Class Cat_Clientes
 
         GridColumn = GridDatosCuentas.Columns.Add("C3", "Monto", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormal
+        GridColumn.DataCell.View = viewDinero
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
         GridColumn = GridDatosCuentas.Columns.Add("C4", "Adeudo", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormal
+        GridColumn.DataCell.View = viewDinero
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
         GridColumn = GridDatosCuentas.Columns.Add("C5", "Abonado", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormal
+        GridColumn.DataCell.View = viewDinero
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
         GridDatosCuentas.Columns(0).Visible = False
@@ -482,7 +492,7 @@ Public Class Cat_Clientes
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
         GridDatosCuentas.Columns.SetWidth(1, 70)
-        GridDatosCuentas.Columns.SetWidth(2, 151)
+        GridDatosCuentas.Columns.SetWidth(2, 149)
         GridDatosCuentas.Columns.SetWidth(3, 128)
         GridDatosCuentas.Columns.SetWidth(4, 128)
         GridDatosCuentas.Columns.SetWidth(5, 128)

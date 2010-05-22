@@ -123,6 +123,16 @@
         viewNormal.Font = New Font("Verdana", 8, FontStyle.Regular)
         viewNormal.Border = border
 
+        Dim viewDinero As CellBackColorAlternate = New CellBackColorAlternate(gColorRow, Color.White)
+        viewDinero.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewDinero.Border = border
+        viewDinero.TextAlignment = DevAge.Drawing.ContentAlignment.BottomRight
+
+        Dim viewNormalCentrado As CellBackColorAlternate = New CellBackColorAlternate(gColorRow, Color.White)
+        viewNormalCentrado.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewNormalCentrado.Border = border
+        viewNormalCentrado.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
+
         Dim myfont As New Font("Verdana", 8, FontStyle.Regular)
 
         Dim viewBtn As SourceGrid.Cells.Views.Button = New SourceGrid.Cells.Views.Button()
@@ -151,27 +161,27 @@
 
         GridColumn = GridDatosDetalle.Columns.Add("C2", "Cantidad", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormal
+        GridColumn.DataCell.View = viewNormalCentrado
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
         GridColumn = GridDatosDetalle.Columns.Add("C3", "Precio", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormal
+        GridColumn.DataCell.View = viewDinero
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
         GridColumn = GridDatosDetalle.Columns.Add("C4", "Descuento", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormal
+        GridColumn.DataCell.View = viewNormalCentrado
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
         GridColumn = GridDatosDetalle.Columns.Add("C5", "Total", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormal
+        GridColumn.DataCell.View = viewDinero
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
         GridDatosDetalle.Columns(0).Visible = False
         GridDatosDetalle.Columns.SetWidth(1, 160)
-        GridDatosDetalle.Columns.SetWidth(2, 78)
+        GridDatosDetalle.Columns.SetWidth(2, 76)
         GridDatosDetalle.Columns.SetWidth(3, 80)
         GridDatosDetalle.Columns.SetWidth(4, 80)
         GridDatosDetalle.Columns.SetWidth(5, 80)

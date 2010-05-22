@@ -201,12 +201,9 @@
         dtEntradas = New DataTable("Table")
         dsDatosEntradas.Tables.Add(dtEntradas)
 
-        'DsDatos.Tables("Table").Columns.Add("C0", GetType(String))
         dsDatosEntradas.Tables("Table").Columns.Add("C1", GetType(String))
         dsDatosEntradas.Tables("Table").Columns.Add("C2", GetType(String))
         dsDatosEntradas.Tables("Table").Columns.Add("C3", GetType(String))
-        'DsDatos.Tables("Table").Columns.Add("C4", GetType(String))
-        'DsDatos.Tables("Table").Columns.Add("C5", GetType(String))
 
     End Sub
 
@@ -245,13 +242,20 @@
         viewcolumnheader.Background = backheader
         viewcolumnheader.ForeColor = Color.Black
         viewcolumnheader.Font = New Font("Verdana", 8, FontStyle.Bold)
-        viewcolumnheader.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
+        viewcolumnheader.TextAlignment = DevAge.Drawing.ContentAlignment.BottomLeft
+
+        Dim viewcolumnheaderCentrado As SourceGrid.Cells.Views.ColumnHeader = New SourceGrid.Cells.Views.ColumnHeader
+        Dim backheaderCentrado As DevAge.Drawing.VisualElements.ColumnHeader = New DevAge.Drawing.VisualElements.ColumnHeader
+        backheaderCentrado.BackColor = cColorHeader
+        backheaderCentrado.Border = DevAge.Drawing.RectangleBorder.RectangleBlack1Width
+        viewcolumnheaderCentrado.Background = backheader
+        viewcolumnheaderCentrado.ForeColor = Color.Black
+        viewcolumnheaderCentrado.Font = New Font("Verdana", 8, FontStyle.Bold)
+        viewcolumnheaderCentrado.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
 
         GridDatosEntradas.GetCell(0, 1).View = viewcolumnheader
-        GridDatosEntradas.GetCell(0, 2).View = viewcolumnheader
-        GridDatosEntradas.GetCell(0, 3).View = viewcolumnheader
-        'GridDatos.GetCell(0, 4).View = viewcolumnheader
-        'GridDatos.GetCell(0, 5).View = viewcolumnheader
+        GridDatosEntradas.GetCell(0, 2).View = viewcolumnheaderCentrado
+        GridDatosEntradas.GetCell(0, 3).View = viewcolumnheaderCentrado
 
     End Sub
 
@@ -265,6 +269,11 @@
         Dim viewNormal As CellBackColorAlternate = New CellBackColorAlternate(gColorRow, Color.White)
         viewNormal.Font = New Font("Verdana", 8, FontStyle.Regular)
         viewNormal.Border = border
+
+        Dim viewDinero As CellBackColorAlternate = New CellBackColorAlternate(gColorRow, Color.White)
+        viewDinero.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewDinero.Border = border
+        viewDinero.TextAlignment = DevAge.Drawing.ContentAlignment.BottomRight
 
         Dim myfont As New Font("Verdana", 8, FontStyle.Regular)
 
@@ -280,30 +289,12 @@
         Dim gridKeydown As SourceGrid.Cells.Controllers.CustomEvents = New SourceGrid.Cells.Controllers.CustomEvents
         AddHandler gridKeydown.KeyDown, New KeyEventHandler(AddressOf Grid_KeyDown)
 
-        'Dim Codigokeydown As SourceGrid.Cells.Controllers.CustomEvents = New SourceGrid.Cells.Controllers.CustomEvents
-        'AddHandler Codigokeydown.KeyDown, New KeyEventHandler(AddressOf codigo_keydown)
-
-        'Dim Cantidadkeydown As SourceGrid.Cells.Controllers.CustomEvents = New SourceGrid.Cells.Controllers.CustomEvents
-        'AddHandler Cantidadkeydown.KeyDown, New KeyEventHandler(AddressOf cant_keydown)
-
         'Definicion de la celda
         Dim EditorCustom As SourceGrid.Cells.Editors.TextBox = New SourceGrid.Cells.Editors.TextBox(GetType(String))
         EditorCustom.EditableMode = SourceGrid.EditableMode.None
 
         'Crear columnas
         Dim GridColumn As SourceGrid.DataGridColumn
-        ''AGRAGAR BOTON
-        ' GridColumn = GridDatos.Columns.Add(Nothing, "", New SourceGrid.Cells.Button("+"))
-        ' GridColumn.DataCell.AddController(gridKeydown)
-        'GridColumn.DataCell.AddController(clickEvent2)
-        'GridColumn.DataCell.View = viewBtn
-        'GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
-
-
-        'GridColumn = GridDatos.Columns.Add("C0", "Fecha", EditorCustom)
-        'GridColumn.DataCell.AddController(gridKeydown)
-        'GridColumn.DataCell.View = viewNormal
-        'GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
         GridColumn = GridDatosEntradas.Columns.Add("C1", "Razón", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
@@ -312,32 +303,19 @@
 
         GridColumn = GridDatosEntradas.Columns.Add("C2", "Monto", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormal
+        GridColumn.DataCell.View = viewDinero
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
-        GridColumn = GridDatosEntradas.Columns.Add("C3", "Fecha", EditorCustom)
+        GridColumn = GridDatosEntradas.Columns.Add("C3", "Fecha / Hora", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
         GridColumn.DataCell.View = viewNormal
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
-        'GridColumn = GridDatos.Columns.Add("C4", "Unidad", EditorCustom)
-        'GridColumn.DataCell.AddController(gridKeydown)
-        'GridColumn.DataCell.View = viewNormal
-        'GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.EnableStretch
-
-        'GridColumn = GridDatos.Columns.Add("C5", "Precio Unitario", EditorCustom)
-        'GridColumn.DataCell.AddController(gridKeydown)
-        'GridColumn.DataCell.View = viewNormal
-        'GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
-
-
-
         GridDatosEntradas.Columns(0).Visible = False
-        GridDatosEntradas.Columns.SetWidth(1, 227)
+        GridDatosEntradas.Columns.SetWidth(1, 225)
         GridDatosEntradas.Columns.SetWidth(2, 60)
         GridDatosEntradas.Columns.SetWidth(3, 135)
-        'GridDatos.Columns.SetWidth(4, 150)
-        'GridDatos.Columns.SetWidth(5, 150)
+
     End Sub
 
     Private Sub Grid_KeyDown(ByVal sender As Object, ByVal e As KeyEventArgs)
@@ -399,11 +377,20 @@
         viewcolumnheader.Background = backheader
         viewcolumnheader.ForeColor = Color.Black
         viewcolumnheader.Font = New Font("Verdana", 8, FontStyle.Bold)
-        viewcolumnheader.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
+        viewcolumnheader.TextAlignment = DevAge.Drawing.ContentAlignment.BottomLeft
+
+        Dim viewcolumnheaderCentrado As SourceGrid.Cells.Views.ColumnHeader = New SourceGrid.Cells.Views.ColumnHeader
+        Dim backheaderCentrado As DevAge.Drawing.VisualElements.ColumnHeader = New DevAge.Drawing.VisualElements.ColumnHeader
+        backheaderCentrado.BackColor = cColorHeader
+        backheaderCentrado.Border = DevAge.Drawing.RectangleBorder.RectangleBlack1Width
+        viewcolumnheaderCentrado.Background = backheader
+        viewcolumnheaderCentrado.ForeColor = Color.Black
+        viewcolumnheaderCentrado.Font = New Font("Verdana", 8, FontStyle.Bold)
+        viewcolumnheaderCentrado.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
 
         GridDatosSalidas.GetCell(0, 1).View = viewcolumnheader
-        GridDatosSalidas.GetCell(0, 2).View = viewcolumnheader
-        GridDatosSalidas.GetCell(0, 3).View = viewcolumnheader
+        GridDatosSalidas.GetCell(0, 2).View = viewcolumnheaderCentrado
+        GridDatosSalidas.GetCell(0, 3).View = viewcolumnheaderCentrado
         'GridDatos.GetCell(0, 4).View = viewcolumnheader
         'GridDatos.GetCell(0, 5).View = viewcolumnheader
 
@@ -419,6 +406,11 @@
         Dim viewNormal As CellBackColorAlternate = New CellBackColorAlternate(gColorRow, Color.White)
         viewNormal.Font = New Font("Verdana", 8, FontStyle.Regular)
         viewNormal.Border = border
+
+        Dim viewDinero As CellBackColorAlternate = New CellBackColorAlternate(gColorRow, Color.White)
+        viewDinero.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewDinero.Border = border
+        viewDinero.TextAlignment = DevAge.Drawing.ContentAlignment.BottomRight
 
         Dim myfont As New Font("Verdana", 8, FontStyle.Regular)
 
@@ -466,10 +458,10 @@
 
         GridColumn = GridDatosSalidas.Columns.Add("C2", "Monto", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormal
+        GridColumn.DataCell.View = viewDinero
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
-        GridColumn = GridDatosSalidas.Columns.Add("C3", "Fecha", EditorCustom)
+        GridColumn = GridDatosSalidas.Columns.Add("C3", "Fecha / Hora", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
         GridColumn.DataCell.View = viewNormal
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
@@ -487,7 +479,7 @@
 
 
         GridDatosSalidas.Columns(0).Visible = False
-        GridDatosSalidas.Columns.SetWidth(1, 227)
+        GridDatosSalidas.Columns.SetWidth(1, 225)
         GridDatosSalidas.Columns.SetWidth(2, 60)
         GridDatosSalidas.Columns.SetWidth(3, 135)
         'GridDatos.Columns.SetWidth(4, 150)
@@ -546,7 +538,7 @@
         viewcolumnheader.Background = backheader
         viewcolumnheader.ForeColor = Color.Black
         viewcolumnheader.Font = New Font("Verdana", 8, FontStyle.Bold)
-        viewcolumnheader.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
+        viewcolumnheader.TextAlignment = DevAge.Drawing.ContentAlignment.BottomLeft
 
         'COLUMNAS
         GridDatosVenta.GetCell(0, 1).View = viewcolumnheader
@@ -564,6 +556,11 @@
         Dim viewNormal As CellBackColorAlternate = New CellBackColorAlternate(gColorRow, Color.White)
         viewNormal.Font = New Font("Verdana", 8, FontStyle.Regular)
         viewNormal.Border = border
+
+        Dim viewDinero As CellBackColorAlternate = New CellBackColorAlternate(gColorRow, Color.White)
+        viewDinero.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewDinero.Border = border
+        viewDinero.TextAlignment = DevAge.Drawing.ContentAlignment.BottomRight
 
         Dim myfont As New Font("Verdana", 8, FontStyle.Regular)
 
@@ -594,11 +591,11 @@
 
         GridColumn = GridDatosVenta.Columns.Add("C2", "Total", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormal
+        GridColumn.DataCell.View = viewDinero
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
         GridDatosVenta.Columns(0).Visible = False
-        GridDatosVenta.Columns.SetWidth(1, 294)
+        GridDatosVenta.Columns.SetWidth(1, 292)
         GridDatosVenta.Columns.SetWidth(2, 128)
 
     End Sub

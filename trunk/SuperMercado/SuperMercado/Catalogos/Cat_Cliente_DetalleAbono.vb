@@ -122,6 +122,16 @@
         viewNormal.Font = New Font("Verdana", 8, FontStyle.Regular)
         viewNormal.Border = border
 
+        Dim viewDinero As CellBackColorAlternate = New CellBackColorAlternate(gColorRow, Color.White)
+        viewDinero.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewDinero.Border = border
+        viewDinero.TextAlignment = DevAge.Drawing.ContentAlignment.BottomRight
+
+        Dim viewNormalCentrado As CellBackColorAlternate = New CellBackColorAlternate(gColorRow, Color.White)
+        viewNormalCentrado.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewNormalCentrado.Border = border
+        viewNormalCentrado.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
+
         Dim myfont As New Font("Verdana", 8, FontStyle.Regular)
 
         Dim viewBtn As SourceGrid.Cells.Views.Button = New SourceGrid.Cells.Views.Button()
@@ -145,26 +155,26 @@
 
         GridColumn = GridDatosAbonos.Columns.Add("C1", "Folio", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormal
+        GridColumn.DataCell.View = viewNormalCentrado
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
         GridColumn = GridDatosAbonos.Columns.Add("C2", "Monto", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormal
+        GridColumn.DataCell.View = viewDinero
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
         GridColumn = GridDatosAbonos.Columns.Add("C3", "Fecha", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormal
+        GridColumn.DataCell.View = viewNormalCentrado
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
         GridColumn = GridDatosAbonos.Columns.Add("C4", "Usuario", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormal
+        GridColumn.DataCell.View = viewNormalCentrado
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
         GridDatosAbonos.Columns(0).Visible = False
-        GridDatosAbonos.Columns.SetWidth(1, 60)
+        GridDatosAbonos.Columns.SetWidth(1, 58)
         GridDatosAbonos.Columns.SetWidth(2, 81)
         GridDatosAbonos.Columns.SetWidth(3, 91)
         GridDatosAbonos.Columns.SetWidth(4, 60)
