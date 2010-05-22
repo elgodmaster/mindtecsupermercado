@@ -31,7 +31,7 @@ Partial Class Cat_Cliente_DetalleAbono
                     Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GridDatosAbonos.BackColor = System.Drawing.SystemColors.Control
-        Me.GridDatosAbonos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.GridDatosAbonos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GridDatosAbonos.DeleteQuestionMessage = ""
         Me.GridDatosAbonos.DeleteRowsWithDeleteKey = False
         Me.GridDatosAbonos.FixedRows = 1

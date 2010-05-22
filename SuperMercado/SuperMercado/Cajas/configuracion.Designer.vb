@@ -24,7 +24,6 @@ Partial Class configuracion
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
         Me.ChBxDineroInicial = New System.Windows.Forms.CheckBox
-        Me.Label1 = New System.Windows.Forms.Label
         Me.GrBxDineroInicial = New System.Windows.Forms.GroupBox
         Me.dinIniPredeterminado = New System.Windows.Forms.NumericUpDown
         Me.Label2 = New System.Windows.Forms.Label
@@ -44,37 +43,29 @@ Partial Class configuracion
         'ChBxDineroInicial
         '
         Me.ChBxDineroInicial.AutoSize = True
-        Me.ChBxDineroInicial.Location = New System.Drawing.Point(24, 46)
+        Me.ChBxDineroInicial.Location = New System.Drawing.Point(14, 19)
         Me.ChBxDineroInicial.Name = "ChBxDineroInicial"
         Me.ChBxDineroInicial.Size = New System.Drawing.Size(164, 17)
         Me.ChBxDineroInicial.TabIndex = 0
         Me.ChBxDineroInicial.Text = "Utilizar el mismo monto inicial."
         Me.ChBxDineroInicial.UseVisualStyleBackColor = True
         '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(21, 9)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(67, 16)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "Opciones"
-        '
         'GrBxDineroInicial
         '
         Me.GrBxDineroInicial.Controls.Add(Me.dinIniPredeterminado)
         Me.GrBxDineroInicial.Controls.Add(Me.Label2)
         Me.GrBxDineroInicial.Enabled = False
-        Me.GrBxDineroInicial.Location = New System.Drawing.Point(24, 69)
+        Me.GrBxDineroInicial.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.GrBxDineroInicial.Location = New System.Drawing.Point(14, 42)
         Me.GrBxDineroInicial.Name = "GrBxDineroInicial"
         Me.GrBxDineroInicial.Size = New System.Drawing.Size(247, 58)
         Me.GrBxDineroInicial.TabIndex = 2
         Me.GrBxDineroInicial.TabStop = False
-        Me.GrBxDineroInicial.Text = "Dinero inicial."
+        Me.GrBxDineroInicial.Text = " Dinero inicial "
         '
         'dinIniPredeterminado
         '
+        Me.dinIniPredeterminado.DecimalPlaces = 2
         Me.dinIniPredeterminado.Location = New System.Drawing.Point(87, 24)
         Me.dinIniPredeterminado.Maximum = New Decimal(New Integer() {1215752191, 23, 0, 0})
         Me.dinIniPredeterminado.Name = "dinIniPredeterminado"
@@ -84,6 +75,7 @@ Partial Class configuracion
         'Label2
         '
         Me.Label2.AutoSize = True
+        Me.Label2.ForeColor = System.Drawing.SystemColors.ControlText
         Me.Label2.Location = New System.Drawing.Point(29, 26)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(52, 13)
@@ -93,7 +85,7 @@ Partial Class configuracion
         'ChBxLimitesMaximos
         '
         Me.ChBxLimitesMaximos.AutoSize = True
-        Me.ChBxLimitesMaximos.Location = New System.Drawing.Point(24, 146)
+        Me.ChBxLimitesMaximos.Location = New System.Drawing.Point(14, 119)
         Me.ChBxLimitesMaximos.Name = "ChBxLimitesMaximos"
         Me.ChBxLimitesMaximos.Size = New System.Drawing.Size(173, 17)
         Me.ChBxLimitesMaximos.TabIndex = 3
@@ -105,15 +97,17 @@ Partial Class configuracion
         Me.GrBxLimites.Controls.Add(Me.montoMaximo)
         Me.GrBxLimites.Controls.Add(Me.Label3)
         Me.GrBxLimites.Enabled = False
-        Me.GrBxLimites.Location = New System.Drawing.Point(24, 169)
+        Me.GrBxLimites.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.GrBxLimites.Location = New System.Drawing.Point(14, 142)
         Me.GrBxLimites.Name = "GrBxLimites"
         Me.GrBxLimites.Size = New System.Drawing.Size(247, 58)
         Me.GrBxLimites.TabIndex = 4
         Me.GrBxLimites.TabStop = False
-        Me.GrBxLimites.Text = "Monto máximo."
+        Me.GrBxLimites.Text = " Monto máximo "
         '
         'montoMaximo
         '
+        Me.montoMaximo.DecimalPlaces = 2
         Me.montoMaximo.Location = New System.Drawing.Point(87, 25)
         Me.montoMaximo.Maximum = New Decimal(New Integer() {1215752191, 23, 0, 0})
         Me.montoMaximo.Name = "montoMaximo"
@@ -123,6 +117,7 @@ Partial Class configuracion
         'Label3
         '
         Me.Label3.AutoSize = True
+        Me.Label3.ForeColor = System.Drawing.SystemColors.ControlText
         Me.Label3.Location = New System.Drawing.Point(29, 27)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(52, 13)
@@ -131,7 +126,7 @@ Partial Class configuracion
         '
         'BtnCancelar
         '
-        Me.BtnCancelar.Location = New System.Drawing.Point(213, 251)
+        Me.BtnCancelar.Location = New System.Drawing.Point(186, 216)
         Me.BtnCancelar.Name = "BtnCancelar"
         Me.BtnCancelar.Size = New System.Drawing.Size(75, 23)
         Me.BtnCancelar.TabIndex = 5
@@ -140,7 +135,7 @@ Partial Class configuracion
         '
         'btnAceptar
         '
-        Me.btnAceptar.Location = New System.Drawing.Point(131, 251)
+        Me.btnAceptar.Location = New System.Drawing.Point(104, 216)
         Me.btnAceptar.Name = "btnAceptar"
         Me.btnAceptar.Size = New System.Drawing.Size(76, 23)
         Me.btnAceptar.TabIndex = 6
@@ -151,16 +146,16 @@ Partial Class configuracion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(300, 294)
+        Me.ClientSize = New System.Drawing.Size(276, 251)
         Me.Controls.Add(Me.btnAceptar)
         Me.Controls.Add(Me.BtnCancelar)
         Me.Controls.Add(Me.GrBxLimites)
         Me.Controls.Add(Me.ChBxLimitesMaximos)
         Me.Controls.Add(Me.GrBxDineroInicial)
-        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.ChBxDineroInicial)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "configuracion"
-        Me.Text = "Configuración de caja"
+        Me.Text = " Configuración "
         Me.GrBxDineroInicial.ResumeLayout(False)
         Me.GrBxDineroInicial.PerformLayout()
         CType(Me.dinIniPredeterminado, System.ComponentModel.ISupportInitialize).EndInit()
@@ -172,7 +167,6 @@ Partial Class configuracion
 
     End Sub
     Friend WithEvents ChBxDineroInicial As System.Windows.Forms.CheckBox
-    Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents GrBxDineroInicial As System.Windows.Forms.GroupBox
     Friend WithEvents dinIniPredeterminado As System.Windows.Forms.NumericUpDown
     Friend WithEvents Label2 As System.Windows.Forms.Label
