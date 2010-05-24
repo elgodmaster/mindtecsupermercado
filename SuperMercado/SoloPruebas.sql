@@ -4,10 +4,8 @@ use SMercado
 -- No implementada.
 CREATE TABLE Usuarios_Cuentas (
 idUsuario int identity not null,
-nombreUsuario char(50) not null,
-nombre char(50),
-apellidoPaterno char(50),
-apellidoMaterno char(50),
+clave char(50) not null,
+nombreCompleto char(150) not null
 contraseña int not null
 )
 
@@ -143,6 +141,7 @@ exec consulta105 'V1=CLIENTE2|','','','2'
 exec consulta117 'V1=CLIENTE2|','','',''
 exec consulta118a 'V1=9|','','',''
 exec consulta118b 'V1=9|','','',''
+exec consulta120 'V1=ADMIN|V2=12345|','','',''
 
 
 Select C.Codigo, C.NombreFiscal, C.Adeudo 
@@ -207,3 +206,9 @@ Select * from SMercado..Cat_Clientes
 Select * from SMercado..Cuentas_Abonos  
 
 Select * from SMercado..Cuentas_Cobrar 
+
+select * from SMercado_Seguridad..Usuarios 
+
+insert into SMercado_Seguridad..Usuarios
+values ('admin', '12345', 'Administrador', 1)
+
