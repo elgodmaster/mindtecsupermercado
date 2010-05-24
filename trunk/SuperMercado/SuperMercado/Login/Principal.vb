@@ -14,16 +14,22 @@ Public Class Principal
     ' Variables para Caja
     Dim cajaActual As New Caja
     Dim objDineroCaja As New dineroCaja
+    Dim objLogin As New Login
     ' Variables para los menús principales.
     ' Variables para Cuentas por Cobrar
 
 #End Region
 
     Private Sub Principal_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        Me.Visible = False
+
+        ' Pantalla LOGIN
+        objLogin.cargaRefPrincipal(Me)
+        objLogin.StartPosition = FormStartPosition.CenterScreen
+        objLogin.Show()
 
         ' Configuración de la ventana principal.
         Dim inic As New inicial
-        'Me.WindowState = FormWindowState.Maximized
         inic.MdiParent = Me
         inic.WindowState = FormWindowState.Maximized
         inic.StartPosition = FormStartPosition.CenterScreen
@@ -83,7 +89,7 @@ Public Class Principal
                 End If
 
             End If
-            
+
 
             ' No existe ningún registro en la tabla Caja_Corte, se procede a insertar
             ' el primer registro.
