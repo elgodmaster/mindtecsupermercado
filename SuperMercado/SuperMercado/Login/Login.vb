@@ -55,7 +55,7 @@ Public Class Login
 
 #Region "  Botón CANCELAR  "
     Private Sub buttonCancelar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles buttonCancelar.Click
-        objPrincipal.Close()
+        'objPrincipal.Close()
         Me.Close()
     End Sub
 #End Region

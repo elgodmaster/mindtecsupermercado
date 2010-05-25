@@ -1,5 +1,5 @@
-Imports System.Data
-Imports System.Data.SqlClient
+'Imports System.Data
+'Imports System.Data.SqlClient
 
 Public Class Principal
 
@@ -27,6 +27,7 @@ Public Class Principal
         objLogin.cargaRefPrincipal(Me)
         objLogin.StartPosition = FormStartPosition.CenterScreen
         objLogin.Show()
+        'Login()
 
         ' Configuración de la ventana principal.
         Dim inic As New inicial
@@ -35,6 +36,22 @@ Public Class Principal
         inic.StartPosition = FormStartPosition.CenterScreen
         inic.Show()
         Me.MenuStrip1.MdiWindowListItem = Ventanas
+        MacCaja()
+    End Sub
+
+    Sub Login()
+        Dim logear = New Login
+        logear.StartPosition = FormStartPosition.CenterScreen
+        logear.Width = 699
+        logear.Height = 205
+        logear.ShowDialog()
+    End Sub
+    Private Sub SalirToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SalirToolStripMenuItem.Click
+        Me.Close()
+    End Sub
+
+
+    Sub MacCaja()
 
         '----------   Muestra la MAC  ------------
         'MessageBox.Show("La dirección MAC de su equipo es: " & obtenMac(), "MAC", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -126,11 +143,6 @@ Public Class Principal
         End If
 
     End Sub
-
-    Private Sub SalirToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SalirToolStripMenuItem.Click
-        Me.Close()
-    End Sub
-
     Private Sub CotizaciónToolStripMenuItem_Click(ByVal sender As Object, ByVal e As System.EventArgs)
 
         'Dim Cotiza As New cotizacion

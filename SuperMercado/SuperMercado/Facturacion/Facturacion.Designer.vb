@@ -24,8 +24,9 @@ Partial Class Facturacion
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Facturacion))
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
-        Me.CheckBox2 = New System.Windows.Forms.CheckBox
-        Me.TextBox1 = New System.Windows.Forms.TextBox
+        Me.RadioCotizacion = New System.Windows.Forms.RadioButton
+        Me.RadioVenta = New System.Windows.Forms.RadioButton
+        Me.CodigoVenta = New System.Windows.Forms.TextBox
         Me.Factura = New System.Windows.Forms.TabControl
         Me.TabPage1 = New System.Windows.Forms.TabPage
         Me.Descuento = New System.Windows.Forms.Button
@@ -43,7 +44,6 @@ Partial Class Facturacion
         Me.LIVA = New System.Windows.Forms.Label
         Me.LNETO = New System.Windows.Forms.Label
         Me.TabPage2 = New System.Windows.Forms.TabPage
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox
         Me.chbGenerar = New System.Windows.Forms.CheckBox
         Me.CodigoCotizacion = New System.Windows.Forms.TextBox
         Me.lblTC = New System.Windows.Forms.Label
@@ -93,10 +93,10 @@ Partial Class Facturacion
         Me.GroupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox1.BackColor = System.Drawing.Color.Transparent
-        Me.GroupBox1.Controls.Add(Me.CheckBox2)
-        Me.GroupBox1.Controls.Add(Me.TextBox1)
+        Me.GroupBox1.Controls.Add(Me.RadioCotizacion)
+        Me.GroupBox1.Controls.Add(Me.RadioVenta)
+        Me.GroupBox1.Controls.Add(Me.CodigoVenta)
         Me.GroupBox1.Controls.Add(Me.Factura)
-        Me.GroupBox1.Controls.Add(Me.CheckBox1)
         Me.GroupBox1.Controls.Add(Me.chbGenerar)
         Me.GroupBox1.Controls.Add(Me.CodigoCotizacion)
         Me.GroupBox1.Controls.Add(Me.lblTC)
@@ -110,25 +110,38 @@ Partial Class Facturacion
         Me.GroupBox1.Size = New System.Drawing.Size(972, 545)
         Me.GroupBox1.TabIndex = 327
         Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Visible = False
         '
-        'CheckBox2
+        'RadioCotizacion
         '
-        Me.CheckBox2.AutoSize = True
-        Me.CheckBox2.Location = New System.Drawing.Point(225, 17)
-        Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(66, 20)
-        Me.CheckBox2.TabIndex = 335
-        Me.CheckBox2.Text = "Venta"
-        Me.CheckBox2.UseVisualStyleBackColor = True
+        Me.RadioCotizacion.AutoSize = True
+        Me.RadioCotizacion.Location = New System.Drawing.Point(7, 17)
+        Me.RadioCotizacion.Name = "RadioCotizacion"
+        Me.RadioCotizacion.Size = New System.Drawing.Size(94, 20)
+        Me.RadioCotizacion.TabIndex = 336
+        Me.RadioCotizacion.TabStop = True
+        Me.RadioCotizacion.Text = "Cotización"
+        Me.RadioCotizacion.UseVisualStyleBackColor = True
         '
-        'TextBox1
+        'RadioVenta
         '
-        Me.TextBox1.BackColor = System.Drawing.SystemColors.Info
-        Me.TextBox1.Location = New System.Drawing.Point(288, 16)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(115, 23)
-        Me.TextBox1.TabIndex = 334
-        Me.TextBox1.Visible = False
+        Me.RadioVenta.AutoSize = True
+        Me.RadioVenta.Location = New System.Drawing.Point(224, 17)
+        Me.RadioVenta.Name = "RadioVenta"
+        Me.RadioVenta.Size = New System.Drawing.Size(65, 20)
+        Me.RadioVenta.TabIndex = 335
+        Me.RadioVenta.TabStop = True
+        Me.RadioVenta.Text = "Venta"
+        Me.RadioVenta.UseVisualStyleBackColor = True
+        '
+        'CodigoVenta
+        '
+        Me.CodigoVenta.BackColor = System.Drawing.SystemColors.Info
+        Me.CodigoVenta.Location = New System.Drawing.Point(288, 16)
+        Me.CodigoVenta.Name = "CodigoVenta"
+        Me.CodigoVenta.Size = New System.Drawing.Size(115, 23)
+        Me.CodigoVenta.TabIndex = 334
+        Me.CodigoVenta.Visible = False
         '
         'Factura
         '
@@ -340,16 +353,6 @@ Partial Class Facturacion
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "TabPage2"
         Me.TabPage2.UseVisualStyleBackColor = True
-        '
-        'CheckBox1
-        '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(6, 17)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(95, 20)
-        Me.CheckBox1.TabIndex = 332
-        Me.CheckBox1.Text = "Cotizacion"
-        Me.CheckBox1.UseVisualStyleBackColor = True
         '
         'chbGenerar
         '
@@ -796,7 +799,6 @@ Partial Class Facturacion
     Friend WithEvents txtNoFactura As System.Windows.Forms.TextBox
     Friend WithEvents lblCiudadCliente As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
     Friend WithEvents lblRFCCliente As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents CodigoCliente As System.Windows.Forms.TextBox
@@ -823,8 +825,9 @@ Partial Class Facturacion
     Friend WithEvents LNETO As System.Windows.Forms.Label
     Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
     Friend WithEvents GridDatos As SourceGrid.DataGrid
-    Friend WithEvents CheckBox2 As System.Windows.Forms.CheckBox
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
+    Friend WithEvents CodigoVenta As System.Windows.Forms.TextBox
     Private WithEvents Agregar As System.Windows.Forms.Button
     Private WithEvents Descuento As System.Windows.Forms.Button
+    Friend WithEvents RadioCotizacion As System.Windows.Forms.RadioButton
+    Friend WithEvents RadioVenta As System.Windows.Forms.RadioButton
 End Class
