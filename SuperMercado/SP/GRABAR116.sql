@@ -35,6 +35,8 @@ BEGIN
   Declare @Desc0     Varchar(8000)
   Declare @Desc1     VarChar(8000)
   Declare @Resul2    VarChar(8000)
+  Declare @limCred   decimal(16,2)
+  Declare @adeuAct   decimal(16,2)
     
   --Asignar Valores
   Select @Desc0  = '' 
@@ -50,7 +52,24 @@ BEGIN
   Exec Emulador_SepararCadena 'V5',  @Cabezero, '|', @Valor5 Output --IdCliente
   Exec Emulador_SepararCadena 'V6',  @Cabezero, '|', @Valor6 Output --IdTipoCambio
   Exec Emulador_SepararCadena 'V7',  @Cabezero, '|', @Valor7 Output --Descripcion
-  Exec Emulador_SepararCadena 'V8',  @Cabezero, '|', @Valor8 Output --Adeudo
+  Exec Emulador_SepararCadena 'V8',  @Cabezero, '|', @Valor8 Output --Total
+  	 
+  -- Se valida el crédito del cliente
+  	 
+  Select @limCred =	(Select C.LimiteCredito From SMercado..Cat_Clientes C
+					 Where C.Codigo = @Valor5)
+  Select @adeuAct = (Select C.Adeudo From SMercado..Cat_Clientes C
+					 Where C.Codigo = @Valor5)
+  Select @adeuAct = @adeuAct + @Valor8
+					  
+  If @adeuAct > @limCred 
+	BEGIN
+		Select @Resul = '2R=ERROR|2M=No tiene crédito suficiente.' + CHAR(13) + CHAR(13) +						    
+		'    Crédito: $' + CONVERT(char, @limCred) + CHAR(13) +
+		'    Adeudo: $' + CONVERT(char, @adeuAct) + '|'
+		Return
+	END
+  
   -- Validar Parametros
   If Len(RTrim(LTrim(@Valor1)))= 0
    Begin
@@ -58,7 +77,7 @@ BEGIN
      Return    
    End
   
- Begin Tran Grabar116
+ --Begin Tran Grabar116
 	Select b.IdCuenta 
 	From SMercado..Cuentas_Cobrar a 
 	Inner join SMercado..Cuentas_Cobrar_detalles b on b.IdCuenta = a.IdCuenta 
@@ -79,7 +98,7 @@ BEGIN
 	
 	If @Registro = 0
 	Begin
-	Select @Resul='2R=ERROR|2M=No se registro un numero de cuenta'
+	Select @Resul='2R=ERROR|2M=No se registro un numero de cuenta.'
 	End
 	 Else
 	  Begin
@@ -93,7 +112,7 @@ BEGIN
            Adeudo      = @Valor8 
         Where IdCuenta = @Valor1 
 	  End
-	  
+	 
 	 -- Se actualiza el saldoActual que debe el cliente.
 	 Update SMercado..Cat_Clientes 
 	 Set Adeudo = Adeudo + @Valor8
@@ -150,7 +169,7 @@ SELECT  C7  = @Valor1,    --FolioCuenta
 	  Return
 	 End
 	 
-	 Commit Tran Grabar116
+	 --Commit Tran Grabar116
 	 
 	
 		 
