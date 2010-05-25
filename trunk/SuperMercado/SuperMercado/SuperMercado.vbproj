@@ -121,12 +121,6 @@
     <Compile Include="Catalogos\Cat_Clientes.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Catalogos\Cat_Clientes_Abonos.Designer.vb">
-      <DependentUpon>Cat_Clientes_Abonos.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Catalogos\Cat_Clientes_Abonos.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Catalogos\Cat_Clientes_DetalleVenta.Designer.vb">
       <DependentUpon>Cat_Clientes_DetalleVenta.vb</DependentUpon>
     </Compile>
@@ -307,8 +301,14 @@
     <EmbeddedResource Include="Catalogos\Cat_Clientes.resx">
       <DependentUpon>Cat_Clientes.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Catalogos\Cat_Clientes_Abonos.resx">
-      <DependentUpon>Cat_Clientes_Abonos.vb</DependentUpon>
+    <EmbeddedResource Include="Catalogos\Cat_Clientes_DetalleVenta.resx">
+      <DependentUpon>Cat_Clientes_DetalleVenta.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Catalogos\Cat_Clientes_RegistroAbono.resx">
+      <DependentUpon>Cat_Clientes_RegistroAbono.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Catalogos\Cat_Cliente_DetalleAbono.resx">
+      <DependentUpon>Cat_Cliente_DetalleAbono.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Catalogos\Cat_Marcas.resx">
       <DependentUpon>Cat_Marcas.vb</DependentUpon>
@@ -391,6 +391,15 @@
       <Project>{FA6819B4-6BF4-47FF-BB88-3C2BD747806D}</Project>
       <Name>ComponentesMindtec</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\money_add1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\money_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1273188129_Symbol-Check.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Usuarios\" />
