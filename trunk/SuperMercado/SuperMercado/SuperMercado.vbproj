@@ -127,6 +127,24 @@
     <Compile Include="Catalogos\Cat_Clientes_Abonos.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Catalogos\Cat_Clientes_DetalleVenta.Designer.vb">
+      <DependentUpon>Cat_Clientes_DetalleVenta.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Catalogos\Cat_Clientes_DetalleVenta.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Catalogos\Cat_Clientes_RegistroAbono.Designer.vb">
+      <DependentUpon>Cat_Clientes_RegistroAbono.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Catalogos\Cat_Clientes_RegistroAbono.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Catalogos\Cat_Cliente_DetalleAbono.Designer.vb">
+      <DependentUpon>Cat_Cliente_DetalleAbono.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Catalogos\Cat_Cliente_DetalleAbono.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Catalogos\Cat_Marcas.Designer.vb">
       <DependentUpon>Cat_Marcas.vb</DependentUpon>
     </Compile>
