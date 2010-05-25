@@ -21,13 +21,8 @@ Public Class Principal
 #End Region
 
     Private Sub Principal_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Me.Visible = False
-
-        ' Pantalla LOGIN
-        objLogin.cargaRefPrincipal(Me)
-        objLogin.StartPosition = FormStartPosition.CenterScreen
-        objLogin.Show()
-        'Login()
+        Login()
+        Me.WindowState = FormWindowState.Maximized
 
         ' Configuración de la ventana principal.
         Dim inic As New inicial
@@ -37,15 +32,18 @@ Public Class Principal
         inic.Show()
         Me.MenuStrip1.MdiWindowListItem = Ventanas
         MacCaja()
+
     End Sub
 
     Sub Login()
         Dim logear = New Login
+        logear.cargaRefPrincipal(Me)
         logear.StartPosition = FormStartPosition.CenterScreen
         logear.Width = 699
         logear.Height = 205
         logear.ShowDialog()
     End Sub
+
     Private Sub SalirToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SalirToolStripMenuItem.Click
         Me.Close()
     End Sub
