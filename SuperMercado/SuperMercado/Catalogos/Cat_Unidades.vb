@@ -97,7 +97,6 @@ Public Class Cat_Unidades
     End Sub
 #End Region
 
-
 #Region " Limpiar "
     Private Sub Limpiar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Limpiar.Click
         LimpiarPantalla()
@@ -191,4 +190,14 @@ Public Class Cat_Unidades
         End If
     End Sub
 #End Region
+
+#Region "  Evento: Cat_Unidades FORM_CLOSING  "
+    Private Sub Cat_Unidades_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
+        e.Cancel = True
+        Me.Hide()
+        LimpiarPantalla()
+        Me.Grabar.Visible = False
+    End Sub
+#End Region
+    
 End Class

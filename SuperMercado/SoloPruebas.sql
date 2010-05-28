@@ -1,17 +1,5 @@
 use SMercado 
 
-
--- No implementada.
-CREATE TABLE Usuarios_Cuentas (
-idUsuario int identity not null,
-clave char(50) not null,
-nombreCompleto char(150) not null
-contraseña int not null
-)
-
-
-
-
 -- <TABLAS NECESARIAS PARA CAJA> --
 
 CREATE TABLE Caja_Entrada(
@@ -79,8 +67,6 @@ cantidad decimal(12,2) not null,
 precioUnitario int not null
 )
 
-
-
 DROP TABLE SMercado..Caja_Corte
 DROP TABLE SMercado..Caja_Entrada
 DROP TABLE SMercado..Caja_Salida
@@ -128,11 +114,13 @@ insert into SMercado..Caja_Salida values ( 1, 1, 151.00, 'Ninguno', '30-04-2010 
 
 Select * from SMercado..Caja_corte
 Select * from SMercado..Caja_salida
-Select * from SMercado..Caja_entrada
+Select * from SMercado_Seguridad..Usuarios 
 exec grabar110 'V1=100|','','',''
 exec grabar111 'V1=1|V2=1|V3=150.50|V4=ninguno|', '', '', ''
 exec grabar112 'V1=1|V2=1|V3=1.5|V4=|', '', '', ''
 exec grabar112 'V1=1|V2=1|V3=150.5|V4=asalté un banco, tío|', '', '', ''
+exec grabar120 'V1=123|V2=ADMIN|','','',''
+exec consulta105 '','','',''
 exec Consulta110 '','','',''
 exec consulta111 '','','',''
 exec consulta114a '','','',''
@@ -142,13 +130,15 @@ exec consulta117 'V1=CLIENTE2|','','',''
 exec consulta118a 'V1=9|','','',''
 exec consulta118b 'V1=9|','','',''
 exec consulta120 'V1=ADMIN|V2=12345|','','',''
-
+exec consulta121 '','','',''
+exec consulta122 'V1=cajero|','','',''
+Select * 
+From SMercado_Seguridad..Permisos 
 
 Select C.Codigo, C.NombreFiscal, C.Adeudo 
 From SMercado..Cat_Clientes C
 Select * from SMercado..Caja_Entrada 
 exec GRABAR117 'V1=9|V2=100|V3=1|V4=CLIENTE2|','','',''
-
 
 select * 
 From SMercado..Cuentas_Cobrar C
@@ -212,3 +202,79 @@ select * from SMercado_Seguridad..Usuarios
 insert into SMercado_Seguridad..Usuarios
 values ('admin', '12345', 'Administrador', 1)
 
+
+CREATE TABLE Permisos (
+idPermiso int identity not null,
+nomPermiso char(50) not null,
+RepProductos bit not null,
+RepEntProd bit not null,
+RepSalProd bit not null,
+RepClientes bit not null,
+RepProveedores bit not null,
+RepFacturas bit not null,
+RepVentas bit not null,
+RepRetEfect bit not null,
+RepDepEfect bit not null,
+CatDepartamentos bit not null,
+CatCategorias bit not null,
+CatMarcas bit not null,
+CatProductos bit not null,
+CatClientes bit not null,
+CatProveedores bit not null,
+CatUnidades bit not null,
+FacFactura bit not null,
+FacCotizacion bit not null,
+InvMovimientos bit not null,
+InvConsultas bit not null,
+CajaCorte bit not null,
+CajaEntradas bit not null,
+CajaSalidas bit not null,
+SegUsuarios bit not null,
+SegGrupPerm bit not null,
+ConfCaja bit not null,
+ConfFact bit not null,
+ConfTick bit not null
+)
+insert into SMercado_Seguridad.. Usuarios
+values ('admin', 'Administrador', '12345', 1, 1)
+
+select * from SMercado_Seguridad..Permisos
+
+select * from usuarios
+insert into Permisos
+values( 
+'administrador',
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1,
+1
+)
+select * from SMercado_Seguridad..Permisos 
+
+update SMercado_Seguridad..Permisos
+set RepProductos = 'false'
+where idPermiso = 1

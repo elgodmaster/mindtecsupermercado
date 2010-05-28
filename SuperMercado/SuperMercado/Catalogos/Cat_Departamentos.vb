@@ -193,4 +193,13 @@ Public Class Cat_Departamentos
     End Sub
 #End Region
 
+#Region "  Evento: Cat_Departamentos FORM_CLOSING  "
+    Private Sub Cat_Departamentos_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
+        e.Cancel = True
+        Me.Hide()
+        LimpiarPantalla()
+        Me.Grabar.Visible = False
+    End Sub
+#End Region
+
 End Class
