@@ -13,6 +13,8 @@ Public Class Facturacion
     Dim SubTotal As Double
     Dim Iva As Double
     Dim Total As Double
+    Dim IdUsuario As Integer = 1
+    Dim IdtipoCambio As Integer = 1
 #End Region
 
 #Region " Load "
@@ -235,6 +237,15 @@ Public Class Facturacion
             Case Keys.F2
                 ''CatalogoFacturas
             Case Keys.Enter
+                Caja = "Consulta119" : Parametros = "V1=" & txtNoFactura.Text & "|"
+                If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+                ObjRet = lConsulta.LlamarCaja(Caja, "4", Parametros)
+                If ObjRet.bOk Then
+                    btnAceptar.PerformClick()
+                Else
+                    MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+
+                End If
 
         End Select
     End Sub
@@ -295,7 +306,7 @@ Public Class Facturacion
         Dim Unidad As String = ""
         Dim Costo As Double = 0
 
-        Caja = "Consulta115" : Parametros = "V1=" & Txt_CodigoProducto.Text & "|"
+        Caja = "Consulta119" : Parametros = "V1=" & Txt_CodigoProducto.Text & "|"
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
         ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
         If ObjRet.bOk Then
@@ -478,8 +489,52 @@ Public Class Facturacion
 
 #Region " Aceptar "
     Private Sub btnAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAceptar.Click
-        'Caja119
-        Me.GroupBox1.Visible = True
+        Caja = "Consulta119" : Parametros = "V1=" & txtNoFactura.Text & "|"
+        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+        ObjRet = lConsulta.LlamarCaja(Caja, "4", Parametros)
+        If ObjRet.bOk Then
+            Me.dtpFecha.Text = lConsulta.ObtenerValor("V2", ObjRet.sResultado, "|")
+            Me.TxtIva.Text = lConsulta.ObtenerValor("V3", ObjRet.sResultado, "|")
+            Me.CodigoCliente.Text = lConsulta.ObtenerValor("V4", ObjRet.sResultado, "|")
+            Me.lblRFCCliente.Text = lConsulta.ObtenerValor("V5", ObjRet.sResultado, "|")
+            Me.lblNombreCliente.Text = lConsulta.ObtenerValor("V6", ObjRet.sResultado, "|")
+            Me.lblDireccionCliente.Text = lConsulta.ObtenerValor("V7", ObjRet.sResultado, "|")
+            Me.lblcolonia.Text = lConsulta.ObtenerValor("V8", ObjRet.sResultado, "|")
+            Me.LblCP.Text = lConsulta.ObtenerValor("V9", ObjRet.sResultado, "|")
+            Me.lblEstadoCliente.Text = lConsulta.ObtenerValor("V10", ObjRet.sResultado, "|")
+            Me.lblCiudadCliente.Text = lConsulta.ObtenerValor("V11", ObjRet.sResultado, "|")
+            'Me.chbGenerar.Checked = Integer.Parse((lConsulta.ObtenerValor("V12", ObjRet.sResultado, "|")))
+            Me.txtNoFactura.Enabled = False
+            Me.btnAceptar.Enabled = False
+
+            If Len(RTrim(LTrim(Me.lblNombreCliente.Text))) = 0 Then
+                Grabar.Visible = True
+
+            Else
+                Impresion.Visible = True
+                chbGenerar.Enabled = False
+                RadioCotizacion.Enabled = False
+                RadioVenta.Enabled = False
+                TxtIva.Enabled = False
+                dtpFecha.Enabled = False
+                CodigoCliente.Enabled = False
+            End If
+
+
+            If Len(RTrim(LTrim(lConsulta.ObtenerValor("V13", ObjRet.sResultado, "|")))) <> 0 Then
+                Me.RadioCotizacion.Checked = True
+                Me.CodigoCotizacion.Text = lConsulta.ObtenerValor("V13", ObjRet.sResultado, "|")
+            End If
+
+            If Len(RTrim(LTrim(lConsulta.ObtenerValor("V14", ObjRet.sResultado, "|")))) <> 0 Then
+                Me.RadioVenta.Checked = True
+                Me.CodigoVenta.Text = lConsulta.ObtenerValor("V14", ObjRet.sResultado, "|")
+            End If
+
+
+            Me.GroupBox1.Visible = True
+        End If
+
     End Sub
 #End Region
 
@@ -494,7 +549,7 @@ Public Class Facturacion
         Me.lblEstadoCliente.Text = ""
         Me.lblNombreCliente.Text = ""
         Me.lblRFCCliente.Text = ""
-        Me.LblSubtotal.Text = "0.00"
+        Me.lblIVA.Text = "0.00"
         Me.LBLTOTAL.Text = "0.00"
         Me.LblSubtotal.Text = "0.00"
         Me.CodigoVenta.Text = ""
@@ -560,6 +615,29 @@ Public Class Facturacion
         End If
     End Sub
 
+#End Region
+
+#Region " Grabar "
+
+    Private Sub Grabar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Grabar.Click
+        If DsDatos.Tables("Table").Rows.Count >= 0 And DsDatos.Tables("Table").Rows(0).Item("C3") <> 0 Then
+            Caja = "Grabar119" : Parametros = "V1=" & Me.txtNoFactura.Text & "|V2=" & Me.dtpFecha.Value.ToString("dd/MM/yyyy") & _
+            "|V3=" & CodigoCliente.Text & "|V4=" & Me.TxtIva.Text & "|V5=" & Me.CodigoCotizacion.Text & "|V6=" & Me.CodigoVenta.Text & _
+            "|V7=" & IdUsuario & "|V8=" & IdtipoCambio & "|V9=" & Me.chbGenerar.Checked & "|"
+            If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+            ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros, DsDatos)
+            'Estatus
+            If ObjRet.bOk Then
+                MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+            Else
+                MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+
+            End If
+        Else
+            MessageBox.Show("Registre un producto antes de grabar")
+            Me.Txt_CodigoProducto.Focus()
+        End If
+    End Sub
 #End Region
 
 End Class
