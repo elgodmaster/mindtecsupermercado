@@ -627,4 +627,13 @@ Public Class ModuloVentas
 
     End Sub
 #End Region
+
+#Region "  Evento: Modulo_Ventas FORM_CLOSING  "
+    Private Sub ModuloVentas_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
+        e.Cancel = True
+        Me.Hide()
+        LimpiarPantalla()
+    End Sub
+#End Region
+    
 End Class

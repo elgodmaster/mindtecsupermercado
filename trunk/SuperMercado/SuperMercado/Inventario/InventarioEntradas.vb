@@ -712,4 +712,5 @@ Public Class InventarioEntradas
 
 
 
+
 End Class

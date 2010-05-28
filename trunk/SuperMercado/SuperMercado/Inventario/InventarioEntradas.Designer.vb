@@ -44,6 +44,7 @@ Partial Class InventarioEntradas
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
         Me.TabControl1 = New System.Windows.Forms.TabControl
         Me.TabPage1 = New System.Windows.Forms.TabPage
+        Me.Button1 = New System.Windows.Forms.Button
         Me.Label6 = New System.Windows.Forms.Label
         Me.Txt_TotalEntrada = New System.Windows.Forms.TextBox
         Me.Label8 = New System.Windows.Forms.Label
@@ -54,7 +55,6 @@ Partial Class InventarioEntradas
         Me.GridDatos = New SourceGrid.DataGrid
         Me.TabPage2 = New System.Windows.Forms.TabPage
         Me.Barra = New System.Windows.Forms.PictureBox
-        Me.Button1 = New System.Windows.Forms.Button
         Me.ToolStrip1.SuspendLayout()
         Me.PiePagina.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -301,6 +301,16 @@ Partial Class InventarioEntradas
         Me.TabPage1.Text = "Productos"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'Button1
+        '
+        Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button1.Location = New System.Drawing.Point(600, 328)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(142, 23)
+        Me.Button1.TabIndex = 249
+        Me.Button1.Text = "Agregar a cuentas"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'Label6
         '
         Me.Label6.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -402,16 +412,6 @@ Partial Class InventarioEntradas
         Me.Barra.Size = New System.Drawing.Size(1028, 4)
         Me.Barra.TabIndex = 246
         Me.Barra.TabStop = False
-        '
-        'Button1
-        '
-        Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button1.Location = New System.Drawing.Point(600, 328)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(142, 23)
-        Me.Button1.TabIndex = 249
-        Me.Button1.Text = "Agregar a cuentas"
-        Me.Button1.UseVisualStyleBackColor = True
         '
         'InventarioEntradas
         '

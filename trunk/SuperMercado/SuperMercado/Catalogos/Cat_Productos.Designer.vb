@@ -30,6 +30,8 @@ Partial Class Cat_Productos
         Me.CodigoProducto = New System.Windows.Forms.TextBox
         Me.NombreProducto = New System.Windows.Forms.Label
         Me.GroupBoxDescripcion = New System.Windows.Forms.GroupBox
+        Me.Txt_InvIni = New System.Windows.Forms.TextBox
+        Me.Label3 = New System.Windows.Forms.Label
         Me.NombreUnidad = New System.Windows.Forms.Label
         Me.CodigoUnidad = New System.Windows.Forms.TextBox
         Me.Label5 = New System.Windows.Forms.Label
@@ -59,8 +61,6 @@ Partial Class Cat_Productos
         Me.Label9 = New System.Windows.Forms.Label
         Me.TxtDepto = New System.Windows.Forms.TextBox
         Me.Lbl_Depto = New System.Windows.Forms.Label
-        Me.Txt_InvIni = New System.Windows.Forms.TextBox
-        Me.Label3 = New System.Windows.Forms.Label
         Me.ToolStrip1.SuspendLayout()
         CType(Me.Barra, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBoxDescripcion.SuspendLayout()
@@ -186,6 +186,29 @@ Partial Class Cat_Productos
         Me.GroupBoxDescripcion.TabStop = False
         Me.GroupBoxDescripcion.Text = "Datos generales"
         Me.GroupBoxDescripcion.Visible = False
+        '
+        'Txt_InvIni
+        '
+        Me.Txt_InvIni.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Txt_InvIni.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.Txt_InvIni.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Txt_InvIni.Location = New System.Drawing.Point(113, 82)
+        Me.Txt_InvIni.MaxLength = 50
+        Me.Txt_InvIni.Name = "Txt_InvIni"
+        Me.Txt_InvIni.Size = New System.Drawing.Size(81, 22)
+        Me.Txt_InvIni.TabIndex = 2
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.BackColor = System.Drawing.Color.Transparent
+        Me.Label3.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(2, 86)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(110, 14)
+        Me.Label3.TabIndex = 297
+        Me.Label3.Text = "Inventario inicial"
         '
         'NombreUnidad
         '
@@ -496,29 +519,6 @@ Partial Class Cat_Productos
         Me.Lbl_Depto.Name = "Lbl_Depto"
         Me.Lbl_Depto.Size = New System.Drawing.Size(660, 22)
         Me.Lbl_Depto.TabIndex = 302
-        '
-        'Txt_InvIni
-        '
-        Me.Txt_InvIni.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Txt_InvIni.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.Txt_InvIni.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Txt_InvIni.Location = New System.Drawing.Point(113, 82)
-        Me.Txt_InvIni.MaxLength = 50
-        Me.Txt_InvIni.Name = "Txt_InvIni"
-        Me.Txt_InvIni.Size = New System.Drawing.Size(81, 22)
-        Me.Txt_InvIni.TabIndex = 2
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.BackColor = System.Drawing.Color.Transparent
-        Me.Label3.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(2, 86)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(110, 14)
-        Me.Label3.TabIndex = 297
-        Me.Label3.Text = "Inventario inicial"
         '
         'Cat_Productos
         '

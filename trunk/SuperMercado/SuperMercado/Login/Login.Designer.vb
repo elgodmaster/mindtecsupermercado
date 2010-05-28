@@ -207,9 +207,9 @@ Partial Class Login
         Me.Label4.ForeColor = System.Drawing.Color.MidnightBlue
         Me.Label4.Location = New System.Drawing.Point(290, 158)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(176, 14)
+        Me.Label4.Size = New System.Drawing.Size(134, 14)
         Me.Label4.TabIndex = 28
-        Me.Label4.Text = "Cambiar contraseña actual"
+        Me.Label4.Text = "Cambiar contraseña"
         '
         'Login
         '

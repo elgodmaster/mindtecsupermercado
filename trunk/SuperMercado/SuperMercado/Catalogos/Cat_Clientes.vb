@@ -238,7 +238,6 @@ Public Class Cat_Clientes
             Me.CodigoCliente_KeyDown(DBNull.Value, e)
         Else
             MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
-
         End If
     End Sub
 
@@ -558,4 +557,12 @@ Public Class Cat_Clientes
     End Sub
 #End Region
 
+#Region "  Evento: Cat_Clientes FORM_CLOSING  "
+    Private Sub Cat_Clientes_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
+        e.Cancel = True
+        Me.Hide()
+        LimpiarPantalla()
+    End Sub
+#End Region
+    
 End Class

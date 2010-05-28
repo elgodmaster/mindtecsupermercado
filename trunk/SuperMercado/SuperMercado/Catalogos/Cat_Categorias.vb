@@ -4,14 +4,14 @@ Imports MindTec.Componentes
 
 Public Class Cat_Categorias
 
-#Region " Variables de trabajo "
+#Region "  Variables de trabajo  "
     Dim Caja As String = ""
     Dim Parametros As String = ""
     Dim lConsulta As New ClsConsultas
     Dim ObjRet As CRetorno
 #End Region
 
-#Region " Eventos Principales"
+#Region "  Eventos Principales  "
     Private Sub Cat_Categorias_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
         Select Case e.KeyCode
             Case Keys.F2
@@ -34,7 +34,7 @@ Public Class Cat_Categorias
 
 #End Region
 
-#Region " Aceptar "
+#Region "  Botón Aceptar  "
     Private Sub btnAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAceptar.Click
 
         Caja = "Consulta101" : Parametros = "V1=" & Me.CodigoCategoria.Text
@@ -71,7 +71,52 @@ Public Class Cat_Categorias
     End Sub
 #End Region
 
-#Region " Categoria "
+#Region "  Botón Grabar  "
+    Private Sub Grabar_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles Grabar.Click
+        'Variable de trabajo
+        Dim Result As DialogResult
+        Result = MessageBox.Show("¿Deseas Guardar los Cambios?", "PVFacturacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
+        If Result = Windows.Forms.DialogResult.Yes Then
+            Caja = "Grabar101" : Parametros = "V1=" & Me.CodigoCategoria.Text & "|V2=" & Me.Descripcion.Text & "|"
+            If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+            ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
+
+            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+            LimpiarPantalla()
+        End If
+    End Sub
+#End Region
+
+#Region "  Botón Limpiar  "
+    Private Sub Limpiar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Limpiar.Click
+        LimpiarPantalla()
+    End Sub
+#End Region
+
+#Region "  Botón Nuevo  "
+    Private Sub Nuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Nuevo.Click
+        Caja = "Consulta101" : Parametros = ""
+        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+        ObjRet = lConsulta.LlamarCaja(Caja, "3", Parametros)
+        If ObjRet.bOk Then
+            'Deshabilitar
+            Me.Nuevo.Visible = False
+            Me.CodigoCategoria.Enabled = False
+            Me.btnAceptar.Enabled = False
+            'Asignar
+            Me.NombreCategoria.Text = ""
+            Me.CodigoCategoria.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
+            'Habilitar
+            Me.GroupBoxCategoria.Visible = True
+            Me.Grabar.Visible = True
+            'Focus
+            Me.Descripcion.Focus()
+
+        End If
+    End Sub
+#End Region
+
+#Region "  Categoria  "
     Private Sub CodigoCategoria_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles CodigoCategoria.KeyDown
         Select Case e.KeyCode
             Case Keys.F2
@@ -104,29 +149,7 @@ Public Class Cat_Categorias
     End Sub
 #End Region
 
-#Region " Grabar "
-    Private Sub Grabar_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles Grabar.Click
-        'Variable de trabajo
-        Dim Result As DialogResult
-        Result = MessageBox.Show("¿Deseas Guardar los Cambios?", "PVFacturacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
-        If Result = Windows.Forms.DialogResult.Yes Then
-            Caja = "Grabar101" : Parametros = "V1=" & Me.CodigoCategoria.Text & "|V2=" & Me.Descripcion.Text & "|"
-            If lConsulta Is Nothing Then lConsulta = New ClsConsultas
-            ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
-
-            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
-            LimpiarPantalla()
-        End If
-    End Sub
-#End Region
-
-#Region " Limpiar "
-    Private Sub Limpiar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Limpiar.Click
-        LimpiarPantalla()
-    End Sub
-#End Region
-
-#Region " Rutinas "
+#Region "  Rutinas  "
     Sub LimpiarPantalla()
         'Habilidar
         Me.btnAceptar.Enabled = True
@@ -170,27 +193,16 @@ Public Class Cat_Categorias
     End Sub
 #End Region
 
-#Region " Nuevo "
-    Private Sub Nuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Nuevo.Click
-        Caja = "Consulta101" : Parametros = ""
-        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
-        ObjRet = lConsulta.LlamarCaja(Caja, "3", Parametros)
-        If ObjRet.bOk Then
-            'Deshabilitar
-            Me.Nuevo.Visible = False
-            Me.CodigoCategoria.Enabled = False
-            Me.btnAceptar.Enabled = False
-            'Asignar
-            Me.NombreCategoria.Text = ""
-            Me.CodigoCategoria.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
-            'Habilitar
-            Me.GroupBoxCategoria.Visible = True
-            Me.Grabar.Visible = True
-            'Focus
-            Me.Descripcion.Focus()
-
-        End If
+#Region "  Evento Cat_Categorías FORM_CLOSING  "
+    Private Sub Cat_Categorias_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
+        e.Cancel = True
+        Me.Hide()
+        LimpiarPantalla()
+        Me.Grabar.Visible = False
     End Sub
 #End Region
 
+    Private Sub Cat_Categorias_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated
+        CodigoCategoria.Focus()
+    End Sub
 End Class
