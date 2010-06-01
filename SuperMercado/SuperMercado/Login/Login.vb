@@ -40,6 +40,8 @@ Public Class Login
 
         If lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|") = "OK" Then
             objPrincipal.Visible = True
+            objPrincipal.nombreUsuario = textBoxUsuario.Text.Trim
+            objPrincipal.nombreCompleto = lConsulta.ObtenerValor("3R", ObjRet.sResultado, "|")
             Me.Close()
         ElseIf lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|") = "ERROR1" Then
             MessageBox.Show("El nombre de usuario no es válido.", "SuperMercado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)

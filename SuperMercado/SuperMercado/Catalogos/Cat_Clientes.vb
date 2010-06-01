@@ -556,13 +556,5 @@ Public Class Cat_Clientes
 
     End Sub
 #End Region
-
-#Region "  Evento: Cat_Clientes FORM_CLOSING  "
-    Private Sub Cat_Clientes_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
-        e.Cancel = True
-        Me.Hide()
-        LimpiarPantalla()
-    End Sub
-#End Region
     
 End Class

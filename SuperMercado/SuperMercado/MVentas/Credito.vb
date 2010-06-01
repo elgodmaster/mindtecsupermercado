@@ -11,7 +11,7 @@ Public Class Credito
     Dim DsDatosCuenta As DataSet
     Dim Usuario As Integer
     Dim IdCuenta As Integer
-    Dim Cventa As New ModuloVentas
+    Dim Cventa As ModuloVentas = ModuloVentas.Instance
 #End Region
 
     Friend Sub VentaCreditos(ByVal TotalVentas As Double, ByVal DsDatos As DataSet, ByVal User As Integer, ByRef ClaseVentas As ModuloVentas)
@@ -144,7 +144,7 @@ Public Class Credito
     End Sub
 
     Private Sub Nuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Nuevo.Click
-        Dim NCLiente As New Cat_Clientes
+        Dim NCLiente As Cat_Clientes = Cat_Clientes.Instance
         NCLiente.StartPosition = FormStartPosition.CenterScreen
         NCLiente.WindowState = FormWindowState.Maximized
         NCLiente.Show()

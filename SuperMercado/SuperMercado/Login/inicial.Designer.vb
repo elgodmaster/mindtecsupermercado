@@ -27,6 +27,7 @@ Partial Class inicial
         Me.Panel2 = New System.Windows.Forms.Panel
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.lblhora = New System.Windows.Forms.Label
+        Me.labelNomUsuario = New System.Windows.Forms.Label
         Me.SuspendLayout()
         '
         'Label1
@@ -60,9 +61,9 @@ Partial Class inicial
         Me.Label2.Location = New System.Drawing.Point(24, 63)
         Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(163, 35)
+        Me.Label2.Size = New System.Drawing.Size(297, 35)
         Me.Label2.TabIndex = 340
-        Me.Label2.Text = "SISTEMA"
+        Me.Label2.Text = "SUPER MERCADO"
         '
         'Panel2
         '
@@ -91,6 +92,15 @@ Partial Class inicial
         Me.lblhora.TabIndex = 348
         Me.lblhora.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
+        'labelNomUsuario
+        '
+        Me.labelNomUsuario.AutoSize = True
+        Me.labelNomUsuario.Location = New System.Drawing.Point(27, 124)
+        Me.labelNomUsuario.Name = "labelNomUsuario"
+        Me.labelNomUsuario.Size = New System.Drawing.Size(136, 14)
+        Me.labelNomUsuario.TabIndex = 349
+        Me.labelNomUsuario.Text = "Nombre de usuario."
+        '
         'inicial
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 14.0!)
@@ -100,6 +110,7 @@ Partial Class inicial
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1028, 742)
         Me.ControlBox = False
+        Me.Controls.Add(Me.labelNomUsuario)
         Me.Controls.Add(Me.lblhora)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Label2)
@@ -121,4 +132,5 @@ Partial Class inicial
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
     Friend WithEvents Timer1 As System.Windows.Forms.Timer
     Friend WithEvents lblhora As System.Windows.Forms.Label
+    Friend WithEvents labelNomUsuario As System.Windows.Forms.Label
 End Class

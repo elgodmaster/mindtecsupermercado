@@ -193,15 +193,6 @@ Public Class Cat_Categorias
     End Sub
 #End Region
 
-#Region "  Evento Cat_Categorías FORM_CLOSING  "
-    Private Sub Cat_Categorias_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
-        e.Cancel = True
-        Me.Hide()
-        LimpiarPantalla()
-        Me.Grabar.Visible = False
-    End Sub
-#End Region
-
     Private Sub Cat_Categorias_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated
         CodigoCategoria.Focus()
     End Sub
