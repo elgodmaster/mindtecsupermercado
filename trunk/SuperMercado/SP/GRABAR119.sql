@@ -53,6 +53,10 @@ BEGIN
   Exec Emulador_SepararCadena 'V8',  @Cabezero, '|', @Valor8 Output --TipoCambio
   Exec Emulador_SepararCadena 'V9',  @Cabezero, '|', @Valor9 Output --GenerarSalida
   
+  
+  --Select @Resul = '2R=ERROR|2M=Valores 1.-' + @Valor1 + '__2.-' + @Valor2 + '__3.-' + @Valor3 + '__4.-' + @Valor4 + '__5.-' + @Valor5 + '__6.-' + @Valor6 + '__7.-' + @Valor7 + '__8.-' + @Valor8 + '__9.-' + @Valor9 
+  --Return
+  
   -- Validar Parametros
   If Len(RTrim(LTrim(@Valor1)))= 0
    Begin
@@ -62,7 +66,7 @@ BEGIN
   
  
 	--Validar que la venta no este facturada	
-	If Len(LTrim(RTrim(@Valor6))) <> 0
+	If Len(LTrim(RTrim(@Valor6))) > 0
 	 Begin
 	 --Checar que el numero de venta no este facturado 
 	 Select @Desc0 = Factura 
@@ -151,7 +155,7 @@ SELECT  C7  = @Valor1,
     From #TmpGrabar119
 	 
 	 
-	 If @Valor9 = 1
+	 If @Valor9 = 'True'
 	  Begin
 	 Update a
 	    Set a.cantidad = a.cantidad - b.C3
@@ -168,7 +172,7 @@ SELECT  C7  = @Valor1,
 	    
 	 	 
   -- Enviar Resultado
-  Select @Resul='2R=OK|'   
+  Select @Resul='2R=OK|2M=Se guardo la factura correctamente'   
 
   Set NoCount OFF
 END

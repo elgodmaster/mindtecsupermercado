@@ -74,15 +74,15 @@ BEGIN
   --Obtener los Parametros
   Exec Emulador_SepararCadena 'V1', @Cabezero, '|', @Valor1 Output --Facturas
   
-  -- Validar Parametros
-  --If @Validar = 1 or @Validar = 2
-  -- Begin 
-  --  If Len(RTrim(LTrim(@Valor1))) = 0 
-  --   Begin
-  --     Select @Resul = '2R=ERROR|2M=Registre el codigo de la entrada para continuar|'
-  --     Return
-  --   End
-  -- End
+   --Validar Parametros
+  If @Validar = 1 
+   Begin 
+    If Len(RTrim(LTrim(@Valor1))) = 0 
+     Begin
+       Select @Resul = '2R=ERROR|2M=Registre el número de factura para continuar|'
+       Return
+     End
+   End
  
 
   If @Validar = 0               ----Catalogo de productos
@@ -126,19 +126,19 @@ BEGIN
  If @Validar = 4
    Begin
       
-     Select @Valor2 = IsNull(a.Fecha,''),
-            @Valor3 = ISNULL(a.IVA,0),
-            @Valor4 = IsNull(a.IdCliente,0),
-            @Valor5 = IsNull(b.RFC,0),
-            @Valor6 = IsNull(b.NombreFiscal,0),
-            @Valor7 = IsNull(b.Direccion,''),
-            @Valor8 = IsNull(b.colonia,''),
-            @Valor9 = ISNULL(b.CP,0),
-            @Valor10 = ISNULL(c.Descripcion,''),
-            @Valor11 = ISNULL(d.Descripcion,''),
-            @Valor12 = IsNull(a.GenerarSalida,0),
-            @Valor13 = ISNULL(a.Cotizacion,''),
-            @Valor14 = IsNull(a.Venta,'')
+     Select @Desc2 = IsNull(a.Fecha,''),
+            @Desc3 = ISNULL(a.IVA,0.0),
+            @Desc4 = IsNull(a.IdCliente,''),
+            @Desc5 = IsNull(b.RFC,''),
+            @Desc6 = IsNull(b.NombreFiscal,''),
+            @Desc7 = IsNull(b.Direccion,''),
+            @Desc8 = IsNull(b.colonia,''),
+            @Desc9 = ISNULL(b.CP,''),
+            @Desc10 = ISNULL(c.Descripcion,''),
+            @Desc11 = ISNULL(d.Descripcion,''),
+            @Desc12 = IsNull(a.GenerarSalida,0),
+            @Desc13 = ISNULL(a.Cotizacion,''),
+            @Desc14 = IsNull(a.Venta,'')
      From Smercado..Facturas a (NoLock)
      Left Join SMercado..Cat_Clientes b (NoLock) On b.codigo = a.IdCliente
      Left Join SMercado..Cat_EstadosdelaRepublica c (NoLock) On c.IdEstado = b.IdEstado 

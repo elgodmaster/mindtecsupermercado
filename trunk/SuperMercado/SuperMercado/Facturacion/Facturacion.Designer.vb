@@ -184,7 +184,7 @@ Partial Class Facturacion
         Me.Descuento.BackgroundImage = CType(resources.GetObject("Descuento.BackgroundImage"), System.Drawing.Image)
         Me.Descuento.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.Descuento.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Descuento.Location = New System.Drawing.Point(850, 2)
+        Me.Descuento.Location = New System.Drawing.Point(873, 2)
         Me.Descuento.Name = "Descuento"
         Me.Descuento.Size = New System.Drawing.Size(67, 31)
         Me.Descuento.TabIndex = 352
@@ -196,11 +196,11 @@ Partial Class Facturacion
         '
         Me.Agregar.BackgroundImage = CType(resources.GetObject("Agregar.BackgroundImage"), System.Drawing.Image)
         Me.Agregar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.Agregar.Location = New System.Drawing.Point(780, 2)
+        Me.Agregar.Location = New System.Drawing.Point(804, 2)
         Me.Agregar.Name = "Agregar"
         Me.Agregar.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.Agregar.Size = New System.Drawing.Size(64, 31)
-        Me.Agregar.TabIndex = 351
+        Me.Agregar.TabIndex = 2
         Me.Agregar.Text = "F5"
         Me.Agregar.TextAlign = System.Drawing.ContentAlignment.BottomRight
         Me.Agregar.UseVisualStyleBackColor = True
@@ -224,7 +224,7 @@ Partial Class Facturacion
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(610, 9)
+        Me.Label14.Location = New System.Drawing.Point(634, 9)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(66, 16)
         Me.Label14.TabIndex = 349
@@ -232,10 +232,10 @@ Partial Class Facturacion
         '
         'Txt_Cantidad
         '
-        Me.Txt_Cantidad.Location = New System.Drawing.Point(678, 6)
+        Me.Txt_Cantidad.Location = New System.Drawing.Point(702, 6)
         Me.Txt_Cantidad.Name = "Txt_Cantidad"
         Me.Txt_Cantidad.Size = New System.Drawing.Size(100, 23)
-        Me.Txt_Cantidad.TabIndex = 348
+        Me.Txt_Cantidad.TabIndex = 1
         Me.Txt_Cantidad.Text = "123456789.00"
         '
         'Label15
@@ -263,7 +263,7 @@ Partial Class Facturacion
         Me.Txt_CodigoProducto.Location = New System.Drawing.Point(72, 6)
         Me.Txt_CodigoProducto.Name = "Txt_CodigoProducto"
         Me.Txt_CodigoProducto.Size = New System.Drawing.Size(128, 23)
-        Me.Txt_CodigoProducto.TabIndex = 345
+        Me.Txt_CodigoProducto.TabIndex = 0
         Me.Txt_CodigoProducto.Text = "123456789012345"
         '
         'LBLTOTAL
@@ -524,7 +524,7 @@ Partial Class Facturacion
         Me.CodigoCliente.MaxLength = 9
         Me.CodigoCliente.Name = "CodigoCliente"
         Me.CodigoCliente.Size = New System.Drawing.Size(115, 22)
-        Me.CodigoCliente.TabIndex = 289
+        Me.CodigoCliente.TabIndex = 0
         '
         'Label1
         '
@@ -646,7 +646,7 @@ Partial Class Facturacion
         Me.btnAceptar.Location = New System.Drawing.Point(899, 87)
         Me.btnAceptar.Name = "btnAceptar"
         Me.btnAceptar.Size = New System.Drawing.Size(80, 25)
-        Me.btnAceptar.TabIndex = 323
+        Me.btnAceptar.TabIndex = 1
         Me.btnAceptar.Text = "Aceptar"
         Me.btnAceptar.UseVisualStyleBackColor = False
         '
@@ -719,7 +719,7 @@ Partial Class Facturacion
         Me.txtNoFactura.Location = New System.Drawing.Point(155, 88)
         Me.txtNoFactura.Name = "txtNoFactura"
         Me.txtNoFactura.Size = New System.Drawing.Size(115, 23)
-        Me.txtNoFactura.TabIndex = 322
+        Me.txtNoFactura.TabIndex = 0
         '
         'PiePagina
         '
