@@ -42,6 +42,7 @@ Public Class Facturacion
         DsDatos.Tables("Table").Columns.Add("C4", GetType(String))
         DsDatos.Tables("Table").Columns.Add("C5", GetType(Double))
         DsDatos.Tables("Table").Columns.Add("C6", GetType(Double))
+        DsDatos.Tables("Table").Columns.Add("C8", GetType(Double))
 
     End Sub
 
@@ -176,15 +177,19 @@ Public Class Facturacion
         GridColumn.DataCell.View = viewNormal
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.EnableStretch
 
+        GridColumn = GridDatos.Columns.Add("C8", "Total", EditorCustom)
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.View = viewNormal
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.EnableStretch
 
         GridDatos.Columns(0).Visible = False
         GridDatos.Columns.SetWidth(1, 30)
-        GridDatos.Columns.SetWidth(2, 130)
-        GridDatos.Columns.SetWidth(3, 150)
-        GridDatos.Columns.SetWidth(4, 300)
-        GridDatos.Columns.SetWidth(5, 100)
-        GridDatos.Columns.SetWidth(6, 100)
-        GridDatos.Columns.SetWidth(7, 100)
+        GridDatos.Columns.SetWidth(2, 150)
+        GridDatos.Columns.SetWidth(3, 300)
+        GridDatos.Columns.SetWidth(4, 100)
+        GridDatos.Columns.SetWidth(5, 130)
+        GridDatos.Columns.SetWidth(6, 130)
+        GridDatos.Columns.SetWidth(7, 130)
     End Sub
 
 #End Region
@@ -203,33 +208,6 @@ Public Class Facturacion
         End Select
     End Sub
 #End Region
-
-    'Sub FilaVacia()
-    '    Dim grid As SourceGrid.DataGrid = GridDatos
-    '    Dim rows() As Object = grid.SelectedDataRows
-    '    Dim row As DataRowView = Nothing
-
-    '    If DsDatos.Tables("Table").Rows.Count <= 0 Then
-
-    '        'Variable de Trabajo
-    '        Dim Codigo As String = ""
-    '        Dim Producto As String = ""
-    '        Dim Cantidad As Double = 0
-    '        Dim Unidad As String = ""
-
-    '        Dim registro As DataRow = Me.DsDatos.Tables("Table").NewRow
-    '        Me.DsDatos.Tables("Table").Rows.Add(registro)
-    '        registro!C1 = Codigo
-    '        registro!C2 = Producto
-    '        registro!C3 = Cantidad
-    '        registro!C4 = Unidad
-
-
-    '        DsDatos.Tables("Table").AcceptChanges()
-
-    '    End If
-
-    'End Sub
 
 #Region " Factura KeyDown "
     Private Sub txtNoFactura_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtNoFactura.KeyDown
@@ -279,28 +257,7 @@ Public Class Facturacion
         End If
     End Sub
 
-    Sub Cerrar()
-        Dim Result As DialogResult
-        Result = MessageBox.Show("¿Deseas salir de esta pantalla?", "Supermercado Beltrán", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
-        If Result = Windows.Forms.DialogResult.Yes Then
-            Me.Close()
-        End If
-    End Sub
-
-#End Region
-
-#Region " Productos "
-    Private Sub Txt_CodigoProducto_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Txt_CodigoProducto.KeyDown
-        Select Case e.KeyCode
-            Case Keys.F2
-                CatalogoProductos()
-            Case Keys.Enter
-                CajaProductos()
-        End Select
-    End Sub
-
-
-    Sub CajaProductos()
+    Sub AgregarProducto()
         Dim Codigo As String = ""
         Dim Producto As String = ""
         Dim Unidad As String = ""
@@ -328,6 +285,26 @@ Public Class Facturacion
         End If
     End Sub
 
+    Sub Cerrar()
+        Dim Result As DialogResult
+        Result = MessageBox.Show("¿Deseas salir de esta pantalla?", "Supermercado Beltrán", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
+        If Result = Windows.Forms.DialogResult.Yes Then
+            Me.Close()
+        End If
+    End Sub
+
+#End Region
+
+#Region " Productos "
+    Private Sub Txt_CodigoProducto_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Txt_CodigoProducto.KeyDown
+        Select Case e.KeyCode
+            Case Keys.F2
+                CatalogoProductos()
+            Case Keys.Enter
+                AgregarProducto()
+        End Select
+    End Sub
+
 #End Region
 
 #Region " Llenar Fila "
@@ -336,6 +313,7 @@ Public Class Facturacion
         ''Habilitar Botones de venta
         If Me.Grabar.Visible = False Then
             Me.Grabar.Visible = True
+           
         End If
 
 
@@ -439,6 +417,13 @@ Public Class Facturacion
 
         If SubTotal = 0 Then
             Me.Grabar.Visible = False
+            Me.RadioCotizacion.Enabled = True
+            Me.RadioVenta.Enabled = True
+            Me.TxtIva.Enabled = True
+        Else
+            Me.RadioCotizacion.Enabled = False
+            Me.RadioVenta.Enabled = False
+            Me.TxtIva.Enabled = False
 
         End If
 
@@ -481,7 +466,7 @@ Public Class Facturacion
 
                     GroupBoxDatosCliente.Visible = True
 
-                    'btnAceptar.PerformClick()
+                    Txt_CodigoProducto.Focus()
                 End If
         End Select
     End Sub
@@ -503,7 +488,7 @@ Public Class Facturacion
             Me.LblCP.Text = lConsulta.ObtenerValor("V9", ObjRet.sResultado, "|")
             Me.lblEstadoCliente.Text = lConsulta.ObtenerValor("V10", ObjRet.sResultado, "|")
             Me.lblCiudadCliente.Text = lConsulta.ObtenerValor("V11", ObjRet.sResultado, "|")
-            'Me.chbGenerar.Checked = Integer.Parse((lConsulta.ObtenerValor("V12", ObjRet.sResultado, "|")))
+            Me.chbGenerar.Checked = ((lConsulta.ObtenerValor("V12", ObjRet.sResultado, "|")))
             Me.txtNoFactura.Enabled = False
             Me.btnAceptar.Enabled = False
 
@@ -533,6 +518,7 @@ Public Class Facturacion
 
 
             Me.GroupBox1.Visible = True
+            CodigoCliente.Focus()
         End If
 
     End Sub
@@ -566,6 +552,12 @@ Public Class Facturacion
         RadioCotizacion.Checked = False
         Me.chbGenerar.Checked = True
 
+        RadioVenta.Enabled = True
+        RadioCotizacion.Enabled = True
+        chbGenerar.Enabled = True
+        TxtIva.Enabled = True
+
+        DsDatos.Tables("Table").Clear()
 
         Me.CodigoVenta.Visible = False
         Me.CodigoCotizacion.Visible = False
@@ -574,6 +566,7 @@ Public Class Facturacion
         Me.Impresion.Visible = False
         Me.Grabar.Visible = False
 
+        Me.txtNoFactura.Focus()
     End Sub
 
     Private Sub Limpiar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Limpiar.Click
@@ -629,6 +622,7 @@ Public Class Facturacion
             'Estatus
             If ObjRet.bOk Then
                 MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+                LimpiarPantalla()
             Else
                 MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
 
@@ -640,4 +634,14 @@ Public Class Facturacion
     End Sub
 #End Region
 
+    Private Sub Txt_Cantidad_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Txt_Cantidad.KeyDown
+        Select Case e.KeyCode
+            Case Keys.Enter
+                AgregarProducto()
+        End Select
+    End Sub
+
+    Private Sub Agregar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Agregar.Click
+        AgregarProducto()
+    End Sub
 End Class
