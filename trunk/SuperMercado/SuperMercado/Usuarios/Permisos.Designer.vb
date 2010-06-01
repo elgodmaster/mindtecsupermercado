@@ -2,6 +2,30 @@
 Partial Class Permisos
     Inherits System.Windows.Forms.Form
 
+    'Para el control de una sola instancia por formulario.
+#Region "  Modificación del constructor  "
+    ' En esta constructora es que cambio la propiedad Public por la propiedad Private
+    Private Sub New()
+        MyBase.New()
+        'This call is required by the Windows Form Designer.
+        InitializeComponent()
+        'Add any initialization after the InitializeComponent() call
+    End Sub
+
+    Private Shared ChildInstance As Permisos = Nothing
+
+    'controla que sólo exista una instancia del formulario.
+
+    Public Shared Function Instance() As Permisos
+        If ChildInstance Is Nothing OrElse ChildInstance.IsDisposed = True Then
+            ChildInstance = New Permisos
+        End If
+        ChildInstance.BringToFront()
+
+        Return ChildInstance
+    End Function
+#End Region
+
     'Form reemplaza a Dispose para limpiar la lista de componentes.
     <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
@@ -663,7 +687,7 @@ Partial Class Permisos
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.AbonarToolStrip)
         Me.Name = "Permisos"
-        Me.Text = "Permisos"
+        Me.Text = " Permisos"
         Me.AbonarToolStrip.ResumeLayout(False)
         Me.AbonarToolStrip.PerformLayout()
         CType(Me.Barra, System.ComponentModel.ISupportInitialize).EndInit()

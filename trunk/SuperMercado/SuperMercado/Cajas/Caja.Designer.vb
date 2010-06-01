@@ -2,6 +2,31 @@
 Partial Class Caja
     Inherits System.Windows.Forms.Form
 
+    'Para el control de una sola instancia por formulario.
+#Region "  Modificación del constructor  "
+    ' En esta constructora es que cambio la propiedad Public por la propiedad Private
+    Private Sub New()
+        MyBase.New()
+        'This call is required by the Windows Form Designer.
+        InitializeComponent()
+        'Add any initialization after the InitializeComponent() call
+    End Sub
+
+    Private Shared ChildInstance As Caja = Nothing
+
+    'controla que sólo exista una instancia del formulario.
+
+    Public Shared Function Instance() As Caja
+        If ChildInstance Is Nothing OrElse ChildInstance.IsDisposed = True Then
+            ChildInstance = New Caja
+        End If
+        ChildInstance.BringToFront()
+
+        Return ChildInstance
+    End Function
+#End Region
+
+
     'Form reemplaza a Dispose para limpiar la lista de componentes.
     <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
@@ -16,6 +41,8 @@ Partial Class Caja
 
     'Requerido por el Diseñador de Windows Forms
     Private components As System.ComponentModel.IContainer
+
+
 
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  

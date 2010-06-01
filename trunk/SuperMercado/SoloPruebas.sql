@@ -132,6 +132,8 @@ exec consulta118b 'V1=9|','','',''
 exec consulta120 'V1=ADMIN|V2=12345|','','',''
 exec consulta121 '','','',''
 exec consulta122 'V1=cajero|','','',''
+exec Consulta122b 'V1=admin|','','',''
+exec consulta124 'V1=Lindor|','','',''
 Select * 
 From SMercado_Seguridad..Permisos 
 
@@ -273,8 +275,11 @@ values(
 1,
 1
 )
-select * from SMercado_Seguridad..Permisos 
+select * from SMercado_Seguridad..Usuarios 
+select * from SMercado_Seguridad..Permisos  
 
+Insert SMercado_Seguridad..Usuarios
+values('lindor', '418563', 'Lindor Valdez Mario Alberto', 2, 1)
 update SMercado_Seguridad..Permisos
 set RepProductos = 'false'
 where idPermiso = 1

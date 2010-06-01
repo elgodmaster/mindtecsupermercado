@@ -107,15 +107,6 @@ Public Class Permisos
     End Sub
 #End Region
 
-#Region "  Evento: Permisos FORM_CLOSING  "
-    Private Sub Permisos_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
-        e.Cancel = True
-        Me.Hide()
-        limpiarPermisos()
-        ocultarControles()
-    End Sub
-#End Region
-
 #Region "  Evento: textBoxNombrePermiso KEYDOWN   "
     Private Sub CodigoCliente_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles textBoxNombrePermiso.KeyDown
         Select Case e.KeyCode
@@ -208,7 +199,6 @@ Public Class Permisos
 #Region "  Rutina: llenarCheckBox  "
     Private Sub llenarCheckBox(ByRef ds As DataSet)
         'Utilizando el resultado de la consulta 122
-
         'Reportes
         CheckBoxRepProd.Checked = ds.Tables(0).Rows(0).Item(0)
         CheckBoxRepEntPro.Checked = ds.Tables(0).Rows(0).Item(1)
@@ -253,7 +243,6 @@ Public Class Permisos
         CheckBoxConCaja.Checked = ds.Tables(0).Rows(0).Item(25)
         CheckBoxConFac.Checked = ds.Tables(0).Rows(0).Item(26)
         CheckBoxConTic.Checked = ds.Tables(0).Rows(0).Item(27)
-
     End Sub
 #End Region
 

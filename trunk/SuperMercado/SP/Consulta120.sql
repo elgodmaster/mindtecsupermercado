@@ -36,10 +36,12 @@ Select U.idUsuario
 From SMercado_Seguridad.. Usuarios U
 Where U.nombreUsuario = @nomUsuario and
 	  U.Pass = @pass 
-
+	  
 If @@ROWCOUNT > 0
 	BEGIN
-		Select @Resul = '2R=OK|'
+		Select @Resul = '2R=OK|3R=' + (Select U.nombreCompleto 
+									   From SMercado_Seguridad..Usuarios U
+									   Where U.nombreUsuario = @nomUsuario) + '|'
 	END
 ELSE
 	BEGIN

@@ -508,4 +508,5 @@ Public Class InventarioSalidas
 
         End If
     End Sub
+    
 End Class

@@ -52,9 +52,7 @@
 
 #Region "  Evento: Caja FormClosing  "
     Private Sub Caja_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
-        e.Cancel = True
-        Me.Hide()
-        limpiarCaja()
+        Me.Dispose()
     End Sub
 #End Region
 
