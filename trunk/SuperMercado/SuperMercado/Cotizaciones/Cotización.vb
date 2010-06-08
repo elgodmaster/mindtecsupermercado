@@ -17,12 +17,34 @@ Public Class Cotización
     Dim IdtipoCambio As Integer = 1
 #End Region
 
+#Region " Load "
     Private Sub Cotización_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         CrearDsDatos()
         ConfiguraGridDatos()
         LimpiarPantalla()
 
     End Sub
+#End Region
+
+#Region " Factura KeyDown "
+    Private Sub txtNoFactura_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtNoFactura.KeyDown
+        Select Case e.KeyCode
+            Case Keys.F2
+                ''Catalogodecotizaciones
+            Case Keys.Enter
+                Caja = "Consulta125" : Parametros = "V1=" & txtNoFactura.Text & "|"
+                If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+                ObjRet = lConsulta.LlamarCaja(Caja, "4", Parametros)
+                If ObjRet.bOk Then
+                    btnAceptar.PerformClick()
+                Else
+                    MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+
+                End If
+
+        End Select
+    End Sub
+#End Region
 
 #Region " Cliente "
     Private Sub CodigoCliente_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles CodigoCliente.KeyDown
@@ -376,6 +398,7 @@ Public Class Cotización
         GridDatos.Columns.SetWidth(5, 130)
         GridDatos.Columns.SetWidth(6, 130)
         GridDatos.Columns.SetWidth(7, 130)
+        GridDatos.Columns.SetWidth(8, 0)
     End Sub
 
 #End Region
@@ -427,12 +450,8 @@ Public Class Cotización
 
         If SubTotal = 0 Then
             Me.Grabar.Visible = False
-            'Me.RadioCotizacion.Enabled = True
-            'Me.RadioVenta.Enabled = True
             Me.TxtIva.Enabled = True
         Else
-            'Me.RadioCotizacion.Enabled = False
-            'Me.RadioVenta.Enabled = False
             Me.TxtIva.Enabled = False
 
         End If
@@ -464,18 +483,19 @@ Public Class Cotización
         Me.lblIVA.Text = "0.00"
         Me.LBLTOTAL.Text = "0.00"
         Me.LblSubtotal.Text = "0.00"
-    
+
 
         txtNoFactura.Text = ""
         Txt_Cantidad.Text = "0.00"
         Txt_CodigoProducto.Text = ""
         TxtIva.Text = "16"
-       
+
         TxtIva.Enabled = True
         Me.btnAceptar.Enabled = True
         Me.txtNoFactura.Enabled = True
         Me.Impresion.Visible = False
         Me.Grabar.Visible = False
+        Eliminar.Visible = False
         Me.Cotiza.Visible = False
         Me.GroupBoxDatosCliente.Visible = False
         Me.TxtIva.Visible = False
@@ -492,6 +512,44 @@ Public Class Cotización
 #End Region
 
     Private Sub btnAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAceptar.Click
+
+        Caja = "Consulta125" : Parametros = "V1=" & txtNoFactura.Text & "|"
+        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+        ObjRet = lConsulta.LlamarCaja(Caja, "4", Parametros)
+        If ObjRet.bOk Then
+            Me.dtpFecha.Text = lConsulta.ObtenerValor("V2", ObjRet.sResultado, "|")
+            Me.TxtIva.Text = lConsulta.ObtenerValor("V3", ObjRet.sResultado, "|")
+            Me.CodigoCliente.Text = lConsulta.ObtenerValor("V4", ObjRet.sResultado, "|")
+            Me.lblRFCCliente.Text = lConsulta.ObtenerValor("V5", ObjRet.sResultado, "|")
+            Me.lblNombreCliente.Text = lConsulta.ObtenerValor("V6", ObjRet.sResultado, "|")
+            Me.lblDireccionCliente.Text = lConsulta.ObtenerValor("V7", ObjRet.sResultado, "|")
+            Me.lblcolonia.Text = lConsulta.ObtenerValor("V8", ObjRet.sResultado, "|")
+            Me.LblCP.Text = lConsulta.ObtenerValor("V9", ObjRet.sResultado, "|")
+            Me.lblEstadoCliente.Text = lConsulta.ObtenerValor("V10", ObjRet.sResultado, "|")
+            Me.lblCiudadCliente.Text = lConsulta.ObtenerValor("V11", ObjRet.sResultado, "|")
+            Me.txtNoFactura.Enabled = False
+            Me.btnAceptar.Enabled = False
+
+            If Len(RTrim(LTrim(Me.lblNombreCliente.Text))) = 0 Then
+                Grabar.Visible = True
+
+            Else
+                Impresion.Visible = True
+                Me.Eliminar.Visible = True
+                TxtIva.Enabled = False
+                dtpFecha.Enabled = False
+                CodigoCliente.Enabled = False
+            End If
+
+            Me.Cotiza.Visible = True
+            Me.GroupBoxDatosCliente.Visible = True
+            Me.TxtIva.Visible = True
+            Me.dtpFecha.Visible = True
+            Me.LAbeliva.Visible = True
+            Me.Labelfecha.Visible = True
+
+            CodigoCliente.Focus()
+        End If
 
     End Sub
 End Class

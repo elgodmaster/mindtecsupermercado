@@ -63,7 +63,35 @@ BEGIN
      Select @Resul='2R=ERROR|2M=Registrar el numero de factura para continuar|'
      Return    
    End
+
+  If Len(RTrim(LTrim(@Valor3)))= 0
+   Begin
+     Select @Resul='2R=ERROR|2M=Registre el cliente para continuar|'
+     Return    
+   End
   
+   ------------------------------------------------------------------------
+    --Caja de departamentos
+    ------------------------------------------------------------------------
+     Select @Desc0 = 'V1=' + @Valor3 + '|'
+     Exec Consulta100 @Desc0,@Resul2 Output,'',1
+     Exec Emulador_SepararCadena '2R', @Resul2, '|', @Desc0 Output
+     If Upper (@Desc0) <> 'OK'
+      Begin
+        Select @Resul = @Resul2
+        Return
+      End
+
+     --obtenemos el valor
+     Exec Emulador_SepararCadena 'V1', @Resul2, '|', @Desc1 Output
+     If LEN(LTrim(RTrim(@Desc1))) = 0 
+      Begin
+       Select @Resul= '2R=Error|2M=El codigo del cliente no esta registrado|'
+       Return
+      End
+     --------------------------------------------------------------------------
+     --------------------------------------------------------------------------  
+     
  
 	--Validar que la venta no este facturada	
 	If Len(LTrim(RTrim(@Valor6))) > 0
@@ -129,8 +157,8 @@ SELECT  C7  = @Valor1,
         C1  = C1,    --CodigoProducto
         C2  = C2,    --Descripcion producto                       
         C3  = C3,     --Cantidad 
-        C5  = C5,     --PrecioUnitario
-        C6  = C6     --Descuento      
+        C5  = C5,     --PrecioUnitario     
+        C8  = C8      --Descuento
         Into #TmpGrabar119     
         FROM OPENXML (@idoc, '/Root/Table',2)          
         WITH (C7  Varchar(50),
@@ -138,7 +166,7 @@ SELECT  C7  = @Valor1,
               C2  Varchar(250),               
               C3  Decimal(18,2),
               C5  Decimal(18,2),
-              C6  Decimal (18,2))    
+              C8  Decimal (18,2))    
         EXEC sp_xml_removedocument @idoc    
         
         
@@ -151,7 +179,7 @@ SELECT  C7  = @Valor1,
 	
 	--Insert de la tabla temporal..
 	Insert SMercado..Factura_detalles(NoFactura,IdProducto,cantidad,PrecioUni,Descripcion,Descuento)
-    Select C7,C1,C3,C5,C2,C6
+    Select C7,C1,C3,C5,C2,C8
     From #TmpGrabar119
 	 
 	 
