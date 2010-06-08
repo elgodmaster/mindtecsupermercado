@@ -74,6 +74,8 @@ Partial Class Facturacion
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip
         Me.Limpiar = New System.Windows.Forms.ToolStripButton
         Me.Grabar = New System.Windows.Forms.ToolStripButton
+        Me.Nuevo = New System.Windows.Forms.ToolStripButton
+        Me.Eliminar = New System.Windows.Forms.ToolStripButton
         Me.Impresion = New System.Windows.Forms.ToolStripButton
         Me.Label6 = New System.Windows.Forms.Label
         Me.txtNoFactura = New System.Windows.Forms.TextBox
@@ -107,7 +109,7 @@ Partial Class Facturacion
         Me.GroupBox1.Controls.Add(Me.GroupBoxDatosCliente)
         Me.GroupBox1.Location = New System.Drawing.Point(12, 130)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(972, 545)
+        Me.GroupBox1.Size = New System.Drawing.Size(972, 538)
         Me.GroupBox1.TabIndex = 327
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Visible = False
@@ -664,7 +666,7 @@ Partial Class Facturacion
         'ToolStrip1
         '
         Me.ToolStrip1.AutoSize = False
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Limpiar, Me.Grabar, Me.Impresion})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Limpiar, Me.Grabar, Me.Nuevo, Me.Eliminar, Me.Impresion})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1008, 48)
@@ -691,6 +693,26 @@ Partial Class Facturacion
         Me.Grabar.Name = "Grabar"
         Me.Grabar.Size = New System.Drawing.Size(36, 45)
         Me.Grabar.Text = "Grabar"
+        '
+        'Nuevo
+        '
+        Me.Nuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.Nuevo.Image = CType(resources.GetObject("Nuevo.Image"), System.Drawing.Image)
+        Me.Nuevo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.Nuevo.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.Nuevo.Name = "Nuevo"
+        Me.Nuevo.Size = New System.Drawing.Size(36, 45)
+        Me.Nuevo.Text = "Nuevo"
+        '
+        'Eliminar
+        '
+        Me.Eliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.Eliminar.Image = CType(resources.GetObject("Eliminar.Image"), System.Drawing.Image)
+        Me.Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.Eliminar.Name = "Eliminar"
+        Me.Eliminar.Size = New System.Drawing.Size(38, 45)
+        Me.Eliminar.Text = "ToolStripButton1"
         '
         'Impresion
         '
@@ -830,4 +852,6 @@ Partial Class Facturacion
     Private WithEvents Descuento As System.Windows.Forms.Button
     Friend WithEvents RadioCotizacion As System.Windows.Forms.RadioButton
     Friend WithEvents RadioVenta As System.Windows.Forms.RadioButton
+    Friend WithEvents Nuevo As System.Windows.Forms.ToolStripButton
+    Friend WithEvents Eliminar As System.Windows.Forms.ToolStripButton
 End Class

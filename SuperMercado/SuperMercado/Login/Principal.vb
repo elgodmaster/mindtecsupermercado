@@ -607,4 +607,12 @@ Public Class Principal
     End Sub
 #End Region
 
+    Private Sub CotizaciónToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CotizaciónToolStripMenuItem.Click
+        Dim Cotiza As New Cotización
+        Cotiza.MdiParent = Me
+        Cotiza.WindowState = FormWindowState.Maximized
+
+        Cotiza.StartPosition = FormStartPosition.CenterScreen
+        Cotiza.Show()
+    End Sub
 End Class

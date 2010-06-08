@@ -22,6 +22,7 @@ Public Class Facturacion
         CrearDsDatos()
         ConfiguraGridDatos()
         LimpiarPantalla()
+        MensajePiePagina.Text = " Registre el numero de factura siguiente para comenzar"
     End Sub
 
 #End Region
@@ -177,7 +178,7 @@ Public Class Facturacion
         GridColumn.DataCell.View = viewNormal
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.EnableStretch
 
-        GridColumn = GridDatos.Columns.Add("C8", "Total", EditorCustom)
+        GridColumn = GridDatos.Columns.Add("C8", "Descuento", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
         GridColumn.DataCell.View = viewNormal
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.EnableStretch
@@ -231,7 +232,7 @@ Public Class Facturacion
 
 #Region " Rutinas "
     Sub CatalogoProductos()
-        Caja = "Consulta103" : Parametros = ""
+        Caja = "Consulta119" : Parametros = ""
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
         ObjRet = lConsulta.LlamarCaja(Caja, "0", Parametros)
         If ObjRet.bOk Then
@@ -497,6 +498,7 @@ Public Class Facturacion
 
             Else
                 Impresion.Visible = True
+                Me.Eliminar.Visible = True
                 chbGenerar.Enabled = False
                 RadioCotizacion.Enabled = False
                 RadioVenta.Enabled = False
@@ -565,6 +567,7 @@ Public Class Facturacion
         Me.txtNoFactura.Enabled = True
         Me.Impresion.Visible = False
         Me.Grabar.Visible = False
+        Me.Eliminar.Visible = False
 
         Me.txtNoFactura.Focus()
     End Sub
