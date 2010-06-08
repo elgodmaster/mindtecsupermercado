@@ -18,6 +18,8 @@ Public Class Cotización
 #End Region
 
     Private Sub Cotización_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        CrearDsDatos()
+        ConfiguraGridDatos()
         LimpiarPantalla()
 
     End Sub
@@ -470,9 +472,6 @@ Public Class Cotización
         TxtIva.Text = "16"
        
         TxtIva.Enabled = True
-
-        DsDatos.Tables("Table").Clear()
-
         Me.btnAceptar.Enabled = True
         Me.txtNoFactura.Enabled = True
         Me.Impresion.Visible = False
@@ -483,8 +482,7 @@ Public Class Cotización
         Me.dtpFecha.Visible = False
         Me.LAbeliva.Visible = False
         Me.Labelfecha.Visible = False
-
-
+        DsDatos.Tables("Table").Clear()
         Me.txtNoFactura.Focus()
     End Sub
 
