@@ -243,7 +243,7 @@ Partial Class Facturacion
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(8, 9)
+        Me.Label15.Location = New System.Drawing.Point(5, 9)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(67, 16)
         Me.Label15.TabIndex = 347

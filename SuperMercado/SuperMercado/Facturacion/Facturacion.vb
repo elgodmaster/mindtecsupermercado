@@ -168,7 +168,7 @@ Public Class Facturacion
         GridColumn.DataCell.View = viewNormal
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.EnableStretch
 
-        GridColumn = GridDatos.Columns.Add("C5", "Precio U", EditorCustom)
+        GridColumn = GridDatos.Columns.Add("C5", "Precio", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
         GridColumn.DataCell.View = viewNormal
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
@@ -191,6 +191,7 @@ Public Class Facturacion
         GridDatos.Columns.SetWidth(5, 130)
         GridDatos.Columns.SetWidth(6, 130)
         GridDatos.Columns.SetWidth(7, 130)
+        GridDatos.Columns.SetWidth(8, 0)
     End Sub
 
 #End Region
@@ -493,6 +494,18 @@ Public Class Facturacion
             Me.txtNoFactura.Enabled = False
             Me.btnAceptar.Enabled = False
 
+            If Not ObjRet.DS Is DBNull.Value Then
+                If Not ObjRet.DS.Tables Is DBNull.Value Then
+                    If ObjRet.DS.Tables.Count > 0 Then
+                        For i As Integer = 0 To ObjRet.DS.Tables(0).Rows.Count - 1
+                            DsDatos.Tables("Table").ImportRow(ObjRet.DS.Tables(0).Rows(i))
+                        Next
+                        DsDatos.Tables("Table").AcceptChanges()
+                        DsView = DsDatos.Tables(0).DefaultView
+                    End If
+                End If
+            End If
+
             If Len(RTrim(LTrim(Me.lblNombreCliente.Text))) = 0 Then
                 Grabar.Visible = True
 
@@ -505,6 +518,12 @@ Public Class Facturacion
                 TxtIva.Enabled = False
                 dtpFecha.Enabled = False
                 CodigoCliente.Enabled = False
+                Me.Txt_CodigoProducto.Enabled = False
+                Me.Txt_Cantidad.Enabled = False
+                Me.CodigoVenta.Enabled = False
+                Me.CodigoCotizacion.Enabled = False
+                Agregar.Enabled = False
+                Me.Descuento.Enabled = False
             End If
 
 
@@ -520,7 +539,10 @@ Public Class Facturacion
 
 
             Me.GroupBox1.Visible = True
+            CalculaTotal()
             CodigoCliente.Focus()
+        Else
+            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
         End If
 
     End Sub
@@ -549,6 +571,9 @@ Public Class Facturacion
         Txt_CodigoProducto.Text = ""
         TxtIva.Text = "16"
         GroupBox1.Visible = False
+        Me.Txt_Cantidad.Enabled = True
+        Me.Txt_CodigoProducto.Enabled = True
+
 
         RadioVenta.Checked = False
         RadioCotizacion.Checked = False
@@ -563,6 +588,11 @@ Public Class Facturacion
 
         Me.CodigoVenta.Visible = False
         Me.CodigoCotizacion.Visible = False
+        Me.CodigoVenta.Enabled = True
+        Me.CodigoCotizacion.Enabled = True
+        Me.Agregar.Enabled = True
+        Me.Descuento.Enabled = True
+
         Me.btnAceptar.Enabled = True
         Me.txtNoFactura.Enabled = True
         Me.Impresion.Visible = False
@@ -616,23 +646,27 @@ Public Class Facturacion
 #Region " Grabar "
 
     Private Sub Grabar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Grabar.Click
-        If DsDatos.Tables("Table").Rows.Count >= 0 And DsDatos.Tables("Table").Rows(0).Item("C3") <> 0 Then
-            Caja = "Grabar119" : Parametros = "V1=" & Me.txtNoFactura.Text & "|V2=" & Me.dtpFecha.Value.ToString("dd/MM/yyyy") & _
-            "|V3=" & CodigoCliente.Text & "|V4=" & Me.TxtIva.Text & "|V5=" & Me.CodigoCotizacion.Text & "|V6=" & Me.CodigoVenta.Text & _
-            "|V7=" & IdUsuario & "|V8=" & IdtipoCambio & "|V9=" & Me.chbGenerar.Checked & "|"
-            If lConsulta Is Nothing Then lConsulta = New ClsConsultas
-            ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros, DsDatos)
-            'Estatus
-            If ObjRet.bOk Then
-                MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
-                LimpiarPantalla()
-            Else
-                MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+        If Not DsDatos Is DBNull.Value Then
+            If Not DsDatos.Tables Is DBNull.Value Then
+                If DsDatos.Tables("Table").Rows.Count > 0 Then
+                    Caja = "Grabar119" : Parametros = "V1=" & Me.txtNoFactura.Text & "|V2=" & Me.dtpFecha.Value.ToString("dd/MM/yyyy") & _
+                        "|V3=" & CodigoCliente.Text & "|V4=" & Me.TxtIva.Text & "|V5=" & Me.CodigoCotizacion.Text & "|V6=" & Me.CodigoVenta.Text & _
+                        "|V7=" & IdUsuario & "|V8=" & IdtipoCambio & "|V9=" & Me.chbGenerar.Checked & "|"
+                    If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+                    ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros, DsDatos)
+                    'Estatus
+                    If ObjRet.bOk Then
+                        MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+                        LimpiarPantalla()
+                    Else
+                        MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
 
+                    End If
+                Else
+                    MessageBox.Show("Registre un producto antes de grabar")
+                    Me.Txt_CodigoProducto.Focus()
+                End If
             End If
-        Else
-            MessageBox.Show("Registre un producto antes de grabar")
-            Me.Txt_CodigoProducto.Focus()
         End If
     End Sub
 #End Region

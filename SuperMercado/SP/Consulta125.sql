@@ -1,7 +1,7 @@
-drop proc dbo.Consulta119
+drop proc dbo.Consulta125
 go
 
-CREATE  PROCEDURE [dbo].[Consulta119]
+CREATE  PROCEDURE [dbo].[Consulta125]
 (
   @cabezero Varchar(8000),
   @Resul    Varchar(8000)  OutPut,
@@ -13,7 +13,7 @@ AS
 BEGIN
   Set NoCount On
   ------------------------------------------
-  --Facturas
+  --Cotizaciones
   ------------------------------------------
 
   --Variables de Trabajo
@@ -79,7 +79,7 @@ BEGIN
    Begin 
     If Len(RTrim(LTrim(@Valor1))) = 0 
      Begin
-       Select @Resul = '2R=ERROR|2M=Registre el número de factura para continuar|'
+       Select @Resul = '2R=ERROR|2M=Registre el número de cotización para continuar|'
        Return
      End
    End
@@ -106,6 +106,7 @@ BEGIN
 
 	 Select @Registro = @@RowCount	 
    End
+
 
  If @Validar = 2
    Begin
@@ -135,15 +136,12 @@ BEGIN
             @Desc8 = IsNull(b.colonia,''),
             @Desc9 = ISNULL(b.CP,''),
             @Desc10 = ISNULL(c.Descripcion,''),
-            @Desc11 = ISNULL(d.Descripcion,''),
-            @Desc12 = IsNull(a.GenerarSalida,0),
-            @Desc13 = ISNULL(a.Cotizacion,''),
-            @Desc14 = IsNull(a.Venta,'')
-     From Smercado..Facturas a (NoLock)
+            @Desc11 = ISNULL(d.Descripcion,'')
+     From Smercado..Cotizaciones a (NoLock)
      Left Join SMercado..Cat_Clientes b (NoLock) On b.codigo = a.IdCliente
      Left Join SMercado..Cat_EstadosdelaRepublica c (NoLock) On c.IdEstado = b.IdEstado 
      Left Join SMercado..Cat_Ciudades d (NoLock) On d.idciudad = b.IdCiudad  
-     Where a.NoFactura = @Valor1
+     Where a.Nocotizacion = @Valor1
      
 	 Select @Registro = @@RowCount	 
 	 
@@ -155,10 +153,10 @@ BEGIN
             C5 = ISNULL(a.PrecioUni,0),
             C6 = IsNull(Sum(a.cantidad * a.precioUni * a.Descuento),0),
             C8 = ISNULL (a.descuento,0)
-	 From SMercado..Factura_Detalles a (NoLock)
+	 From SMercado..Cotizaciones_Detalles a (NoLock)
 	 Left Join Smercado..Cat_Productos b (NoLock) On b.Codigo = a.idProducto
 	 Left Join SMercado..Cat_Unidades c (NoLock) On b.IdUnidad = c.IdUnidad 
-	 Where a.NoFactura = @Valor1
+	 Where a.NoCotizacion = @Valor1
 	 group by a.IdProducto,a.Descripcion,a.cantidad,c.Descripcion,a.PrecioUni,a.Descuento 
 	 
    End
