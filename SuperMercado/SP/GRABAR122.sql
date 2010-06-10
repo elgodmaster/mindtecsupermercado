@@ -35,8 +35,6 @@ Select U.idUsuario
 From SMercado_Seguridad..Usuarios U
 Where U.nombreUsuario = @usuario 
 
-select * from SMercado_Seguridad..Usuarios 
-
 IF @@ROWCOUNT = 0
 	BEGIN
 		Insert SMercado_Seguridad..Usuarios 
