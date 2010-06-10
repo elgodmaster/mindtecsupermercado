@@ -30,6 +30,8 @@ Partial Class Cat_Cliente_DetalleAbono
         Me.GridDatosAbonos.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
                     Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GridDatosAbonos.AutoSize = True
+        Me.GridDatosAbonos.AutoStretchColumnsToFitWidth = True
         Me.GridDatosAbonos.BackColor = System.Drawing.SystemColors.Control
         Me.GridDatosAbonos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GridDatosAbonos.DeleteQuestionMessage = ""
@@ -38,7 +40,7 @@ Partial Class Cat_Cliente_DetalleAbono
         Me.GridDatosAbonos.Location = New System.Drawing.Point(12, 12)
         Me.GridDatosAbonos.Name = "GridDatosAbonos"
         Me.GridDatosAbonos.SelectionMode = SourceGrid.GridSelectionMode.Row
-        Me.GridDatosAbonos.Size = New System.Drawing.Size(294, 374)
+        Me.GridDatosAbonos.Size = New System.Drawing.Size(393, 374)
         Me.GridDatosAbonos.TabIndex = 35
         Me.GridDatosAbonos.TabStop = True
         Me.GridDatosAbonos.ToolTipText = ""
@@ -47,12 +49,14 @@ Partial Class Cat_Cliente_DetalleAbono
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(318, 398)
+        Me.AutoSize = True
+        Me.ClientSize = New System.Drawing.Size(417, 398)
         Me.Controls.Add(Me.GridDatosAbonos)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Name = "Cat_Cliente_DetalleAbono"
         Me.Text = "  Abonos"
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents GridDatosAbonos As SourceGrid.DataGrid
