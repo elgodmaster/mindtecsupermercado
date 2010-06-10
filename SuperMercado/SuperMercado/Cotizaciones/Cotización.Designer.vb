@@ -292,7 +292,7 @@ Partial Class Cotización
         Me.CodigoCliente.BackColor = System.Drawing.SystemColors.Info
         Me.CodigoCliente.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CodigoCliente.Location = New System.Drawing.Point(67, 19)
-        Me.CodigoCliente.MaxLength = 9
+        Me.CodigoCliente.MaxLength = 50
         Me.CodigoCliente.Name = "CodigoCliente"
         Me.CodigoCliente.Size = New System.Drawing.Size(115, 22)
         Me.CodigoCliente.TabIndex = 0

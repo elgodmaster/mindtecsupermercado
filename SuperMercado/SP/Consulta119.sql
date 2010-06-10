@@ -144,10 +144,8 @@ BEGIN
      Left Join SMercado..Cat_EstadosdelaRepublica c (NoLock) On c.IdEstado = b.IdEstado 
      Left Join SMercado..Cat_Ciudades d (NoLock) On d.idciudad = b.IdCiudad  
      Where a.NoFactura = @Valor1
-     
-	 Select @Registro = @@RowCount	 
 	 
-	 
+	 ----Detalle de factura esta tabla se visualiza en el grid de facturacion
 	 Select C1 = IsNull(a.IdProducto,''),
             C2 = IsNull(a.Descripcion,''),
             C3 = ISNULL(a.cantidad,0),
@@ -160,7 +158,7 @@ BEGIN
 	 Left Join SMercado..Cat_Unidades c (NoLock) On b.IdUnidad = c.IdUnidad 
 	 Where a.NoFactura = @Valor1
 	 group by a.IdProducto,a.Descripcion,a.cantidad,c.Descripcion,a.PrecioUni,a.Descuento 
-	 
+	 Select @Registro = @@RowCount
    End
 
   -- Enviar Resultado 

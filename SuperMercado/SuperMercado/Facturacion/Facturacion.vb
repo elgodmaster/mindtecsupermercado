@@ -544,7 +544,7 @@ Public Class Facturacion
         Else
             MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
         End If
-
+        ObjRet = Nothing
     End Sub
 #End Region
 
@@ -583,6 +583,8 @@ Public Class Facturacion
         RadioCotizacion.Enabled = True
         chbGenerar.Enabled = True
         TxtIva.Enabled = True
+        CodigoCliente.Enabled = True
+        dtpFecha.Enabled = True
 
         DsDatos.Tables("Table").Clear()
 
