@@ -15,15 +15,19 @@ CREATE PROCEDURE dbo.GRABAR111
 AS
 BEGIN
 
-DECLARE @idCaja		varchar(8000)
-DECLARE @idUsuario	varchar(8000)
-DECLARE @Monto	varchar(8000)
-DECLARE @Concepto	varchar(8000)
+DECLARE @idCaja			varchar(8000)
+DECLARE @usuario		varchar(8000)
+DECLARE @Monto			varchar(8000)
+DECLARE @Concepto		varchar(8000)
+DECLARE @idUsuario      varchar(8000)
 
-Exec Emulador_SepararCadena 'V1',  @Cabezero, '|', @idCaja    Output 
-Exec Emulador_SepararCadena 'V2',  @Cabezero, '|', @idUsuario Output 
-Exec Emulador_SepararCadena 'V3',  @Cabezero, '|', @Monto     Output 
-Exec Emulador_SepararCadena 'V4',  @Cabezero, '|', @Concepto  Output 
+Exec Emulador_SepararCadena 'V1',  @Cabezero, '|', @idCaja		  Output 
+Exec Emulador_SepararCadena 'V2',  @Cabezero, '|', @usuario		  Output 
+Exec Emulador_SepararCadena 'V3',  @Cabezero, '|', @Monto		  Output 
+Exec Emulador_SepararCadena 'V4',  @Cabezero, '|', @Concepto	  Output 
+
+Select @idUsuario = (Select U.idUsuario From SMercado_Seguridad..Usuarios U
+					 Where U.nombreUsuario = @usuario )
 
 Insert into SMercado..Caja_Entrada values ( @idCaja, @idUsuario, convert( decimal(18,2), @monto), @Concepto, GETDATE() )
 -- Se actualiza la Caja_Corte

@@ -67,6 +67,24 @@ cantidad decimal(12,2) not null,
 precioUnitario int not null
 )
 
+-- TABLAS PARA CONFIGURACIÓN DEL TICKET --
+
+CREATE TABLE Config_Ticket (
+idConfig	   int not null,
+impresora	   varchar(50),
+lineaCabezero1 varchar(50),
+lineaCabezero2 varchar(50),
+lineaCabezero3 varchar(50),
+lineaCabezero4 varchar(50),
+lineaPie1	   varchar(50),
+lineaPie2	   varchar(50),
+lineaPie3	   varchar(50)
+)
+-- Configuración inicial
+insert SMercado..Config_Ticket 
+values ( 1, '','','','','','','','' )
+Select * from SMercado..Config_Ticket  
+
 DROP TABLE SMercado..Caja_Corte
 DROP TABLE SMercado..Caja_Entrada
 DROP TABLE SMercado..Caja_Salida
@@ -126,15 +144,21 @@ exec consulta111 '','','',''
 exec consulta114a '','','',''
 exec consulta114b 'V1=Baja California|','','',''
 exec consulta105 'V1=CLIENTE2|','','','2'
-exec consulta117 'V1=CLIENTE2|','','',''
-exec consulta118a 'V1=9|','','',''
-exec consulta118b 'V1=9|','','',''
+exec consulta117 'V1=CLIENTE4|','','',''
+exec consulta118a 'V1=34|','','',''
+exec consulta118b 'V1=34|','','',''
 exec consulta120 'V1=ADMIN|V2=12345|','','',''
 exec consulta121 '','','',''
 exec consulta122 'V1=cajero|','','',''
 exec Consulta122b 'V1=admin|','','',''
+exec consulta123 '','','',''
 exec consulta124 'V1=Lindor|','','',''
-Select * 
+
+update SMercado_Seguridad..Permisos 
+set nomPermiso = 'ADMINISTRADOR'
+where idPermiso = 1
+
+Select *
 From SMercado_Seguridad..Permisos 
 
 Select C.Codigo, C.NombreFiscal, C.Adeudo 
@@ -283,3 +307,6 @@ values('lindor', '418563', 'Lindor Valdez Mario Alberto', 2, 1)
 update SMercado_Seguridad..Permisos
 set RepProductos = 'false'
 where idPermiso = 1
+
+select * from SMercado..Ventas 
+order by Fecha desc

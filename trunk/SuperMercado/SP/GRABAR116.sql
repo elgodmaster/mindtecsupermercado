@@ -146,6 +146,9 @@ SELECT  C7  = @Valor1,    --FolioCuenta
               C8  Decimal(18,2))    
         EXEC sp_xml_removedocument @idoc     
         -----------------------------------------------     -- Fin de XML     -----------------------------------------------
+	--Se eliminan los productos en blanco.
+	Delete from #TmpGrabar116
+	Where C2 = ''
 	
 	--Insert de la tabla temporal..
 	Insert SMercado..Cuentas_Cobrar_Detalles(idCuenta,IdProducto,cantidad,PrecioUni,Descripcion,Descuento)

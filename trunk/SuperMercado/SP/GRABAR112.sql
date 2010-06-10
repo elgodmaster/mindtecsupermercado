@@ -18,14 +18,18 @@ BEGIN
 DECLARE @registros		int  -- Para las validaciones.
 DECLARE @dineroEnCaja	decimal(18,2)
 DECLARE @idCaja		varchar(8000)
-DECLARE @idUsuario	varchar(8000)
+DECLARE @usuario	varchar(8000)
 DECLARE @Monto		varchar(8000)
 DECLARE @Concepto	varchar(8000)
+DECLARE @idUsuario  varchar(8000)
 
 Exec Emulador_SepararCadena 'V1',  @Cabezero, '|', @idCaja    Output 
-Exec Emulador_SepararCadena 'V2',  @Cabezero, '|', @idUsuario Output 
+Exec Emulador_SepararCadena 'V2',  @Cabezero, '|', @usuario   Output 
 Exec Emulador_SepararCadena 'V3',  @Cabezero, '|', @Monto     Output 
 Exec Emulador_SepararCadena 'V4',  @Cabezero, '|', @Concepto  Output 
+
+Select @idUsuario = (Select U.idUsuario From SMercado_Seguridad..Usuarios U
+					 Where U.nombreUsuario = @usuario)
 
 IF LEN(RTRIM(LTRIM(@concepto))) = 0
 BEGIN

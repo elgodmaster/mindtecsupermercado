@@ -20,7 +20,8 @@ Exec Emulador_SepararCadena 'V1',  @Cabezero, '|', @idCuenta	Output
 Select	C1 = A.idAbono, 
 		C2 = '$ ' + CONVERT(char, A.monto), 
 		C3 = CONVERT(varchar,DATEADD(d,0,A.fecha), 103), 
-		C4 = A.idUsuario   
+		C4 = (Select U.nombreCompleto  from SMercado_Seguridad..Usuarios U
+		      Where U.idUsuario = A.idUsuario )
 From SMercado..Cuentas_Abonos A
 Inner join SMercado..Cuentas_Cobrar CC ON A.idCuenta = CC.IdCuenta 
 Where CC.IdCuenta = @idCuenta 

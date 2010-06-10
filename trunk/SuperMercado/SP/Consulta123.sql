@@ -12,7 +12,7 @@ CREATE PROCEDURE dbo.Consulta123
 AS
 BEGIN
 
-Select P.nomPermiso, P.idPermiso 
+Select RTRIM(P.nomPermiso), P.idPermiso 
 From SMercado_Seguridad..Permisos P
 
 Select @Resul = '2R=OK|PERMISOS=Catálogo de permisos|VALCOL=87*400|'
