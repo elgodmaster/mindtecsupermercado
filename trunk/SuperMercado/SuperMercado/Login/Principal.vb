@@ -5,9 +5,6 @@ Public Class Principal
 
 #Region "  Variables De Trabajo  "
 
-    Public nombreUsuario As String
-    Public nombreCompleto As String
-
     Private DsDatos As DataSet
     Private ViewDatos As DataView
 
@@ -27,17 +24,17 @@ Public Class Principal
 #Region "  Evento: Principal LOAD  "
     Private Sub Principal_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Login()
+        restriccionPermisos(usuario)
+
         Me.WindowState = FormWindowState.Maximized
 
-        restriccionPermisos(nombreUsuario)
+        '' Configuración de la ventana principal.
+        'Dim inic As New inicial
+        'inic.MdiParent = Me
+        'inic.WindowState = FormWindowState.Maximized
+        'inic.StartPosition = FormStartPosition.CenterScreen
 
-        ' Configuración de la ventana principal.
-        Dim inic As New inicial
-        inic.MdiParent = Me
-        inic.WindowState = FormWindowState.Maximized
-        inic.StartPosition = FormStartPosition.CenterScreen
-        inic.cargaRefNombres(nombreCompleto)
-        inic.Show()
+        'inic.Show()
         Me.MenuStrip1.MdiWindowListItem = Ventanas
         MacCaja()
     End Sub
@@ -123,12 +120,21 @@ Public Class Principal
 
 #Region "  Menú Facturación  "
     Private Sub FacturaToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles FacturaToolStripMenuItem.Click
-        Dim Facturas As New Facturacion
+        Dim Facturas As Facturacion = Facturacion.Instance
         Facturas.MdiParent = Me
         Facturas.WindowState = FormWindowState.Maximized
 
         Facturas.StartPosition = FormStartPosition.CenterScreen
         Facturas.Show()
+    End Sub
+
+    Private Sub CotizaciónToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CotizaciónToolStripMenuItem.Click
+        Dim Cotiza As Cotización = Cotización.Instance
+        Cotiza.MdiParent = Me
+        Cotiza.WindowState = FormWindowState.Maximized
+
+        Cotiza.StartPosition = FormStartPosition.CenterScreen
+        Cotiza.Show()
     End Sub
 #End Region
 
@@ -203,6 +209,13 @@ Public Class Principal
         objConfigCaja.StartPosition = FormStartPosition.CenterScreen
         objConfigCaja.ShowDialog()
     End Sub
+
+    Private Sub TicketsToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TicketsToolStripMenuItem.Click
+        Dim objTickets As Tickets = Tickets.Instance
+        objTickets.MdiParent = Me
+        objTickets.WindowState = FormWindowState.Maximized
+        objTickets.Show()
+    End Sub
 #End Region   
 
 #Region "  Menú Sesión  "
@@ -217,6 +230,19 @@ Public Class Principal
     Private Sub SalirToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SalirToolStripMenuItem1.Click
         End
     End Sub
+
+    Private Sub CerrarSesiónToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CerrarSesiónToolStripMenuItem.Click
+        Dim result As DialogResult
+        result = MessageBox.Show("Está a punto de cerrar su sesión. Todas las ventanas se cerrarán y cualquier información que no haya guardado se perderá. ¿Desea continuar?", " Cerrar sesión", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If result = Windows.Forms.DialogResult.Yes Then
+            cerrarVentanasHijas()
+            Me.Visible = False
+            Login()
+        Else
+            Return
+        End If
+    End Sub
+
 #End Region
 
 #Region "  Rutina: Login  "
@@ -240,57 +266,15 @@ Public Class Principal
         ' Se verifica que la fecha más reciente en la tabla caja sea distinta a la actual.
         ' Si lo es, se procede a ingresar un nuevo registro con la fecha actual.
 
-        Caja = "CONSULTA110" : Parametros = ""
+        Caja = "CONSULTA110" : Parametros = "V1=" & usuario & "|"
 
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
         ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
 
-        Dim existe As Boolean
-        existe = ObjRet.DS.Tables(1).Rows(0).Item(1)
+        Dim fecha As String
+        fecha = ObjRet.DS.Tables(0).Rows(0).Item(0)
 
-        If lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|", False) = "OK" Then
-            ' Si no hay un registro con la fecha actual en la tabla Caja_Corte,
-            ' se inserta uno con la fecha actual.
-            If existe Then
-                If Date.Parse(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False)) <> Date.Now.Date Then
-
-                    ' CONFIGURACION_CAJA
-                    ' Si está activado un monto inicial por defecto se inserta
-                    ' directamente. Para esto llamamos a la consulta112 y obtenemos
-                    ' la configuración.
-                    Caja = "Consulta112" : Parametros = ""
-                    If lConsulta Is Nothing Then lConsulta = New ClsConsultas
-                    ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
-
-                    Dim activadoMontoPorDefecto As Boolean
-                    Dim montoPorDefecto As Decimal
-                    activadoMontoPorDefecto = ObjRet.DS.Tables(0).Rows(0).Item(1)
-                    montoPorDefecto = ObjRet.DS.Tables(0).Rows(0).Item(2)
-
-                    ' Activado un monto inicial por defecto.
-                    If activadoMontoPorDefecto Then
-                        Caja = "GRABAR110" : Parametros = "V1=" & montoPorDefecto & "|"
-
-                        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
-                        ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
-
-                    Else ' No se encuentra activado, por lo tanto muestra la ventana
-                        ' DineroCaja para ingresarlo manualmente.
-                        If objDineroCaja Is Nothing Then
-                            Dim objDineroCaja = New dineroCaja()
-                            objDineroCaja.StartPosition = FormStartPosition.CenterParent
-                            objDineroCaja.ShowDialog()
-                        End If
-                    End If
-                End If
-
-            End If
-
-
-            ' No existe ningún registro en la tabla Caja_Corte, se procede a insertar
-            ' el primer registro.
-        ElseIf lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|", False) = "ERROR" Then
-
+        If fecha = "" Then
             ' CONFIGURACION_CAJA
             ' Si está activado un monto inicial por defecto se inserta
             ' directamente. Para esto llamamos a la consulta112 y obtenemos
@@ -306,18 +290,17 @@ Public Class Principal
 
             ' Activado un monto inicial por defecto.
             If activadoMontoPorDefecto Then
-                Caja = "GRABAR110" : Parametros = "V1=" & montoPorDefecto & "|"
+                Caja = "GRABAR110" : Parametros = "V1=" & montoPorDefecto & "|" & _
+                                                  "V2=" & idUsuario & "|"
 
                 If lConsulta Is Nothing Then lConsulta = New ClsConsultas
                 ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
 
             Else ' No se encuentra activado, por lo tanto muestra la ventana
                 ' DineroCaja para ingresarlo manualmente.
-                If objDineroCaja Is Nothing Then
-                    Dim objDineroCaja = New dineroCaja()
-                    objDineroCaja.StartPosition = FormStartPosition.CenterParent
-                    objDineroCaja.ShowDialog()
-                End If
+                Dim objDineroCaja = New dineroCaja()
+                objDineroCaja.StartPosition = FormStartPosition.CenterParent
+                objDineroCaja.ShowDialog()
             End If
         End If
 
@@ -360,7 +343,7 @@ Public Class Principal
         Caja = "Consulta122b" : Parametros = "V1=" & nombreUsuarioR + "|"
         ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
 
-        'REPORTES
+        'Catálogos
         If ObjRet.DS.Tables(0).Rows(0).Item(0) = "0" And _
         ObjRet.DS.Tables(0).Rows(0).Item(1) = "0" And _
         ObjRet.DS.Tables(0).Rows(0).Item(2) = "0" And _
@@ -370,7 +353,6 @@ Public Class Principal
         ObjRet.DS.Tables(0).Rows(0).Item(6) = "0" And _
         ObjRet.DS.Tables(0).Rows(0).Item(7) = "0" And _
         ObjRet.DS.Tables(0).Rows(0).Item(8) = "0" Then
-
             ReportesToolStripMenuItem1.Visible = False
         Else
             ReportesToolStripMenuItem1.Visible = True
@@ -399,6 +381,7 @@ Public Class Principal
         Else
             ClientesToolStripMenuItem3.Visible = True
         End If
+
 
         If ObjRet.DS.Tables(0).Rows(0).Item(4) = "0" Then
             ProveedoresToolStripMenuItem3.Visible = False
@@ -429,6 +412,7 @@ Public Class Principal
         Else
             DepositosDeEfectivoToolStripMenuItem1.Visible = True
         End If
+
 
         'CATÁLOGOS
         If ObjRet.DS.Tables(0).Rows(0).Item(9) = "0" And _
@@ -607,12 +591,12 @@ Public Class Principal
     End Sub
 #End Region
 
-    Private Sub CotizaciónToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CotizaciónToolStripMenuItem.Click
-        Dim Cotiza As New Cotización
-        Cotiza.MdiParent = Me
-        Cotiza.WindowState = FormWindowState.Maximized
-
-        Cotiza.StartPosition = FormStartPosition.CenterScreen
-        Cotiza.Show()
+#Region "  Rutina: cerrarVentanasHijas  "
+    Private Sub cerrarVentanasHijas()
+        For i As Integer = 0 To Me.MdiChildren.Length - 1
+            Me.MdiChildren(0).Close()
+        Next
     End Sub
+#End Region
+
 End Class

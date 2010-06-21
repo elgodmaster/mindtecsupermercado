@@ -32,7 +32,8 @@ Public Class dineroCaja
 
         ' Ingresa el valor a la tabla CORTE_CAJA
 
-        Caja = "GRABAR110" : Parametros = "V1=" & numDineroInicial.Value & "|"
+        Caja = "GRABAR110" : Parametros = "V1=" & numDineroInicial.Value & _
+                                          "|V2=" & idUsuario & "|"
 
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
         ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)

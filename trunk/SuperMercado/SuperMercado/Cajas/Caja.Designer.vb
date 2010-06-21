@@ -89,10 +89,10 @@ Partial Class Caja
         '
         Me.Label4.AutoSize = True
         Me.Label4.BackColor = System.Drawing.Color.Transparent
-        Me.Label4.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(574, 232)
+        Me.Label4.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(670, 232)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(53, 19)
+        Me.Label4.Size = New System.Drawing.Size(43, 14)
         Me.Label4.TabIndex = 6
         Me.Label4.Text = "Total:"
         '
@@ -100,11 +100,11 @@ Partial Class Caja
         '
         Me.lblEntradaDin.AutoSize = True
         Me.lblEntradaDin.BackColor = System.Drawing.Color.Transparent
-        Me.lblEntradaDin.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblEntradaDin.ForeColor = System.Drawing.Color.Navy
-        Me.lblEntradaDin.Location = New System.Drawing.Point(673, 232)
+        Me.lblEntradaDin.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblEntradaDin.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.lblEntradaDin.Location = New System.Drawing.Point(785, 232)
         Me.lblEntradaDin.Name = "lblEntradaDin"
-        Me.lblEntradaDin.Size = New System.Drawing.Size(53, 19)
+        Me.lblEntradaDin.Size = New System.Drawing.Size(43, 13)
         Me.lblEntradaDin.TabIndex = 8
         Me.lblEntradaDin.Text = "$ 0.00"
         '
@@ -113,11 +113,11 @@ Partial Class Caja
         Me.Label15.AllowDrop = True
         Me.Label15.AutoSize = True
         Me.Label15.BackColor = System.Drawing.Color.Transparent
-        Me.Label15.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label15.ForeColor = System.Drawing.Color.DarkGreen
-        Me.Label15.Location = New System.Drawing.Point(343, 78)
+        Me.Label15.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label15.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.Label15.Location = New System.Drawing.Point(400, 78)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(165, 19)
+        Me.Label15.Size = New System.Drawing.Size(142, 14)
         Me.Label15.TabIndex = 20
         Me.Label15.Text = "Entradas en efectivo"
         '
@@ -126,11 +126,11 @@ Partial Class Caja
         Me.Label16.AllowDrop = True
         Me.Label16.AutoSize = True
         Me.Label16.BackColor = System.Drawing.Color.Transparent
-        Me.Label16.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label16.ForeColor = System.Drawing.Color.DarkGreen
-        Me.Label16.Location = New System.Drawing.Point(343, 269)
+        Me.Label16.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label16.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.Label16.Location = New System.Drawing.Point(400, 269)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(152, 19)
+        Me.Label16.Size = New System.Drawing.Size(132, 14)
         Me.Label16.TabIndex = 21
         Me.Label16.Text = "Salidas en efectivo"
         '
@@ -139,7 +139,8 @@ Partial Class Caja
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1})
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 724)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(811, 22)
+        Me.StatusStrip1.Padding = New System.Windows.Forms.Padding(1, 0, 16, 0)
+        Me.StatusStrip1.Size = New System.Drawing.Size(946, 22)
         Me.StatusStrip1.TabIndex = 30
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -156,10 +157,10 @@ Partial Class Caja
         Me.GridDatosEntradas.DeleteQuestionMessage = ""
         Me.GridDatosEntradas.DeleteRowsWithDeleteKey = False
         Me.GridDatosEntradas.FixedRows = 1
-        Me.GridDatosEntradas.Location = New System.Drawing.Point(347, 100)
+        Me.GridDatosEntradas.Location = New System.Drawing.Point(405, 100)
         Me.GridDatosEntradas.Name = "GridDatosEntradas"
         Me.GridDatosEntradas.SelectionMode = SourceGrid.GridSelectionMode.Row
-        Me.GridDatosEntradas.Size = New System.Drawing.Size(424, 129)
+        Me.GridDatosEntradas.Size = New System.Drawing.Size(445, 129)
         Me.GridDatosEntradas.TabIndex = 31
         Me.GridDatosEntradas.TabStop = True
         Me.GridDatosEntradas.ToolTipText = ""
@@ -170,7 +171,7 @@ Partial Class Caja
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnHacerCorte})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(811, 48)
+        Me.ToolStrip1.Size = New System.Drawing.Size(946, 48)
         Me.ToolStrip1.TabIndex = 231
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -192,10 +193,10 @@ Partial Class Caja
         Me.GridDatosSalidas.DeleteQuestionMessage = ""
         Me.GridDatosSalidas.DeleteRowsWithDeleteKey = False
         Me.GridDatosSalidas.FixedRows = 1
-        Me.GridDatosSalidas.Location = New System.Drawing.Point(347, 291)
+        Me.GridDatosSalidas.Location = New System.Drawing.Point(405, 291)
         Me.GridDatosSalidas.Name = "GridDatosSalidas"
         Me.GridDatosSalidas.SelectionMode = SourceGrid.GridSelectionMode.Row
-        Me.GridDatosSalidas.Size = New System.Drawing.Size(424, 129)
+        Me.GridDatosSalidas.Size = New System.Drawing.Size(445, 129)
         Me.GridDatosSalidas.TabIndex = 232
         Me.GridDatosSalidas.TabStop = True
         Me.GridDatosSalidas.ToolTipText = ""
@@ -204,10 +205,10 @@ Partial Class Caja
         '
         Me.Label6.AutoSize = True
         Me.Label6.BackColor = System.Drawing.Color.Transparent
-        Me.Label6.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(574, 423)
+        Me.Label6.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Location = New System.Drawing.Point(670, 423)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(53, 19)
+        Me.Label6.Size = New System.Drawing.Size(43, 14)
         Me.Label6.TabIndex = 233
         Me.Label6.Text = "Total:"
         '
@@ -215,11 +216,11 @@ Partial Class Caja
         '
         Me.lblSalDinero.AutoSize = True
         Me.lblSalDinero.BackColor = System.Drawing.Color.Transparent
-        Me.lblSalDinero.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblSalDinero.ForeColor = System.Drawing.Color.Teal
-        Me.lblSalDinero.Location = New System.Drawing.Point(673, 421)
+        Me.lblSalDinero.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSalDinero.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.lblSalDinero.Location = New System.Drawing.Point(785, 421)
         Me.lblSalDinero.Name = "lblSalDinero"
-        Me.lblSalDinero.Size = New System.Drawing.Size(53, 19)
+        Me.lblSalDinero.Size = New System.Drawing.Size(43, 13)
         Me.lblSalDinero.TabIndex = 234
         Me.lblSalDinero.Text = "$ 0.00"
         '
@@ -228,11 +229,11 @@ Partial Class Caja
         Me.Label2.AllowDrop = True
         Me.Label2.AutoSize = True
         Me.Label2.BackColor = System.Drawing.Color.Transparent
-        Me.Label2.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.Color.DarkGreen
-        Me.Label2.Location = New System.Drawing.Point(343, 450)
+        Me.Label2.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.Label2.Location = New System.Drawing.Point(400, 450)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(107, 19)
+        Me.Label2.Size = New System.Drawing.Size(93, 14)
         Me.Label2.TabIndex = 246
         Me.Label2.Text = "Venta del día"
         '
@@ -240,11 +241,11 @@ Partial Class Caja
         '
         Me.lblGridVentaTotal.AutoSize = True
         Me.lblGridVentaTotal.BackColor = System.Drawing.Color.Transparent
-        Me.lblGridVentaTotal.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblGridVentaTotal.ForeColor = System.Drawing.Color.Teal
-        Me.lblGridVentaTotal.Location = New System.Drawing.Point(673, 602)
+        Me.lblGridVentaTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblGridVentaTotal.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.lblGridVentaTotal.Location = New System.Drawing.Point(785, 602)
         Me.lblGridVentaTotal.Name = "lblGridVentaTotal"
-        Me.lblGridVentaTotal.Size = New System.Drawing.Size(53, 19)
+        Me.lblGridVentaTotal.Size = New System.Drawing.Size(43, 13)
         Me.lblGridVentaTotal.TabIndex = 249
         Me.lblGridVentaTotal.Text = "$ 0.00"
         '
@@ -252,10 +253,10 @@ Partial Class Caja
         '
         Me.Label10.AutoSize = True
         Me.Label10.BackColor = System.Drawing.Color.Transparent
-        Me.Label10.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(574, 604)
+        Me.Label10.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.Location = New System.Drawing.Point(670, 604)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(53, 19)
+        Me.Label10.Size = New System.Drawing.Size(43, 14)
         Me.Label10.TabIndex = 248
         Me.Label10.Text = "Total:"
         '
@@ -273,9 +274,9 @@ Partial Class Caja
         Me.GroupBox1.Controls.Add(Me.lblVentasTotales)
         Me.GroupBox1.Controls.Add(Me.Label11)
         Me.GroupBox1.Controls.Add(Me.lblSalidas)
-        Me.GroupBox1.Location = New System.Drawing.Point(33, 94)
+        Me.GroupBox1.Location = New System.Drawing.Point(38, 100)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(289, 348)
+        Me.GroupBox1.Size = New System.Drawing.Size(337, 437)
         Me.GroupBox1.TabIndex = 263
         Me.GroupBox1.TabStop = False
         '
@@ -283,11 +284,11 @@ Partial Class Caja
         '
         Me.lblCanRet.AutoSize = True
         Me.lblCanRet.BackColor = System.Drawing.Color.Transparent
-        Me.lblCanRet.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCanRet.ForeColor = System.Drawing.Color.Navy
-        Me.lblCanRet.Location = New System.Drawing.Point(196, 294)
+        Me.lblCanRet.Font = New System.Drawing.Font("Verdana", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblCanRet.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.lblCanRet.Location = New System.Drawing.Point(232, 294)
         Me.lblCanRet.Name = "lblCanRet"
-        Me.lblCanRet.Size = New System.Drawing.Size(53, 19)
+        Me.lblCanRet.Size = New System.Drawing.Size(62, 18)
         Me.lblCanRet.TabIndex = 273
         Me.lblCanRet.Text = "$ 0.00"
         Me.lblCanRet.Visible = False
@@ -296,11 +297,11 @@ Partial Class Caja
         '
         Me.lblRetirar.AutoSize = True
         Me.lblRetirar.BackColor = System.Drawing.Color.Transparent
-        Me.lblRetirar.Font = New System.Drawing.Font("Arial", 12.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblRetirar.ForeColor = System.Drawing.Color.DarkSlateGray
-        Me.lblRetirar.Location = New System.Drawing.Point(8, 294)
+        Me.lblRetirar.Font = New System.Drawing.Font("Verdana", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblRetirar.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.lblRetirar.Location = New System.Drawing.Point(30, 294)
         Me.lblRetirar.Name = "lblRetirar"
-        Me.lblRetirar.Size = New System.Drawing.Size(140, 19)
+        Me.lblRetirar.Size = New System.Drawing.Size(145, 18)
         Me.lblRetirar.TabIndex = 272
         Me.lblRetirar.Text = "Por favor retire: "
         Me.lblRetirar.Visible = False
@@ -309,11 +310,11 @@ Partial Class Caja
         '
         Me.lblTotal.AutoSize = True
         Me.lblTotal.BackColor = System.Drawing.Color.Transparent
-        Me.lblTotal.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTotal.ForeColor = System.Drawing.Color.Teal
-        Me.lblTotal.Location = New System.Drawing.Point(196, 212)
+        Me.lblTotal.Font = New System.Drawing.Font("Verdana", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTotal.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.lblTotal.Location = New System.Drawing.Point(232, 212)
         Me.lblTotal.Name = "lblTotal"
-        Me.lblTotal.Size = New System.Drawing.Size(53, 19)
+        Me.lblTotal.Size = New System.Drawing.Size(62, 18)
         Me.lblTotal.TabIndex = 271
         Me.lblTotal.Text = "$ 0.00"
         '
@@ -321,10 +322,11 @@ Partial Class Caja
         '
         Me.Label14.AutoSize = True
         Me.Label14.BackColor = System.Drawing.Color.Transparent
-        Me.Label14.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.Location = New System.Drawing.Point(74, 212)
+        Me.Label14.Font = New System.Drawing.Font("Verdana", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label14.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.Label14.Location = New System.Drawing.Point(30, 212)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(53, 19)
+        Me.Label14.Size = New System.Drawing.Size(55, 18)
         Me.Label14.TabIndex = 270
         Me.Label14.Text = "Total:"
         '
@@ -332,11 +334,11 @@ Partial Class Caja
         '
         Me.Label3.AutoSize = True
         Me.Label3.BackColor = System.Drawing.Color.Transparent
-        Me.Label3.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.Color.DarkSlateGray
-        Me.Label3.Location = New System.Drawing.Point(13, 31)
+        Me.Label3.Font = New System.Drawing.Font("Verdana", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.Label3.Location = New System.Drawing.Point(30, 31)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(114, 19)
+        Me.Label3.Size = New System.Drawing.Size(116, 18)
         Me.Label3.TabIndex = 262
         Me.Label3.Text = "Dinero inicial:"
         '
@@ -344,11 +346,11 @@ Partial Class Caja
         '
         Me.lblDineroCaja.AutoSize = True
         Me.lblDineroCaja.BackColor = System.Drawing.Color.Transparent
-        Me.lblDineroCaja.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDineroCaja.ForeColor = System.Drawing.Color.Navy
-        Me.lblDineroCaja.Location = New System.Drawing.Point(196, 31)
+        Me.lblDineroCaja.Font = New System.Drawing.Font("Verdana", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDineroCaja.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.lblDineroCaja.Location = New System.Drawing.Point(232, 31)
         Me.lblDineroCaja.Name = "lblDineroCaja"
-        Me.lblDineroCaja.Size = New System.Drawing.Size(53, 19)
+        Me.lblDineroCaja.Size = New System.Drawing.Size(62, 18)
         Me.lblDineroCaja.TabIndex = 263
         Me.lblDineroCaja.Text = "$ 0.00"
         '
@@ -356,11 +358,11 @@ Partial Class Caja
         '
         Me.Label8.AutoSize = True
         Me.Label8.BackColor = System.Drawing.Color.Transparent
-        Me.Label8.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.ForeColor = System.Drawing.Color.DarkSlateGray
-        Me.Label8.Location = New System.Drawing.Point(43, 74)
+        Me.Label8.Font = New System.Drawing.Font("Verdana", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.Label8.Location = New System.Drawing.Point(30, 74)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(84, 19)
+        Me.Label8.Size = New System.Drawing.Size(87, 18)
         Me.Label8.TabIndex = 264
         Me.Label8.Text = "Entradas:"
         '
@@ -368,11 +370,11 @@ Partial Class Caja
         '
         Me.Label7.AutoSize = True
         Me.Label7.BackColor = System.Drawing.Color.Transparent
-        Me.Label7.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.ForeColor = System.Drawing.Color.DarkSlateGray
-        Me.Label7.Location = New System.Drawing.Point(4, 103)
+        Me.Label7.Font = New System.Drawing.Font("Verdana", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.Label7.Location = New System.Drawing.Point(30, 103)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(123, 19)
+        Me.Label7.Size = New System.Drawing.Size(133, 18)
         Me.Label7.TabIndex = 265
         Me.Label7.Text = "Ventas totales:"
         '
@@ -380,11 +382,11 @@ Partial Class Caja
         '
         Me.lblTotalEntradas.AutoSize = True
         Me.lblTotalEntradas.BackColor = System.Drawing.Color.Transparent
-        Me.lblTotalEntradas.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTotalEntradas.ForeColor = System.Drawing.Color.Teal
-        Me.lblTotalEntradas.Location = New System.Drawing.Point(196, 74)
+        Me.lblTotalEntradas.Font = New System.Drawing.Font("Verdana", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTotalEntradas.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.lblTotalEntradas.Location = New System.Drawing.Point(232, 74)
         Me.lblTotalEntradas.Name = "lblTotalEntradas"
-        Me.lblTotalEntradas.Size = New System.Drawing.Size(53, 19)
+        Me.lblTotalEntradas.Size = New System.Drawing.Size(62, 18)
         Me.lblTotalEntradas.TabIndex = 266
         Me.lblTotalEntradas.Text = "$ 0.00"
         '
@@ -392,11 +394,11 @@ Partial Class Caja
         '
         Me.lblVentasTotales.AutoSize = True
         Me.lblVentasTotales.BackColor = System.Drawing.Color.Transparent
-        Me.lblVentasTotales.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblVentasTotales.ForeColor = System.Drawing.Color.Teal
-        Me.lblVentasTotales.Location = New System.Drawing.Point(196, 103)
+        Me.lblVentasTotales.Font = New System.Drawing.Font("Verdana", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblVentasTotales.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.lblVentasTotales.Location = New System.Drawing.Point(232, 103)
         Me.lblVentasTotales.Name = "lblVentasTotales"
-        Me.lblVentasTotales.Size = New System.Drawing.Size(53, 19)
+        Me.lblVentasTotales.Size = New System.Drawing.Size(62, 18)
         Me.lblVentasTotales.TabIndex = 267
         Me.lblVentasTotales.Text = "$ 0.00"
         '
@@ -404,11 +406,11 @@ Partial Class Caja
         '
         Me.Label11.AutoSize = True
         Me.Label11.BackColor = System.Drawing.Color.Transparent
-        Me.Label11.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.ForeColor = System.Drawing.Color.DarkSlateGray
-        Me.Label11.Location = New System.Drawing.Point(56, 153)
+        Me.Label11.Font = New System.Drawing.Font("Verdana", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.Label11.Location = New System.Drawing.Point(30, 153)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(71, 19)
+        Me.Label11.Size = New System.Drawing.Size(72, 18)
         Me.Label11.TabIndex = 268
         Me.Label11.Text = "Salidas:"
         '
@@ -416,11 +418,11 @@ Partial Class Caja
         '
         Me.lblSalidas.AutoSize = True
         Me.lblSalidas.BackColor = System.Drawing.Color.Transparent
-        Me.lblSalidas.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblSalidas.ForeColor = System.Drawing.Color.Teal
-        Me.lblSalidas.Location = New System.Drawing.Point(196, 153)
+        Me.lblSalidas.Font = New System.Drawing.Font("Verdana", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblSalidas.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.lblSalidas.Location = New System.Drawing.Point(232, 153)
         Me.lblSalidas.Name = "lblSalidas"
-        Me.lblSalidas.Size = New System.Drawing.Size(53, 19)
+        Me.lblSalidas.Size = New System.Drawing.Size(62, 18)
         Me.lblSalidas.TabIndex = 269
         Me.lblSalidas.Text = "$ 0.00"
         '
@@ -429,11 +431,11 @@ Partial Class Caja
         Me.Label9.AllowDrop = True
         Me.Label9.AutoSize = True
         Me.Label9.BackColor = System.Drawing.Color.Transparent
-        Me.Label9.Font = New System.Drawing.Font("Arial", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.ForeColor = System.Drawing.Color.DarkGreen
-        Me.Label9.Location = New System.Drawing.Point(29, 61)
+        Me.Label9.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.Label9.Location = New System.Drawing.Point(35, 78)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(143, 22)
+        Me.Label9.Size = New System.Drawing.Size(103, 14)
         Me.Label9.TabIndex = 250
         Me.Label9.Text = "Dinero en caja"
         '
@@ -444,21 +446,21 @@ Partial Class Caja
         Me.GridDatosVenta.DeleteQuestionMessage = ""
         Me.GridDatosVenta.DeleteRowsWithDeleteKey = False
         Me.GridDatosVenta.FixedRows = 1
-        Me.GridDatosVenta.Location = New System.Drawing.Point(347, 472)
+        Me.GridDatosVenta.Location = New System.Drawing.Point(405, 472)
         Me.GridDatosVenta.Name = "GridDatosVenta"
         Me.GridDatosVenta.SelectionMode = SourceGrid.GridSelectionMode.Row
-        Me.GridDatosVenta.Size = New System.Drawing.Size(424, 129)
+        Me.GridDatosVenta.Size = New System.Drawing.Size(445, 129)
         Me.GridDatosVenta.TabIndex = 247
         Me.GridDatosVenta.TabStop = True
         Me.GridDatosVenta.ToolTipText = ""
         '
         'Caja
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ControlLight
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.ClientSize = New System.Drawing.Size(811, 746)
+        Me.ClientSize = New System.Drawing.Size(946, 746)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.lblGridVentaTotal)
@@ -475,7 +477,8 @@ Partial Class Caja
         Me.Controls.Add(Me.Label15)
         Me.Controls.Add(Me.lblEntradaDin)
         Me.Controls.Add(Me.Label4)
-        Me.ForeColor = System.Drawing.Color.DarkSlateGray
+        Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ForeColor = System.Drawing.SystemColors.Desktop
         Me.Name = "Caja"
         Me.Text = "Caja"
         Me.StatusStrip1.ResumeLayout(False)

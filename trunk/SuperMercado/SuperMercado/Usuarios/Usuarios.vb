@@ -13,11 +13,18 @@ Public Class Usuarios
 
 #Region "  Bótón ACEPTAR  "
     Private Sub buttonAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles buttonAceptar.Click
-        ButtonGrabar.Visible = True
-        mostrarControles()
+        If textBoxUsuario.Text.Trim = "" Then
+            MessageBox.Show("Escriba el nombre del usuario.", "Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            textBoxUsuario.Focus()
+            Return
+        End If
 
         Caja = "Consulta124" : Parametros = "V1=" & textBoxUsuario.Text.Trim & "|"
         ObjRet = lConsulta.LlamarCaja(Caja, 1, Parametros)
+
+        ButtonGrabar.Visible = True
+        mostrarControles()
+        textBoxUsuario.Enabled = False
 
         If lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|") = "OK" Then
             labelResul.Text = "Usuario registrado. Puede modificar cualquier valor y hacer clic en el botón guardar."
@@ -85,8 +92,18 @@ Public Class Usuarios
 
 #Region "  Evento: Usuarios LOAD  "
     Private Sub Usuarios_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        textBoxUsuario.Enabled = True
         ButtonGrabar.Visible = False
         ocultarControles()
+
+        'Carga el comboBox
+        Caja = "Consulta123" : Parametros = ""
+        ObjRet = lConsulta.LlamarCaja(Caja, 2, Parametros)
+
+        ComboBoxTipoPermiso.DataSource = ObjRet.DS.Tables(0)
+        ComboBoxTipoPermiso.DisplayMember = ObjRet.DS.Tables(0).Columns(0).Caption.ToString.Trim
+
+        llenarCheckBox()
     End Sub
 #End Region
 
@@ -98,6 +115,12 @@ Public Class Usuarios
             Case Keys.Enter
                 buttonAceptar.Focus()
         End Select
+    End Sub
+#End Region
+
+#Region "  Evento: ComboBoxTipoPermiso DROP_DOWN_CLOSED  "
+    Private Sub ComboBoxTipoPermiso_DropDownClosed(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ComboBoxTipoPermiso.DropDownClosed
+        llenarCheckBox()
     End Sub
 #End Region
 
@@ -142,6 +165,12 @@ Public Class Usuarios
         TextBoxNombreCompleto.Text = ds.Tables(0).Rows(0).Item(2)
         ComboBoxTipoPermiso.Text = ds.Tables(0).Rows(0).Item(3).ToString.Trim
 
+        llenarCheckBox()
+    End Sub
+#End Region
+
+#Region "  Rutina: llenarCheckBox  "
+    Private Sub llenarCheckBox()
         Caja = "Consulta122" : Parametros = "V1=" & ComboBoxTipoPermiso.Text.Trim & "|"
         ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
 
@@ -257,7 +286,22 @@ Public Class Usuarios
         textBoxUsuario.Clear()
 
         ocultarControles()
+        textBoxUsuario.Enabled = True
         textBoxUsuario.Focus()
+    End Sub
+#End Region
+
+#Region "  Cambio de TextBox con ENTER  "
+    Private Sub TextBoxNombreCompleto_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles TextBoxNombreCompleto.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            TextBoxContraseña.Focus()
+        End If
+    End Sub
+
+    Private Sub TextBoxContraseña_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles TextBoxContraseña.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            ComboBoxTipoPermiso.Focus()
+        End If
     End Sub
 #End Region
 

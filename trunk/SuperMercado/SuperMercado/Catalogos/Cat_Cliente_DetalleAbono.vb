@@ -170,14 +170,14 @@
 
         GridColumn = GridDatosAbonos.Columns.Add("C4", "Usuario", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormalCentrado
+        GridColumn.DataCell.View = viewNormal
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
         GridDatosAbonos.Columns(0).Visible = False
         GridDatosAbonos.Columns.SetWidth(1, 58)
         GridDatosAbonos.Columns.SetWidth(2, 81)
         GridDatosAbonos.Columns.SetWidth(3, 91)
-        GridDatosAbonos.Columns.SetWidth(4, 60)
+        GridDatosAbonos.Columns.SetWidth(4, 158)
 
     End Sub
 

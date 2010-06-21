@@ -60,23 +60,9 @@ Namespace My.Resources
             End Set
         End Property
         
-        Friend ReadOnly Property _1273188129_Symbol_Check() As System.Drawing.Bitmap
+        Friend ReadOnly Property ticket2() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("1273188129_Symbol-Check", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        Friend ReadOnly Property money_add() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("money_add", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        Friend ReadOnly Property money_add1() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("money_add1", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("ticket2", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

@@ -12,7 +12,6 @@ Public Class ModuloVentas
     Dim ObjRet As CRetorno
     Dim IdVenta As Integer
     Dim TotalVenta As Double = 0
-    Dim Usuario As Integer = 2
 #End Region
 
 #Region " Eventos Principales "
@@ -52,7 +51,7 @@ Public Class ModuloVentas
 
 #Region " Obtener IdVenta "
     Sub ObtenerIdVenta()
-        Caja = "Consulta115" : Parametros = "V1=" & Usuario & "|"
+        Caja = "Consulta115" : Parametros = "V1=" & idUsuario & "|"
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
         ObjRet = lConsulta.LlamarCaja(Caja, "5", Parametros)
         If ObjRet.bOk Then
@@ -573,7 +572,9 @@ Public Class ModuloVentas
             Faltante = RecibiPago - TotalVenta
             Me.LblCambio.Text = FormatCurrency(Faltante)
 
-            ''Imprimir Ticket
+            'Imprimir TICKET
+            'imprimeTicket(TotalVenta, RecibiPago, Faltante)
+
             ''AbrirCajaRegistradora
             ''ModificarCaja
             ''ModificarInventario
@@ -581,7 +582,7 @@ Public Class ModuloVentas
             ''ObtenerNuevoIdVenta
 
             ''Aqui se esta guardando la venta que se realizo en efectivo y actualizando las existencias
-            Caja = "Grabar115" : Parametros = "V1=" & IdVenta & "|V3=0|V4=" & Usuario & "|V5=0|"
+            Caja = "Grabar115" : Parametros = "V1=" & IdVenta & "|V3=0|V4=" & idUsuario & "|V5=0|"
             If lConsulta Is Nothing Then lConsulta = New ClsConsultas
             ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros, DsDatos)
             'Estatus
@@ -604,6 +605,7 @@ Public Class ModuloVentas
         End If
 
 
+
     End Sub
 
 #End Region
@@ -615,7 +617,7 @@ Public Class ModuloVentas
         TotalVenta = Double.Parse(Total)
 
         Dim Creditos As New Credito
-        Creditos.VentaCreditos(TotalVenta, DsDatos, Usuario, Me)
+        Creditos.VentaCreditos(TotalVenta, DsDatos, Me)
         Creditos.WindowState = FormWindowState.Normal
         Creditos.StartPosition = FormStartPosition.CenterScreen
         Creditos.ShowDialog()
@@ -627,5 +629,60 @@ Public Class ModuloVentas
 
     End Sub
 #End Region
-    
+
+#Region "  Rutina: imprimeTicket  "
+    Private Sub imprimeTicket(ByVal totalVentaR As Double, _
+                             ByVal recibidoR As Double, _
+                             ByVal faltanteR As Double)
+        Dim ticket As New WindowsFormsApplication1.BarControls.Ticket
+
+        'ticket.HeaderImage = "C:\imagen.jpg"; //esta propiedad no es obligatoria
+
+        Caja = "Consulta126" : Parametros = ""
+        ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
+
+        ticket.AddHeaderLine(ObjRet.DS.Tables(0).Rows(0).Item(1).ToString.Trim)
+        ticket.AddHeaderLine(ObjRet.DS.Tables(0).Rows(0).Item(2).ToString.Trim)
+        ticket.AddHeaderLine(ObjRet.DS.Tables(0).Rows(0).Item(3).ToString.Trim)
+        ticket.AddHeaderLine(ObjRet.DS.Tables(0).Rows(0).Item(4).ToString.Trim)
+
+        'El metodo AddSubHeaderLine es lo mismo al de AddHeaderLine con la diferencia
+        'de que al final de cada linea agrega una linea punteada "=========="
+        'ticket.AddSubHeaderLine("Caja # 1 - Ticket # 1")
+        ticket.AddSubHeaderLine("Le atendió: " & nombreCompleto.Trim)
+        ticket.AddSubHeaderLine(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString())
+
+        'El metodo AddItem requeire 3 parametros, el primero es cantidad, el segundo es la descripcion
+        'del producto y el tercero es el precio
+        'ticket.AddItem("1", "Articulo Prueba", "15.00")
+        For n = 0 To DsDatos.Tables("Table").Rows.Count - 1
+            If DsDatos.Tables("Table").Rows(n).Item("C2").ToString.Trim <> "" Then
+                'Dim precioTotal As 
+                'precioTotal = DsDatos.Tables("Table").Rows(n).Item("C6").ToString("F")
+                ticket.AddItem(DsDatos.Tables("Table").Rows(n).Item("C3").ToString, _
+                               DsDatos.Tables("Table").Rows(n).Item("C2").ToString, _
+                               DsDatos.Tables("Table").Rows(n).Item("C6").ToString)
+            End If
+        Next
+
+        'El metodo AddTotal requiere 2 parametros, la descripcion del total, y el precio
+        ticket.AddTotal("TOTAL", totalVentaR.ToString("F"))
+        ticket.AddTotal("", "") 'Ponemos un total en blanco que sirve de espacio
+        ticket.AddTotal("RECIBIDO", recibidoR.ToString("F"))
+        ticket.AddTotal("CAMBIO", faltanteR.ToString("F"))
+        ticket.AddTotal("", "") 'Ponemos un total en blanco que sirve de espacio
+
+        'El metodo AddFooterLine funciona igual que la cabecera
+
+        ticket.AddFooterLine(ObjRet.DS.Tables(0).Rows(0).Item(5).ToString.Trim)
+        ticket.AddFooterLine(ObjRet.DS.Tables(0).Rows(0).Item(6).ToString.Trim)
+        ticket.AddFooterLine(ObjRet.DS.Tables(0).Rows(0).Item(7).ToString.Trim)
+
+        'Y por ultimo llamamos al metodo PrintTicket para imprimir el ticket, este metodo necesita un
+        'parametro de tipo string que debe de ser el nombre de la impresora.
+        'ticket.PrintTicket("EPSON TM-U220 Receipt"); 
+        ticket.PrintTicket(ObjRet.DS.Tables(0).Rows(0).Item(0).ToString.Trim)
+    End Sub
+#End Region
+
 End Class

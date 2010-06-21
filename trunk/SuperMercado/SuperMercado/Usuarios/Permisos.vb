@@ -13,6 +13,13 @@ Public Class Permisos
 
 #Region "  Botón Aceptar  "
     Private Sub buttonAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles buttonAceptar.Click
+        If textBoxNombrePermiso.Text.Trim = "" Then
+            MessageBox.Show("Escriba el nombre del permiso.", "Permisos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            textBoxNombrePermiso.Focus()
+            Return
+        End If
+
+        textBoxNombrePermiso.Enabled = False
         ButtonGrabar.Visible = True
         mostrarControles()
 
@@ -338,6 +345,7 @@ Public Class Permisos
         ButtonGrabar.Visible = False
         buttonAceptar.Enabled = True
         ocultarControles()
+        textBoxNombrePermiso.Enabled = True
         textBoxNombrePermiso.Focus()
 
     End Sub

@@ -1,4 +1,7 @@
 ﻿Module Modulogeneral
+    Public usuario As String
+    Public nombreCompleto As String
+    Public idUsuario As String
 
     Public gColorRow As Color = Color.FromArgb(CType(CType(254, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(107, Byte), Integer))
 

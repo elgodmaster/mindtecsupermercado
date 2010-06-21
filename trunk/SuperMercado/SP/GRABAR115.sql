@@ -49,6 +49,7 @@ BEGIN
   Exec Emulador_SepararCadena 'V4',  @Cabezero, '|', @Valor4 Output --IdUsuario
   Exec Emulador_SepararCadena 'V5',  @Cabezero, '|', @Valor5 Output --IdCliente
   Exec Emulador_SepararCadena 'V6',  @Cabezero, '|', @Valor6 Output --IdTipoCambio
+  
   -- Validar Parametros
   If Len(RTrim(LTrim(@Valor1)))= 0
    Begin

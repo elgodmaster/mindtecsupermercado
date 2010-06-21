@@ -13,12 +13,14 @@ CREATE PROCEDURE dbo.GRABAR110
 AS
 BEGIN
 
-DECLARE @monto	varchar(8000)
+DECLARE @monto		varchar(8000)
+DECLARE @idUsuario  varchar(8000)
 
-Exec Emulador_SepararCadena 'V1',  @Cabezero, '|', @monto    Output 
+Exec Emulador_SepararCadena 'V1',  @Cabezero, '|', @monto		 Output 
+Exec Emulador_SepararCadena 'V2',  @Cabezero, '|', @idUsuario    Output 
 
 Insert into SMercado..Caja_Corte values (1, 
-										 1, 
+										 @idUsuario, 
 										 CONVERT(decimal, @monto), 
 										 CONVERT(decimal, @monto),
 										 CONVERT(date, GETDATE()))

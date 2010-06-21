@@ -19,38 +19,25 @@ CREATE PROCEDURE dbo.Consulta110
 	-------------------------
 	
 	Declare @registro	int	
-	Declare @fecha      date
+	Declare @fecha      varchar(8000)
 	Declare @existe     bit
+	Declare @usuario    varchar(8000)
+	Declare @idUsuario  varchar(8000)
 	
-	Select top 1 @fecha =  ISNULL(fecha, '') from SMercado..Caja_Corte
-	Order by fecha DESC
+	Exec Emulador_SepararCadena 'V1',  @Cabezero, '|', @usuario	 Output 
 	
-	Select @registro = @@ROWCOUNT 
+	Select @idUsuario = (Select U.idUsuario 
+						 From SMercado_Seguridad..Usuarios U 
+				         Where U.nombreUsuario = @usuario)
 	
-	IF @registro = 0
-		BEGIN
-			Select @resul = '2R=ERROR'
-		END
-	ELSE
-		BEGIN
-			Select @resul = '2R=OK|2M=' + CONVERT( varchar(8000), @fecha) +'|' 
-		END
+	Select @fecha = (Select C.fecha 
+	                 From SMercado..Caja_Corte C
+	                 Where C.fecha = CONVERT(date, GETDATE()) and
+	                 C.usuario = @idUsuario)
+	      
+	Select @fecha = ISNULL(@fecha, '')
 	
-	Select C.idCorte  
-	From SMercado..Caja_Corte C
-	Where fecha = Convert(date, GETDATE())
+	Select fecha = @fecha, idUsuario = @idUsuario, usuario = @usuario
 	
-	Select @registro = @@rowcount 
-	
-	IF @registro > 0
-		BEGIN
-			Select @existe = 1
-		END
-	ElSE
-		BEGIN
-			Select @existe = 0
-		END
-	Select fecha = @fecha, Existe = @existe 
-	 
 	set NoCount OFF	
 END

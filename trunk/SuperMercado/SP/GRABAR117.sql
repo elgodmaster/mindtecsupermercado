@@ -32,8 +32,7 @@ Select @idCliente = (Select C.IdCliente  from SMercado..Cat_Clientes C
 Select @idUsuario = (Select U.idUsuario From SMercado_Seguridad..Usuarios U
 					 Where U.nombreUsuario = @Usuario)
 
--- Se registra el Abono correspondiente.
-Select * from SMercado..Cuentas_Abonos 
+-- Se registra el Abono correspondiente. 
 Insert into SMercado..Cuentas_Abonos 
 values (@idCuenta, CONVERT(decimal(12,2), @monto), GETDATE(), @idCliente, @idUsuario)
 

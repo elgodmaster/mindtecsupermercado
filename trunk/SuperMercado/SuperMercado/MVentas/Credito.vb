@@ -9,15 +9,13 @@ Public Class Credito
     Dim ObjRet As CRetorno
     Dim Total As Double
     Dim DsDatosCuenta As DataSet
-    Dim Usuario As Integer
     Dim IdCuenta As Integer
     Dim Cventa As ModuloVentas = ModuloVentas.Instance
 #End Region
 
-    Friend Sub VentaCreditos(ByVal TotalVentas As Double, ByVal DsDatos As DataSet, ByVal User As Integer, ByRef ClaseVentas As ModuloVentas)
+    Friend Sub VentaCreditos(ByVal TotalVentas As Double, ByVal DsDatos As DataSet, ByRef ClaseVentas As ModuloVentas)
         Total = TotalVentas
         DsDatosCuenta = DsDatos
-        Usuario = User
         Cventa = ClaseVentas
     End Sub
 
@@ -105,7 +103,7 @@ Public Class Credito
             Radio = "Varios Articulos"
         End If
 
-        Caja = "Grabar116" : Parametros = "V1=" & IdCuenta & "|V2=|V3=0|V4=" & Usuario & "|V5=" & Me.CodigoCliente.Text & "|V6=0|V7=" & Radio & "|V8=" & Me.Total & "|"
+        Caja = "Grabar116" : Parametros = "V1=" & IdCuenta & "|V2=|V3=0|V4=" & idUsuario & "|V5=" & Me.CodigoCliente.Text & "|V6=0|V7=" & Radio & "|V8=" & Me.Total & "|"
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
         ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros, DsDatosCuenta)
 
