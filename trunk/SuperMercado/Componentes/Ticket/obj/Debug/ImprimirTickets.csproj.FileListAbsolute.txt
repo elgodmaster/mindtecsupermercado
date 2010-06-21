@@ -1,0 +1,8 @@
+C:\Documents and Settings\Mindtecadmin\Mis documentos\Visual Studio 2008\Projects\ImprimirTickets\ImprimirTickets\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Mindtecadmin\Mis documentos\Visual Studio 2008\Projects\ImprimirTickets\ImprimirTickets\obj\Debug\WindowsFormsApplication1.Form1.resources
+C:\Documents and Settings\Mindtecadmin\Mis documentos\Visual Studio 2008\Projects\ImprimirTickets\ImprimirTickets\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Documents and Settings\Mindtecadmin\Mis documentos\Visual Studio 2008\Projects\ImprimirTickets\ImprimirTickets\obj\Debug\ImprimirTickets.csproj.GenerateResource.Cache
+C:\Documents and Settings\Mindtecadmin\Mis documentos\Visual Studio 2008\Projects\ImprimirTickets\ImprimirTickets\bin\Debug\ImprimirTickets.exe
+C:\Documents and Settings\Mindtecadmin\Mis documentos\Visual Studio 2008\Projects\ImprimirTickets\ImprimirTickets\bin\Debug\ImprimirTickets.pdb
+C:\Documents and Settings\Mindtecadmin\Mis documentos\Visual Studio 2008\Projects\ImprimirTickets\ImprimirTickets\obj\Debug\ImprimirTickets.exe
+C:\Documents and Settings\Mindtecadmin\Mis documentos\Visual Studio 2008\Projects\ImprimirTickets\ImprimirTickets\obj\Debug\ImprimirTickets.pdb
