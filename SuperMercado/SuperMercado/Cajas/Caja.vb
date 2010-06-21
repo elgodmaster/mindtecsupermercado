@@ -62,7 +62,7 @@
         limpiarGrids()
         ' Se llama a al consulta111 para realizar el corte.
 
-        Caja = "consulta111" : Parametros = ""
+        Caja = "consulta111" : Parametros = "V1=" & usuario & "|"
         ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
 
         ' Se inserta la consulta en el Grid ENTRADAS.
@@ -599,5 +599,6 @@
     End Sub
 
 #End Region
+
 
 End Class

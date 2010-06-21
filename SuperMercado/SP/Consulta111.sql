@@ -16,24 +16,33 @@ BEGIN
 Set noCount ON
 
 -- Variables de trabajo
+DECLARE @usuario   varchar(8000)
+DECLARE @idUsuario varchar(8000)
 DECLARE @registro int
 DECLARE @entradas decimal(18,2)
 DECLARE @salidas decimal(18,2)
 DECLARE @dineroInicialCaja decimal(18,2)
 DECLARE @venta decimal(18,2)
 
+Exec Emulador_SepararCadena 'V1',  @Cabezero, '|', @usuario Output
+
+Select @idUsuario = (Select U.idUsuario From SMercado_Seguridad..Usuarios U
+                     Where U.nombreUsuario = @usuario)
+
 Select C1 = concepto, 
        C2 = '$ ' + CONVERT(char, monto), 
        C3 = fecha 
 From SMercado..Caja_Entrada 
-where convert( date, fecha ) = convert( date, GETDATE() )
+where convert( date, fecha ) = convert( date, GETDATE() ) and
+      usuario = @idUsuario 
 Order by fecha DESC
 
 Select C1 = concepto, 
        C2 = '$ ' + CONVERT(char, monto), 
        C3 = fecha 
 From SMercado..Caja_Salida  
-where convert( date, fecha ) = convert( date, GETDATE() )
+where convert( date, fecha ) = convert( date, GETDATE() ) and
+      usuario = @idUsuario 
 Order by fecha DESC
 
 Select C1 = d.Descripcion, 
@@ -42,22 +51,26 @@ From SMercado..Venta_detalles vd
 inner join SMercado..Ventas v ON vd.IdVenta = v.IdVenta
 inner join SMercado..Cat_Productos p ON vd.IdProducto = p.Codigo 
 inner join SMercado..Cat_Departamentos d ON p.IDDepartamento = d.IdDepartamento 
-Where CONVERT(date, v.Fecha) = CONVERT(date, GETDATE())
+Where CONVERT(date, v.Fecha) = CONVERT(date, GETDATE()) and
+      v.IdUsuario = @idUsuario
 Group by d.Descripcion
 
 Select @dineroInicialCaja = dineroInicialCaja,
 	   @entradas = (select SUM(monto) from SMercado..Caja_Entrada 
-				    where CONVERT(date, fecha) = CONVERT(date, GETDATE())
+				    where CONVERT(date, fecha) = CONVERT(date, GETDATE()) and
+				    usuario = @idUsuario 
 				    group by CONVERT(date, fecha)),
 				    
 	   @salidas =  (select SUM(monto) from SMercado..Caja_Salida 
-				    where CONVERT(date, fecha) = CONVERT(date, GETDATE())
+				    where CONVERT(date, fecha) = CONVERT(date, GETDATE()) and
+				    usuario = @idUsuario 
 				    group by CONVERT(date, fecha)),
 				    
 	   @venta =    (Select SUM( vd.cantidad * vd.PrecioUni * vd.Descuento )
 					From SMercado..Venta_detalles vd
 					inner join SMercado..Ventas v ON vd.IdVenta = v.IdVenta 
-					where CONVERT(date, v.Fecha) = CONVERT(date, GETDATE())
+					where CONVERT(date, v.Fecha) = CONVERT(date, GETDATE()) and
+					v.IdUsuario = @idUsuario 
 					Group by CONVERT(date, v.Fecha)
 )				
 From SMercado..Caja_Corte

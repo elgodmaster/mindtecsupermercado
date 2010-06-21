@@ -40,8 +40,10 @@ Public Class Login
 
         If lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|") = "OK" Then
             objPrincipal.Visible = True
-            objPrincipal.nombreUsuario = textBoxUsuario.Text.Trim
-            objPrincipal.nombreCompleto = lConsulta.ObtenerValor("3R", ObjRet.sResultado, "|")
+            usuario = textBoxUsuario.Text.Trim
+            nombreCompleto = lConsulta.ObtenerValor("3R", ObjRet.sResultado, "|")
+            idUsuario = lConsulta.ObtenerValor("4R", ObjRet.sResultado, "|")
+            mostrarInicial()
             Me.Close()
         ElseIf lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|") = "ERROR1" Then
             MessageBox.Show("El nombre de usuario no es válido.", "SuperMercado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
@@ -175,5 +177,15 @@ Public Class Login
         End If
     End Sub
 #End Region
-    
+
+#Region "  Rutina: mostrarInicial  "
+    Private Sub mostrarInicial()
+        Dim inic As New inicial
+        inic.MdiParent = objPrincipal
+        inic.WindowState = FormWindowState.Maximized
+        inic.StartPosition = FormStartPosition.CenterScreen
+        inic.Show()
+    End Sub
+#End Region
+
 End Class

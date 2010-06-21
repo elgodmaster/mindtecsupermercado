@@ -16,6 +16,8 @@ BEGIN
 
 DECLARE @nomUsuario		VARCHAR(8000)
 DECLARE @pass			VARCHAR(8000)
+DECLARE @nomCompleto	VARCHAR(8000)
+DECLARE @idUsuario		VARCHAR(8000)
 
 Exec Emulador_SepararCadena 'V1',  @Cabezero, '|', @nomUsuario 	Output 
 Exec Emulador_SepararCadena 'V2',  @Cabezero, '|', @pass		Output
@@ -37,11 +39,17 @@ From SMercado_Seguridad.. Usuarios U
 Where U.nombreUsuario = @nomUsuario and
 	  U.Pass = @pass 
 	  
+SELECT @nomCompleto = (Select U.nombreCompleto    
+					   From SMercado_Seguridad..Usuarios U
+	                   Where U.nombreUsuario = @nomUsuario )
+	                   
+SELECT @idUsuario = (SELECT U.idUsuario 
+					 FROM SMercado_Seguridad.. Usuarios U
+					 WHERE U.nombreUsuario = @nomUsuario)
+	  	  
 If @@ROWCOUNT > 0
 	BEGIN
-		Select @Resul = '2R=OK|3R=' + (Select U.nombreCompleto 
-									   From SMercado_Seguridad..Usuarios U
-									   Where U.nombreUsuario = @nomUsuario) + '|'
+		Select @Resul = '2R=OK|3R=' + @nomCompleto + '|4R=' + @idUsuario + '|'
 	END
 ELSE
 	BEGIN

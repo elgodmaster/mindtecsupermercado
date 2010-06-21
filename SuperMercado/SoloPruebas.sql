@@ -20,7 +20,8 @@ monMax decimal(18,2) not null
 )
 Select * from SMercado..Caja_Configuracion 
 -- Configurando inicial por defecto.
-Insert into SMercado..Caja_Configuracion values (1, 1, 777.00, 0, 0.00)
+delete SMercado..Caja_Configuracion 
+Insert into SMercado..Caja_Configuracion values (1, 0, 0.00, 1, 1500.00)
 select * from SMercado..Caja_Configuracion 
 
 CREATE TABLE Caja_Salida(
@@ -40,6 +41,8 @@ dineroInicialCaja decimal(18,2),
 dineroActual decimal(18,2),
 fecha date not null
 )
+select * from SMercado..Caja_Corte
+order by fecha desc 
 
 
 -- TABLAS PARA CUENTAS POR COBRAR --
@@ -85,10 +88,6 @@ insert SMercado..Config_Ticket
 values ( 1, '','','','','','','','' )
 Select * from SMercado..Config_Ticket  
 
-DROP TABLE SMercado..Caja_Corte
-DROP TABLE SMercado..Caja_Entrada
-DROP TABLE SMercado..Caja_Salida
-
 Select top 1 fecha from SMercado..Caja_Corte
 order by fecha desc
 
@@ -131,6 +130,7 @@ insert into SMercado..Caja_Salida values ( 1, 1, 150.00, 'Ninguno', '14/04/2010 
 insert into SMercado..Caja_Salida values ( 1, 1, 151.00, 'Ninguno', '30-04-2010 16:53:00')
 
 Select * from SMercado..Caja_corte
+Order by fecha desc
 Select * from SMercado..Caja_salida
 Select * from SMercado_Seguridad..Usuarios 
 exec grabar110 'V1=100|','','',''
@@ -139,8 +139,8 @@ exec grabar112 'V1=1|V2=1|V3=1.5|V4=|', '', '', ''
 exec grabar112 'V1=1|V2=1|V3=150.5|V4=asalté un banco, tío|', '', '', ''
 exec grabar120 'V1=123|V2=ADMIN|','','',''
 exec consulta105 '','','',''
-exec Consulta110 '','','',''
-exec consulta111 '','','',''
+exec Consulta110 'V1=admin|','','',''
+exec consulta111 'V1=admin|','','',''
 exec consulta114a '','','',''
 exec consulta114b 'V1=Baja California|','','',''
 exec consulta105 'V1=CLIENTE2|','','','2'

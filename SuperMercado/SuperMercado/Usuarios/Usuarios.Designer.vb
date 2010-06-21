@@ -114,7 +114,7 @@ Partial Class Usuarios
         'labelResul
         '
         Me.labelResul.AutoSize = True
-        Me.labelResul.Location = New System.Drawing.Point(288, 106)
+        Me.labelResul.Location = New System.Drawing.Point(288, 98)
         Me.labelResul.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.labelResul.Name = "labelResul"
         Me.labelResul.Size = New System.Drawing.Size(130, 14)
@@ -127,7 +127,7 @@ Partial Class Usuarios
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Barra.BackColor = System.Drawing.SystemColors.ControlLight
         Me.Barra.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Barra.Location = New System.Drawing.Point(-180, 142)
+        Me.Barra.Location = New System.Drawing.Point(-135, 132)
         Me.Barra.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.Barra.Name = "Barra"
         Me.Barra.Size = New System.Drawing.Size(1300, 4)
@@ -139,7 +139,7 @@ Partial Class Usuarios
         Me.textBoxUsuario.BackColor = System.Drawing.SystemColors.Info
         Me.textBoxUsuario.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.textBoxUsuario.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.textBoxUsuario.Location = New System.Drawing.Point(80, 102)
+        Me.textBoxUsuario.Location = New System.Drawing.Point(80, 95)
         Me.textBoxUsuario.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.textBoxUsuario.MaxLength = 50
         Me.textBoxUsuario.Name = "textBoxUsuario"
@@ -151,7 +151,7 @@ Partial Class Usuarios
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(17, 106)
+        Me.Label1.Location = New System.Drawing.Point(13, 98)
         Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(60, 14)
@@ -163,7 +163,7 @@ Partial Class Usuarios
         Me.Label4.AutoSize = True
         Me.Label4.BackColor = System.Drawing.Color.Transparent
         Me.Label4.Font = New System.Drawing.Font("Verdana", 12.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(16, 65)
+        Me.Label4.Location = New System.Drawing.Point(12, 60)
         Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(92, 20)
@@ -176,7 +176,7 @@ Partial Class Usuarios
         Me.AbonarToolStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ButtonLimpiar, Me.ButtonGrabar})
         Me.AbonarToolStrip.Location = New System.Drawing.Point(0, 0)
         Me.AbonarToolStrip.Name = "AbonarToolStrip"
-        Me.AbonarToolStrip.Size = New System.Drawing.Size(796, 52)
+        Me.AbonarToolStrip.Size = New System.Drawing.Size(796, 48)
         Me.AbonarToolStrip.TabIndex = 304
         Me.AbonarToolStrip.Text = "ToolStrip1"
         '
@@ -198,7 +198,7 @@ Partial Class Usuarios
         Me.ButtonGrabar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.ButtonGrabar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ButtonGrabar.Name = "ButtonGrabar"
-        Me.ButtonGrabar.Size = New System.Drawing.Size(36, 49)
+        Me.ButtonGrabar.Size = New System.Drawing.Size(36, 45)
         Me.ButtonGrabar.Text = "Grabar"
         '
         'GroupBoxDatos
@@ -233,6 +233,7 @@ Partial Class Usuarios
         Me.TextBoxContraseña.Location = New System.Drawing.Point(129, 66)
         Me.TextBoxContraseña.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.TextBoxContraseña.Name = "TextBoxContraseña"
+        Me.TextBoxContraseña.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.TextBoxContraseña.Size = New System.Drawing.Size(237, 22)
         Me.TextBoxContraseña.TabIndex = 312
         '
@@ -758,6 +759,7 @@ Partial Class Usuarios
         '
         'ComboBoxTipoPermiso
         '
+        Me.ComboBoxTipoPermiso.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBoxTipoPermiso.FormattingEnabled = True
         Me.ComboBoxTipoPermiso.Location = New System.Drawing.Point(150, 311)
         Me.ComboBoxTipoPermiso.Name = "ComboBoxTipoPermiso"
@@ -770,7 +772,7 @@ Partial Class Usuarios
         Me.buttonAceptar.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.buttonAceptar.BackgroundImage = CType(resources.GetObject("buttonAceptar.BackgroundImage"), System.Drawing.Image)
         Me.buttonAceptar.Font = New System.Drawing.Font("Verdana", 8.0!)
-        Me.buttonAceptar.Location = New System.Drawing.Point(704, 100)
+        Me.buttonAceptar.Location = New System.Drawing.Point(704, 92)
         Me.buttonAceptar.Name = "buttonAceptar"
         Me.buttonAceptar.Size = New System.Drawing.Size(80, 25)
         Me.buttonAceptar.TabIndex = 328

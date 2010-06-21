@@ -33,10 +33,10 @@ Public Class registroEntrada
             numIngreso.Focus()
             Return
         End If
-        Caja = "Grabar111" : Parametros = "V1=1|" & _
-                                          "V2=1|" & _
-                                          "V3=" & numIngreso.Value & "|" & _
-                                          "V4=" & txtRazonEntrada.Text & "|"
+        Caja = "Grabar111" : Parametros = "V1=1" & _
+                                          "|V2=" & usuario & _
+                                          "|V3=" & numIngreso.Value & _
+                                          "|V4=" & txtRazonEntrada.Text & "|"
         ' Donde los parámetros son:
         ' V1 = IDCaja, por el momento 1.
         ' V2 = IDUsuario, por el momento 1.
@@ -68,7 +68,7 @@ Public Class registroEntrada
             ' Se llama a al consulta111 conocer el total de dinero
             ' acumulado.
 
-            Caja = "consulta111" : Parametros = ""
+            Caja = "consulta111" : Parametros = "V1=" & usuario & "|"
             ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
 
             Dim sumEnt As Decimal

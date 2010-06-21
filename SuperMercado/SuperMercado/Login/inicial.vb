@@ -3,6 +3,7 @@ Public Class inicial
 #Region "  Evento: Inicial CARGA  "
     Private Sub inicial_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         lblFecha.Text = Date.Now.ToLongDateString
+        labelNomUsuario.Text = nombreCompleto
     End Sub
 #End Region
 
@@ -12,10 +13,4 @@ Public Class inicial
     End Sub
 #End Region
 
-#Region "  Rutina: cargaRefNombres  "
-    Friend Sub cargaRefNombres(ByVal nombreUsuarioR As String)
-        labelNomUsuario.Text = nombreUsuarioR
-    End Sub
-#End Region
-    
 End Class

@@ -14,6 +14,30 @@ Partial Class Facturacion
         End Try
     End Sub
 
+    'Para el control de una sola instancia por formulario.
+#Region "  Modificación del constructor  "
+    ' En esta constructora es que cambio la propiedad Public por la propiedad Private
+    Private Sub New()
+        MyBase.New()
+        'This call is required by the Windows Form Designer.
+        InitializeComponent()
+        'Add any initialization after the InitializeComponent() call
+    End Sub
+
+    Private Shared ChildInstance As Facturacion = Nothing
+
+    'controla que sólo exista una instancia del formulario.
+
+    Public Shared Function Instance() As Facturacion
+        If ChildInstance Is Nothing OrElse ChildInstance.IsDisposed = True Then
+            ChildInstance = New Facturacion
+        End If
+        ChildInstance.BringToFront()
+
+        Return ChildInstance
+    End Function
+#End Region
+
     'Requerido por el Diseñador de Windows Forms
     Private components As System.ComponentModel.IContainer
 

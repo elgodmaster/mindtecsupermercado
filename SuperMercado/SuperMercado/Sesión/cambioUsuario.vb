@@ -38,8 +38,8 @@
 
         If lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|") = "OK" Then
             cerrarVentanasHijas()
-            pr.nombreUsuario = textBoxUsuario.Text.Trim
-            pr.nombreCompleto = lConsulta.ObtenerValor("3R", ObjRet.sResultado, "|")
+            usuario = textBoxUsuario.Text.Trim
+            nombreCompleto = lConsulta.ObtenerValor("3R", ObjRet.sResultado, "|")
             mostrarInicial()
             restriccionPermisos(textBoxUsuario.Text)
             Me.Close()
@@ -81,7 +81,6 @@
         inic.MdiParent = pr
         inic.WindowState = FormWindowState.Maximized
         inic.StartPosition = FormStartPosition.CenterScreen
-        inic.cargaRefNombres(lConsulta.ObtenerValor("3R", ObjRet.sResultado, "|"))
         inic.Show()
     End Sub
 #End Region

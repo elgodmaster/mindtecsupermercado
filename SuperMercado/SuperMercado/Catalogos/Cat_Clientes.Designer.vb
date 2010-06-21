@@ -537,6 +537,7 @@ Partial Class Cat_Clientes
         '
         Me.CiudadesComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
         Me.CiudadesComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CiudadesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CiudadesComboBox.FormattingEnabled = True
         Me.CiudadesComboBox.Location = New System.Drawing.Point(72, 116)
         Me.CiudadesComboBox.Name = "CiudadesComboBox"
@@ -547,6 +548,7 @@ Partial Class Cat_Clientes
         '
         Me.EstadosComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
         Me.EstadosComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.EstadosComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.EstadosComboBox.FormattingEnabled = True
         Me.EstadosComboBox.Location = New System.Drawing.Point(72, 87)
         Me.EstadosComboBox.Name = "EstadosComboBox"

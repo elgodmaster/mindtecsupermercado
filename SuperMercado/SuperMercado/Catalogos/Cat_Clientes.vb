@@ -514,18 +514,18 @@ Public Class Cat_Clientes
         Dim pos As Integer = GridDatosCuentas.Selection.ActivePosition.Row - 1
 
         Dim idCuenta As String = dsDatosCuentas.Tables(0).Rows(pos).Item(0).ToString
-        Dim idUsuario As String = "1"
         Dim codigo As String = Me.CodigoCliente.Text.Trim
 
         Dim objRegistroAbono As New Cat_Clientes_RegistroAbono()
         objRegistroAbono.StartPosition = FormStartPosition.CenterScreen
         objRegistroAbono.pasoVariables(pos, _
                                        idCuenta, _
-                                       idUsuario, _
+                                       usuario, _
                                        codigo, _
                                        dsDatosCuentas, _
                                        DsViewCuentas, _
-                                       lblSaldoActual)
+                                       lblSaldoActual, _
+                                       Me.TxtNombre.Text)
         objRegistroAbono.Show()
 
     End Sub
