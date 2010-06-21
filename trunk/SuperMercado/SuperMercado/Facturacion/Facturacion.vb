@@ -242,6 +242,16 @@ Public Class Facturacion
         End If
     End Sub
 
+    Sub CatalogoVentas()
+        Caja = "Consulta119" : Parametros = ""
+        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+        ObjRet = lConsulta.LlamarCaja(Caja, "5", Parametros)
+        If ObjRet.bOk Then
+            Dim nuevo As Grid = New Grid(ObjRet.DS)
+            CodigoVenta.Text = nuevo.resultado
+        End If
+    End Sub
+
     Sub CatalogoClientes()
         Caja = "Consulta105" : Parametros = ""
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
