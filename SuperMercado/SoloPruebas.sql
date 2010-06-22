@@ -140,7 +140,7 @@ exec grabar112 'V1=1|V2=1|V3=150.5|V4=asalté un banco, tío|', '', '', ''
 exec grabar120 'V1=123|V2=ADMIN|','','',''
 exec consulta105 '','','',''
 exec Consulta110 'V1=admin|','','',''
-exec consulta111 'V1=admin|','','',''
+exec consulta111 'V1=lindor|','','',''
 exec consulta114a '','','',''
 exec consulta114b 'V1=Baja California|','','',''
 exec consulta105 'V1=CLIENTE2|','','','2'
@@ -153,6 +153,14 @@ exec consulta122 'V1=cajero|','','',''
 exec Consulta122b 'V1=admin|','','',''
 exec consulta123 '','','',''
 exec consulta124 'V1=Lindor|','','',''
+
+Select * From SMercado_Seguridad..Usuarios
+Select * From SMercado..Caja_Corte 
+Order by fecha desc
+
+update SMercado..Caja_Corte 
+set usuario = 1
+where idcorte = 73
 
 update SMercado_Seguridad..Permisos 
 set nomPermiso = 'ADMINISTRADOR'

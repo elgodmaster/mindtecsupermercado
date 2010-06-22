@@ -49,7 +49,7 @@ Where IdCliente = @IdCliente
 -- Se registra una ENTRADA con el siguiente formato:
 -- Abono de [nombreDelCliente]
 Insert into SMercado..Caja_Entrada 
-Values ( 1, 1, CONVERT(decimal(12,2), @monto),
+Values ( 1, @idUsuario, CONVERT(decimal(12,2), @monto),
 	     'Abono de ' + (Select C.NombreFiscal from SMercado..Cat_Clientes C 
 						Where IdCliente = @idCliente),
 	     GETDATE()
@@ -59,5 +59,6 @@ Values ( 1, 1, CONVERT(decimal(12,2), @monto),
 Update SMercado..Caja_Corte
 Set dineroActual = dineroActual + CONVERT(decimal(12,2), @monto)
 Where CONVERT(date, fecha) = CONVERT(date, getdate())
+and usuario = @idUsuario
 
 END
