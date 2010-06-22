@@ -49,12 +49,13 @@ BEGIN
 END
 
 Insert into SMercado..caja_salida values ( @idCaja, @idUsuario, convert( decimal(18,2), @monto), @Concepto, GETDATE() )
+
 -- Se actualiza el Caja_Corte
-Update SMercado..Caja_Corte set dineroActual = dineroActual - convert( decimal(18,2), @monto)
-where CONVERT(date, fecha) = CONVERT(date, GETDATE() ) 
+Update SMercado..Caja_Corte 
+Set dineroActual = dineroActual - convert( decimal(18,2), @monto)
+Where CONVERT(date, fecha) = CONVERT(date, GETDATE() ) 
+and usuario = @idUsuario 
 
 Select @Resul = '2R=OK|2M=El monto ha sido retirado con éxito.'
-
-
 
 END

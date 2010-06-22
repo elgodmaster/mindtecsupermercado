@@ -1,4 +1,5 @@
-﻿Public Class Cat_Clientes_RegistroAbono
+﻿
+Public Class Cat_Clientes_RegistroAbono
 
 #Region "  Variables de trabajo  "
     ' Variables para la consulta.
@@ -74,9 +75,11 @@
         End If
 
         Dim deudaActualizada As Double
-        If dataSet.Tables(0).Rows(pos).Item(3).ToString Then
+        Try
             deudaActualizada = dataSet.Tables(0).Rows(pos).Item(3)
-        End If
+        Catch ex As Exception
+            deudaActualizada = 0
+        End Try
 
         Caja = "Consulta105" : Parametros = "V1=" & codigoCliente.Trim
         ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)

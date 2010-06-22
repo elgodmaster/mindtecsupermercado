@@ -156,9 +156,10 @@ SELECT  C7  = C7,    --FolioVenta
 	 End
 	 
 	Update C
-	    Set C.dineroActual = C.dineroInicialCaja + (Select SUM(C3 * C5 * C8 ) From #TmpGrabar115)
+	    Set C.dineroActual = C.dineroActual + (Select SUM(C3 * C5 * C8 ) From #TmpGrabar115)
 	    From SMercado..Caja_Corte  C 
-	    Where CONVERT(date, C.fecha) = CONVERT(Date, getdate()) 
+	    Where CONVERT(date, C.fecha) = CONVERT(Date, getdate())
+	    and usuario = @Valor4 
 	    
 	If @@ERROR <> 0
 	 Begin

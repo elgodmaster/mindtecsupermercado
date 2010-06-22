@@ -31,8 +31,10 @@ Select @idUsuario = (Select U.idUsuario From SMercado_Seguridad..Usuarios U
 
 Insert into SMercado..Caja_Entrada values ( @idCaja, @idUsuario, convert( decimal(18,2), @monto), @Concepto, GETDATE() )
 -- Se actualiza la Caja_Corte
-Update SMercado..Caja_Corte set dineroActual = dineroActual + convert( decimal(18,2), @monto)
-where CONVERT(date, fecha) = CONVERT(date, GETDATE() )
+Update SMercado..Caja_Corte 
+set dineroActual = dineroActual + convert( decimal(18,2), @monto)
+Where CONVERT(date, fecha) = CONVERT(date, GETDATE() ) and
+usuario = @idUsuario 
 
 Select @Resul = '2R=OK|2M=El monto ha sido ingresado con éxito.'
 

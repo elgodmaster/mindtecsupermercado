@@ -74,7 +74,8 @@ Select @dineroInicialCaja = dineroInicialCaja,
 					Group by CONVERT(date, v.Fecha)
 )				
 From SMercado..Caja_Corte
-Where CONVERT(date, fecha) = CONVERT(date, GETDATE())
+Where CONVERT(date, fecha) = CONVERT(date, GETDATE()) and
+usuario = @idUsuario 
 
 
 
