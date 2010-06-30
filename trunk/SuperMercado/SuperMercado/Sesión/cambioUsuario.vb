@@ -40,6 +40,7 @@
             cerrarVentanasHijas()
             usuario = textBoxUsuario.Text.Trim
             nombreCompleto = lConsulta.ObtenerValor("3R", ObjRet.sResultado, "|")
+            idUsuario = lConsulta.ObtenerValor("4R", ObjRet.sResultado, "|")
             MacCaja()
             mostrarInicial()
             restriccionPermisos(textBoxUsuario.Text)

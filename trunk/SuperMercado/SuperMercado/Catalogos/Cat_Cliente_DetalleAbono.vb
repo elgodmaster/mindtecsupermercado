@@ -97,7 +97,7 @@
 
         Dim viewcolumnheader As SourceGrid.Cells.Views.ColumnHeader = New SourceGrid.Cells.Views.ColumnHeader
         Dim backheader As DevAge.Drawing.VisualElements.ColumnHeader = New DevAge.Drawing.VisualElements.ColumnHeader
-        backheader.BackColor = cColorHeader
+        'backheader.BackColor = cColorHeader
         backheader.Border = DevAge.Drawing.RectangleBorder.RectangleBlack1Width
         viewcolumnheader.Background = backheader
         viewcolumnheader.ForeColor = Color.Black
@@ -118,16 +118,16 @@
         'gcolorRow esta declarada en el moduloGeneral
 
         'vistas
-        Dim viewNormal As CellBackColorAlternate = New CellBackColorAlternate(gColorRow, Color.White)
+        Dim viewNormal As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
         viewNormal.Font = New Font("Verdana", 8, FontStyle.Regular)
         viewNormal.Border = border
 
-        Dim viewDinero As CellBackColorAlternate = New CellBackColorAlternate(gColorRow, Color.White)
+        Dim viewDinero As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
         viewDinero.Font = New Font("Verdana", 8, FontStyle.Regular)
         viewDinero.Border = border
         viewDinero.TextAlignment = DevAge.Drawing.ContentAlignment.BottomRight
 
-        Dim viewNormalCentrado As CellBackColorAlternate = New CellBackColorAlternate(gColorRow, Color.White)
+        Dim viewNormalCentrado As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
         viewNormalCentrado.Font = New Font("Verdana", 8, FontStyle.Regular)
         viewNormalCentrado.Border = border
         viewNormalCentrado.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter

@@ -61,6 +61,7 @@ Partial Class registroEntrada
         Me.numIngreso.Name = "numIngreso"
         Me.numIngreso.Size = New System.Drawing.Size(132, 24)
         Me.numIngreso.TabIndex = 1
+        Me.numIngreso.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtRazonEntrada
         '

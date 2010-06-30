@@ -23,6 +23,7 @@ Partial Class Cat_Clientes_DetalleVenta
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GridDatosDetalle = New SourceGrid.DataGrid
+        Me.Button1 = New System.Windows.Forms.Button
         Me.SuspendLayout()
         '
         'GridDatosDetalle
@@ -40,11 +41,21 @@ Partial Class Cat_Clientes_DetalleVenta
         Me.GridDatosDetalle.TabStop = True
         Me.GridDatosDetalle.ToolTipText = ""
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(12, 331)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(126, 23)
+        Me.Button1.TabIndex = 35
+        Me.Button1.Text = "Devolver artículo"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'Cat_Clientes_DetalleVenta
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(504, 329)
+        Me.ClientSize = New System.Drawing.Size(504, 366)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.GridDatosDetalle)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Name = "Cat_Clientes_DetalleVenta"
@@ -53,4 +64,5 @@ Partial Class Cat_Clientes_DetalleVenta
 
     End Sub
     Friend WithEvents GridDatosDetalle As SourceGrid.DataGrid
+    Friend WithEvents Button1 As System.Windows.Forms.Button
 End Class

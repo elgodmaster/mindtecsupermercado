@@ -38,17 +38,17 @@ Select U.idUsuario
 From SMercado_Seguridad.. Usuarios U
 Where U.nombreUsuario = @nomUsuario and
 	  U.Pass = @pass 
-	  
-SELECT @nomCompleto = (Select U.nombreCompleto    
-					   From SMercado_Seguridad..Usuarios U
-	                   Where U.nombreUsuario = @nomUsuario )
-	                   
-SELECT @idUsuario = (SELECT U.idUsuario 
-					 FROM SMercado_Seguridad.. Usuarios U
-					 WHERE U.nombreUsuario = @nomUsuario)
-	  	  
+	    	  
 If @@ROWCOUNT > 0
 	BEGIN
+		SELECT @nomCompleto = (Select U.nombreCompleto    
+							   From SMercado_Seguridad..Usuarios U
+							   Where U.nombreUsuario = @nomUsuario )
+	                   
+		SELECT @idUsuario = (SELECT U.idUsuario 
+							 FROM SMercado_Seguridad.. Usuarios U
+							 WHERE U.nombreUsuario = @nomUsuario)
+	
 		Select @Resul = '2R=OK|3R=' + @nomCompleto + '|4R=' + @idUsuario + '|'
 	END
 ELSE

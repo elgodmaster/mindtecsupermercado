@@ -13,7 +13,7 @@ Public Class Credito
     Dim Cventa As ModuloVentas = ModuloVentas.Instance
 #End Region
 
-    Friend Sub VentaCreditos(ByVal TotalVentas As Double, ByVal DsDatos As DataSet, ByRef ClaseVentas As ModuloVentas)
+    Friend Sub VentaCreditos(ByRef TotalVentas As Double, ByVal DsDatos As DataSet, ByRef ClaseVentas As ModuloVentas)
         Total = TotalVentas
         DsDatosCuenta = DsDatos
         Cventa = ClaseVentas
@@ -86,7 +86,7 @@ Public Class Credito
     End Sub
 
     Sub ObtenerIdCuenta()
-        Caja = "Consulta116" : Parametros = "V1=" & Usuario & "|"
+        Caja = "Consulta116" : Parametros = "V1=" & idUsuario & "|"
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
         ObjRet = lConsulta.LlamarCaja(Caja, "5", Parametros)
         If ObjRet.bOk Then
@@ -111,6 +111,7 @@ Public Class Credito
         'Estatus
         If ObjRet.bOk Then
             MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+            Total = 0
             cerrar()
         Else
             MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))

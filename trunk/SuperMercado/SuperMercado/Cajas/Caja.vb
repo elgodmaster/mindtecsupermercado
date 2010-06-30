@@ -1,6 +1,6 @@
 ﻿Public Class Caja
 
-#Region " Variables de trabajo "
+#Region "  Variables de trabajo  "
     ' Variables para la consulta.
     Dim Caja As String = ""
     Dim Parametros As String = ""

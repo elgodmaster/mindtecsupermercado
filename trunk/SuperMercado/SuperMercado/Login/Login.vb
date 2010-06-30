@@ -89,7 +89,7 @@ Public Class Login
 
         If lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|") = "OK" Then
             '<Validaciones para la nueva contraseña>
-            If textBoxConNuevoPassword.Text <> textBoxConNuevoPassword.Text Then
+            If textBoxNuevoPassword.Text <> textBoxConNuevoPassword.Text Then
                 MessageBox.Show("La nueva contraseña es diferente de la contraseña confirmada.", "SuperMercado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 textBoxConNuevoPassword.Focus()
                 textBoxConNuevoPassword.SelectAll()
@@ -115,7 +115,12 @@ Public Class Login
             objRetTemp = lConsulta.LlamarCaja(Caja, "1", Parametros)
 
             MessageBox.Show("Su contraseña ha sido cambiada con éxito.", "SuperMercado", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Me.Close()
+            Me.Height = 205
+            Me.textBoxUsuario.Clear()
+            Me.textBoxPassword.Clear()
+            Me.textBoxNuevoPassword.Clear()
+            Me.textBoxConNuevoPassword.Clear()
+            Me.textBoxUsuario.Focus()
 
         ElseIf lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|") = "ERROR1" Then
             MessageBox.Show("El nombre de usuario no es válido.", "SuperMercado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)

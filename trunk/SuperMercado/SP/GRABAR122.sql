@@ -1,4 +1,4 @@
--- Graba un abono, y actualiza el adeudo en la tabla Cuentas Cobrar.
+-- Graba un usuario.
 
 drop proc dbo.GRABAR122
 go
