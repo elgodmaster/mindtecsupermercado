@@ -34,8 +34,8 @@ select	C1 = C.IdCuenta,
 				  Group by CA.idCuenta), 0))
 				  
 from SMercado..Cuentas_Cobrar C
-Where	C.CodigoCliente = @idCliente  and
-		C.Adeudo <> 0
+Where	C.CodigoCliente = @idCliente
+and C.Adeudo <> 0
 
 Select @Resul = '2R=OK|'
 

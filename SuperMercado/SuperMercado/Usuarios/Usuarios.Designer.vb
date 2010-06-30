@@ -223,8 +223,9 @@ Partial Class Usuarios
         Me.TextBoxNombreCompleto.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBoxNombreCompleto.Location = New System.Drawing.Point(129, 38)
         Me.TextBoxNombreCompleto.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.TextBoxNombreCompleto.MaxLength = 50
         Me.TextBoxNombreCompleto.Name = "TextBoxNombreCompleto"
-        Me.TextBoxNombreCompleto.Size = New System.Drawing.Size(459, 22)
+        Me.TextBoxNombreCompleto.Size = New System.Drawing.Size(349, 22)
         Me.TextBoxNombreCompleto.TabIndex = 312
         '
         'TextBoxContraseña
@@ -234,7 +235,7 @@ Partial Class Usuarios
         Me.TextBoxContraseña.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.TextBoxContraseña.Name = "TextBoxContraseña"
         Me.TextBoxContraseña.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.TextBoxContraseña.Size = New System.Drawing.Size(237, 22)
+        Me.TextBoxContraseña.Size = New System.Drawing.Size(166, 22)
         Me.TextBoxContraseña.TabIndex = 312
         '
         'Label3

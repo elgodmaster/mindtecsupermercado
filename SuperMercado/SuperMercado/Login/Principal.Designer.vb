@@ -102,7 +102,7 @@ Partial Class Principal
         'DevoluciónToolStripMenuItem1
         '
         Me.DevoluciónToolStripMenuItem1.Name = "DevoluciónToolStripMenuItem1"
-        Me.DevoluciónToolStripMenuItem1.Size = New System.Drawing.Size(137, 22)
+        Me.DevoluciónToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
         Me.DevoluciónToolStripMenuItem1.Text = "Devolución"
         '
         'ReportesToolStripMenuItem1

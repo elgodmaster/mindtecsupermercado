@@ -48,6 +48,7 @@ Partial Class dineroCaja
         Me.numDineroInicial.Name = "numDineroInicial"
         Me.numDineroInicial.Size = New System.Drawing.Size(180, 24)
         Me.numDineroInicial.TabIndex = 1
+        Me.numDineroInicial.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Cancel_Button
         '

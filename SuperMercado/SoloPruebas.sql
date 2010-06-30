@@ -42,8 +42,13 @@ dineroActual decimal(18,2),
 fecha date not null
 )
 select * from SMercado..Caja_Corte
+where fecha = CONVERT(date, GETDATE())
 order by fecha desc 
 
+delete SMercado..Caja_Corte 
+where idCorte = 80
+
+select * from SMercado_Seguridad..Usuarios 
 
 -- TABLAS PARA CUENTAS POR COBRAR --
 
@@ -83,6 +88,7 @@ lineaPie1	   varchar(50),
 lineaPie2	   varchar(50),
 lineaPie3	   varchar(50)
 )
+
 -- Configuración inicial
 insert SMercado..Config_Ticket 
 values ( 1, '','','','','','','','' )
@@ -90,6 +96,17 @@ Select * from SMercado..Config_Ticket
 
 Select top 1 fecha from SMercado..Caja_Corte
 order by fecha desc
+
+-- TABLA PARA LAS DEVOLUCIONES --
+
+CREATE TABLE Devoluciones (
+idDevo int identity not null,
+idProd int not null,
+cant   int not null,
+fecha  datetime not null
+)
+
+drop table devoluciones
 
 
 -- Inserciones en las tablas.
@@ -129,15 +146,17 @@ select * from SMercado..Caja_corte
 insert into SMercado..Caja_Salida values ( 1, 1, 150.00, 'Ninguno', '14/04/2010 16:21:00')
 insert into SMercado..Caja_Salida values ( 1, 1, 151.00, 'Ninguno', '30-04-2010 16:53:00')
 
-Select * from SMercado..Caja_corte
-Order by fecha desc
-Select * from SMercado..Caja_salida
-Select * from SMercado_Seguridad..Usuarios 
+Select * From SMercado..Cuentas_Cobrar
+
+
+
+
 exec grabar110 'V1=100|','','',''
 exec grabar111 'V1=1|V2=1|V3=150.50|V4=ninguno|', '', '', ''
 exec grabar112 'V1=1|V2=1|V3=1.5|V4=|', '', '', ''
 exec grabar112 'V1=1|V2=1|V3=150.5|V4=asalté un banco, tío|', '', '', ''
 exec grabar120 'V1=123|V2=ADMIN|','','',''
+exec grabar124 'V1=1|V2=2|V3=108|V4=50|V5=RFCCLIENTE|','','',''
 exec consulta105 '','','',''
 exec Consulta110 'V1=admin|','','',''
 exec consulta111 'V1=lindor|','','',''
@@ -147,12 +166,14 @@ exec consulta105 'V1=CLIENTE2|','','','2'
 exec consulta117 'V1=CLIENTE4|','','',''
 exec consulta118a 'V1=34|','','',''
 exec consulta118b 'V1=34|','','',''
-exec consulta120 'V1=ADMIN|V2=12345|','','',''
+exec consulta120 'V1=LINDOR|V2=418563|','','',''
 exec consulta121 '','','',''
 exec consulta122 'V1=cajero|','','',''
 exec Consulta122b 'V1=admin|','','',''
 exec consulta123 '','','',''
 exec consulta124 'V1=Lindor|','','',''
+exec consulta127 'V1=35|', '', '', ''
+
 
 Select * From SMercado_Seguridad..Usuarios
 Select * From SMercado..Caja_Corte 
@@ -316,5 +337,41 @@ update SMercado_Seguridad..Permisos
 set RepProductos = 'false'
 where idPermiso = 1
 
-select * from SMercado..Ventas 
+select top 1 V.IdVenta from SMercado..Ventas V
+inner join SMercado..Venta_detalles VD ON V.IdVenta = VD.IdVenta 
+order by V.Fecha desc
+
+select top 1 V.IdVenta, VD.Descripcion  from SMercado..Ventas V
+inner join SMercado..Venta_detalles VD ON V.IdVenta = VD.IdVenta 
+order by V.Fecha desc
+
+Select CC.IdCuenta, CC.Descripcion, CC.Adeudo  
+From SMercado..Cuentas_Cobrar CC
+Inner join SMercado..Cuentas_Cobrar_Detalles CD ON CC.IdCuenta = CD.IdCuenta
+Where CodigoCliente = 'RFCCLIENTE'
+Group by CC.IdCuenta, CC.Descripcion, CC.Adeudo 
+
+Select * from SMercado..Cuentas_Cobrar
+Select * from SMercado..Cuentas_Cobrar_Detalles 
+delete from SMercado..Cuentas_Cobrar
+where IdCuenta = 46
+
+Select * from SMercado..Cuentas_Cobrar_Detalles  
+
+select * from SMercado..Cat_Clientes
+update SMercado..Cat_Clientes
+set Adeudo = 0
+where IdCliente = 6
+
+select * from SMercado_Seguridad..Usuarios 
+
+update SMercado..Cat_Clientes
+set Adeudo = 30.78
+where IdCliente = 6
+
+Select * from SMercado..Ventas 
 order by Fecha desc
+Select * from SMercado..Venta_detalles 
+where IdVenta = 35
+
+

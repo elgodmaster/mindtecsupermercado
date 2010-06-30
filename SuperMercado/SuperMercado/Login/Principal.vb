@@ -50,6 +50,17 @@ Public Class Principal
     End Sub
 #End Region
 
+#Region "  Menú Devoluciones  "
+    Private Sub DevoluciónToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DevoluciónToolStripMenuItem1.Click
+        Dim objDevolucion As Devoluciones = Devoluciones.Instance
+        objDevolucion.MdiParent = Me
+        objDevolucion.WindowState = FormWindowState.Maximized
+
+        objDevolucion.StartPosition = FormStartPosition.CenterScreen
+        objDevolucion.Show()
+    End Sub
+#End Region
+
     'Menú Reportes
 
 #Region "  Menú Catálogos  "

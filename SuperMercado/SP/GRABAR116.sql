@@ -77,7 +77,7 @@ BEGIN
      Return    
    End
   
- --Begin Tran Grabar116
+ Begin Tran Grabar116
 	Select b.IdCuenta 
 	From SMercado..Cuentas_Cobrar a 
 	Inner join SMercado..Cuentas_Cobrar_detalles b on b.IdCuenta = a.IdCuenta 
@@ -119,11 +119,11 @@ BEGIN
 	 Where Codigo = @Valor5
 	 
 	  
-	 If @@ERROR <> 0
-	 Begin
-	  RollBack Tran Grabar116
-	  Return
-	 End
+	 --If @@ERROR <> 0
+	 --Begin
+	 -- RollBack Tran Grabar116
+	 -- Return
+	 --End
 	
 -----------------------------------------------------     --Leer XML     -----------------------------------------------------     
 --Validación de dataset 
@@ -155,27 +155,25 @@ SELECT  C7  = @Valor1,    --FolioCuenta
     Select C7,C1,C3,C5,C2,C8
     From #TmpGrabar116
 	 
-	If @@ERROR <> 0
-	 Begin
-	  RollBack Tran Grabar116
-	  Return
-	 End
+	--If @@ERROR <> 0
+	-- Begin
+	--  RollBack Tran Grabar116
+	--  Return
+	-- End
 	 
 	 Update a
 	    Set a.cantidad = a.cantidad - b.C3
 	    From SMercado..Existencias a 
 	    Left join #TmpGrabar116 b on b.C1 = a.codigo
 	    Where b.C7 = @Valor1
-	If @@ERROR <> 0
-	 Begin
-	  RollBack Tran Grabar116
-	  Return
-	 End
+	--If @@ERROR <> 0
+	-- Begin
+	--  RollBack Tran Grabar116
+	--  Return
+	-- End
 	 
-	 --Commit Tran Grabar116
+	 Commit Tran Grabar116
 	 
-	
-		 
   -- Enviar Resultado
   Select @Resul='2R=OK|2M=Se realizo el cargo correctamente '   
 

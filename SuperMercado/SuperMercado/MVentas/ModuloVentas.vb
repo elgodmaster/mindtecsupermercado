@@ -594,7 +594,7 @@ Public Class ModuloVentas
                     MessageBox.Show("Su Cambio es de" & FormatCurrency(Faltante))
                     LimpiarPantalla()
                 End If
-
+                'imprimeTicket(TotalVenta, RecibiPago, Faltante)
                 ObtenerIdVenta()
             End If
 
@@ -634,6 +634,7 @@ Public Class ModuloVentas
     Private Sub imprimeTicket(ByVal totalVentaR As Double, _
                              ByVal recibidoR As Double, _
                              ByVal faltanteR As Double)
+
         Dim ticket As New WindowsFormsApplication1.BarControls.Ticket
 
         'ticket.HeaderImage = "C:\imagen.jpg"; //esta propiedad no es obligatoria
@@ -649,6 +650,11 @@ Public Class ModuloVentas
         'El metodo AddSubHeaderLine es lo mismo al de AddHeaderLine con la diferencia
         'de que al final de cada linea agrega una linea punteada "=========="
         'ticket.AddSubHeaderLine("Caja # 1 - Ticket # 1")
+
+        Dim numTicket As String
+        numTicket = lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|")
+
+        ticket.AddSubHeaderLine("Ticket: " & numTicket.Trim)
         ticket.AddSubHeaderLine("Le atendió: " & nombreCompleto.Trim)
         ticket.AddSubHeaderLine(DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString())
 
@@ -656,7 +662,7 @@ Public Class ModuloVentas
         'del producto y el tercero es el precio
         'ticket.AddItem("1", "Articulo Prueba", "15.00")
         For n = 0 To DsDatos.Tables("Table").Rows.Count - 1
-            If DsDatos.Tables("Table").Rows(n).Item("C2").ToString.Trim <> "" Then
+            If DsDatos.Tables("Table").Rows(n).Item("mC2").ToString.Trim <> "" Then
                 'Dim precioTotal As 
                 'precioTotal = DsDatos.Tables("Table").Rows(n).Item("C6").ToString("F")
                 ticket.AddItem(DsDatos.Tables("Table").Rows(n).Item("C3").ToString, _
@@ -682,6 +688,8 @@ Public Class ModuloVentas
         'parametro de tipo string que debe de ser el nombre de la impresora.
         'ticket.PrintTicket("EPSON TM-U220 Receipt"); 
         ticket.PrintTicket(ObjRet.DS.Tables(0).Rows(0).Item(0).ToString.Trim)
+
+
     End Sub
 #End Region
 

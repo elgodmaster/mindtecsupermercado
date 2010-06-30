@@ -8,12 +8,15 @@
     Dim ObjRet As CRetorno
 
     ' Para Grid DETALLE
-    Dim dsDatosDetalle As DataSet
-    Dim dtDetalle As DataTable
-    Dim viewDatosDetalle As Object
-    Dim DsViewDetalle As Object
+    Public dsDatosDetalle As DataSet
+    Public dtDetalle As DataTable
+    Public viewDatosDetalle As Object
+    Public DsViewDetalle As Object
 
-    Dim idCuenta As Integer
+    Public idCuenta As Integer
+    Public codigoCliente As String
+
+    Public objCatCliente As Cat_Clientes
 #End Region
 
 #Region "  Evento Cat_Cliente_Detalla Carga  "
@@ -46,8 +49,12 @@
 #End Region
 
 #Region "  Rutina cargaIdCuenta  "
-    Friend Sub cargaIdCuenta(ByVal idCuentaR As Integer)
+    Friend Sub cargaIdCuenta(ByVal idCuentaR As Integer, _
+                             ByVal codigoClienteR As String, _
+                             ByRef objCatClienteR As Cat_Clientes)
         idCuenta = idCuentaR
+        codigoCliente = codigoClienteR
+        objCatCliente = objCatClienteR
     End Sub
 #End Region
 
@@ -64,6 +71,7 @@
         dsDatosDetalle.Tables("Table").Columns.Add("C3", GetType(String))
         dsDatosDetalle.Tables("Table").Columns.Add("C4", GetType(String))
         dsDatosDetalle.Tables("Table").Columns.Add("C5", GetType(String))
+        dsDatosDetalle.Tables("Table").Columns.Add("C6", GetType(String))
 
     End Sub
 
@@ -179,12 +187,18 @@
         GridColumn.DataCell.View = viewDinero
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
+        GridColumn = GridDatosDetalle.Columns.Add("C6", "ID", EditorCustom)
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.View = viewDinero
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+
         GridDatosDetalle.Columns(0).Visible = False
         GridDatosDetalle.Columns.SetWidth(1, 160)
         GridDatosDetalle.Columns.SetWidth(2, 76)
         GridDatosDetalle.Columns.SetWidth(3, 80)
         GridDatosDetalle.Columns.SetWidth(4, 80)
         GridDatosDetalle.Columns.SetWidth(5, 80)
+        GridDatosDetalle.Columns(6).Visible = False
 
 
     End Sub
@@ -196,6 +210,34 @@
         End Select
     End Sub
 
+#End Region
+
+#Region "  Botón DevolverArtículo  "
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        Dim pos As Integer = posRow()
+        If pos < 0 Then
+            MessageBox.Show("Ninguna artículo ha sido seleccionada.", " Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            Return
+        End If
+
+        Dim descArticulo As String
+        descArticulo = dsDatosDetalle.Tables(0).Rows(posRow).Item(0).ToString
+        Dim objDevolucion As New Cat_Clientes_Devolucion
+        objDevolucion.cargaRefPrin(Me, codigoCliente)
+        objDevolucion.StartPosition = FormStartPosition.CenterScreen
+        objDevolucion.ShowDialog()
+    End Sub
+#End Region
+
+#Region "  Rutina: posRow  "
+    Public Function posRow() As Integer
+        Dim pos() As Integer = GridDatosDetalle.Selection.GetSelectionRegion.GetRowsIndex
+        If pos.Length = 0 Then
+            Return -1
+        Else
+            Return pos(0) - 1
+        End If
+    End Function
 #End Region
 
 End Class
