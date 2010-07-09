@@ -84,6 +84,15 @@ BEGIN
      End
    End
  
+  If @Validar = 4 
+   Begin 
+    If Len(RTrim(LTrim(@Valor1))) = 0 
+     Begin
+       Select @Resul = '2R=ERROR|2M=Registre el número de cotización para continuar|'
+       Return
+     End
+   End
+ 
 
   If @Validar = 0               ----Catalogo de productos
    Begin
@@ -124,6 +133,18 @@ BEGIN
 	 
    End
 
+ If @Validar = 3               ----Catalogo de productos
+   Begin
+    Select Codigo       = IsNull(a.NoCotizacion ,0), 
+           Cliente  = IsNull(b.NombreFiscal ,''),
+           Fecha       = IsNull(a.Fecha ,'')
+    From Smercado..Cotizaciones a (NoLock)
+    Left Join SMercado..Cat_Clientes b (NoLock) On b.Codigo = a.IdCliente 
+    Order by a.NoCotizacion  
+	 Select @Registro = @@RowCount	 
+   End
+
+
  If @Validar = 4
    Begin
       
@@ -161,6 +182,32 @@ BEGIN
 	 
    End
 
+  If @Validar = 5
+   Begin
+     Select @Desc1 = IsNull(Min(Convert(Integer,Nocotizacion)),0) + 1 
+     From SMercado..Cotizaciones (NoLock)
+   End 
+   
+      If @Validar = 7
+      Begin
+        --Seleccionar el nuevo ID
+       Select @Desc1 = Isnull(Min(IsNull(Nocotizacion,0)),0)
+       From Smercado..Cotizaciones (NoLock)
+       Where Len(RTrim(LTrim(iva))) = 100                   
+  
+       If @Desc1 = 0
+        Begin
+          Insert SMercado..Cotizaciones(Iva) 
+          Values(100)
+        
+       Select @Desc1 = Isnull(Min(IsNull(IdMarca,0)),0)
+       From SMercado..Cat_Marcas(NoLock)
+       Where Len(RTrim(LTrim(Descripcion))) = 0    
+       
+       Select @Registro = 1   
+        End
+    End
+    
   -- Enviar Resultado 
 
   If @Registro = 0

@@ -152,7 +152,7 @@ Partial Class Cotización
         Me.Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.Eliminar.Name = "Eliminar"
         Me.Eliminar.Size = New System.Drawing.Size(38, 45)
-        Me.Eliminar.Text = "ToolStripButton1"
+        Me.Eliminar.Text = "Eliminar"
         '
         'Impresion
         '

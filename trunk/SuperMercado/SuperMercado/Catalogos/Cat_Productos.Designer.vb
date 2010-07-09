@@ -295,7 +295,7 @@ Partial Class Cat_Productos
         Me.TxtNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TxtNombre.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtNombre.Location = New System.Drawing.Point(113, 26)
-        Me.TxtNombre.MaxLength = 50
+        Me.TxtNombre.MaxLength = 8000
         Me.TxtNombre.Name = "TxtNombre"
         Me.TxtNombre.Size = New System.Drawing.Size(847, 22)
         Me.TxtNombre.TabIndex = 0
@@ -339,7 +339,7 @@ Partial Class Cat_Productos
         Me.TxtPrecio.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TxtPrecio.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtPrecio.Location = New System.Drawing.Point(133, 120)
-        Me.TxtPrecio.MaxLength = 9
+        Me.TxtPrecio.MaxLength = 15
         Me.TxtPrecio.Name = "TxtPrecio"
         Me.TxtPrecio.Size = New System.Drawing.Size(156, 22)
         Me.TxtPrecio.TabIndex = 3
@@ -350,7 +350,7 @@ Partial Class Cat_Productos
         Me.TxtCostoVenta.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtCostoVenta.Location = New System.Drawing.Point(295, 117)
         Me.TxtCostoVenta.Name = "TxtCostoVenta"
-        Me.TxtCostoVenta.Size = New System.Drawing.Size(113, 23)
+        Me.TxtCostoVenta.Size = New System.Drawing.Size(276, 23)
         Me.TxtCostoVenta.TabIndex = 280
         Me.TxtCostoVenta.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
@@ -368,7 +368,7 @@ Partial Class Cat_Productos
         Me.TxtCostoCompra.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TxtCostoCompra.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtCostoCompra.Location = New System.Drawing.Point(133, 36)
-        Me.TxtCostoCompra.MaxLength = 9
+        Me.TxtCostoCompra.MaxLength = 15
         Me.TxtCostoCompra.Name = "TxtCostoCompra"
         Me.TxtCostoCompra.Size = New System.Drawing.Size(156, 22)
         Me.TxtCostoCompra.TabIndex = 0

@@ -252,6 +252,23 @@ Public Class Facturacion
         End If
     End Sub
 
+    Sub Catalogodecotizaciones()
+        Caja = "Consulta125" : Parametros = ""
+        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+        ObjRet = lConsulta.LlamarCaja(Caja, "3", Parametros)
+        If ObjRet.bOk Then
+            Dim nuevo As Grid = New Grid(ObjRet.DS)
+
+            Me.CodigoCotizacion.Text = nuevo.resultado
+            Dim e As KeyEventArgs
+            e = New KeyEventArgs(Keys.Enter)
+            Me.CodigoCotizacion_KeyDown(DBNull.Value, e)
+        Else
+            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+
+        End If
+    End Sub
+
     Sub CatalogoClientes()
         Caja = "Consulta105" : Parametros = ""
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
@@ -267,6 +284,17 @@ Public Class Facturacion
             MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
 
         End If
+    End Sub
+
+    Private Sub Txt_Cantidad_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Txt_Cantidad.KeyDown
+        Select Case e.KeyCode
+            Case Keys.Enter
+                AgregarProducto()
+        End Select
+    End Sub
+
+    Private Sub Agregar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Agregar.Click
+        AgregarProducto()
     End Sub
 
     Sub AgregarProducto()
@@ -377,7 +405,7 @@ Public Class Facturacion
             registro!C4 = Unidad
             registro!C5 = Costo
             registro!C6 = TotalCosto
-
+            registro!C8 = 1 ''''''''''''''''''''''''''''''''''''''''''Corregir Descuento
             DsDatos.Tables("Table").AcceptChanges()
 
         End If
@@ -436,7 +464,8 @@ Public Class Facturacion
             Me.RadioCotizacion.Enabled = False
             Me.RadioVenta.Enabled = False
             Me.TxtIva.Enabled = False
-
+            CodigoCotizacion.Enabled = False
+            CodigoVenta.Enabled = False
         End If
 
         Iva = SubTotal * (Double.Parse(TxtIva.Text) / 100)
@@ -503,6 +532,7 @@ Public Class Facturacion
             Me.chbGenerar.Checked = ((lConsulta.ObtenerValor("V12", ObjRet.sResultado, "|")))
             Me.txtNoFactura.Enabled = False
             Me.btnAceptar.Enabled = False
+            Me.Nuevo.Visible = False
 
             If Not ObjRet.DS Is DBNull.Value Then
                 If Not ObjRet.DS.Tables Is DBNull.Value Then
@@ -532,6 +562,7 @@ Public Class Facturacion
                 Me.Txt_Cantidad.Enabled = False
                 Me.CodigoVenta.Enabled = False
                 Me.CodigoCotizacion.Enabled = False
+                Nuevo.Visible = False
                 Agregar.Enabled = False
                 Me.Descuento.Enabled = False
             End If
@@ -595,6 +626,7 @@ Public Class Facturacion
         TxtIva.Enabled = True
         CodigoCliente.Enabled = True
         dtpFecha.Enabled = True
+        Nuevo.Visible = True
 
         DsDatos.Tables("Table").Clear()
 
@@ -626,14 +658,16 @@ Public Class Facturacion
             CodigoVenta.Visible = False
             Me.CodigoCotizacion.Text = ""
             CodigoCotizacion.Visible = True
-
+            CodigoCotizacion.Enabled = True
+            CodigoCotizacion.Focus()
         End If
 
         If RadioVenta.Checked = True Then
             CodigoCotizacion.Visible = False
             Me.CodigoVenta.Text = ""
             Me.CodigoVenta.Visible = True
-
+            CodigoVenta.Enabled = True
+            CodigoVenta.Focus()
         End If
     End Sub
 
@@ -683,14 +717,95 @@ Public Class Facturacion
     End Sub
 #End Region
 
-    Private Sub Txt_Cantidad_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Txt_Cantidad.KeyDown
+   
+
+    Private Sub CodigoVenta_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles CodigoVenta.KeyDown
         Select Case e.KeyCode
+            Case Keys.F2
+                CatalogoVentas()
             Case Keys.Enter
-                AgregarProducto()
+                Caja = "Consulta119" : Parametros = "V1=" & Me.CodigoVenta.Text
+                If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+                ObjRet = lConsulta.LlamarCaja(Caja, "6", Parametros)
+                If ObjRet.bOk Then
+                    If Not ObjRet.DS Is DBNull.Value Then
+                        If Not ObjRet.DS.Tables Is DBNull.Value Then
+                            If ObjRet.DS.Tables.Count > 0 Then
+                                For i As Integer = 0 To ObjRet.DS.Tables(0).Rows.Count - 1
+                                    DsDatos.Tables("Table").ImportRow(ObjRet.DS.Tables(0).Rows(i))
+                                Next
+                                DsDatos.Tables("Table").AcceptChanges()
+                                DsView = DsDatos.Tables(0).DefaultView
+                                Grabar.Visible = True
+                            End If
+                        End If
+                    End If
+                Else
+                    MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+                    LimpiarPantalla()
+                End If
+
+                CodigoCliente.Focus()
         End Select
     End Sub
 
-    Private Sub Agregar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Agregar.Click
-        AgregarProducto()
+    Private Sub CodigoCotizacion_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles CodigoCotizacion.KeyDown
+        Select Case e.KeyCode
+            Case Keys.F2
+                Catalogodecotizaciones()
+            Case Keys.Enter, Keys.Down
+                'Servicios
+                Caja = "Consulta119" : Parametros = "V1=" & Me.CodigoCotizacion.Text
+                If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+                ObjRet = lConsulta.LlamarCaja(Caja, "7", Parametros)
+                'Estatus
+                If ObjRet.bOk Then
+                    TxtIva.Text = lConsulta.ObtenerValor("V3", ObjRet.sResultado, "|")
+                    CodigoCliente.Text = lConsulta.ObtenerValor("V4", ObjRet.sResultado, "|")
+                    lblRFCCliente.Text = lConsulta.ObtenerValor("V5", ObjRet.sResultado, "|")
+                    lblNombreCliente.Text = lConsulta.ObtenerValor("V6", ObjRet.sResultado, "|")
+                    lblDireccionCliente.Text = lConsulta.ObtenerValor("V7", ObjRet.sResultado, "|")
+                    lblcolonia.Text = lConsulta.ObtenerValor("V8", ObjRet.sResultado, "|")
+                    LblCP.Text = lConsulta.ObtenerValor("V9", ObjRet.sResultado, "|")
+                    lblEstadoCliente.Text = lConsulta.ObtenerValor("V10", ObjRet.sResultado, "|")
+                    lblCiudadCliente.Text = lConsulta.ObtenerValor("V11", ObjRet.sResultado, "|")
+
+                    GroupBoxDatosCliente.Visible = True
+                    Grabar.Visible = True
+                    Nuevo.Visible = False
+                    ''Llenar Grid
+                    If Not ObjRet.DS Is DBNull.Value Then
+                        If Not ObjRet.DS.Tables Is DBNull.Value Then
+                            If ObjRet.DS.Tables.Count > 0 Then
+                                For i As Integer = 0 To ObjRet.DS.Tables(0).Rows.Count - 1
+                                    DsDatos.Tables("Table").ImportRow(ObjRet.DS.Tables(0).Rows(i))
+                                Next
+                                DsDatos.Tables("Table").AcceptChanges()
+                                DsView = DsDatos.Tables(0).DefaultView
+                                CalculaTotal()
+                            End If
+                        End If
+                    End If
+
+                    Txt_CodigoProducto.Focus()
+                Else
+                    MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+                    LimpiarPantalla()
+                End If
+        End Select
+    End Sub
+
+    Private Sub Eliminar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Eliminar.Click
+        Caja = "Eliminar119" : Parametros = "V1=" & Me.txtNoFactura.Text & "|"
+        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+        ObjRet = lConsulta.LlamarCaja(Caja, "0", Parametros, DsDatos)
+        'Estatus
+        If ObjRet.bOk Then
+            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+            LimpiarPantalla()
+        Else
+            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+
+        End If
     End Sub
 End Class
