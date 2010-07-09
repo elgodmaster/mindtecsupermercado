@@ -75,11 +75,20 @@ BEGIN
   Exec Emulador_SepararCadena 'V1', @Cabezero, '|', @Valor1 Output --Facturas
   
    --Validar Parametros
-  If @Validar = 1 
+  If @Validar = 4 
    Begin 
     If Len(RTrim(LTrim(@Valor1))) = 0 
      Begin
        Select @Resul = '2R=ERROR|2M=Registre el número de factura para continuar|'
+       Return
+     End
+   End
+ 
+  If @Validar = 6 
+   Begin 
+    If Len(RTrim(LTrim(@Valor1))) = 0 
+     Begin
+       Select @Resul = '2R=ERROR|2M=Registre el número de venta para continuar|'
        Return
      End
    End
@@ -161,6 +170,69 @@ BEGIN
 	 Select @Registro = @@RowCount
    End
 
+  If @Validar = 5   ---Catalogo de ventas
+   Begin 
+     Select IsNull(IdVenta,0),
+            IsNull(Fecha,0)            
+     From Smercado..Ventas
+     Where idTipoCambio <> 10000
+   End 
+
+  If @Validar = 6 
+   Begin
+     Select C1 = IsNull(a.IdProducto,''),
+            C2 = IsNull(a.Descripcion,''),
+            C3 = ISNULL(a.cantidad,0),
+            C4 = ISNULL(c.Descripcion,''),
+            C5 = ISNULL(a.PrecioUni,0),
+            C6 = IsNull(Sum(a.cantidad * a.precioUni * a.Descuento),0),
+            C8 = ISNULL (a.descuento,0)
+	 From SMercado..Venta_Detalles a (NoLock)
+	 Left Join Smercado..Cat_Productos b (NoLock) On b.Codigo = a.idProducto
+	 Left Join SMercado..Cat_Unidades c (NoLock) On b.IdUnidad = c.IdUnidad 
+	 Where a.IdVenta = @Valor1
+	 group by a.IdProducto,a.Descripcion,a.cantidad,c.Descripcion,a.PrecioUni,a.Descuento 
+	 Select @Registro = @@RowCount
+   End
+
+ If @Validar = 7
+   Begin
+      
+     Select @Desc2 = IsNull(a.Fecha,''),
+            @Desc3 = ISNULL(a.IVA,0.0),
+            @Desc4 = IsNull(a.IdCliente,''),
+            @Desc5 = IsNull(b.RFC,''),
+            @Desc6 = IsNull(b.NombreFiscal,''),
+            @Desc7 = IsNull(b.Direccion,''),
+            @Desc8 = IsNull(b.colonia,''),
+            @Desc9 = ISNULL(b.CP,''),
+            @Desc10 = ISNULL(c.Descripcion,''),
+            @Desc11 = ISNULL(d.Descripcion,'')
+     From Smercado..Cotizaciones a (NoLock)
+     Left Join SMercado..Cat_Clientes b (NoLock) On b.codigo = a.IdCliente
+     Left Join SMercado..Cat_EstadosdelaRepublica c (NoLock) On c.IdEstado = b.IdEstado 
+     Left Join SMercado..Cat_Ciudades d (NoLock) On d.idciudad = b.IdCiudad  
+     Where a.Nocotizacion = @Valor1
+     
+	 Select @Registro = @@RowCount	 
+	 
+	 
+	 Select C1 = IsNull(a.IdProducto,''),
+            C2 = IsNull(a.Descripcion,''),
+            C3 = ISNULL(a.cantidad,0),
+            C4 = ISNULL(c.Descripcion,''),
+            C5 = ISNULL(a.PrecioUni,0),
+            C6 = IsNull(Sum(a.cantidad * a.precioUni * a.Descuento),0),
+            C8 = ISNULL (a.descuento,0)
+	 From SMercado..Cotizaciones_Detalles a (NoLock)
+	 Left Join Smercado..Cat_Productos b (NoLock) On b.Codigo = a.idProducto
+	 Left Join SMercado..Cat_Unidades c (NoLock) On b.IdUnidad = c.IdUnidad 
+	 Where a.NoCotizacion = @Valor1
+	 group by a.IdProducto,a.Descripcion,a.cantidad,c.Descripcion,a.PrecioUni,a.Descuento 
+	 
+   End
+
+
   -- Enviar Resultado 
 
   If @Registro = 0
@@ -187,7 +259,12 @@ BEGIN
 							  '|V12=' + '1' + 
 							  '|V13=' + @Desc13 + 
 							  '|V14=' + @Desc14+ '|'
-      
+       If @Validar = 5 
+         Select @Resul = '2R=ERROR|2M=El catálogo de ventas esta vacio|'
+       If @Validar = 6
+         Select @Resul = '2R=ERROR|2M=No se encontro ningun producto con el numero de venta ' + @Valor1+'|'
+       If @Validar = 7
+         Select @Resul = '2R=ERROR|2M=No se encontro ningun producto con el numero de cotización ' + @Valor1+'|'
   End
    Else
     Begin
@@ -220,6 +297,25 @@ BEGIN
 							  '|V12=' + @Desc12 + 
 							  '|V13=' + @Desc13 + 
 							  '|V14=' + @Desc14 + '|'
+        If @Validar = 5 
+         Select @Resul = '2R=OK|'
+        If @Validar = 6 
+         Select @Resul = '2R=OK|'
+        If @Validar = 7 
+         Select @Resul = '2R=OK|V2=' + @Desc2 + 
+							  '|V3=' + @Desc3 + 
+							  '|V4=' + @Desc4 + 
+							  '|V5=' + @Desc5 + 
+							  '|V6=' + @Desc6 + 
+							  '|V7=' + @Desc7 + 
+							  '|V8=' + @Desc8 + 
+							  '|V9=' + @Desc9 + 
+							  '|V10=' + @Desc10 + 
+							  '|V11=' + @Desc11 + 
+							  '|V12=' + @Desc12 + 
+							  '|V13=' + @Desc13 + 
+							  '|V14=' + @Desc14 + '|'
+
     End
   Set NoCount OFF
 END

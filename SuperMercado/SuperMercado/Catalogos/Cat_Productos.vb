@@ -259,6 +259,7 @@ Public Class Cat_Productos
         ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
         If ObjRet.bOk Then
             'Deshabilitar
+            Me.TxtDepto.Enabled = False
             Me.CodigoMarca.Enabled = False
             Me.CodigoCategoria.Enabled = False
             Me.CodigoProducto.Enabled = False

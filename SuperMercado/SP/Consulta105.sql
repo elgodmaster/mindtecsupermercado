@@ -87,6 +87,7 @@ BEGIN
 
 	 Select @Registro = @@RowCount	 
    End
+   
   If @Validar = 1
    Begin
      Select @Desc1 = IsNull(NombreFiscal,'')
@@ -105,7 +106,7 @@ BEGIN
             @Desc6  = IsNull(b.Descripcion,''),
             @Desc7  = IsNull(c.Descripcion,''),
             @Desc8  = IsNull(a.Telefono1,''),
-            @Desc9 = IsNull(a.Extencion1,''),
+            @Desc9  = IsNull(a.Extencion1,''),
             @Desc10 = IsNull(a.Telefono2,''),
             @Desc11 = IsNull(a.Extencion2,''),
             @Desc12 = IsNull(a.Cel1,''),

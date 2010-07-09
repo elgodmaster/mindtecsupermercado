@@ -71,10 +71,10 @@ BEGIN
    End
   
    ------------------------------------------------------------------------
-    --Caja de departamentos
+    --Caja de clientes
     ------------------------------------------------------------------------
      Select @Desc0 = 'V1=' + @Valor3 + '|'
-     Exec Consulta100 @Desc0,@Resul2 Output,'',1
+     Exec Consulta105 @Desc0,@Resul2 Output,'',1
      Exec Emulador_SepararCadena '2R', @Resul2, '|', @Desc0 Output
      If Upper (@Desc0) <> 'OK'
       Begin
@@ -157,7 +157,8 @@ SELECT  C7  = @Valor1,
         C1  = C1,    --CodigoProducto
         C2  = C2,    --Descripcion producto                       
         C3  = C3,     --Cantidad 
-        C5  = C5,     --PrecioUnitario     
+        C5  = C5,     --PrecioUnitario
+        C6  = C6,     
         C8  = C8      --Descuento
         Into #TmpGrabar119     
         FROM OPENXML (@idoc, '/Root/Table',2)          
@@ -166,6 +167,7 @@ SELECT  C7  = @Valor1,
               C2  Varchar(250),               
               C3  Decimal(18,2),
               C5  Decimal(18,2),
+              C6  Decimal(18,2),
               C8  Decimal (18,2))    
         EXEC sp_xml_removedocument @idoc    
         
