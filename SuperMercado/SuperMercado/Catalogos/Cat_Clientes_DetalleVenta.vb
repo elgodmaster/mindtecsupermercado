@@ -216,7 +216,6 @@
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
         Dim pos As Integer = posRow()
         If pos < 0 Then
-            MessageBox.Show("Ninguna artículo ha sido seleccionada.", " Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             Return
         End If
 

@@ -1,4 +1,4 @@
-	-- Elimina un artículo de la tabla Cuentas_Cobrar_Detalles
+-- Elimina un artículo de la tabla Cuentas_Cobrar_Detalles
 -- y actualiza el adeudo de la cuenta así como del cliente.
 
 drop proc dbo.GRABAR124

@@ -115,11 +115,13 @@
         Dim dinIni As Decimal
         Dim ventasTotal As Decimal
         Dim total As Decimal
+        Dim totEnt As Decimal
 
         sumEnt = Decimal.Parse(ObjRet.DS.Tables(3).Rows(0).Item(1))
         sumSal = Decimal.Parse(ObjRet.DS.Tables(3).Rows(0).Item(2))
         dinIni = Decimal.Parse(ObjRet.DS.Tables(3).Rows(0).Item(0))
         ventasTotal = Decimal.Parse(ObjRet.DS.Tables(3).Rows(0).Item(3))
+        totEnt = sumEnt + dinIni + ventasTotal
 
         If sumEnt = 0 And sumSal = 0 Then
             MessageBox.Show("No se han registrado entradas o salidas.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -128,6 +130,8 @@
         ElseIf sumSal = 0 Then
             MessageBox.Show("No se han registrado salidas.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
+
+        lblTotEnt.Text = "$ " & totEnt
 
         lblEntradaDin.Text = "$ " & sumEnt
         lblSalDinero.Text = "$ " & sumSal
@@ -599,6 +603,5 @@
     End Sub
 
 #End Region
-
 
 End Class

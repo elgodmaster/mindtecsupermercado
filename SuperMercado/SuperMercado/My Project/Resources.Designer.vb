@@ -60,6 +60,41 @@ Namespace My.Resources
             End Set
         End Property
         
+        Friend ReadOnly Property attributes_display() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("attributes_display", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        Friend ReadOnly Property disk() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("disk", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        Friend ReadOnly Property money_add() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("money_add", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        Friend ReadOnly Property money_bag() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("money_bag", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        Friend ReadOnly Property page() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("page", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
         Friend ReadOnly Property ticket2() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("ticket2", resourceCulture)
@@ -70,6 +105,13 @@ Namespace My.Resources
         Friend ReadOnly Property tickte3() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("tickte3", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        Friend ReadOnly Property user_add() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("user_add", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

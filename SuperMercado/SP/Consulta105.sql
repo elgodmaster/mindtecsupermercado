@@ -41,6 +41,7 @@ BEGIN
   Declare @Desc18	 Varchar(8000)
   Declare @Sql       VarChar(8000)
   Declare @Resul2    Varchar(8000)
+  DECLARE @idCliente Varchar(8000)
   
   --Asignar Valores
   Select @Desc0   = ''
@@ -66,7 +67,12 @@ BEGIN
   Select @Resul2  = ''
 
   --Obtener los Parametros
-  Exec Emulador_SepararCadena 'V1', @Cabezero, '|', @Valor1 Output --Codigo Cliente
+  Exec Emulador_SepararCadena 'V1', @Cabezero, '|', @Valor1 Output --IdCliente
+  
+  Select @idCliente = @Valor1
+  Select @Valor1 = (Select Codigo  
+					From SMercado..Cat_Clientes
+					Where IdCliente = @idCliente)
 
   -- Validar Parametros
   If @Validar = 1 or @Validar = 2
@@ -173,7 +179,7 @@ BEGIN
          Select @Resul = '2R=OK|V1=' + @Desc1 + '|V2=' + @Desc2 + '|V3=' + @Desc3 + '|V4=' + @Desc4 + '|V5=' + @Desc5 + '|V6=' + @Desc6 +
                          '|V7=' + @Desc7 + '|V8=' + @Desc8 + '|V9=' + @Desc9 + '|V10=' + @Desc10 + 
                          '|V11=' + @Desc11 + '|V12=' + @Desc12 + '|V13=' + @Desc13 + '|V14=' + @Desc14 + '|V15=' + @Desc15 + '|V16=' + @Desc16 + 
-                         '|V17=' + @Desc17 
+                         '|V17=' + @Desc17 + '|V18=' + @valor1
                          
         End
 	  If @Validar = 3
@@ -181,7 +187,7 @@ BEGIN
          Select @Resul = '2R=OK|V1=' + @Desc1 + '|V2=' + @Desc2 + '|V3=' + @Desc3 + '|V4=' + @Desc4 + '|V5=' + @Desc5 + '|V6=' + @Desc6 +
                          '|V7=' + @Desc7 + '|V8=' + @Desc8 + '|V9=' + @Desc9 + '|V10=' + @Desc10 + 
                          '|V11=' + @Desc11 + '|V12=' + @Desc12 + '|V13=' + @Desc13 + '|V14=' + @Desc14 + '|V15=' + @Desc15 + '|V16=' + @Desc16 + 
-                         '|V17=' + @Desc17 
+                         '|V17=' + @Desc17 + '|V18=' + @valor1
         End
     End
   Set NoCount OFF
