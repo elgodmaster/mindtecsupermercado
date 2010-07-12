@@ -2,7 +2,7 @@ Imports MindTec.Componentes
 
 Public Class Cat_Clientes
 
-#Region " Variables de trabajo "
+#Region "  Variables de trabajo  "
     Dim Caja As String = ""
     Dim Parametros As String = ""
     Dim lConsulta As New ClsConsultas
@@ -16,312 +16,157 @@ Public Class Cat_Clientes
     Public viewDatosCuentas As Object
     Public DsViewCuentas As Object
 
-#End Region
-
-#Region " Eventos Principales "
-    Private Sub Cat_Clientes_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
-        Select Case e.KeyCode
-            Case Keys.Escape
-                Cerrar()
-            Case Keys.F4
-                Limpiar.PerformClick()
-            Case Keys.F9
-                Grabar.PerformClick()
-        End Select
-    End Sub
-
-    Private Sub Cat_Clientes_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        ocultarControlesAbonos()
-
-        ' Ocultar algunos elementos.
-        ClientesTabControl.Visible = False
-        ' Pie de Pagina Mensaje
-        MensajePiePagina.Text = "Esc=Salir Enter=Avanzar F2=Catálogo F4=Limpiar Pantalla"
-        ' Deshabilitar
-        Me.Grabar.Visible = False
-        ' Se cargan el comboBox de Estados
-        Caja = "Consulta114a" : Parametros = ""
-        ObjRet = lConsulta.LlamarCaja(Caja, 2, Parametros)
-        EstadosComboBox.DataSource = ObjRet.DS.Tables(0)
-        EstadosComboBox.DisplayMember = ObjRet.DS.Tables(0).Columns(0).Caption.ToString
-        EstadosComboBox.Text = "Aguascalientes"
-
-        Caja = "Consulta114b" : Parametros = "V1=" & EstadosComboBox.Text & "|"
-        ObjRet = lConsulta.LlamarCaja(Caja, 2, Parametros)
-
-        CiudadesComboBox.DataSource = ObjRet.DS.Tables(0)
-        CiudadesComboBox.DisplayMember = ObjRet.DS.Tables(0).Columns(0).Caption.ToString
-
-        CreardsDatosCuentas()
-        ConfiguraGridDatosCuentas()
-
-    End Sub
-
-    Private Sub AbonarToolStripButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        'Dim objAbonos As New Cat_Clientes_Abonos()
-        'objAbonos.StartPosition = FormStartPosition.CenterScreen
-        'objAbonos.ShowDialog()
-    End Sub
-#End Region
-
-#Region " Aceptar "
-    Private Sub btnAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAceptar.Click
-        Caja = "Consulta105" : Parametros = "V1=" & Me.CodigoCliente.Text
-        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
-        ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
-        If ObjRet.bOk Then
-            'Deshabilitar
-            Me.CodigoCliente.Enabled = False
-            Me.btnAceptar.Enabled = False
-
-            'Asignar
-            Me.TxtNombre.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
-            Me.txtRfc.Text = lConsulta.ObtenerValor("V2", ObjRet.sResultado, "|")
-            Me.TxtColonia.Text = lConsulta.ObtenerValor("V3", ObjRet.sResultado, "|")
-            Me.TxtDireccion.Text = lConsulta.ObtenerValor("V4", ObjRet.sResultado, "|")
-            Me.Txtcp.Text = lConsulta.ObtenerValor("V5", ObjRet.sResultado, "|")
-            Me.EstadosComboBox.Text = lConsulta.ObtenerValor("V6", ObjRet.sResultado, "|")
-            Me.CiudadesComboBox.Text = lConsulta.ObtenerValor("V7", ObjRet.sResultado, "|")
-            Me.TxtTel.Text = lConsulta.ObtenerValor("V8", ObjRet.sResultado, "|")
-            Me.txtext.Text = lConsulta.ObtenerValor("V9", ObjRet.sResultado, "|")
-            Me.TxtTel2.Text = lConsulta.ObtenerValor("V10", ObjRet.sResultado, "|")
-            Me.txtext2.Text = lConsulta.ObtenerValor("V11", ObjRet.sResultado, "|")
-            Me.TxtCel.Text = lConsulta.ObtenerValor("V12", ObjRet.sResultado, "|")
-            Me.TxtCel2.Text = lConsulta.ObtenerValor("V13", ObjRet.sResultado, "|")
-            Me.TxtFax.Text = lConsulta.ObtenerValor("V14", ObjRet.sResultado, "|")
-            Me.TxtMail.Text = lConsulta.ObtenerValor("V15", ObjRet.sResultado, "|")
-
-            If lConsulta.ObtenerValor("V16", ObjRet.sResultado, "|") = "" Then
-                Me.txtLimCred.Value = 0
-                lblLimiteCredito.Text = "$ 0.00"
-            Else
-                Me.txtLimCred.Value = lConsulta.ObtenerValor("V16", ObjRet.sResultado, "|")
-                lblLimiteCredito.Text = "$ " & lConsulta.ObtenerValor("V16", ObjRet.sResultado, "|")
-            End If
-
-
-            ' MODIFICAR 
-            If lConsulta.ObtenerValor("V17", ObjRet.sResultado, "|") = "" Then
-                lblSaldoActual.Text = "$ 0.00"
-            Else
-                lblSaldoActual.Text = "$ " & lConsulta.ObtenerValor("V17", ObjRet.sResultado, "|")
-            End If
-
-            ' -------------------------------------------
-            '| Obtienen los datos de su estado de cuenta.
-            ' -------------------------------------------
-            
-            Caja = "Consulta117" : Parametros = "V1=" & Me.CodigoCliente.Text.Trim & "|"
-            ObjRet = lConsulta.LlamarCaja(Caja, 1, Parametros)
-
-            ' Se inserta la consulta en el Grid Cuentas.
-            If Not ObjRet.DS Is DBNull.Value Then
-                If Not ObjRet.DS.Tables Is DBNull.Value Then
-                    If ObjRet.DS.Tables.Count > 0 Then
-                        For i As Integer = 0 To ObjRet.DS.Tables(0).Rows.Count - 1
-                            dsDatosCuentas.Tables(0).ImportRow(ObjRet.DS.Tables(0).Rows(i))
-                        Next
-                        dsDatosCuentas.Tables(0).AcceptChanges()
-                        DsViewCuentas = dsDatosCuentas.Tables(0).DefaultView
-                        'Else
-                        '   FilaVacia()
-
-                    End If
-                End If
-            End If
-
-            'Habilitar
-            Me.Grabar.Visible = True
-            Me.GroupBoxClientes.Visible = True
-            Me.GroupBoxLocalizacion.Visible = True
-            MensajePiePagina.Text = "Esc=Salir Enter=Avanzar F2=Catálogo F4=Limpiar Pantalla F9=Grabar"
-            'Foco
-            ClientesTabControl.Visible = True
-            Me.TxtNombre.Focus()
-        Else
-            'Asignar
-            Me.CodigoCliente.Text = ""
-            Me.Nombrecliente.Text = ""
-
-            'Mensaje
-            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
-            'Foco
-            Me.CodigoCliente.Focus()
-
-        End If
-        ObjRet = Nothing
-
-    End Sub
-#End Region
-
-#Region " Cliente "
-    Private Sub CodigoCliente_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles CodigoCliente.KeyDown
-        Select Case e.KeyCode
-            Case Keys.F2
-                Catalogo()
-            Case Keys.Enter, Keys.Down
-                'Servicios
-                Caja = "Consulta105" : Parametros = "V1=" & Me.CodigoCliente.Text
-                If lConsulta Is Nothing Then lConsulta = New ClsConsultas
-                ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
-                'Estatus
-                If ObjRet.bOk Then
-                    'Asignar
-                    Me.Nombrecliente.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
-                    SendKeys.Send("{TAB}")
-                Else
-                    'Asignar
-                    Me.Nombrecliente.Text = ""
-                    'mensaje
-                    MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
-                    'poner focus
-                    Me.CodigoCliente.Focus()
-                End If
-                'Destruir
-                ObjRet = Nothing
-            Case Keys.Up
-                SendKeys.Send("+{TAB}")
-        End Select
-    End Sub
-#End Region
-
-#Region " Rutinas "
-
-    Sub LimpiarPantalla()
-        'Habilidar
-        Me.btnAceptar.Enabled = True
-        Me.CodigoCliente.Enabled = True
-        'Deshabilitar
-        Me.GroupBoxClientes.Visible = False
-        Me.GroupBoxLocalizacion.Visible = False
-        Me.Grabar.Visible = False
-        'Asignar
-        Me.CodigoCliente.Text = ""
-        Me.Nombrecliente.Text = ""
-        Me.TxtNombre.Text = ""
-        Me.txtRfc.Text = ""
-        Me.TxtColonia.Text = ""
-        Me.TxtDireccion.Text = ""
-        Me.Txtcp.Text = ""
-        Me.TxtMail.Text = ""
-        Me.TxtTel.Text = ""
-        Me.TxtTel2.Text = ""
-        Me.txtext.Text = ""
-        Me.txtext2.Text = ""
-        Me.TxtFax.Text = ""
-
-        lblSaldoActual.Text = "$ 0.00"
-        lblLimiteCredito.Text = "$ 0.00"
-
-        ClientesTabControl.SelectTab(0)
-
-        'Limpia el DSdatosCuentas
-        dsDatosCuentas.Tables(0).Clear()
-        ClientesTabControl.Visible = False
-
-        'PiePagina
-        MensajePiePagina.Text = "Esc=Salir Enter=Avanzar F2=Catalogo F4=Limpiar Pantalla"
-        'Foco
-        Me.CodigoCliente.Focus()
-    End Sub
-
-    Sub Catalogo()
-        Caja = "Consulta105" : Parametros = ""
-        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
-        ObjRet = lConsulta.LlamarCaja(Caja, "0", Parametros)
-        If ObjRet.bOk Then
-            Dim nuevo As Grid = New Grid(ObjRet.DS)
-
-            Me.CodigoCliente.Text = nuevo.resultado
-            Dim e As KeyEventArgs
-            e = New KeyEventArgs(Keys.Enter)
-            Me.CodigoCliente_KeyDown(DBNull.Value, e)
-        Else
-            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
-        End If
-    End Sub
-
-    Sub MoverFlechas(ByVal e As System.Windows.Forms.KeyEventArgs)
-        Select Case e.KeyCode
-            Case Keys.Enter, Keys.Down, Keys.Up
-                If e.KeyCode = Keys.Up Then
-                    SendKeys.Send("+{TAB}")
-                Else
-                    SendKeys.Send("{TAB}")
-                End If
-        End Select
-    End Sub
-
-    Sub Cerrar()
-        Dim Result As DialogResult
-        Result = MessageBox.Show("¿Deseas salir de esta pantalla?", "HidroIntel", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
-        If Result = Windows.Forms.DialogResult.Yes Then
-            Me.Close()
-        End If
-    End Sub
-
-    Private Sub EstadosComboBox_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EstadosComboBox.TextChanged
-        Dim objRet2 As CRetorno
-
-        Caja = "Consulta114b" : Parametros = "V1=" & EstadosComboBox.Text & "|"
-        objRet2 = lConsulta.LlamarCaja(Caja, 2, Parametros)
-
-        CiudadesComboBox.DataSource = objRet2.DS.Tables(0)
-        CiudadesComboBox.DisplayMember = objRet2.DS.Tables(0).Columns(0).Caption.ToString
-    End Sub
-
-    Private Sub TxtEstado_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs)
-
-    End Sub
-    Private Sub AdeudosTabPage_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AdeudosTabPage.Enter
-        mostrarControlesAbonos()
-    End Sub
-
-    Private Sub AdeudosTabPage_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AdeudosTabPage.Leave
-        ocultarControlesAbonos()
-    End Sub
+    ' Grid datos para CLIENTES
+    Dim dsDatosClientes As DataSet
+    Dim dtClientes As DataTable
+    Dim viewDatosClientes As Object
+    Dim DsViewClientes As Object
 
 #End Region
 
-#Region " Grabar "
-    Private Sub Grabar_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles Grabar.Click
-        'Variable de trabajo
-        Dim Result As DialogResult
-        Result = MessageBox.Show("¿Deseas Guardar los Cambios?", "PVFacturacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
-        If Result = Windows.Forms.DialogResult.Yes Then
-            Caja = "Grabar105" : Parametros = "V1=" & Me.CodigoCliente.Text.Trim & _
-                                              "|V2=" & Me.TxtNombre.Text.Trim & _
-                                              "|V3=" & Me.txtRfc.Text.Trim & _
-                                              "|V4=" & Me.TxtColonia.Text.Trim & _
-                                              "|V5=" & Me.TxtDireccion.Text.Trim & _
-                                              "|V6=" & Me.Txtcp.Text.Trim & _
-                                              "|V7=" & Me.EstadosComboBox.Text.Trim & _
-                                              "|V8=" & Me.CiudadesComboBox.Text.Trim & _
-                                              "|V9=" & Me.TxtTel.Text.Trim & _
-                                              "|V10=" & Me.txtext.Text.Trim & _
-                                              "|V11=" & Me.TxtTel2.Text.Trim & _
-                                              "|V12=" & Me.txtext2.Text.Trim & _
-                                              "|V13=" & Me.TxtCel.Text.Trim & _
-                                              "|V14=" & Me.TxtCel2.Text.Trim & _
-                                              "|V15=" & Me.TxtFax.Text.Trim & _
-                                              "|V16=" & Me.TxtMail.Text.Trim & _
-                                              "|V17=" & Me.txtLimCred.Value & "|"
+#Region "  Grid Datos CLIENTES  "
 
-            If lConsulta Is Nothing Then lConsulta = New ClsConsultas
-            ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
-            If ObjRet.bOk Then
-                MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
-                LimpiarPantalla()
-            Else
-                MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
-            End If
-        End If
+    Sub CrearDsDatosCLIENTES()
+        dsDatosClientes = New DataSet("Root")
+        dtClientes = New DataTable("Table")
+        dsDatosClientes.Tables.Add(dtClientes)
+
+        dsDatosClientes.Tables("Table").Columns.Add("C1", GetType(String))
+        dsDatosClientes.Tables("Table").Columns.Add("C2", GetType(String))
+        dsDatosClientes.Tables("Table").Columns.Add("C3", GetType(String))
+        dsDatosClientes.Tables("Table").Columns.Add("C4", GetType(String))
+        dsDatosClientes.Tables("Table").Columns.Add("C5", GetType(String))
+        dsDatosClientes.Tables("Table").Columns.Add("C6", GetType(String))
+
     End Sub
-#End Region
 
-#Region " Limpiar "
-    Private Sub Limpiar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Limpiar.Click
-        LimpiarPantalla()
+    Sub ConfiguraGridDatosCLIENTES()
+        viewDatosClientes = dsDatosClientes.Tables("Table").DefaultView
+
+        viewDatosClientes.AllowEdit = False
+        viewDatosClientes.AllowNew = False
+        viewDatosClientes.AllowDelete = True
+
+        GridDatosCLIENTES.FixedRows = 1
+        GridDatosCLIENTES.FixedColumns = 1
+        GridDatosCLIENTES.DeleteRowsWithDeleteKey = False
+        GridDatosCLIENTES.DeleteQuestionMessage = Nothing
+        GridDatosCLIENTES.SelectionMode = SourceGrid.GridSelectionMode.Row
+
+        ' Renglon encabezado
+
+        GridDatosCLIENTES.Columns.Insert(0, SourceGrid.DataGridColumn.CreateRowHeader(GridDatosCLIENTES))
+
+        Dim BindList2 As DevAge.ComponentModel.IBoundList = New DevAge.ComponentModel.BoundDataView(viewDatosClientes)
+
+        ' Se crean las columnas.
+        GridDatosCrearColumnasCLIENTES(GridDatosCLIENTES.Columns, BindList2)
+
+        GridDatosCLIENTES.DataSource = BindList2
+
+        Dim cColorHeader As Color
+        cColorHeader = Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(168, Byte), Integer))
+
+        'Vista columna encabezado
+
+        Dim viewcolumnheader As SourceGrid.Cells.Views.ColumnHeader = New SourceGrid.Cells.Views.ColumnHeader
+        Dim backheader As DevAge.Drawing.VisualElements.ColumnHeader = New DevAge.Drawing.VisualElements.ColumnHeader
+        viewcolumnheader.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewcolumnheader.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleLeft
+
+        Dim viewcolumnheader2 As SourceGrid.Cells.Views.ColumnHeader = New SourceGrid.Cells.Views.ColumnHeader
+        Dim backheader2 As DevAge.Drawing.VisualElements.ColumnHeader = New DevAge.Drawing.VisualElements.ColumnHeader
+        viewcolumnheader2.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewcolumnheader2.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleRight
+
+        Dim viewcolumnheader3 As SourceGrid.Cells.Views.ColumnHeader = New SourceGrid.Cells.Views.ColumnHeader
+        Dim backheader3 As DevAge.Drawing.VisualElements.ColumnHeader = New DevAge.Drawing.VisualElements.ColumnHeader
+        viewcolumnheader3.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewcolumnheader3.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
+
+
+        GridDatosCLIENTES.GetCell(0, 1).View = viewcolumnheader3
+        GridDatosCLIENTES.GetCell(0, 2).View = viewcolumnheader
+        GridDatosCLIENTES.GetCell(0, 3).View = viewcolumnheader
+        GridDatosCLIENTES.GetCell(0, 4).View = viewcolumnheader
+        GridDatosCLIENTES.GetCell(0, 5).View = viewcolumnheader3
+        GridDatosCLIENTES.GetCell(0, 6).View = viewcolumnheader
+
+    End Sub
+
+    Private Sub GridDatosCrearColumnasCLIENTES(ByVal columns As SourceGrid.DataGridColumns, ByVal Bindlist As DevAge.ComponentModel.IBoundList)
+        'Borders
+
+        Dim border As DevAge.Drawing.RectangleBorder = New DevAge.Drawing.RectangleBorder(New DevAge.Drawing.BorderLine(Color.White), New DevAge.Drawing.BorderLine(Color.White))
+        'gcolorRow esta declarada en el moduloGeneral
+
+        'vistas
+        Dim viewCenter As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        viewCenter.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewCenter.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
+
+
+        Dim viewIzquierda As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        viewIzquierda.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewIzquierda.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleLeft
+
+        Dim viewDerecha As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        viewDerecha.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewDerecha.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleRight
+
+        Dim myfont As New Font("Verdana", 8, FontStyle.Regular)
+
+        'Eventos
+
+        Dim gridKeydown As SourceGrid.Cells.Controllers.CustomEvents = New SourceGrid.Cells.Controllers.CustomEvents
+        AddHandler gridKeydown.KeyDown, New KeyEventHandler(AddressOf Grid_KeyDown)
+
+        'Definicion de la celda
+        Dim EditorCustom As SourceGrid.Cells.Editors.TextBox = New SourceGrid.Cells.Editors.TextBox(GetType(String))
+        EditorCustom.EditableMode = SourceGrid.EditableMode.None
+
+        'Crear columnas
+        Dim GridColumn As SourceGrid.DataGridColumn
+
+        GridColumn = GridDatosCLIENTES.Columns.Add("C1", "ID", EditorCustom)
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.View = viewCenter
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+
+        GridColumn = GridDatosCLIENTES.Columns.Add("C2", "Nombre", EditorCustom)
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.View = viewIzquierda
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+
+        GridColumn = GridDatosCLIENTES.Columns.Add("C3", "Colonia", EditorCustom)
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.View = viewIzquierda
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+
+        GridColumn = GridDatosCLIENTES.Columns.Add("C4", "Dirección", EditorCustom)
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.View = viewIzquierda
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+
+        GridColumn = GridDatosCLIENTES.Columns.Add("C5", "Teléfono", EditorCustom)
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.View = viewCenter
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+
+        GridColumn = GridDatosCLIENTES.Columns.Add("C6", "E-Mail", EditorCustom)
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.View = viewIzquierda
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+
+        GridDatosCLIENTES.Columns(0).Visible = False
+
+        GridDatosCLIENTES.Columns.SetWidth(1, 50)
+        GridDatosCLIENTES.Columns.SetWidth(2, 200)
+        GridDatosCLIENTES.Columns.SetWidth(3, 145)
+        GridDatosCLIENTES.Columns.SetWidth(4, 300)
+        GridDatosCLIENTES.Columns.SetWidth(5, 90)
+        GridDatosCLIENTES.Columns.SetWidth(6, 170)
+
     End Sub
 #End Region
 
@@ -503,9 +348,199 @@ Public Class Cat_Clientes
     End Sub
 #End Region
 
-#Region "  Rutina: posRow  "
-    Private Function posRow() As Integer
+#Region "  Evento: Cat_Clientes LOAD  "
+    Private Sub Cat_Clientes_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        ocultarControlesAbonos()
+
+        showClientsGrid()
+
+        ' Ocultar algunos elementos.
+        ClientesTabControl.Visible = False
+        ' Pie de Pagina Mensaje
+        ' Deshabilitar
+        Me.Grabar.Visible = False
+        ' Se cargan el comboBox de Estados
+        Caja = "Consulta114a" : Parametros = ""
+        ObjRet = lConsulta.LlamarCaja(Caja, 2, Parametros)
+        EstadosComboBox.DataSource = ObjRet.DS.Tables(0)
+        EstadosComboBox.DisplayMember = ObjRet.DS.Tables(0).Columns(0).Caption.ToString
+        EstadosComboBox.Text = "Aguascalientes"
+
+        Caja = "Consulta114b" : Parametros = "V1=" & EstadosComboBox.Text & "|"
+        ObjRet = lConsulta.LlamarCaja(Caja, 2, Parametros)
+
+        CiudadesComboBox.DataSource = ObjRet.DS.Tables(0)
+        CiudadesComboBox.DisplayMember = ObjRet.DS.Tables(0).Columns(0).Caption.ToString
+
+        CreardsDatosCuentas()
+        ConfiguraGridDatosCuentas()
+        CrearDsDatosCLIENTES()
+        ConfiguraGridDatosCLIENTES()
+
+        consulta128()
+
+    End Sub
+#End Region
+
+#Region " Rutinas "
+    Sub MoverFlechas(ByVal e As System.Windows.Forms.KeyEventArgs)
+        Select Case e.KeyCode
+            Case Keys.Enter, Keys.Down, Keys.Up
+                If e.KeyCode = Keys.Up Then
+                    SendKeys.Send("+{TAB}")
+                Else
+                    SendKeys.Send("{TAB}")
+                End If
+        End Select
+    End Sub
+
+    Sub Cerrar()
+        Dim Result As DialogResult
+        Result = MessageBox.Show("¿Deseas salir de esta pantalla?", "HidroIntel", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
+        If Result = Windows.Forms.DialogResult.Yes Then
+            Me.Close()
+        End If
+    End Sub
+
+    Private Sub TxtEstado_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs)
+
+    End Sub
+    Private Sub AdeudosTabPage_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AdeudosTabPage.Enter
+        mostrarControlesAbonos()
+    End Sub
+
+    Private Sub AdeudosTabPage_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AdeudosTabPage.Leave
+        ocultarControlesAbonos()
+    End Sub
+
+#End Region
+
+#Region " Grabar "
+    Private Sub Grabar_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles Grabar.Click
+        'Variable de trabajo
+        Dim Result As DialogResult
+        Result = MessageBox.Show("  ¿Deseas Guardar los Cambios?  ", " Clientes", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
+        If Result = Windows.Forms.DialogResult.Yes Then
+            grabra105()
+            showClientsGrid()
+            Limpiar.Visible = False
+            Grabar.Visible = False
+        End If
+        
+    End Sub
+#End Region
+
+#Region "  Botón NUEVO  "
+    Private Sub ToolStripButtonNuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButtonNuevo.Click
+        limpiarPantalla()
+        showData()
+        ToolStripButtonNuevo.Visible = False
+        Limpiar.Visible = True
+        Grabar.Visible = True
+
+        TxtNombre.Focus()
+    End Sub
+#End Region
+
+#Region "  Botón LIMPIAR  "
+    Private Sub Limpiar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Limpiar.Click
+        limpiarPantalla()
+    End Sub
+#End Region
+
+#Region "  Botón DETALLE  "
+    Private Sub ToolStripButtonDetalle_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButtonDetalle.Click
+        Dim pos As Integer = posRowCuentas()
+        If pos < 0 Then
+            Return
+        End If
+
+        Dim idCuenta As Integer = dsDatosCuentas.Tables(0).Rows(pos).Item(0)
+
+        Dim objDetalle As New Cat_Clientes_DetalleVenta
+        objDetalle.cargaIdCuenta(idCuenta, Me.textBoxCliente.Text.Trim, Me)
+        objDetalle.StartPosition = FormStartPosition.CenterScreen
+        objDetalle.Show()
+    End Sub
+#End Region
+
+#Region "  Botón ABONOS REGISTRADOS  "
+    Private Sub ToolStripButtonAbonos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButtonAbonos.Click
+        Dim pos As Integer = posRowCuentas()
+        If pos < 0 Then
+            Return
+        End If
+        Dim idCuenta As Integer = dsDatosCuentas.Tables(0).Rows(pos).Item(0)
+
+        Dim objAbonos As New Cat_Cliente_DetalleAbono
+        objAbonos.cargaIdCuenta(idCuenta)
+        objAbonos.StartPosition = FormStartPosition.CenterScreen
+        objAbonos.Show()
+    End Sub
+#End Region
+
+#Region "  Botón ABONAR  "
+    Private Sub ToolStripButtonAbonar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButtonAbonar.Click
+        Dim pos As Integer = posRowCuentas()
+        If pos < 0 Then
+            Return
+        End If
+
+        Dim idCuenta As String = dsDatosCuentas.Tables(0).Rows(pos).Item(0).ToString
+        Dim codigo As String = Me.textBoxCliente.Text.Trim
+
+        Dim objRegistroAbono As New Cat_Clientes_RegistroAbono()
+        objRegistroAbono.StartPosition = FormStartPosition.CenterScreen
+        objRegistroAbono.pasoVariables(pos, _
+                                       idCuenta, _
+                                       usuario, _
+                                       codigo, _
+                                       dsDatosCuentas, _
+                                       DsViewCuentas, _
+                                       lblSaldoActual, _
+                                       Me.TxtNombre.Text)
+        objRegistroAbono.Show()
+    End Sub
+#End Region
+
+#Region "  Rutina: limpiarPantalla  "
+    Sub limpiarPantalla()
+        Me.textBoxCliente.Clear()
+        Me.TxtNombre.Clear()
+        Me.txtRfc.Clear()
+        Me.TxtColonia.Clear()
+        Me.TxtDireccion.Clear()
+        Me.Txtcp.Clear()
+        Me.TxtMail.Clear()
+        Me.TxtTel.Clear()
+        Me.TxtTel2.Clear()
+        Me.TxtCel.Clear()
+        Me.TxtCel2.Clear()
+        Me.txtext.Clear()
+        Me.txtext2.Clear()
+        Me.TxtFax.Clear()
+        Me.txtCodigo.Clear()
+        Me.txtLimCred.Value = 0
+
+        lblSaldoActual.Text = "$ 0.00"
+        lblLimiteCredito.Text = "$ 0.00"
+    End Sub
+#End Region
+
+#Region "  Rutina: posRowCuentas  "
+    Private Function posRowCuentas() As Integer
         Dim pos() As Integer = GridDatosCuentas.Selection.GetSelectionRegion.GetRowsIndex
+        If pos.Length = 0 Then
+            Return -1
+        Else
+            Return pos(0) - 1
+        End If
+    End Function
+#End Region
+
+#Region "  Rutina: posRowClientes "
+    Private Function posRowClientes() As Integer
+        Dim pos() As Integer = GridDatosCLIENTES.Selection.GetSelectionRegion.GetRowsIndex
         If pos.Length = 0 Then
             Return -1
         Else
@@ -530,73 +565,15 @@ Public Class Cat_Clientes
     End Sub
 #End Region
 
-#Region "  Botón Detalle  "
-    Private Sub ToolStripButtonDetalle_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButtonDetalle.Click
-        Dim pos As Integer = posRow()
-        If pos < 0 Then
-            MessageBox.Show("Ninguna cuenta ha sido seleccionada.", " Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-            Return
-        End If
-
-        Dim idCuenta As Integer = dsDatosCuentas.Tables(0).Rows(pos).Item(0)
-
-        Dim objDetalle As New Cat_Clientes_DetalleVenta
-        objDetalle.cargaIdCuenta(idCuenta, Me.CodigoCliente.Text.Trim, Me)
-        objDetalle.StartPosition = FormStartPosition.CenterScreen
-        objDetalle.Show()
-    End Sub
-#End Region
- 
-#Region "  Botón Abonos  "
-    Private Sub ToolStripButtonAbonos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButtonAbonos.Click
-        Dim pos As Integer = posRow()
-        If pos < 0 Then
-            MessageBox.Show("Ninguna cuenta ha sido seleccionada.", " Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-            Return
-        End If
-        Dim idCuenta As Integer = dsDatosCuentas.Tables(0).Rows(pos).Item(0)
-
-        Dim objAbonos As New Cat_Cliente_DetalleAbono
-        objAbonos.cargaIdCuenta(idCuenta)
-        objAbonos.StartPosition = FormStartPosition.CenterScreen
-        objAbonos.Show()
-    End Sub
-#End Region
-
-#Region "  Botón ABONAR  "
-    Private Sub ToolStripButtonAbonar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButtonAbonar.Click
-        Dim pos As Integer = posRow()
-        If pos < 0 Then
-            MessageBox.Show("Ninguna cuenta ha sido seleccionada.", " Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-            Return
-        End If
-
-        Dim idCuenta As String = dsDatosCuentas.Tables(0).Rows(pos).Item(0).ToString
-        Dim codigo As String = Me.CodigoCliente.Text.Trim
-
-        Dim objRegistroAbono As New Cat_Clientes_RegistroAbono()
-        objRegistroAbono.StartPosition = FormStartPosition.CenterScreen
-        objRegistroAbono.pasoVariables(pos, _
-                                       idCuenta, _
-                                       usuario, _
-                                       codigo, _
-                                       dsDatosCuentas, _
-                                       DsViewCuentas, _
-                                       lblSaldoActual, _
-                                       Me.TxtNombre.Text)
-        objRegistroAbono.Show()
-    End Sub
-#End Region
-
-#Region "  Rutina: actDataSet  "
-    Public Sub actDataSet()
+#Region "  Rutina: updateGrid  "
+    Public Sub updateGrid()
         '|-------------------------------------------
         '| Se actualiza los datos de su estado de cuenta.
         '|-------------------------------------------
 
-        Dim pos As Integer = posRow()
+        Dim pos As Integer = posRowCuentas()
 
-        Caja = "Consulta117" : Parametros = "V1=" & Me.CodigoCliente.Text.Trim & "|"
+        Caja = "Consulta117" : Parametros = "V1=" & Me.textBoxCliente.Text.Trim & "|"
         ObjRet = lConsulta.LlamarCaja(Caja, 1, Parametros)
 
         ' Se inserta la consulta en el Grid Cuentas.
@@ -622,7 +599,7 @@ Public Class Cat_Clientes
             deudaActualizada = 0
         End Try
 
-        Caja = "Consulta105" : Parametros = "V1=" & Me.CodigoCliente.Text.Trim
+        Caja = "Consulta105" : Parametros = "V1=" & Me.textBoxCliente.Text.Trim
         ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
 
         lblSaldoActual.Text = "$ " & lConsulta.ObtenerValor("V17", ObjRet.sResultado, "|")
@@ -630,5 +607,216 @@ Public Class Cat_Clientes
 
     End Sub
 #End Region
-    
+
+#Region "  Rutina: showData  "
+    Private Sub showData()
+        PanelDatos.SetBounds(11, 138, 1000, 525)
+        ClientesTabControl.Visible = True
+        PanelDatos.Visible = True
+
+        PanelGrid.Visible = False
+    End Sub
+#End Region
+
+#Region "  Rutina: showClientsGrid  "
+    Sub showClientsGrid()
+        PanelGrid.Visible = True
+        PanelGrid.SetBounds(11, 150, 1000, 525)
+
+        PanelDatos.Visible = False
+    End Sub
+#End Region
+
+#Region "  Rutina: consulta105  "
+    Sub consulta105()
+        'Actualiza los campos de un cliente.
+
+        Caja = "Consulta105" : Parametros = "V1=" & Me.textBoxCliente.Text
+        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+        ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
+        If ObjRet.bOk Then
+            'Deshabilitar
+            Me.textBoxCliente.Enabled = False
+
+            'Asignar
+            Me.TxtNombre.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
+            Me.txtRfc.Text = lConsulta.ObtenerValor("V2", ObjRet.sResultado, "|")
+            Me.TxtColonia.Text = lConsulta.ObtenerValor("V3", ObjRet.sResultado, "|")
+            Me.TxtDireccion.Text = lConsulta.ObtenerValor("V4", ObjRet.sResultado, "|")
+            Me.Txtcp.Text = lConsulta.ObtenerValor("V5", ObjRet.sResultado, "|")
+            Me.EstadosComboBox.Text = lConsulta.ObtenerValor("V6", ObjRet.sResultado, "|")
+            Me.CiudadesComboBox.Text = lConsulta.ObtenerValor("V7", ObjRet.sResultado, "|")
+            Me.TxtTel.Text = lConsulta.ObtenerValor("V8", ObjRet.sResultado, "|")
+            Me.txtext.Text = lConsulta.ObtenerValor("V9", ObjRet.sResultado, "|")
+            Me.TxtTel2.Text = lConsulta.ObtenerValor("V10", ObjRet.sResultado, "|")
+            Me.txtext2.Text = lConsulta.ObtenerValor("V11", ObjRet.sResultado, "|")
+            Me.TxtCel.Text = lConsulta.ObtenerValor("V12", ObjRet.sResultado, "|")
+            Me.TxtCel2.Text = lConsulta.ObtenerValor("V13", ObjRet.sResultado, "|")
+            Me.TxtFax.Text = lConsulta.ObtenerValor("V14", ObjRet.sResultado, "|")
+            Me.TxtMail.Text = lConsulta.ObtenerValor("V15", ObjRet.sResultado, "|")
+            Me.txtCodigo.Text = lConsulta.ObtenerValor("V18", ObjRet.sResultado, "|")
+
+            If lConsulta.ObtenerValor("V16", ObjRet.sResultado, "|") = "" Then
+                Me.txtLimCred.Value = 0
+                lblLimiteCredito.Text = "$ 0.00"
+            Else
+                Me.txtLimCred.Value = lConsulta.ObtenerValor("V16", ObjRet.sResultado, "|")
+                lblLimiteCredito.Text = "$ " & lConsulta.ObtenerValor("V16", ObjRet.sResultado, "|")
+            End If
+
+            ' MODIFICAR 
+            If lConsulta.ObtenerValor("V17", ObjRet.sResultado, "|") = "" Then
+                lblSaldoActual.Text = "$ 0.00"
+            Else
+                lblSaldoActual.Text = "$ " & lConsulta.ObtenerValor("V17", ObjRet.sResultado, "|")
+            End If
+        End If
+    End Sub
+#End Region
+
+#Region "  Rutina: consulta117  "
+    Sub consulta117()
+        'Actualiza el grid de las cuentas por cobrar de un cliente.
+
+        Caja = "Consulta117" : Parametros = "V1=" & Me.textBoxCliente.Text.Trim & "|"
+        ObjRet = lConsulta.LlamarCaja(Caja, 1, Parametros)
+
+        If Not ObjRet.DS Is DBNull.Value Then
+            If Not ObjRet.DS.Tables Is DBNull.Value Then
+                If ObjRet.DS.Tables.Count > 0 Then
+                    For i As Integer = 0 To ObjRet.DS.Tables(0).Rows.Count - 1
+                        dsDatosCuentas.Tables(0).ImportRow(ObjRet.DS.Tables(0).Rows(i))
+                    Next
+                    dsDatosCuentas.Tables(0).AcceptChanges()
+                    DsViewCuentas = dsDatosCuentas.Tables(0).DefaultView
+                    'Else
+                    '   FilaVacia()
+
+                End If
+            End If
+        End If
+    End Sub
+#End Region
+
+#Region "  Rutina: consulta128  "
+    Sub consulta128()
+        'Actualiza el grid de todos los clientes según el valor de textBoxCliente.
+
+        dsDatosClientes.Tables(0).Clear()
+
+        Caja = "consulta128" : Parametros = "V1=" & textBoxCliente.Text.Trim
+        ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
+
+        ' Se inserta la consulta en el Grid Cuentas.
+        If Not ObjRet.DS Is DBNull.Value Then
+            If Not ObjRet.DS.Tables Is DBNull.Value Then
+                If ObjRet.DS.Tables.Count > 0 Then
+                    Dim rows As Integer
+                    rows = ObjRet.DS.Tables(0).Rows.Count - 1
+                    For i As Integer = 0 To ObjRet.DS.Tables(0).Rows.Count - 1
+                        dsDatosClientes.Tables(0).ImportRow(ObjRet.DS.Tables(0).Rows(i))
+                    Next
+                    dsDatosClientes.Tables(0).AcceptChanges()
+                    DsViewClientes = dsDatosClientes.Tables(0).DefaultView
+                    'Else
+                    '   FilaVacia()
+
+                End If
+            End If
+        End If
+    End Sub
+#End Region
+
+#Region "  Rutina: GRABAR105  "
+    Sub grabra105()
+        Caja = "Grabar105" : Parametros = "V1=" & Me.txtCodigo.Text.Trim & _
+                                  "|V2=" & Me.TxtNombre.Text.Trim & _
+                                  "|V3=" & Me.txtRfc.Text.Trim & _
+                                  "|V4=" & Me.TxtColonia.Text.Trim & _
+                                  "|V5=" & Me.TxtDireccion.Text.Trim & _
+                                  "|V6=" & Me.Txtcp.Text.Trim & _
+                                  "|V7=" & Me.EstadosComboBox.Text.Trim & _
+                                  "|V8=" & Me.CiudadesComboBox.Text.Trim & _
+                                  "|V9=" & Me.TxtTel.Text.Trim & _
+                                  "|V10=" & Me.txtext.Text.Trim & _
+                                  "|V11=" & Me.TxtTel2.Text.Trim & _
+                                  "|V12=" & Me.txtext2.Text.Trim & _
+                                  "|V13=" & Me.TxtCel.Text.Trim & _
+                                  "|V14=" & Me.TxtCel2.Text.Trim & _
+                                  "|V15=" & Me.TxtFax.Text.Trim & _
+                                  "|V16=" & Me.TxtMail.Text.Trim & _
+                                  "|V17=" & Me.txtLimCred.Value & "|"
+
+        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+        ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
+        If ObjRet.bOk Then
+            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+            limpiarPantalla()
+        Else
+            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+        End If
+    End Sub
+#End Region
+
+#Region "  Evento: textBoxCliente KEYDOWN  "
+    Private Sub textBoxCliente_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles textBoxCliente.TextChanged
+        consulta128()
+    End Sub
+#End Region
+
+#Region "  Evento: EstadosComboBox SELECTED VALUE CHANGED  "
+    Private Sub EstadosComboBox_SelectedValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EstadosComboBox.SelectedValueChanged
+        Dim objRet2 As CRetorno
+
+        Caja = "Consulta114b" : Parametros = "V1=" & EstadosComboBox.Text & "|"
+        objRet2 = lConsulta.LlamarCaja(Caja, 2, Parametros)
+
+        CiudadesComboBox.DataSource = objRet2.DS.Tables(0)
+        CiudadesComboBox.DisplayMember = objRet2.DS.Tables(0).Columns(0).Caption.ToString
+    End Sub
+#End Region
+
+#Region "  Evento: GridDatosCLIENTES DOUBLECLICK  "
+    Private Sub GridDatosCLIENTES_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GridDatosCLIENTES.DoubleClick
+        Dim nomCliente As String
+        nomCliente = dsDatosClientes.Tables(0).Rows(posRowClientes).Item(0).ToString
+        textBoxCliente.Text = nomCliente.Trim
+
+        consulta105()
+        showData()
+
+    End Sub
+#End Region
+
+#Region "  Rutinas: cambio de textBox con Enter  "
+    Private Sub TxtNombre_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TxtNombre.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            txtCodigo.Focus()
+        End If
+    End Sub
+
+    Private Sub txtCodigo_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtCodigo.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            txtRfc.Focus()
+        End If
+    End Sub
+
+    Private Sub txtRfc_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtRfc.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            EstadosComboBox.Focus()
+        End If
+    End Sub
+
+    Private Sub EstadosComboBox_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles EstadosComboBox.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            CiudadesComboBox.Focus()
+        End If
+    End Sub
+#End Region
+
 End Class
+

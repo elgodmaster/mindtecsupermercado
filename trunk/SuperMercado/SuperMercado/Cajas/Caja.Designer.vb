@@ -80,9 +80,15 @@ Partial Class Caja
         Me.lblSalidas = New System.Windows.Forms.Label
         Me.Label9 = New System.Windows.Forms.Label
         Me.GridDatosVenta = New SourceGrid.DataGrid
+        Me.Label1 = New System.Windows.Forms.Label
+        Me.lblTotEnt = New System.Windows.Forms.Label
+        Me.Barra = New System.Windows.Forms.PictureBox
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox
         Me.StatusStrip1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.Barra, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label4
@@ -146,9 +152,10 @@ Partial Class Caja
         '
         'ToolStripStatusLabel1
         '
+        Me.ToolStripStatusLabel1.ForeColor = System.Drawing.SystemColors.ControlText
         Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
-        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(246, 17)
-        Me.ToolStripStatusLabel1.Text = "Haga clic en ""Hacer corte"" para mostrar los datos."
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(217, 17)
+        Me.ToolStripStatusLabel1.Text = "Haga clic en ""Corte"" para mostrar los datos."
         '
         'GridDatosEntradas
         '
@@ -262,6 +269,10 @@ Partial Class Caja
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.PictureBox1)
+        Me.GroupBox1.Controls.Add(Me.Barra)
+        Me.GroupBox1.Controls.Add(Me.lblTotEnt)
+        Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Controls.Add(Me.lblCanRet)
         Me.GroupBox1.Controls.Add(Me.lblRetirar)
         Me.GroupBox1.Controls.Add(Me.lblTotal)
@@ -274,9 +285,9 @@ Partial Class Caja
         Me.GroupBox1.Controls.Add(Me.lblVentasTotales)
         Me.GroupBox1.Controls.Add(Me.Label11)
         Me.GroupBox1.Controls.Add(Me.lblSalidas)
-        Me.GroupBox1.Location = New System.Drawing.Point(38, 100)
+        Me.GroupBox1.Location = New System.Drawing.Point(38, 137)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(337, 437)
+        Me.GroupBox1.Size = New System.Drawing.Size(337, 464)
         Me.GroupBox1.TabIndex = 263
         Me.GroupBox1.TabStop = False
         '
@@ -285,8 +296,8 @@ Partial Class Caja
         Me.lblCanRet.AutoSize = True
         Me.lblCanRet.BackColor = System.Drawing.Color.Transparent
         Me.lblCanRet.Font = New System.Drawing.Font("Verdana", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCanRet.ForeColor = System.Drawing.SystemColors.Desktop
-        Me.lblCanRet.Location = New System.Drawing.Point(232, 294)
+        Me.lblCanRet.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.lblCanRet.Location = New System.Drawing.Point(221, 345)
         Me.lblCanRet.Name = "lblCanRet"
         Me.lblCanRet.Size = New System.Drawing.Size(62, 18)
         Me.lblCanRet.TabIndex = 273
@@ -299,7 +310,7 @@ Partial Class Caja
         Me.lblRetirar.BackColor = System.Drawing.Color.Transparent
         Me.lblRetirar.Font = New System.Drawing.Font("Verdana", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblRetirar.ForeColor = System.Drawing.SystemColors.Desktop
-        Me.lblRetirar.Location = New System.Drawing.Point(30, 294)
+        Me.lblRetirar.Location = New System.Drawing.Point(30, 345)
         Me.lblRetirar.Name = "lblRetirar"
         Me.lblRetirar.Size = New System.Drawing.Size(145, 18)
         Me.lblRetirar.TabIndex = 272
@@ -311,8 +322,8 @@ Partial Class Caja
         Me.lblTotal.AutoSize = True
         Me.lblTotal.BackColor = System.Drawing.Color.Transparent
         Me.lblTotal.Font = New System.Drawing.Font("Verdana", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTotal.ForeColor = System.Drawing.SystemColors.Desktop
-        Me.lblTotal.Location = New System.Drawing.Point(232, 212)
+        Me.lblTotal.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.lblTotal.Location = New System.Drawing.Point(221, 281)
         Me.lblTotal.Name = "lblTotal"
         Me.lblTotal.Size = New System.Drawing.Size(62, 18)
         Me.lblTotal.TabIndex = 271
@@ -324,7 +335,7 @@ Partial Class Caja
         Me.Label14.BackColor = System.Drawing.Color.Transparent
         Me.Label14.Font = New System.Drawing.Font("Verdana", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label14.ForeColor = System.Drawing.SystemColors.Desktop
-        Me.Label14.Location = New System.Drawing.Point(30, 212)
+        Me.Label14.Location = New System.Drawing.Point(30, 281)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(55, 18)
         Me.Label14.TabIndex = 270
@@ -347,8 +358,8 @@ Partial Class Caja
         Me.lblDineroCaja.AutoSize = True
         Me.lblDineroCaja.BackColor = System.Drawing.Color.Transparent
         Me.lblDineroCaja.Font = New System.Drawing.Font("Verdana", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDineroCaja.ForeColor = System.Drawing.SystemColors.Desktop
-        Me.lblDineroCaja.Location = New System.Drawing.Point(232, 31)
+        Me.lblDineroCaja.ForeColor = System.Drawing.Color.DarkGreen
+        Me.lblDineroCaja.Location = New System.Drawing.Point(221, 31)
         Me.lblDineroCaja.Name = "lblDineroCaja"
         Me.lblDineroCaja.Size = New System.Drawing.Size(62, 18)
         Me.lblDineroCaja.TabIndex = 263
@@ -383,8 +394,8 @@ Partial Class Caja
         Me.lblTotalEntradas.AutoSize = True
         Me.lblTotalEntradas.BackColor = System.Drawing.Color.Transparent
         Me.lblTotalEntradas.Font = New System.Drawing.Font("Verdana", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTotalEntradas.ForeColor = System.Drawing.SystemColors.Desktop
-        Me.lblTotalEntradas.Location = New System.Drawing.Point(232, 74)
+        Me.lblTotalEntradas.ForeColor = System.Drawing.Color.DarkGreen
+        Me.lblTotalEntradas.Location = New System.Drawing.Point(221, 74)
         Me.lblTotalEntradas.Name = "lblTotalEntradas"
         Me.lblTotalEntradas.Size = New System.Drawing.Size(62, 18)
         Me.lblTotalEntradas.TabIndex = 266
@@ -395,8 +406,8 @@ Partial Class Caja
         Me.lblVentasTotales.AutoSize = True
         Me.lblVentasTotales.BackColor = System.Drawing.Color.Transparent
         Me.lblVentasTotales.Font = New System.Drawing.Font("Verdana", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblVentasTotales.ForeColor = System.Drawing.SystemColors.Desktop
-        Me.lblVentasTotales.Location = New System.Drawing.Point(232, 103)
+        Me.lblVentasTotales.ForeColor = System.Drawing.Color.DarkGreen
+        Me.lblVentasTotales.Location = New System.Drawing.Point(221, 103)
         Me.lblVentasTotales.Name = "lblVentasTotales"
         Me.lblVentasTotales.Size = New System.Drawing.Size(62, 18)
         Me.lblVentasTotales.TabIndex = 267
@@ -408,7 +419,7 @@ Partial Class Caja
         Me.Label11.BackColor = System.Drawing.Color.Transparent
         Me.Label11.Font = New System.Drawing.Font("Verdana", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ForeColor = System.Drawing.SystemColors.Desktop
-        Me.Label11.Location = New System.Drawing.Point(30, 153)
+        Me.Label11.Location = New System.Drawing.Point(30, 205)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(72, 18)
         Me.Label11.TabIndex = 268
@@ -419,8 +430,8 @@ Partial Class Caja
         Me.lblSalidas.AutoSize = True
         Me.lblSalidas.BackColor = System.Drawing.Color.Transparent
         Me.lblSalidas.Font = New System.Drawing.Font("Verdana", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblSalidas.ForeColor = System.Drawing.SystemColors.Desktop
-        Me.lblSalidas.Location = New System.Drawing.Point(232, 153)
+        Me.lblSalidas.ForeColor = System.Drawing.Color.Maroon
+        Me.lblSalidas.Location = New System.Drawing.Point(221, 205)
         Me.lblSalidas.Name = "lblSalidas"
         Me.lblSalidas.Size = New System.Drawing.Size(62, 18)
         Me.lblSalidas.TabIndex = 269
@@ -453,6 +464,54 @@ Partial Class Caja
         Me.GridDatosVenta.TabIndex = 247
         Me.GridDatosVenta.TabStop = True
         Me.GridDatosVenta.ToolTipText = ""
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Font = New System.Drawing.Font("Verdana", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.Label1.Location = New System.Drawing.Point(30, 176)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(138, 18)
+        Me.Label1.TabIndex = 274
+        Me.Label1.Text = "Total entradas: "
+        '
+        'lblTotEnt
+        '
+        Me.lblTotEnt.AutoSize = True
+        Me.lblTotEnt.BackColor = System.Drawing.Color.Transparent
+        Me.lblTotEnt.Font = New System.Drawing.Font("Verdana", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTotEnt.ForeColor = System.Drawing.Color.DarkGreen
+        Me.lblTotEnt.Location = New System.Drawing.Point(221, 176)
+        Me.lblTotEnt.Name = "lblTotEnt"
+        Me.lblTotEnt.Size = New System.Drawing.Size(62, 18)
+        Me.lblTotEnt.TabIndex = 275
+        Me.lblTotEnt.Text = "$ 0.00"
+        '
+        'Barra
+        '
+        Me.Barra.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Barra.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.Barra.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Barra.Location = New System.Drawing.Point(33, 147)
+        Me.Barra.Name = "Barra"
+        Me.Barra.Size = New System.Drawing.Size(259, 4)
+        Me.Barra.TabIndex = 285
+        Me.Barra.TabStop = False
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PictureBox1.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.PictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.PictureBox1.Location = New System.Drawing.Point(33, 252)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(259, 4)
+        Me.PictureBox1.TabIndex = 286
+        Me.PictureBox1.TabStop = False
         '
         'Caja
         '
@@ -487,6 +546,8 @@ Partial Class Caja
         Me.ToolStrip1.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        CType(Me.Barra, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -521,4 +582,8 @@ Partial Class Caja
     Friend WithEvents lblCanRet As System.Windows.Forms.Label
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents GridDatosVenta As SourceGrid.DataGrid
+    Friend WithEvents lblTotEnt As System.Windows.Forms.Label
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents Barra As System.Windows.Forms.PictureBox
+    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
 End Class

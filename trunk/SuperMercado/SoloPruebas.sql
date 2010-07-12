@@ -157,7 +157,9 @@ exec grabar112 'V1=1|V2=1|V3=1.5|V4=|', '', '', ''
 exec grabar112 'V1=1|V2=1|V3=150.5|V4=asalté un banco, tío|', '', '', ''
 exec grabar120 'V1=123|V2=ADMIN|','','',''
 exec grabar124 'V1=1|V2=2|V3=108|V4=50|V5=RFCCLIENTE|','','',''
-exec consulta105 '','','',''
+exec grabar126 'V1=5|V2=10.00|V3=93|','','',''
+select * from SMercado..Venta_detalles 
+exec consulta105 'V1=6|','','','2'
 exec Consulta110 'V1=admin|','','',''
 exec consulta111 'V1=lindor|','','',''
 exec consulta114a '','','',''
@@ -172,7 +174,10 @@ exec consulta122 'V1=cajero|','','',''
 exec Consulta122b 'V1=admin|','','',''
 exec consulta123 '','','',''
 exec consulta124 'V1=Lindor|','','',''
-exec consulta127 'V1=35|', '', '', ''
+exec consulta127 'V1=51|', '', '', ''
+exec consulta128 'V1=L|', '', '', ''
+
+select * from SMercado..Cat_Clientes 
 
 
 Select * From SMercado_Seguridad..Usuarios
@@ -371,7 +376,16 @@ where IdCliente = 6
 
 Select * from SMercado..Ventas 
 order by Fecha desc
+Select * from SMercado..ventas
+where IdVenta = 51
 Select * from SMercado..Venta_detalles 
-where IdVenta = 35
+where IdVenta = 51
 
 
+select * from SMercado..Devoluciones 
+order by fecha desc 
+
+select * from SMercado..Ventas 
+order by IdVenta 
+select * from SMercado..Venta_detalles  
+order by IdVenta 

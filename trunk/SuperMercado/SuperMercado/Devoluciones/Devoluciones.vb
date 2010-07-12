@@ -13,6 +13,12 @@
     Public viewDatosTicket As Object
     Public DsViewTicket As Object
 
+    Dim resul As DialogResult
+    Dim idVentaDetalla As Integer
+    Dim totArt As Decimal
+    Dim numArt As Decimal
+    Dim canArt As Integer
+
 #End Region
 
 #Region "  Evento: Devoluciones LOAD  "
@@ -37,9 +43,49 @@
             mostrarControles()
         Else
             MessageBox.Show("No ha sido expedido un ticket con ese número.", " Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            textBoxTicket.Select(0, 10)
-            textBoxTicket.Focus()
         End If
+
+        textBoxTicket.Select(0, 10)
+        textBoxTicket.Focus()
+
+    End Sub
+#End Region
+
+#Region "  Botón Devolver  "
+    Private Sub ToolStripButtonDevolver_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButtonDevolver.Click
+        If posRow() < 0 Then
+            Return
+        End If
+
+        totArt = dsDatosTicket.Tables(0).Rows(posRow).Item(0)
+        idVentaDetalla = dsDatosTicket.Tables(0).Rows(posRow).Item(3)
+        canArt = dsDatosTicket.Tables(0).Rows.Count
+
+        If totArt = 1 Then
+            numArt = totArt
+        Else
+            Dim objDevolucion As New Devoluciones_cantidad
+            objDevolucion.totArtDev = totArt
+            objDevolucion.StartPosition = FormStartPosition.CenterScreen
+            objDevolucion.ShowDialog()
+            numArt = objDevolucion.numArtDev
+        End If
+
+        If canArt = 1 Then
+            resul = MessageBox.Show("La cuenta será liquidada, ¿desea continuar?", " Devoluciones", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If resul = Windows.Forms.DialogResult.No Then
+                textBoxTicket.Select(0, 10)
+                textBoxTicket.Focus()
+                Return
+            End If
+        End If
+
+        grabar126()
+        consulta127()
+        actualizarGrid()
+
+        textBoxTicket.Select(0, 10)
+        textBoxTicket.Focus()
 
     End Sub
 #End Region
@@ -75,6 +121,7 @@
         GridDatosTicket.FixedColumns = 1
         GridDatosTicket.DeleteRowsWithDeleteKey = False
         GridDatosTicket.DeleteQuestionMessage = Nothing
+        GridDatosTicket.SelectionMode = SourceGrid.GridSelectionMode.Row
 
         ' Renglon encabezado
 
@@ -111,7 +158,7 @@
         GridDatosTicket.GetCell(0, 1).View = viewcolumnheader3
         GridDatosTicket.GetCell(0, 2).View = viewcolumnheader
         GridDatosTicket.GetCell(0, 3).View = viewcolumnheader2
-        
+
     End Sub
 
     Private Sub GridDatosCrearColumnasTicket(ByVal columns As SourceGrid.DataGridColumns, ByVal Bindlist As DevAge.ComponentModel.IBoundList)
@@ -209,16 +256,27 @@
     End Sub
 #End Region
 
+#Region "  Rutina: Grabar126  "
+    Private Sub grabar126()
+        Caja = "grabar126" : Parametros = "V1=" & numArt & _
+                                          "|V2=" & totArt & _
+                                          "|V3=" & idVentaDetalla & "|"
+
+        ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
+
+    End Sub
+#End Region
+
 #Region "  Rutina: actualizarGrid  "
     Private Sub actualizarGrid()
-        ' Se inserta la consulta en el Grid ENTRADAS.
+        lblLiquidado.Visible = False
         dsDatosTicket.Tables(0).Clear()
-
+        ' Se inserta la consulta en el Grid ENTRADAS.
         If Not ObjRet.DS Is DBNull.Value Then
             If Not ObjRet.DS.Tables Is DBNull.Value Then
                 If ObjRet.DS.Tables.Count > 0 Then
-                    For i As Integer = 0 To ObjRet.DS.Tables(0).Rows.Count - 1
-                        dsDatosTicket.Tables(0).ImportRow(ObjRet.DS.Tables(0).Rows(i))
+                    For i As Integer = 0 To ObjRet.DS.Tables(1).Rows.Count - 1
+                        dsDatosTicket.Tables(0).ImportRow(ObjRet.DS.Tables(1).Rows(i))
                     Next
                     dsDatosTicket.Tables(0).AcceptChanges()
                     DsViewTicket = dsDatosTicket.Tables(0).DefaultView
@@ -227,6 +285,12 @@
 
                 End If
             End If
+        End If
+
+        Dim rows As Integer
+        rows = ObjRet.DS.Tables(1).Rows.Count
+        If rows = 0 Then
+            lblLiquidado.Visible = True
         End If
 
         TextBoxNumTicket.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
@@ -242,6 +306,17 @@
         textBoxTicket.Focus()
         ocultarControles()
     End Sub
+#End Region
+
+#Region "  Rutina: posRow  "
+    Private Function posRow() As Integer
+        Dim pos() As Integer = GridDatosTicket.Selection.GetSelectionRegion.GetRowsIndex
+        If pos.Length = 0 Then
+            Return -1
+        Else
+            Return pos(0) - 1
+        End If
+    End Function
 #End Region
 
 #Region "  Eventos cambio textBox con Enter  "

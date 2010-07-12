@@ -89,7 +89,6 @@ Partial Class registroSalida
         Me.numRetiro.Name = "numRetiro"
         Me.numRetiro.Size = New System.Drawing.Size(132, 24)
         Me.numRetiro.TabIndex = 1
-        Me.numRetiro.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'registroSalida
         '

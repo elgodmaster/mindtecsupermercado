@@ -48,6 +48,7 @@ Partial Class Devoluciones
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Devoluciones))
         Me.DevolucionToolStrip = New System.Windows.Forms.ToolStrip
         Me.ButtonLimpiar = New System.Windows.Forms.ToolStripButton
+        Me.ToolStripButtonDevolver = New System.Windows.Forms.ToolStripButton
         Me.Label4 = New System.Windows.Forms.Label
         Me.Label1 = New System.Windows.Forms.Label
         Me.textBoxTicket = New System.Windows.Forms.TextBox
@@ -60,10 +61,11 @@ Partial Class Devoluciones
         Me.TextBoxCajero = New System.Windows.Forms.TextBox
         Me.TextBoxNumTicket = New System.Windows.Forms.TextBox
         Me.PictureBox1 = New System.Windows.Forms.PictureBox
-        Me.ToolStripButtonDevolver = New System.Windows.Forms.ToolStripButton
+        Me.lblLiquidado = New System.Windows.Forms.Label
         Me.DevolucionToolStrip.SuspendLayout()
         CType(Me.Barra, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelDev.SuspendLayout()
+        Me.GridDatosTicket.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -87,6 +89,15 @@ Partial Class Devoluciones
         Me.ButtonLimpiar.Name = "ButtonLimpiar"
         Me.ButtonLimpiar.Size = New System.Drawing.Size(43, 45)
         Me.ButtonLimpiar.Text = "Limpiar"
+        '
+        'ToolStripButtonDevolver
+        '
+        Me.ToolStripButtonDevolver.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButtonDevolver.Image = CType(resources.GetObject("ToolStripButtonDevolver.Image"), System.Drawing.Image)
+        Me.ToolStripButtonDevolver.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButtonDevolver.Name = "ToolStripButtonDevolver"
+        Me.ToolStripButtonDevolver.Size = New System.Drawing.Size(23, 45)
+        Me.ToolStripButtonDevolver.Text = "Devolver"
         '
         'Label4
         '
@@ -160,7 +171,7 @@ Partial Class Devoluciones
         Me.PanelDev.Controls.Add(Me.PictureBox1)
         Me.PanelDev.Location = New System.Drawing.Point(16, 151)
         Me.PanelDev.Name = "PanelDev"
-        Me.PanelDev.Size = New System.Drawing.Size(614, 525)
+        Me.PanelDev.Size = New System.Drawing.Size(485, 515)
         Me.PanelDev.TabIndex = 336
         '
         'TextBoxTotal
@@ -177,6 +188,7 @@ Partial Class Devoluciones
         'GridDatosTicket
         '
         Me.GridDatosTicket.BackColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.GridDatosTicket.Controls.Add(Me.lblLiquidado)
         Me.GridDatosTicket.DeleteQuestionMessage = ""
         Me.GridDatosTicket.DeleteRowsWithDeleteKey = False
         Me.GridDatosTicket.FixedRows = 1
@@ -228,14 +240,16 @@ Partial Class Devoluciones
         Me.PictureBox1.TabIndex = 336
         Me.PictureBox1.TabStop = False
         '
-        'ToolStripButtonDevolver
+        'lblLiquidado
         '
-        Me.ToolStripButtonDevolver.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButtonDevolver.Image = CType(resources.GetObject("ToolStripButtonDevolver.Image"), System.Drawing.Image)
-        Me.ToolStripButtonDevolver.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButtonDevolver.Name = "ToolStripButtonDevolver"
-        Me.ToolStripButtonDevolver.Size = New System.Drawing.Size(23, 45)
-        Me.ToolStripButtonDevolver.Text = "ToolStripButton1"
+        Me.lblLiquidado.AutoSize = True
+        Me.lblLiquidado.Font = New System.Drawing.Font("Arial", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblLiquidado.ForeColor = System.Drawing.Color.Red
+        Me.lblLiquidado.Location = New System.Drawing.Point(16, 126)
+        Me.lblLiquidado.Name = "lblLiquidado"
+        Me.lblLiquidado.Size = New System.Drawing.Size(233, 29)
+        Me.lblLiquidado.TabIndex = 4
+        Me.lblLiquidado.Text = "VENTA LIQUIDADA"
         '
         'Devoluciones
         '
@@ -256,6 +270,8 @@ Partial Class Devoluciones
         CType(Me.Barra, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelDev.ResumeLayout(False)
         Me.PanelDev.PerformLayout()
+        Me.GridDatosTicket.ResumeLayout(False)
+        Me.GridDatosTicket.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -276,4 +292,5 @@ Partial Class Devoluciones
     Friend WithEvents TextBoxNumTicket As System.Windows.Forms.TextBox
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents ToolStripButtonDevolver As System.Windows.Forms.ToolStripButton
+    Friend WithEvents lblLiquidado As System.Windows.Forms.Label
 End Class
