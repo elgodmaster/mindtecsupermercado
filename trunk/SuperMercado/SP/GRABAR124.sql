@@ -18,7 +18,7 @@ BEGIN
 
 DECLARE @idCuentaDetalle 	varchar(8000)
 DECLARE @idCuenta		 	varchar(8000)
-DECLARE @codigo		 	    varchar(8000)
+DECLARE @nomCliente	 	    varchar(8000)
 DECLARE @numArt				varchar(8000)
 DECLARE @totArt				varchar(8000)
 DECLARE @precio				decimal(12,2)
@@ -30,7 +30,7 @@ Exec Emulador_SepararCadena 'V1',  @Cabezero, '|', @numArt			Output
 Exec Emulador_SepararCadena 'V2',  @Cabezero, '|', @totArt			Output 
 Exec Emulador_SepararCadena 'V3',  @Cabezero, '|', @idCuentaDetalle	Output 
 Exec Emulador_SepararCadena 'V4',  @Cabezero, '|', @idCuenta		Output
-Exec Emulador_SepararCadena 'V5',  @Cabezero, '|', @codigo	     	Output
+Exec Emulador_SepararCadena 'V5',  @Cabezero, '|', @nomCliente     	Output
 
 Set noCount ON
 
@@ -62,17 +62,17 @@ END
 
 Update SMercado..Cat_Clientes
 Set Adeudo = Adeudo - @numArt * @precio
-Where Codigo = @codigo
+Where NombreFiscal = @nomCliente 
 
 Select @adeudoCliente = (Select C.Adeudo 
 						 From SMercado..Cat_Clientes C
-						 Where Codigo = @codigo ) 
+						 Where NombreFiscal = @nomCliente ) 
 						 
 IF @adeudoCliente < 0
 BEGIN
 	Update SMercado..Cat_Clientes 
 	Set Adeudo = 0
-	Where Codigo = @codigo
+	Where NombreFiscal = @nomCliente 
 END
 
 IF @numArt < @totArt

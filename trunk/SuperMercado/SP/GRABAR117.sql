@@ -19,16 +19,16 @@ DECLARE @idCuenta	varchar(8000)
 DECLARE @monto		varchar(8000)
 DECLARE @Usuario	varchar(8000)
 DECLARE @idUsuario	varchar(8000)
-DECLARE @codigo		varchar(8000)
+DECLARE @nomClien	varchar(8000)
 DECLARE @idCliente  varchar(8000)
 
 Exec Emulador_SepararCadena 'V1',  @Cabezero, '|', @idCuenta	Output 
 Exec Emulador_SepararCadena 'V2',  @Cabezero, '|', @monto		Output 
 Exec Emulador_SepararCadena 'V3',  @Cabezero, '|', @Usuario		Output 
-Exec Emulador_SepararCadena 'V4',  @Cabezero, '|', @codigo		Output 
+Exec Emulador_SepararCadena 'V4',  @Cabezero, '|', @nomClien	Output 
 
 Select @idCliente = (Select C.IdCliente  from SMercado..Cat_Clientes C
-					 Where C.Codigo = @codigo)
+					 Where C.NombreFiscal = @nomClien)
 Select @idUsuario = (Select U.idUsuario From SMercado_Seguridad..Usuarios U
 					 Where U.nombreUsuario = @Usuario)
 

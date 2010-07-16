@@ -41,7 +41,7 @@ BEGIN
   Declare @Desc18	 Varchar(8000)
   Declare @Sql       VarChar(8000)
   Declare @Resul2    Varchar(8000)
-  DECLARE @idCliente Varchar(8000)
+  DECLARE @nomCliente Varchar(8000)
   
   --Asignar Valores
   Select @Desc0   = ''
@@ -67,12 +67,12 @@ BEGIN
   Select @Resul2  = ''
 
   --Obtener los Parametros
-  Exec Emulador_SepararCadena 'V1', @Cabezero, '|', @Valor1 Output --IdCliente
+  Exec Emulador_SepararCadena 'V1', @Cabezero, '|', @Valor1 Output --nombreCliente
   
-  Select @idCliente = @Valor1
+  Select @nomCliente = @Valor1
   Select @Valor1 = (Select Codigo  
 					From SMercado..Cat_Clientes
-					Where IdCliente = @idCliente)
+					Where NombreFiscal = @nomCliente)
 
   -- Validar Parametros
   If @Validar = 1 or @Validar = 2
@@ -192,6 +192,5 @@ BEGIN
     End
   Set NoCount OFF
   Select resultado = @Resul 
- 
-  
+   
 END

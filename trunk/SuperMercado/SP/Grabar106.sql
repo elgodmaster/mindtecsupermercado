@@ -38,6 +38,8 @@ BEGIN
   Declare @Desc0     Varchar(8000)
   Declare @Desc1     VarChar(8000)
   Declare @Resul2    VarChar(8000)
+  Declare @estado    varchar(8000)
+  Declare @ciudad    varchar(8000)
     
   --Asignar Valores
   Select @Desc0  = "" 
@@ -111,16 +113,27 @@ If Len(RTrim(LTrim(@Valor8)))= 0
      Select @Resul='2R=ERROR|2M=Registre la ciudad para continuar|'
      Return    
    End
+   
+  select @estado = ISNULL(e.IdEstado, 0)
+  From SMercado..Cat_EstadosdelaRepublica e
+  where e.Descripcion = @Valor7
+  
+  select @ciudad = ISNULL(c.IdCiudad, 0)
+  From SMercado..Cat_Ciudades c
+  where c.Descripcion = @Valor8
         
   -- Logica de Negocio      
   Select @Desc1 = Nombre
   From SMercado..Cat_Proveedores(NoLock)
   Where Codigo = @Valor1
   
+  Select P.Codigo from SMercado..Cat_Proveedores P
+  Where P.Codigo = @Valor1
+  
   If @@RowCount = 0
    Begin
-     Insert SMercado..Cat_Proveedores(Codigo,Nombre,Rfc,Colonia,Direccion,Cp,IdEstado,IdCiudad,Telefono1,Extencion1,Telefono2,Extencion2,Celular1,Celular2,Email,Fax)
-            Values(@Valor1,@Valor2,@Valor3,@Valor4,@Valor5,@Valor6,@Valor7,@Valor8,@Valor9,@Valor10,@Valor11,@Valor12,@Valor13,@Valor14,@Valor15,@Valor16)
+     Insert SMercado..Cat_Proveedores(Codigo,Nombre,Rfc,Colonia,Direccion,Cp,IdEstado,IdCiudad,Telefono1,Extencion1,Telefono2,Extencion2,Celular1,Celular2,Email,Fax, Deuda )
+            Values(@Valor1,@Valor2,@Valor3,@Valor4,@Valor5,@Valor6,@estado,@ciudad,@Valor9,@Valor10,@Valor11,@Valor12,@Valor13,@Valor14,@Valor15,@Valor16, 0)
    End
   Else
    Begin
@@ -130,8 +143,8 @@ If Len(RTrim(LTrim(@Valor8)))= 0
                 Colonia      = @Valor4,
                 Direccion    = @Valor5,
                 Cp           = @Valor6,
-                IdEstado     = @Valor7,
-                IdCiudad     = @Valor8,
+                IdEstado     = @estado,
+                IdCiudad     = @ciudad,
                 Telefono1    = @Valor9,
                 Extencion1   = @Valor10,
                 Telefono2    = @Valor11,
@@ -144,7 +157,7 @@ If Len(RTrim(LTrim(@Valor8)))= 0
    End  
 
   -- Enviar Resultado
-  Select @Resul='2R=OK|2M=Se Grabó Correctamente|'   
+  Select @Resul='2R=OK|2M=Los cambios efectuados se guardaron correctamente|'   
 
   Set NoCount OFF
 END

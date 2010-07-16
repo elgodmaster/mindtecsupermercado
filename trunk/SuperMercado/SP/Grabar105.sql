@@ -160,7 +160,7 @@ If Len(RTrim(LTrim(@Valor8)))= 0
    End  
 
   -- Enviar Resultado
-  Select @Resul='2R=OK|2M=Se Grabó Correctamente|'   
+  Select @Resul='2R=OK|2M=Los cambios efectuados se guardaron correctamente|'   
 
   Set NoCount OFF
 END

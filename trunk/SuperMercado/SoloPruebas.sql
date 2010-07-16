@@ -75,6 +75,30 @@ cantidad decimal(12,2) not null,
 precioUnitario int not null
 )
 
+CREATE TABLE Cuentas_Pagar(
+idCuenta int identity not null,
+fecha datetime not null,
+factura int not null,
+idUsuario int not null,
+idProveedor int not null,
+idTipoCambio int not null,
+descripcion varchar(500) not null,
+adeudo decimal(12,2) not null
+)
+
+CREATE TABLE Cuentas_Pagar_Detalles(
+idCuentaDetalle int identity not null,
+idCuenta int not null,
+idProducto int not null,
+cantidad decimal(12,2) not null,
+precioUni decimal(12,2) not null,
+descripcion varchar(500) not null,
+)
+
+select * from SMercado..Cat_Productos 
+Select * From SMercado..Cuentas_Cobrar 
+Select * From SMercado..Cuentas_Cobrar_Detalles 
+
 -- TABLAS PARA CONFIGURACIÓN DEL TICKET --
 
 CREATE TABLE Config_Ticket (
@@ -105,6 +129,8 @@ idProd int not null,
 cant   int not null,
 fecha  datetime not null
 )
+
+select * from SMercado..Devoluciones 
 
 drop table devoluciones
 
@@ -148,23 +174,21 @@ insert into SMercado..Caja_Salida values ( 1, 1, 151.00, 'Ninguno', '30-04-2010 
 
 Select * From SMercado..Cuentas_Cobrar
 
-
-
-
 exec grabar110 'V1=100|','','',''
 exec grabar111 'V1=1|V2=1|V3=150.50|V4=ninguno|', '', '', ''
 exec grabar112 'V1=1|V2=1|V3=1.5|V4=|', '', '', ''
 exec grabar112 'V1=1|V2=1|V3=150.5|V4=asalté un banco, tío|', '', '', ''
 exec grabar120 'V1=123|V2=ADMIN|','','',''
 exec grabar124 'V1=1|V2=2|V3=108|V4=50|V5=RFCCLIENTE|','','',''
-exec grabar126 'V1=5|V2=10.00|V3=93|','','',''
+exec grabar126 'V1=2|V2=10.00|V3=95|','','',''
 select * from SMercado..Venta_detalles 
-exec consulta105 'V1=6|','','','2'
+exec consulta105 'V1=LINDOR|','','','2'
+exec consulta106 'V1=PROVEEDOR1|', '', '', '2'
 exec Consulta110 'V1=admin|','','',''
 exec consulta111 'V1=lindor|','','',''
 exec consulta114a '','','',''
 exec consulta114b 'V1=Baja California|','','',''
-exec consulta105 'V1=CLIENTE2|','','','2'
+exec consulta105 'V1=LINDOR|','','','2'
 exec consulta117 'V1=CLIENTE4|','','',''
 exec consulta118a 'V1=34|','','',''
 exec consulta118b 'V1=34|','','',''
@@ -176,9 +200,9 @@ exec consulta123 '','','',''
 exec consulta124 'V1=Lindor|','','',''
 exec consulta127 'V1=51|', '', '', ''
 exec consulta128 'V1=L|', '', '', ''
+exec consulta129 '','','',''
 
 select * from SMercado..Cat_Clientes 
-
 
 Select * From SMercado_Seguridad..Usuarios
 Select * From SMercado..Caja_Corte 
@@ -359,7 +383,7 @@ Group by CC.IdCuenta, CC.Descripcion, CC.Adeudo
 Select * from SMercado..Cuentas_Cobrar
 Select * from SMercado..Cuentas_Cobrar_Detalles 
 delete from SMercado..Cuentas_Cobrar
-where IdCuenta = 46
+where IdCuenta = 106
 
 Select * from SMercado..Cuentas_Cobrar_Detalles  
 
@@ -368,24 +392,16 @@ update SMercado..Cat_Clientes
 set Adeudo = 0
 where IdCliente = 6
 
-select * from SMercado_Seguridad..Usuarios 
+select * From SMercado_Seguridad..Usuarios 
 
-update SMercado..Cat_Clientes
-set Adeudo = 30.78
-where IdCliente = 6
+Select * From SMercado..Cat_Proveedores 
 
-Select * from SMercado..Ventas 
-order by Fecha desc
-Select * from SMercado..ventas
-where IdVenta = 51
-Select * from SMercado..Venta_detalles 
-where IdVenta = 51
+Select * From SMercado..Cuentas_Pagar_Detalles 
 
+Select * From SMercado..Cuentas_Pagar 
 
-select * from SMercado..Devoluciones 
-order by fecha desc 
+delete SMercado..Cuentas_Pagar 
+delete SMercado..Cuentas_Pagar_Detalles
 
-select * from SMercado..Ventas 
-order by IdVenta 
-select * from SMercado..Venta_detalles  
-order by IdVenta 
+update SMercado..Cat_Proveedores
+set Deuda = 0
