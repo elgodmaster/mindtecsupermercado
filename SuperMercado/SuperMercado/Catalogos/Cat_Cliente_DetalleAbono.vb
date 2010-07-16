@@ -59,7 +59,6 @@
         dtAbono = New DataTable("Table")
         dsDatosAbono.Tables.Add(dtAbono)
 
-        'DsDatos.Tables("Table").Columns.Add("C0", GetType(String))
         dsDatosAbono.Tables("Table").Columns.Add("C1", GetType(String))
         dsDatosAbono.Tables("Table").Columns.Add("C2", GetType(String))
         dsDatosAbono.Tables("Table").Columns.Add("C3", GetType(String))
@@ -97,16 +96,22 @@
 
         Dim viewcolumnheader As SourceGrid.Cells.Views.ColumnHeader = New SourceGrid.Cells.Views.ColumnHeader
         Dim backheader As DevAge.Drawing.VisualElements.ColumnHeader = New DevAge.Drawing.VisualElements.ColumnHeader
-        'backheader.BackColor = cColorHeader
-        backheader.Border = DevAge.Drawing.RectangleBorder.RectangleBlack1Width
-        viewcolumnheader.Background = backheader
-        viewcolumnheader.ForeColor = Color.Black
-        viewcolumnheader.Font = New Font("Verdana", 8, FontStyle.Bold)
-        viewcolumnheader.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
+        viewcolumnheader.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewcolumnheader.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleLeft
 
-        GridDatosAbonos.GetCell(0, 1).View = viewcolumnheader
-        GridDatosAbonos.GetCell(0, 2).View = viewcolumnheader
-        GridDatosAbonos.GetCell(0, 3).View = viewcolumnheader
+        Dim viewcolumnheader2 As SourceGrid.Cells.Views.ColumnHeader = New SourceGrid.Cells.Views.ColumnHeader
+        Dim backheader2 As DevAge.Drawing.VisualElements.ColumnHeader = New DevAge.Drawing.VisualElements.ColumnHeader
+        viewcolumnheader2.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewcolumnheader2.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleRight
+
+        Dim viewcolumnheader3 As SourceGrid.Cells.Views.ColumnHeader = New SourceGrid.Cells.Views.ColumnHeader
+        Dim backheader3 As DevAge.Drawing.VisualElements.ColumnHeader = New DevAge.Drawing.VisualElements.ColumnHeader
+        viewcolumnheader3.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewcolumnheader3.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
+
+        GridDatosAbonos.GetCell(0, 1).View = viewcolumnheader3
+        GridDatosAbonos.GetCell(0, 2).View = viewcolumnheader3
+        GridDatosAbonos.GetCell(0, 3).View = viewcolumnheader3
         GridDatosAbonos.GetCell(0, 4).View = viewcolumnheader
 
     End Sub
@@ -118,28 +123,18 @@
         'gcolorRow esta declarada en el moduloGeneral
 
         'vistas
-        Dim viewNormal As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
-        viewNormal.Font = New Font("Verdana", 8, FontStyle.Regular)
-        viewNormal.Border = border
+        Dim viewCenter As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        viewCenter.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewCenter.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
 
-        Dim viewDinero As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
-        viewDinero.Font = New Font("Verdana", 8, FontStyle.Regular)
-        viewDinero.Border = border
-        viewDinero.TextAlignment = DevAge.Drawing.ContentAlignment.BottomRight
+        Dim viewIzquierda As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        viewIzquierda.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewIzquierda.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleLeft
 
-        Dim viewNormalCentrado As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
-        viewNormalCentrado.Font = New Font("Verdana", 8, FontStyle.Regular)
-        viewNormalCentrado.Border = border
-        viewNormalCentrado.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
-
+        Dim viewDerecha As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        viewDerecha.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewDerecha.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleRight
         Dim myfont As New Font("Verdana", 8, FontStyle.Regular)
-
-        Dim viewBtn As SourceGrid.Cells.Views.Button = New SourceGrid.Cells.Views.Button()
-        viewBtn.BackColor = gColorRow
-        viewBtn.Border = border
-        viewBtn.Font = myfont
-        viewBtn.ForeColor = Color.Black
-        viewBtn.TextAlignment = DevAge.Drawing.ContentAlignment.BottomCenter
 
         'Eventos
 
@@ -155,22 +150,22 @@
 
         GridColumn = GridDatosAbonos.Columns.Add("C1", "Folio", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormalCentrado
+        GridColumn.DataCell.View = viewCenter
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
         GridColumn = GridDatosAbonos.Columns.Add("C2", "Monto", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewDinero
+        GridColumn.DataCell.View = viewDerecha
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
         GridColumn = GridDatosAbonos.Columns.Add("C3", "Fecha", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormalCentrado
+        GridColumn.DataCell.View = viewCenter
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
         GridColumn = GridDatosAbonos.Columns.Add("C4", "Usuario", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormal
+        GridColumn.DataCell.View = viewIzquierda
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
         GridDatosAbonos.Columns(0).Visible = False

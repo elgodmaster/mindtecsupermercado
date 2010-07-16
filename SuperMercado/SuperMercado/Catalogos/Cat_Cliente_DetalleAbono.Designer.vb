@@ -32,7 +32,7 @@ Partial Class Cat_Cliente_DetalleAbono
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GridDatosAbonos.AutoSize = True
         Me.GridDatosAbonos.AutoStretchColumnsToFitWidth = True
-        Me.GridDatosAbonos.BackColor = System.Drawing.SystemColors.Control
+        Me.GridDatosAbonos.BackColor = System.Drawing.SystemColors.ButtonHighlight
         Me.GridDatosAbonos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GridDatosAbonos.DeleteQuestionMessage = ""
         Me.GridDatosAbonos.DeleteRowsWithDeleteKey = False

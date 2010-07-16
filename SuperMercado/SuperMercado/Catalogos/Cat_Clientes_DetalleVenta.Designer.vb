@@ -28,7 +28,7 @@ Partial Class Cat_Clientes_DetalleVenta
         '
         'GridDatosDetalle
         '
-        Me.GridDatosDetalle.BackColor = System.Drawing.SystemColors.Control
+        Me.GridDatosDetalle.BackColor = System.Drawing.SystemColors.ControlLightLight
         Me.GridDatosDetalle.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GridDatosDetalle.DeleteQuestionMessage = ""
         Me.GridDatosDetalle.DeleteRowsWithDeleteKey = False
@@ -43,11 +43,14 @@ Partial Class Cat_Clientes_DetalleVenta
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(12, 331)
+        Me.Button1.Image = Global.SuperMercado.My.Resources.Resources.basket_remove1
+        Me.Button1.Location = New System.Drawing.Point(12, 321)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(126, 23)
+        Me.Button1.Size = New System.Drawing.Size(144, 34)
         Me.Button1.TabIndex = 35
-        Me.Button1.Text = "Devolver artículo"
+        Me.Button1.Text = "  Devolver artículo"
+        Me.Button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.Button1.UseVisualStyleBackColor = True
         '
         'Cat_Clientes_DetalleVenta

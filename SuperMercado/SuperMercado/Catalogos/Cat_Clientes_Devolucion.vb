@@ -3,6 +3,7 @@
 #Region "  Variables de trabajo  "
     Dim objDetalleVenta As Cat_Clientes_DetalleVenta
     Dim codigoCliente As String
+    Public nomCliente As String
 
     Dim totalArt As Integer
     Dim idCuentaDetalle As String
@@ -30,7 +31,6 @@
         idCuenta = objDetalleVenta.idCuenta
 
         If totalArt = 1 Then
-
 
             If objDetalleVenta.dsDatosDetalle.Tables(0).Rows.Count = 1 Then
                 Dim resul As DialogResult
@@ -88,7 +88,7 @@
             '| Obtienen los datos de su estado de cuenta.
             ' -------------------------------------------
 
-            Caja = "Consulta117" : Parametros = "V1=" & codigoCliente & "|"
+            Caja = "Consulta117" : Parametros = "V1=" & nomCliente.Trim & "|"
             ObjRet = lConsulta.LlamarCaja(Caja, 1, Parametros)
 
             ' Se inserta la consulta en el Grid Cuentas.
@@ -107,7 +107,7 @@
                 End If
             End If
 
-            Caja = "Consulta105" : Parametros = "V1=" & codigoCliente & "|"
+            Caja = "Consulta105" : Parametros = "V1=" & nomCliente.Trim & "|"
             ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
 
             If lConsulta.ObtenerValor("V17", ObjRet.sResultado, "|") = "" Then
@@ -188,7 +188,7 @@
                                           "|V2=" & totalArt & _
                                           "|V3=" & idCuentaDetalle & _
                                           "|V4=" & idCuenta & _
-                                          "|V5=" & objDetalleVenta.codigoCliente & "|"
+                                          "|V5=" & nomCliente & "|"
 
         ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
 
@@ -227,7 +227,7 @@
         '| Obtienen los datos de su estado de cuenta.
         ' -------------------------------------------
 
-        Caja = "Consulta117" : Parametros = "V1=" & codigoCliente & "|"
+        Caja = "Consulta117" : Parametros = "V1=" & nomCliente.Trim & "|"
         ObjRet = lConsulta.LlamarCaja(Caja, 1, Parametros)
 
         ' Se inserta la consulta en el Grid Cuentas.
@@ -246,7 +246,7 @@
             End If
         End If
 
-        Caja = "Consulta105" : Parametros = "V1=" & codigoCliente & "|"
+        Caja = "Consulta105" : Parametros = "V1=" & nomCliente.Trim & "|"
         ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
 
         If lConsulta.ObtenerValor("V17", ObjRet.sResultado, "|") = "" Then

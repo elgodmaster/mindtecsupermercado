@@ -18,13 +18,14 @@ Public Class Cat_Clientes_RegistroAbono
     Dim lblSaldoActual As Label
     Dim nombreCliente As String
 
+    Public nomCliente As String
 
 #End Region
 
 #Region "  Botón ACEPTAR  "
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
         If numAbono.Value <= 0 Then
-            MessageBox.Show("No ha registrado una la cantidad del abono.", " Abonos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            MessageBox.Show("No ha registrado la cantidad del abono.", " Abonos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             numAbono.Focus()
             numAbono.Select(0, 9)
             Return
@@ -45,7 +46,7 @@ Public Class Cat_Clientes_RegistroAbono
         Parametros = "V1=" & cuenta & _
                      "|V2=" & montoAbono & _
                      "|V3=" & usuarioAbono & _
-                     "|V4=" & codigoCliente
+                     "|V4=" & nomCliente
 
         ObjRet = lConsulta.LlamarCaja(Caja, 1, Parametros)
 
@@ -55,7 +56,7 @@ Public Class Cat_Clientes_RegistroAbono
         '| Se actualiza los datos de su estado de cuenta.
         '|-------------------------------------------
 
-        Caja = "Consulta117" : Parametros = "V1=" & codigoCliente & "|"
+        Caja = "Consulta117" : Parametros = "V1=" & nomCliente.Trim & "|"
         ObjRet = lConsulta.LlamarCaja(Caja, 1, Parametros)
 
         ' Se inserta la consulta en el Grid Cuentas.
@@ -81,7 +82,7 @@ Public Class Cat_Clientes_RegistroAbono
             deudaActualizada = 0
         End Try
 
-        Caja = "Consulta105" : Parametros = "V1=" & codigoCliente.Trim
+        Caja = "Consulta105" : Parametros = "V1=" & nomCliente.Trim
         ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
 
         lblSaldoActual.Text = "$ " & lConsulta.ObtenerValor("V17", ObjRet.sResultado, "|")

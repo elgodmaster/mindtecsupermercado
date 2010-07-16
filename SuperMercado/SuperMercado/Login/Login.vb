@@ -158,32 +158,6 @@ Public Class Login
     End Sub
 #End Region
 
-#Region "  Cambio de Textbox con ENTER  "
-    Private Sub Usuario_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles textBoxUsuario.KeyDown
-        If e.KeyCode = Keys.Enter Then
-            textBoxPassword.Focus()
-        End If
-    End Sub
-
-    Private Sub textBoxPassword_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles textBoxPassword.KeyDown
-        If e.KeyCode = Keys.Enter Then
-            buttonAceptar.Focus()
-        End If
-    End Sub
-
-    Private Sub textBoxNuevoPassword_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles textBoxNuevoPassword.KeyDown
-        If e.KeyCode = Keys.Enter Then
-            textBoxConNuevoPassword.Focus()
-        End If
-    End Sub
-
-    Private Sub textBoxConNuevoPassword_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles textBoxConNuevoPassword.KeyDown
-        If e.KeyCode = Keys.Enter Then
-            ButtonGuardar.Focus()
-        End If
-    End Sub
-#End Region
-
 #Region "  Rutina: mostrarInicial  "
     Private Sub mostrarInicial()
         Dim inic As New inicial
@@ -242,6 +216,38 @@ Public Class Login
             End If
         End If
 
+    End Sub
+#End Region
+
+#Region "  Cambio de Textbox con ENTER  "
+    Private Sub textBoxUsuario_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles textBoxUsuario.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            textBoxPassword.SelectAll()
+            textBoxPassword.Focus()
+        End If
+    End Sub
+
+    Private Sub textBoxPassword_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles textBoxPassword.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            buttonAceptar.Focus()
+        End If
+    End Sub
+
+    Private Sub textBoxNuevoPassword_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles textBoxNuevoPassword.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            textBoxConNuevoPassword.SelectAll()
+            textBoxConNuevoPassword.Focus()
+        End If
+    End Sub
+
+    Private Sub textBoxConNuevoPassword_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles textBoxConNuevoPassword.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            ButtonGuardar.Focus()
+        End If
     End Sub
 #End Region
 

@@ -46,7 +46,6 @@ Partial Class Tickets
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Tickets))
         Me.PictureBox1 = New System.Windows.Forms.PictureBox
         Me.PictureBox2 = New System.Windows.Forms.PictureBox
         Me.TextBox1 = New System.Windows.Forms.TextBox
@@ -201,7 +200,7 @@ Partial Class Tickets
         'ButtonGrabar
         '
         Me.ButtonGrabar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ButtonGrabar.Image = CType(resources.GetObject("ButtonGrabar.Image"), System.Drawing.Image)
+        Me.ButtonGrabar.Image = Global.SuperMercado.My.Resources.Resources.disk
         Me.ButtonGrabar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.ButtonGrabar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ButtonGrabar.Name = "ButtonGrabar"
@@ -211,11 +210,11 @@ Partial Class Tickets
         'ButtonImprimir
         '
         Me.ButtonImprimir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ButtonImprimir.Image = CType(resources.GetObject("ButtonImprimir.Image"), System.Drawing.Image)
+        Me.ButtonImprimir.Image = Global.SuperMercado.My.Resources.Resources.printer
         Me.ButtonImprimir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.ButtonImprimir.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ButtonImprimir.Name = "ButtonImprimir"
-        Me.ButtonImprimir.Size = New System.Drawing.Size(52, 45)
+        Me.ButtonImprimir.Size = New System.Drawing.Size(36, 45)
         Me.ButtonImprimir.Text = "Imprimir"
         '
         'Tickets

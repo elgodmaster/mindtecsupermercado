@@ -50,6 +50,8 @@ Partial Class Cat_Clientes
         Me.ToolStripButtonNuevo = New System.Windows.Forms.ToolStripButton
         Me.Limpiar = New System.Windows.Forms.ToolStripButton
         Me.Grabar = New System.Windows.Forms.ToolStripButton
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator
+        Me.ToolStripButtonEliminarCuenta = New System.Windows.Forms.ToolStripButton
         Me.ToolStripButtonDetalle = New System.Windows.Forms.ToolStripButton
         Me.ToolStripButtonAbonos = New System.Windows.Forms.ToolStripButton
         Me.ToolStripButtonAbonar = New System.Windows.Forms.ToolStripButton
@@ -103,6 +105,8 @@ Partial Class Cat_Clientes
         Me.PanelDatos = New System.Windows.Forms.Panel
         Me.PanelGrid = New System.Windows.Forms.Panel
         Me.GridDatosCLIENTES = New SourceGrid.DataGrid
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
+        Me.ToolStripStatusLabelClientes = New System.Windows.Forms.ToolStripStatusLabel
         Me.Barra = New System.Windows.Forms.PictureBox
         Me.AbonarToolStrip.SuspendLayout()
         Me.AdeudosTabPage.SuspendLayout()
@@ -113,6 +117,7 @@ Partial Class Cat_Clientes
         Me.ClientesTabControl.SuspendLayout()
         Me.PanelDatos.SuspendLayout()
         Me.PanelGrid.SuspendLayout()
+        Me.StatusStrip1.SuspendLayout()
         CType(Me.Barra, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -141,7 +146,7 @@ Partial Class Cat_Clientes
         'AbonarToolStrip
         '
         Me.AbonarToolStrip.AutoSize = False
-        Me.AbonarToolStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButtonNuevo, Me.Limpiar, Me.Grabar, Me.ToolStripButtonDetalle, Me.ToolStripButtonAbonos, Me.ToolStripButtonAbonar})
+        Me.AbonarToolStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButtonNuevo, Me.Limpiar, Me.Grabar, Me.ToolStripSeparator1, Me.ToolStripButtonEliminarCuenta, Me.ToolStripButtonDetalle, Me.ToolStripButtonAbonos, Me.ToolStripButtonAbonar})
         Me.AbonarToolStrip.Location = New System.Drawing.Point(0, 0)
         Me.AbonarToolStrip.Name = "AbonarToolStrip"
         Me.AbonarToolStrip.Size = New System.Drawing.Size(1016, 48)
@@ -180,6 +185,22 @@ Partial Class Cat_Clientes
         Me.Grabar.Size = New System.Drawing.Size(36, 45)
         Me.Grabar.Text = "Guardar"
         Me.Grabar.Visible = False
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 48)
+        Me.ToolStripSeparator1.Visible = False
+        '
+        'ToolStripButtonEliminarCuenta
+        '
+        Me.ToolStripButtonEliminarCuenta.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButtonEliminarCuenta.Image = Global.SuperMercado.My.Resources.Resources.delete
+        Me.ToolStripButtonEliminarCuenta.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.ToolStripButtonEliminarCuenta.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButtonEliminarCuenta.Name = "ToolStripButtonEliminarCuenta"
+        Me.ToolStripButtonEliminarCuenta.Size = New System.Drawing.Size(36, 45)
+        Me.ToolStripButtonEliminarCuenta.Text = "Liquidar cuenta"
         '
         'ToolStripButtonDetalle
         '
@@ -236,11 +257,12 @@ Partial Class Cat_Clientes
         Me.AdeudosTabPage.Padding = New System.Windows.Forms.Padding(3)
         Me.AdeudosTabPage.Size = New System.Drawing.Size(975, 482)
         Me.AdeudosTabPage.TabIndex = 1
-        Me.AdeudosTabPage.Text = " Adeudos "
+        Me.AdeudosTabPage.Text = " Cuentas por cobrar "
         Me.AdeudosTabPage.UseVisualStyleBackColor = True
         '
         'GridDatosCuentas
         '
+        Me.GridDatosCuentas.BackColor = System.Drawing.Color.White
         Me.GridDatosCuentas.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GridDatosCuentas.DeleteQuestionMessage = ""
         Me.GridDatosCuentas.DeleteRowsWithDeleteKey = False
@@ -322,7 +344,7 @@ Partial Class Cat_Clientes
         Me.DatosTabPage.Padding = New System.Windows.Forms.Padding(3)
         Me.DatosTabPage.Size = New System.Drawing.Size(975, 482)
         Me.DatosTabPage.TabIndex = 0
-        Me.DatosTabPage.Text = " Datos "
+        Me.DatosTabPage.Text = " Datos personales"
         Me.DatosTabPage.UseVisualStyleBackColor = True
         '
         'GroupBoxLocalizacion
@@ -344,6 +366,7 @@ Partial Class Cat_Clientes
         Me.GroupBoxLocalizacion.Controls.Add(Me.TxtCel2)
         Me.GroupBoxLocalizacion.Controls.Add(Me.TxtTel2)
         Me.GroupBoxLocalizacion.Controls.Add(Me.Label8)
+        Me.GroupBoxLocalizacion.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBoxLocalizacion.ForeColor = System.Drawing.SystemColors.Desktop
         Me.GroupBoxLocalizacion.Location = New System.Drawing.Point(6, 292)
         Me.GroupBoxLocalizacion.Name = "GroupBoxLocalizacion"
@@ -355,6 +378,7 @@ Partial Class Cat_Clientes
         'Label3
         '
         Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.SystemColors.ControlText
         Me.Label3.Location = New System.Drawing.Point(750, 53)
         Me.Label3.Name = "Label3"
@@ -367,6 +391,7 @@ Partial Class Cat_Clientes
         Me.txtext2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtext2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.txtext2.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtext2.Location = New System.Drawing.Point(793, 49)
         Me.txtext2.Name = "txtext2"
         Me.txtext2.Size = New System.Drawing.Size(123, 22)
@@ -375,6 +400,7 @@ Partial Class Cat_Clientes
         'Label2
         '
         Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.SystemColors.ControlText
         Me.Label2.Location = New System.Drawing.Point(263, 53)
         Me.Label2.Name = "Label2"
@@ -385,6 +411,7 @@ Partial Class Cat_Clientes
         'txtext
         '
         Me.txtext.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.txtext.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtext.Location = New System.Drawing.Point(301, 49)
         Me.txtext.Name = "txtext"
         Me.txtext.Size = New System.Drawing.Size(138, 22)
@@ -396,10 +423,10 @@ Partial Class Cat_Clientes
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TxtMail.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TxtMail.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtMail.Location = New System.Drawing.Point(79, 21)
+        Me.TxtMail.Location = New System.Drawing.Point(80, 21)
         Me.TxtMail.MaxLength = 100
         Me.TxtMail.Name = "TxtMail"
-        Me.TxtMail.Size = New System.Drawing.Size(837, 22)
+        Me.TxtMail.Size = New System.Drawing.Size(836, 22)
         Me.TxtMail.TabIndex = 10
         '
         'TxtFax
@@ -408,10 +435,10 @@ Partial Class Cat_Clientes
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TxtFax.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TxtFax.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtFax.Location = New System.Drawing.Point(79, 138)
+        Me.TxtFax.Location = New System.Drawing.Point(80, 138)
         Me.TxtFax.MaxLength = 100
         Me.TxtFax.Name = "TxtFax"
-        Me.TxtFax.Size = New System.Drawing.Size(837, 22)
+        Me.TxtFax.Size = New System.Drawing.Size(836, 22)
         Me.TxtFax.TabIndex = 16
         '
         'Label11
@@ -454,17 +481,17 @@ Partial Class Cat_Clientes
         '
         Me.TxtCel.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TxtCel.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtCel.Location = New System.Drawing.Point(79, 80)
+        Me.TxtCel.Location = New System.Drawing.Point(80, 80)
         Me.TxtCel.MaxLength = 100
         Me.TxtCel.Name = "TxtCel"
-        Me.TxtCel.Size = New System.Drawing.Size(834, 22)
+        Me.TxtCel.Size = New System.Drawing.Size(836, 22)
         Me.TxtCel.TabIndex = 14
         '
         'TxtTel
         '
         Me.TxtTel.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TxtTel.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtTel.Location = New System.Drawing.Point(79, 49)
+        Me.TxtTel.Location = New System.Drawing.Point(80, 49)
         Me.TxtTel.MaxLength = 100
         Me.TxtTel.Name = "TxtTel"
         Me.TxtTel.Size = New System.Drawing.Size(170, 22)
@@ -500,10 +527,10 @@ Partial Class Cat_Clientes
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TxtCel2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TxtCel2.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtCel2.Location = New System.Drawing.Point(79, 108)
+        Me.TxtCel2.Location = New System.Drawing.Point(80, 108)
         Me.TxtCel2.MaxLength = 100
         Me.TxtCel2.Name = "TxtCel2"
-        Me.TxtCel2.Size = New System.Drawing.Size(837, 22)
+        Me.TxtCel2.Size = New System.Drawing.Size(836, 22)
         Me.TxtCel2.TabIndex = 15
         '
         'TxtTel2
@@ -551,6 +578,7 @@ Partial Class Cat_Clientes
         Me.GroupBoxClientes.Controls.Add(Me.Label19)
         Me.GroupBoxClientes.Controls.Add(Me.TxtNombre)
         Me.GroupBoxClientes.Controls.Add(Me.LblNombres)
+        Me.GroupBoxClientes.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBoxClientes.ForeColor = System.Drawing.SystemColors.Desktop
         Me.GroupBoxClientes.Location = New System.Drawing.Point(6, 6)
         Me.GroupBoxClientes.Name = "GroupBoxClientes"
@@ -565,7 +593,7 @@ Partial Class Cat_Clientes
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtCodigo.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.txtCodigo.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtCodigo.Location = New System.Drawing.Point(79, 59)
+        Me.txtCodigo.Location = New System.Drawing.Point(80, 59)
         Me.txtCodigo.MaxLength = 15
         Me.txtCodigo.Name = "txtCodigo"
         Me.txtCodigo.Size = New System.Drawing.Size(242, 22)
@@ -588,6 +616,7 @@ Partial Class Cat_Clientes
         Me.CiudadesComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
         Me.CiudadesComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.CiudadesComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CiudadesComboBox.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CiudadesComboBox.FormattingEnabled = True
         Me.CiudadesComboBox.Location = New System.Drawing.Point(80, 143)
         Me.CiudadesComboBox.Name = "CiudadesComboBox"
@@ -599,6 +628,7 @@ Partial Class Cat_Clientes
         Me.EstadosComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
         Me.EstadosComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
         Me.EstadosComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.EstadosComboBox.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.EstadosComboBox.FormattingEnabled = True
         Me.EstadosComboBox.ItemHeight = 14
         Me.EstadosComboBox.Location = New System.Drawing.Point(80, 115)
@@ -608,6 +638,7 @@ Partial Class Cat_Clientes
         '
         'txtLimCred
         '
+        Me.txtLimCred.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtLimCred.Location = New System.Drawing.Point(328, 227)
         Me.txtLimCred.Maximum = New Decimal(New Integer() {1215752191, 23, 0, 0})
         Me.txtLimCred.Name = "txtLimCred"
@@ -618,6 +649,7 @@ Partial Class Cat_Clientes
         'Label5
         '
         Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.SystemColors.ControlText
         Me.Label5.Location = New System.Drawing.Point(206, 230)
         Me.Label5.Name = "Label5"
@@ -703,7 +735,7 @@ Partial Class Cat_Clientes
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TxtColonia.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TxtColonia.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtColonia.Location = New System.Drawing.Point(81, 199)
+        Me.TxtColonia.Location = New System.Drawing.Point(80, 199)
         Me.TxtColonia.MaxLength = 100
         Me.TxtColonia.Name = "TxtColonia"
         Me.TxtColonia.Size = New System.Drawing.Size(836, 22)
@@ -794,6 +826,7 @@ Partial Class Cat_Clientes
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PanelGrid.Controls.Add(Me.GridDatosCLIENTES)
         Me.PanelGrid.Location = New System.Drawing.Point(464, 59)
+        Me.PanelGrid.Margin = New System.Windows.Forms.Padding(10)
         Me.PanelGrid.Name = "PanelGrid"
         Me.PanelGrid.Size = New System.Drawing.Size(51, 56)
         Me.PanelGrid.TabIndex = 291
@@ -816,6 +849,22 @@ Partial Class Cat_Clientes
         Me.GridDatosCLIENTES.TabStop = True
         Me.GridDatosCLIENTES.ToolTipText = ""
         '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabelClientes})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 640)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(1016, 22)
+        Me.StatusStrip1.TabIndex = 292
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'ToolStripStatusLabelClientes
+        '
+        Me.ToolStripStatusLabelClientes.Name = "ToolStripStatusLabelClientes"
+        Me.ToolStripStatusLabelClientes.Size = New System.Drawing.Size(410, 17)
+        Me.ToolStripStatusLabelClientes.Text = "Escriba el nombre o número de identificación de un cliente para filtrar los resul" & _
+            "tados."
+        '
         'Barra
         '
         Me.Barra.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
@@ -834,6 +883,7 @@ Partial Class Cat_Clientes
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1016, 662)
+        Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.PanelGrid)
         Me.Controls.Add(Me.PanelDatos)
         Me.Controls.Add(Me.Label4)
@@ -860,6 +910,8 @@ Partial Class Cat_Clientes
         Me.ClientesTabControl.ResumeLayout(False)
         Me.PanelDatos.ResumeLayout(False)
         Me.PanelGrid.ResumeLayout(False)
+        Me.StatusStrip1.ResumeLayout(False)
+        Me.StatusStrip1.PerformLayout()
         CType(Me.Barra, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -925,4 +977,8 @@ Partial Class Cat_Clientes
     Friend WithEvents txtCodigo As System.Windows.Forms.TextBox
     Friend WithEvents Label20 As System.Windows.Forms.Label
     Friend WithEvents ToolStripButtonNuevo As System.Windows.Forms.ToolStripButton
+    Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
+    Friend WithEvents ToolStripStatusLabelClientes As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents ToolStripButtonEliminarCuenta As System.Windows.Forms.ToolStripButton
 End Class
