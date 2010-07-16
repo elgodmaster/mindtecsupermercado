@@ -29,29 +29,7 @@
     End Sub
 #End Region
 
-#Region "  Botón Aceptar  "
-    Private Sub buttonAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles buttonAceptar.Click
-        If textBoxTicket.Text.Trim = "" Then
-            MessageBox.Show("No ha escrito el número de un ticket.", " Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return
-        End If
-
-        consulta127()
-
-        If lConsulta.ObtenerValor("V0", ObjRet.sResultado, "|") = "OK" Then
-            actualizarGrid()
-            mostrarControles()
-        Else
-            MessageBox.Show("No ha sido expedido un ticket con ese número.", " Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End If
-
-        textBoxTicket.Select(0, 10)
-        textBoxTicket.Focus()
-
-    End Sub
-#End Region
-
-#Region "  Botón Devolver  "
+#Region "  Botón DEVOLVER  "
     Private Sub ToolStripButtonDevolver_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButtonDevolver.Click
         If posRow() < 0 Then
             Return
@@ -71,7 +49,7 @@
             numArt = objDevolucion.numArtDev
         End If
 
-        If canArt = 1 Then
+        If canArt = 1 And numArt = totArt Then
             resul = MessageBox.Show("La cuenta será liquidada, ¿desea continuar?", " Devoluciones", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
             If resul = Windows.Forms.DialogResult.No Then
                 textBoxTicket.Select(0, 10)
@@ -81,16 +59,17 @@
         End If
 
         grabar126()
+
         consulta127()
+
         actualizarGrid()
 
         textBoxTicket.Select(0, 10)
         textBoxTicket.Focus()
-
     End Sub
 #End Region
 
-#Region "  Botón Limpiar  "
+#Region "  Botón LIMPIAR  "
     Private Sub ButtonLimpiar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonLimpiar.Click
         limpiarPantalla()
     End Sub
@@ -217,7 +196,7 @@
 
         GridDatosTicket.Columns(0).Visible = False
 
-        GridDatosTicket.Columns.SetWidth(1, 40)
+        GridDatosTicket.Columns.SetWidth(1, 44)
         GridDatosTicket.Columns.SetWidth(2, 145)
         GridDatosTicket.Columns.SetWidth(3, 80)
 
@@ -263,7 +242,6 @@
                                           "|V3=" & idVentaDetalla & "|"
 
         ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
-
     End Sub
 #End Region
 
@@ -320,11 +298,34 @@
 #End Region
 
 #Region "  Eventos cambio textBox con Enter  "
-    Private Sub textBoxTicket_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles textBoxTicket.KeyDown
-        If e.KeyCode = Keys.Enter Then
-            buttonAceptar.Focus()
+    Private Sub textBoxTicket_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles textBoxTicket.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+
+            If textBoxTicket.Text.Trim = "" Then
+                MessageBox.Show("No ha escrito el número de un ticket.", " Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return
+            End If
+
+            consulta127()
+
+            If lConsulta.ObtenerValor("V0", ObjRet.sResultado, "|") = "OK" Then
+                actualizarGrid()
+                mostrarControles()
+            Else
+                MessageBox.Show("No ha sido expedido un ticket con ese número.", " Devoluciones", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                textBoxTicket.Select(0, 10)
+                textBoxTicket.Focus()
+                Return
+            End If
+
+            actualizarGrid()
+
+            textBoxTicket.Select(0, 10)
+            textBoxTicket.Focus()
         End If
     End Sub
 #End Region
+
 
 End Class

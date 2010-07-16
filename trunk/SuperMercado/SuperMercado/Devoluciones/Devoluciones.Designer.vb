@@ -45,28 +45,29 @@ Partial Class Devoluciones
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Devoluciones))
         Me.DevolucionToolStrip = New System.Windows.Forms.ToolStrip
         Me.ButtonLimpiar = New System.Windows.Forms.ToolStripButton
         Me.ToolStripButtonDevolver = New System.Windows.Forms.ToolStripButton
         Me.Label4 = New System.Windows.Forms.Label
         Me.Label1 = New System.Windows.Forms.Label
         Me.textBoxTicket = New System.Windows.Forms.TextBox
-        Me.buttonAceptar = New System.Windows.Forms.Button
-        Me.Barra = New System.Windows.Forms.PictureBox
         Me.PanelDev = New System.Windows.Forms.Panel
         Me.TextBoxTotal = New System.Windows.Forms.TextBox
         Me.GridDatosTicket = New SourceGrid.DataGrid
+        Me.lblLiquidado = New System.Windows.Forms.Label
         Me.TextBoxFecha = New System.Windows.Forms.TextBox
         Me.TextBoxCajero = New System.Windows.Forms.TextBox
         Me.TextBoxNumTicket = New System.Windows.Forms.TextBox
         Me.PictureBox1 = New System.Windows.Forms.PictureBox
-        Me.lblLiquidado = New System.Windows.Forms.Label
+        Me.Barra = New System.Windows.Forms.PictureBox
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
+        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel
         Me.DevolucionToolStrip.SuspendLayout()
-        CType(Me.Barra, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelDev.SuspendLayout()
         Me.GridDatosTicket.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Barra, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'DevolucionToolStrip
@@ -75,7 +76,7 @@ Partial Class Devoluciones
         Me.DevolucionToolStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ButtonLimpiar, Me.ToolStripButtonDevolver})
         Me.DevolucionToolStrip.Location = New System.Drawing.Point(0, 0)
         Me.DevolucionToolStrip.Name = "DevolucionToolStrip"
-        Me.DevolucionToolStrip.Size = New System.Drawing.Size(802, 48)
+        Me.DevolucionToolStrip.Size = New System.Drawing.Size(919, 48)
         Me.DevolucionToolStrip.TabIndex = 305
         Me.DevolucionToolStrip.Text = "ToolStrip1"
         '
@@ -83,7 +84,7 @@ Partial Class Devoluciones
         '
         Me.ButtonLimpiar.AutoSize = False
         Me.ButtonLimpiar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ButtonLimpiar.Image = CType(resources.GetObject("ButtonLimpiar.Image"), System.Drawing.Image)
+        Me.ButtonLimpiar.Image = Global.SuperMercado.My.Resources.Resources.page
         Me.ButtonLimpiar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.ButtonLimpiar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ButtonLimpiar.Name = "ButtonLimpiar"
@@ -93,11 +94,12 @@ Partial Class Devoluciones
         'ToolStripButtonDevolver
         '
         Me.ToolStripButtonDevolver.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButtonDevolver.Image = CType(resources.GetObject("ToolStripButtonDevolver.Image"), System.Drawing.Image)
+        Me.ToolStripButtonDevolver.Image = Global.SuperMercado.My.Resources.Resources.basket_remove
+        Me.ToolStripButtonDevolver.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.ToolStripButtonDevolver.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButtonDevolver.Name = "ToolStripButtonDevolver"
-        Me.ToolStripButtonDevolver.Size = New System.Drawing.Size(23, 45)
-        Me.ToolStripButtonDevolver.Text = "Devolver"
+        Me.ToolStripButtonDevolver.Size = New System.Drawing.Size(36, 45)
+        Me.ToolStripButtonDevolver.Text = "Devolver artículo"
         '
         'Label4
         '
@@ -125,7 +127,7 @@ Partial Class Devoluciones
         '
         'textBoxTicket
         '
-        Me.textBoxTicket.BackColor = System.Drawing.SystemColors.Info
+        Me.textBoxTicket.BackColor = System.Drawing.SystemColors.HighlightText
         Me.textBoxTicket.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.textBoxTicket.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.textBoxTicket.Location = New System.Drawing.Point(140, 95)
@@ -135,32 +137,6 @@ Partial Class Devoluciones
         Me.textBoxTicket.Size = New System.Drawing.Size(170, 22)
         Me.textBoxTicket.TabIndex = 309
         '
-        'buttonAceptar
-        '
-        Me.buttonAceptar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.buttonAceptar.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.buttonAceptar.BackgroundImage = CType(resources.GetObject("buttonAceptar.BackgroundImage"), System.Drawing.Image)
-        Me.buttonAceptar.Font = New System.Drawing.Font("Verdana", 8.0!)
-        Me.buttonAceptar.Location = New System.Drawing.Point(710, 92)
-        Me.buttonAceptar.Name = "buttonAceptar"
-        Me.buttonAceptar.Size = New System.Drawing.Size(80, 25)
-        Me.buttonAceptar.TabIndex = 329
-        Me.buttonAceptar.Text = "Aceptar"
-        Me.buttonAceptar.UseVisualStyleBackColor = False
-        '
-        'Barra
-        '
-        Me.Barra.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Barra.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.Barra.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Barra.Location = New System.Drawing.Point(-135, 132)
-        Me.Barra.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
-        Me.Barra.Name = "Barra"
-        Me.Barra.Size = New System.Drawing.Size(1337, 4)
-        Me.Barra.TabIndex = 310
-        Me.Barra.TabStop = False
-        '
         'PanelDev
         '
         Me.PanelDev.Controls.Add(Me.TextBoxTotal)
@@ -169,7 +145,7 @@ Partial Class Devoluciones
         Me.PanelDev.Controls.Add(Me.TextBoxCajero)
         Me.PanelDev.Controls.Add(Me.TextBoxNumTicket)
         Me.PanelDev.Controls.Add(Me.PictureBox1)
-        Me.PanelDev.Location = New System.Drawing.Point(16, 151)
+        Me.PanelDev.Location = New System.Drawing.Point(16, 148)
         Me.PanelDev.Name = "PanelDev"
         Me.PanelDev.Size = New System.Drawing.Size(485, 515)
         Me.PanelDev.TabIndex = 336
@@ -192,13 +168,24 @@ Partial Class Devoluciones
         Me.GridDatosTicket.DeleteQuestionMessage = ""
         Me.GridDatosTicket.DeleteRowsWithDeleteKey = False
         Me.GridDatosTicket.FixedRows = 1
-        Me.GridDatosTicket.Location = New System.Drawing.Point(31, 110)
+        Me.GridDatosTicket.Location = New System.Drawing.Point(28, 110)
         Me.GridDatosTicket.Name = "GridDatosTicket"
         Me.GridDatosTicket.SelectionMode = SourceGrid.GridSelectionMode.Row
-        Me.GridDatosTicket.Size = New System.Drawing.Size(266, 299)
+        Me.GridDatosTicket.Size = New System.Drawing.Size(275, 299)
         Me.GridDatosTicket.TabIndex = 340
         Me.GridDatosTicket.TabStop = True
         Me.GridDatosTicket.ToolTipText = ""
+        '
+        'lblLiquidado
+        '
+        Me.lblLiquidado.AutoSize = True
+        Me.lblLiquidado.Font = New System.Drawing.Font("Arial", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblLiquidado.ForeColor = System.Drawing.Color.Red
+        Me.lblLiquidado.Location = New System.Drawing.Point(16, 126)
+        Me.lblLiquidado.Name = "lblLiquidado"
+        Me.lblLiquidado.Size = New System.Drawing.Size(233, 29)
+        Me.lblLiquidado.TabIndex = 4
+        Me.lblLiquidado.Text = "VENTA LIQUIDADA"
         '
         'TextBoxFecha
         '
@@ -240,24 +227,41 @@ Partial Class Devoluciones
         Me.PictureBox1.TabIndex = 336
         Me.PictureBox1.TabStop = False
         '
-        'lblLiquidado
+        'Barra
         '
-        Me.lblLiquidado.AutoSize = True
-        Me.lblLiquidado.Font = New System.Drawing.Font("Arial", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblLiquidado.ForeColor = System.Drawing.Color.Red
-        Me.lblLiquidado.Location = New System.Drawing.Point(16, 126)
-        Me.lblLiquidado.Name = "lblLiquidado"
-        Me.lblLiquidado.Size = New System.Drawing.Size(233, 29)
-        Me.lblLiquidado.TabIndex = 4
-        Me.lblLiquidado.Text = "VENTA LIQUIDADA"
+        Me.Barra.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Barra.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.Barra.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Barra.Location = New System.Drawing.Point(-135, 132)
+        Me.Barra.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.Barra.Name = "Barra"
+        Me.Barra.Size = New System.Drawing.Size(1454, 4)
+        Me.Barra.TabIndex = 310
+        Me.Barra.TabStop = False
+        '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 666)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(919, 22)
+        Me.StatusStrip1.TabIndex = 337
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'ToolStripStatusLabel1
+        '
+        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(353, 17)
+        Me.ToolStripStatusLabel1.Text = "Escriba un número de Ticket y teclee 'Enter' para mostrar la información."
         '
         'Devoluciones
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(802, 688)
+        Me.ClientSize = New System.Drawing.Size(919, 688)
+        Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.PanelDev)
-        Me.Controls.Add(Me.buttonAceptar)
         Me.Controls.Add(Me.Barra)
         Me.Controls.Add(Me.textBoxTicket)
         Me.Controls.Add(Me.Label1)
@@ -267,12 +271,14 @@ Partial Class Devoluciones
         Me.Text = "Devoluciones"
         Me.DevolucionToolStrip.ResumeLayout(False)
         Me.DevolucionToolStrip.PerformLayout()
-        CType(Me.Barra, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelDev.ResumeLayout(False)
         Me.PanelDev.PerformLayout()
         Me.GridDatosTicket.ResumeLayout(False)
         Me.GridDatosTicket.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Barra, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.StatusStrip1.ResumeLayout(False)
+        Me.StatusStrip1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -283,7 +289,6 @@ Partial Class Devoluciones
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents textBoxTicket As System.Windows.Forms.TextBox
     Friend WithEvents Barra As System.Windows.Forms.PictureBox
-    Friend WithEvents buttonAceptar As System.Windows.Forms.Button
     Friend WithEvents PanelDev As System.Windows.Forms.Panel
     Friend WithEvents TextBoxTotal As System.Windows.Forms.TextBox
     Friend WithEvents GridDatosTicket As SourceGrid.DataGrid
@@ -293,4 +298,6 @@ Partial Class Devoluciones
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents ToolStripButtonDevolver As System.Windows.Forms.ToolStripButton
     Friend WithEvents lblLiquidado As System.Windows.Forms.Label
+    Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
+    Friend WithEvents ToolStripStatusLabel1 As System.Windows.Forms.ToolStripStatusLabel
 End Class

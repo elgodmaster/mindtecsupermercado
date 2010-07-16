@@ -49,7 +49,6 @@ Partial Class Caja
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Caja))
         Me.Label4 = New System.Windows.Forms.Label
         Me.lblEntradaDin = New System.Windows.Forms.Label
         Me.Label15 = New System.Windows.Forms.Label
@@ -66,6 +65,10 @@ Partial Class Caja
         Me.lblGridVentaTotal = New System.Windows.Forms.Label
         Me.Label10 = New System.Windows.Forms.Label
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox
+        Me.Barra = New System.Windows.Forms.PictureBox
+        Me.lblTotEnt = New System.Windows.Forms.Label
+        Me.Label1 = New System.Windows.Forms.Label
         Me.lblCanRet = New System.Windows.Forms.Label
         Me.lblRetirar = New System.Windows.Forms.Label
         Me.lblTotal = New System.Windows.Forms.Label
@@ -80,15 +83,11 @@ Partial Class Caja
         Me.lblSalidas = New System.Windows.Forms.Label
         Me.Label9 = New System.Windows.Forms.Label
         Me.GridDatosVenta = New SourceGrid.DataGrid
-        Me.Label1 = New System.Windows.Forms.Label
-        Me.lblTotEnt = New System.Windows.Forms.Label
-        Me.Barra = New System.Windows.Forms.PictureBox
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox
         Me.StatusStrip1.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
-        CType(Me.Barra, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Barra, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label4
@@ -96,6 +95,7 @@ Partial Class Caja
         Me.Label4.AutoSize = True
         Me.Label4.BackColor = System.Drawing.Color.Transparent
         Me.Label4.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.SystemColors.Desktop
         Me.Label4.Location = New System.Drawing.Point(670, 232)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(43, 14)
@@ -107,7 +107,7 @@ Partial Class Caja
         Me.lblEntradaDin.AutoSize = True
         Me.lblEntradaDin.BackColor = System.Drawing.Color.Transparent
         Me.lblEntradaDin.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblEntradaDin.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.lblEntradaDin.ForeColor = System.Drawing.SystemColors.ControlText
         Me.lblEntradaDin.Location = New System.Drawing.Point(785, 232)
         Me.lblEntradaDin.Name = "lblEntradaDin"
         Me.lblEntradaDin.Size = New System.Drawing.Size(43, 13)
@@ -120,7 +120,7 @@ Partial Class Caja
         Me.Label15.AutoSize = True
         Me.Label15.BackColor = System.Drawing.Color.Transparent
         Me.Label15.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label15.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.Label15.ForeColor = System.Drawing.SystemColors.ControlText
         Me.Label15.Location = New System.Drawing.Point(400, 78)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(142, 14)
@@ -133,7 +133,7 @@ Partial Class Caja
         Me.Label16.AutoSize = True
         Me.Label16.BackColor = System.Drawing.Color.Transparent
         Me.Label16.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label16.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.Label16.ForeColor = System.Drawing.SystemColors.ControlText
         Me.Label16.Location = New System.Drawing.Point(400, 269)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(132, 14)
@@ -186,7 +186,7 @@ Partial Class Caja
         '
         Me.btnHacerCorte.AutoSize = False
         Me.btnHacerCorte.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.btnHacerCorte.Image = CType(resources.GetObject("btnHacerCorte.Image"), System.Drawing.Image)
+        Me.btnHacerCorte.Image = Global.SuperMercado.My.Resources.Resources.cash_register
         Me.btnHacerCorte.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.btnHacerCorte.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnHacerCorte.Name = "btnHacerCorte"
@@ -213,6 +213,7 @@ Partial Class Caja
         Me.Label6.AutoSize = True
         Me.Label6.BackColor = System.Drawing.Color.Transparent
         Me.Label6.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.ForeColor = System.Drawing.SystemColors.Desktop
         Me.Label6.Location = New System.Drawing.Point(670, 423)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(43, 14)
@@ -224,7 +225,7 @@ Partial Class Caja
         Me.lblSalDinero.AutoSize = True
         Me.lblSalDinero.BackColor = System.Drawing.Color.Transparent
         Me.lblSalDinero.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblSalDinero.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.lblSalDinero.ForeColor = System.Drawing.SystemColors.ControlText
         Me.lblSalDinero.Location = New System.Drawing.Point(785, 421)
         Me.lblSalDinero.Name = "lblSalDinero"
         Me.lblSalDinero.Size = New System.Drawing.Size(43, 13)
@@ -237,7 +238,7 @@ Partial Class Caja
         Me.Label2.AutoSize = True
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.Label2.ForeColor = System.Drawing.SystemColors.ControlText
         Me.Label2.Location = New System.Drawing.Point(400, 450)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(93, 14)
@@ -249,7 +250,7 @@ Partial Class Caja
         Me.lblGridVentaTotal.AutoSize = True
         Me.lblGridVentaTotal.BackColor = System.Drawing.Color.Transparent
         Me.lblGridVentaTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblGridVentaTotal.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.lblGridVentaTotal.ForeColor = System.Drawing.SystemColors.ControlText
         Me.lblGridVentaTotal.Location = New System.Drawing.Point(785, 602)
         Me.lblGridVentaTotal.Name = "lblGridVentaTotal"
         Me.lblGridVentaTotal.Size = New System.Drawing.Size(43, 13)
@@ -261,6 +262,7 @@ Partial Class Caja
         Me.Label10.AutoSize = True
         Me.Label10.BackColor = System.Drawing.Color.Transparent
         Me.Label10.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.ForeColor = System.Drawing.SystemColors.Desktop
         Me.Label10.Location = New System.Drawing.Point(670, 604)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(43, 14)
@@ -290,6 +292,54 @@ Partial Class Caja
         Me.GroupBox1.Size = New System.Drawing.Size(337, 464)
         Me.GroupBox1.TabIndex = 263
         Me.GroupBox1.TabStop = False
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PictureBox1.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.PictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.PictureBox1.Location = New System.Drawing.Point(33, 252)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(259, 4)
+        Me.PictureBox1.TabIndex = 286
+        Me.PictureBox1.TabStop = False
+        '
+        'Barra
+        '
+        Me.Barra.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Barra.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.Barra.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Barra.Location = New System.Drawing.Point(33, 147)
+        Me.Barra.Name = "Barra"
+        Me.Barra.Size = New System.Drawing.Size(259, 4)
+        Me.Barra.TabIndex = 285
+        Me.Barra.TabStop = False
+        '
+        'lblTotEnt
+        '
+        Me.lblTotEnt.AutoSize = True
+        Me.lblTotEnt.BackColor = System.Drawing.Color.Transparent
+        Me.lblTotEnt.Font = New System.Drawing.Font("Verdana", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTotEnt.ForeColor = System.Drawing.Color.DarkGreen
+        Me.lblTotEnt.Location = New System.Drawing.Point(221, 176)
+        Me.lblTotEnt.Name = "lblTotEnt"
+        Me.lblTotEnt.Size = New System.Drawing.Size(62, 18)
+        Me.lblTotEnt.TabIndex = 275
+        Me.lblTotEnt.Text = "$ 0.00"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Font = New System.Drawing.Font("Verdana", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.Label1.Location = New System.Drawing.Point(30, 176)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(138, 18)
+        Me.Label1.TabIndex = 274
+        Me.Label1.Text = "Total entradas: "
         '
         'lblCanRet
         '
@@ -443,12 +493,12 @@ Partial Class Caja
         Me.Label9.AutoSize = True
         Me.Label9.BackColor = System.Drawing.Color.Transparent
         Me.Label9.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.Label9.ForeColor = System.Drawing.SystemColors.ControlText
         Me.Label9.Location = New System.Drawing.Point(35, 78)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(103, 14)
+        Me.Label9.Size = New System.Drawing.Size(121, 14)
         Me.Label9.TabIndex = 250
-        Me.Label9.Text = "Dinero en caja"
+        Me.Label9.Text = "DINERO EN CAJA"
         '
         'GridDatosVenta
         '
@@ -464,54 +514,6 @@ Partial Class Caja
         Me.GridDatosVenta.TabIndex = 247
         Me.GridDatosVenta.TabStop = True
         Me.GridDatosVenta.ToolTipText = ""
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.BackColor = System.Drawing.Color.Transparent
-        Me.Label1.Font = New System.Drawing.Font("Verdana", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.SystemColors.Desktop
-        Me.Label1.Location = New System.Drawing.Point(30, 176)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(138, 18)
-        Me.Label1.TabIndex = 274
-        Me.Label1.Text = "Total entradas: "
-        '
-        'lblTotEnt
-        '
-        Me.lblTotEnt.AutoSize = True
-        Me.lblTotEnt.BackColor = System.Drawing.Color.Transparent
-        Me.lblTotEnt.Font = New System.Drawing.Font("Verdana", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTotEnt.ForeColor = System.Drawing.Color.DarkGreen
-        Me.lblTotEnt.Location = New System.Drawing.Point(221, 176)
-        Me.lblTotEnt.Name = "lblTotEnt"
-        Me.lblTotEnt.Size = New System.Drawing.Size(62, 18)
-        Me.lblTotEnt.TabIndex = 275
-        Me.lblTotEnt.Text = "$ 0.00"
-        '
-        'Barra
-        '
-        Me.Barra.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Barra.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.Barra.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Barra.Location = New System.Drawing.Point(33, 147)
-        Me.Barra.Name = "Barra"
-        Me.Barra.Size = New System.Drawing.Size(259, 4)
-        Me.Barra.TabIndex = 285
-        Me.Barra.TabStop = False
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PictureBox1.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.PictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.PictureBox1.Location = New System.Drawing.Point(33, 252)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(259, 4)
-        Me.PictureBox1.TabIndex = 286
-        Me.PictureBox1.TabStop = False
         '
         'Caja
         '
@@ -546,8 +548,8 @@ Partial Class Caja
         Me.ToolStrip1.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
-        CType(Me.Barra, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Barra, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

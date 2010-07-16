@@ -248,6 +248,7 @@ Public Class Principal
             cerrarVentanasHijas()
             Me.Visible = False
             Login()
+            restriccionPermisos(usuario)
         Else
             Return
         End If

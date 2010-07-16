@@ -216,25 +216,27 @@ Public Class Cat_Clientes
         cColorHeader = Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(168, Byte), Integer))
 
         'Vista columna encabezado
-
         Dim viewcolumnheader As SourceGrid.Cells.Views.ColumnHeader = New SourceGrid.Cells.Views.ColumnHeader
         Dim backheader As DevAge.Drawing.VisualElements.ColumnHeader = New DevAge.Drawing.VisualElements.ColumnHeader
-        backheader.BackColor = cColorHeader
-        backheader.Border = DevAge.Drawing.RectangleBorder.RectangleBlack1Width
-        viewcolumnheader.Background = backheader
-        viewcolumnheader.ForeColor = Color.Black
-        viewcolumnheader.Font = New Font("Verdana", 8, FontStyle.Bold)
-        viewcolumnheader.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
+        viewcolumnheader.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewcolumnheader.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleLeft
+
+        Dim viewcolumnheader2 As SourceGrid.Cells.Views.ColumnHeader = New SourceGrid.Cells.Views.ColumnHeader
+        Dim backheader2 As DevAge.Drawing.VisualElements.ColumnHeader = New DevAge.Drawing.VisualElements.ColumnHeader
+        viewcolumnheader2.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewcolumnheader2.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleRight
+
+        Dim viewcolumnheader3 As SourceGrid.Cells.Views.ColumnHeader = New SourceGrid.Cells.Views.ColumnHeader
+        Dim backheader3 As DevAge.Drawing.VisualElements.ColumnHeader = New DevAge.Drawing.VisualElements.ColumnHeader
+        viewcolumnheader3.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewcolumnheader3.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
 
         'COLUMNAS
-        GridDatosCuentas.GetCell(0, 1).View = viewcolumnheader
+        GridDatosCuentas.GetCell(0, 1).View = viewcolumnheader3
         GridDatosCuentas.GetCell(0, 2).View = viewcolumnheader
-        GridDatosCuentas.GetCell(0, 3).View = viewcolumnheader
-        GridDatosCuentas.GetCell(0, 4).View = viewcolumnheader
-        GridDatosCuentas.GetCell(0, 5).View = viewcolumnheader
-        'GridDatosCuentas.GetCell(0, 6).View = viewcolumnheader
-        'GridDatosCuentas.GetCell(0, 7).View = viewcolumnheader
-        'GridDatosCuentas.GetCell(0, 8).View = viewcolumnheader
+        GridDatosCuentas.GetCell(0, 3).View = viewcolumnheader3
+        GridDatosCuentas.GetCell(0, 4).View = viewcolumnheader3
+        GridDatosCuentas.GetCell(0, 5).View = viewcolumnheader3
 
     End Sub
 
@@ -245,28 +247,20 @@ Public Class Cat_Clientes
         'gcolorRow esta declarada en el moduloGeneral
 
         'vistas
-        Dim viewNormal As CellBackColorAlternate = New CellBackColorAlternate(gColorRow, Color.White)
-        viewNormal.Font = New Font("Verdana", 8, FontStyle.Regular)
-        viewNormal.Border = border
+        Dim viewCenter As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        viewCenter.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewCenter.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
 
-        Dim viewDinero As CellBackColorAlternate = New CellBackColorAlternate(gColorRow, Color.White)
-        viewDinero.Font = New Font("Verdana", 8, FontStyle.Regular)
-        viewDinero.Border = border
-        viewDinero.TextAlignment = DevAge.Drawing.ContentAlignment.BottomRight
+        Dim viewIzquierda As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        viewIzquierda.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewIzquierda.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleLeft
 
-        Dim viewNormalCentrado As CellBackColorAlternate = New CellBackColorAlternate(gColorRow, Color.White)
-        viewNormalCentrado.Font = New Font("Verdana", 8, FontStyle.Regular)
-        viewNormalCentrado.Border = border
-        viewNormalCentrado.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
+        Dim viewDerecha As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        viewDerecha.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewDerecha.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleRight
 
         Dim myfont As New Font("Verdana", 8, FontStyle.Regular)
 
-        Dim viewBtn As SourceGrid.Cells.Views.Button = New SourceGrid.Cells.Views.Button()
-        viewBtn.BackColor = gColorRow
-        viewBtn.Border = border
-        viewBtn.Font = myfont
-        viewBtn.ForeColor = Color.Black
-        viewBtn.TextAlignment = DevAge.Drawing.ContentAlignment.BottomCenter
 
         'EVENTOS
 
@@ -282,61 +276,38 @@ Public Class Cat_Clientes
 
         GridColumn = GridDatosCuentas.Columns.Add("C1", "Cuenta", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormalCentrado
+        GridColumn.DataCell.View = viewCenter
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
         GridColumn = GridDatosCuentas.Columns.Add("C2", "Artículo(s)", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormal
+        GridColumn.DataCell.View = viewIzquierda
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
         GridColumn = GridDatosCuentas.Columns.Add("C3", "Monto", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewDinero
+        GridColumn.DataCell.View = viewDerecha
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
         GridColumn = GridDatosCuentas.Columns.Add("C4", "Adeudo", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewDinero
+        GridColumn.DataCell.View = viewDerecha
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
         GridColumn = GridDatosCuentas.Columns.Add("C5", "Abonado", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewDinero
+        GridColumn.DataCell.View = viewDerecha
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
         GridDatosCuentas.Columns(0).Visible = False
 
         ''COLUMNAS
-        ''AGREGAR Abonar
-        'GridColumn = GridDatosCuentas.Columns.Add(Nothing, "Abonar", New SourceGrid.Cells.Button("  "))
-        'GridColumn.DataCell.AddController(gridKeydown)
-        'GridColumn.DataCell.AddController(clickEventAbonar)
-        'GridColumn.DataCell.View = viewBtn
-        'GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
-
-        ''AGREGAR Detalle
-        'GridColumn = GridDatosCuentas.Columns.Add(Nothing, "Detalle", New SourceGrid.Cells.Button("  "))
-        'GridColumn.DataCell.AddController(gridKeydown)
-        'GridColumn.DataCell.AddController(clickEventDetalle)
-        'GridColumn.DataCell.View = viewBtn
-        'GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
-
-        ''AGREGAR Abonos
-        'GridColumn = GridDatosCuentas.Columns.Add(Nothing, "Abonos", New SourceGrid.Cells.Button("  "))
-        'GridColumn.DataCell.AddController(gridKeydown)
-        'GridColumn.DataCell.AddController(clickEventAbonos)
-        'GridColumn.DataCell.View = viewBtn
-        'GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
         GridDatosCuentas.Columns.SetWidth(1, 70)
         GridDatosCuentas.Columns.SetWidth(2, 149)
         GridDatosCuentas.Columns.SetWidth(3, 128)
         GridDatosCuentas.Columns.SetWidth(4, 128)
         GridDatosCuentas.Columns.SetWidth(5, 128)
-        'GridDatosCuentas.Columns.SetWidth(6, 60)
-        'GridDatosCuentas.Columns.SetWidth(7, 60)
-        'GridDatosCuentas.Columns.SetWidth(8, 60)
 
     End Sub
 
@@ -348,7 +319,7 @@ Public Class Cat_Clientes
     End Sub
 #End Region
 
-#Region "  Evento: Cat_Clientes LOAD  "
+#Region "  Evento: Cat_Clientes - LOAD  "
     Private Sub Cat_Clientes_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ocultarControlesAbonos()
 
@@ -356,8 +327,7 @@ Public Class Cat_Clientes
 
         ' Ocultar algunos elementos.
         ClientesTabControl.Visible = False
-        ' Pie de Pagina Mensaje
-        ' Deshabilitar
+
         Me.Grabar.Visible = False
         ' Se cargan el comboBox de Estados
         Caja = "Consulta114a" : Parametros = ""
@@ -415,18 +385,28 @@ Public Class Cat_Clientes
 
 #End Region
 
-#Region " Grabar "
+#Region "  Botón GRABAR  "
     Private Sub Grabar_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles Grabar.Click
         'Variable de trabajo
         Dim Result As DialogResult
-        Result = MessageBox.Show("  ¿Deseas Guardar los Cambios?  ", " Clientes", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
+        Dim resultado As String
+        Result = MessageBox.Show("¿Desea guardar los cambios realizados?  ", " Clientes", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
         If Result = Windows.Forms.DialogResult.Yes Then
             grabra105()
+            resultado = lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False)
+            If ObjRet.bOk Then
+                MessageBox.Show(" " & resultado, " Clientes", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                limpiarPantalla()
+            Else
+                MessageBox.Show(" " & resultado, " Clientes", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return
+            End If
+
             showClientsGrid()
+            consulta128()
             Limpiar.Visible = False
             Grabar.Visible = False
         End If
-        
     End Sub
 #End Region
 
@@ -438,6 +418,7 @@ Public Class Cat_Clientes
         Limpiar.Visible = True
         Grabar.Visible = True
 
+        ClientesTabControl.SelectTab(0)
         TxtNombre.Focus()
     End Sub
 #End Region
@@ -445,6 +426,21 @@ Public Class Cat_Clientes
 #Region "  Botón LIMPIAR  "
     Private Sub Limpiar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Limpiar.Click
         limpiarPantalla()
+    End Sub
+#End Region
+
+#Region "  Botón ELIMINAR  "
+    Private Sub ToolStripButtonEliminarCuenta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButtonEliminarCuenta.Click
+        Dim pos As Integer = posRowCuentas()
+        If pos < 0 Then
+            Return
+        End If
+
+        Dim resul As DialogResult
+        resul = MessageBox.Show(" La cuenta será liquidada, ¿desea continuar?", " Clientes", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If resul = Windows.Forms.DialogResult.Yes Then
+            eliminar104()
+        End If
     End Sub
 #End Region
 
@@ -458,6 +454,7 @@ Public Class Cat_Clientes
         Dim idCuenta As Integer = dsDatosCuentas.Tables(0).Rows(pos).Item(0)
 
         Dim objDetalle As New Cat_Clientes_DetalleVenta
+        objDetalle.nomCliente = textBoxCliente.Text.Trim
         objDetalle.cargaIdCuenta(idCuenta, Me.textBoxCliente.Text.Trim, Me)
         objDetalle.StartPosition = FormStartPosition.CenterScreen
         objDetalle.Show()
@@ -490,6 +487,7 @@ Public Class Cat_Clientes
         Dim codigo As String = Me.textBoxCliente.Text.Trim
 
         Dim objRegistroAbono As New Cat_Clientes_RegistroAbono()
+        objRegistroAbono.nomCliente = textBoxCliente.Text.Trim
         objRegistroAbono.StartPosition = FormStartPosition.CenterScreen
         objRegistroAbono.pasoVariables(pos, _
                                        idCuenta, _
@@ -524,6 +522,8 @@ Public Class Cat_Clientes
 
         lblSaldoActual.Text = "$ 0.00"
         lblLimiteCredito.Text = "$ 0.00"
+
+        TxtNombre.Focus()
     End Sub
 #End Region
 
@@ -551,6 +551,8 @@ Public Class Cat_Clientes
 
 #Region "  Rutina: mostrarControlesAbonos  "
     Private Sub mostrarControlesAbonos()
+        ToolStripSeparator1.Visible = True
+        ToolStripButtonEliminarCuenta.Visible = True
         ToolStripButtonAbonos.Visible = True
         ToolStripButtonDetalle.Visible = True
         ToolStripButtonAbonar.Visible = True
@@ -559,6 +561,8 @@ Public Class Cat_Clientes
 
 #Region "  Rutina: ocultarControlesAbonos  "
     Private Sub ocultarControlesAbonos()
+        ToolStripSeparator1.Visible = False
+        ToolStripButtonEliminarCuenta.Visible = False
         ToolStripButtonAbonos.Visible = False
         ToolStripButtonDetalle.Visible = False
         ToolStripButtonAbonar.Visible = False
@@ -613,6 +617,8 @@ Public Class Cat_Clientes
         PanelDatos.SetBounds(11, 138, 1000, 525)
         ClientesTabControl.Visible = True
         PanelDatos.Visible = True
+        Grabar.Visible = True
+        ToolStripStatusLabelClientes.Text = "Seleccione el campo de texto Cliente para hacer una nueva búsqueda."
 
         PanelGrid.Visible = False
     End Sub
@@ -631,12 +637,10 @@ Public Class Cat_Clientes
     Sub consulta105()
         'Actualiza los campos de un cliente.
 
-        Caja = "Consulta105" : Parametros = "V1=" & Me.textBoxCliente.Text
+        Caja = "Consulta105" : Parametros = "V1=" & Me.textBoxCliente.Text.Trim
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
         ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
         If ObjRet.bOk Then
-            'Deshabilitar
-            Me.textBoxCliente.Enabled = False
 
             'Asignar
             Me.TxtNombre.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
@@ -661,14 +665,14 @@ Public Class Cat_Clientes
                 lblLimiteCredito.Text = "$ 0.00"
             Else
                 Me.txtLimCred.Value = lConsulta.ObtenerValor("V16", ObjRet.sResultado, "|")
-                lblLimiteCredito.Text = "$ " & lConsulta.ObtenerValor("V16", ObjRet.sResultado, "|")
+                lblLimiteCredito.Text = FormatCurrency(lConsulta.ObtenerValor("V16", ObjRet.sResultado, "|"))
             End If
 
             ' MODIFICAR 
             If lConsulta.ObtenerValor("V17", ObjRet.sResultado, "|") = "" Then
                 lblSaldoActual.Text = "$ 0.00"
             Else
-                lblSaldoActual.Text = "$ " & lConsulta.ObtenerValor("V17", ObjRet.sResultado, "|")
+                lblSaldoActual.Text = FormatCurrency(lConsulta.ObtenerValor("V17", ObjRet.sResultado, "|"))
             End If
         End If
     End Sub
@@ -677,6 +681,8 @@ Public Class Cat_Clientes
 #Region "  Rutina: consulta117  "
     Sub consulta117()
         'Actualiza el grid de las cuentas por cobrar de un cliente.
+
+        dsDatosCuentas.Tables(0).Clear()
 
         Caja = "Consulta117" : Parametros = "V1=" & Me.textBoxCliente.Text.Trim & "|"
         ObjRet = lConsulta.LlamarCaja(Caja, 1, Parametros)
@@ -749,22 +755,40 @@ Public Class Cat_Clientes
 
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
         ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
-        If ObjRet.bOk Then
-            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
-            limpiarPantalla()
-        Else
-            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
-        End If
+
     End Sub
 #End Region
 
-#Region "  Evento: textBoxCliente KEYDOWN  "
+#Region "  Rutina: eliminar104  "
+    Sub eliminar104()
+        Dim idCuenta As String
+        Dim adeudo As String
+
+        idCuenta = dsDatosCuentas.Tables(0).Rows(posRowCuentas).Item(0).ToString
+        adeudo = dsDatosCuentas.Tables(0).Rows(posRowCuentas).Item(3).ToString.Trim
+        adeudo = adeudo.Remove(0, 2)
+
+
+
+        Caja = "eliminar104" : Parametros = "V1=" & idCuenta & _
+                                            "|V2=" & adeudo & _
+                                            "|V3=" & TxtNombre.Text.Trim & "|"
+        ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
+
+        consulta117()
+
+        consulta105()
+
+    End Sub
+#End Region
+
+#Region "  Evento: textBoxCliente - TEXT CHANGED  "
     Private Sub textBoxCliente_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles textBoxCliente.TextChanged
         consulta128()
     End Sub
 #End Region
 
-#Region "  Evento: EstadosComboBox SELECTED VALUE CHANGED  "
+#Region "  Evento: EstadosComboBox - SELECTED VALUE CHANGED  "
     Private Sub EstadosComboBox_SelectedValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EstadosComboBox.SelectedValueChanged
         Dim objRet2 As CRetorno
 
@@ -776,15 +800,33 @@ Public Class Cat_Clientes
     End Sub
 #End Region
 
-#Region "  Evento: GridDatosCLIENTES DOUBLECLICK  "
+#Region "  Evento: GridDatosCLIENTES - DOUBLECLICK  "
     Private Sub GridDatosCLIENTES_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GridDatosCLIENTES.DoubleClick
         Dim nomCliente As String
-        nomCliente = dsDatosClientes.Tables(0).Rows(posRowClientes).Item(0).ToString
+        nomCliente = dsDatosClientes.Tables(0).Rows(posRowClientes).Item(1).ToString
         textBoxCliente.Text = nomCliente.Trim
 
-        consulta105()
         showData()
 
+        consulta105()
+
+        consulta117()
+
+        ClientesTabControl.SelectedIndex = 0
+
+    End Sub
+#End Region
+
+#Region "  Evento: textBoxCliente - CLICK  "
+    Private Sub textBoxCliente_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles textBoxCliente.Click
+        showClientsGrid()
+        textBoxCliente.Clear()
+        Limpiar.Visible = False
+        Grabar.Visible = False
+        ToolStripButtonNuevo.Visible = True
+        ToolStripStatusLabelClientes.Text = "Escriba el nombre o número de identificación de un cliente para filtrar los resultados."
+
+        consulta128()
     End Sub
 #End Region
 
@@ -816,7 +858,103 @@ Public Class Cat_Clientes
             CiudadesComboBox.Focus()
         End If
     End Sub
+
+    Private Sub CiudadesComboBox_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles CiudadesComboBox.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            TxtDireccion.Focus()
+        End If
+    End Sub
+
+    Private Sub TxtDireccion_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TxtDireccion.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            TxtColonia.Focus()
+        End If
+    End Sub
+
+    Private Sub TxtColonia_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TxtColonia.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            Txtcp.Focus()
+        End If
+    End Sub
+
+    Private Sub Txtcp_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles Txtcp.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            txtLimCred.Select(0, 10)
+            txtLimCred.Focus()
+        End If
+    End Sub
+
+    Private Sub txtLimCred_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtLimCred.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            TxtMail.Focus()
+        End If
+    End Sub
+
+    Private Sub TxtMail_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TxtMail.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            TxtTel.Focus()
+        End If
+    End Sub
+
+    Private Sub TxtTel_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TxtTel.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            txtext.Focus()
+        End If
+    End Sub
+
+    Private Sub txtext_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtext.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            TxtTel2.Focus()
+        End If
+    End Sub
+
+    Private Sub TxtTel2_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TxtTel2.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            txtext2.Focus()
+        End If
+    End Sub
+
+    Private Sub txtext2_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtext2.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            TxtCel.Focus()
+        End If
+    End Sub
+
+    Private Sub TxtCel_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TxtCel.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            TxtCel2.Focus()
+        End If
+    End Sub
+
+    Private Sub TxtCel2_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TxtCel2.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            TxtFax.Focus()
+        End If
+    End Sub
+
+    Private Sub TxtFax_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TxtFax.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            Grabar.Select()
+        End If
+    End Sub
 #End Region
 
+#Region "  Evento: ClientesTabControl - ENTER/LEAVE  "
+
+#End Region
+    
 End Class
 

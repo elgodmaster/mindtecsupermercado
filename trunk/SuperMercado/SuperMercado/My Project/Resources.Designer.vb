@@ -60,9 +60,51 @@ Namespace My.Resources
             End Set
         End Property
         
+        Friend ReadOnly Property accept() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("accept", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        Friend ReadOnly Property add() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("add", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
         Friend ReadOnly Property attributes_display() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("attributes_display", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        Friend ReadOnly Property basket_remove() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("basket_remove", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        Friend ReadOnly Property basket_remove1() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("basket_remove1", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        Friend ReadOnly Property cash_register() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("cash_register", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        Friend ReadOnly Property delete() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("delete", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -88,9 +130,23 @@ Namespace My.Resources
             End Get
         End Property
         
+        Friend ReadOnly Property money_dollar() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("money_dollar", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
         Friend ReadOnly Property page() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("page", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        Friend ReadOnly Property printer() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("printer", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
