@@ -17,6 +17,7 @@
     <OptionCompare>Binary</OptionCompare>
     <OptionStrict>Off</OptionStrict>
     <OptionInfer>On</OptionInfer>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -121,10 +122,22 @@
     <Compile Include="Catalogos\Cat_Clientes.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Catalogos\Cat_Clientes_Abonos.Designer.vb">
+      <DependentUpon>Cat_Clientes_Abonos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Catalogos\Cat_Clientes_Abonos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Catalogos\Cat_Clientes_DetalleVenta.Designer.vb">
       <DependentUpon>Cat_Clientes_DetalleVenta.vb</DependentUpon>
     </Compile>
     <Compile Include="Catalogos\Cat_Clientes_DetalleVenta.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Catalogos\Cat_Clientes_Devolucion.Designer.vb">
+      <DependentUpon>Cat_Clientes_Devolucion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Catalogos\Cat_Clientes_Devolucion.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Catalogos\Cat_Clientes_RegistroAbono.Designer.vb">
@@ -163,6 +176,12 @@
     <Compile Include="Catalogos\Cat_Departamentos.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Catalogos\Cat_Proveedores_Nueva_Cuenta.Designer.vb">
+      <DependentUpon>Cat_Proveedores_Nueva_Cuenta.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Catalogos\Cat_Proveedores_Nueva_Cuenta.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Catalogos\Cat_Unidades.Designer.vb">
       <DependentUpon>Cat_Unidades.vb</DependentUpon>
     </Compile>
@@ -170,17 +189,34 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ClsConsultas.vb" />
+    <Compile Include="Configuración\Tickets.Designer.vb">
+      <DependentUpon>Tickets.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Configuración\Tickets.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Cotizaciones\Cotización.Designer.vb">
+      <DependentUpon>Cotización.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Cotizaciones\Cotización.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Devoluciones\Devoluciones.Designer.vb">
+      <DependentUpon>Devoluciones.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Devoluciones\Devoluciones.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Devoluciones\Devoluciones_cantidad.Designer.vb">
+      <DependentUpon>Devoluciones_cantidad.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Devoluciones\Devoluciones_cantidad.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Facturacion\Facturacion.Designer.vb">
       <DependentUpon>Facturacion.vb</DependentUpon>
     </Compile>
     <Compile Include="Facturacion\Facturacion.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Funcion SoloNumeros\FuncionSoloNumeros.vb" />
@@ -278,6 +314,24 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Sesión\cambioUsuario.Designer.vb">
+      <DependentUpon>cambioUsuario.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Sesión\cambioUsuario.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Usuarios\Permisos.Designer.vb">
+      <DependentUpon>Permisos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Usuarios\Permisos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Usuarios\Usuarios.Designer.vb">
+      <DependentUpon>Usuarios.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Usuarios\Usuarios.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Cajas\Caja.resx">
@@ -301,8 +355,14 @@
     <EmbeddedResource Include="Catalogos\Cat_Clientes.resx">
       <DependentUpon>Cat_Clientes.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Catalogos\Cat_Clientes_Abonos.resx">
+      <DependentUpon>Cat_Clientes_Abonos.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Catalogos\Cat_Clientes_DetalleVenta.resx">
       <DependentUpon>Cat_Clientes_DetalleVenta.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Catalogos\Cat_Clientes_Devolucion.resx">
+      <DependentUpon>Cat_Clientes_Devolucion.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Catalogos\Cat_Clientes_RegistroAbono.resx">
       <DependentUpon>Cat_Clientes_RegistroAbono.vb</DependentUpon>
@@ -322,8 +382,23 @@
     <EmbeddedResource Include="Catalogos\Cat_Departamentos.resx">
       <DependentUpon>Cat_Departamentos.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Catalogos\Cat_Proveedores_Nueva_Cuenta.resx">
+      <DependentUpon>Cat_Proveedores_Nueva_Cuenta.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Catalogos\Cat_Unidades.resx">
       <DependentUpon>Cat_Unidades.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Configuración\Tickets.resx">
+      <DependentUpon>Tickets.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cotizaciones\Cotización.resx">
+      <DependentUpon>Cotización.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Devoluciones\Devoluciones.resx">
+      <DependentUpon>Devoluciones.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Devoluciones\Devoluciones_cantidad.resx">
+      <DependentUpon>Devoluciones_cantidad.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Facturacion\Facturacion.resx">
       <DependentUpon>Facturacion.vb</DependentUpon>
@@ -373,9 +448,18 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sesión\cambioUsuario.resx">
+      <DependentUpon>cambioUsuario.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Usuarios\Permisos.resx">
+      <DependentUpon>Permisos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Usuarios\Usuarios.resx">
+      <DependentUpon>Usuarios.vb</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="Usuarios\app.config" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -391,6 +475,10 @@
       <Project>{FA6819B4-6BF4-47FF-BB88-3C2BD747806D}</Project>
       <Name>ComponentesMindtec</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Componentes\Ticket\ImprimirTickets.csproj">
+      <Project>{A8061DC2-D5E3-4050-A779-07265DE1D10F}</Project>
+      <Name>ImprimirTickets</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\money_add1.png" />
@@ -402,7 +490,53 @@
     <None Include="Resources\1273188129_Symbol-Check.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Usuarios\" />
+    <None Include="My Project\app.manifest" />
+    <None Include="Resources\ticket2.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tickte3.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\page.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\disk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attributes_display.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\money_bag.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\money_add2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\accept.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\basket_remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cash_register.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\basket_remove1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\money_dollar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
