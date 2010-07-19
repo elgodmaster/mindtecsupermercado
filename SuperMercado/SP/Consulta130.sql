@@ -34,7 +34,7 @@ select	C1 = C.IdCuenta,
 		C4 = '$ ' + CONVERT(char, C.adeudo),
 				 
 		C5 = '$ ' + CONVERT(char, isnull((Select SUM(CA.monto)
-				  From SMercado..Cuentas_Abonos CA
+				  From SMercado..Cuentas_Pagar_Abonos CA
 				  Where idCuenta = C.IdCuenta 
 				  Group by CA.idCuenta), 0))
 				  

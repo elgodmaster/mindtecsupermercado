@@ -24,6 +24,12 @@ Public Class Cat_Proveedores
     Dim producto As String
     Dim cantidad As String
     Dim costo As String
+
+    Dim objAbonar As Cat_Proveedores_RegistroAbono
+    Dim monto As Decimal
+
+    Dim objAbonos As Cat_Proveedores_DetalleAbono
+    Dim idCuenta As String
 #End Region
 
 #Region "  Grid Datos PROVEEDORES  "
@@ -39,11 +45,15 @@ Public Class Cat_Proveedores
         dsDatosProveedores.Tables("Table").Columns.Add("C4", GetType(String))
         dsDatosProveedores.Tables("Table").Columns.Add("C5", GetType(String))
         dsDatosProveedores.Tables("Table").Columns.Add("C6", GetType(String))
+        dsDatosProveedores.Tables("Table").Columns.Add("C7", GetType(String))
 
     End Sub
 
     Sub ConfiguraGridDatosPROVEEDORES()
         viewDatosProveedores = dsDatosProveedores.Tables("Table").DefaultView
+
+        GridDatosPROVEEDORES.SelectionMode = SourceGrid.GridSelectionMode.Row
+
 
         viewDatosProveedores.AllowEdit = False
         viewDatosProveedores.AllowNew = False
@@ -93,6 +103,8 @@ Public Class Cat_Proveedores
         GridDatosPROVEEDORES.GetCell(0, 4).View = viewcolumnheader
         GridDatosPROVEEDORES.GetCell(0, 5).View = viewcolumnheader3
         GridDatosPROVEEDORES.GetCell(0, 6).View = viewcolumnheader
+
+
 
     End Sub
 
@@ -160,6 +172,7 @@ Public Class Cat_Proveedores
         GridDatosPROVEEDORES.Columns.SetWidth(4, 300)
         GridDatosPROVEEDORES.Columns.SetWidth(5, 90)
         GridDatosPROVEEDORES.Columns.SetWidth(6, 170)
+
 
     End Sub
 #End Region
@@ -413,6 +426,75 @@ Public Class Cat_Proveedores
 
 #Region "  Botón ELIMINAR CUENTA  "
     Private Sub ToolStripButtonEliminar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButtonEliminar.Click
+        Dim pos As Integer = posRowCuentas()
+        If pos < 0 Then
+            Return
+        End If
+
+        Dim resul As DialogResult
+        resul = MessageBox.Show(" La cuenta será liquidada, ¿desea continuar?", " Clientes", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If resul = Windows.Forms.DialogResult.Yes Then
+            eliminar105()
+        End If
+    End Sub
+#End Region
+
+#Region "  Botón DETALLE  "
+    Private Sub ToolStripButtonDetalle_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButtonDetalle.Click
+        Dim pos As Integer = posRowCuentas()
+        If pos < 0 Then
+            Return
+        End If
+
+        Dim objDetalle As New Cat_Proveedores_DetalleVenta
+        objDetalle.idCuenta = dsDatosCuentas.Tables(0).Rows(pos).Item(0).ToString
+        objDetalle.nomCliente = Proveedor.Text.Trim
+        objDetalle.refCatProv = Me
+
+        objDetalle.StartPosition = FormStartPosition.CenterScreen
+        objDetalle.ShowDialog()
+
+    End Sub
+#End Region
+
+#Region "  Botón ABONOS REGISTRADOS  "
+    Private Sub ToolStripButtonAbonos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButtonAbonos.Click
+        If posRowCuentas() < 0 Then
+            Return
+        End If
+
+        idCuenta = dsDatosCuentas.Tables(0).Rows(posRowCuentas).Item(0).ToString
+
+        Dim objAbonos As New Cat_Proveedores_DetalleAbono
+        objAbonos.idCuenta = idCuenta
+
+        objAbonos.StartPosition = FormStartPosition.CenterScreen
+        objAbonos.ShowDialog()
+
+    End Sub
+#End Region
+
+#Region "  Botón ABONAR  "
+    Private Sub ToolStripButtonAbonar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButtonAbonar.Click
+        If posRowCuentas() < 0 Then
+            Return
+        End If
+
+        Dim objAbonar As New Cat_Proveedores_RegistroAbono
+        Dim adeudo As String = dsDatosCuentas.Tables(0).Rows(posRowCuentas).Item(3).ToString
+        adeudo = adeudo.Remove(0, 2)
+
+        objAbonar.adeudo = adeudo
+
+        objAbonar.StartPosition = FormStartPosition.CenterScreen
+        objAbonar.ShowDialog()
+
+        If objAbonar.ok Then
+            monto = objAbonar.monto
+
+            grabar128()
+
+        End If
 
     End Sub
 #End Region
@@ -463,6 +545,17 @@ Public Class Cat_Proveedores
 #Region "  Rutina: posRowProveedores  "
     Private Function posRowProveedores() As Integer
         Dim pos() As Integer = GridDatosPROVEEDORES.Selection.GetSelectionRegion.GetRowsIndex
+        If pos.Length = 0 Then
+            Return -1
+        Else
+            Return pos(0) - 1
+        End If
+    End Function
+#End Region
+
+#Region "  Rutina: posRowCuentas  "
+    Private Function posRowCuentas() As Integer
+        Dim pos() As Integer = GridDatosCuentas.Selection.GetSelectionRegion.GetRowsIndex
         If pos.Length = 0 Then
             Return -1
         Else
@@ -526,7 +619,7 @@ Public Class Cat_Proveedores
 
 #Region "  Rutina: consulta130  "
     Sub consulta130()
-        'Actualia las cuentas por pagar a un proveedor.
+        'Actualiza las cuentas por pagar a un proveedor.
 
         dsDatosCuentas.Tables(0).Clear()
 
@@ -620,13 +713,30 @@ Public Class Cat_Proveedores
     End Sub
 #End Region
 
+#Region "  Rutina: GRABAR128  "
+    Sub grabar128()
+        Dim idCuenta As String = dsDatosCuentas.Tables(0).Rows(posRowCuentas).Item(0).ToString
+
+        Caja = "GRABAR128" : Parametros = "V1=" & idCuenta.Trim & _
+                                          "|V2=" & monto & _
+                                          "|V3=" & idUsuario & _
+                                          "|V4=" & Proveedor.Text.Trim & "|"
+        ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
+
+        consulta106()
+
+        consulta130()
+
+    End Sub
+#End Region
+
 #Region "  Rutina: eliminar105  "
     Sub eliminar105()
         Dim idCuenta As String
         Dim adeudo As String
 
-        idCuenta = dsDatosCuentas.Tables(0).Rows(posRowProveedores).Item(0).ToString
-        adeudo = dsDatosCuentas.Tables(0).Rows(posRowProveedores).Item(3).ToString
+        idCuenta = dsDatosCuentas.Tables(0).Rows(posRowCuentas).Item(0).ToString
+        adeudo = dsDatosCuentas.Tables(0).Rows(posRowCuentas).Item(3).ToString
         adeudo = adeudo.Remove(0, 2)
 
         Caja = "eliminar105" : Parametros = "V1=" & idCuenta.Trim & _
@@ -634,6 +744,9 @@ Public Class Cat_Proveedores
                                             "|V3=" & TxtNombre.Text.Trim
         ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
 
+        consulta106()
+
+        consulta130()
 
     End Sub
 #End Region
@@ -641,16 +754,28 @@ Public Class Cat_Proveedores
 #Region "  Rutina: mostrarControles  "
     Sub mostrarControles()
         ToolStripSeparator1.Visible = True
+        ToolStripSeparator2.Visible = True
+
         ToolStripButtonNuevaCuenta.Visible = True
         ToolStripButtonEliminar.Visible = True
+
+        ToolStripButtonAbonos.Visible = True
+        ToolStripButtonDetalle.Visible = True
+        ToolStripButtonAbonar.Visible = True
     End Sub
 #End Region
 
 #Region "  Rutina: ocultarControles  "
     Sub ocultarControles()
         ToolStripSeparator1.Visible = False
+        ToolStripSeparator2.Visible = False
+
         ToolStripButtonNuevaCuenta.Visible = False
         ToolStripButtonEliminar.Visible = False
+
+        ToolStripButtonAbonos.Visible = False
+        ToolStripButtonDetalle.Visible = False
+        ToolStripButtonAbonar.Visible = False
     End Sub
 #End Region
 

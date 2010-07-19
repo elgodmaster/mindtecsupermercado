@@ -35,31 +35,31 @@ Partial Class cambioUsuario
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(4, 19)
+        Me.Label1.Location = New System.Drawing.Point(17, 9)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(445, 14)
+        Me.Label1.Size = New System.Drawing.Size(288, 28)
         Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Ingrese su nombre de usuario y contraseña para cambiar de usuario."
+        Me.Label1.Text = "Ingrese su nombre de usuario y contraseña " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "para cambiar de usuario."
         '
         'textBoxPassword
         '
         Me.textBoxPassword.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.textBoxPassword.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.textBoxPassword.Location = New System.Drawing.Point(108, 89)
+        Me.textBoxPassword.Location = New System.Drawing.Point(109, 83)
         Me.textBoxPassword.MaxLength = 20
         Me.textBoxPassword.Name = "textBoxPassword"
         Me.textBoxPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.textBoxPassword.Size = New System.Drawing.Size(182, 22)
+        Me.textBoxPassword.Size = New System.Drawing.Size(218, 22)
         Me.textBoxPassword.TabIndex = 2
         '
         'textBoxUsuario
         '
         Me.textBoxUsuario.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.textBoxUsuario.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.textBoxUsuario.Location = New System.Drawing.Point(108, 55)
+        Me.textBoxUsuario.Location = New System.Drawing.Point(109, 52)
         Me.textBoxUsuario.MaxLength = 20
         Me.textBoxUsuario.Name = "textBoxUsuario"
-        Me.textBoxUsuario.Size = New System.Drawing.Size(182, 22)
+        Me.textBoxUsuario.Size = New System.Drawing.Size(218, 22)
         Me.textBoxUsuario.TabIndex = 1
         '
         'Label2
@@ -67,7 +67,7 @@ Partial Class cambioUsuario
         Me.Label2.AutoSize = True
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(13, 91)
+        Me.Label2.Location = New System.Drawing.Point(17, 86)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(86, 14)
         Me.Label2.TabIndex = 21
@@ -78,7 +78,7 @@ Partial Class cambioUsuario
         Me.Label3.AutoSize = True
         Me.Label3.BackColor = System.Drawing.Color.Transparent
         Me.Label3.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(40, 57)
+        Me.Label3.Location = New System.Drawing.Point(17, 55)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(60, 14)
         Me.Label3.TabIndex = 20
@@ -87,28 +87,32 @@ Partial Class cambioUsuario
         'ButtonAceptar
         '
         Me.ButtonAceptar.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonAceptar.Location = New System.Drawing.Point(317, 50)
+        Me.ButtonAceptar.Image = Global.SuperMercado.My.Resources.Resources.tick
+        Me.ButtonAceptar.Location = New System.Drawing.Point(20, 131)
         Me.ButtonAceptar.Name = "ButtonAceptar"
-        Me.ButtonAceptar.Size = New System.Drawing.Size(103, 28)
+        Me.ButtonAceptar.Size = New System.Drawing.Size(92, 30)
         Me.ButtonAceptar.TabIndex = 3
-        Me.ButtonAceptar.Text = "Aceptar"
+        Me.ButtonAceptar.Text = " Aceptar"
+        Me.ButtonAceptar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.ButtonAceptar.UseVisualStyleBackColor = True
         '
         'ButtonCancelar
         '
         Me.ButtonCancelar.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonCancelar.Location = New System.Drawing.Point(317, 85)
+        Me.ButtonCancelar.Image = Global.SuperMercado.My.Resources.Resources.cross
+        Me.ButtonCancelar.Location = New System.Drawing.Point(118, 131)
         Me.ButtonCancelar.Name = "ButtonCancelar"
-        Me.ButtonCancelar.Size = New System.Drawing.Size(103, 27)
+        Me.ButtonCancelar.Size = New System.Drawing.Size(92, 30)
         Me.ButtonCancelar.TabIndex = 4
-        Me.ButtonCancelar.Text = "Cancelar"
+        Me.ButtonCancelar.Text = " Cancelar"
+        Me.ButtonCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.ButtonCancelar.UseVisualStyleBackColor = True
         '
         'cambioUsuario
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(454, 127)
+        Me.ClientSize = New System.Drawing.Size(358, 174)
         Me.Controls.Add(Me.ButtonCancelar)
         Me.Controls.Add(Me.ButtonAceptar)
         Me.Controls.Add(Me.textBoxPassword)

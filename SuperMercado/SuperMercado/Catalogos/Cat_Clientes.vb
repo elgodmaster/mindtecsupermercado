@@ -429,7 +429,7 @@ Public Class Cat_Clientes
     End Sub
 #End Region
 
-#Region "  Botón ELIMINAR  "
+#Region "  Botón ELIMINAR CUENTA  "
     Private Sub ToolStripButtonEliminarCuenta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButtonEliminarCuenta.Click
         Dim pos As Integer = posRowCuentas()
         If pos < 0 Then
@@ -522,6 +522,8 @@ Public Class Cat_Clientes
 
         lblSaldoActual.Text = "$ 0.00"
         lblLimiteCredito.Text = "$ 0.00"
+
+        dsDatosCuentas.Tables(0).Clear()
 
         TxtNombre.Focus()
     End Sub

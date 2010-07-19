@@ -126,34 +126,38 @@ Partial Class configuracion
         '
         'BtnCancelar
         '
-        Me.BtnCancelar.Location = New System.Drawing.Point(186, 216)
+        Me.BtnCancelar.Image = Global.SuperMercado.My.Resources.Resources.cross
+        Me.BtnCancelar.Location = New System.Drawing.Point(173, 220)
         Me.BtnCancelar.Name = "BtnCancelar"
-        Me.BtnCancelar.Size = New System.Drawing.Size(75, 23)
+        Me.BtnCancelar.Size = New System.Drawing.Size(88, 23)
         Me.BtnCancelar.TabIndex = 5
         Me.BtnCancelar.Text = "Cancelar"
+        Me.BtnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.BtnCancelar.UseVisualStyleBackColor = True
         '
         'btnAceptar
         '
-        Me.btnAceptar.Location = New System.Drawing.Point(104, 216)
+        Me.btnAceptar.Image = Global.SuperMercado.My.Resources.Resources.tick
+        Me.btnAceptar.Location = New System.Drawing.Point(79, 220)
         Me.btnAceptar.Name = "btnAceptar"
-        Me.btnAceptar.Size = New System.Drawing.Size(76, 23)
+        Me.btnAceptar.Size = New System.Drawing.Size(88, 23)
         Me.btnAceptar.TabIndex = 6
         Me.btnAceptar.Text = "Aceptar"
+        Me.btnAceptar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.btnAceptar.UseVisualStyleBackColor = True
         '
         'configuracion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(276, 251)
+        Me.ClientSize = New System.Drawing.Size(276, 258)
         Me.Controls.Add(Me.btnAceptar)
         Me.Controls.Add(Me.BtnCancelar)
         Me.Controls.Add(Me.GrBxLimites)
         Me.Controls.Add(Me.ChBxLimitesMaximos)
         Me.Controls.Add(Me.GrBxDineroInicial)
         Me.Controls.Add(Me.ChBxDineroInicial)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Name = "configuracion"
         Me.Text = " Configuración "
         Me.GrBxDineroInicial.ResumeLayout(False)
