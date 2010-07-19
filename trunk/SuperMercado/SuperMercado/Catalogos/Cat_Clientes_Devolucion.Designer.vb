@@ -33,7 +33,7 @@ Partial Class Cat_Clientes_Devolucion
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(24, 19)
+        Me.Label1.Location = New System.Drawing.Point(18, 19)
         Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(248, 18)
@@ -42,40 +42,44 @@ Partial Class Cat_Clientes_Devolucion
         '
         'numArt
         '
-        Me.numArt.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.numArt.Location = New System.Drawing.Point(78, 54)
+        Me.numArt.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.numArt.Location = New System.Drawing.Point(77, 46)
         Me.numArt.Margin = New System.Windows.Forms.Padding(4)
         Me.numArt.Maximum = New Decimal(New Integer() {1410065407, 2, 0, 0})
         Me.numArt.Name = "numArt"
-        Me.numArt.Size = New System.Drawing.Size(118, 22)
+        Me.numArt.Size = New System.Drawing.Size(118, 29)
         Me.numArt.TabIndex = 2
         Me.numArt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'ButtonAceptar
         '
-        Me.ButtonAceptar.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonAceptar.Location = New System.Drawing.Point(294, 19)
+        Me.ButtonAceptar.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonAceptar.Image = Global.SuperMercado.My.Resources.Resources.tick
+        Me.ButtonAceptar.Location = New System.Drawing.Point(283, 11)
         Me.ButtonAceptar.Name = "ButtonAceptar"
-        Me.ButtonAceptar.Size = New System.Drawing.Size(100, 29)
+        Me.ButtonAceptar.Size = New System.Drawing.Size(108, 34)
         Me.ButtonAceptar.TabIndex = 3
-        Me.ButtonAceptar.Text = "Aceptar"
+        Me.ButtonAceptar.Text = " Aceptar"
+        Me.ButtonAceptar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.ButtonAceptar.UseVisualStyleBackColor = True
         '
         'ButtonCancelar
         '
-        Me.ButtonCancelar.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonCancelar.Location = New System.Drawing.Point(294, 54)
+        Me.ButtonCancelar.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonCancelar.Image = Global.SuperMercado.My.Resources.Resources.cross
+        Me.ButtonCancelar.Location = New System.Drawing.Point(283, 51)
         Me.ButtonCancelar.Name = "ButtonCancelar"
-        Me.ButtonCancelar.Size = New System.Drawing.Size(100, 29)
+        Me.ButtonCancelar.Size = New System.Drawing.Size(108, 34)
         Me.ButtonCancelar.TabIndex = 4
-        Me.ButtonCancelar.Text = "Cancelar"
+        Me.ButtonCancelar.Text = " Cancelar"
+        Me.ButtonCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.ButtonCancelar.UseVisualStyleBackColor = True
         '
         'Cat_Clientes_Devolucion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(406, 101)
+        Me.ClientSize = New System.Drawing.Size(411, 99)
         Me.Controls.Add(Me.ButtonCancelar)
         Me.Controls.Add(Me.ButtonAceptar)
         Me.Controls.Add(Me.numArt)

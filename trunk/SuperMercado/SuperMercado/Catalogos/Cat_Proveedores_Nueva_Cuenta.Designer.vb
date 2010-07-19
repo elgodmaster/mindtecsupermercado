@@ -28,17 +28,19 @@ Partial Class Cat_Proveedores_Nueva_Cuenta
         Me.TextBoxProducto = New System.Windows.Forms.TextBox
         Me.NumericUpDownCantidad = New System.Windows.Forms.NumericUpDown
         Me.NumericUpDownCosto = New System.Windows.Forms.NumericUpDown
-        Me.ButtonAceptar = New System.Windows.Forms.Button
+        Me.Label4 = New System.Windows.Forms.Label
         Me.ButtonCancelar = New System.Windows.Forms.Button
+        Me.ButtonAceptar = New System.Windows.Forms.Button
         CType(Me.NumericUpDownCantidad, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDownCosto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
         '
+        Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(28, 22)
+        Me.Label1.Location = New System.Drawing.Point(18, 58)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(68, 14)
         Me.Label1.TabIndex = 0
@@ -46,9 +48,10 @@ Partial Class Cat_Proveedores_Nueva_Cuenta
         '
         'Label2
         '
+        Me.Label2.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(27, 53)
+        Me.Label2.Location = New System.Drawing.Point(19, 85)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(69, 14)
         Me.Label2.TabIndex = 1
@@ -56,9 +59,10 @@ Partial Class Cat_Proveedores_Nueva_Cuenta
         '
         'Label3
         '
+        Me.Label3.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(47, 85)
+        Me.Label3.Location = New System.Drawing.Point(19, 113)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(49, 14)
         Me.Label3.TabIndex = 2
@@ -66,17 +70,19 @@ Partial Class Cat_Proveedores_Nueva_Cuenta
         '
         'TextBoxProducto
         '
+        Me.TextBoxProducto.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.TextBoxProducto.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxProducto.Location = New System.Drawing.Point(102, 19)
+        Me.TextBoxProducto.Location = New System.Drawing.Point(94, 55)
         Me.TextBoxProducto.Name = "TextBoxProducto"
-        Me.TextBoxProducto.Size = New System.Drawing.Size(275, 22)
+        Me.TextBoxProducto.Size = New System.Drawing.Size(282, 22)
         Me.TextBoxProducto.TabIndex = 3
         '
         'NumericUpDownCantidad
         '
+        Me.NumericUpDownCantidad.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.NumericUpDownCantidad.DecimalPlaces = 2
         Me.NumericUpDownCantidad.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NumericUpDownCantidad.Location = New System.Drawing.Point(102, 51)
+        Me.NumericUpDownCantidad.Location = New System.Drawing.Point(94, 83)
         Me.NumericUpDownCantidad.Maximum = New Decimal(New Integer() {100000, 0, 0, 0})
         Me.NumericUpDownCantidad.Name = "NumericUpDownCantidad"
         Me.NumericUpDownCantidad.Size = New System.Drawing.Size(120, 22)
@@ -84,41 +90,59 @@ Partial Class Cat_Proveedores_Nueva_Cuenta
         '
         'NumericUpDownCosto
         '
+        Me.NumericUpDownCosto.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.NumericUpDownCosto.DecimalPlaces = 2
         Me.NumericUpDownCosto.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NumericUpDownCosto.Location = New System.Drawing.Point(102, 83)
+        Me.NumericUpDownCosto.Location = New System.Drawing.Point(94, 111)
         Me.NumericUpDownCosto.Maximum = New Decimal(New Integer() {9999999, 0, 0, 0})
         Me.NumericUpDownCosto.Name = "NumericUpDownCosto"
         Me.NumericUpDownCosto.Size = New System.Drawing.Size(120, 22)
         Me.NumericUpDownCosto.TabIndex = 5
         '
-        'ButtonAceptar
+        'Label4
         '
-        Me.ButtonAceptar.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonAceptar.Location = New System.Drawing.Point(228, 136)
-        Me.ButtonAceptar.Name = "ButtonAceptar"
-        Me.ButtonAceptar.Size = New System.Drawing.Size(86, 29)
-        Me.ButtonAceptar.TabIndex = 6
-        Me.ButtonAceptar.Text = "Aceptar"
-        Me.ButtonAceptar.UseVisualStyleBackColor = True
+        Me.Label4.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(12, 18)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(364, 14)
+        Me.Label4.TabIndex = 8
+        Me.Label4.Text = "Escriba el nombre de un producto, la cantidad y el costo."
         '
         'ButtonCancelar
         '
-        Me.ButtonCancelar.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonCancelar.Location = New System.Drawing.Point(320, 136)
+        Me.ButtonCancelar.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.ButtonCancelar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonCancelar.Image = Global.SuperMercado.My.Resources.Resources.cross
+        Me.ButtonCancelar.Location = New System.Drawing.Point(128, 161)
         Me.ButtonCancelar.Name = "ButtonCancelar"
-        Me.ButtonCancelar.Size = New System.Drawing.Size(86, 29)
-        Me.ButtonCancelar.TabIndex = 7
-        Me.ButtonCancelar.Text = "Cancelar"
+        Me.ButtonCancelar.Size = New System.Drawing.Size(101, 28)
+        Me.ButtonCancelar.TabIndex = 10
+        Me.ButtonCancelar.Text = " Cancelar"
+        Me.ButtonCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.ButtonCancelar.UseVisualStyleBackColor = True
+        '
+        'ButtonAceptar
+        '
+        Me.ButtonAceptar.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.ButtonAceptar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonAceptar.Image = Global.SuperMercado.My.Resources.Resources.tick
+        Me.ButtonAceptar.Location = New System.Drawing.Point(21, 161)
+        Me.ButtonAceptar.Name = "ButtonAceptar"
+        Me.ButtonAceptar.Size = New System.Drawing.Size(101, 28)
+        Me.ButtonAceptar.TabIndex = 9
+        Me.ButtonAceptar.Text = " Aceptar"
+        Me.ButtonAceptar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.ButtonAceptar.UseVisualStyleBackColor = True
         '
         'Cat_Proveedores_Nueva_Cuenta
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(418, 177)
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
+        Me.ClientSize = New System.Drawing.Size(396, 201)
         Me.Controls.Add(Me.ButtonCancelar)
         Me.Controls.Add(Me.ButtonAceptar)
+        Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.NumericUpDownCosto)
         Me.Controls.Add(Me.NumericUpDownCantidad)
         Me.Controls.Add(Me.TextBoxProducto)
@@ -140,6 +164,7 @@ Partial Class Cat_Proveedores_Nueva_Cuenta
     Friend WithEvents TextBoxProducto As System.Windows.Forms.TextBox
     Friend WithEvents NumericUpDownCantidad As System.Windows.Forms.NumericUpDown
     Friend WithEvents NumericUpDownCosto As System.Windows.Forms.NumericUpDown
-    Friend WithEvents ButtonAceptar As System.Windows.Forms.Button
+    Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents ButtonCancelar As System.Windows.Forms.Button
+    Friend WithEvents ButtonAceptar As System.Windows.Forms.Button
 End Class

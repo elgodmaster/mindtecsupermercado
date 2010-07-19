@@ -36,21 +36,25 @@ Partial Class registroSalida
         Me.Cancel_Button.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Cancel_Button.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.Cancel_Button.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Cancel_Button.Location = New System.Drawing.Point(360, 67)
+        Me.Cancel_Button.Image = Global.SuperMercado.My.Resources.Resources.cross
+        Me.Cancel_Button.Location = New System.Drawing.Point(410, 62)
         Me.Cancel_Button.Name = "Cancel_Button"
         Me.Cancel_Button.Size = New System.Drawing.Size(108, 33)
         Me.Cancel_Button.TabIndex = 4
-        Me.Cancel_Button.Text = "Cancelar"
+        Me.Cancel_Button.Text = " Cancelar"
+        Me.Cancel_Button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         '
         'OK_Button
         '
         Me.OK_Button.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.OK_Button.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.OK_Button.Location = New System.Drawing.Point(360, 25)
+        Me.OK_Button.Image = Global.SuperMercado.My.Resources.Resources.tick
+        Me.OK_Button.Location = New System.Drawing.Point(410, 22)
         Me.OK_Button.Name = "OK_Button"
         Me.OK_Button.Size = New System.Drawing.Size(108, 34)
         Me.OK_Button.TabIndex = 3
-        Me.OK_Button.Text = "Aceptar"
+        Me.OK_Button.Text = " Aceptar"
+        Me.OK_Button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         '
         'Label1
         '
@@ -74,27 +78,27 @@ Partial Class registroSalida
         '
         'txtRazonSalida
         '
-        Me.txtRazonSalida.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtRazonSalida.Location = New System.Drawing.Point(15, 92)
+        Me.txtRazonSalida.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtRazonSalida.Location = New System.Drawing.Point(15, 85)
         Me.txtRazonSalida.Name = "txtRazonSalida"
-        Me.txtRazonSalida.Size = New System.Drawing.Size(330, 24)
+        Me.txtRazonSalida.Size = New System.Drawing.Size(365, 29)
         Me.txtRazonSalida.TabIndex = 2
         '
         'numRetiro
         '
         Me.numRetiro.DecimalPlaces = 2
-        Me.numRetiro.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.numRetiro.Location = New System.Drawing.Point(15, 35)
+        Me.numRetiro.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.numRetiro.Location = New System.Drawing.Point(15, 31)
         Me.numRetiro.Maximum = New Decimal(New Integer() {-727379969, 232, 0, 0})
         Me.numRetiro.Name = "numRetiro"
-        Me.numRetiro.Size = New System.Drawing.Size(132, 24)
+        Me.numRetiro.Size = New System.Drawing.Size(132, 29)
         Me.numRetiro.TabIndex = 1
         '
         'registroSalida
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(482, 129)
+        Me.ClientSize = New System.Drawing.Size(530, 130)
         Me.ControlBox = False
         Me.Controls.Add(Me.numRetiro)
         Me.Controls.Add(Me.txtRazonSalida)

@@ -40,7 +40,7 @@
 #Region "  Botón ACEPTAR  "
     Private Sub ButtonAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonAceptar.Click
         If TextBoxProducto.Text = "" Then
-            MessageBox.Show("No escrito el nombre del producto.", " Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            MessageBox.Show("No ha escrito el nombre del producto.", " Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             TextBoxProducto.Focus()
             Return
         End If

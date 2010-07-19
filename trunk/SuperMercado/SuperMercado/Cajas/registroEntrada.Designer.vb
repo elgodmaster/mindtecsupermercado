@@ -36,11 +36,13 @@ Partial Class registroEntrada
         Me.Cancel_Button.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Cancel_Button.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.Cancel_Button.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Cancel_Button.Location = New System.Drawing.Point(365, 67)
+        Me.Cancel_Button.Image = Global.SuperMercado.My.Resources.Resources.cross
+        Me.Cancel_Button.Location = New System.Drawing.Point(410, 62)
         Me.Cancel_Button.Name = "Cancel_Button"
-        Me.Cancel_Button.Size = New System.Drawing.Size(108, 33)
+        Me.Cancel_Button.Size = New System.Drawing.Size(108, 34)
         Me.Cancel_Button.TabIndex = 4
-        Me.Cancel_Button.Text = "Cancelar"
+        Me.Cancel_Button.Text = " Cancelar"
+        Me.Cancel_Button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         '
         'Label1
         '
@@ -48,26 +50,26 @@ Partial Class registroEntrada
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(12, 10)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(242, 18)
+        Me.Label1.Size = New System.Drawing.Size(257, 18)
         Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Escriba el dinero a ingresar en caja:"
+        Me.Label1.Text = "Escriba el dinero a ingresar en la caja:"
         '
         'numIngreso
         '
         Me.numIngreso.DecimalPlaces = 2
-        Me.numIngreso.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.numIngreso.Location = New System.Drawing.Point(15, 35)
+        Me.numIngreso.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.numIngreso.Location = New System.Drawing.Point(15, 31)
         Me.numIngreso.Maximum = New Decimal(New Integer() {276447231, 23283, 0, 0})
         Me.numIngreso.Name = "numIngreso"
-        Me.numIngreso.Size = New System.Drawing.Size(132, 24)
+        Me.numIngreso.Size = New System.Drawing.Size(132, 29)
         Me.numIngreso.TabIndex = 1
         '
         'txtRazonEntrada
         '
-        Me.txtRazonEntrada.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtRazonEntrada.Location = New System.Drawing.Point(15, 92)
+        Me.txtRazonEntrada.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtRazonEntrada.Location = New System.Drawing.Point(15, 85)
         Me.txtRazonEntrada.Name = "txtRazonEntrada"
-        Me.txtRazonEntrada.Size = New System.Drawing.Size(330, 24)
+        Me.txtRazonEntrada.Size = New System.Drawing.Size(365, 29)
         Me.txtRazonEntrada.TabIndex = 2
         '
         'Label2
@@ -85,19 +87,21 @@ Partial Class registroEntrada
         Me.OK_Button.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.OK_Button.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.OK_Button.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.OK_Button.Location = New System.Drawing.Point(365, 25)
+        Me.OK_Button.Image = Global.SuperMercado.My.Resources.Resources.tick
+        Me.OK_Button.Location = New System.Drawing.Point(410, 22)
         Me.OK_Button.Name = "OK_Button"
         Me.OK_Button.Size = New System.Drawing.Size(108, 34)
         Me.OK_Button.TabIndex = 3
         Me.OK_Button.TabStop = False
-        Me.OK_Button.Text = "Aceptar"
+        Me.OK_Button.Text = " Aceptar"
+        Me.OK_Button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         '
         'registroEntrada
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.Cancel_Button
-        Me.ClientSize = New System.Drawing.Size(493, 129)
+        Me.ClientSize = New System.Drawing.Size(530, 130)
         Me.ControlBox = False
         Me.Controls.Add(Me.OK_Button)
         Me.Controls.Add(Me.Label2)
@@ -111,7 +115,7 @@ Partial Class registroEntrada
         Me.Name = "registroEntrada"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "  Registro de entradas en efectivo"
+        Me.Text = "  Registro de entrada en efectivo"
         CType(Me.numIngreso, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()

@@ -162,10 +162,10 @@ Partial Class Tickets
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(29, 64)
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(29, 62)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(72, 13)
+        Me.Label3.Size = New System.Drawing.Size(66, 15)
         Me.Label3.TabIndex = 12
         Me.Label3.Text = "Impresora:"
         '
@@ -173,9 +173,9 @@ Partial Class Tickets
         '
         Me.ComboBoxImpresoras.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBoxImpresoras.FormattingEnabled = True
-        Me.ComboBoxImpresoras.Location = New System.Drawing.Point(107, 61)
+        Me.ComboBoxImpresoras.Location = New System.Drawing.Point(101, 61)
         Me.ComboBoxImpresoras.Name = "ComboBoxImpresoras"
-        Me.ComboBoxImpresoras.Size = New System.Drawing.Size(202, 21)
+        Me.ComboBoxImpresoras.Size = New System.Drawing.Size(208, 21)
         Me.ComboBoxImpresoras.TabIndex = 13
         '
         'TextBox7

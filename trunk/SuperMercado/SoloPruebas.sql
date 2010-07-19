@@ -95,6 +95,17 @@ precioUni decimal(12,2) not null,
 descripcion varchar(500) not null,
 )
 
+select * from SMercado..Cuentas_Abonos 
+
+CREATE TABLE Cuentas_Pagar_Abonos(
+idAbono int identity not null,
+idCuenta int not null,
+monto decimal(12,2) not null,
+fecha datetime not null,
+idProveedor int not null,
+idUsuario int not null
+)
+
 select * from SMercado..Cat_Productos 
 Select * From SMercado..Cuentas_Cobrar 
 Select * From SMercado..Cuentas_Cobrar_Detalles 
@@ -201,6 +212,7 @@ exec consulta124 'V1=Lindor|','','',''
 exec consulta127 'V1=51|', '', '', ''
 exec consulta128 'V1=L|', '', '', ''
 exec consulta129 '','','',''
+exec consulta131 'V1=7|', '','',''
 
 select * from SMercado..Cat_Clientes 
 

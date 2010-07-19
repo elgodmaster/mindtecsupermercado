@@ -196,9 +196,9 @@ Partial Class Login
         Me.Label3.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(284, 19)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(361, 14)
+        Me.Label3.Size = New System.Drawing.Size(360, 28)
         Me.Label3.TabIndex = 27
-        Me.Label3.Text = "Por favor ingrese su usuario y contraseña para acceder."
+        Me.Label3.Text = "Por favor ingrese su nombre usuario y contraseña para " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "acceder."
         '
         'Label4
         '
