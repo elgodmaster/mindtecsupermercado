@@ -330,7 +330,7 @@ Public Class Cat_Proveedores
     Private Sub Cat_Proveedores_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         showProvGrid()
 
-        ocultarControles()
+        ocultarControlesCuentas()
 
         ProveedoresTabControl.Visible = False
         Me.Grabar.Visible = False
@@ -539,6 +539,10 @@ Public Class Cat_Proveedores
         Me.txtCodigo.Clear()
 
         Me.TxtNombre.Focus()
+
+        dsDatosCuentas.Tables(0).Clear()
+        LabelDeuda.Text = "$ 0.00"
+
     End Sub
 #End Region
 
@@ -579,10 +583,10 @@ Public Class Cat_Proveedores
         ProveedoresTabControl.Visible = True
         PanelDatos.Visible = True
         Grabar.Visible = True
-        ToolStripStatusLabelProveedores.Text = "Seleccione el campo de texto Proveedor para realizar una nueva búsqueda."
+        ToolStripStatusLabelProveedores.Text = ""
 
         PanelGrid.Visible = False
-
+        Proveedor.Enabled = False
     End Sub
 #End Region
 
@@ -766,7 +770,7 @@ Public Class Cat_Proveedores
 #End Region
 
 #Region "  Rutina: ocultarControles  "
-    Sub ocultarControles()
+    Sub ocultarControlesCuentas()
         ToolStripSeparator1.Visible = False
         ToolStripSeparator2.Visible = False
 
@@ -794,19 +798,6 @@ Public Class Cat_Proveedores
 
         CiudadesComboBox.DataSource = objRet2.DS.Tables(0)
         CiudadesComboBox.DisplayMember = objRet2.DS.Tables(0).Columns(0).Caption.ToString
-    End Sub
-#End Region
-
-#Region "  Evento: Proveedor - CLICK  "
-    Private Sub Proveedor_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Proveedor.Click
-        showProvGrid()
-        Proveedor.Clear()
-        Limpiar.Visible = False
-        Grabar.Visible = False
-        ToolStripButtonNuevo.Visible = True
-
-        ToolStripStatusLabelProveedores.Text = "Escriba el nombre o número de identificación de un proveedor para filtrar los resultados."
-        consulta129()
     End Sub
 #End Region
 
@@ -946,7 +937,26 @@ Public Class Cat_Proveedores
     End Sub
 
     Private Sub AdeudosTabPage_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AdeudosTabPage.Leave
-        ocultarControles()
+        ocultarControlesCuentas()
+    End Sub
+#End Region
+
+#Region "  Botón BUSCAR  "
+    Private Sub Buscar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Buscar.Click
+        ocultarControlesCuentas()
+        Proveedor.Enabled = True
+
+        showProvGrid()
+        Proveedor.Clear()
+        Proveedor.Focus()
+        Limpiar.Visible = False
+        Grabar.Visible = False
+        ToolStripButtonNuevo.Visible = True
+
+        ToolStripStatusLabelProveedores.Text = "Escriba el nombre o número de identificación de un proveedor para filtrar los resultados."
+
+        consulta129()
+
     End Sub
 #End Region
 

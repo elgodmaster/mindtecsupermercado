@@ -385,6 +385,36 @@ Public Class Cat_Clientes
 
 #End Region
 
+#Region "  Botón BUSCAR  "
+    Private Sub Buscar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Buscar.Click
+        textBoxCliente.Enabled = True
+
+        showClientsGrid()
+        textBoxCliente.Clear()
+        textBoxCliente.Focus()
+        Limpiar.Visible = False
+        Grabar.Visible = False
+        ToolStripButtonNuevo.Visible = True
+        ToolStripStatusLabelClientes.Text = "Escriba el nombre o número de identificación de un cliente para filtrar los resultados."
+
+        consulta128()
+
+    End Sub
+#End Region
+
+#Region "  Botón NUEVO  "
+    Private Sub ToolStripButtonNuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButtonNuevo.Click
+        limpiarPantalla()
+        showData()
+        ToolStripButtonNuevo.Visible = False
+        Limpiar.Visible = True
+        Grabar.Visible = True
+
+        ClientesTabControl.SelectTab(0)
+        TxtNombre.Focus()
+    End Sub
+#End Region
+
 #Region "  Botón GRABAR  "
     Private Sub Grabar_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles Grabar.Click
         'Variable de trabajo
@@ -407,19 +437,6 @@ Public Class Cat_Clientes
             Limpiar.Visible = False
             Grabar.Visible = False
         End If
-    End Sub
-#End Region
-
-#Region "  Botón NUEVO  "
-    Private Sub ToolStripButtonNuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButtonNuevo.Click
-        limpiarPantalla()
-        showData()
-        ToolStripButtonNuevo.Visible = False
-        Limpiar.Visible = True
-        Grabar.Visible = True
-
-        ClientesTabControl.SelectTab(0)
-        TxtNombre.Focus()
     End Sub
 #End Region
 
@@ -709,7 +726,6 @@ Public Class Cat_Clientes
 #Region "  Rutina: consulta128  "
     Sub consulta128()
         'Actualiza el grid de todos los clientes según el valor de textBoxCliente.
-
         dsDatosClientes.Tables(0).Clear()
 
         Caja = "consulta128" : Parametros = "V1=" & textBoxCliente.Text.Trim
@@ -804,6 +820,8 @@ Public Class Cat_Clientes
 
 #Region "  Evento: GridDatosCLIENTES - DOUBLECLICK  "
     Private Sub GridDatosCLIENTES_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GridDatosCLIENTES.DoubleClick
+        textBoxCliente.Enabled = False
+
         Dim nomCliente As String
         nomCliente = dsDatosClientes.Tables(0).Rows(posRowClientes).Item(1).ToString
         textBoxCliente.Text = nomCliente.Trim
@@ -816,19 +834,6 @@ Public Class Cat_Clientes
 
         ClientesTabControl.SelectedIndex = 0
 
-    End Sub
-#End Region
-
-#Region "  Evento: textBoxCliente - CLICK  "
-    Private Sub textBoxCliente_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles textBoxCliente.Click
-        showClientsGrid()
-        textBoxCliente.Clear()
-        Limpiar.Visible = False
-        Grabar.Visible = False
-        ToolStripButtonNuevo.Visible = True
-        ToolStripStatusLabelClientes.Text = "Escriba el nombre o número de identificación de un cliente para filtrar los resultados."
-
-        consulta128()
     End Sub
 #End Region
 
@@ -956,7 +961,7 @@ Public Class Cat_Clientes
 
 #Region "  Evento: ClientesTabControl - ENTER/LEAVE  "
 
-#End Region
-    
+#End Region    
+
 End Class
 

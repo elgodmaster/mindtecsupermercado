@@ -49,8 +49,6 @@ Partial Class Cat_Categorias
         Me.btnAceptar = New System.Windows.Forms.Button
         Me.CodigoCategoria = New System.Windows.Forms.TextBox
         Me.Label1 = New System.Windows.Forms.Label
-        Me.PiePagina = New System.Windows.Forms.StatusStrip
-        Me.MensajePiePagina = New System.Windows.Forms.ToolStripStatusLabel
         Me.GroupBoxCategoria = New System.Windows.Forms.GroupBox
         Me.Descripcion = New System.Windows.Forms.TextBox
         Me.Label2 = New System.Windows.Forms.Label
@@ -59,10 +57,13 @@ Partial Class Cat_Categorias
         Me.Nuevo = New System.Windows.Forms.ToolStripButton
         Me.Grabar = New System.Windows.Forms.ToolStripButton
         Me.Label4 = New System.Windows.Forms.Label
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
+        Me.ToolStripStatusLabelCat = New System.Windows.Forms.ToolStripStatusLabel
+        Me.Buscar = New System.Windows.Forms.ToolStripButton
         CType(Me.Barra, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PiePagina.SuspendLayout()
         Me.GroupBoxCategoria.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
+        Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Barra
@@ -83,9 +84,9 @@ Partial Class Cat_Categorias
         Me.NombreCategoria.AutoEllipsis = True
         Me.NombreCategoria.BackColor = System.Drawing.Color.Transparent
         Me.NombreCategoria.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NombreCategoria.Location = New System.Drawing.Point(207, 92)
+        Me.NombreCategoria.Location = New System.Drawing.Point(370, 92)
         Me.NombreCategoria.Name = "NombreCategoria"
-        Me.NombreCategoria.Size = New System.Drawing.Size(691, 22)
+        Me.NombreCategoria.Size = New System.Drawing.Size(528, 22)
         Me.NombreCategoria.TabIndex = 184
         Me.NombreCategoria.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -106,10 +107,10 @@ Partial Class Cat_Categorias
         '
         Me.CodigoCategoria.BackColor = System.Drawing.SystemColors.Info
         Me.CodigoCategoria.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CodigoCategoria.Location = New System.Drawing.Point(82, 93)
+        Me.CodigoCategoria.Location = New System.Drawing.Point(91, 93)
         Me.CodigoCategoria.MaxLength = 9
         Me.CodigoCategoria.Name = "CodigoCategoria"
-        Me.CodigoCategoria.Size = New System.Drawing.Size(82, 22)
+        Me.CodigoCategoria.Size = New System.Drawing.Size(248, 22)
         Me.CodigoCategoria.TabIndex = 1
         '
         'Label1
@@ -119,28 +120,9 @@ Partial Class Cat_Categorias
         Me.Label1.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(11, 96)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(69, 14)
+        Me.Label1.Size = New System.Drawing.Size(74, 14)
         Me.Label1.TabIndex = 183
-        Me.Label1.Text = "Categoría"
-        '
-        'PiePagina
-        '
-        Me.PiePagina.BackColor = System.Drawing.SystemColors.Info
-        Me.PiePagina.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.PiePagina.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MensajePiePagina})
-        Me.PiePagina.Location = New System.Drawing.Point(0, 686)
-        Me.PiePagina.Name = "PiePagina"
-        Me.PiePagina.Size = New System.Drawing.Size(1016, 22)
-        Me.PiePagina.SizingGrip = False
-        Me.PiePagina.TabIndex = 215
-        Me.PiePagina.Text = "StatusStrip1"
-        '
-        'MensajePiePagina
-        '
-        Me.MensajePiePagina.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MensajePiePagina.Name = "MensajePiePagina"
-        Me.MensajePiePagina.Size = New System.Drawing.Size(150, 17)
-        Me.MensajePiePagina.Text = "ToolStripStatusLabel1"
+        Me.Label1.Text = "Categoría:"
         '
         'GroupBoxCategoria
         '
@@ -150,35 +132,40 @@ Partial Class Cat_Categorias
         Me.GroupBoxCategoria.BackColor = System.Drawing.Color.Transparent
         Me.GroupBoxCategoria.Controls.Add(Me.Descripcion)
         Me.GroupBoxCategoria.Controls.Add(Me.Label2)
+        Me.GroupBoxCategoria.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBoxCategoria.ForeColor = System.Drawing.SystemColors.Desktop
         Me.GroupBoxCategoria.Location = New System.Drawing.Point(14, 148)
         Me.GroupBoxCategoria.Name = "GroupBoxCategoria"
         Me.GroupBoxCategoria.Size = New System.Drawing.Size(970, 535)
         Me.GroupBoxCategoria.TabIndex = 216
         Me.GroupBoxCategoria.TabStop = False
-        Me.GroupBoxCategoria.Text = "Datos de la categoría"
+        Me.GroupBoxCategoria.Text = "  Datos de la categoría "
         Me.GroupBoxCategoria.Visible = False
         '
         'Descripcion
         '
         Me.Descripcion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.Descripcion.Location = New System.Drawing.Point(101, 43)
+        Me.Descripcion.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Descripcion.Location = New System.Drawing.Point(98, 43)
         Me.Descripcion.Name = "Descripcion"
-        Me.Descripcion.Size = New System.Drawing.Size(863, 22)
+        Me.Descripcion.Size = New System.Drawing.Size(850, 22)
         Me.Descripcion.TabIndex = 3
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(17, 46)
+        Me.Label2.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.Label2.Location = New System.Drawing.Point(9, 46)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(78, 14)
+        Me.Label2.Size = New System.Drawing.Size(83, 14)
         Me.Label2.TabIndex = 0
-        Me.Label2.Text = "Descripción"
+        Me.Label2.Text = "Descripción:"
         '
         'ToolStrip1
         '
         Me.ToolStrip1.AutoSize = False
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Limpiar, Me.Nuevo, Me.Grabar})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Buscar, Me.Nuevo, Me.Limpiar, Me.Grabar})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1016, 48)
@@ -189,7 +176,7 @@ Partial Class Cat_Categorias
         '
         Me.Limpiar.AutoSize = False
         Me.Limpiar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.Limpiar.Image = CType(resources.GetObject("Limpiar.Image"), System.Drawing.Image)
+        Me.Limpiar.Image = Global.SuperMercado.My.Resources.Resources.page
         Me.Limpiar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.Limpiar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.Limpiar.Name = "Limpiar"
@@ -200,7 +187,7 @@ Partial Class Cat_Categorias
         '
         Me.Nuevo.AutoSize = False
         Me.Nuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.Nuevo.Image = CType(resources.GetObject("Nuevo.Image"), System.Drawing.Image)
+        Me.Nuevo.Image = Global.SuperMercado.My.Resources.Resources.add
         Me.Nuevo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.Nuevo.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.Nuevo.Name = "Nuevo"
@@ -210,7 +197,7 @@ Partial Class Cat_Categorias
         'Grabar
         '
         Me.Grabar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.Grabar.Image = CType(resources.GetObject("Grabar.Image"), System.Drawing.Image)
+        Me.Grabar.Image = Global.SuperMercado.My.Resources.Resources.disk
         Me.Grabar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.Grabar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.Grabar.Name = "Grabar"
@@ -226,7 +213,33 @@ Partial Class Cat_Categorias
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(229, 20)
         Me.Label4.TabIndex = 230
-        Me.Label4.Text = "Catálogo de Categorias"
+        Me.Label4.Text = "Catálogo de Categorías"
+        '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabelCat})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 686)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(1016, 22)
+        Me.StatusStrip1.TabIndex = 293
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'ToolStripStatusLabelCat
+        '
+        Me.ToolStripStatusLabelCat.Name = "ToolStripStatusLabelCat"
+        Me.ToolStripStatusLabelCat.Size = New System.Drawing.Size(529, 17)
+        Me.ToolStripStatusLabelCat.Text = "Escriba un número de identificación para mostrar los datos de una categoría, o pu" & _
+            "lse F2 mostrar un catálogo."
+        '
+        'Buscar
+        '
+        Me.Buscar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.Buscar.Image = Global.SuperMercado.My.Resources.Resources.zoom
+        Me.Buscar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.Buscar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.Buscar.Name = "Buscar"
+        Me.Buscar.Size = New System.Drawing.Size(36, 45)
+        Me.Buscar.Text = "Buscar"
         '
         'Cat_Categorias
         '
@@ -234,10 +247,10 @@ Partial Class Cat_Categorias
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1016, 708)
+        Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.GroupBoxCategoria)
-        Me.Controls.Add(Me.PiePagina)
         Me.Controls.Add(Me.Barra)
         Me.Controls.Add(Me.NombreCategoria)
         Me.Controls.Add(Me.btnAceptar)
@@ -250,12 +263,12 @@ Partial Class Cat_Categorias
         Me.Name = "Cat_Categorias"
         Me.Text = "Catálogo de categorias"
         CType(Me.Barra, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PiePagina.ResumeLayout(False)
-        Me.PiePagina.PerformLayout()
         Me.GroupBoxCategoria.ResumeLayout(False)
         Me.GroupBoxCategoria.PerformLayout()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
+        Me.StatusStrip1.ResumeLayout(False)
+        Me.StatusStrip1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -265,8 +278,6 @@ Partial Class Cat_Categorias
     Friend WithEvents btnAceptar As System.Windows.Forms.Button
     Friend WithEvents CodigoCategoria As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents PiePagina As System.Windows.Forms.StatusStrip
-    Friend WithEvents MensajePiePagina As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents GroupBoxCategoria As System.Windows.Forms.GroupBox
     Friend WithEvents Descripcion As System.Windows.Forms.TextBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
@@ -275,4 +286,7 @@ Partial Class Cat_Categorias
     Friend WithEvents Grabar As System.Windows.Forms.ToolStripButton
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents Nuevo As System.Windows.Forms.ToolStripButton
+    Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
+    Friend WithEvents ToolStripStatusLabelCat As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents Buscar As System.Windows.Forms.ToolStripButton
 End Class

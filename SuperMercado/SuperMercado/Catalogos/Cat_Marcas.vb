@@ -1,3 +1,5 @@
+Imports MindTec.Componentes
+
 Public Class Cat_Marcas
 
 #Region " Variables de trabajo "
@@ -11,32 +13,24 @@ Public Class Cat_Marcas
     Private Sub Cat_Marcas_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
         Select Case e.KeyCode
             Case Keys.F2
-                'Catalogo
+                'Catalogo()
             Case Keys.Escape
                 Cerrar()
             Case Keys.F4
-                Limpiar.PerformClick()
+                Buscar.PerformClick()
             Case Keys.F9
                 Grabar.PerformClick()
         End Select
     End Sub
 
     Private Sub Cat_Marcas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        'Pie de Pagina Mensaje
-        MensajePiePagina.Text = "Esc=Salir Enter=Avanzar F2=Catálogo F4=Limpiar Pantalla"
-        'Deshabilitar
-        Me.Grabar.Visible = False
-    End Sub
-#End Region
-
-#Region " Limpiar "
-    Private Sub Limpiar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Limpiar.Click
-        LimpiarPantalla()
+        ocultarControlesEditar()
     End Sub
 #End Region
 
 #Region " Rutinas "
     Sub LimpiarPantalla()
+
         'Habilidar
         Me.btnAceptar.Enabled = True
         Me.CodigoMarca.Enabled = True
@@ -50,26 +44,10 @@ Public Class Cat_Marcas
         Me.NombreMarca.Text = ""
         Me.Descripcion.Text = ""
         'PiePagina
-        MensajePiePagina.Text = "Esc=Salir Enter=Avanzar F2=Catalogo F4=Limpiar Pantalla"
         'Foco
         Me.CodigoMarca.Focus()
     End Sub
-    Sub Catalogo()
-        Caja = "Consulta101" : Parametros = ""
-        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
-        ObjRet = lConsulta.LlamarCaja(Caja, "0", Parametros)
-        If ObjRet.bOk Then
-            ' '' '' ''Dim nuevo As Grid = New Grid(ObjRet.DS)
 
-            ' '' '' ''Me.CodigoMarca.Text = nuevo.resultado
-            Dim e As KeyEventArgs
-            e = New KeyEventArgs(Keys.Enter)
-            Me.CodigoMarca_KeyDown(DBNull.Value, e)
-        Else
-            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
-        End If
-
-    End Sub
     Sub Cerrar()
         Dim Result As DialogResult
         Result = MessageBox.Show("¿Deseas salir de esta pantalla?", "HidroIntel", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
@@ -90,7 +68,7 @@ Public Class Cat_Marcas
                 If lConsulta Is Nothing Then lConsulta = New ClsConsultas
                 ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
                 'Estatus
-                If ObjRet.bOK Then
+                If ObjRet.bOk Then
                     'Asignar
                     Me.NombreMarca.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
                     SendKeys.Send("{TAB}")
@@ -119,6 +97,7 @@ Public Class Cat_Marcas
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
         ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
         If ObjRet.bOk Then
+            mostrarControlesEditar()
             'Deshabilitar
             Me.CodigoMarca.Enabled = False
             Me.btnAceptar.Enabled = False
@@ -129,7 +108,6 @@ Public Class Cat_Marcas
             'Habilitar
             Me.Grabar.Visible = True
             Me.GroupBoxMarca.Visible = True
-            MensajePiePagina.Text = "Esc=Salir Enter=Avanzar F2=Catálogo F4=Limpiar Pantalla F9=Grabar"
             'Foco
             Me.Descripcion.Focus()
         Else
@@ -160,13 +138,20 @@ Public Class Cat_Marcas
             ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
 
             MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
-            LimpiarPantalla()
+            If ObjRet.bOk Then
+                LimpiarPantalla()
+                ocultarControlesEditar()
+            End If
+
         End If
     End Sub
 #End Region
 
 #Region " Nuevo "
     Private Sub Nuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Nuevo.Click
+        mostrarControlesEditar()
+        Grabar.Enabled = True
+
         Caja = "Consulta102" : Parametros = ""
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
         ObjRet = lConsulta.LlamarCaja(Caja, "3", Parametros)
@@ -182,12 +167,103 @@ Public Class Cat_Marcas
             Me.GroupBoxMarca.Visible = True
             Me.Grabar.Visible = True
             'Focus
+            Me.Descripcion.Clear()
             Me.Descripcion.Focus()
 
         End If
     End Sub
 #End Region
 
+#Region "  Rutina: mostrarControlesEditar  "
+    Sub mostrarControlesEditar()
+        Grabar.Visible = True
+        Limpiar.Visible = True
+    End Sub
+#End Region
 
+#Region "  Rutina: ocultarControlesEditar  "
+    Sub ocultarControlesEditar()
+        Grabar.Visible = False
+        Limpiar.Visible = False
+    End Sub
+#End Region
+
+#Region "  Botón BUSCAR  "
+    Private Sub Buscar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Buscar.Click
+        Catalogo()
+    End Sub
+#End Region
+
+#Region "  Botón LIMPIAR  "
+    Private Sub Limpiar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Limpiar.Click
+        Descripcion.Clear()
+    End Sub
+#End Region
+
+#Region "  Rutina: Consulta102  "
+    Sub consulta102()
+        Nuevo.Visible = True
+        mostrarControlesEditar()
+        Grabar.Enabled = True
+
+        Caja = "Consulta102" : Parametros = "V1=" & Me.CodigoMarca.Text
+        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+        ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
+        If ObjRet.bOk Then
+            mostrarControlesEditar()
+            'Deshabilitar
+            Me.CodigoMarca.Enabled = False
+            Me.btnAceptar.Enabled = False
+
+            'Asignar
+            Me.Descripcion.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
+            If Descripcion.Text = "-SIN MARCA-" Then
+                Grabar.Enabled = False
+            End If
+
+            'Habilitar
+            Me.Grabar.Visible = True
+            Me.GroupBoxMarca.Visible = True
+            'Foco
+            Me.Descripcion.SelectAll()
+            Me.Descripcion.Focus()
+        Else
+            'Asignar
+            Me.CodigoMarca.Text = ""
+            Me.NombreMarca.Text = ""
+            Me.Descripcion.Text = ""
+
+
+            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+
+            'Foco
+            Me.CodigoMarca.Focus()
+        End If
+        ObjRet = Nothing
+    End Sub
+#End Region
+
+#Region "  Rutina: catalogo  "
+    Sub Catalogo()
+        Caja = "Consulta133" : Parametros = ""
+        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+        ObjRet = lConsulta.LlamarCaja(Caja, "0", Parametros)
+        If ObjRet.bOk Then
+            Dim nuevo As Grid = New Grid(ObjRet.DS)
+
+            If nuevo.resultado = "" Then
+                Return
+            End If
+
+            Me.CodigoMarca.Text = nuevo.resultado
+            Dim e As KeyEventArgs
+            e = New KeyEventArgs(Keys.Enter)
+            consulta102()
+        Else
+            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+        End If
+
+    End Sub
+#End Region
     
 End Class
