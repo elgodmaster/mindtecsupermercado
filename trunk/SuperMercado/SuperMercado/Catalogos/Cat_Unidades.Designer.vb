@@ -50,19 +50,20 @@ Partial Class Cat_Unidades
         Me.Barra = New System.Windows.Forms.PictureBox
         Me.CodigoUnidades = New System.Windows.Forms.TextBox
         Me.Label1 = New System.Windows.Forms.Label
-        Me.PiePagina = New System.Windows.Forms.StatusStrip
-        Me.MensajePiePagina = New System.Windows.Forms.ToolStripStatusLabel
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip
-        Me.Limpiar = New System.Windows.Forms.ToolStripButton
+        Me.Buscar = New System.Windows.Forms.ToolStripButton
         Me.Nuevo = New System.Windows.Forms.ToolStripButton
         Me.Grabar = New System.Windows.Forms.ToolStripButton
+        Me.Limpiar = New System.Windows.Forms.ToolStripButton
         Me.btnAceptar = New System.Windows.Forms.Button
         Me.Label3 = New System.Windows.Forms.Label
         Me.NombreUnidades = New System.Windows.Forms.Label
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
+        Me.ToolStripStatusLabelClientes = New System.Windows.Forms.ToolStripStatusLabel
         Me.GroupBoxDetalles.SuspendLayout()
         CType(Me.Barra, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PiePagina.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
+        Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBoxDetalles
@@ -70,21 +71,24 @@ Partial Class Cat_Unidades
         Me.GroupBoxDetalles.BackColor = System.Drawing.Color.Transparent
         Me.GroupBoxDetalles.Controls.Add(Me.TxtDescripcion)
         Me.GroupBoxDetalles.Controls.Add(Me.Label2)
-        Me.GroupBoxDetalles.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBoxDetalles.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBoxDetalles.ForeColor = System.Drawing.SystemColors.Desktop
         Me.GroupBoxDetalles.Location = New System.Drawing.Point(14, 148)
         Me.GroupBoxDetalles.Name = "GroupBoxDetalles"
         Me.GroupBoxDetalles.Size = New System.Drawing.Size(973, 511)
         Me.GroupBoxDetalles.TabIndex = 231
         Me.GroupBoxDetalles.TabStop = False
-        Me.GroupBoxDetalles.Text = "Datos de la unidad"
+        Me.GroupBoxDetalles.Text = " Datos de la unidad "
         Me.GroupBoxDetalles.Visible = False
         '
         'TxtDescripcion
         '
         Me.TxtDescripcion.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TxtDescripcion.Location = New System.Drawing.Point(101, 44)
+        Me.TxtDescripcion.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtDescripcion.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.TxtDescripcion.Location = New System.Drawing.Point(106, 43)
         Me.TxtDescripcion.Name = "TxtDescripcion"
-        Me.TxtDescripcion.Size = New System.Drawing.Size(866, 22)
+        Me.TxtDescripcion.Size = New System.Drawing.Size(843, 22)
         Me.TxtDescripcion.TabIndex = 3
         '
         'Label2
@@ -92,11 +96,12 @@ Partial Class Cat_Unidades
         Me.Label2.AutoSize = True
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.SystemColors.ControlText
         Me.Label2.Location = New System.Drawing.Point(17, 46)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(78, 14)
+        Me.Label2.Size = New System.Drawing.Size(83, 14)
         Me.Label2.TabIndex = 220
-        Me.Label2.Text = "Descripción"
+        Me.Label2.Text = "Descripción:"
         '
         'Barra
         '
@@ -114,10 +119,10 @@ Partial Class Cat_Unidades
         '
         Me.CodigoUnidades.BackColor = System.Drawing.SystemColors.Info
         Me.CodigoUnidades.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CodigoUnidades.Location = New System.Drawing.Point(79, 93)
+        Me.CodigoUnidades.Location = New System.Drawing.Point(74, 93)
         Me.CodigoUnidades.MaxLength = 9
         Me.CodigoUnidades.Name = "CodigoUnidades"
-        Me.CodigoUnidades.Size = New System.Drawing.Size(82, 22)
+        Me.CodigoUnidades.Size = New System.Drawing.Size(245, 22)
         Me.CodigoUnidades.TabIndex = 1
         '
         'Label1
@@ -125,56 +130,37 @@ Partial Class Cat_Unidades
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.Transparent
         Me.Label1.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(27, 96)
+        Me.Label1.Location = New System.Drawing.Point(12, 96)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(51, 14)
+        Me.Label1.Size = New System.Drawing.Size(56, 14)
         Me.Label1.TabIndex = 228
-        Me.Label1.Text = "Unidad"
-        '
-        'PiePagina
-        '
-        Me.PiePagina.BackColor = System.Drawing.SystemColors.Info
-        Me.PiePagina.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.PiePagina.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MensajePiePagina})
-        Me.PiePagina.Location = New System.Drawing.Point(0, 686)
-        Me.PiePagina.Name = "PiePagina"
-        Me.PiePagina.Size = New System.Drawing.Size(1016, 22)
-        Me.PiePagina.SizingGrip = False
-        Me.PiePagina.TabIndex = 227
-        Me.PiePagina.Text = "StatusStrip1"
-        '
-        'MensajePiePagina
-        '
-        Me.MensajePiePagina.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MensajePiePagina.Name = "MensajePiePagina"
-        Me.MensajePiePagina.Size = New System.Drawing.Size(150, 17)
-        Me.MensajePiePagina.Text = "ToolStripStatusLabel1"
+        Me.Label1.Text = "Unidad:"
         '
         'ToolStrip1
         '
         Me.ToolStrip1.AutoSize = False
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Limpiar, Me.Nuevo, Me.Grabar})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Buscar, Me.Nuevo, Me.Limpiar, Me.Grabar})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(1016, 48)
         Me.ToolStrip1.TabIndex = 226
         Me.ToolStrip1.Text = "ToolStrip1"
         '
-        'Limpiar
+        'Buscar
         '
-        Me.Limpiar.AutoSize = False
-        Me.Limpiar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.Limpiar.Image = CType(resources.GetObject("Limpiar.Image"), System.Drawing.Image)
-        Me.Limpiar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.Limpiar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.Limpiar.Name = "Limpiar"
-        Me.Limpiar.Size = New System.Drawing.Size(43, 45)
-        Me.Limpiar.Text = "Limpiar"
+        Me.Buscar.AutoSize = False
+        Me.Buscar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.Buscar.Image = Global.SuperMercado.My.Resources.Resources.zoom
+        Me.Buscar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.Buscar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.Buscar.Name = "Buscar"
+        Me.Buscar.Size = New System.Drawing.Size(43, 45)
+        Me.Buscar.Text = "Buscar"
         '
         'Nuevo
         '
         Me.Nuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.Nuevo.Image = CType(resources.GetObject("Nuevo.Image"), System.Drawing.Image)
+        Me.Nuevo.Image = Global.SuperMercado.My.Resources.Resources.add
         Me.Nuevo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.Nuevo.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.Nuevo.Name = "Nuevo"
@@ -184,12 +170,22 @@ Partial Class Cat_Unidades
         'Grabar
         '
         Me.Grabar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.Grabar.Image = CType(resources.GetObject("Grabar.Image"), System.Drawing.Image)
+        Me.Grabar.Image = Global.SuperMercado.My.Resources.Resources.disk
         Me.Grabar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.Grabar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.Grabar.Name = "Grabar"
         Me.Grabar.Size = New System.Drawing.Size(36, 45)
         Me.Grabar.Text = "Grabar"
+        '
+        'Limpiar
+        '
+        Me.Limpiar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.Limpiar.Image = Global.SuperMercado.My.Resources.Resources.page
+        Me.Limpiar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.Limpiar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.Limpiar.Name = "Limpiar"
+        Me.Limpiar.Size = New System.Drawing.Size(36, 45)
+        Me.Limpiar.Text = "Limpiar"
         '
         'btnAceptar
         '
@@ -219,11 +215,27 @@ Partial Class Cat_Unidades
         Me.NombreUnidades.AutoEllipsis = True
         Me.NombreUnidades.BackColor = System.Drawing.Color.Transparent
         Me.NombreUnidades.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NombreUnidades.Location = New System.Drawing.Point(167, 93)
+        Me.NombreUnidades.Location = New System.Drawing.Point(342, 93)
         Me.NombreUnidades.Name = "NombreUnidades"
-        Me.NombreUnidades.Size = New System.Drawing.Size(723, 22)
+        Me.NombreUnidades.Size = New System.Drawing.Size(548, 22)
         Me.NombreUnidades.TabIndex = 233
         Me.NombreUnidades.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabelClientes})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 686)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(1016, 22)
+        Me.StatusStrip1.TabIndex = 295
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'ToolStripStatusLabelClientes
+        '
+        Me.ToolStripStatusLabelClientes.Name = "ToolStripStatusLabelClientes"
+        Me.ToolStripStatusLabelClientes.Size = New System.Drawing.Size(541, 17)
+        Me.ToolStripStatusLabelClientes.Text = "Escriba un número de identificación para mostrar los datos de una unidad, o pulse" & _
+            " F2 para mostrar un catálogo."
         '
         'Cat_Unidades
         '
@@ -231,6 +243,7 @@ Partial Class Cat_Unidades
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1016, 708)
+        Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.NombreUnidades)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.btnAceptar)
@@ -238,7 +251,6 @@ Partial Class Cat_Unidades
         Me.Controls.Add(Me.Barra)
         Me.Controls.Add(Me.CodigoUnidades)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.PiePagina)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.KeyPreview = True
@@ -247,10 +259,10 @@ Partial Class Cat_Unidades
         Me.GroupBoxDetalles.ResumeLayout(False)
         Me.GroupBoxDetalles.PerformLayout()
         CType(Me.Barra, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PiePagina.ResumeLayout(False)
-        Me.PiePagina.PerformLayout()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
+        Me.StatusStrip1.ResumeLayout(False)
+        Me.StatusStrip1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -261,13 +273,14 @@ Partial Class Cat_Unidades
     Friend WithEvents Barra As System.Windows.Forms.PictureBox
     Friend WithEvents CodigoUnidades As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents PiePagina As System.Windows.Forms.StatusStrip
-    Friend WithEvents MensajePiePagina As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
-    Friend WithEvents Limpiar As System.Windows.Forms.ToolStripButton
+    Friend WithEvents Buscar As System.Windows.Forms.ToolStripButton
     Friend WithEvents Grabar As System.Windows.Forms.ToolStripButton
     Friend WithEvents btnAceptar As System.Windows.Forms.Button
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents NombreUnidades As System.Windows.Forms.Label
     Friend WithEvents Nuevo As System.Windows.Forms.ToolStripButton
+    Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
+    Friend WithEvents ToolStripStatusLabelClientes As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents Limpiar As System.Windows.Forms.ToolStripButton
 End Class

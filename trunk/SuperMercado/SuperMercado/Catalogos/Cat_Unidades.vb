@@ -1,3 +1,5 @@
+Imports MindTec.Componentes
+
 Public Class Cat_Unidades
 
 #Region " Variables de trabajo "
@@ -13,15 +15,13 @@ Public Class Cat_Unidades
             Case Keys.Escape
                 Cerrar()
             Case Keys.F4
-                Limpiar.PerformClick()
+                Buscar.PerformClick()
             Case Keys.F9
                 Grabar.PerformClick()
         End Select
     End Sub
     Private Sub Cat_Unidades_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        'Pie de Pagina Mensaje
-        MensajePiePagina.Text = "Esc=Salir Enter=Avanzar F2=Catálogo F4=Limpiar Pantalla"
-        'Deshabilitar
+        Me.Limpiar.Visible = False
         Me.Grabar.Visible = False
     End Sub
 
@@ -44,7 +44,6 @@ Public Class Cat_Unidades
             'Habilitar
             Me.Grabar.Visible = True
             Me.GroupBoxDetalles.Visible = True
-            MensajePiePagina.Text = "Esc=Salir Enter=Avanzar F2=Catálogo F4=Limpiar Pantalla F9=Grabar"
             'Foco
             Me.TxtDescripcion.Focus()
         Else
@@ -97,12 +96,6 @@ Public Class Cat_Unidades
     End Sub
 #End Region
 
-#Region " Limpiar "
-    Private Sub Limpiar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Limpiar.Click
-        LimpiarPantalla()
-    End Sub
-#End Region
-
 #Region " Rutinas "
     Sub LimpiarPantalla()
         'Habilidar
@@ -118,7 +111,6 @@ Public Class Cat_Unidades
         Me.NombreUnidades.Text = ""
         Me.TxtDescripcion.Text = ""
         'PiePagina
-        MensajePiePagina.Text = "Esc=Salir Enter=Avanzar F2=Catalogo F4=Limpiar Pantalla"
         'Foco
         Me.CodigoUnidades.Focus()
     End Sub
@@ -127,12 +119,16 @@ Public Class Cat_Unidades
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
         ObjRet = lConsulta.LlamarCaja(Caja, "0", Parametros)
         If ObjRet.bOk Then
-            '' ''Dim nuevo As Grid = New Grid(ObjRet.DS)
+            Dim nuevo As Grid = New Grid(ObjRet.DS)
 
-            '' ''Me.CodigoUnidades.Text = nuevo.resultado
+            If nuevo.resultado = "" Then
+                Return
+            End If
+
+            Me.CodigoUnidades.Text = nuevo.resultado
             Dim e As KeyEventArgs
             e = New KeyEventArgs(Keys.Enter)
-            Me.CodigoUnidades_KeyDown(DBNull.Value, e)
+            consulta104()
         Else
             MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
 
@@ -162,7 +158,11 @@ Public Class Cat_Unidades
             If lConsulta Is Nothing Then lConsulta = New ClsConsultas
             ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
             MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
-            LimpiarPantalla()
+            If ObjRet.bOk Then
+                LimpiarPantalla()
+                Limpiar.Visible = False
+            End If
+
 
         End If
     End Sub
@@ -170,6 +170,13 @@ Public Class Cat_Unidades
 
 #Region " Nuevo "
     Private Sub Nuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Nuevo.Click
+        Nuevo.Visible = False
+        Limpiar.Visible = True
+        Grabar.Visible = True
+        Grabar.Enabled = True
+        TxtDescripcion.Clear()
+
+
         Caja = "Consulta104" : Parametros = ""
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
         ObjRet = lConsulta.LlamarCaja(Caja, "3", Parametros)
@@ -190,5 +197,61 @@ Public Class Cat_Unidades
         End If
     End Sub
 #End Region
+
+#Region "  Botón BUSCAR  "
+    Private Sub Buscar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Buscar.Click
+        Catalogo()
+    End Sub
+#End Region   
+
+#Region "  Rutina: consulta104  "
+    Sub consulta104()
+        Limpiar.Visible = True
+        Grabar.Visible = True
+        Nuevo.Visible = True
+        Grabar.Enabled = True
+
+        Caja = "Consulta104" : Parametros = "V1=" & Me.CodigoUnidades.Text()
+        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+        ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
+        If ObjRet.bOk Then
+            'Deshabilitar
+            Me.CodigoUnidades.Enabled = False
+            Me.btnAceptar.Enabled = False
+
+            'Asignar
+            Me.TxtDescripcion.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
+            If TxtDescripcion.Text = "-SIN UNIDAD-" Then
+                Grabar.Enabled = False
+            End If
+
+            'Habilitar
+            Me.Grabar.Visible = True
+            Me.GroupBoxDetalles.Visible = True
+            'Foco
+            Me.TxtDescripcion.SelectAll()
+            Me.TxtDescripcion.Focus()
+        Else
+            'Asignar
+            Me.CodigoUnidades.Text = ""
+            Me.NombreUnidades.Text = ""
+            Me.TxtDescripcion.Text = ""
+
+            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+
+
+            'Foco
+            Me.CodigoUnidades.Focus()
+        End If
+        ObjRet = Nothing
+    End Sub
+#End Region
+
+#Region "  Botón LIMPIAR  "
+    Private Sub Limpiar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Limpiar.Click
+        TxtDescripcion.Clear()
+    End Sub
+#End Region
     
 End Class
+

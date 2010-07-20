@@ -96,6 +96,7 @@ Partial Class Cat_Proveedores
         Me.GridDatosPROVEEDORES = New SourceGrid.DataGrid
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
         Me.ToolStripStatusLabelProveedores = New System.Windows.Forms.ToolStripStatusLabel
+        Me.Buscar = New System.Windows.Forms.ToolStripButton
         Me.ToolStripButtonNuevo = New System.Windows.Forms.ToolStripButton
         Me.Limpiar = New System.Windows.Forms.ToolStripButton
         Me.Grabar = New System.Windows.Forms.ToolStripButton
@@ -153,7 +154,7 @@ Partial Class Cat_Proveedores
         'BarraMenu
         '
         Me.BarraMenu.AutoSize = False
-        Me.BarraMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButtonNuevo, Me.Limpiar, Me.Grabar, Me.ToolStripSeparator1, Me.ToolStripButtonNuevaCuenta, Me.ToolStripButtonEliminar, Me.ToolStripSeparator2, Me.ToolStripButtonDetalle, Me.ToolStripButtonAbonos, Me.ToolStripButtonAbonar})
+        Me.BarraMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Buscar, Me.ToolStripButtonNuevo, Me.Limpiar, Me.Grabar, Me.ToolStripSeparator1, Me.ToolStripButtonNuevaCuenta, Me.ToolStripButtonEliminar, Me.ToolStripSeparator2, Me.ToolStripButtonDetalle, Me.ToolStripButtonAbonos, Me.ToolStripButtonAbonar})
         Me.BarraMenu.Location = New System.Drawing.Point(0, 0)
         Me.BarraMenu.Name = "BarraMenu"
         Me.BarraMenu.Size = New System.Drawing.Size(1016, 48)
@@ -738,6 +739,16 @@ Partial Class Cat_Proveedores
         Me.ToolStripStatusLabelProveedores.Text = "Escriba el nombre o número de identificación de un proveedor para filtrar los res" & _
             "ultados."
         '
+        'Buscar
+        '
+        Me.Buscar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.Buscar.Image = Global.SuperMercado.My.Resources.Resources.zoom
+        Me.Buscar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.Buscar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.Buscar.Name = "Buscar"
+        Me.Buscar.Size = New System.Drawing.Size(36, 45)
+        Me.Buscar.Text = "Buscar"
+        '
         'ToolStripButtonNuevo
         '
         Me.ToolStripButtonNuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
@@ -934,4 +945,5 @@ Partial Class Cat_Proveedores
     Friend WithEvents ToolStripButtonDetalle As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripButtonAbonar As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolStripButtonAbonos As System.Windows.Forms.ToolStripButton
+    Friend WithEvents Buscar As System.Windows.Forms.ToolStripButton
 End Class

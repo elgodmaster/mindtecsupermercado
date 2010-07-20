@@ -1,7 +1,5 @@
 Imports MindTec.Componentes
 
-'Imports MindTec.Componentes
-
 Public Class Cat_Categorias
 
 #Region "  Variables de trabajo  "
@@ -27,24 +25,32 @@ Public Class Cat_Categorias
 
     Private Sub Cat_Categorias_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'Pie de Pagina Mensaje
-        MensajePiePagina.Text = "Esc=Salir Enter=Avanzar F2=Catálogo F4=Limpiar Pantalla"
         'Deshabilitar
+        Me.Limpiar.Visible = False
         Me.Grabar.Visible = False
     End Sub
 
 #End Region
 
+#Region "  Botón BUSCAR  "
+    Private Sub Buscar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Buscar.Click
+        Catalogo()
+    End Sub
+#End Region
+
 #Region "  Botón Aceptar  "
     Private Sub btnAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAceptar.Click
+        CodigoCategoria.Enabled = False
 
         Caja = "Consulta101" : Parametros = "V1=" & Me.CodigoCategoria.Text
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
         ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
         If ObjRet.bOk Then
+            ToolStripStatusLabelCat.Text = ""
+            Me.Limpiar.Visible = True
+
             'Deshabilitar
-            Me.CodigoCategoria.Enabled = False
             Me.btnAceptar.Enabled = False
-            Me.Nuevo.Visible = False
 
             'Asignar
             Me.Descripcion.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
@@ -52,7 +58,6 @@ Public Class Cat_Categorias
             'Habilitar
             Me.Grabar.Visible = True
             Me.GroupBoxCategoria.Visible = True
-            MensajePiePagina.Text = "Esc=Salir Enter=Avanzar F2=Catálogo F4=Limpiar Pantalla F9=Grabar"
             'Foco
             Me.Descripcion.Focus()
         Else
@@ -75,14 +80,18 @@ Public Class Cat_Categorias
     Private Sub Grabar_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles Grabar.Click
         'Variable de trabajo
         Dim Result As DialogResult
-        Result = MessageBox.Show("¿Deseas Guardar los Cambios?", "PVFacturacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
+        Result = MessageBox.Show("¿Desea guardar los cambios?", " SMercado", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
         If Result = Windows.Forms.DialogResult.Yes Then
             Caja = "Grabar101" : Parametros = "V1=" & Me.CodigoCategoria.Text & "|V2=" & Me.Descripcion.Text & "|"
             If lConsulta Is Nothing Then lConsulta = New ClsConsultas
             ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
 
             MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
-            LimpiarPantalla()
+            If ObjRet.bOk Then
+                LimpiarPantalla()
+                regresaPantalla()
+            End If
+            
         End If
     End Sub
 #End Region
@@ -95,13 +104,18 @@ Public Class Cat_Categorias
 
 #Region "  Botón Nuevo  "
     Private Sub Nuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Nuevo.Click
+        CodigoCategoria.Enabled = False
+        Grabar.Enabled = True
+
+        Me.Limpiar.Visible = True
+        LimpiarPantalla()
+
         Caja = "Consulta101" : Parametros = ""
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
         ObjRet = lConsulta.LlamarCaja(Caja, "3", Parametros)
         If ObjRet.bOk Then
             'Deshabilitar
             Me.Nuevo.Visible = False
-            Me.CodigoCategoria.Enabled = False
             Me.btnAceptar.Enabled = False
             'Asignar
             Me.NombreCategoria.Text = ""
@@ -151,6 +165,36 @@ Public Class Cat_Categorias
 
 #Region "  Rutinas  "
     Sub LimpiarPantalla()
+        'Asignar
+        Me.Descripcion.Clear()
+        Me.Descripcion.Focus()
+
+    End Sub
+
+
+    Sub Cerrar()
+        Dim Result As DialogResult
+        Result = MessageBox.Show("¿Deseas salir de esta pantalla?", "SuperMercado Beltrán", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
+        If Result = Windows.Forms.DialogResult.Yes Then
+            Me.Close()
+        End If
+    End Sub
+
+    Private Sub Cat_Categorias_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated
+        CodigoCategoria.Focus()
+    End Sub
+#End Region
+
+#Region "  Rutina: regresaPantalla  "
+    Sub regresaPantalla()
+        ToolStripStatusLabelCat.Text = "Escriba un número de identificación para mostrar los datos de una categoría, o pulse F2 mostrar un catálogo."
+
+        CodigoCategoria.Enabled = True
+
+        NombreCategoria.Text = ""
+        CodigoCategoria.Clear()
+        CodigoCategoria.Focus()
+
         'Habilidar
         Me.btnAceptar.Enabled = True
         Me.CodigoCategoria.Enabled = True
@@ -158,16 +202,56 @@ Public Class Cat_Categorias
         'Deshabilitar
         Me.GroupBoxCategoria.Visible = False
         Me.Grabar.Visible = False
+        Me.Limpiar.Visible = False
 
-        'Asignar
-        Me.CodigoCategoria.Text = ""
-        Me.NombreCategoria.Text = ""
-        Me.Descripcion.Text = ""
-        'PiePagina
-        MensajePiePagina.Text = "Esc=Salir Enter=Avanzar F2=Catalogo F4=Limpiar Pantalla"
-        'Foco
-        Me.CodigoCategoria.Focus()
     End Sub
+#End Region
+
+#Region "  Rutina: consulta101  "
+    Sub consulta101()
+        Grabar.Enabled = True
+
+        Caja = "Consulta101" : Parametros = "V1=" & Me.CodigoCategoria.Text
+        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+        ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
+        If ObjRet.bOk Then
+            ToolStripStatusLabelCat.Text = ""
+            Me.Limpiar.Visible = True
+
+            'Deshabilitar
+            Me.btnAceptar.Enabled = False
+
+            'Asignar
+            Me.Descripcion.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
+            If Descripcion.Text = "-SIN CATEGORÍA-" Then
+                Grabar.Enabled = False
+            End If
+
+            'Habilitar
+            Me.Grabar.Visible = True
+            Me.GroupBoxCategoria.Visible = True
+            'Foco
+            Me.Descripcion.Focus()
+        Else
+            'Asignar
+            Me.CodigoCategoria.Text = ""
+            Me.NombreCategoria.Text = ""
+            Me.Descripcion.Text = ""
+
+            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+
+            'Foco
+            Me.CodigoCategoria.Focus()
+        End If
+
+        CodigoCategoria.Enabled = False
+        Nuevo.Visible = True
+        Descripcion.SelectAll()
+        Descripcion.Focus()
+    End Sub
+#End Region
+
+#Region "  Rutina: catalogo  "
     Sub Catalogo()
         Caja = "Consulta101" : Parametros = ""
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
@@ -176,24 +260,20 @@ Public Class Cat_Categorias
             Dim nuevo As Grid = New Grid(ObjRet.DS)
             Me.CodigoCategoria.Text = nuevo.resultado
 
+            If nuevo.resultado = "" Then
+                Return
+            End If
+
             Dim e As KeyEventArgs
             e = New KeyEventArgs(Keys.Enter)
-            Me.CodigoCategoria_KeyDown(DBNull.Value, e)
+            'Me.CodigoCategoria_KeyDown(DBNull.Value, e)
+            consulta101()
+
         Else
             MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
         End If
 
     End Sub
-    Sub Cerrar()
-        Dim Result As DialogResult
-        Result = MessageBox.Show("¿Deseas salir de esta pantalla?", "SuperMercado Beltrán", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
-        If Result = Windows.Forms.DialogResult.Yes Then
-            Me.Close()
-        End If
-    End Sub
 #End Region
 
-    Private Sub Cat_Categorias_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated
-        CodigoCategoria.Focus()
-    End Sub
 End Class

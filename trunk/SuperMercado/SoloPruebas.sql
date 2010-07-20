@@ -192,7 +192,13 @@ exec grabar112 'V1=1|V2=1|V3=150.5|V4=asalté un banco, tío|', '', '', ''
 exec grabar120 'V1=123|V2=ADMIN|','','',''
 exec grabar124 'V1=1|V2=2|V3=108|V4=50|V5=RFCCLIENTE|','','',''
 exec grabar126 'V1=2|V2=10.00|V3=95|','','',''
-select * from SMercado..Venta_detalles 
+-- Departamentos
+exec consulta100 '','','',''
+-- Categorías
+exec consulta101 '','','',''
+--
+exec consulta104 '','','',''
+
 exec consulta105 'V1=LINDOR|','','','2'
 exec consulta106 'V1=PROVEEDOR1|', '', '', '2'
 exec Consulta110 'V1=admin|','','',''
@@ -213,8 +219,18 @@ exec consulta127 'V1=51|', '', '', ''
 exec consulta128 'V1=L|', '', '', ''
 exec consulta129 '','','',''
 exec consulta131 'V1=7|', '','',''
+exec Consulta136 'V1=1|', '', '', ''
 
-select * from SMercado..Cat_Clientes 
+select * from SMercado..Cat_Productos 
+
+
+
+delete SMercado..Cat_Productos 
+where IdProducto > 13
+
+Select * From SMercado..Cat_Unidades 
+Select * From SMercado..Cat_Marcas
+Select * From SMercado..Cat_Categorias  
 
 Select * From SMercado_Seguridad..Usuarios
 Select * From SMercado..Caja_Corte 
@@ -415,5 +431,4 @@ Select * From SMercado..Cuentas_Pagar
 delete SMercado..Cuentas_Pagar 
 delete SMercado..Cuentas_Pagar_Detalles
 
-update SMercado..Cat_Proveedores
-set Deuda = 0
+Select * from SMercado..Cat_Productos 

@@ -9,6 +9,13 @@ Public Class Cat_Departamentos
     Dim ObjRet As CRetorno
 #End Region
 
+#Region "  Evento: Cat_Departamentos - LOAD  "
+    Private Sub Cat_Departamentos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        Me.Grabar.Visible = False
+        Me.Limpiar.Visible = False
+    End Sub
+#End Region
+
 #Region " Eventos Principales"
     Private Sub Cat_Departamentos_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
         Select Case e.KeyCode
@@ -22,13 +29,6 @@ Public Class Cat_Departamentos
                 Grabar.PerformClick()
         End Select
     End Sub
-    Private Sub Cat_Departamentos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        'Pie de Pagina Mensaje
-        MensajePiePagina.Text = "Esc=Salir Enter=Avanzar F2=Catálogo F4=Limpiar Pantalla"
-        'Deshabilitar
-        Me.Grabar.Visible = False
-    End Sub
-
 #End Region
 
 #Region " Departamento "
@@ -74,6 +74,8 @@ Public Class Cat_Departamentos
             Me.CodigoDepto.Enabled = False
             Me.btnAceptar.Enabled = False
             Me.Nuevo.Visible = False
+            Limpiar.Visible = True
+            Grabar.Visible = True
 
             'Asignar
             Me.TxtDescripcion.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
@@ -81,7 +83,6 @@ Public Class Cat_Departamentos
             'Habilitar
             Me.Grabar.Visible = True
             Me.GroupBoxDepto.Visible = True
-            MensajePiePagina.Text = "Esc=Salir Enter=Avanzar F2=Catálogo F4=Limpiar Pantalla F9=Grabar"
             'Foco
             Me.TxtDescripcion.Focus()
         Else
@@ -108,39 +109,8 @@ Public Class Cat_Departamentos
 
 #Region " Rutinas "
     Sub LimpiarPantalla()
-        'Habilidar
-        Me.btnAceptar.Enabled = True
-        Me.CodigoDepto.Enabled = True
-        Me.Nuevo.Visible = True
-        'Deshabilitar
-        Me.GroupBoxDepto.Visible = False
-        Me.Grabar.Visible = False
-
-        'Asignar
-        Me.CodigoDepto.Text = ""
-        Me.NombreDepto.Text = ""
-        Me.TxtDescripcion.Text = ""
-        'PiePagina
-        MensajePiePagina.Text = "Esc=Salir Enter=Avanzar F2=Catalogo F4=Limpiar Pantalla"
-        'Foco
-        Me.CodigoDepto.Focus()
-    End Sub
-    Sub Catalogo()
-        Caja = "Consulta100" : Parametros = ""
-        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
-        ObjRet = lConsulta.LlamarCaja(Caja, "0", Parametros)
-        If ObjRet.bOk Then
-            Dim nuevo As Grid = New Grid(ObjRet.DS)
-
-            Me.CodigoDepto.Text = nuevo.resultado
-            Dim e As KeyEventArgs
-            e = New KeyEventArgs(Keys.Enter)
-            Me.CodigoDepto_KeyDown(DBNull.Value, e)
-        Else
-            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
-
-
-        End If
+        Me.TxtDescripcion.Clear()
+        Me.TxtDescripcion.Focus()
 
     End Sub
     Sub Cerrar()
@@ -156,7 +126,7 @@ Public Class Cat_Departamentos
     Private Sub Grabar_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles Grabar.Click
         'Variable de trabajo
         Dim Result As DialogResult
-        Result = MessageBox.Show("¿Deseas Guardar los Cambios?", "PVFacturacion", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
+        Result = MessageBox.Show("¿Deseas Guardar los Cambios?", " SMercado", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
         If Result = Windows.Forms.DialogResult.Yes Then
             Caja = "Grabar100" : Parametros = "V1=" & Me.CodigoDepto.Text.Trim & _
                                               "|V2=" & Me.TxtDescripcion.Text.Trim & "|"
@@ -164,14 +134,18 @@ Public Class Cat_Departamentos
             If lConsulta Is Nothing Then lConsulta = New ClsConsultas
             ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
             MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
-            LimpiarPantalla()
-
+            If ObjRet.bOk Then
+                regresarPantalla()
+            End If
         End If
     End Sub
 #End Region
 
 #Region " Nuevo "
     Private Sub Nuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Nuevo.Click
+        Limpiar.Visible = True
+        Grabar.Enabled = True
+
         Caja = "Consulta100" : Parametros = ""
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
         ObjRet = lConsulta.LlamarCaja(Caja, "3", Parametros)
@@ -187,9 +161,103 @@ Public Class Cat_Departamentos
             Me.GroupBoxDepto.Visible = True
             Me.Grabar.Visible = True
             'Focus
+            Me.TxtDescripcion.Clear()
             Me.TxtDescripcion.Focus()
 
         End If
+    End Sub
+#End Region
+
+#Region "  Rutina: catalogo  "
+    Sub Catalogo()
+        Caja = "Consulta100" : Parametros = ""
+        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+        ObjRet = lConsulta.LlamarCaja(Caja, "0", Parametros)
+        If ObjRet.bOk Then
+            Dim nuevo As Grid = New Grid(ObjRet.DS)
+
+            If nuevo.resultado = "" Then
+                Return
+            End If
+            Me.CodigoDepto.Text = nuevo.resultado
+            Dim e As KeyEventArgs
+            e = New KeyEventArgs(Keys.Enter)
+            consulta100()
+
+        Else
+            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+        End If
+
+    End Sub
+#End Region
+
+#Region "  Rutina: regresarPantalla "
+    Sub regresarPantalla()
+        'Habilidar
+        Me.btnAceptar.Enabled = True
+        Me.CodigoDepto.Enabled = True
+        Me.Nuevo.Visible = True
+        'Deshabilitar
+        Me.GroupBoxDepto.Visible = False
+        Me.Grabar.Visible = False
+        Me.Limpiar.Visible = False
+
+        'Asignar
+        Me.CodigoDepto.Text = ""
+        Me.NombreDepto.Text = ""
+        Me.TxtDescripcion.Text = ""
+        'PiePagina
+        'Foco
+        Me.CodigoDepto.Focus()
+    End Sub
+#End Region
+
+#Region "  Botón BUSCAR  "
+    Private Sub Buscar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Buscar.Click
+        Catalogo()
+    End Sub
+#End Region
+
+#Region "  Rutina: consulta100  "
+    Sub consulta100()
+        Nuevo.Visible = True
+        Limpiar.Visible = True
+        Grabar.Visible = True
+        Grabar.Enabled = True
+
+        Caja = "Consulta100" : Parametros = "V1=" & Me.CodigoDepto.Text
+        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+        ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
+        If ObjRet.bOk Then
+            'Deshabilitar
+            Me.CodigoDepto.Enabled = False
+            Me.btnAceptar.Enabled = False
+            Limpiar.Visible = True
+            Grabar.Visible = True
+
+            'Asignar
+            Me.TxtDescripcion.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
+            If TxtDescripcion.Text = "-SIN DEPARTAMENTO-" Then
+                Grabar.Enabled = False
+            End If
+
+            'Habilitar
+            Me.Grabar.Visible = True
+            Me.GroupBoxDepto.Visible = True
+            'Foco
+            Me.TxtDescripcion.Focus()
+        Else
+            'Asignar
+            Me.CodigoDepto.Text = ""
+            Me.NombreDepto.Text = ""
+            Me.TxtDescripcion.Text = ""
+
+            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+
+            'Foco
+            Me.CodigoDepto.Focus()
+        End If
+        ObjRet = Nothing
     End Sub
 #End Region
 
