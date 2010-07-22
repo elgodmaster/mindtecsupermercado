@@ -490,7 +490,7 @@ Public Class Facturacion
                 'Servicios
                 Caja = "Consulta105" : Parametros = "V1=" & Me.CodigoCliente.Text
                 If lConsulta Is Nothing Then lConsulta = New ClsConsultas
-                ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
+                ObjRet = lConsulta.LlamarCaja(Caja, "4", Parametros)
                 'Estatus
                 If ObjRet.bOk Then
                     Caja = "Consulta105" : Parametros = "V1=" & Me.CodigoCliente.Text
@@ -508,6 +508,9 @@ Public Class Facturacion
                     GroupBoxDatosCliente.Visible = True
 
                     Txt_CodigoProducto.Focus()
+                Else
+                    MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+                    CodigoCliente.Focus()
                 End If
         End Select
     End Sub

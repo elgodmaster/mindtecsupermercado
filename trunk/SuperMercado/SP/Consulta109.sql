@@ -195,6 +195,36 @@ BEGIN
 	 Select @Registro = @@RowCount	 
      End
 
+
+
+   If @Validar = 7
+    Begin
+     Select Año           = IsNull(str(year(a.fecha)),''),
+		    Mes           = IsNull(str(month(a.fecha)),''),
+			Dia           = IsNull(str(day(a.fecha)),''),
+			Entrada       = IsNull(str(a.identrada),''),
+			proveedor     = IsNull(d.nombre,''),
+			Factura       = IsNull(a.folioFactura,''),
+			CodProducto   = IsNull(c.codigo,''),
+			Producto      = IsNull(c.descripcion,''),
+			Departamento  = ISNULL(e.descripcion,''),
+			Categoria     = IsNull(f.descripcion,''),
+			Marca         = IsNull(g.descripcion,''),
+			Cantidad      = IsNull(str(b.cantidad),''),
+			Unidad        = IsNull(h.descripcion,''),
+			Costo         = ISNULL(c.CostoCompra,0),
+			CostoTotal    = Convert(Decimal(18,2),IsNull(SUM(c.costocompra * b.cantidad),0))
+     From SMercado..Entradas a (NoLock)
+     Left Join Smercado..Entrada_Detalles b (NoLock) On b.IdEntrada = a.idEntrada 
+     Left join Smercado..cat_productos c (NoLock) On c.codigo = b.idproducto
+     Left join SMercado..Cat_Proveedores d (NoLock) On d.Codigo = a.IdProveedor
+     Left join SMercado..Cat_Departamentos e (NoLock) On e.IdDepartamento = c.IDDepartamento 
+     Left join SMercado..cat_categorias f (NoLock) On f.idcategoria = c.idcategoria
+	 Left join SMercado..cat_marcas g (NoLock) On g.idmarca = c.idmarca
+     Left join SMercado..Cat_Unidades h (NoLock) On h.IdUnidad = c.IdUnidad 
+     Where year(a.fecha) > 1900
+	 group By a.fecha,a.idEntrada,d.Nombre,a.folioFactura,c.Codigo,c.Descripcion,e.Descripcion,f.Descripcion,g.Descripcion,b.cantidad,h.Descripcion,c.CostoCompra 
+    End 
   -- Enviar Resultado 
 
   If @Registro = 0
@@ -211,6 +241,8 @@ BEGIN
          Select @Resul = '2R=OK|'
       If @Validar = 6
          Select @Resul= '2R=ERROR|2M=El producto no esta registrado'
+      If @Validar = 7 
+         Select @Resul = '2R=ERROR|2M=No existen datos para mostrar'
   End
    Else
     Begin
@@ -239,6 +271,8 @@ BEGIN
          Select @Resul = '2R=OK|V1=' + @Desc1 + 
 							  '|V2=' + @Desc2 + 
 							  '|V3=' + @Desc3 + '|'
+	  If @Validar = 7 
+         Select @Resul = '2R=OK|'
     End
   Set NoCount OFF
 END
