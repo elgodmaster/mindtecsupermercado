@@ -7,10 +7,13 @@ Public Class Credito
     Dim Parametros As String = ""
     Dim lConsulta As New ClsConsultas
     Dim ObjRet As CRetorno
+    Dim ObjRet2 As CRetorno
     Dim Total As Double
     Dim DsDatosCuenta As DataSet
     Dim IdCuenta As Integer
     Dim Cventa As ModuloVentas = ModuloVentas.Instance
+
+    Dim codigo As String
 #End Region
 
 #Region "  Evento: Credito - LOAD  "
@@ -19,9 +22,10 @@ Public Class Credito
 
         consulta128()
 
-        ComboBoxNombreCliente.DataSource = ObjRet.DS.Tables(0)
-        ComboBoxNombreCliente.DisplayMember = ObjRet.DS.Tables(0).Columns(1).Caption.ToString
-        'ComboBoxNombreCliente.Text = "LINDOR"
+        ComboBoxNombreCliente.DataSource = ObjRet2.DS.Tables(0)
+        ComboBoxNombreCliente.DisplayMember = ObjRet2.DS.Tables(0).Columns(1).Caption.ToString
+
+        consulta105()
 
         ComboBoxNombreCliente.Select(0, 50)
         ComboBoxNombreCliente.Focus()
@@ -54,7 +58,7 @@ Public Class Credito
             Radio = "Varios Artículos"
         End If
 
-        Caja = "Grabar116" : Parametros = "V1=" & IdCuenta & "|V2=|V3=0|V4=" & idUsuario & "|V5=" & Me.textBoxCodigo.Text & "|V6=0|V7=" & Radio & "|V8=" & Me.Total & "|"
+        Caja = "Grabar116" : Parametros = "V1=" & IdCuenta & "|V2=|V3=0|V4=" & idUsuario & "|V5=" & codigo & "|V6=0|V7=" & Radio & "|V8=" & Me.Total & "|"
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
         ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros, DsDatosCuenta)
 
@@ -91,7 +95,12 @@ Public Class Credito
 #Region "  Rutina: consulta105  "
     Sub consulta105()
         'Regresa algunos campos de un cliente.
-        Caja = "Consulta105" : Parametros = "V1=" & ComboBoxNombreCliente.Text.Trim & "|"
+        Dim idCliente As String
+        Dim pos As Integer = ComboBoxNombreCliente.SelectedIndex
+        idCliente = ObjRet2.DS.Tables(0).Rows(pos).Item(0).ToString
+        codigo = ObjRet2.DS.Tables(0).Rows(pos).Item(6).ToString
+
+        Caja = "Consulta105" : Parametros = "V1=" & idCliente & "|"
         ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
     End Sub
 #End Region
@@ -100,7 +109,7 @@ Public Class Credito
     Sub consulta128()
         'Devuelve la lista de todos los clientes.
         Caja = "consulta128" : Parametros = ""
-        ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
+        ObjRet2 = lConsulta.LlamarCaja(Caja, "1", Parametros)
     End Sub
 #End Region
 

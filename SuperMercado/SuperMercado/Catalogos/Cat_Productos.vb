@@ -18,6 +18,8 @@ Public Class Cat_Productos
         ocultarGroupBox()
         keyCodigo.Focus()
 
+        consulta137()
+
     End Sub
 #End Region
 
@@ -29,14 +31,18 @@ Public Class Cat_Productos
 
 #Region "  Botón GRABAR  "
     Private Sub Grabar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Grabar.Click
-        grabar129()
+        Dim resul As DialogResult
+        resul = MessageBox.Show("¿Desea guardar los cambios realizados?", " SMercado", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
-        ocultarBotonesEditar()
-        ocultarGroupBox()
+        If resul = Windows.Forms.DialogResult.Yes Then
+            grabar129()
 
-        keyCodigo.Clear()
-        keyCodigo.Focus()
+            ocultarBotonesEditar()
+            ocultarGroupBox()
 
+            keyCodigo.Clear()
+            keyCodigo.Focus()
+        End If
     End Sub
 #End Region
 
@@ -83,6 +89,7 @@ Public Class Cat_Productos
             End If
 
             keyCodigo.Text = nuevo.resultado
+
             consulta136()
         Else
             MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
@@ -122,6 +129,30 @@ Public Class Cat_Productos
         keyCodigo.SelectAll()
         keyCodigo.Focus()
 
+    End Sub
+#End Region
+
+#Region "  Rutina: consulta137  "
+    Sub consulta137()
+        'Carga los comboBox
+        Caja = "Consulta137" : Parametros = ""
+        ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
+
+        unidad.DataSource = ObjRet.DS.Tables(0)
+        unidad.DisplayMember = ObjRet.DS.Tables(0).Columns(0).Caption.ToString
+        unidad.Text = "-SIN UNIDAD-"
+
+        categoria.DataSource = ObjRet.DS.Tables(1)
+        categoria.DisplayMember = ObjRet.DS.Tables(1).Columns(0).Caption.ToString
+        categoria.Text = "-SIN CATEGORÍA-"
+
+        marca.DataSource = ObjRet.DS.Tables(2)
+        marca.DisplayMember = ObjRet.DS.Tables(2).Columns(0).Caption.ToString
+        marca.Text = "-SIN MARCA-"
+
+        departamento.DataSource = ObjRet.DS.Tables(3)
+        departamento.DisplayMember = ObjRet.DS.Tables(3).Columns(0).Caption.ToString
+        departamento.Text = "-SIN DEPARTAMENTO-"
     End Sub
 #End Region
 

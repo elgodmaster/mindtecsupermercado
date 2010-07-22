@@ -203,6 +203,7 @@ Partial Class Cat_Productos
         '
         'unidad
         '
+        Me.unidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.unidad.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.unidad.FormattingEnabled = True
         Me.unidad.Location = New System.Drawing.Point(141, 80)
@@ -223,6 +224,7 @@ Partial Class Cat_Productos
         '
         'marca
         '
+        Me.marca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.marca.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.marca.FormattingEnabled = True
         Me.marca.Location = New System.Drawing.Point(141, 139)
@@ -232,6 +234,7 @@ Partial Class Cat_Productos
         '
         'departamento
         '
+        Me.departamento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.departamento.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.departamento.FormattingEnabled = True
         Me.departamento.Location = New System.Drawing.Point(141, 167)
@@ -241,6 +244,7 @@ Partial Class Cat_Productos
         '
         'categoria
         '
+        Me.categoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.categoria.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.categoria.FormattingEnabled = True
         Me.categoria.Location = New System.Drawing.Point(141, 111)

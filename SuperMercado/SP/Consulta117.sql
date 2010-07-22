@@ -16,11 +16,7 @@ BEGIN
 DECLARE @nomCliente	VARCHAR(8000)
 DECLARE @codigoClie VARCHAR(8000)
 
-Exec Emulador_SepararCadena 'V1',  @Cabezero, '|', @nomCliente	Output 
-
-Select @codigoClie = (Select C.Codigo  
-					  From SMercado..Cat_Clientes C
-					  Where C.NombreFiscal = @nomCliente )
+Exec Emulador_SepararCadena 'V1',  @Cabezero, '|', @codigoClie	Output 
 
 select	C1 = C.IdCuenta, 
 
@@ -39,7 +35,7 @@ select	C1 = C.IdCuenta,
 				  Group by CA.idCuenta), 0))
 				  
 from SMercado..Cuentas_Cobrar C
-Where	C.CodigoCliente = @codigoClie 
+Where C.CodigoCliente = @codigoClie 
 and C.Adeudo <> 0
 
 Select @Resul = '2R=OK|'

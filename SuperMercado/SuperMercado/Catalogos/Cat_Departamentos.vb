@@ -182,6 +182,7 @@ Public Class Cat_Departamentos
             Me.CodigoDepto.Text = nuevo.resultado
             Dim e As KeyEventArgs
             e = New KeyEventArgs(Keys.Enter)
+
             consulta100()
 
         Else
@@ -245,6 +246,7 @@ Public Class Cat_Departamentos
             Me.Grabar.Visible = True
             Me.GroupBoxDepto.Visible = True
             'Foco
+            Me.TxtDescripcion.SelectAll()
             Me.TxtDescripcion.Focus()
         Else
             'Asignar

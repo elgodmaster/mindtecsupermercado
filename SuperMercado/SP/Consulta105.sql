@@ -67,12 +67,7 @@ BEGIN
   Select @Resul2  = ''
 
   --Obtener los Parametros
-  Exec Emulador_SepararCadena 'V1', @Cabezero, '|', @Valor1 Output --nombreCliente
-  
-  Select @nomCliente = @Valor1
-  Select @Valor1 = (Select Codigo  
-					From SMercado..Cat_Clientes
-					Where NombreFiscal = @nomCliente)
+  Exec Emulador_SepararCadena 'V1', @Cabezero, '|', @Valor1 Output --idCliente
 
   -- Validar Parametros
   If @Validar = 1 or @Validar = 2
@@ -98,7 +93,7 @@ BEGIN
    Begin
      Select @Desc1 = IsNull(NombreFiscal,'')
      From SMercado..Cat_Clientes (NoLock)
-     Where Codigo = @Valor1
+     Where IdCliente  = @Valor1
 
 	 Select @Registro = @@RowCount	 
    End
@@ -125,7 +120,7 @@ BEGIN
      From SMercado..Cat_Clientes a (NoLock)
      Left Join SMercado..Cat_EstadosdelaRepublica b (NoLock) On b.IdEstado = a.IdEstado
      Left Join SMercado..Cat_Ciudades c (NoLock) On c.IdCiudad = a.IdCiudad And c.IdEstado = a.IdEstado 
-     Where Codigo = @Valor1
+     Where IdCliente  = @Valor1
 
 	 Select @Registro = @@RowCount	 
    End
@@ -151,7 +146,7 @@ BEGIN
      From SMercado..Cat_Clientes a (NoLock)
      Left Join SMercado..Cat_EstadosdelaRepublica b (NoLock) On b.IdEstado = a.IdEstado
      Left Join SMercado..Cat_Ciudades c (NoLock) On c.IdCiudad = a.IdCiudad And c.IdEstado = a.IdEstado 
-     Where Codigo = @Valor1
+     Where IdCliente = @Valor1
 
 	 Select @Registro = @@RowCount	 
    End

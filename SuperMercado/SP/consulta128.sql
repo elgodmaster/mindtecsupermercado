@@ -24,7 +24,8 @@ Select C1 = C.IdCliente,
 	   C3 = C.Colonia, 
 	   C4 = C.Direccion, 
 	   C5 = C.Telefono1, 
-	   C6 = C.Email  
+	   C6 = C.Email,
+	   C7 = C.Codigo   
 From SMercado..Cat_Clientes C
 Where C.IdCliente like '%' + @keyword + '%' OR
 	  C.NombreFiscal like '%' + @keyWord + '%' 

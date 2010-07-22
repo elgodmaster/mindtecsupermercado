@@ -22,6 +22,10 @@ Public Class Cat_Clientes
     Dim viewDatosClientes As Object
     Dim DsViewClientes As Object
 
+    ' Para las consultas
+    Dim idCliente As String
+    Dim codigo As String
+    Dim copiaCodigo As String
 #End Region
 
 #Region "  Grid Datos CLIENTES  "
@@ -37,6 +41,7 @@ Public Class Cat_Clientes
         dsDatosClientes.Tables("Table").Columns.Add("C4", GetType(String))
         dsDatosClientes.Tables("Table").Columns.Add("C5", GetType(String))
         dsDatosClientes.Tables("Table").Columns.Add("C6", GetType(String))
+        dsDatosClientes.Tables("Table").Columns.Add("C7", GetType(String))
 
     End Sub
 
@@ -410,6 +415,8 @@ Public Class Cat_Clientes
         Limpiar.Visible = True
         Grabar.Visible = True
 
+        copiaCodigo = ""
+
         ClientesTabControl.SelectTab(0)
         TxtNombre.Focus()
     End Sub
@@ -433,7 +440,9 @@ Public Class Cat_Clientes
             End If
 
             showClientsGrid()
+
             consulta128()
+
             Limpiar.Visible = False
             Grabar.Visible = False
         End If
@@ -472,6 +481,8 @@ Public Class Cat_Clientes
 
         Dim objDetalle As New Cat_Clientes_DetalleVenta
         objDetalle.nomCliente = textBoxCliente.Text.Trim
+        objDetalle.idCliente = idCliente
+        objDetalle.codigo = codigo
         objDetalle.cargaIdCuenta(idCuenta, Me.textBoxCliente.Text.Trim, Me)
         objDetalle.StartPosition = FormStartPosition.CenterScreen
         objDetalle.Show()
@@ -501,9 +512,10 @@ Public Class Cat_Clientes
         End If
 
         Dim idCuenta As String = dsDatosCuentas.Tables(0).Rows(pos).Item(0).ToString
-        Dim codigo As String = Me.textBoxCliente.Text.Trim
 
         Dim objRegistroAbono As New Cat_Clientes_RegistroAbono()
+        objRegistroAbono.idCliente = idCliente
+        objRegistroAbono.codigo = codigo
         objRegistroAbono.nomCliente = textBoxCliente.Text.Trim
         objRegistroAbono.StartPosition = FormStartPosition.CenterScreen
         objRegistroAbono.pasoVariables(pos, _
@@ -654,9 +666,8 @@ Public Class Cat_Clientes
 
 #Region "  Rutina: consulta105  "
     Sub consulta105()
-        'Actualiza los campos de un cliente.
 
-        Caja = "Consulta105" : Parametros = "V1=" & Me.textBoxCliente.Text.Trim
+        Caja = "Consulta105" : Parametros = "V1=" & idCliente.Trim
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
         ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
         If ObjRet.bOk Then
@@ -703,7 +714,7 @@ Public Class Cat_Clientes
 
         dsDatosCuentas.Tables(0).Clear()
 
-        Caja = "Consulta117" : Parametros = "V1=" & Me.textBoxCliente.Text.Trim & "|"
+        Caja = "Consulta117" : Parametros = "V1=" & codigo.Trim & "|"
         ObjRet = lConsulta.LlamarCaja(Caja, 1, Parametros)
 
         If Not ObjRet.DS Is DBNull.Value Then
@@ -753,7 +764,7 @@ Public Class Cat_Clientes
 
 #Region "  Rutina: GRABAR105  "
     Sub grabra105()
-        Caja = "Grabar105" : Parametros = "V1=" & Me.txtCodigo.Text.Trim & _
+        Caja = "Grabar105" : Parametros = "V1=" & copiaCodigo.Trim & _
                                   "|V2=" & Me.TxtNombre.Text.Trim & _
                                   "|V3=" & Me.txtRfc.Text.Trim & _
                                   "|V4=" & Me.TxtColonia.Text.Trim & _
@@ -769,7 +780,8 @@ Public Class Cat_Clientes
                                   "|V14=" & Me.TxtCel2.Text.Trim & _
                                   "|V15=" & Me.TxtFax.Text.Trim & _
                                   "|V16=" & Me.TxtMail.Text.Trim & _
-                                  "|V17=" & Me.txtLimCred.Value & "|"
+                                  "|V17=" & Me.txtLimCred.Value & _
+                                  "|V18=" & Me.txtCodigo.Text.Trim
 
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
         ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
@@ -821,16 +833,21 @@ Public Class Cat_Clientes
 #Region "  Evento: GridDatosCLIENTES - DOUBLECLICK  "
     Private Sub GridDatosCLIENTES_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GridDatosCLIENTES.DoubleClick
         textBoxCliente.Enabled = False
+        Dim nom As String
 
-        Dim nomCliente As String
-        nomCliente = dsDatosClientes.Tables(0).Rows(posRowClientes).Item(1).ToString
-        textBoxCliente.Text = nomCliente.Trim
+        nom = dsDatosClientes.Tables(0).Rows(posRowClientes).Item(1).ToString
+        idCliente = dsDatosClientes.Tables(0).Rows(posRowClientes).Item(0).ToString
+        codigo = dsDatosClientes.Tables(0).Rows(posRowClientes).Item(6).ToString
 
-        showData()
+        textBoxCliente.Text = nom.Trim
 
         consulta105()
 
         consulta117()
+
+        showData()
+
+        copiaCodigo = txtCodigo.Text.Trim
 
         ClientesTabControl.SelectedIndex = 0
 
