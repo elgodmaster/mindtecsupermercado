@@ -154,6 +154,33 @@ BEGIN
 	 Select @Registro = @@RowCount	 
      End
 
+    If @Validar = 5
+     Begin
+      Select Año           = IsNull(str(year(a.fecha)),''),
+	  	     Mes           = IsNull(str(month(a.fecha)),''),
+			 Dia           = IsNull(str(day(a.fecha)),''),
+			 Salida        = IsNull(str(a.idSalida),''),
+			 Usuario       = 'usuario nombre',
+			 Departamento  = ISNULL(e.descripcion,''),
+			 Categoria     = IsNull(f.descripcion,''),
+			 Marca         = IsNull(g.descripcion,''),
+			 CodProducto   = IsNull(c.codigo,''),
+			 Producto      = IsNull(c.descripcion,''),
+			 Cantidad      = IsNull(str(b.cantidad),''),
+			 Unidad        = IsNull(h.descripcion,''),
+			 Costo         = ISNULL(c.CostoCompra,0),
+			 CostoTotal    = Convert(Decimal(18,2),IsNull(SUM(c.costocompra * b.cantidad),0)),
+			 Motivo        = IsNull(a.Motivo,'') 
+      From SMercado..Salidas a (NoLock)
+      Left Join Smercado..Salida_Detalles b (NoLock) On b.Idsalida = a.IdSalida  
+      Left join Smercado..cat_productos c (NoLock) On c.codigo = b.idproducto
+      Left join SMercado..Cat_Departamentos e (NoLock) On e.IdDepartamento = c.IDDepartamento 
+      Left join SMercado..cat_categorias f (NoLock) On f.idcategoria = c.idcategoria
+	  Left join SMercado..cat_marcas g (NoLock) On g.idmarca = c.idmarca
+      Left join SMercado..Cat_Unidades h (NoLock) On h.IdUnidad = c.IdUnidad 
+      Group By a.fecha,a.IdSalida,c.Codigo,c.Descripcion,e.Descripcion,f.Descripcion,g.Descripcion,b.cantidad,h.Descripcion,c.CostoCompra,a.motivo 
+ End
+
   -- Enviar Resultado 
 
   If @Registro = 0
@@ -170,8 +197,8 @@ BEGIN
 							  '|V5=' + @Desc5 + '|'
 	  If @Validar = 3
          Select @Resul = '2R=OK|V1=' + @Desc1 + '|'
-      If @Validar = 6
-         Select @Resul= '2R=ERROR|2M=El producto no esta registrado'
+      If @Validar = 5
+         Select @Resul= '2R=ERROR|2M=No existen salidas'
   End
    Else
     Begin
@@ -193,6 +220,8 @@ BEGIN
          Select @Resul = '2R=OK|V1=' + @Desc1 + 
 							  '|V2=' + @Desc2 + 
 							  '|V3=' + @Desc3 + '|'
+	  If @Validar = 5
+	     Select @Resul = '2R=OK|'
     End
   Set NoCount OFF
 END
