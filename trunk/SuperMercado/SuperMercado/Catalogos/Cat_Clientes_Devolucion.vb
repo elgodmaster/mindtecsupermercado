@@ -5,6 +5,9 @@
     Dim codigoCliente As String
     Public nomCliente As String
 
+    Public idCliente As String
+    Public codigo As String
+
     Dim totalArt As Integer
     Dim idCuentaDetalle As String
     Dim idCuenta As String
@@ -88,7 +91,7 @@
             '| Obtienen los datos de su estado de cuenta.
             ' -------------------------------------------
 
-            Caja = "Consulta117" : Parametros = "V1=" & nomCliente.Trim & "|"
+            Caja = "Consulta117" : Parametros = "V1=" & codigo.Trim & "|"
             ObjRet = lConsulta.LlamarCaja(Caja, 1, Parametros)
 
             ' Se inserta la consulta en el Grid Cuentas.
@@ -107,7 +110,7 @@
                 End If
             End If
 
-            Caja = "Consulta105" : Parametros = "V1=" & nomCliente.Trim & "|"
+            Caja = "Consulta105" : Parametros = "V1=" & idCliente.Trim & "|"
             ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
 
             If lConsulta.ObtenerValor("V17", ObjRet.sResultado, "|") = "" Then
@@ -227,7 +230,7 @@
         '| Obtienen los datos de su estado de cuenta.
         ' -------------------------------------------
 
-        Caja = "Consulta117" : Parametros = "V1=" & nomCliente.Trim & "|"
+        Caja = "Consulta117" : Parametros = "V1=" & codigo.Trim & "|"
         ObjRet = lConsulta.LlamarCaja(Caja, 1, Parametros)
 
         ' Se inserta la consulta en el Grid Cuentas.
@@ -246,7 +249,7 @@
             End If
         End If
 
-        Caja = "Consulta105" : Parametros = "V1=" & nomCliente.Trim & "|"
+        Caja = "Consulta105" : Parametros = "V1=" & idCliente.Trim & "|"
         ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
 
         If lConsulta.ObtenerValor("V17", ObjRet.sResultado, "|") = "" Then

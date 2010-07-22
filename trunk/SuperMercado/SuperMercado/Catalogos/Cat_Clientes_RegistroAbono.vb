@@ -19,6 +19,8 @@ Public Class Cat_Clientes_RegistroAbono
     Dim nombreCliente As String
 
     Public nomCliente As String
+    Public idCliente As String
+    Public codigo As String
 
 #End Region
 
@@ -56,7 +58,7 @@ Public Class Cat_Clientes_RegistroAbono
         '| Se actualiza los datos de su estado de cuenta.
         '|-------------------------------------------
 
-        Caja = "Consulta117" : Parametros = "V1=" & nomCliente.Trim & "|"
+        Caja = "Consulta117" : Parametros = "V1=" & codigo.Trim & "|"
         ObjRet = lConsulta.LlamarCaja(Caja, 1, Parametros)
 
         ' Se inserta la consulta en el Grid Cuentas.
@@ -82,7 +84,7 @@ Public Class Cat_Clientes_RegistroAbono
             deudaActualizada = 0
         End Try
 
-        Caja = "Consulta105" : Parametros = "V1=" & nomCliente.Trim
+        Caja = "Consulta105" : Parametros = "V1=" & idCliente.Trim
         ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
 
         lblSaldoActual.Text = "$ " & lConsulta.ObtenerValor("V17", ObjRet.sResultado, "|")

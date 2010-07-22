@@ -18,6 +18,8 @@
 
     Public objCatCliente As Cat_Clientes
     Public nomCliente As String
+    Public idCliente As String
+    Public codigo As String
 #End Region
 
 #Region "  Evento Cat_Cliente_Detalla Carga  "
@@ -221,6 +223,8 @@
         descArticulo = dsDatosDetalle.Tables(0).Rows(posRow).Item(0).ToString
         Dim objDevolucion As New Cat_Clientes_Devolucion
         objDevolucion.nomCliente = nomCliente
+        objDevolucion.idCliente = idCliente
+        objDevolucion.codigo = codigo
         objDevolucion.cargaRefPrin(Me, codigoCliente)
         objDevolucion.StartPosition = FormStartPosition.CenterScreen
         objDevolucion.ShowDialog()
