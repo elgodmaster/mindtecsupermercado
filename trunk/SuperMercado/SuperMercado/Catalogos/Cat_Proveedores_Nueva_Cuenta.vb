@@ -49,12 +49,14 @@
             MessageBox.Show("No ha especificado la cantidad.", " Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             NumericUpDownCantidad.Select(0, 10)
             NumericUpDownCantidad.Focus()
+            Return
         End If
 
         If NumericUpDownCosto.Value < 1 Then
             MessageBox.Show("No ha especificado el costo del producto.", " Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             NumericUpDownCosto.Select(0, 10)
             NumericUpDownCosto.Focus()
+            Return
         End If
 
         producto = TextBoxProducto.Text.Trim

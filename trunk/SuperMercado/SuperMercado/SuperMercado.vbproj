@@ -152,6 +152,12 @@
     <Compile Include="Catalogos\Cat_Cliente_DetalleAbono.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Catalogos\Cat_Departamentos.Designer.vb">
+      <DependentUpon>Cat_Departamentos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Catalogos\Cat_Departamentos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Catalogos\Cat_Marcas.Designer.vb">
       <DependentUpon>Cat_Marcas.vb</DependentUpon>
     </Compile>
@@ -170,16 +176,28 @@
     <Compile Include="Catalogos\Cat_Proveedores.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Catalogos\Cat_Departamentos.Designer.vb">
-      <DependentUpon>Cat_Departamentos.vb</DependentUpon>
+    <Compile Include="Catalogos\Cat_Proveedores_DetalleAbono.Designer.vb">
+      <DependentUpon>Cat_Proveedores_DetalleAbono.vb</DependentUpon>
     </Compile>
-    <Compile Include="Catalogos\Cat_Departamentos.vb">
+    <Compile Include="Catalogos\Cat_Proveedores_DetalleAbono.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Catalogos\Cat_Proveedores_DetalleVenta.Designer.vb">
+      <DependentUpon>Cat_Proveedores_DetalleVenta.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Catalogos\Cat_Proveedores_DetalleVenta.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Catalogos\Cat_Proveedores_Nueva_Cuenta.Designer.vb">
       <DependentUpon>Cat_Proveedores_Nueva_Cuenta.vb</DependentUpon>
     </Compile>
     <Compile Include="Catalogos\Cat_Proveedores_Nueva_Cuenta.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Catalogos\Cat_Proveedores_RegistroAbono.Designer.vb">
+      <DependentUpon>Cat_Proveedores_RegistroAbono.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Catalogos\Cat_Proveedores_RegistroAbono.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Catalogos\Cat_Unidades.Designer.vb">
@@ -370,6 +388,9 @@
     <EmbeddedResource Include="Catalogos\Cat_Cliente_DetalleAbono.resx">
       <DependentUpon>Cat_Cliente_DetalleAbono.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Catalogos\Cat_Departamentos.resx">
+      <DependentUpon>Cat_Departamentos.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Catalogos\Cat_Marcas.resx">
       <DependentUpon>Cat_Marcas.vb</DependentUpon>
     </EmbeddedResource>
@@ -379,11 +400,17 @@
     <EmbeddedResource Include="Catalogos\Cat_Proveedores.resx">
       <DependentUpon>Cat_Proveedores.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Catalogos\Cat_Departamentos.resx">
-      <DependentUpon>Cat_Departamentos.vb</DependentUpon>
+    <EmbeddedResource Include="Catalogos\Cat_Proveedores_DetalleAbono.resx">
+      <DependentUpon>Cat_Proveedores_DetalleAbono.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Catalogos\Cat_Proveedores_DetalleVenta.resx">
+      <DependentUpon>Cat_Proveedores_DetalleVenta.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Catalogos\Cat_Proveedores_Nueva_Cuenta.resx">
       <DependentUpon>Cat_Proveedores_Nueva_Cuenta.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Catalogos\Cat_Proveedores_RegistroAbono.resx">
+      <DependentUpon>Cat_Proveedores_RegistroAbono.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Catalogos\Cat_Unidades.resx">
       <DependentUpon>Cat_Unidades.vb</DependentUpon>
@@ -537,6 +564,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\cross.png" />
+    <Content Include="Resources\cut.png" />
+    <Content Include="Resources\tick.png" />
+    <None Include="Resources\zoom.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

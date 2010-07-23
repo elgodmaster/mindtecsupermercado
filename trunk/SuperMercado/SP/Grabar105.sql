@@ -36,6 +36,7 @@ BEGIN
   Declare @Valor15   Varchar(8000)
   Declare @Valor16   Varchar(8000)
   Declare @Valor17	 Varchar(8000)
+  Declare @Valor18	 Varchar(8000)
   Declare @Desc0     Varchar(8000)
   Declare @Desc1     VarChar(8000)
   Declare @Resul2    VarChar(8000)
@@ -49,7 +50,7 @@ BEGIN
   Select @Resul2 = ''
   
   --Obtener los Parametros
-  Exec Emulador_SepararCadena 'V1',  @Cabezero, '|', @Valor1 Output --Codigo
+  Exec Emulador_SepararCadena 'V1',  @Cabezero, '|', @Valor1 Output --CodigoOriginal
   Exec Emulador_SepararCadena 'V2',  @Cabezero, '|', @Valor2 Output --Nombre
   Exec Emulador_SepararCadena 'V3',  @Cabezero, '|', @Valor3 Output --RFC
   Exec Emulador_SepararCadena 'V4',  @Cabezero, '|', @Valor4 Output --Colonia
@@ -66,9 +67,11 @@ BEGIN
   Exec Emulador_SepararCadena 'V15',  @Cabezero, '|', @Valor15 Output --Fax
   Exec Emulador_SepararCadena 'V16',  @Cabezero, '|', @Valor16 Output --Email
   Exec Emulador_SepararCadena 'V17',  @Cabezero, '|', @Valor17 Output --Límite de crédito
+  Exec Emulador_SepararCadena 'V18',  @Cabezero, '|', @Valor18 Output --Nuevo código
+  
   
   -- Validar Parametros
-  If Len(RTrim(LTrim(@Valor1)))= 0
+  If Len(RTrim(LTrim(@Valor18)))= 0
    Begin
      Select @Resul='2R=ERROR|2M=Registre el código de cliente para continuar|'
      Return    
@@ -125,22 +128,20 @@ If Len(RTrim(LTrim(@Valor8)))= 0
   where c.Descripcion = @Valor8
         
   -- Logica de Negocio      
-  Select @Desc1 = NombreFiscal
-  From SMercado..Cat_Clientes(NoLock)
-  Where Codigo = @Valor1
   
   Select C.Codigo from SMercado..Cat_Clientes C
-  Where C.Codigo = @Valor1
+  Where C.Codigo = @Valor1 
   
   If @@RowCount = 0
    Begin
      Insert SMercado..Cat_Clientes(Codigo,NombreFiscal,Rfc,Colonia,Direccion,CP,IdEstado,IdCiudad,Telefono1,Extencion1,Telefono2,Extencion2,Cel1,Cel2,Fax,Email,LimiteCredito, Adeudo)
-            Values(@Valor1,@Valor2,@Valor3,@Valor4,@Valor5,@Valor6,@estado,@ciudad,@Valor9,@Valor10,@Valor11,@Valor12,@Valor13,@Valor14,@Valor15,@Valor16, CONVERT(decimal(16,2),@Valor17), 0)
+            Values(@Valor18,@Valor2,@Valor3,@Valor4,@Valor5,@Valor6,@estado,@ciudad,@Valor9,@Valor10,@Valor11,@Valor12,@Valor13,@Valor14,@Valor15,@Valor16, CONVERT(decimal(16,2),@Valor17), 0)
    End
   Else
    Begin
      Update SMercado..Cat_Clientes
             Set NombreFiscal = @Valor2,
+                Codigo		 = @Valor18, 
                 RFC          = @Valor3,
                 Colonia      = @Valor4,
                 Direccion    = @Valor5,

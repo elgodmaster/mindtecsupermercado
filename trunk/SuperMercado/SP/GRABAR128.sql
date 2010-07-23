@@ -25,10 +25,7 @@ DECLARE @idProvee   varchar(8000)
 Exec Emulador_SepararCadena 'V1',  @Cabezero, '|', @idCuenta	Output 
 Exec Emulador_SepararCadena 'V2',  @Cabezero, '|', @monto		Output 
 Exec Emulador_SepararCadena 'V3',  @Cabezero, '|', @idUsuario	Output 
-Exec Emulador_SepararCadena 'V4',  @Cabezero, '|', @nomProvee	Output 
-
-Select @idProvee = (Select C.IdProveedor from SMercado..Cat_Proveedores C
-					 Where C.Nombre = @nomProvee)
+Exec Emulador_SepararCadena 'V4',  @Cabezero, '|', @idProvee 	Output 
 
 -- Se registra el Abono correspondiente. 
 Insert into SMercado..Cuentas_Pagar_Abonos 

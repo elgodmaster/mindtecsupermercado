@@ -798,8 +798,6 @@ Public Class Cat_Clientes
         adeudo = dsDatosCuentas.Tables(0).Rows(posRowCuentas).Item(3).ToString.Trim
         adeudo = adeudo.Remove(0, 2)
 
-
-
         Caja = "eliminar104" : Parametros = "V1=" & idCuenta & _
                                             "|V2=" & adeudo & _
                                             "|V3=" & TxtNombre.Text.Trim & "|"
@@ -832,6 +830,10 @@ Public Class Cat_Clientes
 
 #Region "  Evento: GridDatosCLIENTES - DOUBLECLICK  "
     Private Sub GridDatosCLIENTES_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GridDatosCLIENTES.DoubleClick
+        If dsDatosClientes.Tables(0).Rows.Count = 0 Or posRowClientes() < 0 Then
+            Return
+        End If
+
         textBoxCliente.Enabled = False
         Dim nom As String
 

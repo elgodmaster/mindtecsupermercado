@@ -35,6 +35,7 @@ BEGIN
   Declare @Valor14   Varchar(8000)
   Declare @Valor15   Varchar(8000)
   Declare @Valor16   Varchar(8000)
+  Declare @Valor17   Varchar(8000)
   Declare @Desc0     Varchar(8000)
   Declare @Desc1     VarChar(8000)
   Declare @Resul2    VarChar(8000)
@@ -48,7 +49,7 @@ BEGIN
   Select @Resul2 = ""
   
   --Obtener los Parametros
-  Exec Emulador_SepararCadena 'V1',  @Cabezero, '|', @Valor1 Output --Codigo
+  Exec Emulador_SepararCadena 'V1',  @Cabezero, '|', @Valor1 Output --Codigo original
   Exec Emulador_SepararCadena 'V2',  @Cabezero, '|', @Valor2 Output --Nombre
   Exec Emulador_SepararCadena 'V3',  @Cabezero, '|', @Valor3 Output --RFC
   Exec Emulador_SepararCadena 'V4',  @Cabezero, '|', @Valor4 Output --Colonia
@@ -64,9 +65,10 @@ BEGIN
   Exec Emulador_SepararCadena 'V14',  @Cabezero, '|', @Valor14 Output --Cel2
   Exec Emulador_SepararCadena 'V15',  @Cabezero, '|', @Valor15 Output --Email
   Exec Emulador_SepararCadena 'V16',  @Cabezero, '|', @Valor16 Output --Fax
+  Exec Emulador_SepararCadena 'V17',  @Cabezero, '|', @Valor17 Output --CodigoNuevo
   
   -- Validar Parametros
-  If Len(RTrim(LTrim(@Valor1)))= 0
+  If Len(RTrim(LTrim(@Valor17)))= 0
    Begin
      Select @Resul='2R=ERROR|2M=Registre el código del proveedor para continuar|'
      Return    
@@ -133,12 +135,13 @@ If Len(RTrim(LTrim(@Valor8)))= 0
   If @@RowCount = 0
    Begin
      Insert SMercado..Cat_Proveedores(Codigo,Nombre,Rfc,Colonia,Direccion,Cp,IdEstado,IdCiudad,Telefono1,Extencion1,Telefono2,Extencion2,Celular1,Celular2,Email,Fax, Deuda )
-            Values(@Valor1,@Valor2,@Valor3,@Valor4,@Valor5,@Valor6,@estado,@ciudad,@Valor9,@Valor10,@Valor11,@Valor12,@Valor13,@Valor14,@Valor15,@Valor16, 0)
+            Values(@Valor17,@Valor2,@Valor3,@Valor4,@Valor5,@Valor6,@estado,@ciudad,@Valor9,@Valor10,@Valor11,@Valor12,@Valor13,@Valor14,@Valor15,@Valor16, 0)
    End
   Else
    Begin
      Update SMercado..Cat_Proveedores
             Set Nombre       = @Valor2,
+                Codigo       = @Valor17,
                 RFC          = @Valor3,
                 Colonia      = @Valor4,
                 Direccion    = @Valor5,
