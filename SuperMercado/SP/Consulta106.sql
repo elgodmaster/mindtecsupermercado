@@ -65,12 +65,7 @@ BEGIN
   Select @Resul2  = ''
 
   --Obtener los Parametros
-  Exec Emulador_SepararCadena 'V1', @Cabezero, '|', @Valor1 Output --nomCliente
-  
-  Select @nomProveedor = @Valor1
-  Select @Valor1 = (Select P.Codigo  
-					From SMercado..Cat_Proveedores P
-					Where P.Nombre = @nomProveedor)
+  Exec Emulador_SepararCadena 'V1', @Cabezero, '|', @Valor1 Output --idCliente
 
   -- Validar Parametros
   If @Validar = 1 or @Validar = 2
@@ -116,11 +111,12 @@ BEGIN
             @Desc13 = IsNull(a.Celular2,''),
             @Desc14 = IsNull(a.Email,''),
             @Desc15 = IsNull(a.Fax,''),
-            @Desc16 = ISNULL(a.Deuda, 0)      
+            @Desc16 = ISNULL(a.Deuda, 0),
+            @Desc17 = ISNULL(a.Codigo , '')      
      From SMercado..Cat_Proveedores a (NoLock)  
      Left Join SMercado..Cat_EstadosdelaRepublica b (NoLock) On b.IdEstado = a.IdEstado
      Left Join SMercado..Cat_Ciudades c (NoLock) On c.IdCiudad = a.IdCiudad And c.IdEstado = a.IdEstado
-     Where Codigo = @Valor1
+     Where a.IdProveedor = @Valor1 
 
 	 Select @Registro = @@RowCount	 
    End
@@ -145,7 +141,7 @@ BEGIN
         Begin 
          Select @Resul = '2R=OK|V1=' + @Desc1 + '|V2=' + @Desc2 + '|V3=' + @Desc3 + '|V4=' + @Desc4 + '|V5=' + @Desc5 + '|V6=' + @Desc6 +
                          '|V7=' + @Desc7 + '|V8=' + @Desc8 + '|V9=' + @Desc9 + '|V10=' + @Desc10 + '|V11=' + @Desc11 + '|V12=' + @Desc12 + 
-                         '|V13=' + @Desc13 + '|V14=' + @Desc14 + '|V15=' + @Desc15 + '|V16=' + @Desc16 + '|V17=' + @Valor1  
+                         '|V13=' + @Desc13 + '|V14=' + @Desc14 + '|V15=' + @Desc15 + '|V16=' + @Desc16 + '|V17=' + @Desc17   
                          
         End
     End

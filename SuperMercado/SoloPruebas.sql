@@ -216,8 +216,9 @@ exec Consulta122b 'V1=admin|','','',''
 exec consulta123 '','','',''
 exec consulta124 'V1=Lindor|','','',''
 exec consulta127 'V1=51|', '', '', ''
-exec consulta128 'V1=L|', '', '', ''
+exec consulta128 'V1=|', '', '', ''
 exec consulta129 '','','',''
+exec consulta130 'V1=SEMAIVEN|','','',''
 exec consulta131 'V1=7|', '','',''
 exec Consulta136 'V1=1|', '', '', ''
 
@@ -427,8 +428,28 @@ Select * From SMercado..Cat_Proveedores
 Select * From SMercado..Cuentas_Pagar_Detalles 
 
 Select * From SMercado..Cuentas_Pagar 
+Select * From SMercado..Cuentas_Cobrar 
 
 delete SMercado..Cuentas_Pagar 
 delete SMercado..Cuentas_Pagar_Detalles
 
-Select * from SMercado..Cat_Productos 
+Select * from SMercado_Seguridad..Usuarios 
+
+Alter table SMercado..Cat_Productos
+add constraint uc_codigo unique (codigo)
+
+select * from SMercado..Cat_Clientes 
+
+delete from SMercado..Cat_Clientes
+where IdCliente > 9
+
+select * from SMercado..Venta_detalles 
+order by IdDetalleVentas desc
+select * from SMercado..Ventas 
+order by IdVenta  desc
+
+Select * From SMercado..Cat_Proveedores 
+Update SMercado..Cat_Proveedores 
+set Nombre = 'SEMAIVEN'
+where IdProveedor = 1
+

@@ -28,14 +28,10 @@ DECLARE @total					decimal(12,2)
 Exec Emulador_SepararCadena 'V1',  @Cabezero, '|', @producto	Output 
 Exec Emulador_SepararCadena 'V2',  @Cabezero, '|', @cantidad	Output 
 Exec Emulador_SepararCadena 'V3',  @Cabezero, '|', @costo		Output 
-Exec Emulador_SepararCadena 'V4',  @Cabezero, '|', @nomProvee 	Output
+Exec Emulador_SepararCadena 'V4',  @Cabezero, '|', @idProvee  	Output
 Exec Emulador_SepararCadena 'V5',  @Cabezero, '|', @idUsuario  	Output
 
 Set noCount ON
-
-Select @idProvee = (Select IdProveedor 
-					From SMercado..Cat_Proveedores 
-					Where Nombre = @nomProvee )
 					
 Select @total = CONVERT(decimal(12,2), @cantidad) * CONVERT(decimal(12,2), @costo) 
  
@@ -54,7 +50,7 @@ Values ( @idCuenta, 0, CONVERT(decimal(12,2),@cantidad), CONVERT(decimal(12,2),@
 
 Update SMercado..Cat_Proveedores
 Set Deuda = Deuda + @total
-Where Nombre = @nomProvee 
+Where IdProveedor = @idProvee 
 
 Set noCount OFF
 

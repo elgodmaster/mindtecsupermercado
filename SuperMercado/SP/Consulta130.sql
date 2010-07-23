@@ -16,11 +16,7 @@ BEGIN
 DECLARE @nomProveed	VARCHAR(8000)
 DECLARE @idProveed  VARCHAR(8000)
 
-Exec Emulador_SepararCadena 'V1',  @Cabezero, '|', @nomProveed	Output 
-
-Select @idProveed = ( Select IdProveedor 
-					  From SMercado..Cat_Proveedores 
-					  Where Nombre = @nomProveed )
+Exec Emulador_SepararCadena 'V1',  @Cabezero, '|', @idProveed 	Output 
 
 select	C1 = C.IdCuenta, 
 

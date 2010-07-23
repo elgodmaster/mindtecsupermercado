@@ -9,6 +9,7 @@ Public Class Cat_Proveedores
     Dim ObjRet As CRetorno
 
     ' Grid datos para PROVEEDORES
+
     Dim dsDatosProveedores As DataSet
     Dim dtProveedores As DataTable
     Dim viewDatosProveedores As Object
@@ -30,11 +31,18 @@ Public Class Cat_Proveedores
 
     Dim objAbonos As Cat_Proveedores_DetalleAbono
     Dim idCuenta As String
+
+    Dim idProveedor As String
+    Dim copiaCodigo As String
+
+    Dim clickNuevo As Boolean = False
+
 #End Region
 
 #Region "  Grid Datos PROVEEDORES  "
 
     Sub CrearDsDatosPROVEEDORES()
+
         dsDatosProveedores = New DataSet("Root")
         dtProveedores = New DataTable("Table")
         dsDatosProveedores.Tables.Add(dtProveedores)
@@ -52,12 +60,9 @@ Public Class Cat_Proveedores
     Sub ConfiguraGridDatosPROVEEDORES()
         viewDatosProveedores = dsDatosProveedores.Tables("Table").DefaultView
 
-        GridDatosPROVEEDORES.SelectionMode = SourceGrid.GridSelectionMode.Row
-
-
         viewDatosProveedores.AllowEdit = False
         viewDatosProveedores.AllowNew = False
-        viewDatosProveedores.AllowDelete = True
+        viewDatosProveedores.AllowDelete = False
 
         GridDatosPROVEEDORES.FixedRows = 1
         GridDatosPROVEEDORES.FixedColumns = 1
@@ -96,15 +101,12 @@ Public Class Cat_Proveedores
         viewcolumnheader3.Font = New Font("Verdana", 8, FontStyle.Regular)
         viewcolumnheader3.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
 
-
         GridDatosPROVEEDORES.GetCell(0, 1).View = viewcolumnheader3
         GridDatosPROVEEDORES.GetCell(0, 2).View = viewcolumnheader
         GridDatosPROVEEDORES.GetCell(0, 3).View = viewcolumnheader
         GridDatosPROVEEDORES.GetCell(0, 4).View = viewcolumnheader
         GridDatosPROVEEDORES.GetCell(0, 5).View = viewcolumnheader3
         GridDatosPROVEEDORES.GetCell(0, 6).View = viewcolumnheader
-
-
 
     End Sub
 
@@ -117,15 +119,18 @@ Public Class Cat_Proveedores
         'vistas
         Dim viewCenter As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
         viewCenter.Font = New Font("Verdana", 8, FontStyle.Regular)
+        'viewCenter.Border = DevAge.Drawing.RectangleBorder.NoBorder
         viewCenter.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
 
 
         Dim viewIzquierda As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
         viewIzquierda.Font = New Font("Verdana", 8, FontStyle.Regular)
+        'viewIzquierda.Border = DevAge.Drawing.RectangleBorder.NoBorder
         viewIzquierda.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleLeft
 
         Dim viewDerecha As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
         viewDerecha.Font = New Font("Verdana", 8, FontStyle.Regular)
+        'viewDerecha.Border = DevAge.Drawing.RectangleBorder.NoBorder
         viewDerecha.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleRight
 
         Dim myfont As New Font("Verdana", 8, FontStyle.Regular)
@@ -162,7 +167,9 @@ Public Class Cat_Proveedores
 
         GridColumn = GridDatosPROVEEDORES.Columns.Add("C6", "E-Mail", EditorCustom)
         GridColumn.DataCell.View = viewIzquierda
-        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.EnableAutoSize
+
+
 
         GridDatosPROVEEDORES.Columns(0).Visible = False
 
@@ -359,14 +366,19 @@ Public Class Cat_Proveedores
 
 #Region "  Botón NUEVO  "
     Private Sub ToolStripButtonNuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButtonNuevo.Click
+        ToolStripButtonNuevaCuenta.Enabled = False
+
         limpiarPantalla()
         showData()
         ToolStripButtonNuevo.Visible = False
         Limpiar.Visible = True
         Grabar.Visible = True
 
+        copiaCodigo = ""
+
         ProveedoresTabControl.SelectTab(0)
         TxtNombre.Focus()
+
     End Sub
 #End Region
 
@@ -383,17 +395,22 @@ Public Class Cat_Proveedores
         Dim resultado As String
         Result = MessageBox.Show("  ¿Desea guardar los cambios realizados?  ", " Proveedores", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2)
         If Result = Windows.Forms.DialogResult.Yes Then
+
             grabar106()
+
             resultado = lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False)
             If ObjRet.bOk Then
                 MessageBox.Show(" " & resultado, " Proveedores", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 limpiarPantalla()
             Else
                 MessageBox.Show(" " & resultado, " Proveedores", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Return
             End If
 
             showProvGrid()
+
             consulta129()
+
             Limpiar.Visible = False
             Grabar.Visible = False
             ToolStripButtonNuevo.Visible = True
@@ -587,13 +604,14 @@ Public Class Cat_Proveedores
 
         PanelGrid.Visible = False
         Proveedor.Enabled = False
+
     End Sub
 #End Region
 
 #Region "  Rutina: consulta106  "
     Sub consulta106()
         ' Regresa los campos de un proveedor.
-        Caja = "Consulta106" : Parametros = "V1=" & Me.Proveedor.Text
+        Caja = "Consulta106" : Parametros = "V1=" & idProveedor.Trim
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
         ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
         If ObjRet.bOk Then
@@ -627,7 +645,7 @@ Public Class Cat_Proveedores
 
         dsDatosCuentas.Tables(0).Clear()
 
-        Caja = "consulta130" : Parametros = "V1=" & TxtNombre.Text.Trim & "|"
+        Caja = "consulta130" : Parametros = "V1=" & idProveedor.Trim & "|"
         ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
 
         If Not ObjRet.DS Is DBNull.Value Then
@@ -679,7 +697,7 @@ Public Class Cat_Proveedores
 #Region "  Rutina: GRABAR106  "
     Sub grabar106()
         'Graba un nuevo PROVEEDOR
-        Caja = "Grabar106" : Parametros = "V1=" & Me.txtCodigo.Text.Trim & _
+        Caja = "Grabar106" : Parametros = "V1=" & copiaCodigo.Trim & _
                                               "|V2=" & Me.TxtNombre.Text.Trim & _
                                               "|V3=" & Me.txtRfc.Text.Trim & _
                                               "|V4=" & Me.TxtColonia.Text.Trim & _
@@ -694,7 +712,8 @@ Public Class Cat_Proveedores
                                               "|V13=" & Me.TxtCel.Text.Trim & _
                                               "|V14=" & Me.TxtCel2.Text.Trim & _
                                               "|V15=" & Me.TxtMail.Text.Trim & _
-                                              "|V16=" & Me.TxtFax.Text.Trim & "|"
+                                              "|V16=" & Me.TxtFax.Text.Trim & _
+                                              "|V17=" & Me.txtCodigo.Text.Trim & "|"
 
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
         ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
@@ -708,7 +727,7 @@ Public Class Cat_Proveedores
         Parametros = "V1=" & producto.Trim & _
                      "|V2=" & cantidad.Trim & _
                      "|V3=" & costo.Trim & _
-                     "|V4=" & TxtNombre.Text.Trim & _
+                     "|V4=" & idProveedor.Trim & _
                      "|V5=" & idUsuario
         ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
 
@@ -719,12 +738,13 @@ Public Class Cat_Proveedores
 
 #Region "  Rutina: GRABAR128  "
     Sub grabar128()
+        'Graba un abono y actualiza la deuda que tenemos con el proveedor.
         Dim idCuenta As String = dsDatosCuentas.Tables(0).Rows(posRowCuentas).Item(0).ToString
 
         Caja = "GRABAR128" : Parametros = "V1=" & idCuenta.Trim & _
                                           "|V2=" & monto & _
                                           "|V3=" & idUsuario & _
-                                          "|V4=" & Proveedor.Text.Trim & "|"
+                                          "|V4=" & idProveedor & "|"
         ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
 
         consulta106()
@@ -736,6 +756,7 @@ Public Class Cat_Proveedores
 
 #Region "  Rutina: eliminar105  "
     Sub eliminar105()
+        'Elimina un cuenta.
         Dim idCuenta As String
         Dim adeudo As String
 
@@ -803,9 +824,23 @@ Public Class Cat_Proveedores
 
 #Region "  Evento: GridDatosPROVEEDORES - DOUBLE CLICK  "
     Private Sub GridDatosPROVEEDORES_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GridDatosPROVEEDORES.DoubleClick
+        If dsDatosProveedores.Tables(0).Rows.Count = 0 Or posRowProveedores() < 0 Then
+            Return
+        End If
+
+        Dim posColumn() As Integer = GridDatosPROVEEDORES.Selection.GetSelectionRegion.GetColumnsIndex
+        Dim posC As Integer = posColumn(0)
+
+        ToolStripButtonNuevaCuenta.Enabled = True
+
         Dim nombreProveedor As String
         nombreProveedor = dsDatosProveedores.Tables(0).Rows(posRowProveedores).Item(1).ToString
+        'Necesarios para las consultas.
+        idProveedor = dsDatosProveedores.Tables(0).Rows(posRowProveedores).Item(0).ToString
+
         Proveedor.Text = nombreProveedor
+
+
 
         showData()
 
@@ -813,9 +848,13 @@ Public Class Cat_Proveedores
 
         consulta130()
 
+        copiaCodigo = txtCodigo.Text.Trim
+
         ProveedoresTabControl.SelectedIndex = 0
     End Sub
 #End Region
+
+
 
 #Region "  Rutinas: cambio de textBox con Enter  "
     Private Sub TxtNombre_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TxtNombre.KeyPress
@@ -943,6 +982,7 @@ Public Class Cat_Proveedores
 
 #Region "  Botón BUSCAR  "
     Private Sub Buscar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Buscar.Click
+
         ocultarControlesCuentas()
         Proveedor.Enabled = True
 
