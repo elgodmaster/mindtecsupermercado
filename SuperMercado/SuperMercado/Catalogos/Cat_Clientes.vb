@@ -22,6 +22,12 @@ Public Class Cat_Clientes
     Dim viewDatosClientes As Object
     Dim DsViewClientes As Object
 
+    ' Grid datos para CARTERA
+    Dim dsDatosCartera As DataSet
+    Dim dtCartera As DataTable
+    Dim viewDatosCartera As Object
+    Dim DsViewCartera As Object
+
     ' Para las consultas
     Dim idCliente As String
     Dim codigo As String
@@ -315,6 +321,143 @@ Public Class Cat_Clientes
         GridDatosCuentas.Columns.SetWidth(5, 128)
 
     End Sub
+#End Region
+
+#Region "  Grid Datos CARTERA  "
+
+    Sub CrearDsDatosCartera()
+        dsDatosCartera = New DataSet("Root")
+        dtCartera = New DataTable("Table")
+        dsDatosCartera.Tables.Add(dtCartera)
+
+        dsDatosCartera.Tables("Table").Columns.Add("C1", GetType(String))
+        dsDatosCartera.Tables("Table").Columns.Add("C2", GetType(String))
+        dsDatosCartera.Tables("Table").Columns.Add("C3", GetType(String))
+        dsDatosCartera.Tables("Table").Columns.Add("C4", GetType(String))
+        dsDatosCartera.Tables("Table").Columns.Add("C5", GetType(String))
+        dsDatosCartera.Tables("Table").Columns.Add("C6", GetType(String))
+        dsDatosCartera.Tables("Table").Columns.Add("C7", GetType(String))
+
+    End Sub
+
+    Sub ConfiguraGridDatosCartera()
+        viewDatosCartera = dsDatosCartera.Tables("Table").DefaultView
+
+        viewDatosCartera.AllowEdit = False
+        viewDatosCartera.AllowNew = False
+        viewDatosCartera.AllowDelete = True
+
+        GridDatosCartera.FixedRows = 1
+        GridDatosCartera.FixedColumns = 1
+        GridDatosCartera.DeleteRowsWithDeleteKey = False
+        GridDatosCartera.DeleteQuestionMessage = Nothing
+
+        ' Renglon encabezado
+
+        GridDatosCartera.Columns.Insert(0, SourceGrid.DataGridColumn.CreateRowHeader(GridDatosCartera))
+
+        Dim BindList2 As DevAge.ComponentModel.IBoundList = New DevAge.ComponentModel.BoundDataView(viewDatosCartera)
+
+        ' Se crean las columnas.
+        GridDatosCrearColumnasCARTERA(GridDatosCartera.Columns, BindList2)
+
+        GridDatosCartera.DataSource = BindList2
+
+        Dim cColorHeader As Color
+        cColorHeader = Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(168, Byte), Integer))
+
+        'Vista columna encabezado
+
+
+        Dim viewcolumnheader As SourceGrid.Cells.Views.ColumnHeader = New SourceGrid.Cells.Views.ColumnHeader
+        Dim backheader As DevAge.Drawing.VisualElements.ColumnHeader = New DevAge.Drawing.VisualElements.ColumnHeader
+        viewcolumnheader.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewcolumnheader.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleLeft
+
+        Dim viewcolumnheader2 As SourceGrid.Cells.Views.ColumnHeader = New SourceGrid.Cells.Views.ColumnHeader
+        Dim backheader2 As DevAge.Drawing.VisualElements.ColumnHeader = New DevAge.Drawing.VisualElements.ColumnHeader
+        viewcolumnheader2.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewcolumnheader2.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleRight
+
+        Dim viewcolumnheader3 As SourceGrid.Cells.Views.ColumnHeader = New SourceGrid.Cells.Views.ColumnHeader
+        Dim backheader3 As DevAge.Drawing.VisualElements.ColumnHeader = New DevAge.Drawing.VisualElements.ColumnHeader
+        viewcolumnheader3.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewcolumnheader3.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
+
+        GridDatosCartera.GetCell(0, 1).View = viewcolumnheader
+        GridDatosCartera.GetCell(0, 2).View = viewcolumnheader
+        GridDatosCartera.GetCell(0, 3).View = viewcolumnheader
+        GridDatosCartera.GetCell(0, 4).View = viewcolumnheader3
+        GridDatosCartera.GetCell(0, 5).View = viewcolumnheader3
+
+    End Sub
+
+    Private Sub GridDatosCrearColumnasCARTERA(ByVal columns As SourceGrid.DataGridColumns, ByVal Bindlist As DevAge.ComponentModel.IBoundList)
+        'Borders
+
+        Dim border As DevAge.Drawing.RectangleBorder = New DevAge.Drawing.RectangleBorder(New DevAge.Drawing.BorderLine(Color.Black), New DevAge.Drawing.BorderLine(Color.Black))
+        'gcolorRow esta declarada en el moduloGeneral
+
+        'vistas
+        Dim viewCenter As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        viewCenter.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewCenter.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
+
+        Dim viewIzquierda As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        viewIzquierda.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewIzquierda.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleLeft
+
+        Dim viewDerecha As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        viewDerecha.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewDerecha.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleRight
+
+        Dim myfont As New Font("Verdana", 8, FontStyle.Regular)
+
+        'Eventos
+
+        Dim gridKeydown As SourceGrid.Cells.Controllers.CustomEvents = New SourceGrid.Cells.Controllers.CustomEvents
+        AddHandler gridKeydown.KeyDown, New KeyEventHandler(AddressOf Grid_KeyDown)
+
+        'Definicion de la celda
+        Dim EditorCustom As SourceGrid.Cells.Editors.TextBox = New SourceGrid.Cells.Editors.TextBox(GetType(String))
+        EditorCustom.EditableMode = SourceGrid.EditableMode.None
+
+        'Crear columnas
+        Dim GridColumn As SourceGrid.DataGridColumn
+
+        GridColumn = GridDatosCartera.Columns.Add("C1", "Nombre", EditorCustom)
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.View = viewIzquierda
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+
+        GridColumn = GridDatosCartera.Columns.Add("C2", "Colonia", EditorCustom)
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.View = viewIzquierda
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+
+        GridColumn = GridDatosCartera.Columns.Add("C3", "Dirección", EditorCustom)
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.View = viewIzquierda
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+
+        GridColumn = GridDatosCartera.Columns.Add("C4", "Adeudo", EditorCustom)
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.View = viewCenter
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+
+        GridColumn = GridDatosCartera.Columns.Add("C5", "Último pago", EditorCustom)
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.View = viewCenter
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+
+        GridDatosCartera.Columns(0).Visible = False
+        GridDatosCartera.Columns.SetWidth(1, 210)
+        GridDatosCartera.Columns.SetWidth(2, 100)
+        GridDatosCartera.Columns.SetWidth(3, 450)
+        GridDatosCartera.Columns.SetWidth(4, 100)
+        GridDatosCartera.Columns.SetWidth(5, 100)
+
+    End Sub
 
     Private Sub Grid_KeyDown(ByVal sender As Object, ByVal e As KeyEventArgs)
         Select Case e.KeyCode
@@ -322,10 +465,12 @@ Public Class Cat_Clientes
                 Me.Close()
         End Select
     End Sub
+
 #End Region
 
 #Region "  Evento: Cat_Clientes - LOAD  "
     Private Sub Cat_Clientes_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        lblTotalCartera.Visible = False
         ocultarControlesAbonos()
 
         showClientsGrid()
@@ -351,6 +496,8 @@ Public Class Cat_Clientes
         ConfiguraGridDatosCuentas()
         CrearDsDatosCLIENTES()
         ConfiguraGridDatosCLIENTES()
+        CrearDsDatosCartera()
+        ConfiguraGridDatosCartera()
 
         consulta128()
 
@@ -392,6 +539,8 @@ Public Class Cat_Clientes
 
 #Region "  Botón BUSCAR  "
     Private Sub Buscar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Buscar.Click
+
+        lblTotalCartera.Visible = False
         textBoxCliente.Enabled = True
 
         showClientsGrid()
@@ -399,6 +548,7 @@ Public Class Cat_Clientes
         textBoxCliente.Focus()
         Limpiar.Visible = False
         Grabar.Visible = False
+        CarteraClientes.Visible = True
         ToolStripButtonNuevo.Visible = True
         ToolStripStatusLabelClientes.Text = "Escriba el nombre o número de identificación de un cliente para filtrar los resultados."
 
@@ -409,16 +559,42 @@ Public Class Cat_Clientes
 
 #Region "  Botón NUEVO  "
     Private Sub ToolStripButtonNuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButtonNuevo.Click
+
+        lblTotalCartera.Visible = False
         limpiarPantalla()
         showData()
         ToolStripButtonNuevo.Visible = False
+        CarteraClientes.Visible = False
         Limpiar.Visible = True
         Grabar.Visible = True
+
 
         copiaCodigo = ""
 
         ClientesTabControl.SelectTab(0)
         TxtNombre.Focus()
+    End Sub
+#End Region
+
+#Region "  Botón CARTERA  "
+    Private Sub ToolStripButtonCartera_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CarteraClientes.Click
+        showCarteraGrid()
+        consulta139()
+
+        lblTotalCartera.Visible = True
+
+        Dim n As Integer = 0
+        Dim total As Decimal
+        For n = 0 To GridDatosCartera.DataSource.Count - 1
+            total += GridDatosCartera.DataSource.Item(n).row(3)
+        Next
+
+        lblTotalCartera.Text = "Total: " & FormatCurrency(total)
+
+        textBoxCliente.Enabled = True
+        textBoxCliente.Clear()
+        textBoxCliente.Focus()
+
     End Sub
 #End Region
 
@@ -431,11 +607,13 @@ Public Class Cat_Clientes
         If Result = Windows.Forms.DialogResult.Yes Then
             grabra105()
             resultado = lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False)
-            If ObjRet.bOk Then
+            If lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|") = "OK" Then
                 MessageBox.Show(" " & resultado, " Clientes", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 limpiarPantalla()
             Else
-                MessageBox.Show(" " & resultado, " Clientes", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show("El código se encuentra en uso.", " Clientes", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                txtCodigo.SelectAll()
+                txtCodigo.Focus()
                 Return
             End If
 
@@ -445,6 +623,7 @@ Public Class Cat_Clientes
 
             Limpiar.Visible = False
             Grabar.Visible = False
+            CarteraClientes.Visible = True
         End If
     End Sub
 #End Region
@@ -552,6 +731,8 @@ Public Class Cat_Clientes
         lblSaldoActual.Text = "$ 0.00"
         lblLimiteCredito.Text = "$ 0.00"
 
+        EstadosComboBox.Text = "Aguascalientes"
+
         dsDatosCuentas.Tables(0).Clear()
 
         TxtNombre.Focus()
@@ -572,6 +753,17 @@ Public Class Cat_Clientes
 #Region "  Rutina: posRowClientes "
     Private Function posRowClientes() As Integer
         Dim pos() As Integer = GridDatosCLIENTES.Selection.GetSelectionRegion.GetRowsIndex
+        If pos.Length = 0 Then
+            Return -1
+        Else
+            Return pos(0) - 1
+        End If
+    End Function
+#End Region
+
+#Region "  Rutina: posRowCartera  "
+    Function posRowCartera() As Integer
+        Dim pos() As Integer = GridDatosCartera.Selection.GetSelectionRegion.GetRowsIndex
         If pos.Length = 0 Then
             Return -1
         Else
@@ -652,15 +844,29 @@ Public Class Cat_Clientes
         ToolStripStatusLabelClientes.Text = "Seleccione el campo de texto Cliente para hacer una nueva búsqueda."
 
         PanelGrid.Visible = False
+        PanelCartera.Visible = False
     End Sub
 #End Region
 
 #Region "  Rutina: showClientsGrid  "
     Sub showClientsGrid()
+        PanelGrid.SendToBack()
         PanelGrid.Visible = True
         PanelGrid.SetBounds(11, 150, 1000, 525)
 
         PanelDatos.Visible = False
+        PanelCartera.Visible = False
+    End Sub
+#End Region
+
+#Region "  Rutina: showCarteraGrid  "
+    Sub showCarteraGrid()
+        PanelCartera.SendToBack()
+        PanelCartera.Visible = True
+        PanelCartera.SetBounds(11, 150, 1000, 525)
+
+        PanelDatos.Visible = False
+        PanelGrid.Visible = False
     End Sub
 #End Region
 
@@ -762,6 +968,33 @@ Public Class Cat_Clientes
     End Sub
 #End Region
 
+#Region "  Rutina: consulta139  "
+    Sub consulta139()
+        dsDatosCartera.Tables(0).Clear()
+
+        Caja = "Consulta139" : Parametros = "V1=" + textBoxCliente.Text.Trim & "|"
+        ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
+
+        If Not ObjRet.DS Is DBNull.Value Then
+            If Not ObjRet.DS.Tables Is DBNull.Value Then
+                If ObjRet.DS.Tables.Count > 0 Then
+                    Dim rows As Integer
+                    rows = ObjRet.DS.Tables(0).Rows.Count - 1
+                    For i As Integer = 0 To ObjRet.DS.Tables(0).Rows.Count - 1
+                        dsDatosCartera.Tables(0).ImportRow(ObjRet.DS.Tables(0).Rows(i))
+                    Next
+                    dsDatosCartera.Tables(0).AcceptChanges()
+                    DsViewCartera = dsDatosCartera.Tables(0).DefaultView
+                    'Else
+                    '   FilaVacia()
+
+                End If
+            End If
+        End If
+
+    End Sub
+#End Region
+
 #Region "  Rutina: GRABAR105  "
     Sub grabra105()
         Caja = "Grabar105" : Parametros = "V1=" & copiaCodigo.Trim & _
@@ -812,7 +1045,12 @@ Public Class Cat_Clientes
 
 #Region "  Evento: textBoxCliente - TEXT CHANGED  "
     Private Sub textBoxCliente_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles textBoxCliente.TextChanged
-        consulta128()
+        If PanelGrid.Visible = True Then
+            consulta128()
+        ElseIf PanelCartera.Visible = True Then
+            consulta139()
+        End If
+
     End Sub
 #End Region
 
@@ -854,6 +1092,39 @@ Public Class Cat_Clientes
         ClientesTabControl.SelectedIndex = 0
 
     End Sub
+#End Region
+
+#Region "  Evento: GridDatosCartera - DOUBLE CLICK  "
+    Private Sub GridDatosCartera_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GridDatosCartera.DoubleClick
+        If dsDatosCartera.Tables(0).Rows.Count = 0 Or posRowCartera() < 0 Then
+            Return
+        End If
+
+        lblTotalCartera.Visible = False
+
+        textBoxCliente.Enabled = False
+        Dim nom As String
+
+        nom = dsDatosCartera.Tables(0).Rows(posRowCartera).Item(0).ToString
+        idCliente = dsDatosCartera.Tables(0).Rows(posRowCartera).Item(5).ToString
+        codigo = dsDatosCartera.Tables(0).Rows(posRowCartera).Item(6).ToString
+
+        textBoxCliente.Text = nom.Trim
+
+        consulta105()
+
+        consulta117()
+
+        showData()
+
+        copiaCodigo = txtCodigo.Text.Trim
+
+        ClientesTabControl.SelectedIndex = 1
+    End Sub
+#End Region
+
+#Region "  Evento: ClientesTabControl - ENTER/LEAVE  "
+
 #End Region
 
 #Region "  Rutinas: cambio de textBox con Enter  "
@@ -977,10 +1248,6 @@ Public Class Cat_Clientes
         End If
     End Sub
 #End Region
-
-#Region "  Evento: ClientesTabControl - ENTER/LEAVE  "
-
-#End Region    
 
 End Class
 

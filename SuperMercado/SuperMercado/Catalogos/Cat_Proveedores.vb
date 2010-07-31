@@ -21,10 +21,17 @@ Public Class Cat_Proveedores
     Dim viewDatosCuentas As Object
     Dim DsViewCuentas As Object
 
+    ' Grid datos para CARTERA
+    Dim dsDatosCartera As DataSet
+    Dim dtCartera As DataTable
+    Dim viewDatosCartera As Object
+    Dim DsViewCartera As Object
+
     Dim objNuevaCuenta As Cat_Proveedores_Nueva_Cuenta
     Dim producto As String
     Dim cantidad As String
     Dim costo As String
+    Dim factura As String
 
     Dim objAbonar As Cat_Proveedores_RegistroAbono
     Dim monto As Decimal
@@ -230,27 +237,27 @@ Public Class Cat_Proveedores
         cColorHeader = Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(168, Byte), Integer))
 
         'Vista columna encabezado
-        Dim viewcolumnheader As SourceGrid.Cells.Views.ColumnHeader = New SourceGrid.Cells.Views.ColumnHeader
+        Dim viewcolumnheaderCenter As SourceGrid.Cells.Views.ColumnHeader = New SourceGrid.Cells.Views.ColumnHeader
         Dim backheader As DevAge.Drawing.VisualElements.ColumnHeader = New DevAge.Drawing.VisualElements.ColumnHeader
-        viewcolumnheader.Font = New Font("Verdana", 8, FontStyle.Regular)
-        viewcolumnheader.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleLeft
+        viewcolumnheaderCenter.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewcolumnheaderCenter.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleLeft
 
-        Dim viewcolumnheader2 As SourceGrid.Cells.Views.ColumnHeader = New SourceGrid.Cells.Views.ColumnHeader
+        Dim viewcolumnheaderRight As SourceGrid.Cells.Views.ColumnHeader = New SourceGrid.Cells.Views.ColumnHeader
         Dim backheader2 As DevAge.Drawing.VisualElements.ColumnHeader = New DevAge.Drawing.VisualElements.ColumnHeader
-        viewcolumnheader2.Font = New Font("Verdana", 8, FontStyle.Regular)
-        viewcolumnheader2.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleRight
+        viewcolumnheaderRight.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewcolumnheaderRight.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleRight
 
-        Dim viewcolumnheader3 As SourceGrid.Cells.Views.ColumnHeader = New SourceGrid.Cells.Views.ColumnHeader
+        Dim viewcolumnheaderLeft As SourceGrid.Cells.Views.ColumnHeader = New SourceGrid.Cells.Views.ColumnHeader
         Dim backheader3 As DevAge.Drawing.VisualElements.ColumnHeader = New DevAge.Drawing.VisualElements.ColumnHeader
-        viewcolumnheader3.Font = New Font("Verdana", 8, FontStyle.Regular)
-        viewcolumnheader3.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
+        viewcolumnheaderLeft.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewcolumnheaderLeft.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
 
         'COLUMNAS
-        GridDatosCuentas.GetCell(0, 1).View = viewcolumnheader3
-        GridDatosCuentas.GetCell(0, 2).View = viewcolumnheader
-        GridDatosCuentas.GetCell(0, 3).View = viewcolumnheader3
-        GridDatosCuentas.GetCell(0, 4).View = viewcolumnheader3
-        GridDatosCuentas.GetCell(0, 5).View = viewcolumnheader3
+        GridDatosCuentas.GetCell(0, 1).View = viewcolumnheaderLeft
+        GridDatosCuentas.GetCell(0, 2).View = viewcolumnheaderCenter
+        GridDatosCuentas.GetCell(0, 3).View = viewcolumnheaderLeft
+        GridDatosCuentas.GetCell(0, 4).View = viewcolumnheaderLeft
+        GridDatosCuentas.GetCell(0, 5).View = viewcolumnheaderLeft
 
     End Sub
 
@@ -324,6 +331,143 @@ Public Class Cat_Proveedores
         GridDatosCuentas.Columns.SetWidth(5, 128)
 
     End Sub
+#End Region
+
+#Region "  Grid Datos CARTERA  "
+
+    Sub CrearDsDatosCartera()
+        dsDatosCartera = New DataSet("Root")
+        dtCartera = New DataTable("Table")
+        dsDatosCartera.Tables.Add(dtCartera)
+
+        dsDatosCartera.Tables("Table").Columns.Add("C1", GetType(String))
+        dsDatosCartera.Tables("Table").Columns.Add("C2", GetType(String))
+        dsDatosCartera.Tables("Table").Columns.Add("C3", GetType(String))
+        dsDatosCartera.Tables("Table").Columns.Add("C4", GetType(String))
+        dsDatosCartera.Tables("Table").Columns.Add("C5", GetType(String))
+        dsDatosCartera.Tables("Table").Columns.Add("C6", GetType(String))
+
+    End Sub
+
+    Sub ConfiguraGridDatosCartera()
+        viewDatosCartera = dsDatosCartera.Tables("Table").DefaultView
+
+        viewDatosCartera.AllowEdit = False
+        viewDatosCartera.AllowNew = False
+        viewDatosCartera.AllowDelete = True
+
+        GridDatosCartera.FixedRows = 1
+        GridDatosCartera.FixedColumns = 1
+        GridDatosCartera.DeleteRowsWithDeleteKey = False
+        GridDatosCartera.DeleteQuestionMessage = Nothing
+
+        ' Renglon encabezado
+
+        GridDatosCartera.Columns.Insert(0, SourceGrid.DataGridColumn.CreateRowHeader(GridDatosCartera))
+
+        Dim BindList2 As DevAge.ComponentModel.IBoundList = New DevAge.ComponentModel.BoundDataView(viewDatosCartera)
+
+        ' Se crean las columnas.
+        GridDatosCrearColumnasCARTERA(GridDatosCartera.Columns, BindList2)
+
+        GridDatosCartera.DataSource = BindList2
+
+        Dim cColorHeader As Color
+        cColorHeader = Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(168, Byte), Integer))
+
+        'Vista columna encabezado
+
+
+        Dim viewcolumnheader As SourceGrid.Cells.Views.ColumnHeader = New SourceGrid.Cells.Views.ColumnHeader
+        Dim backheader As DevAge.Drawing.VisualElements.ColumnHeader = New DevAge.Drawing.VisualElements.ColumnHeader
+        viewcolumnheader.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewcolumnheader.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleLeft
+
+        Dim viewcolumnheader2 As SourceGrid.Cells.Views.ColumnHeader = New SourceGrid.Cells.Views.ColumnHeader
+        Dim backheader2 As DevAge.Drawing.VisualElements.ColumnHeader = New DevAge.Drawing.VisualElements.ColumnHeader
+        viewcolumnheader2.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewcolumnheader2.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleRight
+
+        Dim viewcolumnheader3 As SourceGrid.Cells.Views.ColumnHeader = New SourceGrid.Cells.Views.ColumnHeader
+        Dim backheader3 As DevAge.Drawing.VisualElements.ColumnHeader = New DevAge.Drawing.VisualElements.ColumnHeader
+        viewcolumnheader3.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewcolumnheader3.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
+
+        GridDatosCartera.GetCell(0, 1).View = viewcolumnheader
+        GridDatosCartera.GetCell(0, 2).View = viewcolumnheader
+        GridDatosCartera.GetCell(0, 3).View = viewcolumnheader
+        GridDatosCartera.GetCell(0, 4).View = viewcolumnheader3
+        GridDatosCartera.GetCell(0, 5).View = viewcolumnheader3
+
+    End Sub
+
+    Private Sub GridDatosCrearColumnasCARTERA(ByVal columns As SourceGrid.DataGridColumns, ByVal Bindlist As DevAge.ComponentModel.IBoundList)
+        'Borders
+
+        Dim border As DevAge.Drawing.RectangleBorder = New DevAge.Drawing.RectangleBorder(New DevAge.Drawing.BorderLine(Color.Black), New DevAge.Drawing.BorderLine(Color.Black))
+        'gcolorRow esta declarada en el moduloGeneral
+
+        'vistas
+        Dim viewCenter As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        viewCenter.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewCenter.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
+
+        Dim viewIzquierda As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        viewIzquierda.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewIzquierda.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleLeft
+
+        Dim viewDerecha As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        viewDerecha.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewDerecha.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleRight
+
+        Dim myfont As New Font("Verdana", 8, FontStyle.Regular)
+
+        'Eventos
+
+        Dim gridKeydown As SourceGrid.Cells.Controllers.CustomEvents = New SourceGrid.Cells.Controllers.CustomEvents
+        AddHandler gridKeydown.KeyDown, New KeyEventHandler(AddressOf Grid_KeyDown)
+
+        'Definicion de la celda
+        Dim EditorCustom As SourceGrid.Cells.Editors.TextBox = New SourceGrid.Cells.Editors.TextBox(GetType(String))
+        EditorCustom.EditableMode = SourceGrid.EditableMode.None
+
+        'Crear columnas
+        Dim GridColumn As SourceGrid.DataGridColumn
+
+        GridColumn = GridDatosCartera.Columns.Add("C1", "Nombre", EditorCustom)
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.View = viewIzquierda
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+
+        GridColumn = GridDatosCartera.Columns.Add("C2", "Colonia", EditorCustom)
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.View = viewIzquierda
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+
+        GridColumn = GridDatosCartera.Columns.Add("C3", "Dirección", EditorCustom)
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.View = viewIzquierda
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+
+        GridColumn = GridDatosCartera.Columns.Add("C4", "Adeudo", EditorCustom)
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.View = viewCenter
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+
+        GridColumn = GridDatosCartera.Columns.Add("C5", "Último pago", EditorCustom)
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.View = viewCenter
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+
+        GridDatosCartera.Columns(0).Visible = False
+        GridDatosCartera.Columns.SetWidth(1, 210)
+        GridDatosCartera.Columns.SetWidth(2, 100)
+        GridDatosCartera.Columns.SetWidth(3, 450)
+        GridDatosCartera.Columns.SetWidth(4, 100)
+        GridDatosCartera.Columns.SetWidth(5, 100)
+
+
+    End Sub
 
     Private Sub Grid_KeyDown(ByVal sender As Object, ByVal e As KeyEventArgs)
         Select Case e.KeyCode
@@ -331,10 +475,13 @@ Public Class Cat_Proveedores
                 Me.Close()
         End Select
     End Sub
+
 #End Region
 
 #Region " Evento: Cat_Proveedores - LOAD  "
     Private Sub Cat_Proveedores_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        lblTotalCartera.Visible = False
+
         showProvGrid()
 
         ocultarControlesCuentas()
@@ -357,8 +504,12 @@ Public Class Cat_Proveedores
 
         CrearDsDatosPROVEEDORES()
         ConfiguraGridDatosPROVEEDORES()
+
         CreardsDatosCuentas()
         ConfiguraGridDatosCuentas()
+
+        CrearDsDatosCartera()
+        ConfiguraGridDatosCartera()
 
         consulta129()
     End Sub
@@ -366,6 +517,10 @@ Public Class Cat_Proveedores
 
 #Region "  Botón NUEVO  "
     Private Sub ToolStripButtonNuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripButtonNuevo.Click
+        lblTitulo.Visible = False
+        lblTotalCartera.Visible = False
+        cartera.Visible = False
+
         ToolStripButtonNuevaCuenta.Enabled = False
 
         limpiarPantalla()
@@ -399,11 +554,13 @@ Public Class Cat_Proveedores
             grabar106()
 
             resultado = lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False)
-            If ObjRet.bOk Then
+            If lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|") = "OK" Then
                 MessageBox.Show(" " & resultado, " Proveedores", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 limpiarPantalla()
             Else
-                MessageBox.Show(" " & resultado, " Proveedores", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                MessageBox.Show("El código se encuentra en uso.", " Proveedores", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                txtCodigo.SelectAll()
+                txtCodigo.Focus()
                 Return
             End If
 
@@ -415,6 +572,8 @@ Public Class Cat_Proveedores
             Grabar.Visible = False
             ToolStripButtonNuevo.Visible = True
         End If
+
+        cartera.Visible = True
 
     End Sub
 #End Region
@@ -429,6 +588,7 @@ Public Class Cat_Proveedores
             producto = objNuevaCuenta.producto.Trim
             cantidad = objNuevaCuenta.cantidad.ToString
             costo = objNuevaCuenta.costo.ToString
+            factura = objNuevaCuenta.factura.Trim
 
             grabar127()
 
@@ -470,6 +630,63 @@ Public Class Cat_Proveedores
 
         objDetalle.StartPosition = FormStartPosition.CenterScreen
         objDetalle.ShowDialog()
+
+    End Sub
+#End Region
+
+#Region "  Botón BUSCAR  "
+    Private Sub Buscar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Buscar.Click
+        lblTitulo.Visible = True
+        lblTitulo.Text = "BUSCADOR"
+        lblTotalCartera.Visible = False
+        cartera.Visible = True
+
+        ocultarControlesCuentas()
+        Proveedor.Enabled = True
+
+        showProvGrid()
+        Proveedor.Clear()
+        Proveedor.Focus()
+        Limpiar.Visible = False
+        Grabar.Visible = False
+        ToolStripButtonNuevo.Visible = True
+
+        ToolStripStatusLabelProveedores.Text = "Escriba el nombre o número de identificación de un proveedor para filtrar los resultados."
+
+        consulta129()
+
+    End Sub
+#End Region
+
+#Region "  Botón CARTERA  "
+    Private Sub ToolStripButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cartera.Click
+        lblTitulo.Text = "CUENTAS POR PAGAR"
+        lblTitulo.Visible = True
+        lblTotalCartera.Visible = True
+
+        cartera.Visible = True
+
+        ocultarControlesCuentas()
+        Proveedor.Enabled = True
+
+        Proveedor.Clear()
+        Proveedor.Focus()
+        Limpiar.Visible = False
+        Grabar.Visible = False
+        ToolStripButtonNuevo.Visible = True
+
+        ToolStripStatusLabelProveedores.Text = "Escriba el nombre o número de identificación de un proveedor para filtrar los resultados."
+
+        showCarteraGrid()
+        consulta140()
+
+        Dim n As Integer = 0
+        Dim total As Decimal
+        For n = 0 To GridDatosCartera.DataSource.Count - 1
+            total += GridDatosCartera.DataSource.Item(n).row(3)
+        Next
+
+        lblTotalCartera.Text = "Total: " & FormatCurrency(total)
 
     End Sub
 #End Region
@@ -585,12 +802,36 @@ Public Class Cat_Proveedores
     End Function
 #End Region
 
+#Region "  Rutina: posRowCartera  "
+    Function posRowCartera() As Integer
+        Dim pos() As Integer = GridDatosCartera.Selection.GetSelectionRegion.GetRowsIndex
+        If pos.Length = 0 Then
+            Return -1
+        Else
+            Return pos(0) - 1
+        End If
+    End Function
+#End Region
+
 #Region "  Rutina: showProvGrid  "
     Sub showProvGrid()
+        PanelGrid.SendToBack()
         PanelGrid.Visible = True
         PanelGrid.SetBounds(11, 150, 1000, 525)
 
         PanelDatos.Visible = False
+        PanelCartera.Visible = False
+    End Sub
+#End Region
+
+#Region "  Rutina: showCarteraGrid  "
+    Sub showCarteraGrid()
+        PanelCartera.SendToBack()
+        PanelCartera.Visible = True
+        PanelCartera.SetBounds(11, 150, 1000, 525)
+
+        PanelDatos.Visible = False
+        PanelGrid.Visible = False
     End Sub
 #End Region
 
@@ -604,6 +845,7 @@ Public Class Cat_Proveedores
 
         PanelGrid.Visible = False
         Proveedor.Enabled = False
+        PanelCartera.Visible = False
 
     End Sub
 #End Region
@@ -694,6 +936,32 @@ Public Class Cat_Proveedores
     End Sub
 #End Region
 
+#Region "  Rutina: consulta140  "
+    Sub consulta140()
+        dsDatosCartera.Tables(0).Clear()
+
+        Caja = "Consulta140" : Parametros = "V1=" & Proveedor.Text.Trim & "|"
+        ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
+
+        If Not ObjRet.DS Is DBNull.Value Then
+            If Not ObjRet.DS.Tables Is DBNull.Value Then
+                If ObjRet.DS.Tables.Count > 0 Then
+                    Dim rows As Integer
+                    rows = ObjRet.DS.Tables(0).Rows.Count - 1
+                    For i As Integer = 0 To ObjRet.DS.Tables(0).Rows.Count - 1
+                        dsDatosCartera.Tables(0).ImportRow(ObjRet.DS.Tables(0).Rows(i))
+                    Next
+                    dsDatosCartera.Tables(0).AcceptChanges()
+                    DsViewCartera = dsDatosCartera.Tables(0).DefaultView
+                    'Else
+                    '   FilaVacia()
+
+                End If
+            End If
+        End If
+    End Sub
+#End Region
+
 #Region "  Rutina: GRABAR106  "
     Sub grabar106()
         'Graba un nuevo PROVEEDOR
@@ -728,7 +996,8 @@ Public Class Cat_Proveedores
                      "|V2=" & cantidad.Trim & _
                      "|V3=" & costo.Trim & _
                      "|V4=" & idProveedor.Trim & _
-                     "|V5=" & idUsuario
+                     "|V5=" & idUsuario & _
+                     "|V6=" & factura.Trim
         ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
 
         consulta130()
@@ -806,7 +1075,12 @@ Public Class Cat_Proveedores
 
 #Region "  Evento: Proveedor - TEXT CHANGED  "
     Private Sub Proveedor_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Proveedor.TextChanged
-        consulta129()
+        If PanelGrid.Visible = True Then
+            consulta129()
+        ElseIf PanelCartera.Visible = True Then
+            consulta140()
+        End If
+
     End Sub
 #End Region
 
@@ -827,19 +1101,16 @@ Public Class Cat_Proveedores
         If dsDatosProveedores.Tables(0).Rows.Count = 0 Or posRowProveedores() < 0 Then
             Return
         End If
-
-        Dim posColumn() As Integer = GridDatosPROVEEDORES.Selection.GetSelectionRegion.GetColumnsIndex
-        Dim posC As Integer = posColumn(0)
+        lblTitulo.Visible = False
 
         ToolStripButtonNuevaCuenta.Enabled = True
 
         Dim nombreProveedor As String
         nombreProveedor = dsDatosProveedores.Tables(0).Rows(posRowProveedores).Item(1).ToString
-        'Necesarios para las consultas.
+        'Necesarios para las consultas 106 y 130.
         idProveedor = dsDatosProveedores.Tables(0).Rows(posRowProveedores).Item(0).ToString
 
         Proveedor.Text = nombreProveedor
-
 
 
         showData()
@@ -854,7 +1125,44 @@ Public Class Cat_Proveedores
     End Sub
 #End Region
 
+#Region "  Evento: GridDatosCartera - DOUBLE CLICK  "
+    Private Sub GridDatosCartera_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GridDatosCartera.DoubleClick
+        If dsDatosCartera.Tables(0).Rows.Count = 0 Or posRowCartera() < 0 Then
+            Return
+        End If
 
+        lblTotalCartera.Visible = False
+        lblTitulo.Visible = False
+        ToolStripButtonNuevaCuenta.Enabled = True
+
+        Dim nombreProveedor As String
+        nombreProveedor = dsDatosCartera.Tables(0).Rows(posRowCartera).Item(0).ToString
+        'Necesarios para las consultas 106 y 130.
+        idProveedor = dsDatosCartera.Tables(0).Rows(posRowCartera).Item(5).ToString
+
+        Proveedor.Text = nombreProveedor
+
+        showData()
+
+        consulta106()
+
+        consulta130()
+
+        copiaCodigo = txtCodigo.Text.Trim
+
+        ProveedoresTabControl.SelectedIndex = 1
+    End Sub
+#End Region
+
+#Region "  Evento: adedudosTabPage - ENTER/LEAVE  "
+    Private Sub AdeudosTabPage_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AdeudosTabPage.Enter
+        mostrarControles()
+    End Sub
+
+    Private Sub AdeudosTabPage_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AdeudosTabPage.Leave
+        ocultarControlesCuentas()
+    End Sub
+#End Region
 
 #Region "  Rutinas: cambio de textBox con Enter  "
     Private Sub TxtNombre_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TxtNombre.KeyPress
@@ -969,35 +1277,5 @@ Public Class Cat_Proveedores
         End If
     End Sub
 #End Region
-
-#Region "  Evento: adedudosTabPage - ENTER/LEAVE  "
-    Private Sub AdeudosTabPage_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AdeudosTabPage.Enter
-        mostrarControles()
-    End Sub
-
-    Private Sub AdeudosTabPage_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AdeudosTabPage.Leave
-        ocultarControlesCuentas()
-    End Sub
-#End Region
-
-#Region "  Botón BUSCAR  "
-    Private Sub Buscar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Buscar.Click
-
-        ocultarControlesCuentas()
-        Proveedor.Enabled = True
-
-        showProvGrid()
-        Proveedor.Clear()
-        Proveedor.Focus()
-        Limpiar.Visible = False
-        Grabar.Visible = False
-        ToolStripButtonNuevo.Visible = True
-
-        ToolStripStatusLabelProveedores.Text = "Escriba el nombre o número de identificación de un proveedor para filtrar los resultados."
-
-        consulta129()
-
-    End Sub
-#End Region
-
+    
 End Class

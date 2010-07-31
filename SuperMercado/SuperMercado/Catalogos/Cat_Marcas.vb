@@ -32,7 +32,7 @@ Public Class Cat_Marcas
     Sub LimpiarPantalla()
 
         'Habilidar
-        Me.btnAceptar.Enabled = True
+
         Me.CodigoMarca.Enabled = True
         Me.Nuevo.Visible = True
         'Deshabilitar
@@ -41,7 +41,7 @@ Public Class Cat_Marcas
 
         'Asignar
         Me.CodigoMarca.Text = ""
-        Me.NombreMarca.Text = ""
+
         Me.Descripcion.Text = ""
         'PiePagina
         'Foco
@@ -70,12 +70,12 @@ Public Class Cat_Marcas
                 'Estatus
                 If ObjRet.bOk Then
                     'Asignar
-                    Me.NombreMarca.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
+
                     SendKeys.Send("{TAB}")
 
                 Else
                     'Asignar
-                    Me.NombreMarca.Text = ""
+
 
                     MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
 
@@ -91,38 +91,8 @@ Public Class Cat_Marcas
 #End Region
 
 #Region " Aceptar "
-    Private Sub btnAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAceptar.Click
-        'Servicios
-        Caja = "Consulta102" : Parametros = "V1=" & Me.CodigoMarca.Text
-        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
-        ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
-        If ObjRet.bOk Then
-            mostrarControlesEditar()
-            'Deshabilitar
-            Me.CodigoMarca.Enabled = False
-            Me.btnAceptar.Enabled = False
+    Private Sub btnAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
-            'Asignar
-            Me.Descripcion.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
-
-            'Habilitar
-            Me.Grabar.Visible = True
-            Me.GroupBoxMarca.Visible = True
-            'Foco
-            Me.Descripcion.Focus()
-        Else
-            'Asignar
-            Me.CodigoMarca.Text = ""
-            Me.NombreMarca.Text = ""
-            Me.Descripcion.Text = ""
-
-
-            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
-
-            'Foco
-            Me.CodigoMarca.Focus()
-        End If
-        ObjRet = Nothing
 
     End Sub
 #End Region
@@ -137,10 +107,13 @@ Public Class Cat_Marcas
             If lConsulta Is Nothing Then lConsulta = New ClsConsultas
             ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
 
-            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
-            If ObjRet.bOk Then
+
+            If lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|") = "OK" Then
+                MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
                 LimpiarPantalla()
                 ocultarControlesEditar()
+            Else
+                MessageBox.Show("La marca ya se encuentra registrada.", " Marcas", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
 
         End If
@@ -159,9 +132,9 @@ Public Class Cat_Marcas
             'Deshabilitar
             Me.Nuevo.Visible = False
             Me.CodigoMarca.Enabled = False
-            Me.btnAceptar.Enabled = False
+
             'Asignar
-            Me.NombreMarca.Text = ""
+
             Me.CodigoMarca.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
             'Habilitar
             Me.GroupBoxMarca.Visible = True
@@ -213,7 +186,7 @@ Public Class Cat_Marcas
             mostrarControlesEditar()
             'Deshabilitar
             Me.CodigoMarca.Enabled = False
-            Me.btnAceptar.Enabled = False
+
 
             'Asignar
             Me.Descripcion.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
@@ -230,7 +203,7 @@ Public Class Cat_Marcas
         Else
             'Asignar
             Me.CodigoMarca.Text = ""
-            Me.NombreMarca.Text = ""
+
             Me.Descripcion.Text = ""
 
 
@@ -266,4 +239,43 @@ Public Class Cat_Marcas
     End Sub
 #End Region
     
+#Region "  Evento: CodigoMarca - KEY PRESS  "
+    Private Sub CodigoMarca_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles CodigoMarca.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            'Servicios
+            Caja = "Consulta102" : Parametros = "V1=" & Me.CodigoMarca.Text
+            If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+            ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
+            If ObjRet.bOk Then
+                mostrarControlesEditar()
+                'Deshabilitar
+                Me.CodigoMarca.Enabled = False
+
+
+                'Asignar
+                Me.Descripcion.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
+
+                'Habilitar
+                Me.Grabar.Visible = True
+                Me.GroupBoxMarca.Visible = True
+                'Foco
+                Me.Descripcion.Focus()
+            Else
+                'Asignar
+                Me.CodigoMarca.Text = ""
+
+                Me.Descripcion.Text = ""
+
+
+                MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+
+                'Foco
+                Me.CodigoMarca.Focus()
+            End If
+            ObjRet = Nothing
+        End If
+    End Sub
+#End Region
+
 End Class

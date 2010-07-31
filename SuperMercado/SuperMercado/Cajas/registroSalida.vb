@@ -34,7 +34,7 @@ Public Class registroSalida
         ' Se llama a al consulta111 conocer el total de dinero
         ' acumulado.
 
-        Caja = "consulta111" : Parametros = "V1=" & usuario & "|"
+        Caja = "consulta111" : Parametros = "V1=" & idUsuario & "|"
         ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
 
         Dim sumEnt As Decimal

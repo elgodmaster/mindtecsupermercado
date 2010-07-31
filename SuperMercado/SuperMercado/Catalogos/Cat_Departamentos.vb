@@ -44,12 +44,12 @@ Public Class Cat_Departamentos
                 'Estatus
                 If ObjRet.bOk Then
                     'Asignar
-                    Me.NombreDepto.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
+
                     SendKeys.Send("{TAB}")
 
                 Else
                     'Asignar
-                    Me.NombreDepto.Text = ""
+
                     MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
 
                     'poner focus
@@ -64,7 +64,7 @@ Public Class Cat_Departamentos
 #End Region
 
 #Region " Aceptar "
-    Private Sub btnAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAceptar.Click
+    Private Sub btnAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
         Caja = "Consulta100" : Parametros = "V1=" & Me.CodigoDepto.Text
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
@@ -72,7 +72,7 @@ Public Class Cat_Departamentos
         If ObjRet.bOk Then
             'Deshabilitar
             Me.CodigoDepto.Enabled = False
-            Me.btnAceptar.Enabled = False
+
             Me.Nuevo.Visible = False
             Limpiar.Visible = True
             Grabar.Visible = True
@@ -88,7 +88,7 @@ Public Class Cat_Departamentos
         Else
             'Asignar
             Me.CodigoDepto.Text = ""
-            Me.NombreDepto.Text = ""
+
             Me.TxtDescripcion.Text = ""
 
             MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
@@ -133,9 +133,12 @@ Public Class Cat_Departamentos
 
             If lConsulta Is Nothing Then lConsulta = New ClsConsultas
             ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
-            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
-            If ObjRet.bOk Then
+
+            If lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|") = "OK" Then
+                MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
                 regresarPantalla()
+            Else
+                MessageBox.Show("El departamento ya se encuentra registrado.", " Departamentos", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
         End If
     End Sub
@@ -153,9 +156,9 @@ Public Class Cat_Departamentos
             'Deshabilitar
             Me.Nuevo.Visible = False
             Me.CodigoDepto.Enabled = False
-            Me.btnAceptar.Enabled = False
+
             'Asignar
-            Me.NombreDepto.Text = ""
+
             Me.CodigoDepto.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
             'Habilitar
             Me.GroupBoxDepto.Visible = True
@@ -195,7 +198,7 @@ Public Class Cat_Departamentos
 #Region "  Rutina: regresarPantalla "
     Sub regresarPantalla()
         'Habilidar
-        Me.btnAceptar.Enabled = True
+
         Me.CodigoDepto.Enabled = True
         Me.Nuevo.Visible = True
         'Deshabilitar
@@ -205,7 +208,7 @@ Public Class Cat_Departamentos
 
         'Asignar
         Me.CodigoDepto.Text = ""
-        Me.NombreDepto.Text = ""
+
         Me.TxtDescripcion.Text = ""
         'PiePagina
         'Foco
@@ -232,7 +235,7 @@ Public Class Cat_Departamentos
         If ObjRet.bOk Then
             'Deshabilitar
             Me.CodigoDepto.Enabled = False
-            Me.btnAceptar.Enabled = False
+
             Limpiar.Visible = True
             Grabar.Visible = True
 
@@ -251,7 +254,7 @@ Public Class Cat_Departamentos
         Else
             'Asignar
             Me.CodigoDepto.Text = ""
-            Me.NombreDepto.Text = ""
+
             Me.TxtDescripcion.Text = ""
 
             MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
@@ -260,6 +263,46 @@ Public Class Cat_Departamentos
             Me.CodigoDepto.Focus()
         End If
         ObjRet = Nothing
+    End Sub
+#End Region
+
+#Region "  Evento: CodigoDepto - KEY PRESS  "
+    Private Sub CodigoDepto_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles CodigoDepto.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            Caja = "Consulta100" : Parametros = "V1=" & Me.CodigoDepto.Text
+            If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+            ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
+            If ObjRet.bOk Then
+                'Deshabilitar
+                Me.CodigoDepto.Enabled = False
+
+                Me.Nuevo.Visible = False
+                Limpiar.Visible = True
+                Grabar.Visible = True
+
+                'Asignar
+                Me.TxtDescripcion.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
+
+                'Habilitar
+                Me.Grabar.Visible = True
+                Me.GroupBoxDepto.Visible = True
+                'Foco
+                Me.TxtDescripcion.Focus()
+            Else
+                'Asignar
+                Me.CodigoDepto.Text = ""
+
+                Me.TxtDescripcion.Text = ""
+
+                MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+
+                'Foco
+                Me.CodigoDepto.Focus()
+            End If
+            ObjRet = Nothing
+        End If
+
     End Sub
 #End Region
 

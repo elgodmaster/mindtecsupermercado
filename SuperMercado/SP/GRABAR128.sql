@@ -39,6 +39,11 @@ Where IdCuenta = @idCuenta
 -- Se actualiza el adeudo total del cliente.
 Update SMercado..Cat_Proveedores 
 Set Deuda = Deuda - CONVERT(decimal(12,2), @monto)
-Where IdProveedor = @idProvee 
+Where IdProveedor = @idProvee
+
+-- Se acutaliza el último pago al proveedor
+Update SMercado..Cat_Proveedores 
+Set ultimoPago = GETDATE()
+Where IdProveedor = @idProvee  
 
 END

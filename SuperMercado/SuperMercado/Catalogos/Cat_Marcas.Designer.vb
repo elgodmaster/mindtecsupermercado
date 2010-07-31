@@ -48,8 +48,6 @@ Partial Class Cat_Marcas
         Me.Descripcion = New System.Windows.Forms.TextBox
         Me.Label2 = New System.Windows.Forms.Label
         Me.Barra = New System.Windows.Forms.PictureBox
-        Me.NombreMarca = New System.Windows.Forms.Label
-        Me.btnAceptar = New System.Windows.Forms.Button
         Me.CodigoMarca = New System.Windows.Forms.TextBox
         Me.Label1 = New System.Windows.Forms.Label
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip
@@ -112,30 +110,6 @@ Partial Class Cat_Marcas
         Me.Barra.Size = New System.Drawing.Size(1024, 4)
         Me.Barra.TabIndex = 221
         Me.Barra.TabStop = False
-        '
-        'NombreMarca
-        '
-        Me.NombreMarca.AutoEllipsis = True
-        Me.NombreMarca.BackColor = System.Drawing.Color.Transparent
-        Me.NombreMarca.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NombreMarca.Location = New System.Drawing.Point(340, 93)
-        Me.NombreMarca.Name = "NombreMarca"
-        Me.NombreMarca.Size = New System.Drawing.Size(561, 22)
-        Me.NombreMarca.TabIndex = 220
-        Me.NombreMarca.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'btnAceptar
-        '
-        Me.btnAceptar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAceptar.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.btnAceptar.BackgroundImage = CType(resources.GetObject("btnAceptar.BackgroundImage"), System.Drawing.Image)
-        Me.btnAceptar.Font = New System.Drawing.Font("Verdana", 8.0!)
-        Me.btnAceptar.Location = New System.Drawing.Point(914, 91)
-        Me.btnAceptar.Name = "btnAceptar"
-        Me.btnAceptar.Size = New System.Drawing.Size(80, 25)
-        Me.btnAceptar.TabIndex = 2
-        Me.btnAceptar.Text = "Aceptar"
-        Me.btnAceptar.UseVisualStyleBackColor = False
         '
         'CodigoMarca
         '
@@ -247,8 +221,6 @@ Partial Class Cat_Marcas
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.GroupBoxMarca)
         Me.Controls.Add(Me.Barra)
-        Me.Controls.Add(Me.NombreMarca)
-        Me.Controls.Add(Me.btnAceptar)
         Me.Controls.Add(Me.CodigoMarca)
         Me.Controls.Add(Me.Label1)
         Me.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -272,8 +244,6 @@ Partial Class Cat_Marcas
     Friend WithEvents Descripcion As System.Windows.Forms.TextBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Barra As System.Windows.Forms.PictureBox
-    Friend WithEvents NombreMarca As System.Windows.Forms.Label
-    Friend WithEvents btnAceptar As System.Windows.Forms.Button
     Friend WithEvents CodigoMarca As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip

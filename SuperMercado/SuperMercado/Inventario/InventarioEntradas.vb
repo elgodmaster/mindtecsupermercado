@@ -2,7 +2,7 @@
 
 Public Class InventarioEntradas
 
-#Region " Variables de trabajo"
+#Region "  Variables de trabajo  "
     Dim DsDatos As DataSet
     Dim ViewDatos As DataView
     Private DsView As DataView
@@ -12,9 +12,196 @@ Public Class InventarioEntradas
     Dim ObjRet As CRetorno
     Dim identrada As String
     Dim TotalEntrada As Double = 0
+
 #End Region
 
-#Region "Eventos Principales"
+#Region "  Grid Datos  "
+
+    Sub CrearDsDatos()
+        'Creando Datatable  con tipo de dato
+        Dim dt As DataTable
+        DsDatos = New DataSet("Root")
+        dt = New DataTable("Table")
+        DsDatos.Tables.Add(dt)
+
+        'DsDatos.Tables("Table").Columns.Add("C0", GetType(String))
+        DsDatos.Tables("Table").Columns.Add("C1", GetType(String))
+        DsDatos.Tables("Table").Columns.Add("C2", GetType(String))
+        DsDatos.Tables("Table").Columns.Add("C3", GetType(Double))
+        DsDatos.Tables("Table").Columns.Add("C4", GetType(String))
+        DsDatos.Tables("Table").Columns.Add("C5", GetType(Double))
+        DsDatos.Tables("Table").Columns.Add("C6", GetType(Double))
+        DsDatos.Tables("Table").Columns.Add("C7", GetType(Integer))
+        DsDatos.Tables("Table").Columns.Add("C8", GetType(String))
+
+    End Sub
+
+    Sub ConfiguraGridDatos()
+        ViewDatos = DsDatos.Tables("Table").DefaultView
+
+        ViewDatos.AllowEdit = False
+        ViewDatos.AllowNew = False
+        ViewDatos.AllowDelete = True
+
+        GridDatos.FixedRows = 1
+        GridDatos.FixedColumns = 1
+        GridDatos.DeleteRowsWithDeleteKey = False
+        GridDatos.DeleteQuestionMessage = Nothing
+
+
+        'Renglon encabezado
+
+        GridDatos.Columns.Insert(0, SourceGrid.DataGridColumn.CreateRowHeader(GridDatos))
+
+        Dim BindList2 As DevAge.ComponentModel.IBoundList = New DevAge.ComponentModel.BoundDataView(ViewDatos)
+
+        GridDatosCrearColumnas(GridDatos.Columns, BindList2)
+
+        GridDatos.DataSource = BindList2
+
+        Dim cColorHeader As Color
+        cColorHeader = Color.FromArgb(CType(CType(250, Byte), Integer), CType(CType(194, Byte), Integer), CType(CType(5, Byte), Integer))
+
+        'Vista columna encabezado
+
+        'Vista columna encabezado
+        Dim viewcolumnheaderLeft As SourceGrid.Cells.Views.ColumnHeader = New SourceGrid.Cells.Views.ColumnHeader
+        Dim backheader0 As DevAge.Drawing.VisualElements.ColumnHeader = New DevAge.Drawing.VisualElements.ColumnHeader
+        viewcolumnheaderLeft.Font = New Font("Verdana", 9, FontStyle.Regular)
+        viewcolumnheaderLeft.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleLeft
+
+        Dim viewcolumnheaderRight As SourceGrid.Cells.Views.ColumnHeader = New SourceGrid.Cells.Views.ColumnHeader
+        Dim backheader2 As DevAge.Drawing.VisualElements.ColumnHeader = New DevAge.Drawing.VisualElements.ColumnHeader
+        viewcolumnheaderRight.Font = New Font("Verdana", 9, FontStyle.Regular)
+        viewcolumnheaderRight.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleRight
+
+        Dim viewcolumnheaderCenter As SourceGrid.Cells.Views.ColumnHeader = New SourceGrid.Cells.Views.ColumnHeader
+        Dim backheader3 As DevAge.Drawing.VisualElements.ColumnHeader = New DevAge.Drawing.VisualElements.ColumnHeader
+        viewcolumnheaderCenter.Font = New Font("Verdana", 9, FontStyle.Regular)
+        viewcolumnheaderCenter.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
+
+        GridDatos.GetCell(0, 1).View = viewcolumnheaderCenter
+        GridDatos.GetCell(0, 2).View = viewcolumnheaderLeft
+        GridDatos.GetCell(0, 3).View = viewcolumnheaderCenter
+        GridDatos.GetCell(0, 4).View = viewcolumnheaderCenter
+        GridDatos.GetCell(0, 5).View = viewcolumnheaderCenter
+        GridDatos.GetCell(0, 6).View = viewcolumnheaderCenter
+        GridDatos.GetCell(0, 7).View = viewcolumnheaderRight
+
+    End Sub
+
+    Private Sub GridDatosCrearColumnas(ByVal columns As SourceGrid.DataGridColumns, ByVal Bindlist As DevAge.ComponentModel.IBoundList)
+        'Borders
+
+        Dim border As DevAge.Drawing.RectangleBorder = New DevAge.Drawing.RectangleBorder(New DevAge.Drawing.BorderLine(Color.Black), New DevAge.Drawing.BorderLine(Color.Black))
+        'gcolorRow esta declarada en el moduloGeneral
+        Dim noBorder As New DevAge.Drawing.RectangleBorder
+        noBorder.SetColor(Color.White)
+
+
+        'vistas
+        'vistas
+        Dim viewCenter As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        viewCenter.Font = New Font("Verdana", 11, FontStyle.Bold)
+        viewCenter.Border = noBorder
+        viewCenter.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
+
+        Dim viewLeft As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        viewLeft.Font = New Font("Verdana", 11, FontStyle.Bold)
+        viewLeft.Border = noBorder
+        viewLeft.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleLeft
+
+        Dim viewRight As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        viewRight.Font = New Font("Verdana", 11, FontStyle.Bold)
+        viewRight.Border = noBorder
+        viewRight.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleRight
+
+        Dim myfont As New Font("Verdana", 8, FontStyle.Regular)
+
+        'Eventos
+
+        Dim gridKeydown As SourceGrid.Cells.Controllers.CustomEvents = New SourceGrid.Cells.Controllers.CustomEvents
+        AddHandler gridKeydown.KeyDown, New KeyEventHandler(AddressOf Grid_KeyDown)
+
+        'Dim Codigokeydown As SourceGrid.Cells.Controllers.CustomEvents = New SourceGrid.Cells.Controllers.CustomEvents
+        'AddHandler Codigokeydown.KeyDown, New KeyEventHandler(AddressOf codigo_keydown)
+
+        Dim Cantidadkeydown As SourceGrid.Cells.Controllers.CustomEvents = New SourceGrid.Cells.Controllers.CustomEvents
+        AddHandler Cantidadkeydown.KeyDown, New KeyEventHandler(AddressOf cant_keydown)
+
+        'Definicion de la celda
+        Dim EditorCustom As SourceGrid.Cells.Editors.TextBox = New SourceGrid.Cells.Editors.TextBox(GetType(String))
+        EditorCustom.EditableMode = SourceGrid.EditableMode.None
+
+        Dim Editable As SourceGrid.Cells.Editors.TextBox = New SourceGrid.Cells.Editors.TextBox(GetType(String))
+        Editable.EditableMode = SourceGrid.EditableMode.AnyKey
+
+        Dim editorCantidad As SourceGrid.Cells.Editors.TextBox = New SourceGrid.Cells.Editors.TextBox(GetType(Double))
+        AddHandler editorCantidad.KeyPress, New KeyPressEventHandler(AddressOf GridCantidad_KeyPress)
+
+        Dim clickEvent As SourceGrid.Cells.Controllers.CustomEvents = New SourceGrid.Cells.Controllers.CustomEvents()
+        AddHandler clickEvent.Click, New EventHandler(AddressOf BotonBorrar_Click)
+
+        'Dim editorCodigo As SourceGrid.Cells.Editors.TextBox = New SourceGrid.Cells.Editors.TextBox(GetType(String))
+        'AddHandler editorCodigo.KeyPress, New KeyPressEventHandler(AddressOf GridCodigo_KeyPress)
+        'Crear columnas
+        Dim GridColumn As SourceGrid.DataGridColumn
+
+        GridColumn = GridDatos.Columns.Add("C1", "Código", EditorCustom)
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.View = viewCenter
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+
+        GridColumn = GridDatos.Columns.Add("C2", "Producto", EditorCustom)
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.View = viewLeft
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+
+        GridColumn = GridDatos.Columns.Add("C3", "Cantidad", EditorCustom)
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.View = viewCenter
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+
+        GridColumn = GridDatos.Columns.Add("C4", "Unidad", EditorCustom)
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.View = viewCenter
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.EnableStretch
+
+        GridColumn = GridDatos.Columns.Add("C5", "Costo Unitario", EditorCustom)
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.View = viewCenter
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+
+        GridColumn = GridDatos.Columns.Add("C6", "Costo Total", EditorCustom)
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.View = viewCenter
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.EnableAutoSize
+
+        GridColumn = GridDatos.Columns.Add("C7", "Entrada", EditorCustom)
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.View = viewCenter
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.None
+
+        GridColumn = GridDatos.Columns.Add("C8", " ", EditorCustom)
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.View = viewCenter
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.None
+
+        GridDatos.Columns(0).Visible = False
+        GridDatos.Columns.SetWidth(1, 150)
+        GridDatos.Columns.SetWidth(2, 300)
+        GridDatos.Columns.SetWidth(3, 75)
+        GridDatos.Columns.SetWidth(4, 110)
+        GridDatos.Columns.SetWidth(5, 100)
+        GridDatos.Columns.SetWidth(6, 150)
+        GridDatos.Columns(7).Visible = False
+        GridDatos.Columns.SetWidth(8, 10)
+
+    End Sub
+
+#End Region
+
+#Region "  Eventos Principales  "
     Private Sub InventarioEntradas_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
         Select Case e.KeyCode
             Case Keys.Escape
@@ -27,15 +214,35 @@ Public Class InventarioEntradas
                 Grabar.PerformClick()
         End Select
     End Sub
+#End Region
 
+#Region "  Evento: InventarioEntradas - LOAD  "
     Private Sub InventarioEntradas_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         CrearDsDatos()
         ConfiguraGridDatos()
         LimpiarPantalla()
-    End Sub
-#End Region
+        CodigoProveedor.Focus()
 
-#Region " Rutinas "
+        Caja = "Consulta109" : Parametros = "V1=" & Me.FolioEntrada.Text
+        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+        ObjRet = lConsulta.LlamarCaja(Caja, "5", Parametros)
+        'Estatus
+        If ObjRet.bOk Then
+            Me.FolioEntrada.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|", False)
+            Me.btnAceptar.Enabled = False
+            Me.FolioEntrada.Enabled = False
+            Me.Nuevo.Visible = False
+            Me.Grabar.Visible = True
+            Me.GroupBox1.Visible = True
+            'FilaVacia()
+            Me.CodigoProveedor.Focus()
+
+        End If
+        ObjRet = Nothing
+    End Sub
+#End Region  
+
+#Region "  Rutinas  "
     Private Sub Grid_KeyDown(ByVal sender As Object, ByVal e As KeyEventArgs)
         Select Case e.KeyCode
             Case Keys.Escape
@@ -47,24 +254,6 @@ Public Class InventarioEntradas
         LimpiarPantalla()
     End Sub
 
-    Sub LimpiarPantalla()
-        Me.GroupBox1.Visible = False
-        Me.Grabar.Visible = False
-        Me.Eliminar.Visible = False
-        Me.btnAceptar.Enabled = True
-        Me.FolioEntrada.Enabled = True
-        Me.Nuevo.Visible = True
-        Me.Fecha.Value = Now
-        Me.CodigoProveedor.Text = ""
-        Me.FolioEntrada.Text = ""
-        Me.NombreProveedor.Text = ""
-        Me.txtFactura.Text = ""
-        Me.Txt_CodigoProducto.Text = ""
-        Me.Txt_Cantidad.Text = "0.00"
-        Me.DsDatos.Tables("Table").Clear()
-        MensajePiePagina.Text = "Esc=Salir F2=Catálogo F4=Limpiar Pantalla F6=Nuevo"
-        Me.FolioEntrada.Focus()
-    End Sub
     Sub LlenarGrid()
         For i As Integer = 0 To ObjRet.DS.Tables(0).Rows.Count - 1
             DsDatos.Tables("Table").ImportRow(ObjRet.DS.Tables(0).Rows(i))
@@ -112,7 +301,11 @@ Public Class InventarioEntradas
 
 #Region " Llenar Fila "
     Sub LlenarFila(ByVal Producto As String, ByVal Unidad As String, ByVal Costo As Double)
-        Dim Cantidad As Double = Double.Parse(Me.Txt_Cantidad.Text)
+        If CantidadNumericUpDown.Value < 1 Then
+            CantidadNumericUpDown.Value = 1
+        End If
+
+        Dim Cantidad As Double = CantidadNumericUpDown.Value
         Dim TotalCosto As Double = 0
         Double.Parse(Costo)
         TotalCosto = Cantidad * Costo
@@ -140,7 +333,7 @@ Public Class InventarioEntradas
 
             Next
         End If
-        
+
 
         If Igual = False And Encontro = False Then
             Dim registro As DataRow = Me.DsDatos.Tables("Table").NewRow
@@ -181,7 +374,7 @@ Public Class InventarioEntradas
             TotalEntrada = TotalEntrada + Double.Parse(DsDatos.Tables("Table").Rows(h).Item("C6"))
         Next
 
-        Me.Txt_TotalEntrada.Text = TotalEntrada
+        lblTotal.Text = FormatCurrency(TotalEntrada.ToString)
         TotalEntrada = 0
 
     End Sub
@@ -202,6 +395,10 @@ Public Class InventarioEntradas
         If ObjRet.bOk Then
             Dim nuevo As Grid = New Grid(ObjRet.DS)
             Me.FolioEntrada.Text = nuevo.resultado
+
+            If nuevo.resultado = "" Then
+                Return
+            End If
 
             Dim e As KeyEventArgs
             e = New KeyEventArgs(Keys.Enter)
@@ -240,70 +437,36 @@ Public Class InventarioEntradas
     End Sub
 #End Region
 
-#Region " Codigo_KeyDown And KeyPress"
-    'Private Sub codigo_keydown(ByVal sender As Object, ByVal e As KeyEventArgs)
-    '    Dim grid As SourceGrid.DataGrid = GridDatos
-    '    Dim pos As Integer = grid.Selection.ActivePosition.Row
-    '    Dim posicion As Object
-    '    posicion = New SourceGrid.Position(pos, 3)
-    '    Dim posicion2 As Object
-    '    posicion2 = New SourceGrid.Position(pos, 1)
-    '    Dim Context As SourceGrid.CellContext
-    '    Context = New SourceGrid.CellContext(grid, New SourceGrid.Position(pos, 1))
+#Region "  Rutina: LimpiarPantalla  "
+    Sub LimpiarPantalla()
+        Me.GroupBox1.Visible = False
+        Me.Grabar.Visible = False
+        Me.Eliminar.Visible = False
+        Me.btnAceptar.Enabled = True
+        Me.FolioEntrada.Enabled = True
+        Me.Nuevo.Visible = True
+        Me.Fecha.Value = Now
+        Me.CodigoProveedor.Text = ""
+        Me.FolioEntrada.Text = ""
 
-    '    Select Case e.KeyCode
-    '        Case Keys.F2
-    '            CatalogoProductos(pos)
-    '        Case Keys.Enter
-    '            Dim a As String = DsDatos.Tables("Table").Rows(pos - 1).Item("C1")
-    '            Caja = "Consulta109" : Parametros = "V1=" & Context.DisplayText
-    '            If lConsulta Is Nothing Then lConsulta = New ClsConsultas
-    '            ObjRet = lConsulta.LlamarCaja(Caja, "3", Parametros)
-    '            If ObjRet.bOk Then
-    '                DsDatos.Tables("Table").Rows(pos - 1).Item("C1") = Context.DisplayText
-    '                DsDatos.Tables("Table").Rows(pos - 1).Item("C2") = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|", False)
-    '                DsDatos.Tables("Table").Rows(pos - 1).Item("C4") = lConsulta.ObtenerValor("V2", ObjRet.sResultado, "|", False)
-    '                grid.Selection.Focus(posicion, True)
-    '            Else
-    '                grid.Selection.Focus(posicion2, True)
-    '            End If
+        lblTotal.Text = "$ 0.00"
 
-    '    End Select
-    'End Sub
+        Me.txtFactura.Text = ""
+        Me.Txt_CodigoProducto.Text = ""
+        Me.CantidadNumericUpDown.Value = 0
+        Me.DsDatos.Tables("Table").Clear()
+        MensajePiePagina.Text = "Esc=Salir F2=Catálogo F4=Limpiar Pantalla F6=Nuevo"
+        Me.FolioEntrada.Focus()
+    End Sub
+#End Region    
 
-    'Private Sub GridCodigo_KeyPress(ByVal sender As Object, ByVal e As KeyPressEventArgs)
-    '    '    Dim grid As SourceGrid.DataGrid = GridDatos
-    '    '    Dim rows As Object = grid.SelectedDataRows
-    '    '    Dim Row As DataRowView = Nothing
-    '    '    Dim Sender2 As Object = CType(sender.Control, TextBox)
-
-    '    '    If Not rows Is Nothing And rows.Length > 0 Then
-
-    '    '        Row = CType(rows(0), DataRowView)
-    '    '        Row.DataView.AllowEdit = True
-    '    '        Row.Row.AcceptChanges()
-    '    '        DsDatos.AcceptChanges()
-    '    '        grid.Refresh()
-    '    '        DsDatos.GetChanges()
-    '    '    End If
-    '    Dim Grid As SourceGrid.DataGrid = GridDatos
-
-    '    Dim enviado As Object = CType(sender.control, TextBox)
-    '    Dim posicion As Object = Grid.Selection.ActivePosition
-
-
-    'End Sub
-
-#End Region
-
-#Region " Grid Cantidad KeyDown And KeyPress "
+#Region "  Grid Cantidad KeyDown And KeyPress  "
     Private Sub cant_keydown(ByVal sender As Object, ByVal e As KeyEventArgs)
         Dim Grid As SourceGrid.DataGrid = GridDatos
         Dim pos As Integer = Grid.Selection.ActivePosition.Row
         Select Case e.KeyCode
             Case Keys.Enter
                 Txt_CodigoProducto.Focus()
-
         End Select
     End Sub
 
@@ -323,31 +486,34 @@ Public Class InventarioEntradas
     End Sub
 #End Region
 
-#Region " Producto "
-    Private Sub Txt_CodigoProducto_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Txt_CodigoProducto.KeyDown
-        Select Case e.KeyCode
-            Case Keys.F2
+#Region "  Evento: CodigoProducto - KEY PRESS  "
+    Private Sub Txt_CodigoProducto_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles Txt_CodigoProducto.KeyPress
+        Select Case e.KeyChar
+            Case ChrW(Keys.F2)
                 CatalogoProductos()
-            Case Keys.Enter
+            Case ChrW(Keys.Enter)
+                e.Handled = True
                 Caja = "Consulta109" : Parametros = "V1=" & Txt_CodigoProducto.Text & "|"
                 If lConsulta Is Nothing Then lConsulta = New ClsConsultas
                 ObjRet = lConsulta.LlamarCaja(Caja, "3", Parametros)
                 If ObjRet.bOk Then
-                    Me.LblProducto.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|", False)
-                    Txt_Cantidad.Focus()
+
+                    CantidadNumericUpDown.Select(0, 10)
+                    CantidadNumericUpDown.Focus()
                 Else
                     MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
                     Me.Txt_CodigoProducto.Text = ""
-                    Me.Txt_Cantidad.Text = "0.00"
-                    Me.LblProducto.Text = ""
+                    CantidadNumericUpDown.Select(0, 10)
+                    Me.CantidadNumericUpDown.Value = 0
+
                     Me.Txt_CodigoProducto.Focus()
                 End If
         End Select
     End Sub
 #End Region
 
-#Region " Cantidad "
-    Private Sub Txt_Cantidad_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Txt_Cantidad.KeyDown
+#Region "  Evento: Cantidad - KEY DOWN  "
+    Private Sub Txt_Cantidad_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles CantidadNumericUpDown.KeyDown
         Dim Codigo As String = ""
         Dim Producto As String = ""
         Dim Unidad As String = ""
@@ -366,196 +532,21 @@ Public Class InventarioEntradas
                     LlenarFila(Producto, Unidad, Costo)
 
                     Me.Txt_CodigoProducto.Text = ""
-                    Me.LblProducto.Text = ""
-                    Me.Txt_Cantidad.Text = "0.0"
+
+                    CantidadNumericUpDown.Value = 0
                     Me.Txt_CodigoProducto.Focus()
                 Else
                     MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
                     Me.Txt_CodigoProducto.Text = ""
-                    Me.LblProducto.Text = ""
-                    Me.Txt_Cantidad.Text = "0.0"
+
+                    CantidadNumericUpDown.Value = 0
                     Me.Txt_CodigoProducto.Focus()
                 End If
         End Select
     End Sub
 #End Region
 
-#Region " Grid Datos "
-
-    Sub CrearDsDatos()
-        'Creando Datatable  con tipo de dato
-        Dim dt As DataTable
-        DsDatos = New DataSet("Root")
-        dt = New DataTable("Table")
-        DsDatos.Tables.Add(dt)
-
-        'DsDatos.Tables("Table").Columns.Add("C0", GetType(String))
-        DsDatos.Tables("Table").Columns.Add("C1", GetType(String))
-        DsDatos.Tables("Table").Columns.Add("C2", GetType(String))
-        DsDatos.Tables("Table").Columns.Add("C3", GetType(Double))
-        DsDatos.Tables("Table").Columns.Add("C4", GetType(String))
-        DsDatos.Tables("Table").Columns.Add("C5", GetType(Double))
-        DsDatos.Tables("Table").Columns.Add("C6", GetType(Double))
-        DsDatos.Tables("Table").Columns.Add("C7", GetType(Integer))
-
-    End Sub
-
-    Sub ConfiguraGridDatos()
-        ViewDatos = DsDatos.Tables("Table").DefaultView
-
-        ViewDatos.AllowEdit = False
-        ViewDatos.AllowNew = False
-        ViewDatos.AllowDelete = True
-
-        GridDatos.FixedRows = 1
-        GridDatos.FixedColumns = 1
-        GridDatos.DeleteRowsWithDeleteKey = False
-        GridDatos.DeleteQuestionMessage = Nothing
-
-
-        'Renglon encabezado
-
-        GridDatos.Columns.Insert(0, SourceGrid.DataGridColumn.CreateRowHeader(GridDatos))
-
-        Dim BindList2 As DevAge.ComponentModel.IBoundList = New DevAge.ComponentModel.BoundDataView(ViewDatos)
-
-        GridDatosCrearColumnas(GridDatos.Columns, BindList2)
-
-        GridDatos.DataSource = BindList2
-
-        Dim cColorHeader As Color
-        cColorHeader = Color.FromArgb(CType(CType(250, Byte), Integer), CType(CType(194, Byte), Integer), CType(CType(5, Byte), Integer))
-
-        'Vista columna encabezado
-
-        Dim viewcolumnheader As SourceGrid.Cells.Views.ColumnHeader = New SourceGrid.Cells.Views.ColumnHeader
-        Dim backheader As DevAge.Drawing.VisualElements.ColumnHeader = New DevAge.Drawing.VisualElements.ColumnHeader
-        backheader.BackColor = cColorHeader
-        backheader.Border = DevAge.Drawing.RectangleBorder.RectangleBlack1Width
-        viewcolumnheader.Background = backheader
-        viewcolumnheader.ForeColor = Color.Black
-        viewcolumnheader.Font = New Font("Verdana", 8, FontStyle.Bold)
-        viewcolumnheader.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
-
-        GridDatos.GetCell(0, 1).View = viewcolumnheader
-        GridDatos.GetCell(0, 2).View = viewcolumnheader
-        GridDatos.GetCell(0, 3).View = viewcolumnheader
-        GridDatos.GetCell(0, 4).View = viewcolumnheader
-        GridDatos.GetCell(0, 5).View = viewcolumnheader
-        GridDatos.GetCell(0, 6).View = viewcolumnheader
-        GridDatos.GetCell(0, 7).View = viewcolumnheader
-    End Sub
-
-    Private Sub GridDatosCrearColumnas(ByVal columns As SourceGrid.DataGridColumns, ByVal Bindlist As DevAge.ComponentModel.IBoundList)
-        'Borders
-
-        Dim border As DevAge.Drawing.RectangleBorder = New DevAge.Drawing.RectangleBorder(New DevAge.Drawing.BorderLine(Color.Black), New DevAge.Drawing.BorderLine(Color.Black))
-        'gcolorRow esta declarada en el moduloGeneral
-
-        'vistas
-        Dim viewNormal As CellBackColorAlternate = New CellBackColorAlternate(gColorRow, Color.White)
-        viewNormal.Font = New Font("Verdana", 8, FontStyle.Regular)
-        viewNormal.Border = border
-
-        Dim myfont As New Font("Verdana", 8, FontStyle.Regular)
-
-        Dim viewBtn As SourceGrid.Cells.Views.Button = New SourceGrid.Cells.Views.Button()
-        viewBtn.BackColor = gColorRow
-        viewBtn.Border = border
-        viewBtn.Font = myfont
-        viewBtn.ForeColor = Color.Black
-        viewBtn.TextAlignment = DevAge.Drawing.ContentAlignment.BottomCenter
-
-        'Eventos
-
-        Dim gridKeydown As SourceGrid.Cells.Controllers.CustomEvents = New SourceGrid.Cells.Controllers.CustomEvents
-        AddHandler gridKeydown.KeyDown, New KeyEventHandler(AddressOf Grid_KeyDown)
-
-        'Dim Codigokeydown As SourceGrid.Cells.Controllers.CustomEvents = New SourceGrid.Cells.Controllers.CustomEvents
-        'AddHandler Codigokeydown.KeyDown, New KeyEventHandler(AddressOf codigo_keydown)
-
-        Dim Cantidadkeydown As SourceGrid.Cells.Controllers.CustomEvents = New SourceGrid.Cells.Controllers.CustomEvents
-        AddHandler Cantidadkeydown.KeyDown, New KeyEventHandler(AddressOf cant_keydown)
-
-        'Definicion de la celda
-        Dim EditorCustom As SourceGrid.Cells.Editors.TextBox = New SourceGrid.Cells.Editors.TextBox(GetType(String))
-        EditorCustom.EditableMode = SourceGrid.EditableMode.None
-
-        Dim Editable As SourceGrid.Cells.Editors.TextBox = New SourceGrid.Cells.Editors.TextBox(GetType(String))
-        Editable.EditableMode = SourceGrid.EditableMode.AnyKey
-
-        Dim editorCantidad As SourceGrid.Cells.Editors.TextBox = New SourceGrid.Cells.Editors.TextBox(GetType(Double))
-        AddHandler editorCantidad.KeyPress, New KeyPressEventHandler(AddressOf GridCantidad_KeyPress)
-
-        Dim clickEvent As SourceGrid.Cells.Controllers.CustomEvents = New SourceGrid.Cells.Controllers.CustomEvents()
-        AddHandler clickEvent.Click, New EventHandler(AddressOf BotonBorrar_Click)
-
-        'Dim editorCodigo As SourceGrid.Cells.Editors.TextBox = New SourceGrid.Cells.Editors.TextBox(GetType(String))
-        'AddHandler editorCodigo.KeyPress, New KeyPressEventHandler(AddressOf GridCodigo_KeyPress)
-        'Crear columnas
-        Dim GridColumn As SourceGrid.DataGridColumn
-        'AGRAGAR BOTON
-        GridColumn = GridDatos.Columns.Add(Nothing, "", New SourceGrid.Cells.Button("-"))
-        GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.AddController(clickEvent)
-        GridColumn.DataCell.View = viewBtn
-        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
-
-
-        'GridColumn = GridDatos.Columns.Add("C0", "Fecha", EditorCustom)
-        'GridColumn.DataCell.AddController(gridKeydown)
-        'GridColumn.DataCell.View = viewNormal
-        'GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
-
-        GridColumn = GridDatos.Columns.Add("C1", "Código", EditorCustom)
-        GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormal
-        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
-
-        GridColumn = GridDatos.Columns.Add("C2", "Producto", EditorCustom)
-        GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormal
-        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
-
-        GridColumn = GridDatos.Columns.Add("C3", "Cantidad", EditorCustom)
-        GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormal
-        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
-
-        GridColumn = GridDatos.Columns.Add("C4", "Unidad", EditorCustom)
-        GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormal
-        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.EnableStretch
-
-        GridColumn = GridDatos.Columns.Add("C5", "Costo Unitario", EditorCustom)
-        GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormal
-        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
-
-        GridColumn = GridDatos.Columns.Add("C6", "Costo Total", EditorCustom)
-        GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormal
-        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.EnableAutoSize
-
-        GridColumn = GridDatos.Columns.Add("C7", "Entrada", EditorCustom)
-        GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormal
-        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.None
-
-        GridDatos.Columns(0).Visible = False
-        GridDatos.Columns.SetWidth(1, 30)
-        GridDatos.Columns.SetWidth(2, 150)
-        GridDatos.Columns.SetWidth(3, 300)
-        GridDatos.Columns.SetWidth(4, 100)
-        GridDatos.Columns.SetWidth(5, 100)
-        GridDatos.Columns.SetWidth(6, 100)
-        GridDatos.Columns.SetWidth(7, 150)
-        GridDatos.Columns.SetWidth(8, 0)
-    End Sub
-
-#End Region
-
-#Region " Folio Entrada "
+#Region "  Folio Entrada  "
     Private Sub FolioEntrada_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles FolioEntrada.KeyDown
         Select Case e.KeyCode
             Case Keys.F2
@@ -574,7 +565,7 @@ Public Class InventarioEntradas
     End Sub
 #End Region
 
-#Region " Aceptar "
+#Region "  Botón ACEPTAR  "
     Private Sub btnAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAceptar.Click
         If Len(LTrim(RTrim(Me.FolioEntrada.Text))) = 0 Then
             Nuevo.PerformClick()
@@ -590,7 +581,7 @@ Public Class InventarioEntradas
                             Me.Grabar.Visible = False
                             Me.Eliminar.Visible = True
                             Me.txtFactura.Enabled = False
-                            Me.Txt_Cantidad.Enabled = False
+                            CantidadNumericUpDown.Enabled = False
                             Me.Fecha.Enabled = False
                             Me.Txt_CodigoProducto.Enabled = False
                             Me.CodigoProveedor.Enabled = False
@@ -611,7 +602,7 @@ Public Class InventarioEntradas
 
                 Me.Fecha.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
                 Me.CodigoProveedor.Text = lConsulta.ObtenerValor("V2", ObjRet.sResultado, "|")
-                Me.NombreProveedor.Text = lConsulta.ObtenerValor("V3", ObjRet.sResultado, "|")
+
                 Me.txtFactura.Text = lConsulta.ObtenerValor("V4", ObjRet.sResultado, "|")
             Else
                 MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
@@ -622,28 +613,35 @@ Public Class InventarioEntradas
     End Sub
 #End Region
 
-#Region " Grabar "
-
+#Region "  Botón GRABAR  "
     Private Sub Grabar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Grabar.Click
-        If DsDatos.Tables("Table").Rows.Count >= 0 And DsDatos.Tables("Table").Rows(0).Item("C3") <> 0 Then
-            Caja = "Grabar109" : Parametros = "V1=" & Me.FolioEntrada.Text & "|V2=" & Me.Fecha.Value.ToString("dd/MM/yyyy") & "|V3=|V4=" & Me.txtFactura.Text & "|V5=" & Me.CodigoProveedor.Text & "|"
-            If lConsulta Is Nothing Then lConsulta = New ClsConsultas
-            ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros, DsDatos)
-            'Estatus
-            If ObjRet.bOk Then
-                MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
-            Else
-                MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
-                Me.CodigoProveedor.Focus()
-            End If
+        If GridDatos.DataSource.Count = 0 Then
+            MessageBox.Show("No ha registrado productos.", " Entradas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            Txt_CodigoProducto.Focus()
+            Return
+        End If
+
+        Caja = "Grabar109" : Parametros = "V1=" & Me.FolioEntrada.Text.Trim & _
+                                          "|V2=" & Me.Fecha.Value.ToString("dd/MM/yyyy") & _
+                                          "|V3=" & idUsuario & _
+                                          "|V4=" & Me.txtFactura.Text.Trim & _
+                                          "|V5=" & Me.CodigoProveedor.Text.Trim & _
+                                          "|V6=|"
+
+        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+        ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros, DsDatos)
+        'Estatus
+        If lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|") = "OK" Then
+            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False), " Entradas", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            LimpiarPantalla()
         Else
-            MessageBox.Show("Registre un producto antes de grabar")
-            Me.Txt_CodigoProducto.Focus()
+            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False), " Entradas", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Me.CodigoProveedor.Focus()
         End If
     End Sub
 #End Region
 
-#Region " Nuevo "
+#Region "  Botón NUEVO  "
     Private Sub Nuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Nuevo.Click
         Caja = "Consulta109" : Parametros = "V1=" & Me.FolioEntrada.Text
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
@@ -656,7 +654,7 @@ Public Class InventarioEntradas
             Me.Nuevo.Visible = False
             Me.Grabar.Visible = True
             Me.GroupBox1.Visible = True
-            FilaVacia()
+            'FilaVacia()
             Me.CodigoProveedor.Focus()
 
         End If
@@ -664,7 +662,121 @@ Public Class InventarioEntradas
     End Sub
 #End Region
 
-#Region " Proveedor "
+#Region "  Botón ELIMINAR PRODUCTO  "
+    Private Sub ButtonEliminar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonEliminar.Click
+        If posRowGrid() < 0 Then
+            Return
+        End If
+        DsDatos.Tables(0).Rows.RemoveAt(posRowGrid)
+
+        Dim dsDatosTemp As DataSet
+        Dim dt As DataTable
+        dsDatosTemp = New DataSet("Root")
+        dt = New DataTable("Table")
+        dsDatosTemp.Tables.Add(dt)
+
+        'DsDatos.Tables("Table").Columns.Add("C0", GetType(String))
+        dsDatosTemp.Tables("Table").Columns.Add("C1", GetType(String))
+        dsDatosTemp.Tables("Table").Columns.Add("C2", GetType(String))
+        dsDatosTemp.Tables("Table").Columns.Add("C3", GetType(Double))
+        dsDatosTemp.Tables("Table").Columns.Add("C4", GetType(String))
+        dsDatosTemp.Tables("Table").Columns.Add("C5", GetType(Double))
+        dsDatosTemp.Tables("Table").Columns.Add("C6", GetType(Double))
+        dsDatosTemp.Tables("Table").Columns.Add("C7", GetType(Integer))
+
+        For n As Integer = 0 To DsDatos.Tables(0).Rows.Count - 1
+            Try
+                dsDatosTemp.Tables(0).ImportRow(DsDatos.Tables(0).Rows(n))
+            Catch ex As Exception
+
+            End Try
+        Next
+
+        Dim final As Integer = DsDatos.Tables(0).Rows.Count - 1
+        DsDatos.Tables(0).Clear()
+
+        Dim countTemp As Integer = dsDatosTemp.Tables(0).Rows.Count
+        Dim countDsDa As Integer = DsDatos.Tables(0).Rows.Count
+
+        For n As Integer = 0 To final
+            DsDatos.Tables(0).ImportRow(dsDatosTemp.Tables(0).Rows(n))
+        Next
+
+        CalculaTotal()
+    End Sub
+#End Region
+
+#Region "  Botón AGREGAR A CUENTAS POR COBRAR  "
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        If CodigoProveedor.Text.Trim = "" Then
+            MessageBox.Show("Registre el código del proveedor.", " Entradas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            CodigoProveedor.Focus()
+            Return
+        End If
+
+        If txtFactura.Text.Trim = "" Then
+            MessageBox.Show("Registre el número de la factura.", " Entradas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            txtFactura.Focus()
+            Return
+        End If
+
+        If GridDatos.DataSource.Count = 0 Then
+            MessageBox.Show("No ha registrado productos.", " Entradas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            Txt_CodigoProducto.Focus()
+            Return
+        End If
+
+        grabar130()
+
+        If lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|") = "OK" Then
+            MessageBox.Show("Se asignó una cuenta por pagar al proveedor correspondiente.", " Entradas", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            LimpiarPantalla()
+        Else
+            MessageBox.Show("El código del proveedor no está registrado.", " Entradas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            CodigoProveedor.SelectAll()
+            CodigoProveedor.Focus()
+        End If
+    End Sub
+#End Region
+
+#Region "  Botón PAGAR CON EFECTIVO  "
+    Private Sub ButtonEfectivo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonEfectivo.Click
+        If GridDatos.DataSource.Count = 0 Then
+            MessageBox.Show("No ha registrado productos.", " Entradas", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            Txt_CodigoProducto.Focus()
+            Return
+        End If
+
+        Dim total As String
+        total = lblTotal.Text.Remove(0, 1)
+
+        Caja = "Grabar109" : Parametros = "V1=" & Me.FolioEntrada.Text.Trim & _
+                                          "|V2=" & Me.Fecha.Value.ToString("dd/MM/yyyy") & _
+                                          "|V3=" & idUsuario & _
+                                          "|V4=" & Me.txtFactura.Text.Trim & _
+                                          "|V5=" & Me.CodigoProveedor.Text.Trim & _
+                                          "|V6=" & total & "|"
+        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+
+        ' Segundo parámetro, "Validar", es igual a dos. De esa forma se hace un
+        ' retiro automático en la caja igual al monto total que costó la entrada.
+        ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros, DsDatos)
+        'Estatus
+        If lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|") = "OK" Then
+            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False), " Entradas", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            LimpiarPantalla()
+        ElseIf lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|") = "ERROR02" Then
+            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False), " Entradas", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        Else
+            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False), " Entradas", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Me.CodigoProveedor.Focus()
+        End If
+
+    End Sub
+#End Region
+
+#Region "  Proveedor  "
     Private Sub CodigoProveedor_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles CodigoProveedor.KeyDown
         Select Case e.KeyCode
             Case Keys.F2
@@ -678,7 +790,7 @@ Public Class InventarioEntradas
                     If Len(LTrim(RTrim(lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|", False)))) = 0 Then
                         MessageBox.Show("El codigo del proveedor no esta registrado")
                     Else
-                        Me.NombreProveedor.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|", False)
+
                     End If
 
 
@@ -686,8 +798,60 @@ Public Class InventarioEntradas
         End Select
     End Sub
 #End Region
+    
+#Region "  Rutina: posRowGrid  "
+    Private Function posRowGrid() As Integer
+        Dim pos() As Integer = GridDatos.Selection.GetSelectionRegion.GetRowsIndex
+        If pos.Length = 0 Then
+            Return -1
+        Else
+            Return pos(0) - 1
+        End If
+    End Function
+#End Region
 
-#Region "Boton Borrar"
+#Region "  Evento: GridDatos - KEY DOWN  "
+    Private Sub GridDatos_keyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles GridDatos.KeyDown
+        ' Usuario teclea un +(107), se aumenta la cantidad.
+        If e.KeyCode = 107 Then
+            GridDatos.DataSource.Item(posRowGrid).row(2) += 1
+            GridDatos.DataSource.Item(posRowGrid).row(5) = GridDatos.DataSource.Item(posRowGrid).row(4) * GridDatos.DataSource.Item(posRowGrid).row(2)
+            CalculaTotal()
+        End If
+
+        If e.KeyCode = 109 Then
+            If GridDatos.DataSource.Item(posRowGrid).row(2) > 1 Then
+                GridDatos.DataSource.Item(posRowGrid).row(2) -= 1
+                GridDatos.DataSource.Item(posRowGrid).row(5) = GridDatos.DataSource.Item(posRowGrid).row(4) * GridDatos.DataSource.Item(posRowGrid).row(2)
+                CalculaTotal()
+            End If    
+        End If
+    End Sub
+#End Region
+
+#Region "  Rutina: grabar130  "
+    Sub grabar130()
+        Dim total As String
+        total = lblTotal.Text.Remove(0, 1)
+
+        Caja = "grabar130" : Parametros = "V1=" & CodigoProveedor.Text.Trim & _
+                                          "|V2=" & idUsuario & _
+                                          "|V3=" & txtFactura.Text.Trim & _
+                                          "|V4=" & total
+
+        ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros, DsDatos)
+
+    End Sub
+#End Region
+    
+#Region "  Evento: GridDatos - PAINT  (Calcula el tamaño de la última columna para ajustarse el tamaño del grid.)  "
+    Private Sub GridDatos_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles GridDatos.Paint
+        Dim size As Integer = GridDatos.Size.Width - 885 - 6
+        GridDatos.Columns.SetWidth(8, size)
+    End Sub
+#End Region
+    
+#Region "  Boton Borrar  - DESHABILITADO  "
     Private Sub BotonBorrar_Click(ByVal sender As Object, ByVal e As System.EventArgs)
         Dim grid As SourceGrid.DataGrid = GridDatos
         Dim pos As Integer = grid.Selection.ActivePosition.Row
@@ -707,6 +871,22 @@ Public Class InventarioEntradas
         CalculaTotal()
 
         ' End If
+    End Sub
+#End Region
+
+#Region "  Cambio de textBox con Enter  "
+    Private Sub CodigoProveedor_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles CodigoProveedor.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            SendKeys.Send("{TAB}")
+        End If
+    End Sub
+
+    Private Sub txtFactura_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtFactura.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            Txt_CodigoProducto.Focus()
+        End If
     End Sub
 #End Region
     

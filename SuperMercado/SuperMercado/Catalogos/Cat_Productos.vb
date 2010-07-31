@@ -18,7 +18,25 @@ Public Class Cat_Productos
         ocultarGroupBox()
         keyCodigo.Focus()
 
-        consulta137()
+        loadComboBox(True, 0)
+
+    End Sub
+#End Region
+
+#Region "  Botón NUEVO  "
+    Private Sub Nuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Nuevo.Click
+        Nuevo.Visible = False
+
+        limpiarPantalla()
+        mostrarGroupBox()
+        mostrarBotonesEditar()
+
+        copiaCodigo = ""
+
+        Label13.Visible = True
+        existencia.Visible = True
+
+        descripcion.Focus()
 
     End Sub
 #End Region
@@ -26,23 +44,83 @@ Public Class Cat_Productos
 #Region "  Botón BUSCAR  "
     Private Sub Buscar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Buscar.Click
         catalogo()
+
+        Nuevo.Visible = True
+    End Sub
+#End Region
+
+#Region "  Botón LIMPIAR  "
+    Private Sub Limpiar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Limpiar.Click
+        limpiarPantalla()
     End Sub
 #End Region
 
 #Region "  Botón GRABAR  "
     Private Sub Grabar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Grabar.Click
+        If descripcion.Text.Trim = "" Then
+            MessageBox.Show("No ha escrito la descripción del producto.", " Productos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            descripcion.SelectAll()
+            descripcion.Focus()
+            Return
+        End If
+
+        If codigo.Text.Trim = "" Then
+            MessageBox.Show("No ha escrito el código del producto.", " Productos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            codigo.SelectAll()
+            codigo.Focus()
+            Return
+        End If
+
         Dim resul As DialogResult
         resul = MessageBox.Show("¿Desea guardar los cambios realizados?", " SMercado", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
         If resul = Windows.Forms.DialogResult.Yes Then
             grabar129()
 
+            If lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|") <> "OK" Then
+                MessageBox.Show("El código especificado se encuentra en uso.", " Productos", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                codigo.SelectAll()
+                codigo.Focus()
+                Return
+            End If
+
             ocultarBotonesEditar()
             ocultarGroupBox()
 
             keyCodigo.Clear()
             keyCodigo.Focus()
+
         End If
+
+        Label13.Visible = True
+        existencia.Visible = True
+        Nuevo.Visible = True
+
+    End Sub
+#End Region
+
+#Region "  Rutina: calcularPrecioVenta  "
+    Sub calcularPrecioVenta()
+        precioVenta.Value = ((ganancia.Value) / 100 + 1) * costoCompra.Value
+    End Sub
+#End Region
+
+#Region "  Rutina: limpiarPantalla  "
+    Sub limpiarPantalla()
+        descripcion.Clear()
+        codigo.Clear()
+        unidad.Text = "-SIN UNIDAD-"
+        categoria.Text = "-SIN CATEGORÍA-"
+        marca.Text = "-SIN MARCA-"
+        departamento.Text = "-SIN DEPARTAMENTO-"
+
+        costoCompra.Value = 0
+        precioVenta.Value = 0
+        ganancia.Value = 0
+
+        stockMinimo.Value = 0
+        existencia.Value = 0
+
     End Sub
 #End Region
 
@@ -99,8 +177,8 @@ Public Class Cat_Productos
 
 #Region "  Rutina: consulta136  "
     Sub consulta136()
-        mostrarGroupBox()
-        mostrarBotonesEditar()
+        'Muestra los datos de un producto.
+
 
         existencia.Visible = False
         Label13.Visible = False
@@ -118,41 +196,58 @@ Public Class Cat_Productos
 
             costoCompra.Value = lConsulta.ObtenerValor("V7", ObjRet.sResultado, "|")
             precioVenta.Value = lConsulta.ObtenerValor("V8", ObjRet.sResultado, "|")
+            ganancia.Value = 0
 
             stockMinimo.Value = lConsulta.ObtenerValor("V9", ObjRet.sResultado, "|")
-        Else
-            MessageBox.Show("El codigo de ese producto no ha sido dado de alta.", " Productos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-        End If
 
-        copiaCodigo = codigo.Text
+            mostrarGroupBox()
+            mostrarBotonesEditar()
+
+            copiaCodigo = codigo.Text
+
+
+
+        Else
+            MessageBox.Show("El código no se encuentra registrado.", " Productos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+        End If
 
         keyCodigo.SelectAll()
         keyCodigo.Focus()
-
     End Sub
 #End Region
 
-#Region "  Rutina: consulta137  "
-    Sub consulta137()
+#Region "  Rutina: loadComboBox  "
+    Sub loadComboBox(ByVal inputDefault As Boolean, ByVal inputChoice As Byte)
         'Carga los comboBox
         Caja = "Consulta137" : Parametros = ""
         ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
 
-        unidad.DataSource = ObjRet.DS.Tables(0)
-        unidad.DisplayMember = ObjRet.DS.Tables(0).Columns(0).Caption.ToString
-        unidad.Text = "-SIN UNIDAD-"
+        If inputChoice = 1 Or inputChoice = 0 Then
+            unidad.DataSource = ObjRet.DS.Tables(0)
+            unidad.DisplayMember = ObjRet.DS.Tables(0).Columns(0).Caption.ToString
+        End If
+        
+        If inputChoice = 2 Or inputChoice = 0 Then
+            categoria.DataSource = ObjRet.DS.Tables(1)
+            categoria.DisplayMember = ObjRet.DS.Tables(1).Columns(0).Caption.ToString
+        End If
+        
+        If inputChoice = 3 Or inputChoice = 0 Then
+            marca.DataSource = ObjRet.DS.Tables(2)
+            marca.DisplayMember = ObjRet.DS.Tables(2).Columns(0).Caption.ToString
+        End If
+        
+        If inputChoice = 4 Or inputChoice = 0 Then
+            departamento.DataSource = ObjRet.DS.Tables(3)
+            departamento.DisplayMember = ObjRet.DS.Tables(3).Columns(0).Caption.ToString
+        End If  
 
-        categoria.DataSource = ObjRet.DS.Tables(1)
-        categoria.DisplayMember = ObjRet.DS.Tables(1).Columns(0).Caption.ToString
-        categoria.Text = "-SIN CATEGORÍA-"
-
-        marca.DataSource = ObjRet.DS.Tables(2)
-        marca.DisplayMember = ObjRet.DS.Tables(2).Columns(0).Caption.ToString
-        marca.Text = "-SIN MARCA-"
-
-        departamento.DataSource = ObjRet.DS.Tables(3)
-        departamento.DisplayMember = ObjRet.DS.Tables(3).Columns(0).Caption.ToString
-        departamento.Text = "-SIN DEPARTAMENTO-"
+        If inputDefault Then
+            unidad.Text = "-SIN UNIDAD-"
+            categoria.Text = "-SIN CATEGORÍA-"
+            marca.Text = "-SIN MARCA-"
+            departamento.Text = "-SIN DEPARTAMENTO-"
+        End If
     End Sub
 #End Region
 
@@ -170,7 +265,6 @@ Public Class Cat_Productos
                                           "|V9=" & stockMinimo.Value.ToString & _
                                           "|V10=" & existencia.Value.ToString & "|"
         ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
-
     End Sub
 #End Region
 
@@ -181,10 +275,100 @@ Public Class Cat_Productos
 
             consulta136()
 
+            Nuevo.Visible = True
+
+        End If
+
+        If e.KeyChar = ChrW(Keys.F2) Then
+            e.Handled = True
+
+            catalogo()
+
         End If
     End Sub
 #End Region
 
+#Region "  Evento: ganancia - KEY UP  "
+    Private Sub ganancia_KeyUp(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles ganancia.KeyUp
+        calcularPrecioVenta()
+    End Sub
+#End Region
+
+#Region "  Cambio de controles con ENTER  "
+    Private Sub descripcion_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles descripcion.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            codigo.Focus()
+        End If
+    End Sub
+
+    Private Sub codigo_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles codigo.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            unidad.Focus()
+        End If
+    End Sub
+
+    Private Sub unidad_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles unidad.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            categoria.Focus()
+        End If
+    End Sub
 
 
+    Private Sub categoria_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles categoria.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            marca.Focus()
+        End If
+    End Sub
+
+    Private Sub marca_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles marca.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            departamento.Focus()
+        End If
+    End Sub
+
+    Private Sub departamento_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles departamento.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            costoCompra.Select(0, 10)
+            costoCompra.Focus()
+        End If
+    End Sub
+
+    Private Sub costoCompra_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles costoCompra.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            precioVenta.Select(0, 10)
+            precioVenta.Focus()
+        End If
+    End Sub
+
+    Private Sub precioVenta_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles precioVenta.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            stockMinimo.Select(0, 10)
+            stockMinimo.Focus()
+        End If
+    End Sub
+#End Region
+
+    Private Sub unidad_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles unidad.Enter
+        loadComboBox(False, 1)
+    End Sub
+
+    Private Sub departamento_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles departamento.Enter
+        loadComboBox(False, 4)
+    End Sub
+
+    Private Sub categoria_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles categoria.Enter
+        loadComboBox(False, 2)
+    End Sub
+
+    Private Sub marca_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles marca.Enter
+        loadComboBox(False, 3)
+    End Sub
 End Class

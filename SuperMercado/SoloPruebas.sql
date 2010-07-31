@@ -183,8 +183,9 @@ select * from SMercado..Caja_corte
 insert into SMercado..Caja_Salida values ( 1, 1, 150.00, 'Ninguno', '14/04/2010 16:21:00')
 insert into SMercado..Caja_Salida values ( 1, 1, 151.00, 'Ninguno', '30-04-2010 16:53:00')
 
-Select * From SMercado..Cuentas_Cobrar
+Select * From SMercado..Existencias 
 
+exec grabar109 'V1=16|V2=30-07-2010|V3=1|V4=FAC009|V5=ALEI196402|V6=|','','',''
 exec grabar110 'V1=100|','','',''
 exec grabar111 'V1=1|V2=1|V3=150.50|V4=ninguno|', '', '', ''
 exec grabar112 'V1=1|V2=1|V3=1.5|V4=|', '', '', ''
@@ -192,6 +193,7 @@ exec grabar112 'V1=1|V2=1|V3=150.5|V4=asalté un banco, tío|', '', '', ''
 exec grabar120 'V1=123|V2=ADMIN|','','',''
 exec grabar124 'V1=1|V2=2|V3=108|V4=50|V5=RFCCLIENTE|','','',''
 exec grabar126 'V1=2|V2=10.00|V3=95|','','',''
+exec grabar130 'V1=LEI196402|V2=1|V3=FAC002|V4=44.50','','',''
 -- Departamentos
 exec consulta100 '','','',''
 -- Categorías
@@ -202,10 +204,11 @@ exec consulta104 '','','',''
 exec consulta105 'V1=LINDOR|','','','2'
 exec consulta106 'V1=PROVEEDOR1|', '', '', '2'
 exec Consulta110 'V1=admin|','','',''
-exec consulta111 'V1=lindor|','','',''
+exec consulta111 'V1=ADMIN|','','',''
 exec consulta114a '','','',''
 exec consulta114b 'V1=Baja California|','','',''
 exec consulta105 'V1=LINDOR|','','','2'
+exec consulta115 'V1=1|','','','1'
 exec consulta117 'V1=CLIENTE4|','','',''
 exec consulta118a 'V1=34|','','',''
 exec consulta118b 'V1=34|','','',''
@@ -221,6 +224,8 @@ exec consulta129 '','','',''
 exec consulta130 'V1=SEMAIVEN|','','',''
 exec consulta131 'V1=7|', '','',''
 exec Consulta136 'V1=1|', '', '', ''
+exec Consulta139 'V1=DON|','','','' 
+exec consulta140 '','','',''
 
 select * from SMercado..Cat_Productos 
 
@@ -423,7 +428,8 @@ where IdCliente = 6
 
 select * From SMercado_Seguridad..Usuarios 
 
-Select * From SMercado..Cat_Proveedores 
+Select * From SMercado..Cat_Departamentos 
+
 
 Select * From SMercado..Cuentas_Pagar_Detalles 
 
@@ -435,13 +441,17 @@ delete SMercado..Cuentas_Pagar_Detalles
 
 Select * from SMercado_Seguridad..Usuarios 
 
-Alter table SMercado..Cat_Productos
-add constraint uc_codigo unique (codigo)
+Alter table SMercado..Cat_departamentos
+add constraint uc_catDepartamentos unique (descripcion)
 
-select * from SMercado..Cat_Clientes 
+insert SMercado..Cat_departamentos  values ('-SIN DEPARTAMENTO-')
 
-delete from SMercado..Cat_Clientes
-where IdCliente > 9
+select * from SMercado..Cat_Marcas 
+
+select * from SMercado..Cat_Productos 
+select *  from SMercado..Cat_Clientes
+delete from SMercado..Cat_Productos
+where Descripcion = ''
 
 select * from SMercado..Venta_detalles 
 order by IdDetalleVentas desc
@@ -450,6 +460,33 @@ order by IdVenta  desc
 
 Select * From SMercado..Cat_Proveedores 
 Update SMercado..Cat_Proveedores 
-set Nombre = 'SEMAIVEN'
+set Nombre = 'SEMAVEIN'
 where IdProveedor = 1
 
+Update SMercado..Cat_Proveedores 
+set Deuda = 0
+where IdProveedor = 1
+
+
+Select NombreFiscal, colonia, Direccion, CP, Adeudo, CONVERT(date, UltimoPago )
+From SMercado..Cat_Clientes 
+
+Select * From SMercado..Cat_Productos 
+Select * From SMercado..Existencias
+Select * from SMercado..Entrada_detalles 
+
+delete SMercado..Cuentas_Pagar where idCuenta = 22
+delete SMercado..Cuentas_Pagar_Detalles where idCuenta is null
+
+Select * from SMercado..Cuentas_Pagar 
+Select * from SMercado..Cuentas_Pagar_Detalles 
+
+select * from SMercado..Existencias 
+
+update SMercado..Existencias 
+set Cantidad = 50
+
+Select * from SMercado..Caja_Corte
+order by fecha DESC
+
+Select * from SMercado..Entradas 

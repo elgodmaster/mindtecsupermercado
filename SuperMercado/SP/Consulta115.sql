@@ -80,6 +80,11 @@ BEGIN
   --     Return
   --   End
   -- End
+  
+  DECLARE @stockMin VARCHAR(8000)
+  Select @stockMin = (Select StockMinimo 
+					  From SMercado..Cat_Productos 
+					  Where Codigo = @Valor1 )
 
   If @Validar = 0               ----Catalogo de productos
    Begin
@@ -170,7 +175,8 @@ BEGIN
       If @Validar = 1 
          Select @Resul = '2R=OK|V1=' + @Desc1 + 
 							  '|V2=' + @Desc2 + 
-							  '|V3=' + @Desc3 + '|'
+							  '|V3=' + @Desc3 + 
+							  '|V4=' + @stockMin + '|'
 	  If @Validar = 2 
 	     Select @Resul = '2R=OK|V1=' + @Desc1 + 
 							  '|V2=' + @Desc2 + 
@@ -191,6 +197,8 @@ BEGIN
 							  '|V2=' + @Desc2 + 
 							  '|V3=' + @Desc3 + '|'
     End
+    
+    Select resul = @Resul 
   Set NoCount OFF
 END
 

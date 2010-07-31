@@ -47,8 +47,8 @@ Public Class Cat_Clientes_RegistroAbono
         Caja = "GRABAR117"
         Parametros = "V1=" & cuenta & _
                      "|V2=" & montoAbono & _
-                     "|V3=" & usuarioAbono & _
-                     "|V4=" & nomCliente
+                     "|V3=" & idUsuario & _
+                     "|V4=" & codigo
 
         ObjRet = lConsulta.LlamarCaja(Caja, 1, Parametros)
 

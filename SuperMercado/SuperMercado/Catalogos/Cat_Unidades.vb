@@ -28,37 +28,9 @@ Public Class Cat_Unidades
 #End Region
 
 #Region " Aceptar "
-    Private Sub btnAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAceptar.Click
-
-        Caja = "Consulta104" : Parametros = "V1=" & Me.CodigoUnidades.Text()
-        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
-        ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
-        If ObjRet.bOk Then
-            'Deshabilitar
-            Me.CodigoUnidades.Enabled = False
-            Me.btnAceptar.Enabled = False
-
-            'Asignar
-            Me.TxtDescripcion.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
-
-            'Habilitar
-            Me.Grabar.Visible = True
-            Me.GroupBoxDetalles.Visible = True
-            'Foco
-            Me.TxtDescripcion.Focus()
-        Else
-            'Asignar
-            Me.CodigoUnidades.Text = ""
-            Me.NombreUnidades.Text = ""
-            Me.TxtDescripcion.Text = ""
-
-            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+    Private Sub btnAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
 
-            'Foco
-            Me.CodigoUnidades.Focus()
-        End If
-        ObjRet = Nothing
 
     End Sub
 #End Region
@@ -76,12 +48,12 @@ Public Class Cat_Unidades
                 'Estatus
                 If ObjRet.bOk Then
                     'Asignar
-                    Me.NombreUnidades.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
+
                     SendKeys.Send("{TAB}")
 
                 Else
                     'Asignar
-                    Me.NombreUnidades.Text = ""
+
                     MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
 
                     'poner focus
@@ -99,7 +71,7 @@ Public Class Cat_Unidades
 #Region " Rutinas "
     Sub LimpiarPantalla()
         'Habilidar
-        Me.btnAceptar.Enabled = True
+
         Me.CodigoUnidades.Enabled = True
         Me.Nuevo.Visible = True
         'Deshabilitar
@@ -108,7 +80,7 @@ Public Class Cat_Unidades
 
         'Asignar
         Me.CodigoUnidades.Text = ""
-        Me.NombreUnidades.Text = ""
+
         Me.TxtDescripcion.Text = ""
         'PiePagina
         'Foco
@@ -157,10 +129,13 @@ Public Class Cat_Unidades
 
             If lConsulta Is Nothing Then lConsulta = New ClsConsultas
             ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
-            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
-            If ObjRet.bOk Then
+
+            If lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|") = "OK" Then
+                MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
                 LimpiarPantalla()
                 Limpiar.Visible = False
+            Else
+                MessageBox.Show("La unidad ya se encuentra registrada.", " Unidades", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
 
 
@@ -184,9 +159,9 @@ Public Class Cat_Unidades
             'Deshabilitar
             Me.Nuevo.Visible = False
             Me.CodigoUnidades.Enabled = False
-            Me.btnAceptar.Enabled = False
+
             'Asignar
-            Me.NombreUnidades.Text = ""
+
             Me.CodigoUnidades.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
             'Habilitar
             Me.GroupBoxDetalles.Visible = True
@@ -217,7 +192,7 @@ Public Class Cat_Unidades
         If ObjRet.bOk Then
             'Deshabilitar
             Me.CodigoUnidades.Enabled = False
-            Me.btnAceptar.Enabled = False
+
 
             'Asignar
             Me.TxtDescripcion.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
@@ -234,7 +209,7 @@ Public Class Cat_Unidades
         Else
             'Asignar
             Me.CodigoUnidades.Text = ""
-            Me.NombreUnidades.Text = ""
+
             Me.TxtDescripcion.Text = ""
 
             MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
@@ -250,6 +225,45 @@ Public Class Cat_Unidades
 #Region "  Botón LIMPIAR  "
     Private Sub Limpiar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Limpiar.Click
         TxtDescripcion.Clear()
+    End Sub
+#End Region
+    
+#Region "  Evento: CodigoUnidades - KEY PRESS  "
+    Private Sub CodigoUnidades_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles CodigoUnidades.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+
+            Caja = "Consulta104" : Parametros = "V1=" & Me.CodigoUnidades.Text()
+            If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+            ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
+            If ObjRet.bOk Then
+                'Deshabilitar
+                Me.CodigoUnidades.Enabled = False
+
+
+                'Asignar
+                Me.TxtDescripcion.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
+
+                'Habilitar
+                Me.Grabar.Visible = True
+                Me.GroupBoxDetalles.Visible = True
+                'Foco
+                Me.TxtDescripcion.Focus()
+            Else
+                'Asignar
+                Me.CodigoUnidades.Text = ""
+
+                Me.TxtDescripcion.Text = ""
+
+                MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+
+
+                'Foco
+                Me.CodigoUnidades.Focus()
+            End If
+            ObjRet = Nothing
+        End If
+
     End Sub
 #End Region
     
