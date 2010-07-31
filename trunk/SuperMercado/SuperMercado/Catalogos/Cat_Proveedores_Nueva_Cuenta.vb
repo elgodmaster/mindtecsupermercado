@@ -4,6 +4,7 @@
     Public producto As String
     Public cantidad As Decimal
     Public costo As Decimal
+    Public factura As String
 
     Public ok As Boolean
 #End Region
@@ -16,6 +17,13 @@
 
 #Region "  Cambio de textBox con Enter  "
     Private Sub TextBoxProducto_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TextBoxProducto.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            TextBoxFactura.Focus()
+        End If
+    End Sub
+
+    Private Sub TextBoxFactura_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TextBoxFactura.KeyPress
         If e.KeyChar = ChrW(Keys.Enter) Then
             e.Handled = True
             NumericUpDownCantidad.Select(0, 10)
@@ -39,9 +47,15 @@
     
 #Region "  Botón ACEPTAR  "
     Private Sub ButtonAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonAceptar.Click
-        If TextBoxProducto.Text = "" Then
+        If TextBoxProducto.Text.Trim = "" Then
             MessageBox.Show("No ha escrito el nombre del producto.", " Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             TextBoxProducto.Focus()
+            Return
+        End If
+
+        If TextBoxFactura.Text.Trim = "" Then
+            MessageBox.Show("No ha especificado la factura.", " Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            TextBoxFactura.Focus()
             Return
         End If
 
@@ -59,9 +73,11 @@
             Return
         End If
 
+
         producto = TextBoxProducto.Text.Trim
         cantidad = NumericUpDownCantidad.Value
         costo = NumericUpDownCosto.Value
+        factura = TextBoxFactura.Text.Trim
 
         ok = True
 
@@ -76,4 +92,5 @@
     End Sub
 #End Region
     
+
 End Class

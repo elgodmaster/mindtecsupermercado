@@ -50,16 +50,14 @@ Partial Class Cat_Departamentos
         Me.Label2 = New System.Windows.Forms.Label
         Me.TxtDescripcion = New System.Windows.Forms.TextBox
         Me.GroupBoxDepto = New System.Windows.Forms.GroupBox
-        Me.btnAceptar = New System.Windows.Forms.Button
         Me.Label4 = New System.Windows.Forms.Label
-        Me.NombreDepto = New System.Windows.Forms.Label
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip
-        Me.Limpiar = New System.Windows.Forms.ToolStripButton
+        Me.Buscar = New System.Windows.Forms.ToolStripButton
         Me.Nuevo = New System.Windows.Forms.ToolStripButton
+        Me.Limpiar = New System.Windows.Forms.ToolStripButton
         Me.Grabar = New System.Windows.Forms.ToolStripButton
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
         Me.ToolStripStatusLabelClientes = New System.Windows.Forms.ToolStripStatusLabel
-        Me.Buscar = New System.Windows.Forms.ToolStripButton
         CType(Me.Barra, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBoxDepto.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
@@ -135,18 +133,6 @@ Partial Class Cat_Departamentos
         Me.GroupBoxDepto.Text = " Datos del departamento "
         Me.GroupBoxDepto.Visible = False
         '
-        'btnAceptar
-        '
-        Me.btnAceptar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAceptar.BackColor = System.Drawing.Color.Transparent
-        Me.btnAceptar.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAceptar.Location = New System.Drawing.Point(914, 91)
-        Me.btnAceptar.Name = "btnAceptar"
-        Me.btnAceptar.Size = New System.Drawing.Size(80, 25)
-        Me.btnAceptar.TabIndex = 2
-        Me.btnAceptar.Text = "Aceptar"
-        Me.btnAceptar.UseVisualStyleBackColor = False
-        '
         'Label4
         '
         Me.Label4.AutoSize = True
@@ -158,17 +144,6 @@ Partial Class Cat_Departamentos
         Me.Label4.TabIndex = 227
         Me.Label4.Text = "Catálogo de Departamentos"
         '
-        'NombreDepto
-        '
-        Me.NombreDepto.AutoEllipsis = True
-        Me.NombreDepto.BackColor = System.Drawing.Color.Transparent
-        Me.NombreDepto.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NombreDepto.Location = New System.Drawing.Point(352, 93)
-        Me.NombreDepto.Name = "NombreDepto"
-        Me.NombreDepto.Size = New System.Drawing.Size(552, 22)
-        Me.NombreDepto.TabIndex = 225
-        Me.NombreDepto.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
         'ToolStrip1
         '
         Me.ToolStrip1.AutoSize = False
@@ -178,6 +153,26 @@ Partial Class Cat_Departamentos
         Me.ToolStrip1.Size = New System.Drawing.Size(1016, 48)
         Me.ToolStrip1.TabIndex = 228
         Me.ToolStrip1.Text = "ToolStrip1"
+        '
+        'Buscar
+        '
+        Me.Buscar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.Buscar.Image = Global.SuperMercado.My.Resources.Resources.zoom
+        Me.Buscar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.Buscar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.Buscar.Name = "Buscar"
+        Me.Buscar.Size = New System.Drawing.Size(36, 45)
+        Me.Buscar.Text = "Buscar"
+        '
+        'Nuevo
+        '
+        Me.Nuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.Nuevo.Image = Global.SuperMercado.My.Resources.Resources.add
+        Me.Nuevo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.Nuevo.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.Nuevo.Name = "Nuevo"
+        Me.Nuevo.Size = New System.Drawing.Size(36, 45)
+        Me.Nuevo.Text = "Nuevo"
         '
         'Limpiar
         '
@@ -189,16 +184,6 @@ Partial Class Cat_Departamentos
         Me.Limpiar.Name = "Limpiar"
         Me.Limpiar.Size = New System.Drawing.Size(43, 45)
         Me.Limpiar.Text = "Limpiar"
-        '
-        'Nuevo
-        '
-        Me.Nuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.Nuevo.Image = Global.SuperMercado.My.Resources.Resources.add
-        Me.Nuevo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.Nuevo.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.Nuevo.Name = "Nuevo"
-        Me.Nuevo.Size = New System.Drawing.Size(36, 45)
-        Me.Nuevo.Text = "Nuevo"
         '
         'Grabar
         '
@@ -226,16 +211,6 @@ Partial Class Cat_Departamentos
         Me.ToolStripStatusLabelClientes.Text = "Escriba un número de identificación para mostrar los datos de un departamento, o " & _
             "pulse F2 para mostrar un catálogo."
         '
-        'Buscar
-        '
-        Me.Buscar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.Buscar.Image = Global.SuperMercado.My.Resources.Resources.zoom
-        Me.Buscar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.Buscar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.Buscar.Name = "Buscar"
-        Me.Buscar.Size = New System.Drawing.Size(36, 45)
-        Me.Buscar.Text = "Buscar"
-        '
         'Cat_Departamentos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -244,9 +219,7 @@ Partial Class Cat_Departamentos
         Me.ClientSize = New System.Drawing.Size(1016, 708)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.ToolStrip1)
-        Me.Controls.Add(Me.NombreDepto)
         Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.btnAceptar)
         Me.Controls.Add(Me.GroupBoxDepto)
         Me.Controls.Add(Me.Barra)
         Me.Controls.Add(Me.CodigoDepto)
@@ -272,9 +245,7 @@ Partial Class Cat_Departamentos
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents TxtDescripcion As System.Windows.Forms.TextBox
     Friend WithEvents GroupBoxDepto As System.Windows.Forms.GroupBox
-    Friend WithEvents btnAceptar As System.Windows.Forms.Button
     Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents NombreDepto As System.Windows.Forms.Label
     Friend WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
     Friend WithEvents Limpiar As System.Windows.Forms.ToolStripButton
     Friend WithEvents Grabar As System.Windows.Forms.ToolStripButton

@@ -39,7 +39,7 @@ Public Class Cat_Categorias
 #End Region
 
 #Region "  Botón Aceptar  "
-    Private Sub btnAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAceptar.Click
+    Private Sub btnAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         CodigoCategoria.Enabled = False
 
         Caja = "Consulta101" : Parametros = "V1=" & Me.CodigoCategoria.Text
@@ -50,7 +50,7 @@ Public Class Cat_Categorias
             Me.Limpiar.Visible = True
 
             'Deshabilitar
-            Me.btnAceptar.Enabled = False
+
 
             'Asignar
             Me.Descripcion.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
@@ -63,7 +63,7 @@ Public Class Cat_Categorias
         Else
             'Asignar
             Me.CodigoCategoria.Text = ""
-            Me.NombreCategoria.Text = ""
+
             Me.Descripcion.Text = ""
 
             MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
@@ -86,10 +86,13 @@ Public Class Cat_Categorias
             If lConsulta Is Nothing Then lConsulta = New ClsConsultas
             ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
 
-            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
-            If ObjRet.bOk Then
+
+            If lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|") = "OK" Then
+                MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
                 LimpiarPantalla()
                 regresaPantalla()
+            Else
+                MessageBox.Show("La categoría ya se encuentra registrada.", " Categorías", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
             
         End If
@@ -116,9 +119,8 @@ Public Class Cat_Categorias
         If ObjRet.bOk Then
             'Deshabilitar
             Me.Nuevo.Visible = False
-            Me.btnAceptar.Enabled = False
+
             'Asignar
-            Me.NombreCategoria.Text = ""
             Me.CodigoCategoria.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
             'Habilitar
             Me.GroupBoxCategoria.Visible = True
@@ -143,12 +145,12 @@ Public Class Cat_Categorias
                 'Estatus
                 If ObjRet.bOk Then
                     'Asignar
-                    Me.NombreCategoria.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
+
                     SendKeys.Send("{TAB}")
 
                 Else
                     'Asignar
-                    Me.NombreCategoria.Text = ""
+
 
                     MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
 
@@ -191,12 +193,11 @@ Public Class Cat_Categorias
 
         CodigoCategoria.Enabled = True
 
-        NombreCategoria.Text = ""
+
         CodigoCategoria.Clear()
         CodigoCategoria.Focus()
 
         'Habilidar
-        Me.btnAceptar.Enabled = True
         Me.CodigoCategoria.Enabled = True
         Me.Nuevo.Visible = True
         'Deshabilitar
@@ -219,7 +220,6 @@ Public Class Cat_Categorias
             Me.Limpiar.Visible = True
 
             'Deshabilitar
-            Me.btnAceptar.Enabled = False
 
             'Asignar
             Me.Descripcion.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
@@ -235,7 +235,7 @@ Public Class Cat_Categorias
         Else
             'Asignar
             Me.CodigoCategoria.Text = ""
-            Me.NombreCategoria.Text = ""
+
             Me.Descripcion.Text = ""
 
             MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
@@ -275,5 +275,44 @@ Public Class Cat_Categorias
 
     End Sub
 #End Region
+
+#Region "  Evento: codigoCategoria - KEY PRESS "
+    Private Sub CodigoCategoria_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles CodigoCategoria.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            CodigoCategoria.Enabled = False
+
+            Caja = "Consulta101" : Parametros = "V1=" & Me.CodigoCategoria.Text
+            If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+            ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
+            If ObjRet.bOk Then
+                ToolStripStatusLabelCat.Text = ""
+                Me.Limpiar.Visible = True
+
+                'Deshabilitar
+                'Asignar
+                Me.Descripcion.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
+
+                'Habilitar
+                Me.Grabar.Visible = True
+                Me.GroupBoxCategoria.Visible = True
+                'Foco
+                Me.Descripcion.Focus()
+            Else
+                'Asignar
+                Me.CodigoCategoria.Text = ""
+
+                Me.Descripcion.Text = ""
+
+                MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+
+                'Foco
+                Me.CodigoCategoria.Focus()
+            End If
+            ObjRet = Nothing
+        End If
+    End Sub
+#End Region
+
 
 End Class

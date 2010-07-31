@@ -79,7 +79,13 @@ END
 ELSE
 BEGIN
 	Insert SMercado..Cat_Productos
-	values (@valor1, @idDepartam, @idCategoria, @idMarca, @valor1, @valor7, 0, 0, @idUnidad, @valor9, @valor8, @valor10 )
+	values (@valor2 , @idDepartam, @idCategoria, @idMarca, @valor1, @valor7, 0, 0, @idUnidad, @valor9, @valor8, @valor10 )
+	
+	--Se actualiza el inventario.
+	Insert SMercado..Existencias 
+	values (@valor2, @valor10)
 END
+
+Select @Resul = '2R=OK|'
 
 END

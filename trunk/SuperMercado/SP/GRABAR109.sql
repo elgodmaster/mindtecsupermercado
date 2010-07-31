@@ -35,6 +35,7 @@ BEGIN
   Declare @Desc0     Varchar(8000)
   Declare @Desc1     VarChar(8000)
   Declare @Resul2    VarChar(8000)
+  DECLARE @nomProvee VarChar(8000)
     
   --Asignar Valores
   Select @Desc0  = '' 
@@ -48,31 +49,33 @@ BEGIN
   Exec Emulador_SepararCadena 'V3',  @Cabezero, '|', @Valor3 Output --Usuario
   Exec Emulador_SepararCadena 'V4',  @Cabezero, '|', @Valor4 Output --Folio de factura
   Exec Emulador_SepararCadena 'V5',  @Cabezero, '|', @Valor5 Output --Folio de proveedor
- 
+  Exec Emulador_SepararCadena 'V6',  @Cabezero, '|', @Valor6 Output --Total
+  
   -- Validar Parametros
   If Len(RTrim(LTrim(@Valor1)))= 0
    Begin
-     Select @Resul='2R=ERROR|2M=Registre el código de Entrada para continuar|'
+     Select @Resul='2R=ERROR|2M=Registre el código de Entrada para continuar.|'
      Return    
    End
   
   If Len(RTrim(LTrim(@Valor2)))= 0
    Begin
-     Select @Resul='2R=ERROR|2M=Registre una fecha para continuar|'
+     Select @Resul='2R=ERROR|2M=Registre una fecha para continuar.|'
      Return    
    End
  
   If Len(RTrim(LTrim(@Valor4)))= 0
    Begin
-     Select @Resul='2R=ERROR|2M=Registre una factura para continuar|'
+     Select @Resul='2R=ERROR|2M=Registre una factura para continuar.|'
      Return    
    End
 
  If Len(RTrim(LTrim(@Valor5)))= 0
    Begin
-     Select @Resul='2R=ERROR|2M=Registre un proveedor para continuar|'
+     Select @Resul='2R=ERROR|2M=Registre un proveedor para continuar.|'
      Return    
-   End 
+   End
+   
 
 ------------------------------------------------------------------------
     --Caja de proveedores
@@ -90,22 +93,58 @@ BEGIN
      Exec Emulador_SepararCadena 'V1', @Resul2, '|', @Desc1 Output
      If LEN(LTrim(RTrim(@Desc1))) = 0 
       Begin
-       Select @Resul= '2R=Error|2M=El codigo del proveedor no esta registrado|'
+       Select @Resul= '2R=Error|2M=El código del proveedor no está registrado.|'
        Return
       End
      --------------------------------------------------------------------------
-     -------------------------------------------------------------------------- 
+     --------------------------------------------------------------------------
+     
+
+Select @nomProvee = (Select P.Nombre 
+					 From SMercado..Cat_Proveedores P
+					 Where P.Codigo = @valor5)
+   
+-- Se hace pago con efectivo.	 
+If @Validar = 2
+BEGIN
+	DECLARE @totalDineroCaja	DECIMAL(12,2)
+	DECLARE @totalPago			DECIMAL(12,2)
+	Select @totalDineroCaja = (Select CC.dineroActual  
+							   From SMercado..Caja_Corte CC
+							   Where CC.usuario  = @Valor3 and
+							   CC.fecha = CONVERT(date, GETDATE()) )
+	Select @totalPago = CONVERT(decimal(12,2), @valor6)
+
+	IF  @totalPago <= @totalDineroCaja 
+	BEGIN
+		Insert SMercado..Caja_Salida 
+		Values (1, @Valor3, @Valor6, 'Pago a proveedor: ' + @nomProvee, GETDATE())
+		
+		Update SMercado..Caja_Corte 
+		Set dineroActual -= @totalPago
+		Where usuario = @Valor3 and
+		fecha = CONVERT(date, getdate())
+	END
+	ELSE
+	BEGIN
+		Select @Resul = '2R=ERROR02|2M=No hay suficiente dinero en la caja para efectuar el pago. Por favor deposite dinero en la caja para poder realizar el pago. Dinero en caja: $ ' + CONVERT(char,@totalDineroCaja )
+		Return
+	END 	
+END 
+
+
+     
  Begin Tran Grabar109
-	Select * 
+ 
+	Select e.idEntrada  
 	From SMercado..entradas e 
 	Inner join SMercado..entrada_detalles ed on e.identrada=ed.identrada
-	Inner join SMercado..cat_proveedores p on  e.idproveedor=p.idproveedor and p.codigo=@Valor5 and e.folioFactura=@Valor4
+	Inner join SMercado..cat_proveedores p on  e.idproveedor=p.Codigo  and p.codigo=@Valor5 and e.folioFactura=@Valor4
   If @@RowCount > 0
     Begin
-	  Select @Resul='2R=ERROR|2M=La Factura ya existe con ese mismo proveedor|'
+	  Select @Resul='2R=ERROR|2M=El código de la factura ya fué dado de alta con ese mismo proveedor|'
       Return 
 	End   
-	
 	
 	Select @Desc0 = idEntrada 
 	From SMercado..Entradas 
@@ -153,12 +192,13 @@ SELECT  C7  = C7,    --FoliEntrada
               C5  Decimal(18,2),
               C6  Decimal (18,2))    
         EXEC sp_xml_removedocument @idoc     
-        -----------------------------------------------     -- Fin de XML     -----------------------------------------------
+-----------------------------------------------     -- Fin de XML     -----------------------------------------------
 	
 	--Insert de la tabla temporal..
 	Insert SMercado..Entrada_detalles(idEntrada,IdProducto,Descripcion,cantidad,Unidad,costoUnitario,CostoTotal)
     Select C7,C1,C2,C3,C4,C5,C6
     From #TmpGrabar109
+
 	 
 	 If @@ERROR <> 0
 	 Begin
@@ -181,7 +221,7 @@ SELECT  C7  = C7,    --FoliEntrada
 	 Commit Tran Grabar109
 	 
   -- Enviar Resultado
-  Select @Resul='2R=OK|2M=Se Grabó Correctamente|'   
+  Select @Resul='2R=OK|2M=Se grabó correctamente.|'   
 
   Set NoCount OFF
 END

@@ -45,21 +45,19 @@ Partial Class Cat_Categorias
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Cat_Categorias))
         Me.Barra = New System.Windows.Forms.PictureBox
-        Me.NombreCategoria = New System.Windows.Forms.Label
-        Me.btnAceptar = New System.Windows.Forms.Button
         Me.CodigoCategoria = New System.Windows.Forms.TextBox
         Me.Label1 = New System.Windows.Forms.Label
         Me.GroupBoxCategoria = New System.Windows.Forms.GroupBox
         Me.Descripcion = New System.Windows.Forms.TextBox
         Me.Label2 = New System.Windows.Forms.Label
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip
-        Me.Limpiar = New System.Windows.Forms.ToolStripButton
+        Me.Buscar = New System.Windows.Forms.ToolStripButton
         Me.Nuevo = New System.Windows.Forms.ToolStripButton
+        Me.Limpiar = New System.Windows.Forms.ToolStripButton
         Me.Grabar = New System.Windows.Forms.ToolStripButton
         Me.Label4 = New System.Windows.Forms.Label
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
         Me.ToolStripStatusLabelCat = New System.Windows.Forms.ToolStripStatusLabel
-        Me.Buscar = New System.Windows.Forms.ToolStripButton
         CType(Me.Barra, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBoxCategoria.SuspendLayout()
         Me.ToolStrip1.SuspendLayout()
@@ -78,30 +76,6 @@ Partial Class Cat_Categorias
         Me.Barra.Size = New System.Drawing.Size(1024, 4)
         Me.Barra.TabIndex = 185
         Me.Barra.TabStop = False
-        '
-        'NombreCategoria
-        '
-        Me.NombreCategoria.AutoEllipsis = True
-        Me.NombreCategoria.BackColor = System.Drawing.Color.Transparent
-        Me.NombreCategoria.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NombreCategoria.Location = New System.Drawing.Point(370, 92)
-        Me.NombreCategoria.Name = "NombreCategoria"
-        Me.NombreCategoria.Size = New System.Drawing.Size(528, 22)
-        Me.NombreCategoria.TabIndex = 184
-        Me.NombreCategoria.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'btnAceptar
-        '
-        Me.btnAceptar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAceptar.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.btnAceptar.BackgroundImage = CType(resources.GetObject("btnAceptar.BackgroundImage"), System.Drawing.Image)
-        Me.btnAceptar.Font = New System.Drawing.Font("Verdana", 8.0!)
-        Me.btnAceptar.Location = New System.Drawing.Point(904, 90)
-        Me.btnAceptar.Name = "btnAceptar"
-        Me.btnAceptar.Size = New System.Drawing.Size(80, 25)
-        Me.btnAceptar.TabIndex = 2
-        Me.btnAceptar.Text = "Aceptar"
-        Me.btnAceptar.UseVisualStyleBackColor = False
         '
         'CodigoCategoria
         '
@@ -172,16 +146,15 @@ Partial Class Cat_Categorias
         Me.ToolStrip1.TabIndex = 229
         Me.ToolStrip1.Text = "ToolStrip1"
         '
-        'Limpiar
+        'Buscar
         '
-        Me.Limpiar.AutoSize = False
-        Me.Limpiar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.Limpiar.Image = Global.SuperMercado.My.Resources.Resources.page
-        Me.Limpiar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.Limpiar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.Limpiar.Name = "Limpiar"
-        Me.Limpiar.Size = New System.Drawing.Size(43, 45)
-        Me.Limpiar.Text = "Limpiar"
+        Me.Buscar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.Buscar.Image = Global.SuperMercado.My.Resources.Resources.zoom
+        Me.Buscar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.Buscar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.Buscar.Name = "Buscar"
+        Me.Buscar.Size = New System.Drawing.Size(36, 45)
+        Me.Buscar.Text = "Buscar"
         '
         'Nuevo
         '
@@ -193,6 +166,17 @@ Partial Class Cat_Categorias
         Me.Nuevo.Name = "Nuevo"
         Me.Nuevo.Size = New System.Drawing.Size(36, 45)
         Me.Nuevo.Text = "Nuevo"
+        '
+        'Limpiar
+        '
+        Me.Limpiar.AutoSize = False
+        Me.Limpiar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.Limpiar.Image = Global.SuperMercado.My.Resources.Resources.page
+        Me.Limpiar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.Limpiar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.Limpiar.Name = "Limpiar"
+        Me.Limpiar.Size = New System.Drawing.Size(43, 45)
+        Me.Limpiar.Text = "Limpiar"
         '
         'Grabar
         '
@@ -231,16 +215,6 @@ Partial Class Cat_Categorias
         Me.ToolStripStatusLabelCat.Text = "Escriba un número de identificación para mostrar los datos de una categoría, o pu" & _
             "lse F2 mostrar un catálogo."
         '
-        'Buscar
-        '
-        Me.Buscar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.Buscar.Image = Global.SuperMercado.My.Resources.Resources.zoom
-        Me.Buscar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.Buscar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.Buscar.Name = "Buscar"
-        Me.Buscar.Size = New System.Drawing.Size(36, 45)
-        Me.Buscar.Text = "Buscar"
-        '
         'Cat_Categorias
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 14.0!)
@@ -252,8 +226,6 @@ Partial Class Cat_Categorias
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.GroupBoxCategoria)
         Me.Controls.Add(Me.Barra)
-        Me.Controls.Add(Me.NombreCategoria)
-        Me.Controls.Add(Me.btnAceptar)
         Me.Controls.Add(Me.CodigoCategoria)
         Me.Controls.Add(Me.Label1)
         Me.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -274,8 +246,6 @@ Partial Class Cat_Categorias
 
     End Sub
     Friend WithEvents Barra As System.Windows.Forms.PictureBox
-    Friend WithEvents NombreCategoria As System.Windows.Forms.Label
-    Friend WithEvents btnAceptar As System.Windows.Forms.Button
     Friend WithEvents CodigoCategoria As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents GroupBoxCategoria As System.Windows.Forms.GroupBox

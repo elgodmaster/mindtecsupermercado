@@ -53,11 +53,9 @@ Partial Class Cat_Unidades
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip
         Me.Buscar = New System.Windows.Forms.ToolStripButton
         Me.Nuevo = New System.Windows.Forms.ToolStripButton
-        Me.Grabar = New System.Windows.Forms.ToolStripButton
         Me.Limpiar = New System.Windows.Forms.ToolStripButton
-        Me.btnAceptar = New System.Windows.Forms.Button
+        Me.Grabar = New System.Windows.Forms.ToolStripButton
         Me.Label3 = New System.Windows.Forms.Label
-        Me.NombreUnidades = New System.Windows.Forms.Label
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
         Me.ToolStripStatusLabelClientes = New System.Windows.Forms.ToolStripStatusLabel
         Me.GroupBoxDetalles.SuspendLayout()
@@ -167,16 +165,6 @@ Partial Class Cat_Unidades
         Me.Nuevo.Size = New System.Drawing.Size(36, 45)
         Me.Nuevo.Text = "Nuevo"
         '
-        'Grabar
-        '
-        Me.Grabar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.Grabar.Image = Global.SuperMercado.My.Resources.Resources.disk
-        Me.Grabar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.Grabar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.Grabar.Name = "Grabar"
-        Me.Grabar.Size = New System.Drawing.Size(36, 45)
-        Me.Grabar.Text = "Grabar"
-        '
         'Limpiar
         '
         Me.Limpiar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
@@ -187,17 +175,15 @@ Partial Class Cat_Unidades
         Me.Limpiar.Size = New System.Drawing.Size(36, 45)
         Me.Limpiar.Text = "Limpiar"
         '
-        'btnAceptar
+        'Grabar
         '
-        Me.btnAceptar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAceptar.BackColor = System.Drawing.Color.Transparent
-        Me.btnAceptar.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAceptar.Location = New System.Drawing.Point(914, 91)
-        Me.btnAceptar.Name = "btnAceptar"
-        Me.btnAceptar.Size = New System.Drawing.Size(80, 25)
-        Me.btnAceptar.TabIndex = 2
-        Me.btnAceptar.Text = "Aceptar"
-        Me.btnAceptar.UseVisualStyleBackColor = False
+        Me.Grabar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.Grabar.Image = Global.SuperMercado.My.Resources.Resources.disk
+        Me.Grabar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.Grabar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.Grabar.Name = "Grabar"
+        Me.Grabar.Size = New System.Drawing.Size(36, 45)
+        Me.Grabar.Text = "Grabar"
         '
         'Label3
         '
@@ -209,17 +195,6 @@ Partial Class Cat_Unidades
         Me.Label3.Size = New System.Drawing.Size(216, 20)
         Me.Label3.TabIndex = 232
         Me.Label3.Text = "Catálogo de Unidades"
-        '
-        'NombreUnidades
-        '
-        Me.NombreUnidades.AutoEllipsis = True
-        Me.NombreUnidades.BackColor = System.Drawing.Color.Transparent
-        Me.NombreUnidades.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NombreUnidades.Location = New System.Drawing.Point(342, 93)
-        Me.NombreUnidades.Name = "NombreUnidades"
-        Me.NombreUnidades.Size = New System.Drawing.Size(548, 22)
-        Me.NombreUnidades.TabIndex = 233
-        Me.NombreUnidades.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'StatusStrip1
         '
@@ -244,9 +219,7 @@ Partial Class Cat_Unidades
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1016, 708)
         Me.Controls.Add(Me.StatusStrip1)
-        Me.Controls.Add(Me.NombreUnidades)
         Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.btnAceptar)
         Me.Controls.Add(Me.GroupBoxDetalles)
         Me.Controls.Add(Me.Barra)
         Me.Controls.Add(Me.CodigoUnidades)
@@ -276,9 +249,7 @@ Partial Class Cat_Unidades
     Friend WithEvents ToolStrip1 As System.Windows.Forms.ToolStrip
     Friend WithEvents Buscar As System.Windows.Forms.ToolStripButton
     Friend WithEvents Grabar As System.Windows.Forms.ToolStripButton
-    Friend WithEvents btnAceptar As System.Windows.Forms.Button
     Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents NombreUnidades As System.Windows.Forms.Label
     Friend WithEvents Nuevo As System.Windows.Forms.ToolStripButton
     Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
     Friend WithEvents ToolStripStatusLabelClientes As System.Windows.Forms.ToolStripStatusLabel

@@ -227,7 +227,7 @@ Partial Class Cat_Productos
         Me.marca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.marca.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.marca.FormattingEnabled = True
-        Me.marca.Location = New System.Drawing.Point(141, 139)
+        Me.marca.Location = New System.Drawing.Point(141, 164)
         Me.marca.Name = "marca"
         Me.marca.Size = New System.Drawing.Size(240, 22)
         Me.marca.TabIndex = 12
@@ -237,7 +237,7 @@ Partial Class Cat_Productos
         Me.departamento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.departamento.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.departamento.FormattingEnabled = True
-        Me.departamento.Location = New System.Drawing.Point(141, 167)
+        Me.departamento.Location = New System.Drawing.Point(141, 108)
         Me.departamento.Name = "departamento"
         Me.departamento.Size = New System.Drawing.Size(240, 22)
         Me.departamento.TabIndex = 11
@@ -247,7 +247,7 @@ Partial Class Cat_Productos
         Me.categoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.categoria.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.categoria.FormattingEnabled = True
-        Me.categoria.Location = New System.Drawing.Point(141, 111)
+        Me.categoria.Location = New System.Drawing.Point(141, 136)
         Me.categoria.Name = "categoria"
         Me.categoria.Size = New System.Drawing.Size(240, 22)
         Me.categoria.TabIndex = 10
@@ -276,7 +276,7 @@ Partial Class Cat_Productos
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label6.Location = New System.Drawing.Point(61, 114)
+        Me.Label6.Location = New System.Drawing.Point(61, 139)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(74, 14)
         Me.Label6.TabIndex = 7
@@ -287,7 +287,7 @@ Partial Class Cat_Productos
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label5.Location = New System.Drawing.Point(86, 147)
+        Me.Label5.Location = New System.Drawing.Point(86, 167)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(49, 14)
         Me.Label5.TabIndex = 6
@@ -298,7 +298,7 @@ Partial Class Cat_Productos
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label3.Location = New System.Drawing.Point(32, 175)
+        Me.Label3.Location = New System.Drawing.Point(32, 111)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(103, 14)
         Me.Label3.TabIndex = 5

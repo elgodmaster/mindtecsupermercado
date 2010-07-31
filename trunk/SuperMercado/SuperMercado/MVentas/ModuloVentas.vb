@@ -344,6 +344,7 @@ Public Class ModuloVentas
         Dim Producto As String = ""
         Dim Unidad As String = ""
         Dim Costo As Double = 0
+        Dim stockMin As Double
 
         Caja = "Consulta115" : Parametros = "V1=" & Codigo_Producto.Text & "|"
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
@@ -352,7 +353,9 @@ Public Class ModuloVentas
             Producto = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|", False)
             Unidad = lConsulta.ObtenerValor("V2", ObjRet.sResultado, "|", False)
             Costo = lConsulta.ObtenerValor("V3", ObjRet.sResultado, "|", False)
+            stockMin = lConsulta.ObtenerValor("V4", ObjRet.sResultado, "|", False)
             ''Mandar Llamar Llenar Fila con los datos necesarios
+
             LlenarFila(Producto, Unidad, Costo)
 
             Me.Codigo_Producto.Text = ""
@@ -415,7 +418,6 @@ Public Class ModuloVentas
 
             Next
         End If
-
 
         If Igual = False And Encontro = False Then
             Dim registro As DataRow = Me.DsDatos.Tables("Table").NewRow

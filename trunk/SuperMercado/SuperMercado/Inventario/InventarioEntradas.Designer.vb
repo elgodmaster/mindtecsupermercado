@@ -54,11 +54,9 @@ Partial Class InventarioEntradas
         Me.Eliminar = New System.Windows.Forms.ToolStripButton
         Me.PiePagina = New System.Windows.Forms.StatusStrip
         Me.MensajePiePagina = New System.Windows.Forms.ToolStripStatusLabel
-        Me.btnAceptar = New System.Windows.Forms.Button
         Me.Label4 = New System.Windows.Forms.Label
         Me.FolioEntrada = New System.Windows.Forms.TextBox
         Me.Label1 = New System.Windows.Forms.Label
-        Me.NombreProveedor = New System.Windows.Forms.Label
         Me.CodigoProveedor = New System.Windows.Forms.TextBox
         Me.Label3 = New System.Windows.Forms.Label
         Me.txtFactura = New System.Windows.Forms.TextBox
@@ -68,22 +66,24 @@ Partial Class InventarioEntradas
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
         Me.TabControl1 = New System.Windows.Forms.TabControl
         Me.TabPage1 = New System.Windows.Forms.TabPage
+        Me.ButtonEfectivo = New System.Windows.Forms.Button
+        Me.lblTotal = New System.Windows.Forms.Label
+        Me.ButtonEliminar = New System.Windows.Forms.Button
+        Me.CantidadNumericUpDown = New System.Windows.Forms.NumericUpDown
         Me.Button1 = New System.Windows.Forms.Button
         Me.Label6 = New System.Windows.Forms.Label
-        Me.Txt_TotalEntrada = New System.Windows.Forms.TextBox
-        Me.Label8 = New System.Windows.Forms.Label
-        Me.Txt_Cantidad = New System.Windows.Forms.TextBox
-        Me.Label7 = New System.Windows.Forms.Label
-        Me.LblProducto = New System.Windows.Forms.Label
         Me.Txt_CodigoProducto = New System.Windows.Forms.TextBox
+        Me.Label8 = New System.Windows.Forms.Label
+        Me.Label7 = New System.Windows.Forms.Label
         Me.GridDatos = New SourceGrid.DataGrid
-        Me.TabPage2 = New System.Windows.Forms.TabPage
         Me.Barra = New System.Windows.Forms.PictureBox
+        Me.btnAceptar = New System.Windows.Forms.Button
         Me.ToolStrip1.SuspendLayout()
         Me.PiePagina.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
+        CType(Me.CantidadNumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Barra, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -101,7 +101,7 @@ Partial Class InventarioEntradas
         '
         Me.Limpiar.AutoSize = False
         Me.Limpiar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.Limpiar.Image = CType(resources.GetObject("Limpiar.Image"), System.Drawing.Image)
+        Me.Limpiar.Image = Global.SuperMercado.My.Resources.Resources.page
         Me.Limpiar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.Limpiar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.Limpiar.Name = "Limpiar"
@@ -111,7 +111,7 @@ Partial Class InventarioEntradas
         'Nuevo
         '
         Me.Nuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.Nuevo.Image = CType(resources.GetObject("Nuevo.Image"), System.Drawing.Image)
+        Me.Nuevo.Image = Global.SuperMercado.My.Resources.Resources.add
         Me.Nuevo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.Nuevo.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.Nuevo.Name = "Nuevo"
@@ -121,7 +121,7 @@ Partial Class InventarioEntradas
         'Grabar
         '
         Me.Grabar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.Grabar.Image = CType(resources.GetObject("Grabar.Image"), System.Drawing.Image)
+        Me.Grabar.Image = Global.SuperMercado.My.Resources.Resources.disk
         Me.Grabar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.Grabar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.Grabar.Name = "Grabar"
@@ -131,16 +131,15 @@ Partial Class InventarioEntradas
         'Eliminar
         '
         Me.Eliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.Eliminar.Image = CType(resources.GetObject("Eliminar.Image"), System.Drawing.Image)
+        Me.Eliminar.Image = Global.SuperMercado.My.Resources.Resources.delete
         Me.Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.Eliminar.Name = "Eliminar"
-        Me.Eliminar.Size = New System.Drawing.Size(38, 45)
+        Me.Eliminar.Size = New System.Drawing.Size(36, 45)
         Me.Eliminar.Text = "ToolStripButton1"
         '
         'PiePagina
         '
-        Me.PiePagina.BackColor = System.Drawing.SystemColors.Info
         Me.PiePagina.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.PiePagina.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MensajePiePagina})
         Me.PiePagina.Location = New System.Drawing.Point(0, 686)
@@ -156,20 +155,6 @@ Partial Class InventarioEntradas
         Me.MensajePiePagina.Name = "MensajePiePagina"
         Me.MensajePiePagina.Size = New System.Drawing.Size(150, 17)
         Me.MensajePiePagina.Text = "ToolStripStatusLabel1"
-        '
-        'btnAceptar
-        '
-        Me.btnAceptar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAceptar.BackColor = System.Drawing.SystemColors.Control
-        Me.btnAceptar.BackgroundImage = CType(resources.GetObject("btnAceptar.BackgroundImage"), System.Drawing.Image)
-        Me.btnAceptar.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAceptar.Location = New System.Drawing.Point(900, 93)
-        Me.btnAceptar.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
-        Me.btnAceptar.Name = "btnAceptar"
-        Me.btnAceptar.Size = New System.Drawing.Size(85, 27)
-        Me.btnAceptar.TabIndex = 236
-        Me.btnAceptar.Text = "Aceptar"
-        Me.btnAceptar.UseVisualStyleBackColor = False
         '
         'Label4
         '
@@ -187,7 +172,7 @@ Partial Class InventarioEntradas
         '
         Me.FolioEntrada.BackColor = System.Drawing.SystemColors.Info
         Me.FolioEntrada.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.FolioEntrada.Location = New System.Drawing.Point(74, 96)
+        Me.FolioEntrada.Location = New System.Drawing.Point(79, 96)
         Me.FolioEntrada.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.FolioEntrada.MaxLength = 9
         Me.FolioEntrada.Name = "FolioEntrada"
@@ -202,34 +187,25 @@ Partial Class InventarioEntradas
         Me.Label1.Location = New System.Drawing.Point(15, 99)
         Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(51, 14)
+        Me.Label1.Size = New System.Drawing.Size(56, 14)
         Me.Label1.TabIndex = 233
-        Me.Label1.Text = "Código"
-        '
-        'NombreProveedor
-        '
-        Me.NombreProveedor.AutoEllipsis = True
-        Me.NombreProveedor.BackColor = System.Drawing.Color.Transparent
-        Me.NombreProveedor.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NombreProveedor.Location = New System.Drawing.Point(360, 53)
-        Me.NombreProveedor.Name = "NombreProveedor"
-        Me.NombreProveedor.Size = New System.Drawing.Size(576, 22)
-        Me.NombreProveedor.TabIndex = 242
-        Me.NombreProveedor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Label1.Text = "Código:"
         '
         'CodigoProveedor
         '
         Me.CodigoProveedor.BackColor = System.Drawing.SystemColors.Info
+        Me.CodigoProveedor.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CodigoProveedor.Location = New System.Drawing.Point(91, 53)
         Me.CodigoProveedor.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.CodigoProveedor.Name = "CodigoProveedor"
         Me.CodigoProveedor.Size = New System.Drawing.Size(262, 22)
-        Me.CodigoProveedor.TabIndex = 241
+        Me.CodigoProveedor.TabIndex = 2
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Verdana", 9.0!)
+        Me.Label3.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.SystemColors.ControlText
         Me.Label3.Location = New System.Drawing.Point(6, 57)
         Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
@@ -239,16 +215,18 @@ Partial Class InventarioEntradas
         '
         'txtFactura
         '
+        Me.txtFactura.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtFactura.Location = New System.Drawing.Point(91, 81)
         Me.txtFactura.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.txtFactura.Name = "txtFactura"
         Me.txtFactura.Size = New System.Drawing.Size(262, 22)
-        Me.txtFactura.TabIndex = 239
+        Me.txtFactura.TabIndex = 3
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Verdana", 9.0!)
+        Me.Label5.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.ForeColor = System.Drawing.SystemColors.ControlText
         Me.Label5.Location = New System.Drawing.Point(24, 85)
         Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
@@ -258,15 +236,17 @@ Partial Class InventarioEntradas
         '
         'Fecha
         '
+        Me.Fecha.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Fecha.Location = New System.Drawing.Point(91, 25)
         Me.Fecha.Name = "Fecha"
         Me.Fecha.Size = New System.Drawing.Size(262, 22)
-        Me.Fecha.TabIndex = 243
+        Me.Fecha.TabIndex = 1
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Verdana", 9.0!)
+        Me.Label2.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.SystemColors.ControlText
         Me.Label2.Location = New System.Drawing.Point(34, 31)
         Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
@@ -283,15 +263,16 @@ Partial Class InventarioEntradas
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.Label5)
         Me.GroupBox1.Controls.Add(Me.txtFactura)
-        Me.GroupBox1.Controls.Add(Me.NombreProveedor)
         Me.GroupBox1.Controls.Add(Me.Label3)
         Me.GroupBox1.Controls.Add(Me.CodigoProveedor)
+        Me.GroupBox1.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBox1.ForeColor = System.Drawing.SystemColors.Desktop
         Me.GroupBox1.Location = New System.Drawing.Point(12, 149)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(985, 516)
+        Me.GroupBox1.Size = New System.Drawing.Size(985, 500)
         Me.GroupBox1.TabIndex = 245
         Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Entrada inventario"
+        Me.GroupBox1.Text = " Entradas a inventario "
         Me.GroupBox1.Visible = False
         '
         'TabControl1
@@ -299,131 +280,150 @@ Partial Class InventarioEntradas
         Me.TabControl1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TabControl1.Controls.Add(Me.TabPage1)
-        Me.TabControl1.Controls.Add(Me.TabPage2)
+        Me.TabControl1.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TabControl1.Location = New System.Drawing.Point(15, 113)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(958, 397)
+        Me.TabControl1.Size = New System.Drawing.Size(958, 372)
         Me.TabControl1.TabIndex = 245
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.ButtonEfectivo)
+        Me.TabPage1.Controls.Add(Me.lblTotal)
+        Me.TabPage1.Controls.Add(Me.ButtonEliminar)
+        Me.TabPage1.Controls.Add(Me.CantidadNumericUpDown)
         Me.TabPage1.Controls.Add(Me.Button1)
         Me.TabPage1.Controls.Add(Me.Label6)
-        Me.TabPage1.Controls.Add(Me.Txt_TotalEntrada)
-        Me.TabPage1.Controls.Add(Me.Label8)
-        Me.TabPage1.Controls.Add(Me.Txt_Cantidad)
-        Me.TabPage1.Controls.Add(Me.Label7)
-        Me.TabPage1.Controls.Add(Me.LblProducto)
         Me.TabPage1.Controls.Add(Me.Txt_CodigoProducto)
+        Me.TabPage1.Controls.Add(Me.Label8)
+        Me.TabPage1.Controls.Add(Me.Label7)
         Me.TabPage1.Controls.Add(Me.GridDatos)
         Me.TabPage1.Location = New System.Drawing.Point(4, 23)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(950, 370)
+        Me.TabPage1.Size = New System.Drawing.Size(950, 345)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Productos"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'ButtonEfectivo
+        '
+        Me.ButtonEfectivo.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonEfectivo.Image = Global.SuperMercado.My.Resources.Resources.coins
+        Me.ButtonEfectivo.Location = New System.Drawing.Point(262, 297)
+        Me.ButtonEfectivo.Name = "ButtonEfectivo"
+        Me.ButtonEfectivo.Size = New System.Drawing.Size(172, 36)
+        Me.ButtonEfectivo.TabIndex = 254
+        Me.ButtonEfectivo.Text = " Pagar con efectivo"
+        Me.ButtonEfectivo.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ButtonEfectivo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.ButtonEfectivo.UseVisualStyleBackColor = True
+        '
+        'lblTotal
+        '
+        Me.lblTotal.AutoSize = True
+        Me.lblTotal.Font = New System.Drawing.Font("Verdana", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTotal.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.lblTotal.Location = New System.Drawing.Point(815, 299)
+        Me.lblTotal.Name = "lblTotal"
+        Me.lblTotal.Size = New System.Drawing.Size(72, 23)
+        Me.lblTotal.TabIndex = 253
+        Me.lblTotal.Text = "$ 0.00"
+        '
+        'ButtonEliminar
+        '
+        Me.ButtonEliminar.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonEliminar.ForeColor = System.Drawing.Color.DarkRed
+        Me.ButtonEliminar.Image = Global.SuperMercado.My.Resources.Resources.basket_delete
+        Me.ButtonEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ButtonEliminar.Location = New System.Drawing.Point(824, 21)
+        Me.ButtonEliminar.Name = "ButtonEliminar"
+        Me.ButtonEliminar.Size = New System.Drawing.Size(112, 30)
+        Me.ButtonEliminar.TabIndex = 252
+        Me.ButtonEliminar.Text = " Eliminar"
+        Me.ButtonEliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.ButtonEliminar.UseVisualStyleBackColor = True
+        '
+        'CantidadNumericUpDown
+        '
+        Me.CantidadNumericUpDown.DecimalPlaces = 2
+        Me.CantidadNumericUpDown.Location = New System.Drawing.Point(366, 27)
+        Me.CantidadNumericUpDown.Maximum = New Decimal(New Integer() {1215752191, 23, 0, 0})
+        Me.CantidadNumericUpDown.Name = "CantidadNumericUpDown"
+        Me.CantidadNumericUpDown.Size = New System.Drawing.Size(96, 22)
+        Me.CantidadNumericUpDown.TabIndex = 5
+        '
         'Button1
         '
         Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button1.Location = New System.Drawing.Point(600, 328)
+        Me.Button1.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button1.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.Button1.Image = Global.SuperMercado.My.Resources.Resources.book_add
+        Me.Button1.Location = New System.Drawing.Point(11, 297)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(142, 23)
+        Me.Button1.Size = New System.Drawing.Size(234, 36)
         Me.Button1.TabIndex = 249
-        Me.Button1.Text = "Agregar a cuentas"
+        Me.Button1.Text = " Agregar a cuentas por pagar"
+        Me.Button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.Button1.UseVisualStyleBackColor = True
         '
         'Label6
         '
         Me.Label6.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(761, 333)
+        Me.Label6.Font = New System.Drawing.Font("Verdana", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.Label6.Location = New System.Drawing.Point(679, 299)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(38, 14)
+        Me.Label6.Size = New System.Drawing.Size(67, 23)
         Me.Label6.TabIndex = 248
-        Me.Label6.Text = "Total"
+        Me.Label6.Text = "Total:"
         '
-        'Txt_TotalEntrada
+        'Txt_CodigoProducto
         '
-        Me.Txt_TotalEntrada.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Txt_TotalEntrada.Location = New System.Drawing.Point(803, 329)
-        Me.Txt_TotalEntrada.Name = "Txt_TotalEntrada"
-        Me.Txt_TotalEntrada.Size = New System.Drawing.Size(128, 22)
-        Me.Txt_TotalEntrada.TabIndex = 247
-        Me.Txt_TotalEntrada.Text = "00000000000.00"
+        Me.Txt_CodigoProducto.Location = New System.Drawing.Point(70, 27)
+        Me.Txt_CodigoProducto.Name = "Txt_CodigoProducto"
+        Me.Txt_CodigoProducto.Size = New System.Drawing.Size(215, 22)
+        Me.Txt_CodigoProducto.TabIndex = 4
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(735, 34)
+        Me.Label8.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.Label8.Location = New System.Drawing.Point(291, 30)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(64, 14)
+        Me.Label8.Size = New System.Drawing.Size(69, 14)
         Me.Label8.TabIndex = 246
-        Me.Label8.Text = "Cantidad"
-        '
-        'Txt_Cantidad
-        '
-        Me.Txt_Cantidad.Location = New System.Drawing.Point(803, 30)
-        Me.Txt_Cantidad.Name = "Txt_Cantidad"
-        Me.Txt_Cantidad.Size = New System.Drawing.Size(128, 22)
-        Me.Txt_Cantidad.TabIndex = 245
-        Me.Txt_Cantidad.Text = "00000000000.00"
+        Me.Label8.Text = "Cantidad:"
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(13, 34)
+        Me.Label7.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.Label7.Location = New System.Drawing.Point(8, 30)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(63, 14)
+        Me.Label7.Size = New System.Drawing.Size(56, 14)
         Me.Label7.TabIndex = 244
-        Me.Label7.Text = "Producto"
-        '
-        'LblProducto
-        '
-        Me.LblProducto.AutoEllipsis = True
-        Me.LblProducto.BackColor = System.Drawing.Color.Transparent
-        Me.LblProducto.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblProducto.Location = New System.Drawing.Point(209, 30)
-        Me.LblProducto.Name = "LblProducto"
-        Me.LblProducto.Size = New System.Drawing.Size(457, 22)
-        Me.LblProducto.TabIndex = 243
-        Me.LblProducto.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Txt_CodigoProducto
-        '
-        Me.Txt_CodigoProducto.Location = New System.Drawing.Point(75, 30)
-        Me.Txt_CodigoProducto.Name = "Txt_CodigoProducto"
-        Me.Txt_CodigoProducto.Size = New System.Drawing.Size(128, 22)
-        Me.Txt_CodigoProducto.TabIndex = 6
-        Me.Txt_CodigoProducto.Text = "123456789012345"
+        Me.Label7.Text = "Código:"
         '
         'GridDatos
         '
         Me.GridDatos.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridDatos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.GridDatos.BackColor = System.Drawing.Color.White
+        Me.GridDatos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GridDatos.DeleteQuestionMessage = ""
         Me.GridDatos.DeleteRowsWithDeleteKey = False
         Me.GridDatos.FixedRows = 1
-        Me.GridDatos.Location = New System.Drawing.Point(6, 58)
+        Me.GridDatos.Location = New System.Drawing.Point(11, 58)
         Me.GridDatos.Name = "GridDatos"
         Me.GridDatos.SelectionMode = SourceGrid.GridSelectionMode.Row
-        Me.GridDatos.Size = New System.Drawing.Size(925, 265)
+        Me.GridDatos.Size = New System.Drawing.Size(925, 233)
         Me.GridDatos.TabIndex = 5
         Me.GridDatos.TabStop = True
         Me.GridDatos.ToolTipText = ""
-        '
-        'TabPage2
-        '
-        Me.TabPage2.Location = New System.Drawing.Point(4, 23)
-        Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(950, 370)
-        Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "Finanzas"
-        Me.TabPage2.UseVisualStyleBackColor = True
         '
         'Barra
         '
@@ -436,6 +436,20 @@ Partial Class InventarioEntradas
         Me.Barra.Size = New System.Drawing.Size(1028, 4)
         Me.Barra.TabIndex = 246
         Me.Barra.TabStop = False
+        '
+        'btnAceptar
+        '
+        Me.btnAceptar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnAceptar.BackColor = System.Drawing.SystemColors.Control
+        Me.btnAceptar.BackgroundImage = CType(resources.GetObject("btnAceptar.BackgroundImage"), System.Drawing.Image)
+        Me.btnAceptar.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAceptar.Location = New System.Drawing.Point(900, 93)
+        Me.btnAceptar.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.btnAceptar.Name = "btnAceptar"
+        Me.btnAceptar.Size = New System.Drawing.Size(85, 27)
+        Me.btnAceptar.TabIndex = 236
+        Me.btnAceptar.Text = "Aceptar"
+        Me.btnAceptar.UseVisualStyleBackColor = False
         '
         'InventarioEntradas
         '
@@ -464,6 +478,7 @@ Partial Class InventarioEntradas
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
+        CType(Me.CantidadNumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Barra, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -480,7 +495,6 @@ Partial Class InventarioEntradas
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents FolioEntrada As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents NombreProveedor As System.Windows.Forms.Label
     Friend WithEvents CodigoProveedor As System.Windows.Forms.TextBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents txtFactura As System.Windows.Forms.TextBox
@@ -488,17 +502,17 @@ Partial Class InventarioEntradas
     Friend WithEvents Fecha As System.Windows.Forms.DateTimePicker
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
+    Friend WithEvents Barra As System.Windows.Forms.PictureBox
     Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
     Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
-    Friend WithEvents GridDatos As SourceGrid.DataGrid
-    Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
-    Friend WithEvents Barra As System.Windows.Forms.PictureBox
-    Friend WithEvents LblProducto As System.Windows.Forms.Label
-    Friend WithEvents Txt_CodigoProducto As System.Windows.Forms.TextBox
-    Friend WithEvents Label7 As System.Windows.Forms.Label
-    Friend WithEvents Label8 As System.Windows.Forms.Label
-    Friend WithEvents Txt_Cantidad As System.Windows.Forms.TextBox
-    Friend WithEvents Label6 As System.Windows.Forms.Label
-    Friend WithEvents Txt_TotalEntrada As System.Windows.Forms.TextBox
     Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents Label6 As System.Windows.Forms.Label
+    Friend WithEvents Txt_CodigoProducto As System.Windows.Forms.TextBox
+    Friend WithEvents Label8 As System.Windows.Forms.Label
+    Friend WithEvents Label7 As System.Windows.Forms.Label
+    Friend WithEvents GridDatos As SourceGrid.DataGrid
+    Friend WithEvents CantidadNumericUpDown As System.Windows.Forms.NumericUpDown
+    Friend WithEvents ButtonEliminar As System.Windows.Forms.Button
+    Friend WithEvents lblTotal As System.Windows.Forms.Label
+    Friend WithEvents ButtonEfectivo As System.Windows.Forms.Button
 End Class

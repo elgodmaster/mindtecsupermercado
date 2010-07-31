@@ -24,19 +24,21 @@ DECLARE @idProvee				varchar(8000)
 DECLARE @idCuenta				varchar(8000)
 DECLARE @idProducto				varchar(8000)
 DECLARE @total					decimal(12,2)
+DECLARE @factura                varchar(8000)
 
 Exec Emulador_SepararCadena 'V1',  @Cabezero, '|', @producto	Output 
 Exec Emulador_SepararCadena 'V2',  @Cabezero, '|', @cantidad	Output 
 Exec Emulador_SepararCadena 'V3',  @Cabezero, '|', @costo		Output 
 Exec Emulador_SepararCadena 'V4',  @Cabezero, '|', @idProvee  	Output
 Exec Emulador_SepararCadena 'V5',  @Cabezero, '|', @idUsuario  	Output
+Exec Emulador_SepararCadena 'V6',  @Cabezero, '|', @factura  	Output
 
 Set noCount ON
 					
 Select @total = CONVERT(decimal(12,2), @cantidad) * CONVERT(decimal(12,2), @costo) 
  
 Insert SMercado..Cuentas_Pagar
-Values ( GETDATE(), 1, @idUsuario, @idProvee, 1, @producto, @total ) 
+Values ( GETDATE(), @factura , @idUsuario, @idProvee, 1, @producto, @total ) 
 
 Select @idCuenta = (Select top 1 idCuenta  
 					From SMercado..Cuentas_Pagar 

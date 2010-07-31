@@ -24,10 +24,7 @@ DECLARE @salidas decimal(18,2)
 DECLARE @dineroInicialCaja decimal(18,2)
 DECLARE @venta decimal(18,2)
 
-Exec Emulador_SepararCadena 'V1',  @Cabezero, '|', @usuario Output
-
-Select @idUsuario = (Select U.idUsuario From SMercado_Seguridad..Usuarios U
-                     Where U.nombreUsuario = @usuario)
+Exec Emulador_SepararCadena 'V1',  @Cabezero, '|', @idUsuario Output
 
 Select C1 = concepto, 
        C2 = '$ ' + CONVERT(char, monto), 

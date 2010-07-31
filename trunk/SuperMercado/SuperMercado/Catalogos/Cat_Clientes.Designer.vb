@@ -47,7 +47,9 @@ Partial Class Cat_Clientes
         Me.textBoxCliente = New System.Windows.Forms.TextBox
         Me.Label1 = New System.Windows.Forms.Label
         Me.AbonarToolStrip = New System.Windows.Forms.ToolStrip
+        Me.Buscar = New System.Windows.Forms.ToolStripButton
         Me.ToolStripButtonNuevo = New System.Windows.Forms.ToolStripButton
+        Me.CarteraClientes = New System.Windows.Forms.ToolStripButton
         Me.Limpiar = New System.Windows.Forms.ToolStripButton
         Me.Grabar = New System.Windows.Forms.ToolStripButton
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator
@@ -108,7 +110,9 @@ Partial Class Cat_Clientes
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
         Me.ToolStripStatusLabelClientes = New System.Windows.Forms.ToolStripStatusLabel
         Me.Barra = New System.Windows.Forms.PictureBox
-        Me.Buscar = New System.Windows.Forms.ToolStripButton
+        Me.PanelCartera = New System.Windows.Forms.Panel
+        Me.GridDatosCartera = New SourceGrid.DataGrid
+        Me.lblTotalCartera = New System.Windows.Forms.Label
         Me.AbonarToolStrip.SuspendLayout()
         Me.AdeudosTabPage.SuspendLayout()
         Me.DatosTabPage.SuspendLayout()
@@ -120,6 +124,7 @@ Partial Class Cat_Clientes
         Me.PanelGrid.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.Barra, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelCartera.SuspendLayout()
         Me.SuspendLayout()
         '
         'textBoxCliente
@@ -147,12 +152,22 @@ Partial Class Cat_Clientes
         'AbonarToolStrip
         '
         Me.AbonarToolStrip.AutoSize = False
-        Me.AbonarToolStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Buscar, Me.ToolStripButtonNuevo, Me.Limpiar, Me.Grabar, Me.ToolStripSeparator1, Me.ToolStripButtonEliminarCuenta, Me.ToolStripButtonDetalle, Me.ToolStripButtonAbonos, Me.ToolStripButtonAbonar})
+        Me.AbonarToolStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Buscar, Me.ToolStripButtonNuevo, Me.CarteraClientes, Me.Limpiar, Me.Grabar, Me.ToolStripSeparator1, Me.ToolStripButtonEliminarCuenta, Me.ToolStripButtonDetalle, Me.ToolStripButtonAbonos, Me.ToolStripButtonAbonar})
         Me.AbonarToolStrip.Location = New System.Drawing.Point(0, 0)
         Me.AbonarToolStrip.Name = "AbonarToolStrip"
         Me.AbonarToolStrip.Size = New System.Drawing.Size(1016, 48)
         Me.AbonarToolStrip.TabIndex = 287
         Me.AbonarToolStrip.Text = "ToolStrip1"
+        '
+        'Buscar
+        '
+        Me.Buscar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.Buscar.Image = Global.SuperMercado.My.Resources.Resources.zoom
+        Me.Buscar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.Buscar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.Buscar.Name = "Buscar"
+        Me.Buscar.Size = New System.Drawing.Size(36, 45)
+        Me.Buscar.Text = "Buscar clientes"
         '
         'ToolStripButtonNuevo
         '
@@ -162,7 +177,17 @@ Partial Class Cat_Clientes
         Me.ToolStripButtonNuevo.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButtonNuevo.Name = "ToolStripButtonNuevo"
         Me.ToolStripButtonNuevo.Size = New System.Drawing.Size(36, 45)
-        Me.ToolStripButtonNuevo.Text = "Nuevo"
+        Me.ToolStripButtonNuevo.Text = "Agregar un nuevo cliente"
+        '
+        'CarteraClientes
+        '
+        Me.CarteraClientes.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.CarteraClientes.Image = Global.SuperMercado.My.Resources.Resources.book_addresses1
+        Me.CarteraClientes.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.CarteraClientes.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.CarteraClientes.Name = "CarteraClientes"
+        Me.CarteraClientes.Size = New System.Drawing.Size(36, 45)
+        Me.CarteraClientes.Text = "Mostrar cartera de clientes"
         '
         'Limpiar
         '
@@ -173,7 +198,7 @@ Partial Class Cat_Clientes
         Me.Limpiar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.Limpiar.Name = "Limpiar"
         Me.Limpiar.Size = New System.Drawing.Size(43, 45)
-        Me.Limpiar.Text = "Limpiar"
+        Me.Limpiar.Text = "Limpiar campos"
         Me.Limpiar.Visible = False
         '
         'Grabar
@@ -184,7 +209,7 @@ Partial Class Cat_Clientes
         Me.Grabar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.Grabar.Name = "Grabar"
         Me.Grabar.Size = New System.Drawing.Size(36, 45)
-        Me.Grabar.Text = "Guardar"
+        Me.Grabar.Text = "Guardar los cambios realizados"
         Me.Grabar.Visible = False
         '
         'ToolStripSeparator1
@@ -201,7 +226,7 @@ Partial Class Cat_Clientes
         Me.ToolStripButtonEliminarCuenta.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButtonEliminarCuenta.Name = "ToolStripButtonEliminarCuenta"
         Me.ToolStripButtonEliminarCuenta.Size = New System.Drawing.Size(36, 45)
-        Me.ToolStripButtonEliminarCuenta.Text = "Liquidar cuenta"
+        Me.ToolStripButtonEliminarCuenta.Text = "Liquidar una cuenta"
         '
         'ToolStripButtonDetalle
         '
@@ -211,7 +236,7 @@ Partial Class Cat_Clientes
         Me.ToolStripButtonDetalle.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButtonDetalle.Name = "ToolStripButtonDetalle"
         Me.ToolStripButtonDetalle.Size = New System.Drawing.Size(36, 45)
-        Me.ToolStripButtonDetalle.Text = "Detalle"
+        Me.ToolStripButtonDetalle.Text = "Mostrar el detalle de una cuenta"
         '
         'ToolStripButtonAbonos
         '
@@ -221,7 +246,7 @@ Partial Class Cat_Clientes
         Me.ToolStripButtonAbonos.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButtonAbonos.Name = "ToolStripButtonAbonos"
         Me.ToolStripButtonAbonos.Size = New System.Drawing.Size(36, 45)
-        Me.ToolStripButtonAbonos.Text = "Abonos registrados"
+        Me.ToolStripButtonAbonos.Text = "Mostrar los abonos registrados"
         '
         'ToolStripButtonAbonar
         '
@@ -231,7 +256,7 @@ Partial Class Cat_Clientes
         Me.ToolStripButtonAbonar.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButtonAbonar.Name = "ToolStripButtonAbonar"
         Me.ToolStripButtonAbonar.Size = New System.Drawing.Size(36, 45)
-        Me.ToolStripButtonAbonar.Text = "Abonar"
+        Me.ToolStripButtonAbonar.Text = "Abonar a una cuenta"
         '
         'Label4
         '
@@ -639,11 +664,12 @@ Partial Class Cat_Clientes
         '
         'txtLimCred
         '
+        Me.txtLimCred.DecimalPlaces = 2
         Me.txtLimCred.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtLimCred.Location = New System.Drawing.Point(328, 227)
+        Me.txtLimCred.Location = New System.Drawing.Point(344, 227)
         Me.txtLimCred.Maximum = New Decimal(New Integer() {1215752191, 23, 0, 0})
         Me.txtLimCred.Name = "txtLimCred"
-        Me.txtLimCred.Size = New System.Drawing.Size(120, 22)
+        Me.txtLimCred.Size = New System.Drawing.Size(83, 22)
         Me.txtLimCred.TabIndex = 9
         Me.txtLimCred.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -654,9 +680,9 @@ Partial Class Cat_Clientes
         Me.Label5.ForeColor = System.Drawing.SystemColors.ControlText
         Me.Label5.Location = New System.Drawing.Point(206, 230)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(116, 14)
+        Me.Label5.Size = New System.Drawing.Size(132, 14)
         Me.Label5.TabIndex = 277
-        Me.Label5.Text = "Límite de crédito:"
+        Me.Label5.Text = "Límite de crédito:  $"
         '
         'txtRfc
         '
@@ -815,9 +841,9 @@ Partial Class Cat_Clientes
         'PanelDatos
         '
         Me.PanelDatos.Controls.Add(Me.ClientesTabControl)
-        Me.PanelDatos.Location = New System.Drawing.Point(10, 148)
+        Me.PanelDatos.Location = New System.Drawing.Point(537, 59)
         Me.PanelDatos.Name = "PanelDatos"
-        Me.PanelDatos.Size = New System.Drawing.Size(1006, 502)
+        Me.PanelDatos.Size = New System.Drawing.Size(53, 56)
         Me.PanelDatos.TabIndex = 290
         '
         'PanelGrid
@@ -878,15 +904,42 @@ Partial Class Cat_Clientes
         Me.Barra.TabIndex = 284
         Me.Barra.TabStop = False
         '
-        'Buscar
+        'PanelCartera
         '
-        Me.Buscar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.Buscar.Image = Global.SuperMercado.My.Resources.Resources.zoom
-        Me.Buscar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.Buscar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.Buscar.Name = "Buscar"
-        Me.Buscar.Size = New System.Drawing.Size(36, 45)
-        Me.Buscar.Text = "Buscar"
+        Me.PanelCartera.Controls.Add(Me.GridDatosCartera)
+        Me.PanelCartera.Location = New System.Drawing.Point(36, 156)
+        Me.PanelCartera.Name = "PanelCartera"
+        Me.PanelCartera.Size = New System.Drawing.Size(609, 215)
+        Me.PanelCartera.TabIndex = 293
+        '
+        'GridDatosCartera
+        '
+        Me.GridDatosCartera.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+                    Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GridDatosCartera.BackColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.GridDatosCartera.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.GridDatosCartera.DeleteQuestionMessage = ""
+        Me.GridDatosCartera.DeleteRowsWithDeleteKey = False
+        Me.GridDatosCartera.FixedRows = 1
+        Me.GridDatosCartera.Location = New System.Drawing.Point(17, 13)
+        Me.GridDatosCartera.Name = "GridDatosCartera"
+        Me.GridDatosCartera.SelectionMode = SourceGrid.GridSelectionMode.Row
+        Me.GridDatosCartera.Size = New System.Drawing.Size(582, 197)
+        Me.GridDatosCartera.TabIndex = 343
+        Me.GridDatosCartera.TabStop = True
+        Me.GridDatosCartera.ToolTipText = ""
+        '
+        'lblTotalCartera
+        '
+        Me.lblTotalCartera.AutoSize = True
+        Me.lblTotalCartera.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTotalCartera.ForeColor = System.Drawing.Color.DarkGreen
+        Me.lblTotalCartera.Location = New System.Drawing.Point(33, 139)
+        Me.lblTotalCartera.Name = "lblTotalCartera"
+        Me.lblTotalCartera.Size = New System.Drawing.Size(49, 14)
+        Me.lblTotalCartera.TabIndex = 294
+        Me.lblTotalCartera.Text = "Total: "
         '
         'Cat_Clientes
         '
@@ -894,6 +947,8 @@ Partial Class Cat_Clientes
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(1016, 662)
+        Me.Controls.Add(Me.lblTotalCartera)
+        Me.Controls.Add(Me.PanelCartera)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.PanelGrid)
         Me.Controls.Add(Me.PanelDatos)
@@ -924,6 +979,7 @@ Partial Class Cat_Clientes
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
         CType(Me.Barra, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelCartera.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -993,4 +1049,8 @@ Partial Class Cat_Clientes
     Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents ToolStripButtonEliminarCuenta As System.Windows.Forms.ToolStripButton
     Friend WithEvents Buscar As System.Windows.Forms.ToolStripButton
+    Friend WithEvents CarteraClientes As System.Windows.Forms.ToolStripButton
+    Friend WithEvents PanelCartera As System.Windows.Forms.Panel
+    Friend WithEvents GridDatosCartera As SourceGrid.DataGrid
+    Friend WithEvents lblTotalCartera As System.Windows.Forms.Label
 End Class
