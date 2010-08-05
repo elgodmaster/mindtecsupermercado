@@ -32,7 +32,8 @@ select	C1 = C.IdCuenta,
 		C5 = '$ ' + CONVERT(char, isnull((Select SUM(CA.monto)
 				  From SMercado..Cuentas_Pagar_Abonos CA
 				  Where idCuenta = C.IdCuenta 
-				  Group by CA.idCuenta), 0))
+				  Group by CA.idCuenta), 0)),
+		C6 = C.fecha 		  
 				  
 from SMercado..Cuentas_Pagar C
 Where	C.idProveedor = @idProveed 

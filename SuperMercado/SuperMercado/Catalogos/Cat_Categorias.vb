@@ -268,7 +268,6 @@ Public Class Cat_Categorias
             e = New KeyEventArgs(Keys.Enter)
             'Me.CodigoCategoria_KeyDown(DBNull.Value, e)
             consulta101()
-
         Else
             MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
         End If
@@ -313,6 +312,5 @@ Public Class Cat_Categorias
         End If
     End Sub
 #End Region
-
 
 End Class

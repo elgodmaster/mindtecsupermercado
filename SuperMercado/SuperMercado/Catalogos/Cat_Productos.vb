@@ -205,8 +205,6 @@ Public Class Cat_Productos
 
             copiaCodigo = codigo.Text
 
-
-
         Else
             MessageBox.Show("El código no se encuentra registrado.", " Productos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         End If

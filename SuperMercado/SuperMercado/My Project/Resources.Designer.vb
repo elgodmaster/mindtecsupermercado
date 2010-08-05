@@ -137,9 +137,23 @@ Namespace My.Resources
             End Get
         End Property
         
+        Friend ReadOnly Property carteraClientesBackground() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("carteraClientesBackground", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
         Friend ReadOnly Property cash_register() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("cash_register", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        Friend ReadOnly Property cog() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("cog", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -168,6 +182,13 @@ Namespace My.Resources
         Friend ReadOnly Property disk() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("disk", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        Friend ReadOnly Property lock_break() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("lock_break", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -207,6 +228,13 @@ Namespace My.Resources
             End Get
         End Property
         
+        Friend ReadOnly Property opera() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("opera", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
         Friend ReadOnly Property page() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("page", resourceCulture)
@@ -242,6 +270,13 @@ Namespace My.Resources
             End Get
         End Property
         
+        Friend ReadOnly Property update() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("update", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
         Friend ReadOnly Property user_add() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("user_add", resourceCulture)
@@ -259,6 +294,13 @@ Namespace My.Resources
         Friend ReadOnly Property zoom1() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("zoom1", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        Friend ReadOnly Property zoom2() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("zoom2", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

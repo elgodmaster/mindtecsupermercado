@@ -11,42 +11,33 @@ Public Class Usuarios
     Dim modificaronCampos As Boolean
 #End Region
 
+#Region "  Boton BUSCAR  "
+    Private Sub Buscar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Buscar.Click
+        Usuarios()
+    End Sub
+#End Region
+
 #Region "  Bótón ACEPTAR  "
-    Private Sub buttonAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles buttonAceptar.Click
+    Private Sub buttonAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         If textBoxUsuario.Text.Trim = "" Then
             MessageBox.Show("Escriba el nombre del usuario.", "Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             textBoxUsuario.Focus()
             Return
         End If
 
-        Caja = "Consulta124" : Parametros = "V1=" & textBoxUsuario.Text.Trim & "|"
-        ObjRet = lConsulta.LlamarCaja(Caja, 1, Parametros)
+        consulta124()
 
-        ButtonGrabar.Visible = True
-        mostrarControles()
-        textBoxUsuario.Enabled = False
-
-        If lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|") = "OK" Then
-            labelResul.Text = "Usuario registrado. Puede modificar cualquier valor y hacer clic en el botón guardar."
-            llenarCampos(ObjRet.DS)
-            buttonAceptar.Enabled = False
-        Else
-            labelResul.Text = "Usuario no registrado. LLene los campos necesarios y haga clic en el botón guardar."
-            TextBoxNombreCompleto.Focus()
-            mostrarControles()
-            buttonAceptar.Enabled = False
-        End If
     End Sub
 #End Region
 
 #Region "  Botón LIMPIAR  "
-    Private Sub ButtonLimpiar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonLimpiar.Click
+    Private Sub ButtonLimpiar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Limpiar.Click
         limpiarPantalla()
     End Sub
 #End Region
 
 #Region "  Botón GRABAR  "
-    Private Sub ButtonGrabar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonGrabar.Click
+    Private Sub ButtonGrabar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Grabar.Click
         Dim Result As DialogResult
         '<Validación>
         If textBoxUsuario.Text.Trim = "" Then
@@ -93,7 +84,7 @@ Public Class Usuarios
 #Region "  Evento: Usuarios LOAD  "
     Private Sub Usuarios_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         textBoxUsuario.Enabled = True
-        ButtonGrabar.Visible = False
+        Grabar.Visible = False
         ocultarControles()
 
         'Carga el comboBox
@@ -113,7 +104,7 @@ Public Class Usuarios
             Case Keys.F2
                 Usuarios()
             Case Keys.Enter
-                buttonAceptar.Focus()
+
         End Select
     End Sub
 #End Region
@@ -166,6 +157,28 @@ Public Class Usuarios
         ComboBoxTipoPermiso.Text = ds.Tables(0).Rows(0).Item(3).ToString.Trim
 
         llenarCheckBox()
+    End Sub
+#End Region
+
+#Region "  Rutina: Consulta124  "
+    Sub consulta124()
+
+        Caja = "Consulta124" : Parametros = "V1=" & textBoxUsuario.Text.Trim & "|"
+        ObjRet = lConsulta.LlamarCaja(Caja, 1, Parametros)
+
+        If lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|") = "OK" Then
+            labelResul.Text = "Usuario registrado. Puede modificar cualquier valor y hacer clic en el botón guardar."
+            llenarCampos(ObjRet.DS)
+
+            Grabar.Visible = True
+            mostrarControles()
+            textBoxUsuario.Enabled = False
+        Else
+            labelResul.Text = "Usuario no registrado. LLene los campos necesarios y haga clic en el botón guardar."
+            TextBoxNombreCompleto.Focus()
+            mostrarControles()
+
+        End If
     End Sub
 #End Region
 
@@ -230,9 +243,12 @@ Public Class Usuarios
             Dim nuevo As Grid = New Grid(ObjRet.DS)
 
             Me.textBoxUsuario.Text = nuevo.resultado
-            Dim e As KeyEventArgs
-            e = New KeyEventArgs(Keys.Enter)
-            Me.CodigoCliente_KeyDown(DBNull.Value, e)
+
+            If nuevo.resultado = "" Then
+                Return
+            End If
+
+            consulta124()
         Else
             MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
         End If
@@ -245,47 +261,6 @@ Public Class Usuarios
         TextBoxNombreCompleto.Clear()
         textBoxUsuario.Clear()
 
-        'Seguridad
-        CheckBoxSegUsu.Checked = False
-        CheckBoxSegPer.Checked = False
-        'Reportes
-        CheckBoxRepVen.Checked = False
-        CheckBoxRepSalPro.Checked = False
-        CheckBoxRepRetEfec.Checked = False
-        CheckBoxRepProv.Checked = False
-        CheckBoxRepProd.Checked = False
-        CheckBoxRepFac.Checked = False
-        CheckBoxRepEntPro.Checked = False
-        CheckBoxRepDepEfec.Checked = False
-        CheckBoxRepClie.Checked = False
-        'Inventarios
-        CheckBoxInvMov.Checked = False
-        CheckBoxInvCon.Checked = False
-        'Facturación
-        CheckBoxFacFac.Checked = False
-        CheckBoxFacCot.Checked = False
-        'Configuración
-        CheckBoxConTic.Checked = False
-        CheckBoxConFac.Checked = False
-        CheckBoxConCaja.Checked = False
-        'Catálogos
-        CheckBoxCatUni.Checked = False
-        CheckBoxCatProv.Checked = False
-        CheckBoxCatPro.Checked = False
-        CheckBoxCatMar.Checked = False
-        CheckBoxCatDep.Checked = False
-        CheckBoxCatClie.Checked = False
-        CheckBoxCatCat.Checked = False
-        'Caja
-        CheckBoxCajaCorte.Checked = False
-        CheckBoxCajaEnt.Checked = False
-        CheckBoxCajaSal.Checked = False
-
-        ButtonGrabar.Visible = False
-        buttonAceptar.Enabled = True
-        textBoxUsuario.Clear()
-
-        ocultarControles()
         textBoxUsuario.Enabled = True
         textBoxUsuario.Focus()
     End Sub
@@ -305,4 +280,12 @@ Public Class Usuarios
     End Sub
 #End Region
 
+#Region "  Evento: textBoxUsuario - KEY PRESS  "
+    Private Sub textBoxUsuario_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles textBoxUsuario.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            consulta124()
+        End If
+    End Sub
+#End Region
+    
 End Class

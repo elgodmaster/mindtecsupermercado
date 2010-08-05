@@ -74,7 +74,11 @@ BEGIN
 	    CostoCompra		= @valor7,
 	    PrecioVenta		= @valor8,
 	    StockMinimo		= @valor9
-	Where Codigo = @keyCodigo 	    
+	Where Codigo = @keyCodigo
+	
+	Update SMercado..Existencias  	    
+	Set Codigo = @valor2
+	Where Codigo = @keyCodigo  
 END
 ELSE
 BEGIN
