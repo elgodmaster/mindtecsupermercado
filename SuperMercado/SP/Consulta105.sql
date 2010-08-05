@@ -93,7 +93,7 @@ BEGIN
    Begin
      Select @Desc1 = IsNull(NombreFiscal,'')
      From SMercado..Cat_Clientes (NoLock)
-     Where IdCliente  = @Valor1
+     Where codigo  = @Valor1
 
 	 Select @Registro = @@RowCount	 
    End
@@ -121,7 +121,7 @@ BEGIN
      From SMercado..Cat_Clientes a (NoLock)
      Left Join SMercado..Cat_EstadosdelaRepublica b (NoLock) On b.IdEstado = a.IdEstado
      Left Join SMercado..Cat_Ciudades c (NoLock) On c.IdCiudad = a.IdCiudad And c.IdEstado = a.IdEstado 
-     Where IdCliente  = @Valor1
+     Where a.Codigo   = @Valor1
 
 	 Select @Registro = @@RowCount	 
    End
@@ -148,7 +148,16 @@ BEGIN
      From SMercado..Cat_Clientes a (NoLock)
      Left Join SMercado..Cat_EstadosdelaRepublica b (NoLock) On b.IdEstado = a.IdEstado
      Left Join SMercado..Cat_Ciudades c (NoLock) On c.IdCiudad = a.IdCiudad And c.IdEstado = a.IdEstado 
-     Where IdCliente = @Valor1
+     Where a.Codigo  = @Valor1
+
+	 Select @Registro = @@RowCount	 
+   End
+   
+    If @Validar = 4
+   Begin
+     Select @Desc1 = IsNull(NombreFiscal,'')
+     From SMercado..Cat_Clientes (NoLock)
+     Where Codigo = @Valor1
 
 	 Select @Registro = @@RowCount	 
    End
@@ -164,6 +173,8 @@ BEGIN
          Select @Resul = '2R=OK|'
 	  If @Validar = 3
          Select @Resul = '2R=ERROR|2M=No exite el codigo del cliente|'
+      If @Validar = 4
+         Select @Resul = '2R=ERROR|2M=No esta registrado el codigo del cliente|'
    End
   Else
     Begin
@@ -186,6 +197,8 @@ BEGIN
                          '|V11=' + @Desc11 + '|V12=' + @Desc12 + '|V13=' + @Desc13 + '|V14=' + @Desc14 + '|V15=' + @Desc15 + '|V16=' + @Desc16 + 
                          '|V17=' + @Desc17 + '|V18=' + @Desc18 
         End
+      If @Validar = 4
+         Select @Resul = '2R=OK|'
     End
   Set NoCount OFF
   Select resultado = @Resul 

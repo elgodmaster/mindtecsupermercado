@@ -267,6 +267,8 @@ BEGIN
 							  '|V12=' + @Desc12 + 
 							  '|V13=' + @Desc13 + 
 							  '|V14=' + @Desc14 + '|'
+	  If @Validar = 7 
+         Select @Resul = '2R=OK|V1=' + @Desc1 + '|'
     End
   Set NoCount OFF
 END

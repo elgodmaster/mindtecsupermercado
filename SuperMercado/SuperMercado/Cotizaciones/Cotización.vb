@@ -34,17 +34,16 @@ Public Class Cotización
         CrearDsDatos()
         ConfiguraGridDatos()
         LimpiarPantalla()
-
     End Sub
 #End Region
 
 #Region " cotizacion KeyDown "
-    Private Sub txtNoFactura_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtNoFactura.KeyDown
+    Private Sub txtNoFactura_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtNoCotizacion.KeyDown
         Select Case e.KeyCode
             Case Keys.F2
                 Catalogodecotizaciones()
             Case Keys.Enter
-                Caja = "Consulta125" : Parametros = "V1=" & txtNoFactura.Text & "|"
+                Caja = "Consulta125" : Parametros = "V1=" & txtNoCotizacion.Text & "|"
                 If lConsulta Is Nothing Then lConsulta = New ClsConsultas
                 ObjRet = lConsulta.LlamarCaja(Caja, "4", Parametros)
                 If ObjRet.bOk Then
@@ -85,6 +84,8 @@ Public Class Cotización
                     GroupBoxDatosCliente.Visible = True
 
                     Txt_CodigoProducto.Focus()
+                Else
+                    MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
                 End If
         End Select
     End Sub
@@ -215,7 +216,7 @@ Public Class Cotización
         If ObjRet.bOk Then
             Dim nuevo As Grid = New Grid(ObjRet.DS)
 
-            Me.txtNoFactura.Text = nuevo.resultado
+            Me.txtNoCotizacion.Text = nuevo.resultado
             Dim e As KeyEventArgs
             e = New KeyEventArgs(Keys.Enter)
             Me.txtNoFactura_KeyDown(DBNull.Value, e)
@@ -515,14 +516,14 @@ Public Class Cotización
         Me.LblSubtotal.Text = "0.00"
 
 
-        txtNoFactura.Text = ""
+        txtNoCotizacion.Text = ""
         Txt_Cantidad.Text = "0.00"
         Txt_CodigoProducto.Text = ""
         TxtIva.Text = "16"
 
         TxtIva.Enabled = True
         Me.btnAceptar.Enabled = True
-        Me.txtNoFactura.Enabled = True
+        Me.txtNoCotizacion.Enabled = True
         Me.Impresion.Visible = False
         Me.Grabar.Visible = False
         Eliminar.Visible = False
@@ -533,7 +534,7 @@ Public Class Cotización
         Me.LAbeliva.Visible = False
         Me.Labelfecha.Visible = False
         DsDatos.Tables("Table").Clear()
-        Me.txtNoFactura.Focus()
+        Me.txtNoCotizacion.Focus()
     End Sub
 
     Private Sub Limpiar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Limpiar.Click
@@ -543,7 +544,7 @@ Public Class Cotización
 
     Private Sub btnAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAceptar.Click
 
-        Caja = "Consulta125" : Parametros = "V1=" & txtNoFactura.Text & "|"
+        Caja = "Consulta125" : Parametros = "V1=" & txtNoCotizacion.Text & "|"
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
         ObjRet = lConsulta.LlamarCaja(Caja, "4", Parametros)
         If ObjRet.bOk Then
@@ -557,7 +558,7 @@ Public Class Cotización
             Me.LblCP.Text = lConsulta.ObtenerValor("V9", ObjRet.sResultado, "|")
             Me.lblEstadoCliente.Text = lConsulta.ObtenerValor("V10", ObjRet.sResultado, "|")
             Me.lblCiudadCliente.Text = lConsulta.ObtenerValor("V11", ObjRet.sResultado, "|")
-            Me.txtNoFactura.Enabled = False
+            Me.txtNoCotizacion.Enabled = False
             Me.btnAceptar.Enabled = False
 
             If Not ObjRet.DS Is DBNull.Value Then
@@ -603,7 +604,7 @@ Public Class Cotización
         If Not DsDatos Is DBNull.Value Then
             If Not DsDatos.Tables Is DBNull.Value Then
                 If DsDatos.Tables("Table").Rows.Count > 0 Then
-                    Caja = "Grabar125" : Parametros = "V1=" & Me.txtNoFactura.Text & "|V2=" & Me.dtpFecha.Value.ToString("dd/MM/yyyy") & _
+                    Caja = "Grabar125" : Parametros = "V1=" & Me.txtNoCotizacion.Text & "|V2=" & Me.dtpFecha.Value.ToString("dd/MM/yyyy") & _
                         "|V3=" & CodigoCliente.Text & "|V4=" & Me.TxtIva.Text & _
                         "|V5=" & IdUsuario & "|V6=" & IdtipoCambio & "|"
                     If lConsulta Is Nothing Then lConsulta = New ClsConsultas
@@ -641,7 +642,7 @@ Public Class Cotización
 
 #Region " Eliminar "
     Private Sub Eliminar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Eliminar.Click
-        Caja = "Eliminar125" : Parametros = "V1=" & Me.txtNoFactura.Text & "|"
+        Caja = "Eliminar125" : Parametros = "V1=" & Me.txtNoCotizacion.Text & "|"
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
         ObjRet = lConsulta.LlamarCaja(Caja, "", Parametros, DsDatos)
         'Estatus
@@ -655,4 +656,79 @@ Public Class Cotización
     End Sub
 #End Region
 
+    Private Sub Nuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Nuevo.Click
+        Nueva()
+    End Sub
+
+    Sub Nueva()
+        Caja = "Consulta125" : Parametros = ""
+        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+        ObjRet = lConsulta.LlamarCaja(Caja, "7", Parametros)
+        'Estatus
+        If ObjRet.bOk Then
+            Me.txtNoCotizacion.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
+            btnAceptar.PerformClick()
+        Else
+            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+        End If
+    End Sub
+
+#Region " Impresion Excel "
+    Sub Excelazo()
+
+        'Creamos las variables
+        Dim exApp As New Microsoft.Office.Interop.Excel.Application
+        Dim exLibro As Microsoft.Office.Interop.Excel.Workbook
+        Dim exHoja As Microsoft.Office.Interop.Excel.Worksheet
+
+        Try
+            'Añadimos el Libro al programa, y la hoja al libro
+            exLibro = exApp.Workbooks.Open("F:\MindTec\PRUEBAS_PROYECTOS\PruebasReportes\PruebasReportes\Componentes\Reportes\PlantillaCotizacion.xlsx")
+            exHoja = exLibro.ActiveSheet
+
+            exHoja.Cells(7, 6) = txtNoCotizacion.Text
+            exHoja.Cells(8, 6) = dtpFecha.Value.ToString("dd/MMM/yyyy")
+            exHoja.Cells(9, 6) = "Valencia"
+
+            exHoja.Cells(7, 2) = lblNombreCliente.Text
+            exHoja.Cells(8, 2) = lblRFCCliente.Text
+            exHoja.Cells(9, 2) = lblDireccionCliente.Text
+            exHoja.Cells(10, 2) = lblcolonia.Text
+            exHoja.Cells(11, 2) = lblEstadoCliente.Text
+            exHoja.Cells(12, 2) = lblCiudadCliente.Text
+            exHoja.Cells(13, 2) = LblCP.Text
+            ''Encabezados de la tabla
+
+            For Fila As Integer = 0 To DsDatos.Tables(0).Rows.Count - 1
+                For Col As Integer = 0 To DsDatos.Tables(0).Columns.Count - 2
+                    exHoja.Cells.Item(Fila + 17, Col + 1) = DsDatos.Tables(0).Rows(Fila).Item(Col)
+
+                Next
+
+            Next
+
+
+            exHoja.Cells(39, 6) = LblSubtotal.Text
+            exHoja.Cells(40, 6) = lblIVA.Text
+            exHoja.Cells(41, 6) = LBLTOTAL.Text
+
+
+
+            'Aplicación visible
+            exApp.Visible = True
+
+            exHoja = Nothing
+            exLibro = Nothing
+            exApp = Nothing
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "Error al exportar a Excel")
+
+        End Try
+
+    End Sub
+#End Region
+
+    Private Sub Impresion_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Impresion.Click
+        Excelazo()
+    End Sub
 End Class

@@ -215,7 +215,7 @@ Public Class Facturacion
     Private Sub txtNoFactura_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtNoFactura.KeyDown
         Select Case e.KeyCode
             Case Keys.F2
-                ''CatalogoFacturas
+                CatalogoFacturas()
             Case Keys.Enter
                 Caja = "Consulta119" : Parametros = "V1=" & txtNoFactura.Text & "|"
                 If lConsulta Is Nothing Then lConsulta = New ClsConsultas
@@ -249,6 +249,16 @@ Public Class Facturacion
         If ObjRet.bOk Then
             Dim nuevo As Grid = New Grid(ObjRet.DS)
             CodigoVenta.Text = nuevo.resultado
+        End If
+    End Sub
+
+    Sub CatalogoFacturas()
+        Caja = "Consulta119" : Parametros = ""
+        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+        ObjRet = lConsulta.LlamarCaja(Caja, "3", Parametros)
+        If ObjRet.bOk Then
+            Dim nuevo As Grid = New Grid(ObjRet.DS)
+            txtNoFactura.Text = nuevo.resultado
         End If
     End Sub
 
