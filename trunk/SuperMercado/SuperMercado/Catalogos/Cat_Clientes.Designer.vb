@@ -48,8 +48,9 @@ Partial Class Cat_Clientes
         Me.Label1 = New System.Windows.Forms.Label
         Me.AbonarToolStrip = New System.Windows.Forms.ToolStrip
         Me.Buscar = New System.Windows.Forms.ToolStripButton
-        Me.ToolStripButtonNuevo = New System.Windows.Forms.ToolStripButton
         Me.CarteraClientes = New System.Windows.Forms.ToolStripButton
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator
+        Me.ToolStripButtonNuevo = New System.Windows.Forms.ToolStripButton
         Me.Limpiar = New System.Windows.Forms.ToolStripButton
         Me.Grabar = New System.Windows.Forms.ToolStripButton
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator
@@ -109,10 +110,10 @@ Partial Class Cat_Clientes
         Me.GridDatosCLIENTES = New SourceGrid.DataGrid
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
         Me.ToolStripStatusLabelClientes = New System.Windows.Forms.ToolStripStatusLabel
-        Me.Barra = New System.Windows.Forms.PictureBox
         Me.PanelCartera = New System.Windows.Forms.Panel
         Me.GridDatosCartera = New SourceGrid.DataGrid
         Me.lblTotalCartera = New System.Windows.Forms.Label
+        Me.Barra = New System.Windows.Forms.PictureBox
         Me.AbonarToolStrip.SuspendLayout()
         Me.AdeudosTabPage.SuspendLayout()
         Me.DatosTabPage.SuspendLayout()
@@ -123,8 +124,8 @@ Partial Class Cat_Clientes
         Me.PanelDatos.SuspendLayout()
         Me.PanelGrid.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
-        CType(Me.Barra, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelCartera.SuspendLayout()
+        CType(Me.Barra, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'textBoxCliente
@@ -152,7 +153,7 @@ Partial Class Cat_Clientes
         'AbonarToolStrip
         '
         Me.AbonarToolStrip.AutoSize = False
-        Me.AbonarToolStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Buscar, Me.ToolStripButtonNuevo, Me.CarteraClientes, Me.Limpiar, Me.Grabar, Me.ToolStripSeparator1, Me.ToolStripButtonEliminarCuenta, Me.ToolStripButtonDetalle, Me.ToolStripButtonAbonos, Me.ToolStripButtonAbonar})
+        Me.AbonarToolStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Buscar, Me.CarteraClientes, Me.ToolStripSeparator2, Me.ToolStripButtonNuevo, Me.Limpiar, Me.Grabar, Me.ToolStripSeparator1, Me.ToolStripButtonEliminarCuenta, Me.ToolStripButtonDetalle, Me.ToolStripButtonAbonos, Me.ToolStripButtonAbonar})
         Me.AbonarToolStrip.Location = New System.Drawing.Point(0, 0)
         Me.AbonarToolStrip.Name = "AbonarToolStrip"
         Me.AbonarToolStrip.Size = New System.Drawing.Size(1016, 48)
@@ -169,16 +170,6 @@ Partial Class Cat_Clientes
         Me.Buscar.Size = New System.Drawing.Size(36, 45)
         Me.Buscar.Text = "Buscar clientes"
         '
-        'ToolStripButtonNuevo
-        '
-        Me.ToolStripButtonNuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButtonNuevo.Image = Global.SuperMercado.My.Resources.Resources.user_add
-        Me.ToolStripButtonNuevo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.ToolStripButtonNuevo.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButtonNuevo.Name = "ToolStripButtonNuevo"
-        Me.ToolStripButtonNuevo.Size = New System.Drawing.Size(36, 45)
-        Me.ToolStripButtonNuevo.Text = "Agregar un nuevo cliente"
-        '
         'CarteraClientes
         '
         Me.CarteraClientes.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
@@ -188,6 +179,21 @@ Partial Class Cat_Clientes
         Me.CarteraClientes.Name = "CarteraClientes"
         Me.CarteraClientes.Size = New System.Drawing.Size(36, 45)
         Me.CarteraClientes.Text = "Mostrar cartera de clientes"
+        '
+        'ToolStripSeparator2
+        '
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 48)
+        '
+        'ToolStripButtonNuevo
+        '
+        Me.ToolStripButtonNuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButtonNuevo.Image = Global.SuperMercado.My.Resources.Resources.user_add
+        Me.ToolStripButtonNuevo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.ToolStripButtonNuevo.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButtonNuevo.Name = "ToolStripButtonNuevo"
+        Me.ToolStripButtonNuevo.Size = New System.Drawing.Size(36, 45)
+        Me.ToolStripButtonNuevo.Text = "Agregar un nuevo cliente"
         '
         'Limpiar
         '
@@ -296,7 +302,7 @@ Partial Class Cat_Clientes
         Me.GridDatosCuentas.Location = New System.Drawing.Point(18, 104)
         Me.GridDatosCuentas.Name = "GridDatosCuentas"
         Me.GridDatosCuentas.SelectionMode = SourceGrid.GridSelectionMode.Row
-        Me.GridDatosCuentas.Size = New System.Drawing.Size(650, 357)
+        Me.GridDatosCuentas.Size = New System.Drawing.Size(774, 357)
         Me.GridDatosCuentas.TabIndex = 32
         Me.GridDatosCuentas.TabStop = True
         Me.GridDatosCuentas.ToolTipText = ""
@@ -841,9 +847,9 @@ Partial Class Cat_Clientes
         'PanelDatos
         '
         Me.PanelDatos.Controls.Add(Me.ClientesTabControl)
-        Me.PanelDatos.Location = New System.Drawing.Point(537, 59)
+        Me.PanelDatos.Location = New System.Drawing.Point(63, 174)
         Me.PanelDatos.Name = "PanelDatos"
-        Me.PanelDatos.Size = New System.Drawing.Size(53, 56)
+        Me.PanelDatos.Size = New System.Drawing.Size(537, 285)
         Me.PanelDatos.TabIndex = 290
         '
         'PanelGrid
@@ -892,22 +898,10 @@ Partial Class Cat_Clientes
         Me.ToolStripStatusLabelClientes.Text = "Escriba el nombre o número de identificación de un cliente para filtrar los resul" & _
             "tados."
         '
-        'Barra
-        '
-        Me.Barra.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Barra.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.Barra.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Barra.Location = New System.Drawing.Point(0, 128)
-        Me.Barra.Name = "Barra"
-        Me.Barra.Size = New System.Drawing.Size(1024, 4)
-        Me.Barra.TabIndex = 284
-        Me.Barra.TabStop = False
-        '
         'PanelCartera
         '
         Me.PanelCartera.Controls.Add(Me.GridDatosCartera)
-        Me.PanelCartera.Location = New System.Drawing.Point(36, 156)
+        Me.PanelCartera.Location = New System.Drawing.Point(537, 150)
         Me.PanelCartera.Name = "PanelCartera"
         Me.PanelCartera.Size = New System.Drawing.Size(609, 215)
         Me.PanelCartera.TabIndex = 293
@@ -917,7 +911,8 @@ Partial Class Cat_Clientes
         Me.GridDatosCartera.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
                     Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridDatosCartera.BackColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.GridDatosCartera.BackColor = System.Drawing.Color.Transparent
+        Me.GridDatosCartera.BackgroundImage = Global.SuperMercado.My.Resources.Resources.carteraClientesBackground
         Me.GridDatosCartera.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GridDatosCartera.DeleteQuestionMessage = ""
         Me.GridDatosCartera.DeleteRowsWithDeleteKey = False
@@ -940,6 +935,18 @@ Partial Class Cat_Clientes
         Me.lblTotalCartera.Size = New System.Drawing.Size(49, 14)
         Me.lblTotalCartera.TabIndex = 294
         Me.lblTotalCartera.Text = "Total: "
+        '
+        'Barra
+        '
+        Me.Barra.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Barra.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.Barra.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Barra.Location = New System.Drawing.Point(0, 128)
+        Me.Barra.Name = "Barra"
+        Me.Barra.Size = New System.Drawing.Size(1024, 4)
+        Me.Barra.TabIndex = 284
+        Me.Barra.TabStop = False
         '
         'Cat_Clientes
         '
@@ -978,8 +985,8 @@ Partial Class Cat_Clientes
         Me.PanelGrid.ResumeLayout(False)
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
-        CType(Me.Barra, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelCartera.ResumeLayout(False)
+        CType(Me.Barra, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1053,4 +1060,5 @@ Partial Class Cat_Clientes
     Friend WithEvents PanelCartera As System.Windows.Forms.Panel
     Friend WithEvents GridDatosCartera As SourceGrid.DataGrid
     Friend WithEvents lblTotalCartera As System.Windows.Forms.Label
+    Friend WithEvents ToolStripSeparator2 As System.Windows.Forms.ToolStripSeparator
 End Class

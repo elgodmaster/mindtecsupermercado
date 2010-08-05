@@ -48,6 +48,7 @@ Public Class Cat_Clientes
         dsDatosClientes.Tables("Table").Columns.Add("C5", GetType(String))
         dsDatosClientes.Tables("Table").Columns.Add("C6", GetType(String))
         dsDatosClientes.Tables("Table").Columns.Add("C7", GetType(String))
+        dsDatosClientes.Tables("Table").Columns.Add("C8", GetType(String))
 
     End Sub
 
@@ -169,6 +170,11 @@ Public Class Cat_Clientes
         GridColumn.DataCell.View = viewIzquierda
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
+        GridColumn = GridDatosCLIENTES.Columns.Add("C8", " ", EditorCustom)
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.View = viewIzquierda
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+
         GridDatosCLIENTES.Columns(0).Visible = False
 
         GridDatosCLIENTES.Columns.SetWidth(1, 50)
@@ -177,6 +183,7 @@ Public Class Cat_Clientes
         GridDatosCLIENTES.Columns.SetWidth(4, 300)
         GridDatosCLIENTES.Columns.SetWidth(5, 90)
         GridDatosCLIENTES.Columns.SetWidth(6, 170)
+        GridDatosCLIENTES.Columns.SetWidth(7, 10)
 
     End Sub
 #End Region
@@ -196,6 +203,9 @@ Public Class Cat_Clientes
         dsDatosCuentas.Tables("Table").Columns.Add("C3", GetType(String))
         dsDatosCuentas.Tables("Table").Columns.Add("C4", GetType(String))
         dsDatosCuentas.Tables("Table").Columns.Add("C5", GetType(String))
+        dsDatosCuentas.Tables("Table").Columns.Add("C6", GetType(String))
+        dsDatosCuentas.Tables("Table").Columns.Add("C7", GetType(String))
+
 
     End Sub
 
@@ -248,6 +258,7 @@ Public Class Cat_Clientes
         GridDatosCuentas.GetCell(0, 3).View = viewcolumnheader3
         GridDatosCuentas.GetCell(0, 4).View = viewcolumnheader3
         GridDatosCuentas.GetCell(0, 5).View = viewcolumnheader3
+        GridDatosCuentas.GetCell(0, 6).View = viewcolumnheader3
 
     End Sub
 
@@ -310,6 +321,16 @@ Public Class Cat_Clientes
         GridColumn.DataCell.View = viewDerecha
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
+        GridColumn = GridDatosCuentas.Columns.Add("C6", "Fecha/Hora", EditorCustom)
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.View = viewCenter
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+
+        GridColumn = GridDatosCuentas.Columns.Add("C7", " ", EditorCustom)
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.View = viewDerecha
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+
         GridDatosCuentas.Columns(0).Visible = False
 
         ''COLUMNAS
@@ -319,6 +340,8 @@ Public Class Cat_Clientes
         GridDatosCuentas.Columns.SetWidth(3, 128)
         GridDatosCuentas.Columns.SetWidth(4, 128)
         GridDatosCuentas.Columns.SetWidth(5, 128)
+        GridDatosCuentas.Columns.SetWidth(6, 150)
+        GridDatosCuentas.Columns.SetWidth(7, 10)
 
     End Sub
 #End Region
@@ -337,6 +360,7 @@ Public Class Cat_Clientes
         dsDatosCartera.Tables("Table").Columns.Add("C5", GetType(String))
         dsDatosCartera.Tables("Table").Columns.Add("C6", GetType(String))
         dsDatosCartera.Tables("Table").Columns.Add("C7", GetType(String))
+        dsDatosCartera.Tables("Table").Columns.Add("C8", GetType(String))
 
     End Sub
 
@@ -399,16 +423,31 @@ Public Class Cat_Clientes
         'gcolorRow esta declarada en el moduloGeneral
 
         'vistas
-        Dim viewCenter As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        Dim backheader As DevAge.Drawing.VisualElements.ColumnHeader = New DevAge.Drawing.VisualElements.ColumnHeader
+        backheader.BackColor = Color.Transparent
+        backheader.Border = DevAge.Drawing.RectangleBorder.NoBorder
+        Dim noBorder As New DevAge.Drawing.RectangleBorder
+        noBorder.SetColor(Color.Transparent)
+
+        Dim cColorHeader As Color
+        cColorHeader = Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(247, Byte), Integer))
+
+        Dim viewCenter As CellBackColorAlternate = New CellBackColorAlternate(Color.Transparent, Color.Transparent)
         viewCenter.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewCenter.Background = backheader
+        viewCenter.Border = noBorder
         viewCenter.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
 
-        Dim viewIzquierda As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        Dim viewIzquierda As CellBackColorAlternate = New CellBackColorAlternate(Color.Transparent, Color.Transparent)
         viewIzquierda.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewIzquierda.Background = backheader
+        viewIzquierda.Border = noBorder
         viewIzquierda.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleLeft
 
-        Dim viewDerecha As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        Dim viewDerecha As CellBackColorAlternate = New CellBackColorAlternate(Color.Transparent, Color.Transparent)
         viewDerecha.Font = New Font("Verdana", 8, FontStyle.Regular)
+        viewDerecha.Background = backheader
+        viewDerecha.Border = noBorder
         viewDerecha.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleRight
 
         Dim myfont As New Font("Verdana", 8, FontStyle.Regular)
@@ -450,12 +489,18 @@ Public Class Cat_Clientes
         GridColumn.DataCell.View = viewCenter
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
+        GridColumn = GridDatosCartera.Columns.Add("C8", " ", EditorCustom)
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.View = viewCenter
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+
         GridDatosCartera.Columns(0).Visible = False
         GridDatosCartera.Columns.SetWidth(1, 210)
         GridDatosCartera.Columns.SetWidth(2, 100)
         GridDatosCartera.Columns.SetWidth(3, 450)
         GridDatosCartera.Columns.SetWidth(4, 100)
         GridDatosCartera.Columns.SetWidth(5, 100)
+        GridDatosCartera.Columns.SetWidth(6, 100)
 
     End Sub
 
@@ -837,7 +882,7 @@ Public Class Cat_Clientes
 
 #Region "  Rutina: showData  "
     Private Sub showData()
-        PanelDatos.SetBounds(11, 138, 1000, 525)
+        PanelDatos.SetBounds(11, 138, 1000, 530)
         ClientesTabControl.Visible = True
         PanelDatos.Visible = True
         Grabar.Visible = True
@@ -852,7 +897,7 @@ Public Class Cat_Clientes
     Sub showClientsGrid()
         PanelGrid.SendToBack()
         PanelGrid.Visible = True
-        PanelGrid.SetBounds(11, 150, 1000, 525)
+        PanelGrid.SetBounds(11, 150, 1000, 500)
 
         PanelDatos.Visible = False
         PanelCartera.Visible = False
@@ -863,7 +908,7 @@ Public Class Cat_Clientes
     Sub showCarteraGrid()
         PanelCartera.SendToBack()
         PanelCartera.Visible = True
-        PanelCartera.SetBounds(11, 150, 1000, 525)
+        PanelCartera.SetBounds(11, 150, 1000, 500)
 
         PanelDatos.Visible = False
         PanelGrid.Visible = False
@@ -1248,6 +1293,44 @@ Public Class Cat_Clientes
         End If
     End Sub
 #End Region
+
+
+#Region "  Evento: GridDatosCLIENTES - PAINT  (Calcula el tamaño de la última columna para ajustarse el tamaño del grid.)  "
+    Private Sub GridDatos_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles GridDatosCLIENTES.Paint
+        Dim sizeColumns As Integer
+        For n As Integer = 0 To GridDatosCLIENTES.Columns.Count - 2
+            sizeColumns += GridDatosCLIENTES.Columns(n).Width
+        Next
+
+        Dim sizeGrid As Integer = GridDatosCLIENTES.Size.Width - sizeColumns - 6
+        GridDatosCLIENTES.Columns.SetWidth(7, sizeGrid)
+    End Sub
+#End Region
+
+#Region "  Evento: GridDatosCuentas - PAINT  (Calcula el tamaño de la última columna para ajustarse el tamaño del grid.)  "
+    Private Sub GridDatosCartera_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles GridDatosCuentas.Paint
+        Dim sizeColumns As Integer
+        For n As Integer = 0 To GridDatosCuentas.Columns.Count - 2
+            sizeColumns += GridDatosCuentas.Columns(n).Width
+        Next
+
+        Dim sizeGrid As Integer = GridDatosCuentas.Size.Width - sizeColumns - 6
+        GridDatosCuentas.Columns.SetWidth(7, sizeGrid)
+    End Sub
+#End Region
+
+#Region "  Evento: GridDatosCartera - PAINT  (Calcula el tamaño de la última columna para ajustarse el tamaño del grid.)  "
+    Private Sub GridDatosPROVEEDORES_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles GridDatosCartera.Paint
+        Dim sizeColumns As Integer
+        For n As Integer = 0 To GridDatosCartera.Columns.Count - 2
+            sizeColumns += GridDatosCartera.Columns(n).Width
+        Next
+
+        Dim sizeGrid As Integer = GridDatosCartera.Size.Width - sizeColumns - 5
+        GridDatosCartera.Columns.SetWidth(6, sizeGrid)
+    End Sub
+#End Region
+
 
 End Class
 

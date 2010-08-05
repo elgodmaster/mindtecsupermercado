@@ -36,6 +36,8 @@ BEGIN
   Declare @Desc1     VarChar(8000)
   Declare @Resul2    VarChar(8000)
   DECLARE @nomProvee VarChar(8000)
+  DECLARE @error	 int 
+  
     
   --Asignar Valores
   Select @Desc0  = '' 
@@ -132,9 +134,6 @@ BEGIN
 	END 	
 END 
 
-
-     
- Begin Tran Grabar109
  
 	Select e.idEntrada  
 	From SMercado..entradas e 
@@ -151,6 +150,9 @@ END
 	Where idEntrada = @Valor1 And foliofactura = 0
 	Select  @Registro = @@ROWCOUNT 
 	
+-- Inicia la TRANSACCIÓN --
+Begin Tran Grabar109
+	
 	If @Registro = 0
 	Begin
 	Insert SMercado..Entradas(fecha,idUsuario,folioFactura,IdProveedor)
@@ -166,16 +168,18 @@ END
         Where idEntrada=@Valor1 
 	  End
 	 
-	 If @@ERROR <> 0
-	 Begin
-	  Rollback Tran Grabar109
-	  Return
-	 End
+SET @Error = @@ERROR
+--Si ocurre un error almacenamos su código en @Error
+--y saltamos al trozo de código que deshara la transacción. Si, eso de ahí es un 
+--GOTO, el demonio de los programadores, pero no pasa nada por usarlo
+--cuando es necesario
+IF (@Error<>0) GOTO TratarError
+
 -----------------------------------------------------     --Leer XML     -----------------------------------------------------     
 --Validación de dataset 
 Declare @idoc int    
 Exec sp_xml_preparedocument @idoc OUTPUT, @DataSet     
-SELECT  C7  = C7,    --FoliEntrada                 
+SELECT  C7  = @Valor1,    --FoliEntrada                 
         C1  = C1,    --IdProducto
         C2  = C2,    --Descripcion producto                       
         C3  = C3,     --Cantidad 
@@ -191,20 +195,19 @@ SELECT  C7  = C7,    --FoliEntrada
               C4  Varchar (250),
               C5  Decimal(18,2),
               C6  Decimal (18,2))    
-        EXEC sp_xml_removedocument @idoc     
+        EXEC sp_xml_removedocument @idoc
+        
+SET @error = @@ERROR 
+IF (@error<>0) GOTO TratarError  
 -----------------------------------------------     -- Fin de XML     -----------------------------------------------
 	
 	--Insert de la tabla temporal..
 	Insert SMercado..Entrada_detalles(idEntrada,IdProducto,Descripcion,cantidad,Unidad,costoUnitario,CostoTotal)
     Select C7,C1,C2,C3,C4,C5,C6
     From #TmpGrabar109
-
 	 
-	 If @@ERROR <> 0
-	 Begin
-	  RollBack Tran Grabar109
-	  Return
-	 End
+SET @error = @@ERROR 
+IF (@error<>0) GOTO TratarError
 	 
 	 Update a
 	    Set a.cantidad = a.cantidad + b.C3
@@ -212,16 +215,25 @@ SELECT  C7  = C7,    --FoliEntrada
 	    Left join #TmpGrabar109 b on b.C1 = a.codigo
 	    Where b.C7 = @Valor1
 	   
-	If @@ERROR <> 0
-	 Begin
-	  RollBack Tran Grabar109
-	  Return
-	 End
+SET @error = @@ERROR 
+IF (@error<>0) GOTO TratarError
 	 
-	 Commit Tran Grabar109
-	 
+-- Termina la TRANSACCIÓN --
+Commit Tran Grabar109
+
   -- Enviar Resultado
-  Select @Resul='2R=OK|2M=Se grabó correctamente.|'   
+  Select @Resul='2R=OK|2M=Se grabó correctamente.|' 
+  
+  TratarError:
+--Si ha ocurrido algún error llegamos hasta aquí
+If @@Error<>0
+	BEGIN
+	PRINT 'Ha ecorrido un error. Abortamos la transacción'
+	--Se lo comunicamos al usuario y deshacemos la transacción
+	--todo volverá a estar como si nada hubiera ocurrido
+	ROLLBACK TRAN
+	END
+  
 
   Set NoCount OFF
 END

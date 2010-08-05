@@ -183,7 +183,7 @@ select * from SMercado..Caja_corte
 insert into SMercado..Caja_Salida values ( 1, 1, 150.00, 'Ninguno', '14/04/2010 16:21:00')
 insert into SMercado..Caja_Salida values ( 1, 1, 151.00, 'Ninguno', '30-04-2010 16:53:00')
 
-Select * From SMercado..Existencias 
+Select * From SMercado..Cat_Clientes 
 
 exec grabar109 'V1=16|V2=30-07-2010|V3=1|V4=FAC009|V5=ALEI196402|V6=|','','',''
 exec grabar110 'V1=100|','','',''
@@ -198,10 +198,8 @@ exec grabar130 'V1=LEI196402|V2=1|V3=FAC002|V4=44.50','','',''
 exec consulta100 '','','',''
 -- Categorías
 exec consulta101 '','','',''
---
 exec consulta104 '','','',''
-
-exec consulta105 'V1=LINDOR|','','','2'
+exec consulta105 'V1=1|','','','2'
 exec consulta106 'V1=PROVEEDOR1|', '', '', '2'
 exec Consulta110 'V1=admin|','','',''
 exec consulta111 'V1=ADMIN|','','',''
@@ -444,6 +442,12 @@ Select * from SMercado_Seguridad..Usuarios
 Alter table SMercado..Cat_departamentos
 add constraint uc_catDepartamentos unique (descripcion)
 
+Alter table SMercado_Seguridad..usuarios
+add constraint uc_usuarios unique (nombreUsuario)
+
+Alter table SMercado_Seguridad..permisos
+add constraint uc_permisos unique (nomPermiso)
+
 insert SMercado..Cat_departamentos  values ('-SIN DEPARTAMENTO-')
 
 select * from SMercado..Cat_Marcas 
@@ -460,8 +464,8 @@ order by IdVenta  desc
 
 Select * From SMercado..Cat_Proveedores 
 Update SMercado..Cat_Proveedores 
-set Nombre = 'SEMAVEIN'
-where IdProveedor = 1
+set Deuda = 0 
+
 
 Update SMercado..Cat_Proveedores 
 set Deuda = 0
@@ -481,12 +485,38 @@ delete SMercado..Cuentas_Pagar_Detalles where idCuenta is null
 Select * from SMercado..Cuentas_Pagar 
 Select * from SMercado..Cuentas_Pagar_Detalles 
 
+
+Select * from SMercado..Cuentas_Cobrar
+Select * from SMercado..Cuentas_Cobrar_Detalles 
+
 select * from SMercado..Existencias 
+Select * from SMercado..Cat_Productos 
 
 update SMercado..Existencias 
 set Cantidad = 50
+
+Select * from SMercado..Existencias 
 
 Select * from SMercado..Caja_Corte
 order by fecha DESC
 
 Select * from SMercado..Entradas 
+where IdProveedor = 'SEMA2010001'
+order by fecha DESC
+
+Select * from SMercado..Entradas 
+order by idEntrada DESC
+Select * from SMercado..Entrada_detalles 
+order by idEntrada DESC
+Select * from SMercado..Salidas
+order by IdSalida 
+Select * from SMercado..salida_detalles 
+order by idSalida DESC
+
+
+truncate table SMercado..Entradas 
+truncate table SMercado..Entrada_detalles
+truncate table SMercado..salidas
+truncate table SMercado..salida_detalles
+
+

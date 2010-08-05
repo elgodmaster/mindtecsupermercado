@@ -48,13 +48,9 @@ Partial Class Usuarios
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Usuarios))
         Me.labelResul = New System.Windows.Forms.Label
-        Me.Barra = New System.Windows.Forms.PictureBox
         Me.textBoxUsuario = New System.Windows.Forms.TextBox
         Me.Label1 = New System.Windows.Forms.Label
         Me.Label4 = New System.Windows.Forms.Label
-        Me.AbonarToolStrip = New System.Windows.Forms.ToolStrip
-        Me.ButtonLimpiar = New System.Windows.Forms.ToolStripButton
-        Me.ButtonGrabar = New System.Windows.Forms.ToolStripButton
         Me.GroupBoxDatos = New System.Windows.Forms.GroupBox
         Me.TextBoxNombreCompleto = New System.Windows.Forms.TextBox
         Me.TextBoxContraseña = New System.Windows.Forms.TextBox
@@ -98,9 +94,13 @@ Partial Class Usuarios
         Me.CheckBoxRepClie = New System.Windows.Forms.CheckBox
         Me.Label7 = New System.Windows.Forms.Label
         Me.ComboBoxTipoPermiso = New System.Windows.Forms.ComboBox
-        Me.buttonAceptar = New System.Windows.Forms.Button
-        CType(Me.Barra, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.AbonarToolStrip.SuspendLayout()
+        Me.AbonarToolStrip = New System.Windows.Forms.ToolStrip
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
+        Me.Barra = New System.Windows.Forms.PictureBox
+        Me.Buscar = New System.Windows.Forms.ToolStripButton
+        Me.Nuevo = New System.Windows.Forms.ToolStripButton
+        Me.Limpiar = New System.Windows.Forms.ToolStripButton
+        Me.Grabar = New System.Windows.Forms.ToolStripButton
         Me.GroupBoxDatos.SuspendLayout()
         Me.GroupBoxConfiguracion.SuspendLayout()
         Me.GroupBoxSeguridad.SuspendLayout()
@@ -109,6 +109,8 @@ Partial Class Usuarios
         Me.GroupBoxFacturacion.SuspendLayout()
         Me.GroupBoxCatalogos.SuspendLayout()
         Me.GroupBoxReportes.SuspendLayout()
+        Me.AbonarToolStrip.SuspendLayout()
+        CType(Me.Barra, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'labelResul
@@ -120,19 +122,6 @@ Partial Class Usuarios
         Me.labelResul.Size = New System.Drawing.Size(130, 14)
         Me.labelResul.TabIndex = 309
         Me.labelResul.Text = "Nombre del usuario" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
-        '
-        'Barra
-        '
-        Me.Barra.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Barra.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.Barra.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Barra.Location = New System.Drawing.Point(-135, 132)
-        Me.Barra.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
-        Me.Barra.Name = "Barra"
-        Me.Barra.Size = New System.Drawing.Size(1300, 4)
-        Me.Barra.TabIndex = 308
-        Me.Barra.TabStop = False
         '
         'textBoxUsuario
         '
@@ -170,37 +159,6 @@ Partial Class Usuarios
         Me.Label4.TabIndex = 305
         Me.Label4.Text = "Usuarios"
         '
-        'AbonarToolStrip
-        '
-        Me.AbonarToolStrip.AutoSize = False
-        Me.AbonarToolStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ButtonLimpiar, Me.ButtonGrabar})
-        Me.AbonarToolStrip.Location = New System.Drawing.Point(0, 0)
-        Me.AbonarToolStrip.Name = "AbonarToolStrip"
-        Me.AbonarToolStrip.Size = New System.Drawing.Size(796, 48)
-        Me.AbonarToolStrip.TabIndex = 304
-        Me.AbonarToolStrip.Text = "ToolStrip1"
-        '
-        'ButtonLimpiar
-        '
-        Me.ButtonLimpiar.AutoSize = False
-        Me.ButtonLimpiar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ButtonLimpiar.Image = CType(resources.GetObject("ButtonLimpiar.Image"), System.Drawing.Image)
-        Me.ButtonLimpiar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.ButtonLimpiar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ButtonLimpiar.Name = "ButtonLimpiar"
-        Me.ButtonLimpiar.Size = New System.Drawing.Size(43, 45)
-        Me.ButtonLimpiar.Text = "Limpiar"
-        '
-        'ButtonGrabar
-        '
-        Me.ButtonGrabar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ButtonGrabar.Image = CType(resources.GetObject("ButtonGrabar.Image"), System.Drawing.Image)
-        Me.ButtonGrabar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.ButtonGrabar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ButtonGrabar.Name = "ButtonGrabar"
-        Me.ButtonGrabar.Size = New System.Drawing.Size(36, 45)
-        Me.ButtonGrabar.Text = "Grabar"
-        '
         'GroupBoxDatos
         '
         Me.GroupBoxDatos.Controls.Add(Me.TextBoxNombreCompleto)
@@ -221,7 +179,7 @@ Partial Class Usuarios
         'TextBoxNombreCompleto
         '
         Me.TextBoxNombreCompleto.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxNombreCompleto.Location = New System.Drawing.Point(129, 38)
+        Me.TextBoxNombreCompleto.Location = New System.Drawing.Point(144, 38)
         Me.TextBoxNombreCompleto.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.TextBoxNombreCompleto.MaxLength = 50
         Me.TextBoxNombreCompleto.Name = "TextBoxNombreCompleto"
@@ -231,11 +189,11 @@ Partial Class Usuarios
         'TextBoxContraseña
         '
         Me.TextBoxContraseña.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxContraseña.Location = New System.Drawing.Point(129, 66)
+        Me.TextBoxContraseña.Location = New System.Drawing.Point(144, 66)
         Me.TextBoxContraseña.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.TextBoxContraseña.Name = "TextBoxContraseña"
         Me.TextBoxContraseña.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.TextBoxContraseña.Size = New System.Drawing.Size(166, 22)
+        Me.TextBoxContraseña.Size = New System.Drawing.Size(349, 22)
         Me.TextBoxContraseña.TabIndex = 312
         '
         'Label3
@@ -244,7 +202,7 @@ Partial Class Usuarios
         Me.Label3.BackColor = System.Drawing.Color.Transparent
         Me.Label3.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label3.Location = New System.Drawing.Point(38, 69)
+        Me.Label3.Location = New System.Drawing.Point(14, 69)
         Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(86, 14)
@@ -257,7 +215,7 @@ Partial Class Usuarios
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label2.Location = New System.Drawing.Point(2, 41)
+        Me.Label2.Location = New System.Drawing.Point(14, 41)
         Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(122, 14)
@@ -767,25 +725,84 @@ Partial Class Usuarios
         Me.ComboBoxTipoPermiso.Size = New System.Drawing.Size(237, 22)
         Me.ComboBoxTipoPermiso.TabIndex = 327
         '
-        'buttonAceptar
+        'AbonarToolStrip
         '
-        Me.buttonAceptar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.buttonAceptar.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.buttonAceptar.BackgroundImage = CType(resources.GetObject("buttonAceptar.BackgroundImage"), System.Drawing.Image)
-        Me.buttonAceptar.Font = New System.Drawing.Font("Verdana", 8.0!)
-        Me.buttonAceptar.Location = New System.Drawing.Point(704, 92)
-        Me.buttonAceptar.Name = "buttonAceptar"
-        Me.buttonAceptar.Size = New System.Drawing.Size(80, 25)
-        Me.buttonAceptar.TabIndex = 328
-        Me.buttonAceptar.Text = "Aceptar"
-        Me.buttonAceptar.UseVisualStyleBackColor = False
+        Me.AbonarToolStrip.AutoSize = False
+        Me.AbonarToolStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Buscar, Me.Nuevo, Me.Limpiar, Me.Grabar})
+        Me.AbonarToolStrip.Location = New System.Drawing.Point(0, 0)
+        Me.AbonarToolStrip.Name = "AbonarToolStrip"
+        Me.AbonarToolStrip.Size = New System.Drawing.Size(796, 48)
+        Me.AbonarToolStrip.TabIndex = 304
+        Me.AbonarToolStrip.Text = "ToolStrip1"
+        '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 722)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(796, 22)
+        Me.StatusStrip1.TabIndex = 329
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'Barra
+        '
+        Me.Barra.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Barra.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.Barra.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Barra.Location = New System.Drawing.Point(-135, 132)
+        Me.Barra.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.Barra.Name = "Barra"
+        Me.Barra.Size = New System.Drawing.Size(1300, 4)
+        Me.Barra.TabIndex = 308
+        Me.Barra.TabStop = False
+        '
+        'Buscar
+        '
+        Me.Buscar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.Buscar.Image = Global.SuperMercado.My.Resources.Resources.zoom
+        Me.Buscar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.Buscar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.Buscar.Name = "Buscar"
+        Me.Buscar.Size = New System.Drawing.Size(36, 45)
+        Me.Buscar.Text = "Buscar usuarios"
+        '
+        'Nuevo
+        '
+        Me.Nuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.Nuevo.Image = Global.SuperMercado.My.Resources.Resources.add
+        Me.Nuevo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.Nuevo.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.Nuevo.Name = "Nuevo"
+        Me.Nuevo.Size = New System.Drawing.Size(36, 45)
+        Me.Nuevo.Text = "Agregar un nuevo usuario"
+        '
+        'Limpiar
+        '
+        Me.Limpiar.AutoSize = False
+        Me.Limpiar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.Limpiar.Image = CType(resources.GetObject("Limpiar.Image"), System.Drawing.Image)
+        Me.Limpiar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.Limpiar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.Limpiar.Name = "Limpiar"
+        Me.Limpiar.Size = New System.Drawing.Size(43, 45)
+        Me.Limpiar.Text = "Limpiar los campos"
+        '
+        'Grabar
+        '
+        Me.Grabar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.Grabar.Image = Global.SuperMercado.My.Resources.Resources.disk
+        Me.Grabar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.Grabar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.Grabar.Name = "Grabar"
+        Me.Grabar.Size = New System.Drawing.Size(36, 45)
+        Me.Grabar.Text = "Guardar los cambios"
         '
         'Usuarios
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(796, 744)
-        Me.Controls.Add(Me.buttonAceptar)
+        Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.ComboBoxTipoPermiso)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.GroupBoxConfiguracion)
@@ -807,9 +824,6 @@ Partial Class Usuarios
         Me.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.Name = "Usuarios"
         Me.Text = "Usuarios"
-        CType(Me.Barra, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.AbonarToolStrip.ResumeLayout(False)
-        Me.AbonarToolStrip.PerformLayout()
         Me.GroupBoxDatos.ResumeLayout(False)
         Me.GroupBoxDatos.PerformLayout()
         Me.GroupBoxConfiguracion.ResumeLayout(False)
@@ -826,6 +840,9 @@ Partial Class Usuarios
         Me.GroupBoxCatalogos.PerformLayout()
         Me.GroupBoxReportes.ResumeLayout(False)
         Me.GroupBoxReportes.PerformLayout()
+        Me.AbonarToolStrip.ResumeLayout(False)
+        Me.AbonarToolStrip.PerformLayout()
+        CType(Me.Barra, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -835,9 +852,6 @@ Partial Class Usuarios
     Friend WithEvents textBoxUsuario As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents AbonarToolStrip As System.Windows.Forms.ToolStrip
-    Friend WithEvents ButtonLimpiar As System.Windows.Forms.ToolStripButton
-    Friend WithEvents ButtonGrabar As System.Windows.Forms.ToolStripButton
     Friend WithEvents GroupBoxDatos As System.Windows.Forms.GroupBox
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
@@ -881,5 +895,10 @@ Partial Class Usuarios
     Friend WithEvents CheckBoxRepClie As System.Windows.Forms.CheckBox
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents ComboBoxTipoPermiso As System.Windows.Forms.ComboBox
-    Friend WithEvents buttonAceptar As System.Windows.Forms.Button
+    Friend WithEvents Limpiar As System.Windows.Forms.ToolStripButton
+    Friend WithEvents Grabar As System.Windows.Forms.ToolStripButton
+    Friend WithEvents AbonarToolStrip As System.Windows.Forms.ToolStrip
+    Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
+    Friend WithEvents Buscar As System.Windows.Forms.ToolStripButton
+    Friend WithEvents Nuevo As System.Windows.Forms.ToolStripButton
 End Class

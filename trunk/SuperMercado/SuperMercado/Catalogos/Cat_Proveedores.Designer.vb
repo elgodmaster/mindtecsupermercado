@@ -49,8 +49,9 @@ Partial Class Cat_Proveedores
         Me.Label4 = New System.Windows.Forms.Label
         Me.BarraMenu = New System.Windows.Forms.ToolStrip
         Me.Buscar = New System.Windows.Forms.ToolStripButton
-        Me.ToolStripButtonNuevo = New System.Windows.Forms.ToolStripButton
         Me.cartera = New System.Windows.Forms.ToolStripButton
+        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator
+        Me.ToolStripButtonNuevo = New System.Windows.Forms.ToolStripButton
         Me.Limpiar = New System.Windows.Forms.ToolStripButton
         Me.Grabar = New System.Windows.Forms.ToolStripButton
         Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator
@@ -62,7 +63,6 @@ Partial Class Cat_Proveedores
         Me.ToolStripButtonAbonar = New System.Windows.Forms.ToolStripButton
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
         Me.ToolStripStatusLabelProveedores = New System.Windows.Forms.ToolStripStatusLabel
-        Me.Barra = New System.Windows.Forms.PictureBox
         Me.PanelCartera = New System.Windows.Forms.Panel
         Me.GridDatosCartera = New SourceGrid.DataGrid
         Me.lblTitulo = New System.Windows.Forms.Label
@@ -111,9 +111,10 @@ Partial Class Cat_Proveedores
         Me.PanelDatos = New System.Windows.Forms.Panel
         Me.GridDatosPROVEEDORES = New SourceGrid.DataGrid
         Me.PanelGrid = New System.Windows.Forms.Panel
+        Me.Barra = New System.Windows.Forms.PictureBox
+        Me.Label22 = New System.Windows.Forms.Label
         Me.BarraMenu.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
-        CType(Me.Barra, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelCartera.SuspendLayout()
         Me.ProveedoresTabControl.SuspendLayout()
         Me.DatosTabPage.SuspendLayout()
@@ -122,6 +123,7 @@ Partial Class Cat_Proveedores
         Me.AdeudosTabPage.SuspendLayout()
         Me.PanelDatos.SuspendLayout()
         Me.PanelGrid.SuspendLayout()
+        CType(Me.Barra, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Proveedor
@@ -160,7 +162,7 @@ Partial Class Cat_Proveedores
         'BarraMenu
         '
         Me.BarraMenu.AutoSize = False
-        Me.BarraMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Buscar, Me.ToolStripButtonNuevo, Me.cartera, Me.Limpiar, Me.Grabar, Me.ToolStripSeparator1, Me.ToolStripButtonNuevaCuenta, Me.ToolStripButtonEliminar, Me.ToolStripSeparator2, Me.ToolStripButtonDetalle, Me.ToolStripButtonAbonos, Me.ToolStripButtonAbonar})
+        Me.BarraMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Buscar, Me.cartera, Me.ToolStripSeparator3, Me.ToolStripButtonNuevo, Me.Limpiar, Me.Grabar, Me.ToolStripSeparator1, Me.ToolStripButtonNuevaCuenta, Me.ToolStripButtonEliminar, Me.ToolStripSeparator2, Me.ToolStripButtonDetalle, Me.ToolStripButtonAbonos, Me.ToolStripButtonAbonar})
         Me.BarraMenu.Location = New System.Drawing.Point(0, 0)
         Me.BarraMenu.Name = "BarraMenu"
         Me.BarraMenu.Size = New System.Drawing.Size(1016, 48)
@@ -177,16 +179,6 @@ Partial Class Cat_Proveedores
         Me.Buscar.Size = New System.Drawing.Size(36, 45)
         Me.Buscar.Text = "Buscar proveedores"
         '
-        'ToolStripButtonNuevo
-        '
-        Me.ToolStripButtonNuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ToolStripButtonNuevo.Image = Global.SuperMercado.My.Resources.Resources.user_add
-        Me.ToolStripButtonNuevo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.ToolStripButtonNuevo.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButtonNuevo.Name = "ToolStripButtonNuevo"
-        Me.ToolStripButtonNuevo.Size = New System.Drawing.Size(36, 45)
-        Me.ToolStripButtonNuevo.Text = "Agregar un nuevo proveedor"
-        '
         'cartera
         '
         Me.cartera.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
@@ -196,6 +188,21 @@ Partial Class Cat_Proveedores
         Me.cartera.Name = "cartera"
         Me.cartera.Size = New System.Drawing.Size(36, 45)
         Me.cartera.Text = "Mostrar cartera de proveedores"
+        '
+        'ToolStripSeparator3
+        '
+        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 48)
+        '
+        'ToolStripButtonNuevo
+        '
+        Me.ToolStripButtonNuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButtonNuevo.Image = Global.SuperMercado.My.Resources.Resources.user_add
+        Me.ToolStripButtonNuevo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.ToolStripButtonNuevo.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButtonNuevo.Name = "ToolStripButtonNuevo"
+        Me.ToolStripButtonNuevo.Size = New System.Drawing.Size(36, 45)
+        Me.ToolStripButtonNuevo.Text = "Agregar un nuevo proveedor"
         '
         'Limpiar
         '
@@ -295,19 +302,6 @@ Partial Class Cat_Proveedores
         Me.ToolStripStatusLabelProveedores.Size = New System.Drawing.Size(429, 17)
         Me.ToolStripStatusLabelProveedores.Text = "Escriba el nombre o número de identificación de un proveedor para filtrar los res" & _
             "ultados."
-        '
-        'Barra
-        '
-        Me.Barra.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Barra.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.Barra.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.Barra.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Barra.Location = New System.Drawing.Point(0, 128)
-        Me.Barra.Name = "Barra"
-        Me.Barra.Size = New System.Drawing.Size(1024, 4)
-        Me.Barra.TabIndex = 271
-        Me.Barra.TabStop = False
         '
         'PanelCartera
         '
@@ -801,6 +795,7 @@ Partial Class Cat_Proveedores
         '
         'AdeudosTabPage
         '
+        Me.AdeudosTabPage.Controls.Add(Me.Label22)
         Me.AdeudosTabPage.Controls.Add(Me.LabelDeuda)
         Me.AdeudosTabPage.Controls.Add(Me.Label5)
         Me.AdeudosTabPage.Controls.Add(Me.GridDatosCuentas)
@@ -837,14 +832,15 @@ Partial Class Cat_Proveedores
         '
         'GridDatosCuentas
         '
+        Me.GridDatosCuentas.BackColor = System.Drawing.Color.White
         Me.GridDatosCuentas.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GridDatosCuentas.DeleteQuestionMessage = ""
         Me.GridDatosCuentas.DeleteRowsWithDeleteKey = False
         Me.GridDatosCuentas.FixedRows = 1
-        Me.GridDatosCuentas.Location = New System.Drawing.Point(18, 80)
+        Me.GridDatosCuentas.Location = New System.Drawing.Point(18, 104)
         Me.GridDatosCuentas.Name = "GridDatosCuentas"
         Me.GridDatosCuentas.SelectionMode = SourceGrid.GridSelectionMode.Row
-        Me.GridDatosCuentas.Size = New System.Drawing.Size(650, 400)
+        Me.GridDatosCuentas.Size = New System.Drawing.Size(774, 357)
         Me.GridDatosCuentas.TabIndex = 32
         Me.GridDatosCuentas.TabStop = True
         Me.GridDatosCuentas.ToolTipText = ""
@@ -874,9 +870,9 @@ Partial Class Cat_Proveedores
         'PanelDatos
         '
         Me.PanelDatos.Controls.Add(Me.ProveedoresTabControl)
-        Me.PanelDatos.Location = New System.Drawing.Point(418, 62)
+        Me.PanelDatos.Location = New System.Drawing.Point(403, 62)
         Me.PanelDatos.Name = "PanelDatos"
-        Me.PanelDatos.Size = New System.Drawing.Size(82, 56)
+        Me.PanelDatos.Size = New System.Drawing.Size(297, 159)
         Me.PanelDatos.TabIndex = 291
         '
         'GridDatosPROVEEDORES
@@ -909,6 +905,28 @@ Partial Class Cat_Proveedores
         Me.PanelGrid.Size = New System.Drawing.Size(192, 56)
         Me.PanelGrid.TabIndex = 292
         '
+        'Barra
+        '
+        Me.Barra.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Barra.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.Barra.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.Barra.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Barra.Location = New System.Drawing.Point(0, 128)
+        Me.Barra.Name = "Barra"
+        Me.Barra.Size = New System.Drawing.Size(1024, 4)
+        Me.Barra.TabIndex = 271
+        Me.Barra.TabStop = False
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Location = New System.Drawing.Point(15, 87)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(65, 14)
+        Me.Label22.TabIndex = 297
+        Me.Label22.Text = "Cuentas:"
+        '
         'Cat_Proveedores
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 14.0!)
@@ -936,7 +954,6 @@ Partial Class Cat_Proveedores
         Me.BarraMenu.PerformLayout()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
-        CType(Me.Barra, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelCartera.ResumeLayout(False)
         Me.ProveedoresTabControl.ResumeLayout(False)
         Me.DatosTabPage.ResumeLayout(False)
@@ -948,6 +965,7 @@ Partial Class Cat_Proveedores
         Me.AdeudosTabPage.PerformLayout()
         Me.PanelDatos.ResumeLayout(False)
         Me.PanelGrid.ResumeLayout(False)
+        CType(Me.Barra, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1019,4 +1037,6 @@ Partial Class Cat_Proveedores
     Friend WithEvents PanelDatos As System.Windows.Forms.Panel
     Friend WithEvents GridDatosPROVEEDORES As SourceGrid.DataGrid
     Friend WithEvents PanelGrid As System.Windows.Forms.Panel
+    Friend WithEvents ToolStripSeparator3 As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents Label22 As System.Windows.Forms.Label
 End Class

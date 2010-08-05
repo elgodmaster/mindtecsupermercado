@@ -93,6 +93,7 @@ Partial Class Permisos
         Me.Label2 = New System.Windows.Forms.Label
         Me.CheckBoxSeleccionarTodo = New System.Windows.Forms.CheckBox
         Me.labelResul = New System.Windows.Forms.Label
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
         Me.AbonarToolStrip.SuspendLayout()
         CType(Me.Barra, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBoxReportes.SuspendLayout()
@@ -665,11 +666,20 @@ Partial Class Permisos
         Me.labelResul.TabIndex = 303
         Me.labelResul.Text = "Información del grupo"
         '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 526)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(879, 22)
+        Me.StatusStrip1.TabIndex = 304
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
         'Permisos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(879, 548)
+        Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.labelResul)
         Me.Controls.Add(Me.CheckBoxSeleccionarTodo)
         Me.Controls.Add(Me.Label2)
@@ -755,4 +765,5 @@ Partial Class Permisos
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents CheckBoxSeleccionarTodo As System.Windows.Forms.CheckBox
     Friend WithEvents labelResul As System.Windows.Forms.Label
+    Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
 End Class
