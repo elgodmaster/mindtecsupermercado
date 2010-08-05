@@ -57,7 +57,7 @@ Partial Class Cotización
         Me.btnAceptar = New System.Windows.Forms.Button
         Me.Label4 = New System.Windows.Forms.Label
         Me.Label6 = New System.Windows.Forms.Label
-        Me.txtNoFactura = New System.Windows.Forms.TextBox
+        Me.txtNoCotizacion = New System.Windows.Forms.TextBox
         Me.GroupBoxDatosCliente = New System.Windows.Forms.GroupBox
         Me.LblCP = New System.Windows.Forms.Label
         Me.Label13 = New System.Windows.Forms.Label
@@ -211,13 +211,13 @@ Partial Class Cotización
         Me.Label6.TabIndex = 333
         Me.Label6.Text = "Cotización: "
         '
-        'txtNoFactura
+        'txtNoCotizacion
         '
-        Me.txtNoFactura.BackColor = System.Drawing.SystemColors.Info
-        Me.txtNoFactura.Location = New System.Drawing.Point(103, 86)
-        Me.txtNoFactura.Name = "txtNoFactura"
-        Me.txtNoFactura.Size = New System.Drawing.Size(115, 22)
-        Me.txtNoFactura.TabIndex = 329
+        Me.txtNoCotizacion.BackColor = System.Drawing.SystemColors.Info
+        Me.txtNoCotizacion.Location = New System.Drawing.Point(103, 86)
+        Me.txtNoCotizacion.Name = "txtNoCotizacion"
+        Me.txtNoCotizacion.Size = New System.Drawing.Size(115, 22)
+        Me.txtNoCotizacion.TabIndex = 329
         '
         'GroupBoxDatosCliente
         '
@@ -260,10 +260,10 @@ Partial Class Cotización
         '
         Me.Label13.AutoSize = True
         Me.Label13.BackColor = System.Drawing.Color.Transparent
-        Me.Label13.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label13.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label13.Location = New System.Drawing.Point(790, 95)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(29, 14)
+        Me.Label13.Size = New System.Drawing.Size(30, 14)
         Me.Label13.TabIndex = 295
         Me.Label13.Text = "CP:"
         '
@@ -282,10 +282,10 @@ Partial Class Cotización
         '
         Me.Label11.AutoSize = True
         Me.Label11.BackColor = System.Drawing.Color.Transparent
-        Me.Label11.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.Location = New System.Drawing.Point(460, 95)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(59, 14)
+        Me.Label11.Size = New System.Drawing.Size(61, 14)
         Me.Label11.TabIndex = 293
         Me.Label11.Text = "Colonia:"
         '
@@ -304,10 +304,10 @@ Partial Class Cotización
         '
         Me.Label3.AutoSize = True
         Me.Label3.BackColor = System.Drawing.Color.Transparent
-        Me.Label3.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(30, 45)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(36, 14)
+        Me.Label3.Size = New System.Drawing.Size(38, 14)
         Me.Label3.TabIndex = 291
         Me.Label3.Text = "RFC:"
         '
@@ -325,10 +325,10 @@ Partial Class Cotización
         '
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.Transparent
-        Me.Label1.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(15, 23)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(51, 14)
+        Me.Label1.Size = New System.Drawing.Size(53, 14)
         Me.Label1.TabIndex = 290
         Me.Label1.Text = "Cliente"
         '
@@ -347,10 +347,10 @@ Partial Class Cotización
         '
         Me.Label2.AutoSize = True
         Me.Label2.BackColor = System.Drawing.Color.Transparent
-        Me.Label2.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.Location = New System.Drawing.Point(463, 122)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(56, 14)
+        Me.Label2.Size = New System.Drawing.Size(57, 14)
         Me.Label2.TabIndex = 287
         Me.Label2.Text = "Ciudad:"
         '
@@ -369,7 +369,7 @@ Partial Class Cotización
         '
         Me.Label9.AutoSize = True
         Me.Label9.BackColor = System.Drawing.Color.Transparent
-        Me.Label9.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.Location = New System.Drawing.Point(10, 122)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(56, 14)
@@ -402,10 +402,10 @@ Partial Class Cotización
         '
         Me.Label5.AutoSize = True
         Me.Label5.BackColor = System.Drawing.Color.Transparent
-        Me.Label5.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.Location = New System.Drawing.Point(-2, 95)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(68, 14)
+        Me.Label5.Size = New System.Drawing.Size(74, 14)
         Me.Label5.TabIndex = 278
         Me.Label5.Text = "Dirección:"
         '
@@ -413,10 +413,10 @@ Partial Class Cotización
         '
         Me.LblNombres.AutoSize = True
         Me.LblNombres.BackColor = System.Drawing.Color.Transparent
-        Me.LblNombres.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblNombres.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LblNombres.Location = New System.Drawing.Point(5, 67)
         Me.LblNombres.Name = "LblNombres"
-        Me.LblNombres.Size = New System.Drawing.Size(61, 14)
+        Me.LblNombres.Size = New System.Drawing.Size(64, 14)
         Me.LblNombres.TabIndex = 268
         Me.LblNombres.Text = "Nombre:"
         '
@@ -683,7 +683,7 @@ Partial Class Cotización
         Me.Controls.Add(Me.btnAceptar)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label6)
-        Me.Controls.Add(Me.txtNoFactura)
+        Me.Controls.Add(Me.txtNoCotizacion)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
@@ -711,7 +711,7 @@ Partial Class Cotización
     Friend WithEvents btnAceptar As System.Windows.Forms.Button
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents Label6 As System.Windows.Forms.Label
-    Friend WithEvents txtNoFactura As System.Windows.Forms.TextBox
+    Friend WithEvents txtNoCotizacion As System.Windows.Forms.TextBox
     Friend WithEvents GroupBoxDatosCliente As System.Windows.Forms.GroupBox
     Friend WithEvents LblCP As System.Windows.Forms.Label
     Friend WithEvents Label13 As System.Windows.Forms.Label

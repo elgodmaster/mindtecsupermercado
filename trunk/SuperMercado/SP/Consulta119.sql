@@ -75,6 +75,16 @@ BEGIN
   Exec Emulador_SepararCadena 'V1', @Cabezero, '|', @Valor1 Output --Facturas
   
    --Validar Parametros
+   
+    If @Validar = 1 
+   Begin 
+    If Len(RTrim(LTrim(@Valor1))) = 0 
+     Begin
+       Select @Resul = '2R=ERROR|2M=Registre el producto para continuar|'
+       Return
+     End
+   End
+   
   If @Validar = 4 
    Begin 
     If Len(RTrim(LTrim(@Valor1))) = 0 
@@ -92,7 +102,15 @@ BEGIN
        Return
      End
    End
- 
+
+  If @Validar = 7 
+   Begin 
+    If Len(RTrim(LTrim(@Valor1))) = 0 
+     Begin
+       Select @Resul = '2R=ERROR|2M=Registre el número de cotización para continuar|'
+       Return
+     End
+   End 
 
   If @Validar = 0               ----Catalogo de productos
    Begin
@@ -131,6 +149,18 @@ BEGIN
 	 Select @Registro = @@RowCount	 
 	 
    End
+
+ If @Validar = 3               ----Catalogo de productos
+   Begin
+    Select Codigo  = IsNull(a.NoFactura ,''), 
+           Cliente = IsNull(b.nombrefiscal,''),
+           Fecha   = IsNull(a.Fecha,'')
+    From Smercado..Facturas  a (NoLock)
+    Left Join SMercado..Cat_Clientes b (NoLock) On b.Codigo= a.IdCliente 
+    Order by  a.Fecha desc
+	 Select @Registro = @@RowCount	 
+   End
+
 
  If @Validar = 4
    Begin
@@ -244,7 +274,7 @@ BEGIN
 	  If @Validar = 2
 		 Select @Resul = '2R=ERROR|2M=No existe una entrada con el codigo especificado. Clic en Nuevo para crear una nueva entrada'
 	  If @Validar = 3
-		 Select @Resul = '2R=ERROR|2M=El producto no esta registrado|'
+		 Select @Resul = '2R=ERROR|2M=No existe información de facturas|'
 	  If @Validar = 4 
          Select @Resul = '2R=OK|V2=' + @Desc2 + 
 							  '|V3=' + '16' + 
@@ -281,8 +311,7 @@ BEGIN
 							  '|V4=' + @Desc4 + 
 							  '|V5=' + @Desc5 + '|'
 	  If @Validar = 3
-		 Select @Resul = '2R=OK|V1=' + @Desc1 + 
-							  '|V2=' + @Desc2 + '|'
+		 Select @Resul = '2R=OK|'
 	  If @Validar = 4 
          Select @Resul = '2R=OK|V2=' + @Desc2 + 
 							  '|V3=' + @Desc3 + 
