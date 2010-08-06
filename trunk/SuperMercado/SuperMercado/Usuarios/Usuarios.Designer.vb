@@ -95,12 +95,14 @@ Partial Class Usuarios
         Me.Label7 = New System.Windows.Forms.Label
         Me.ComboBoxTipoPermiso = New System.Windows.Forms.ComboBox
         Me.AbonarToolStrip = New System.Windows.Forms.ToolStrip
-        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
-        Me.Barra = New System.Windows.Forms.PictureBox
         Me.Buscar = New System.Windows.Forms.ToolStripButton
         Me.Nuevo = New System.Windows.Forms.ToolStripButton
         Me.Limpiar = New System.Windows.Forms.ToolStripButton
         Me.Grabar = New System.Windows.Forms.ToolStripButton
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
+        Me.Barra = New System.Windows.Forms.PictureBox
+        Me.Label5 = New System.Windows.Forms.Label
+        Me.txtUsuario = New System.Windows.Forms.TextBox
         Me.GroupBoxDatos.SuspendLayout()
         Me.GroupBoxConfiguracion.SuspendLayout()
         Me.GroupBoxSeguridad.SuspendLayout()
@@ -161,6 +163,8 @@ Partial Class Usuarios
         '
         'GroupBoxDatos
         '
+        Me.GroupBoxDatos.Controls.Add(Me.txtUsuario)
+        Me.GroupBoxDatos.Controls.Add(Me.Label5)
         Me.GroupBoxDatos.Controls.Add(Me.TextBoxNombreCompleto)
         Me.GroupBoxDatos.Controls.Add(Me.TextBoxContraseña)
         Me.GroupBoxDatos.Controls.Add(Me.Label3)
@@ -174,12 +178,12 @@ Partial Class Usuarios
         Me.GroupBoxDatos.Size = New System.Drawing.Size(712, 116)
         Me.GroupBoxDatos.TabIndex = 310
         Me.GroupBoxDatos.TabStop = False
-        Me.GroupBoxDatos.Text = "DATOS"
+        Me.GroupBoxDatos.Text = " DATOS "
         '
         'TextBoxNombreCompleto
         '
         Me.TextBoxNombreCompleto.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxNombreCompleto.Location = New System.Drawing.Point(144, 38)
+        Me.TextBoxNombreCompleto.Location = New System.Drawing.Point(144, 50)
         Me.TextBoxNombreCompleto.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.TextBoxNombreCompleto.MaxLength = 50
         Me.TextBoxNombreCompleto.Name = "TextBoxNombreCompleto"
@@ -189,7 +193,7 @@ Partial Class Usuarios
         'TextBoxContraseña
         '
         Me.TextBoxContraseña.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxContraseña.Location = New System.Drawing.Point(144, 66)
+        Me.TextBoxContraseña.Location = New System.Drawing.Point(144, 78)
         Me.TextBoxContraseña.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.TextBoxContraseña.Name = "TextBoxContraseña"
         Me.TextBoxContraseña.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
@@ -202,7 +206,7 @@ Partial Class Usuarios
         Me.Label3.BackColor = System.Drawing.Color.Transparent
         Me.Label3.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label3.Location = New System.Drawing.Point(14, 69)
+        Me.Label3.Location = New System.Drawing.Point(14, 81)
         Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(86, 14)
@@ -215,7 +219,7 @@ Partial Class Usuarios
         Me.Label2.BackColor = System.Drawing.Color.Transparent
         Me.Label2.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label2.Location = New System.Drawing.Point(14, 41)
+        Me.Label2.Location = New System.Drawing.Point(14, 53)
         Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(122, 14)
@@ -735,27 +739,6 @@ Partial Class Usuarios
         Me.AbonarToolStrip.TabIndex = 304
         Me.AbonarToolStrip.Text = "ToolStrip1"
         '
-        'StatusStrip1
-        '
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 722)
-        Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(796, 22)
-        Me.StatusStrip1.TabIndex = 329
-        Me.StatusStrip1.Text = "StatusStrip1"
-        '
-        'Barra
-        '
-        Me.Barra.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Barra.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.Barra.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Barra.Location = New System.Drawing.Point(-135, 132)
-        Me.Barra.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
-        Me.Barra.Name = "Barra"
-        Me.Barra.Size = New System.Drawing.Size(1300, 4)
-        Me.Barra.TabIndex = 308
-        Me.Barra.TabStop = False
-        '
         'Buscar
         '
         Me.Buscar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
@@ -796,6 +779,50 @@ Partial Class Usuarios
         Me.Grabar.Name = "Grabar"
         Me.Grabar.Size = New System.Drawing.Size(36, 45)
         Me.Grabar.Text = "Guardar los cambios"
+        '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 722)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(796, 22)
+        Me.StatusStrip1.TabIndex = 329
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'Barra
+        '
+        Me.Barra.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Barra.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.Barra.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Barra.Location = New System.Drawing.Point(-135, 132)
+        Me.Barra.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.Barra.Name = "Barra"
+        Me.Barra.Size = New System.Drawing.Size(1300, 4)
+        Me.Barra.TabIndex = 308
+        Me.Barra.TabStop = False
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.BackColor = System.Drawing.Color.Transparent
+        Me.Label5.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.Label5.Location = New System.Drawing.Point(16, 25)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(60, 14)
+        Me.Label5.TabIndex = 330
+        Me.Label5.Text = "Usuario:"
+        '
+        'txtUsuario
+        '
+        Me.txtUsuario.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtUsuario.Location = New System.Drawing.Point(144, 22)
+        Me.txtUsuario.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.txtUsuario.MaxLength = 50
+        Me.txtUsuario.Name = "txtUsuario"
+        Me.txtUsuario.Size = New System.Drawing.Size(349, 22)
+        Me.txtUsuario.TabIndex = 331
         '
         'Usuarios
         '
@@ -901,4 +928,6 @@ Partial Class Usuarios
     Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
     Friend WithEvents Buscar As System.Windows.Forms.ToolStripButton
     Friend WithEvents Nuevo As System.Windows.Forms.ToolStripButton
+    Friend WithEvents txtUsuario As System.Windows.Forms.TextBox
+    Friend WithEvents Label5 As System.Windows.Forms.Label
 End Class

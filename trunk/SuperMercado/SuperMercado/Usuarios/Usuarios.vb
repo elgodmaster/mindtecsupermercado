@@ -9,6 +9,8 @@ Public Class Usuarios
     Dim ObjRet As CRetorno
 
     Dim modificaronCampos As Boolean
+    Dim usuarioOriginal As String
+    Dim usuarioNuevo As String
 #End Region
 
 #Region "  Boton BUSCAR  "
@@ -68,13 +70,15 @@ Public Class Usuarios
         Result = MessageBox.Show("¿Desea guardar los cambios?", "Permisos", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
         If Result = Windows.Forms.DialogResult.Yes Then
-            Caja = "Grabar122"
-            Parametros = "V1=" & textBoxUsuario.Text.Trim & _
-                         "|V2=" & TextBoxNombreCompleto.Text.Trim & _
-                         "|V3=" & TextBoxContraseña.Text.Trim & _
-                         "|V4=" & ComboBoxTipoPermiso.Text.Trim & "|"
-            ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
-            limpiarPantalla()
+
+            grabrar122()
+
+            If lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|") = "OK" Then
+                MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|"), " Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                limpiarPantalla()
+            Else
+                MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|"), " Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
         Else
             Return
         End If
@@ -150,13 +154,15 @@ Public Class Usuarios
     End Sub
 #End Region
 
-#Region "  Rutina: llenarCampos  "
-    Private Sub llenarCampos(ByVal ds As DataSet)
-        TextBoxContraseña.Text = ds.Tables(0).Rows(0).Item(1)
-        TextBoxNombreCompleto.Text = ds.Tables(0).Rows(0).Item(2)
-        ComboBoxTipoPermiso.Text = ds.Tables(0).Rows(0).Item(3).ToString.Trim
-
-        llenarCheckBox()
+#Region "  Rutina: grabar122  "
+    Sub grabrar122()
+        Caja = "Grabar122"
+        Parametros = "V1=" & usuarioOriginal & _
+                     "|V2=" & TextBoxNombreCompleto.Text.Trim & _
+                     "|V3=" & TextBoxContraseña.Text.Trim & _
+                     "|V4=" & ComboBoxTipoPermiso.Text.Trim & _
+                     "|V5=" & txtUsuario.Text.Trim & "|"
+        ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
     End Sub
 #End Region
 
@@ -168,7 +174,15 @@ Public Class Usuarios
 
         If lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|") = "OK" Then
             labelResul.Text = "Usuario registrado. Puede modificar cualquier valor y hacer clic en el botón guardar."
-            llenarCampos(ObjRet.DS)
+
+            txtUsuario.Text = ObjRet.DS.Tables(0).Rows(0).Item(0)
+            TextBoxContraseña.Text = ObjRet.DS.Tables(0).Rows(0).Item(1)
+            TextBoxNombreCompleto.Text = ObjRet.DS.Tables(0).Rows(0).Item(2)
+            ComboBoxTipoPermiso.Text = ObjRet.DS.Tables(0).Rows(0).Item(3).ToString.Trim
+
+            usuarioOriginal = txtUsuario.Text.Trim
+
+            llenarCheckBox()
 
             Grabar.Visible = True
             mostrarControles()
@@ -259,10 +273,6 @@ Public Class Usuarios
     Private Sub limpiarPantalla()
         TextBoxContraseña.Clear()
         TextBoxNombreCompleto.Clear()
-        textBoxUsuario.Clear()
-
-        textBoxUsuario.Enabled = True
-        textBoxUsuario.Focus()
     End Sub
 #End Region
 
@@ -283,8 +293,19 @@ Public Class Usuarios
 #Region "  Evento: textBoxUsuario - KEY PRESS  "
     Private Sub textBoxUsuario_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles textBoxUsuario.KeyPress
         If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
             consulta124()
         End If
+    End Sub
+#End Region
+    
+#Region "  Botón NUEVO  "
+    Private Sub Nuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Nuevo.Click
+        limpiarPantalla()
+        mostrarControles()
+
+        usuarioOriginal = ""
+
     End Sub
 #End Region
     
