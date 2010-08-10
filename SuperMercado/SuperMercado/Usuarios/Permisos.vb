@@ -9,56 +9,47 @@ Public Class Permisos
     Dim ObjRet As CRetorno
 
     Dim modificaronCampos As Boolean
+    Dim nombrePermisoOriginal As String
 #End Region
 
-#Region "  Botón Aceptar  "
-    Private Sub buttonAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles buttonAceptar.Click
-        If textBoxNombrePermiso.Text.Trim = "" Then
-            MessageBox.Show("Escriba el nombre del permiso.", "Permisos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-            textBoxNombrePermiso.Focus()
-            Return
-        End If
+#Region "  Botón BUSCAR  "
+    Private Sub Buscar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Buscar.Click
+        Permisos()
+    End Sub
+#End Region
 
-        textBoxNombrePermiso.Enabled = False
-        ButtonGrabar.Visible = True
+#Region "  Botón NUEVO  "
+    Private Sub Nuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Nuevo.Click
+        limpiarPermisos()
+        txtNomPermiso.Clear()
+
+        nombrePermisoOriginal = ""
+
         mostrarControles()
-
-        Caja = "Consulta122" : Parametros = "V1=" & textBoxNombrePermiso.Text.Trim & "|"
-        ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
-
-        If lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|") = "OK" Then
-            labelResul.Text = "Permiso registrado. Puede modificar cualquier valor y hacer clic en el botón guardar."
-            llenarCheckBox(ObjRet.DS)
-            buttonAceptar.Enabled = False
-        Else
-            labelResul.Text = "Permiso no registrado. LLene los campos necesarios y haga clic en el botón guardar."
-            mostrarControles()
-            buttonAceptar.Enabled = False
-        End If
+        mostrarControlesEditar()
     End Sub
 #End Region
 
 #Region "  Botón Limpiar  "
-    Private Sub Limpiar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonLimpiar.Click
+    Private Sub Limpiar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Limpiar.Click
         limpiarPermisos()
     End Sub
 #End Region
 
 #Region "  Botón GRABAR  "
-    Private Sub ButtonGrabar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonGrabar.Click
+    Private Sub ButtonGrabar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Grabar.Click
         Dim Result As DialogResult
-        '<Validación>
-        If textBoxNombrePermiso.Text.Trim = "" Then
+        If txtNomPermiso.Text.Trim = "" Then
             MessageBox.Show("Escriba el nombre del permiso.", " Permisos", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             textBoxNombrePermiso.Focus()
             Return
         End If
-        '<\Validación>
 
         Result = MessageBox.Show("¿Desea guardar los cambios?", "Permisos", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If Result = Windows.Forms.DialogResult.Yes Then
             Caja = "Grabar121"
-            Parametros = "V1=" & Me.textBoxNombrePermiso.Text.Trim & _
+            Parametros = "V0=" & nombrePermisoOriginal.ToUpper.Trim & _
+                         "|V1=" & Me.txtNomPermiso.Text.ToUpper.Trim & _
  _
                          "|V2=" & CheckBoxRepProd.Checked & _
                          "|V3=" & CheckBoxRepEntPro.Checked & _
@@ -98,7 +89,14 @@ Public Class Permisos
                          "|V28=" & CheckBoxConFac.Checked & _
                          "|V29=" & CheckBoxConTic.Checked & "|"
             ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
-            limpiarPermisos()
+            If lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|") = "OK" Then
+                MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False), " Permisos", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                limpiarPermisos()
+                ocultarControles()
+            Else
+                MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False), " Permisos", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+
         Else
             Return
         End If
@@ -107,7 +105,7 @@ Public Class Permisos
 
 #Region "  Evento: Permisos LOAD  "
     Private Sub Permisos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        ButtonGrabar.Visible = False
+        Grabar.Visible = False
         ocultarControles()
 
         modificaronCampos = False
@@ -119,8 +117,6 @@ Public Class Permisos
         Select Case e.KeyCode
             Case Keys.F2
                 Permisos()
-            Case Keys.Enter
-                buttonAceptar.Focus()
         End Select
     End Sub
 #End Region
@@ -253,6 +249,24 @@ Public Class Permisos
     End Sub
 #End Region
 
+#Region "  Rutina: consulta122  "
+    Sub consulta122()
+        Caja = "Consulta122" : Parametros = "V1=" & textBoxNombrePermiso.Text.Trim & "|"
+        ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
+
+        If lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|") = "OK" Then
+            llenarCheckBox(ObjRet.DS)
+            txtNomPermiso.Text = lConsulta.ObtenerValor("V1", ObjRet.sResultado, "|")
+            nombrePermisoOriginal = txtNomPermiso.Text.Trim
+            textBoxNombrePermiso.Enabled = False
+            mostrarControles()
+            mostrarControlesEditar()
+        Else
+            mostrarControles()
+        End If
+    End Sub
+#End Region
+
 #Region "  Rutina: Permisos  "
     Sub Permisos()
         Caja = "Consulta123" : Parametros = ""
@@ -261,10 +275,13 @@ Public Class Permisos
         If ObjRet.bOk Then
             Dim nuevo As Grid = New Grid(ObjRet.DS)
 
-            Me.textBoxNombrePermiso.Text = nuevo.resultado
-            Dim e As KeyEventArgs
-            e = New KeyEventArgs(Keys.Enter)
-            Me.CodigoCliente_KeyDown(DBNull.Value, e)
+            textBoxNombrePermiso.Text = nuevo.resultado
+
+            If nuevo.resultado = "" Then
+                Return
+            End If
+
+            consulta122()
         Else
             MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
         End If
@@ -273,8 +290,8 @@ Public Class Permisos
 
 #Region "  Rutina: ocultarControles  "
     Private Sub ocultarControles()
+        GroupBoxNombre.Visible = False
         Label2.Visible = False
-        labelResul.Visible = False
         CheckBoxSeleccionarTodo.Visible = False
         GroupBoxCaja.Visible = False
         GroupBoxCatalogos.Visible = False
@@ -283,13 +300,16 @@ Public Class Permisos
         GroupBoxInventario.Visible = False
         GroupBoxReportes.Visible = False
         GroupBoxSeguridad.Visible = False
+
+        textBoxNombrePermiso.Enabled = True
+        textBoxNombrePermiso.Focus()
     End Sub
 #End Region
 
 #Region "  Rutina: mostrarControles  "
     Private Sub mostrarControles()
+        GroupBoxNombre.Visible = True
         Label2.Visible = True
-        labelResul.Visible = True
         CheckBoxSeleccionarTodo.Visible = True
         GroupBoxCaja.Visible = True
         GroupBoxCatalogos.Visible = True
@@ -298,6 +318,23 @@ Public Class Permisos
         GroupBoxInventario.Visible = True
         GroupBoxReportes.Visible = True
         GroupBoxSeguridad.Visible = True
+
+        textBoxNombrePermiso.Enabled = False
+        txtNomPermiso.Focus()
+    End Sub
+#End Region
+
+#Region "  Rutina: mostrarControlesEditar  "
+    Sub mostrarControlesEditar()
+        Grabar.Visible = True
+        Limpiar.Visible = True
+    End Sub
+#End Region
+
+#Region "  Rutina: ocultarControlesEditar  "
+    Sub ocultarControlesEditar()
+        Grabar.Visible = False
+        Limpiar.Visible = False
     End Sub
 #End Region
 
@@ -340,15 +377,27 @@ Public Class Permisos
         CheckBoxCajaSal.Checked = False
 
         CheckBoxSeleccionarTodo.Checked = False
-        textBoxNombrePermiso.Clear()
 
-        ButtonGrabar.Visible = False
-        buttonAceptar.Enabled = True
-        ocultarControles()
-        textBoxNombrePermiso.Enabled = True
-        textBoxNombrePermiso.Focus()
+        textBoxNombrePermiso.Clear()
+        txtNomPermiso.Clear()
 
     End Sub
 #End Region
 
+#Region "  Evento: textBoxNombrePermiso - KEY PRESS  "
+    Private Sub textBoxNombrePermiso_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles textBoxNombrePermiso.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            If textBoxNombrePermiso.Text.Trim = "" Then
+                MessageBox.Show("Escriba el nombre del permiso.", "Permisos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                textBoxNombrePermiso.Focus()
+                Return
+            End If
+
+            consulta122()
+
+        End If
+    End Sub
+#End Region
+    
 End Class

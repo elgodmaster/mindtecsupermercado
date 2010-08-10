@@ -920,7 +920,8 @@ Public Class Cat_Clientes
 
         Caja = "Consulta105" : Parametros = "V1=" & idCliente.Trim
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
-        ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
+        ' Validar igual a cinco para un correcto funcionamiento.
+        ObjRet = lConsulta.LlamarCaja(Caja, "5", Parametros)
         If ObjRet.bOk Then
 
             'Asignar

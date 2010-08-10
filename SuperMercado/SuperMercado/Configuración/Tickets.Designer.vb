@@ -62,6 +62,7 @@ Partial Class Tickets
         Me.AbonarToolStrip = New System.Windows.Forms.ToolStrip
         Me.ButtonGrabar = New System.Windows.Forms.ToolStripButton
         Me.ButtonImprimir = New System.Windows.Forms.ToolStripButton
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.AbonarToolStrip.SuspendLayout()
@@ -217,11 +218,20 @@ Partial Class Tickets
         Me.ButtonImprimir.Size = New System.Drawing.Size(36, 45)
         Me.ButtonImprimir.Text = "Imprimir"
         '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 603)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(841, 22)
+        Me.StatusStrip1.TabIndex = 289
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
         'Tickets
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(841, 625)
+        Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.AbonarToolStrip)
         Me.Controls.Add(Me.TextBox7)
         Me.Controls.Add(Me.ComboBoxImpresoras)
@@ -262,4 +272,5 @@ Partial Class Tickets
     Friend WithEvents AbonarToolStrip As System.Windows.Forms.ToolStrip
     Friend WithEvents ButtonGrabar As System.Windows.Forms.ToolStripButton
     Friend WithEvents ButtonImprimir As System.Windows.Forms.ToolStripButton
+    Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
 End Class

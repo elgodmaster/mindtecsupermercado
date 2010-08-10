@@ -14,6 +14,7 @@ AS
 BEGIN
 
 DECLARE	@nombrePermiso	VARCHAR(8000)
+DECLARE @desc1			VARCHAR(8000)
 
 Exec Emulador_SepararCadena 'V1',  @Cabezero, '|', @nombrePermiso 	Output 
 
@@ -39,7 +40,10 @@ Where nomPermiso = @nombrePermiso
 
 IF @@ROWCOUNT > 0
 	BEGIN
-		Select @Resul = '2R=OK|'
+		Select @desc1  = (Select P.nomPermiso 
+						 From SMercado_Seguridad..Permisos P
+						 Where nomPermiso = @nombrePermiso )
+		Select @Resul = '2R=OK|V1=' + @desc1 + '|' 
 	END  
 ELSE
 	BEGIN

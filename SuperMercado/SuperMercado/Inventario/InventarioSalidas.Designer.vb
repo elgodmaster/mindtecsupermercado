@@ -201,6 +201,7 @@ Partial Class InventarioSalidas
         '
         'Txt_CodigoProducto
         '
+        Me.Txt_CodigoProducto.BackColor = System.Drawing.SystemColors.Info
         Me.Txt_CodigoProducto.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Txt_CodigoProducto.Location = New System.Drawing.Point(70, 21)
         Me.Txt_CodigoProducto.Name = "Txt_CodigoProducto"
@@ -282,8 +283,7 @@ Partial Class InventarioSalidas
         '
         Me.MensajePiePagina.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MensajePiePagina.Name = "MensajePiePagina"
-        Me.MensajePiePagina.Size = New System.Drawing.Size(150, 17)
-        Me.MensajePiePagina.Text = "ToolStripStatusLabel1"
+        Me.MensajePiePagina.Size = New System.Drawing.Size(0, 17)
         '
         'ToolStrip1
         '

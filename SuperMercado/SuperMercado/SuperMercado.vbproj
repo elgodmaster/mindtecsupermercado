@@ -566,9 +566,25 @@
     <None Include="Resources\delete.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\book_addresses.png" />
+    <None Include="Resources\book_addresses1.png" />
+    <None Include="Resources\bin_empty.png" />
+    <None Include="Resources\bin_empty1.png" />
+    <None Include="Resources\basket_delete.png" />
+    <None Include="Resources\book_add.png" />
+    <None Include="Resources\coins.png" />
+    <None Include="Resources\carteraClientesBackground.PNG" />
+    <None Include="Resources\cog.png" />
     <Content Include="Resources\cross.png" />
     <Content Include="Resources\cut.png" />
+    <None Include="Resources\money.png" />
+    <None Include="Resources\money_dollar1.png" />
+    <None Include="Resources\opera.png" />
+    <None Include="Resources\lock_break.png" />
     <Content Include="Resources\tick.png" />
+    <None Include="Resources\zoom2.png" />
+    <None Include="Resources\update.png" />
+    <None Include="Resources\zoom1.png" />
     <None Include="Resources\zoom.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

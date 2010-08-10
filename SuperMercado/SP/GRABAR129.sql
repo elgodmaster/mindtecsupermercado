@@ -90,6 +90,6 @@ BEGIN
 	values (@valor2, @valor10)
 END
 
-Select @Resul = '2R=OK|'
+Select @Resul = '2R=OK|2M=Los cambios se guardaron correctamente.'
 
 END

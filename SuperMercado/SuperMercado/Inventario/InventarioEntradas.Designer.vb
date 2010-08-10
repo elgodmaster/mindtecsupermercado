@@ -59,6 +59,8 @@ Partial Class InventarioEntradas
         Me.Fecha = New System.Windows.Forms.DateTimePicker
         Me.Label2 = New System.Windows.Forms.Label
         Me.GroupBox1 = New System.Windows.Forms.GroupBox
+        Me.lblNumEntrada = New System.Windows.Forms.Label
+        Me.Label1 = New System.Windows.Forms.Label
         Me.TabControl1 = New System.Windows.Forms.TabControl
         Me.TabPage1 = New System.Windows.Forms.TabPage
         Me.ButtonEfectivo = New System.Windows.Forms.Button
@@ -72,8 +74,6 @@ Partial Class InventarioEntradas
         Me.Label7 = New System.Windows.Forms.Label
         Me.GridDatos = New SourceGrid.DataGrid
         Me.Barra = New System.Windows.Forms.PictureBox
-        Me.Label1 = New System.Windows.Forms.Label
-        Me.lblNumEntrada = New System.Windows.Forms.Label
         Me.ToolStrip1.SuspendLayout()
         Me.PiePagina.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -89,7 +89,7 @@ Partial Class InventarioEntradas
         Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Limpiar, Me.Grabar})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1008, 48)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1006, 48)
         Me.ToolStrip1.TabIndex = 230
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -118,9 +118,9 @@ Partial Class InventarioEntradas
         '
         Me.PiePagina.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.PiePagina.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MensajePiePagina})
-        Me.PiePagina.Location = New System.Drawing.Point(0, 686)
+        Me.PiePagina.Location = New System.Drawing.Point(0, 684)
         Me.PiePagina.Name = "PiePagina"
-        Me.PiePagina.Size = New System.Drawing.Size(1008, 22)
+        Me.PiePagina.Size = New System.Drawing.Size(1006, 22)
         Me.PiePagina.SizingGrip = False
         Me.PiePagina.TabIndex = 229
         Me.PiePagina.Text = "StatusStrip1"
@@ -129,8 +129,7 @@ Partial Class InventarioEntradas
         '
         Me.MensajePiePagina.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MensajePiePagina.Name = "MensajePiePagina"
-        Me.MensajePiePagina.Size = New System.Drawing.Size(150, 17)
-        Me.MensajePiePagina.Text = "ToolStripStatusLabel1"
+        Me.MensajePiePagina.Size = New System.Drawing.Size(0, 17)
         '
         'Label4
         '
@@ -226,6 +225,28 @@ Partial Class InventarioEntradas
         Me.GroupBox1.TabIndex = 245
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = " Entradas a inventario "
+        '
+        'lblNumEntrada
+        '
+        Me.lblNumEntrada.AutoSize = True
+        Me.lblNumEntrada.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.lblNumEntrada.Location = New System.Drawing.Point(142, 29)
+        Me.lblNumEntrada.Name = "lblNumEntrada"
+        Me.lblNumEntrada.Size = New System.Drawing.Size(14, 14)
+        Me.lblNumEntrada.TabIndex = 247
+        Me.lblNumEntrada.Text = "?"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.Label1.Location = New System.Drawing.Point(16, 29)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(118, 14)
+        Me.Label1.TabIndex = 246
+        Me.Label1.Text = "Num. de Entrada:"
         '
         'TabControl1
         '
@@ -335,6 +356,7 @@ Partial Class InventarioEntradas
         '
         'Txt_CodigoProducto
         '
+        Me.Txt_CodigoProducto.BackColor = System.Drawing.SystemColors.Info
         Me.Txt_CodigoProducto.Location = New System.Drawing.Point(70, 21)
         Me.Txt_CodigoProducto.Name = "Txt_CodigoProducto"
         Me.Txt_CodigoProducto.Size = New System.Drawing.Size(215, 22)
@@ -386,37 +408,15 @@ Partial Class InventarioEntradas
         Me.Barra.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.Barra.Location = New System.Drawing.Point(0, 96)
         Me.Barra.Name = "Barra"
-        Me.Barra.Size = New System.Drawing.Size(1028, 4)
+        Me.Barra.Size = New System.Drawing.Size(1026, 4)
         Me.Barra.TabIndex = 246
         Me.Barra.TabStop = False
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label1.Location = New System.Drawing.Point(16, 29)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(118, 14)
-        Me.Label1.TabIndex = 246
-        Me.Label1.Text = "Num. de Entrada:"
-        '
-        'lblNumEntrada
-        '
-        Me.lblNumEntrada.AutoSize = True
-        Me.lblNumEntrada.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.lblNumEntrada.Location = New System.Drawing.Point(142, 29)
-        Me.lblNumEntrada.Name = "lblNumEntrada"
-        Me.lblNumEntrada.Size = New System.Drawing.Size(14, 14)
-        Me.lblNumEntrada.TabIndex = 247
-        Me.lblNumEntrada.Text = "?"
         '
         'InventarioEntradas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1008, 708)
+        Me.ClientSize = New System.Drawing.Size(1006, 706)
         Me.Controls.Add(Me.Barra)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Label4)

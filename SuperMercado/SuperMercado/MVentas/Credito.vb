@@ -101,7 +101,8 @@ Public Class Credito
         codigo = ObjRet2.DS.Tables(0).Rows(pos).Item(6).ToString
 
         Caja = "Consulta105" : Parametros = "V1=" & idCliente & "|"
-        ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
+        ' Validar cinco para obtener los datos del cliente.
+        ObjRet = lConsulta.LlamarCaja(Caja, "5", Parametros)
     End Sub
 #End Region
 

@@ -13,7 +13,9 @@ CREATE PROCEDURE dbo.GRABAR121
 AS
 BEGIN
 
-DECLARE @nombrePermiso	VARCHAR(50)
+DECLARE @nombrePermiso		VARCHAR(50)
+DECLARE @nuevoNombrePermiso VARCHAR(50)
+DECLARE @registro			integer
 
 --Reportes
 DECLARE @repProductos		CHAR(5)
@@ -62,7 +64,8 @@ DECLARE @confTick			CHAR(5)
 
 Set noCount ON
 
-Exec Emulador_SepararCadena 'V1',   @Cabezero, '|', @nombrePermiso 		Output 
+Exec Emulador_SepararCadena 'V0',   @Cabezero, '|', @nombrePermiso 				Output
+Exec Emulador_SepararCadena 'V1',   @Cabezero, '|', @nuevoNombrePermiso  		Output
 
 --Reportes
 Exec Emulador_SepararCadena 'V2',   @Cabezero, '|', @repProductos		Output 
@@ -113,10 +116,12 @@ Select P.idPermiso
 From SMercado_Seguridad..Permisos P
 Where P.nomPermiso = @nombrePermiso 
 
-IF @@ROWCOUNT = 0
+Select @registro = @@ROWCOUNT 
+
+IF @registro = 0
 	BEGIN
 		Insert SMercado_Seguridad..Permisos
-		Values( @nombrePermiso,
+		Values( @nuevoNombrePermiso,
 				--Reportes
 				@repProductos,
 				@repEntProd,
@@ -160,56 +165,76 @@ IF @@ROWCOUNT = 0
 				--Configuración
 				@confCaja,
 				@confFac,
-				@confTick)				
+				@confTick)	
+				
+				Select @Resul = '2R=OK|2M=Se guardaron los cambios.'			
 	END
 ELSE
 	BEGIN
+		
+		IF @nombrePermiso <> @nuevoNombrePermiso 
+		BEGIN
+			Select P.idPermiso From SMercado_Seguridad..Permisos P
+			Where P.nomPermiso = @nuevoNombrePermiso
+			Select @registro = @@ROWCOUNT
+			
+			IF @registro <> 0
+			BEGIN
+				Select @resul = '2R=ERROR|2M=El nombre del permiso ya se encuentra en uso.'  
+				RETURN
+			END
+		END
+			
 		Update SMercado_Seguridad..Permisos
-		    --Reportes
+		--Reportes
 		Set RepProductos = @repProductos,
-			RepEntProd = @repEntProd,
-			RepSalProd = @repSalProd,
-			RepClientes = @repClientes,
-			
-			RepProveedores = @repProveedores,
-			RepFacturas = @repFacturas,
-			RepVentas = @repVentas,
-			RepRetEfect = @repRetEfect,
-			
-			RepDepEfect = @repDepEfect,
-			
-			--Catálogos
-			CatDepartamentos = @catDepartamentos,
-			CatCategorias = @catCategorias,
-			CatMarcas = @catMarcas,
-			CatProductos = @catProductos,
-			
-			CatClientes = @catClientes,
-			CatProveedores = @catProveedores,
-			CatUnidades = @catUnidades,
-			
-			--Facturas
-			FacFactura = @facFactura,
-			FacCotizacion = @facCotizacion,
-			
-			--Inventarios
-			InvMovimientos = @invMovimientos,
-			InvConsultas = @invConsultas,
-			
-			--Caja
-			CajaCorte = @cajaCorte,
-			CajaEntradas = @cajaEntradas,
-			CajaSalidas = @cajaSalidas,
-			
-			--Seguridad
-			SegUsuarios = @segUsuarios,
-			SegGrupPerm = @segGrupPerm,
-			
-			--Configuración
-			ConfCaja = @confCaja,
-			ConfFact = @confFac,
-			ConfTick = @confTick 
-			
+		RepEntProd = @repEntProd,
+		RepSalProd = @repSalProd,
+		RepClientes = @repClientes,
+		
+		RepProveedores = @repProveedores,
+		RepFacturas = @repFacturas,
+		RepVentas = @repVentas,
+		RepRetEfect = @repRetEfect,
+		
+		RepDepEfect = @repDepEfect,
+		
+		--Catálogos
+		CatDepartamentos = @catDepartamentos,
+		CatCategorias = @catCategorias,
+		CatMarcas = @catMarcas,
+		CatProductos = @catProductos,
+		
+		CatClientes = @catClientes,
+		CatProveedores = @catProveedores,
+		CatUnidades = @catUnidades,
+		
+		--Facturas
+		FacFactura = @facFactura,
+		FacCotizacion = @facCotizacion,
+		
+		--Inventarios
+		InvMovimientos = @invMovimientos,
+		InvConsultas = @invConsultas,
+		
+		--Caja
+		CajaCorte = @cajaCorte,
+		CajaEntradas = @cajaEntradas,
+		CajaSalidas = @cajaSalidas,
+		
+		--Seguridad
+		SegUsuarios = @segUsuarios,
+		SegGrupPerm = @segGrupPerm,
+		
+		--Configuración
+		ConfCaja = @confCaja,
+		ConfFact = @confFac,
+		ConfTick = @confTick,
+		
+		nomPermiso = @nuevoNombrePermiso
+		
 		Where nomPermiso = @nombrePermiso 
+		
+		Select @resul = '2R=OK|2M=Los cambios se guardaron correctamente.'		
 	END
 END

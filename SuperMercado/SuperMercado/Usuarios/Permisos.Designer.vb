@@ -48,13 +48,14 @@ Partial Class Permisos
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Permisos))
         Me.AbonarToolStrip = New System.Windows.Forms.ToolStrip
-        Me.ButtonLimpiar = New System.Windows.Forms.ToolStripButton
-        Me.ButtonGrabar = New System.Windows.Forms.ToolStripButton
+        Me.Buscar = New System.Windows.Forms.ToolStripButton
+        Me.Nuevo = New System.Windows.Forms.ToolStripButton
+        Me.Limpiar = New System.Windows.Forms.ToolStripButton
+        Me.Grabar = New System.Windows.Forms.ToolStripButton
         Me.Label4 = New System.Windows.Forms.Label
         Me.textBoxNombrePermiso = New System.Windows.Forms.TextBox
         Me.Label1 = New System.Windows.Forms.Label
         Me.Barra = New System.Windows.Forms.PictureBox
-        Me.buttonAceptar = New System.Windows.Forms.Button
         Me.GroupBoxReportes = New System.Windows.Forms.GroupBox
         Me.CheckBoxRepDepEfec = New System.Windows.Forms.CheckBox
         Me.CheckBoxRepVen = New System.Windows.Forms.CheckBox
@@ -92,8 +93,10 @@ Partial Class Permisos
         Me.CheckBoxConFac = New System.Windows.Forms.CheckBox
         Me.Label2 = New System.Windows.Forms.Label
         Me.CheckBoxSeleccionarTodo = New System.Windows.Forms.CheckBox
-        Me.labelResul = New System.Windows.Forms.Label
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
+        Me.GroupBoxNombre = New System.Windows.Forms.GroupBox
+        Me.txtNomPermiso = New System.Windows.Forms.TextBox
+        Me.Label5 = New System.Windows.Forms.Label
         Me.AbonarToolStrip.SuspendLayout()
         CType(Me.Barra, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBoxReportes.SuspendLayout()
@@ -103,38 +106,61 @@ Partial Class Permisos
         Me.GroupBoxCaja.SuspendLayout()
         Me.GroupBoxSeguridad.SuspendLayout()
         Me.GroupBoxConfiguracion.SuspendLayout()
+        Me.GroupBoxNombre.SuspendLayout()
         Me.SuspendLayout()
         '
         'AbonarToolStrip
         '
         Me.AbonarToolStrip.AutoSize = False
-        Me.AbonarToolStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ButtonLimpiar, Me.ButtonGrabar})
+        Me.AbonarToolStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Buscar, Me.Nuevo, Me.Limpiar, Me.Grabar})
         Me.AbonarToolStrip.Location = New System.Drawing.Point(0, 0)
         Me.AbonarToolStrip.Name = "AbonarToolStrip"
         Me.AbonarToolStrip.Size = New System.Drawing.Size(879, 48)
         Me.AbonarToolStrip.TabIndex = 288
         Me.AbonarToolStrip.Text = "ToolStrip1"
         '
-        'ButtonLimpiar
+        'Buscar
         '
-        Me.ButtonLimpiar.AutoSize = False
-        Me.ButtonLimpiar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ButtonLimpiar.Image = CType(resources.GetObject("ButtonLimpiar.Image"), System.Drawing.Image)
-        Me.ButtonLimpiar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.ButtonLimpiar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ButtonLimpiar.Name = "ButtonLimpiar"
-        Me.ButtonLimpiar.Size = New System.Drawing.Size(43, 45)
-        Me.ButtonLimpiar.Text = "Limpiar"
+        Me.Buscar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.Buscar.Image = Global.SuperMercado.My.Resources.Resources.zoom
+        Me.Buscar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.Buscar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.Buscar.Name = "Buscar"
+        Me.Buscar.Size = New System.Drawing.Size(36, 45)
+        Me.Buscar.Text = "Buscar permisos"
         '
-        'ButtonGrabar
+        'Nuevo
         '
-        Me.ButtonGrabar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.ButtonGrabar.Image = CType(resources.GetObject("ButtonGrabar.Image"), System.Drawing.Image)
-        Me.ButtonGrabar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.ButtonGrabar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ButtonGrabar.Name = "ButtonGrabar"
-        Me.ButtonGrabar.Size = New System.Drawing.Size(36, 45)
-        Me.ButtonGrabar.Text = "Grabar"
+        Me.Nuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.Nuevo.Image = Global.SuperMercado.My.Resources.Resources.add
+        Me.Nuevo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.Nuevo.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.Nuevo.Name = "Nuevo"
+        Me.Nuevo.Size = New System.Drawing.Size(36, 45)
+        Me.Nuevo.Text = "Agregar un nuevo permiso"
+        '
+        'Limpiar
+        '
+        Me.Limpiar.AutoSize = False
+        Me.Limpiar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.Limpiar.Image = CType(resources.GetObject("Limpiar.Image"), System.Drawing.Image)
+        Me.Limpiar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.Limpiar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.Limpiar.Name = "Limpiar"
+        Me.Limpiar.Size = New System.Drawing.Size(43, 45)
+        Me.Limpiar.Text = "Limpiar los campos"
+        Me.Limpiar.Visible = False
+        '
+        'Grabar
+        '
+        Me.Grabar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.Grabar.Image = Global.SuperMercado.My.Resources.Resources.disk
+        Me.Grabar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.Grabar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.Grabar.Name = "Grabar"
+        Me.Grabar.Size = New System.Drawing.Size(36, 45)
+        Me.Grabar.Text = "Guardar los cambios"
+        Me.Grabar.Visible = False
         '
         'Label4
         '
@@ -155,7 +181,7 @@ Partial Class Permisos
         Me.textBoxNombrePermiso.Location = New System.Drawing.Point(80, 95)
         Me.textBoxNombrePermiso.MaxLength = 50
         Me.textBoxNombrePermiso.Name = "textBoxNombrePermiso"
-        Me.textBoxNombrePermiso.Size = New System.Drawing.Size(151, 22)
+        Me.textBoxNombrePermiso.Size = New System.Drawing.Size(209, 22)
         Me.textBoxNombrePermiso.TabIndex = 290
         '
         'Label1
@@ -181,19 +207,6 @@ Partial Class Permisos
         Me.Barra.TabIndex = 292
         Me.Barra.TabStop = False
         '
-        'buttonAceptar
-        '
-        Me.buttonAceptar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.buttonAceptar.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.buttonAceptar.BackgroundImage = CType(resources.GetObject("buttonAceptar.BackgroundImage"), System.Drawing.Image)
-        Me.buttonAceptar.Font = New System.Drawing.Font("Verdana", 8.0!)
-        Me.buttonAceptar.Location = New System.Drawing.Point(787, 93)
-        Me.buttonAceptar.Name = "buttonAceptar"
-        Me.buttonAceptar.Size = New System.Drawing.Size(80, 25)
-        Me.buttonAceptar.TabIndex = 293
-        Me.buttonAceptar.Text = "Aceptar"
-        Me.buttonAceptar.UseVisualStyleBackColor = False
-        '
         'GroupBoxReportes
         '
         Me.GroupBoxReportes.Controls.Add(Me.CheckBoxRepDepEfec)
@@ -207,7 +220,7 @@ Partial Class Permisos
         Me.GroupBoxReportes.Controls.Add(Me.CheckBoxRepClie)
         Me.GroupBoxReportes.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBoxReportes.ForeColor = System.Drawing.SystemColors.Desktop
-        Me.GroupBoxReportes.Location = New System.Drawing.Point(32, 186)
+        Me.GroupBoxReportes.Location = New System.Drawing.Point(32, 258)
         Me.GroupBoxReportes.Name = "GroupBoxReportes"
         Me.GroupBoxReportes.Size = New System.Drawing.Size(199, 293)
         Me.GroupBoxReportes.TabIndex = 294
@@ -333,7 +346,7 @@ Partial Class Permisos
         Me.GroupBoxCatalogos.Controls.Add(Me.CheckBoxCatMar)
         Me.GroupBoxCatalogos.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBoxCatalogos.ForeColor = System.Drawing.SystemColors.Desktop
-        Me.GroupBoxCatalogos.Location = New System.Drawing.Point(237, 186)
+        Me.GroupBoxCatalogos.Location = New System.Drawing.Point(237, 258)
         Me.GroupBoxCatalogos.Name = "GroupBoxCatalogos"
         Me.GroupBoxCatalogos.Size = New System.Drawing.Size(165, 195)
         Me.GroupBoxCatalogos.TabIndex = 295
@@ -430,7 +443,7 @@ Partial Class Permisos
         Me.GroupBoxFacturacion.Controls.Add(Me.CheckBoxFacCot)
         Me.GroupBoxFacturacion.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBoxFacturacion.ForeColor = System.Drawing.SystemColors.Desktop
-        Me.GroupBoxFacturacion.Location = New System.Drawing.Point(237, 394)
+        Me.GroupBoxFacturacion.Location = New System.Drawing.Point(237, 466)
         Me.GroupBoxFacturacion.Name = "GroupBoxFacturacion"
         Me.GroupBoxFacturacion.Size = New System.Drawing.Size(165, 84)
         Me.GroupBoxFacturacion.TabIndex = 296
@@ -467,7 +480,7 @@ Partial Class Permisos
         Me.GroupBoxInventario.Controls.Add(Me.CheckBoxInvCon)
         Me.GroupBoxInventario.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBoxInventario.ForeColor = System.Drawing.SystemColors.Desktop
-        Me.GroupBoxInventario.Location = New System.Drawing.Point(408, 297)
+        Me.GroupBoxInventario.Location = New System.Drawing.Point(408, 369)
         Me.GroupBoxInventario.Name = "GroupBoxInventario"
         Me.GroupBoxInventario.Size = New System.Drawing.Size(165, 84)
         Me.GroupBoxInventario.TabIndex = 297
@@ -505,7 +518,7 @@ Partial Class Permisos
         Me.GroupBoxCaja.Controls.Add(Me.CheckBoxCajaEnt)
         Me.GroupBoxCaja.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBoxCaja.ForeColor = System.Drawing.SystemColors.Desktop
-        Me.GroupBoxCaja.Location = New System.Drawing.Point(408, 186)
+        Me.GroupBoxCaja.Location = New System.Drawing.Point(408, 258)
         Me.GroupBoxCaja.Name = "GroupBoxCaja"
         Me.GroupBoxCaja.Size = New System.Drawing.Size(165, 105)
         Me.GroupBoxCaja.TabIndex = 298
@@ -554,7 +567,7 @@ Partial Class Permisos
         Me.GroupBoxSeguridad.Controls.Add(Me.CheckBoxSegPer)
         Me.GroupBoxSeguridad.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBoxSeguridad.ForeColor = System.Drawing.SystemColors.Desktop
-        Me.GroupBoxSeguridad.Location = New System.Drawing.Point(408, 394)
+        Me.GroupBoxSeguridad.Location = New System.Drawing.Point(408, 466)
         Me.GroupBoxSeguridad.Name = "GroupBoxSeguridad"
         Me.GroupBoxSeguridad.Size = New System.Drawing.Size(165, 84)
         Me.GroupBoxSeguridad.TabIndex = 299
@@ -592,7 +605,7 @@ Partial Class Permisos
         Me.GroupBoxConfiguracion.Controls.Add(Me.CheckBoxConFac)
         Me.GroupBoxConfiguracion.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBoxConfiguracion.ForeColor = System.Drawing.SystemColors.Desktop
-        Me.GroupBoxConfiguracion.Location = New System.Drawing.Point(579, 186)
+        Me.GroupBoxConfiguracion.Location = New System.Drawing.Point(579, 258)
         Me.GroupBoxConfiguracion.Name = "GroupBoxConfiguracion"
         Me.GroupBoxConfiguracion.Size = New System.Drawing.Size(165, 105)
         Me.GroupBoxConfiguracion.TabIndex = 300
@@ -639,7 +652,7 @@ Partial Class Permisos
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(29, 153)
+        Me.Label2.Location = New System.Drawing.Point(29, 225)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(357, 13)
         Me.Label2.TabIndex = 301
@@ -650,37 +663,64 @@ Partial Class Permisos
         Me.CheckBoxSeleccionarTodo.AutoSize = True
         Me.CheckBoxSeleccionarTodo.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CheckBoxSeleccionarTodo.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.CheckBoxSeleccionarTodo.Location = New System.Drawing.Point(392, 152)
+        Me.CheckBoxSeleccionarTodo.Location = New System.Drawing.Point(390, 224)
         Me.CheckBoxSeleccionarTodo.Name = "CheckBoxSeleccionarTodo"
         Me.CheckBoxSeleccionarTodo.Size = New System.Drawing.Size(120, 17)
         Me.CheckBoxSeleccionarTodo.TabIndex = 302
         Me.CheckBoxSeleccionarTodo.Text = "Seleccionar todo"
         Me.CheckBoxSeleccionarTodo.UseVisualStyleBackColor = True
         '
-        'labelResul
-        '
-        Me.labelResul.AutoSize = True
-        Me.labelResul.Location = New System.Drawing.Point(237, 99)
-        Me.labelResul.Name = "labelResul"
-        Me.labelResul.Size = New System.Drawing.Size(109, 13)
-        Me.labelResul.TabIndex = 303
-        Me.labelResul.Text = "Información del grupo"
-        '
         'StatusStrip1
         '
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 526)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 584)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(879, 22)
         Me.StatusStrip1.TabIndex = 304
         Me.StatusStrip1.Text = "StatusStrip1"
         '
+        'GroupBoxNombre
+        '
+        Me.GroupBoxNombre.Controls.Add(Me.txtNomPermiso)
+        Me.GroupBoxNombre.Controls.Add(Me.Label5)
+        Me.GroupBoxNombre.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBoxNombre.ForeColor = System.Drawing.SystemColors.Desktop
+        Me.GroupBoxNombre.Location = New System.Drawing.Point(32, 152)
+        Me.GroupBoxNombre.Name = "GroupBoxNombre"
+        Me.GroupBoxNombre.Size = New System.Drawing.Size(712, 55)
+        Me.GroupBoxNombre.TabIndex = 305
+        Me.GroupBoxNombre.TabStop = False
+        Me.GroupBoxNombre.Text = " DATOS"
+        '
+        'txtNomPermiso
+        '
+        Me.txtNomPermiso.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtNomPermiso.Location = New System.Drawing.Point(153, 20)
+        Me.txtNomPermiso.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.txtNomPermiso.MaxLength = 50
+        Me.txtNomPermiso.Name = "txtNomPermiso"
+        Me.txtNomPermiso.Size = New System.Drawing.Size(349, 22)
+        Me.txtNomPermiso.TabIndex = 334
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.BackColor = System.Drawing.Color.Transparent
+        Me.Label5.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.Label5.Location = New System.Drawing.Point(7, 23)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(138, 14)
+        Me.Label5.TabIndex = 333
+        Me.Label5.Text = "Nombre del permiso:"
+        '
         'Permisos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(879, 548)
+        Me.ClientSize = New System.Drawing.Size(879, 606)
+        Me.Controls.Add(Me.GroupBoxNombre)
         Me.Controls.Add(Me.StatusStrip1)
-        Me.Controls.Add(Me.labelResul)
         Me.Controls.Add(Me.CheckBoxSeleccionarTodo)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.GroupBoxConfiguracion)
@@ -690,7 +730,6 @@ Partial Class Permisos
         Me.Controls.Add(Me.GroupBoxFacturacion)
         Me.Controls.Add(Me.GroupBoxCatalogos)
         Me.Controls.Add(Me.GroupBoxReportes)
-        Me.Controls.Add(Me.buttonAceptar)
         Me.Controls.Add(Me.Barra)
         Me.Controls.Add(Me.textBoxNombrePermiso)
         Me.Controls.Add(Me.Label1)
@@ -715,18 +754,19 @@ Partial Class Permisos
         Me.GroupBoxSeguridad.PerformLayout()
         Me.GroupBoxConfiguracion.ResumeLayout(False)
         Me.GroupBoxConfiguracion.PerformLayout()
+        Me.GroupBoxNombre.ResumeLayout(False)
+        Me.GroupBoxNombre.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
     Friend WithEvents AbonarToolStrip As System.Windows.Forms.ToolStrip
-    Friend WithEvents ButtonLimpiar As System.Windows.Forms.ToolStripButton
-    Friend WithEvents ButtonGrabar As System.Windows.Forms.ToolStripButton
+    Friend WithEvents Limpiar As System.Windows.Forms.ToolStripButton
+    Friend WithEvents Grabar As System.Windows.Forms.ToolStripButton
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents textBoxNombrePermiso As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Barra As System.Windows.Forms.PictureBox
-    Friend WithEvents buttonAceptar As System.Windows.Forms.Button
     Friend WithEvents GroupBoxReportes As System.Windows.Forms.GroupBox
     Friend WithEvents CheckBoxRepProv As System.Windows.Forms.CheckBox
     Friend WithEvents CheckBoxRepClie As System.Windows.Forms.CheckBox
@@ -764,6 +804,10 @@ Partial Class Permisos
     Friend WithEvents CheckBoxConFac As System.Windows.Forms.CheckBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents CheckBoxSeleccionarTodo As System.Windows.Forms.CheckBox
-    Friend WithEvents labelResul As System.Windows.Forms.Label
     Friend WithEvents StatusStrip1 As System.Windows.Forms.StatusStrip
+    Friend WithEvents Buscar As System.Windows.Forms.ToolStripButton
+    Friend WithEvents Nuevo As System.Windows.Forms.ToolStripButton
+    Friend WithEvents GroupBoxNombre As System.Windows.Forms.GroupBox
+    Friend WithEvents txtNomPermiso As System.Windows.Forms.TextBox
+    Friend WithEvents Label5 As System.Windows.Forms.Label
 End Class
