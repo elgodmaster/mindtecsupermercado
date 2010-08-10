@@ -109,7 +109,7 @@ Public Class Cat_Marcas
 
 
             If lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|") = "OK" Then
-                MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+                MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False), " Marcas", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 LimpiarPantalla()
                 ocultarControlesEditar()
             Else

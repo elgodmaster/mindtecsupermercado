@@ -85,7 +85,10 @@ Public Class Tickets
                          "|V8=" & TextBox7.Text.Trim
 
             ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
-            Me.Close()
+            If lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|") = "OK" Then
+                MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False), " Tickets", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                cargaLineasTicket()
+            End If
         Else
             Return
         End If

@@ -71,7 +71,6 @@ Partial Class ModuloVentas
         Me.GridDatos = New SourceGrid.DataGrid
         Me.Descuento = New System.Windows.Forms.Button
         Me.Agregar = New System.Windows.Forms.Button
-        Me.TxtCantidad = New System.Windows.Forms.TextBox
         Me.Codigo_Producto = New System.Windows.Forms.TextBox
         Me.label1 = New System.Windows.Forms.Label
         Me.toolStrip1 = New System.Windows.Forms.ToolStrip
@@ -87,18 +86,20 @@ Partial Class ModuloVentas
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.lblFecha = New System.Windows.Forms.Label
         Me.lblhora = New System.Windows.Forms.Label
+        Me.CantidadNumericUpDown = New System.Windows.Forms.NumericUpDown
         Me.groupBox2.SuspendLayout()
         Me.groupBox1.SuspendLayout()
         Me.GroupBoxPagos.SuspendLayout()
         Me.toolStrip1.SuspendLayout()
         Me.panel1.SuspendLayout()
+        CType(Me.CantidadNumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'label16
         '
         Me.label16.AutoSize = True
         Me.label16.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.label16.Location = New System.Drawing.Point(454, 14)
+        Me.label16.Location = New System.Drawing.Point(469, 14)
         Me.label16.Name = "label16"
         Me.label16.Size = New System.Drawing.Size(57, 13)
         Me.label16.TabIndex = 25
@@ -120,6 +121,7 @@ Partial Class ModuloVentas
         'groupBox2
         '
         Me.groupBox2.Controls.Add(Me.groupBox1)
+        Me.groupBox2.Controls.Add(Me.CantidadNumericUpDown)
         Me.groupBox2.Controls.Add(Me.CancelarVenta)
         Me.groupBox2.Controls.Add(Me.AceptarVenta)
         Me.groupBox2.Controls.Add(Me.GridDatos)
@@ -127,7 +129,6 @@ Partial Class ModuloVentas
         Me.groupBox2.Controls.Add(Me.Borrar)
         Me.groupBox2.Controls.Add(Me.Descuento)
         Me.groupBox2.Controls.Add(Me.Agregar)
-        Me.groupBox2.Controls.Add(Me.TxtCantidad)
         Me.groupBox2.Controls.Add(Me.Codigo_Producto)
         Me.groupBox2.Controls.Add(Me.label1)
         Me.groupBox2.Location = New System.Drawing.Point(58, 192)
@@ -346,7 +347,8 @@ Partial Class ModuloVentas
         '
         Me.GridDatos.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridDatos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.GridDatos.BackColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.GridDatos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GridDatos.DeleteQuestionMessage = ""
         Me.GridDatos.DeleteRowsWithDeleteKey = False
         Me.GridDatos.FixedRows = 1
@@ -363,7 +365,7 @@ Partial Class ModuloVentas
         Me.Descuento.BackgroundImage = CType(resources.GetObject("Descuento.BackgroundImage"), System.Drawing.Image)
         Me.Descuento.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.Descuento.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Descuento.Location = New System.Drawing.Point(731, 29)
+        Me.Descuento.Location = New System.Drawing.Point(737, 28)
         Me.Descuento.Name = "Descuento"
         Me.Descuento.Size = New System.Drawing.Size(95, 31)
         Me.Descuento.TabIndex = 3
@@ -375,7 +377,7 @@ Partial Class ModuloVentas
         '
         Me.Agregar.BackgroundImage = CType(resources.GetObject("Agregar.BackgroundImage"), System.Drawing.Image)
         Me.Agregar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.Agregar.Location = New System.Drawing.Point(512, 29)
+        Me.Agregar.Location = New System.Drawing.Point(557, 29)
         Me.Agregar.Name = "Agregar"
         Me.Agregar.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.Agregar.Size = New System.Drawing.Size(57, 31)
@@ -383,15 +385,6 @@ Partial Class ModuloVentas
         Me.Agregar.Text = "F5"
         Me.Agregar.TextAlign = System.Drawing.ContentAlignment.BottomRight
         Me.Agregar.UseVisualStyleBackColor = True
-        '
-        'TxtCantidad
-        '
-        Me.TxtCantidad.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtCantidad.Location = New System.Drawing.Point(453, 30)
-        Me.TxtCantidad.Name = "TxtCantidad"
-        Me.TxtCantidad.Size = New System.Drawing.Size(60, 29)
-        Me.TxtCantidad.TabIndex = 1
-        Me.TxtCantidad.Text = "0.00"
         '
         'Codigo_Producto
         '
@@ -541,6 +534,17 @@ Partial Class ModuloVentas
         Me.lblhora.TabIndex = 349
         Me.lblhora.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
+        'CantidadNumericUpDown
+        '
+        Me.CantidadNumericUpDown.DecimalPlaces = 2
+        Me.CantidadNumericUpDown.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CantidadNumericUpDown.Location = New System.Drawing.Point(455, 30)
+        Me.CantidadNumericUpDown.Maximum = New Decimal(New Integer() {1215752191, 23, 0, 0})
+        Me.CantidadNumericUpDown.MaximumSize = New System.Drawing.Size(96, 0)
+        Me.CantidadNumericUpDown.Name = "CantidadNumericUpDown"
+        Me.CantidadNumericUpDown.Size = New System.Drawing.Size(96, 29)
+        Me.CantidadNumericUpDown.TabIndex = 1
+        '
         'ModuloVentas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -568,6 +572,7 @@ Partial Class ModuloVentas
         Me.toolStrip1.PerformLayout()
         Me.panel1.ResumeLayout(False)
         Me.panel1.PerformLayout()
+        CType(Me.CantidadNumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -577,7 +582,6 @@ Partial Class ModuloVentas
     Private WithEvents groupBox2 As System.Windows.Forms.GroupBox
     Private WithEvents Descuento As System.Windows.Forms.Button
     Private WithEvents Agregar As System.Windows.Forms.Button
-    Private WithEvents TxtCantidad As System.Windows.Forms.TextBox
     Private WithEvents Codigo_Producto As System.Windows.Forms.TextBox
     Private WithEvents label1 As System.Windows.Forms.Label
     Private WithEvents toolStrip1 As System.Windows.Forms.ToolStrip
@@ -611,4 +615,5 @@ Partial Class ModuloVentas
     Private WithEvents Btn_Factura As System.Windows.Forms.Button
     Friend WithEvents LblCambio As System.Windows.Forms.Label
     Friend WithEvents Label6 As System.Windows.Forms.Label
+    Friend WithEvents CantidadNumericUpDown As System.Windows.Forms.NumericUpDown
 End Class

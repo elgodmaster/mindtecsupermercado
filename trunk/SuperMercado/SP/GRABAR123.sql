@@ -43,4 +43,6 @@ Set impresora = @impresora,
     lineaPie3 = @linea7
 Where idConfig = 1
 
+Select @Resul = '2R=OK|2M=Se guardaron los cambios correctamente.'
+
 END

@@ -135,7 +135,7 @@ Public Class Cat_Departamentos
             ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
 
             If lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|") = "OK" Then
-                MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+                MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False), " Departamentos", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 regresarPantalla()
             Else
                 MessageBox.Show("El departamento ya se encuentra registrado.", " Departamentos", MessageBoxButtons.OK, MessageBoxIcon.Error)

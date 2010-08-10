@@ -27,14 +27,6 @@ Public Class Cat_Unidades
 
 #End Region
 
-#Region " Aceptar "
-    Private Sub btnAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
-
-
-    End Sub
-#End Region
-
 #Region " Unidad "
     Private Sub CodigoUnidades_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles CodigoUnidades.KeyDown
         Select Case e.KeyCode
@@ -131,7 +123,7 @@ Public Class Cat_Unidades
             ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
 
             If lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|") = "OK" Then
-                MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+                MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False), " Unidades", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 LimpiarPantalla()
                 Limpiar.Visible = False
             Else

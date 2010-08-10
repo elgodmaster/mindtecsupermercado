@@ -388,6 +388,7 @@ Public Class InventarioSalidas
         If ObjRet.bOk Then
             Dim nuevo As Grid = New Grid(ObjRet.DS)
             Txt_CodigoProducto.Text = nuevo.resultado
+            SendKeys.Send("{ENTER}")
         End If
     End Sub
 #End Region
@@ -598,6 +599,15 @@ Public Class InventarioSalidas
     Private Sub txtMotivo_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtMotivo.KeyPress
         If e.KeyChar = ChrW(Keys.Enter) Then
             Txt_CodigoProducto.Focus()
+        End If
+    End Sub
+#End Region
+    
+#Region "  Evento: CodigoProducto - KEY PRESS  "
+    Private Sub Txt_CodigoProducto_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles Txt_CodigoProducto.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            CantidadNumericUpDown.Focus()
         End If
     End Sub
 #End Region

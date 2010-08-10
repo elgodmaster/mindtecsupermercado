@@ -19,6 +19,17 @@ Public Class Usuarios
     End Sub
 #End Region
 
+#Region "  Botón NUEVO  "
+    Private Sub Nuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Nuevo.Click
+        limpiarPantalla()
+        mostrarControles()
+        mostrarBotonesEditar()
+
+        usuarioOriginal = ""
+
+    End Sub
+#End Region
+
 #Region "  Bótón ACEPTAR  "
     Private Sub buttonAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         If textBoxUsuario.Text.Trim = "" Then
@@ -42,7 +53,7 @@ Public Class Usuarios
     Private Sub ButtonGrabar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Grabar.Click
         Dim Result As DialogResult
         '<Validación>
-        If textBoxUsuario.Text.Trim = "" Then
+        If txtUsuario.Text.Trim = "" Then
             MessageBox.Show("Escriba el nombre del usuario.", " Permisos", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             textBoxUsuario.Focus()
             Return
@@ -74,10 +85,12 @@ Public Class Usuarios
             grabrar122()
 
             If lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|") = "OK" Then
-                MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|"), " Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False), " Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 limpiarPantalla()
+                ocultarControles()
+                ocultarBotonesEditar()
             Else
-                MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|"), " Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False), " Usuarios", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
         Else
             Return
@@ -122,7 +135,6 @@ Public Class Usuarios
 #Region "  Rutina: ocultarControles  "
     Private Sub ocultarControles()
 
-        labelResul.Visible = False
         GroupBoxDatos.Visible = False
         Label6.Visible = False
         Label7.Visible = False
@@ -134,12 +146,14 @@ Public Class Usuarios
         GroupBoxInventario.Visible = False
         GroupBoxReportes.Visible = False
         GroupBoxSeguridad.Visible = False
+
+        textBoxUsuario.Enabled = True
+        textBoxUsuario.Focus()
     End Sub
 #End Region
 
 #Region "  Rutina: mostrarControles  "
     Private Sub mostrarControles()
-        labelResul.Visible = True
         GroupBoxDatos.Visible = True
         Label6.Visible = True
         Label7.Visible = True
@@ -151,6 +165,9 @@ Public Class Usuarios
         GroupBoxInventario.Visible = True
         GroupBoxReportes.Visible = True
         GroupBoxSeguridad.Visible = True
+
+        textBoxUsuario.Enabled = False
+        txtUsuario.Focus()
     End Sub
 #End Region
 
@@ -173,7 +190,6 @@ Public Class Usuarios
         ObjRet = lConsulta.LlamarCaja(Caja, 1, Parametros)
 
         If lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|") = "OK" Then
-            labelResul.Text = "Usuario registrado. Puede modificar cualquier valor y hacer clic en el botón guardar."
 
             txtUsuario.Text = ObjRet.DS.Tables(0).Rows(0).Item(0)
             TextBoxContraseña.Text = ObjRet.DS.Tables(0).Rows(0).Item(1)
@@ -184,13 +200,12 @@ Public Class Usuarios
 
             llenarCheckBox()
 
-            Grabar.Visible = True
             mostrarControles()
-            textBoxUsuario.Enabled = False
+            mostrarBotonesEditar()
         Else
-            labelResul.Text = "Usuario no registrado. LLene los campos necesarios y haga clic en el botón guardar."
             TextBoxNombreCompleto.Focus()
             mostrarControles()
+            mostrarBotonesEditar()
 
         End If
     End Sub
@@ -269,14 +284,37 @@ Public Class Usuarios
     End Sub
 #End Region
 
+#Region "  Rutina: mostrarBotonesEditar  "
+    Sub mostrarBotonesEditar()
+        Limpiar.Visible = True
+        Grabar.Visible = True
+    End Sub
+#End Region
+
+#Region "  Rutina: ocultarBotonesEditar  "
+    Sub ocultarBotonesEditar()
+        Limpiar.Visible = False
+        Grabar.Visible = False
+    End Sub
+#End Region
+
 #Region "  Rutina: limpiarPantalla  "
     Private Sub limpiarPantalla()
+        textBoxUsuario.Clear()
+        txtUsuario.Clear()
         TextBoxContraseña.Clear()
         TextBoxNombreCompleto.Clear()
     End Sub
 #End Region
 
 #Region "  Cambio de TextBox con ENTER  "
+    Private Sub txtUsuario_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtUsuario.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            e.Handled = True
+            TextBoxNombreCompleto.Focus()
+        End If
+    End Sub
+
     Private Sub TextBoxNombreCompleto_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles TextBoxNombreCompleto.KeyDown
         If e.KeyCode = Keys.Enter Then
             TextBoxContraseña.Focus()
@@ -299,14 +337,5 @@ Public Class Usuarios
     End Sub
 #End Region
     
-#Region "  Botón NUEVO  "
-    Private Sub Nuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Nuevo.Click
-        limpiarPantalla()
-        mostrarControles()
 
-        usuarioOriginal = ""
-
-    End Sub
-#End Region
-    
 End Class

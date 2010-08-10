@@ -403,16 +403,6 @@ Public Class InventarioEntradas
 
         End If
     End Sub
-
-    Sub CatalogoProductos()
-        Caja = "Consulta103" : Parametros = ""
-        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
-        ObjRet = lConsulta.LlamarCaja(Caja, "0", Parametros)
-        If ObjRet.bOk Then
-            Dim nuevo As Grid = New Grid(ObjRet.DS)
-            Txt_CodigoProducto.Text = nuevo.resultado
-        End If
-    End Sub
 #End Region
 
 #Region "  Rutina: CalcularTotal  "
@@ -771,6 +761,19 @@ Public Class InventarioEntradas
 
     End Sub
 #End Region
+
+#Region "  Rutina: catalogoProductos  "
+    Sub CatalogoProductos()
+        Caja = "Consulta103" : Parametros = ""
+        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+        ObjRet = lConsulta.LlamarCaja(Caja, "0", Parametros)
+        If ObjRet.bOk Then
+            Dim nuevo As Grid = New Grid(ObjRet.DS)
+            Txt_CodigoProducto.Text = nuevo.resultado
+            SendKeys.Send("{ENTER}")
+        End If
+    End Sub
+#End Region
     
 #Region "  Evento: GridDatos - PAINT  (Calcula el tamaño de la última columna para ajustarse el tamaño del grid.)  "
     Private Sub GridDatos_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles GridDatos.Paint
@@ -819,6 +822,14 @@ Public Class InventarioEntradas
         If e.KeyChar = ChrW(Keys.Enter) Then
             e.Handled = True
             Txt_CodigoProducto.Focus()
+        End If
+    End Sub
+#End Region
+
+#Region "  Evento: codigoProducto - KEYDOWN  "
+    Private Sub Txt_CodigoProducto_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Txt_CodigoProducto.KeyDown
+        If e.KeyCode = Keys.F2 Then
+            CatalogoProductos()
         End If
     End Sub
 #End Region

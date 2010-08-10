@@ -2,7 +2,7 @@
 
 Public Class ModuloVentas
 
-#Region " Variables de trabajo "
+#Region "  Variables de trabajo  "
     Dim DsDatos As DataSet
     Dim ViewDatos As DataView
     Private DsView As DataView
@@ -60,7 +60,7 @@ Public Class ModuloVentas
     End Sub
 #End Region
 
-#Region " Grid Datos "
+#Region "  Grid Datos  "
 
     Sub CrearDsDatos()
         'Creando Datatable  con tipo de dato
@@ -78,6 +78,7 @@ Public Class ModuloVentas
         DsDatos.Tables("Table").Columns.Add("C6", GetType(Double))
         DsDatos.Tables("Table").Columns.Add("C7", GetType(Integer))
         DsDatos.Tables("Table").Columns.Add("C8", GetType(Decimal))
+        DsDatos.Tables("Table").Columns.Add("C9", GetType(Decimal))
 
     End Sub
 
@@ -109,22 +110,29 @@ Public Class ModuloVentas
 
         'Vista columna encabezado
 
-        Dim viewcolumnheader As SourceGrid.Cells.Views.ColumnHeader = New SourceGrid.Cells.Views.ColumnHeader
-        Dim backheader As DevAge.Drawing.VisualElements.ColumnHeader = New DevAge.Drawing.VisualElements.ColumnHeader
-        backheader.BackColor = cColorHeader
-        backheader.Border = DevAge.Drawing.RectangleBorder.RectangleBlack1Width
-        viewcolumnheader.Background = backheader
-        viewcolumnheader.ForeColor = Color.Black
-        viewcolumnheader.Font = New Font("Verdana", 12, FontStyle.Bold)
-        viewcolumnheader.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
+        'Vista columna encabezado
+        Dim viewcolumnheaderLeft As SourceGrid.Cells.Views.ColumnHeader = New SourceGrid.Cells.Views.ColumnHeader
+        Dim backheader0 As DevAge.Drawing.VisualElements.ColumnHeader = New DevAge.Drawing.VisualElements.ColumnHeader
+        viewcolumnheaderLeft.Font = New Font("Verdana", 9, FontStyle.Regular)
+        viewcolumnheaderLeft.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleLeft
 
-        GridDatos.GetCell(0, 1).View = viewcolumnheader
-        GridDatos.GetCell(0, 2).View = viewcolumnheader
-        GridDatos.GetCell(0, 3).View = viewcolumnheader
-        GridDatos.GetCell(0, 4).View = viewcolumnheader
-        GridDatos.GetCell(0, 5).View = viewcolumnheader
-        GridDatos.GetCell(0, 6).View = viewcolumnheader
-        GridDatos.GetCell(0, 7).View = viewcolumnheader
+        Dim viewcolumnheaderRight As SourceGrid.Cells.Views.ColumnHeader = New SourceGrid.Cells.Views.ColumnHeader
+        Dim backheader2 As DevAge.Drawing.VisualElements.ColumnHeader = New DevAge.Drawing.VisualElements.ColumnHeader
+        viewcolumnheaderRight.Font = New Font("Verdana", 9, FontStyle.Regular)
+        viewcolumnheaderRight.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleRight
+
+        Dim viewcolumnheaderCenter As SourceGrid.Cells.Views.ColumnHeader = New SourceGrid.Cells.Views.ColumnHeader
+        Dim backheader3 As DevAge.Drawing.VisualElements.ColumnHeader = New DevAge.Drawing.VisualElements.ColumnHeader
+        viewcolumnheaderCenter.Font = New Font("Verdana", 9, FontStyle.Regular)
+        viewcolumnheaderCenter.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
+
+        GridDatos.GetCell(0, 1).View = viewcolumnheaderCenter
+        GridDatos.GetCell(0, 2).View = viewcolumnheaderLeft
+        GridDatos.GetCell(0, 3).View = viewcolumnheaderCenter
+        GridDatos.GetCell(0, 4).View = viewcolumnheaderCenter
+        GridDatos.GetCell(0, 5).View = viewcolumnheaderCenter
+        GridDatos.GetCell(0, 6).View = viewcolumnheaderCenter
+        GridDatos.GetCell(0, 7).View = viewcolumnheaderCenter
     End Sub
 
     Private Sub GridDatosCrearColumnas(ByVal columns As SourceGrid.DataGridColumns, ByVal Bindlist As DevAge.ComponentModel.IBoundList)
@@ -132,20 +140,26 @@ Public Class ModuloVentas
 
         Dim border As DevAge.Drawing.RectangleBorder = New DevAge.Drawing.RectangleBorder(New DevAge.Drawing.BorderLine(Color.Black), New DevAge.Drawing.BorderLine(Color.Black))
         'gcolorRow esta declarada en el moduloGeneral
+        Dim noBorder As New DevAge.Drawing.RectangleBorder
+        noBorder.SetColor(Color.Transparent)
 
         'vistas
-        Dim viewNormal As CellBackColorAlternate = New CellBackColorAlternate(gColorRow, Color.White)
-        viewNormal.Font = New Font("Verdana", 12, FontStyle.Regular)
-        viewNormal.Border = border
+        Dim viewCenter As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        viewCenter.Font = New Font("Verdana", 11, FontStyle.Bold)
+        viewCenter.Border = noBorder
+        viewCenter.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
+
+        Dim viewLeft As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        viewLeft.Font = New Font("Verdana", 11, FontStyle.Bold)
+        viewLeft.Border = noBorder
+        viewLeft.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleLeft
+
+        Dim viewRight As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        viewRight.Font = New Font("Verdana", 11, FontStyle.Bold)
+        viewRight.Border = noBorder
+        viewRight.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleRight
 
         Dim myfont As New Font("Verdana", 12, FontStyle.Regular)
-
-        Dim viewBtn As SourceGrid.Cells.Views.Button = New SourceGrid.Cells.Views.Button()
-        viewBtn.BackColor = gColorRow
-        viewBtn.Border = border
-        viewBtn.Font = myfont
-        viewBtn.ForeColor = Color.Black
-        viewBtn.TextAlignment = DevAge.Drawing.ContentAlignment.BottomCenter
 
         'Eventos
 
@@ -169,69 +183,62 @@ Public Class ModuloVentas
         'AddHandler editorCodigo.KeyPress, New KeyPressEventHandler(AddressOf GridCodigo_KeyPress)
         'Crear columnas
         Dim GridColumn As SourceGrid.DataGridColumn
-        'AGRAGAR BOTON
-        GridColumn = GridDatos.Columns.Add(Nothing, "", New SourceGrid.Cells.Button("-"))
-        GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.AddController(clickEvent)
-        GridColumn.DataCell.View = viewBtn
-        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
-
-
-        'GridColumn = GridDatos.Columns.Add("C0", "Fecha", EditorCustom)
-        'GridColumn.DataCell.AddController(gridKeydown)
-        'GridColumn.DataCell.View = viewNormal
-        'GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
         GridColumn = GridDatos.Columns.Add("C1", "Código", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormal
+        GridColumn.DataCell.View = viewCenter
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
         GridColumn = GridDatos.Columns.Add("C2", "Producto", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormal
+        GridColumn.DataCell.View = viewLeft
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
         GridColumn = GridDatos.Columns.Add("C3", "Cantidad", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormal
+        GridColumn.DataCell.View = viewCenter
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
         GridColumn = GridDatos.Columns.Add("C4", "Unidad", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormal
+        GridColumn.DataCell.View = viewCenter
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.EnableStretch
 
         GridColumn = GridDatos.Columns.Add("C5", "Precio Unitario", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormal
+        GridColumn.DataCell.View = viewCenter
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
         GridColumn = GridDatos.Columns.Add("C6", "Precio Total", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormal
+        GridColumn.DataCell.View = viewCenter
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.EnableAutoSize
 
         GridColumn = GridDatos.Columns.Add("C7", "IdVenta", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormal
+        GridColumn.DataCell.View = viewCenter
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.None
 
         GridColumn = GridDatos.Columns.Add("C8", "Descuento", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
-        GridColumn.DataCell.View = viewNormal
+        GridColumn.DataCell.View = viewCenter
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.None
+
+        GridColumn = GridDatos.Columns.Add("C9", " ", EditorCustom)
+        GridColumn.DataCell.AddController(gridKeydown)
+        GridColumn.DataCell.View = viewCenter
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.None
 
         GridDatos.Columns(0).Visible = False
-        GridDatos.Columns.SetWidth(1, 30)
-        GridDatos.Columns.SetWidth(2, 150)
-        GridDatos.Columns.SetWidth(3, 300)
+        GridDatos.Columns.SetWidth(1, 150)
+        GridDatos.Columns.SetWidth(2, 300)
+        GridDatos.Columns.SetWidth(3, 100)
         GridDatos.Columns.SetWidth(4, 100)
         GridDatos.Columns.SetWidth(5, 100)
-        GridDatos.Columns.SetWidth(6, 100)
-        GridDatos.Columns.SetWidth(7, 150)
+        GridDatos.Columns.SetWidth(6, 150)
+        GridDatos.Columns.SetWidth(7, 0)
         GridDatos.Columns.SetWidth(8, 0)
-        GridDatos.Columns.SetWidth(9, 0)
+        GridDatos.Columns.SetWidth(9, 10)
     End Sub
 
 #End Region
@@ -360,12 +367,12 @@ Public Class ModuloVentas
 
             Me.Codigo_Producto.Text = ""
 
-            Me.TxtCantidad.Text = "0.00"
+            CantidadNumericUpDown.Value = 0
             Me.Codigo_Producto.Focus()
         Else
             MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
             Me.Codigo_Producto.Text = ""
-            Me.TxtCantidad.Text = "0.00"
+            CantidadNumericUpDown.Value = 0
             Me.Codigo_Producto.Focus()
         End If
     End Sub
@@ -389,10 +396,10 @@ Public Class ModuloVentas
         Dim Encontro As Boolean = 0
         Dim fila As Integer = 0
 
-        If Me.TxtCantidad.Text = "0.00" Or Len(LTrim(RTrim(Me.TxtCantidad.Text))) = 0 Then
+        If CantidadNumericUpDown.Value <= 0 Then
             cantidad = 1
         Else
-            cantidad = Double.Parse(TxtCantidad.Text)
+            cantidad = CantidadNumericUpDown.Value
         End If
 
         TotalCosto = cantidad * Costo
@@ -459,7 +466,7 @@ Public Class ModuloVentas
         Me.DsDatos.Tables("Table").Clear()
         Me.DsDatos.AcceptChanges()
         Codigo_Producto.Text = ""
-        TxtCantidad.Text = "0.00"
+        CantidadNumericUpDown.Value = 0
         LblIva.Text = "$0.00"
         LblSubTotal.Text = "$0.00"
         LblTotal.Text = "0.00"
@@ -500,14 +507,14 @@ Public Class ModuloVentas
 #End Region
 
 #Region " Cantidad "
-    Private Sub TxtCantidad_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles TxtCantidad.KeyDown
+    Private Sub TxtCantidad_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles CantidadNumericUpDown.KeyDown
         Select Case e.KeyCode
             Case Keys.Enter
                 CajaProductos()
         End Select
     End Sub
 
-    Private Sub TxtCantidad_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TxtCantidad.KeyPress
+    Private Sub TxtCantidad_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
         Dim KeyAscii As Short = CShort(Asc(e.KeyChar))
         KeyAscii = CShort(SoloNumeros(KeyAscii))
         If KeyAscii = 0 Then
@@ -632,6 +639,81 @@ Public Class ModuloVentas
     End Sub
 #End Region
 
+#Region "  Rutina: posRowGrid  "
+    Private Function posRowGrid() As Integer
+        Dim pos() As Integer = GridDatos.Selection.GetSelectionRegion.GetRowsIndex
+        If pos.Length = 0 Then
+            Return -1
+        Else
+            Return pos(0) - 1
+        End If
+    End Function
+#End Region
+
+#Region "  Botón ELIMINAR PRODUCTO  "
+    Private Sub ButtonEliminar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Borrar.Click
+        If posRowGrid() < 0 Then
+            Return
+        End If
+        DsDatos.Tables(0).Rows.RemoveAt(posRowGrid)
+
+        Dim dsDatosTemp As DataSet
+        Dim dt As DataTable
+        dsDatosTemp = New DataSet("Root")
+        dt = New DataTable("Table")
+        dsDatosTemp.Tables.Add(dt)
+
+        'DsDatos.Tables("Table").Columns.Add("C0", GetType(String))
+        dsDatosTemp.Tables("Table").Columns.Add("C1", GetType(String))
+        dsDatosTemp.Tables("Table").Columns.Add("C2", GetType(String))
+        dsDatosTemp.Tables("Table").Columns.Add("C3", GetType(Double))
+        dsDatosTemp.Tables("Table").Columns.Add("C4", GetType(String))
+        dsDatosTemp.Tables("Table").Columns.Add("C5", GetType(Double))
+        dsDatosTemp.Tables("Table").Columns.Add("C6", GetType(Double))
+        dsDatosTemp.Tables("Table").Columns.Add("C7", GetType(Integer))
+
+        For n As Integer = 0 To DsDatos.Tables(0).Rows.Count - 1
+            Try
+                dsDatosTemp.Tables(0).ImportRow(DsDatos.Tables(0).Rows(n))
+            Catch ex As Exception
+
+            End Try
+        Next
+
+        Dim final As Integer = DsDatos.Tables(0).Rows.Count - 1
+        DsDatos.Tables(0).Clear()
+
+        Dim countTemp As Integer = dsDatosTemp.Tables(0).Rows.Count
+        Dim countDsDa As Integer = DsDatos.Tables(0).Rows.Count
+
+        For n As Integer = 0 To final
+            DsDatos.Tables(0).ImportRow(dsDatosTemp.Tables(0).Rows(n))
+        Next
+
+        CalculaTotal()
+    End Sub
+#End Region
+
+#Region "  Evento: GridDatos - KEY DOWN  (Para aumentar o disminuar la cantidad)  "
+    Private Sub GridDatos_keyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles GridDatos.KeyDown
+        ' Usuario teclea un +(107), aumenta la cantidad.
+        If e.KeyCode = 107 Then
+            GridDatos.DataSource.Item(posRowGrid).row(2) += 1
+            GridDatos.DataSource.Item(posRowGrid).row(5) = GridDatos.DataSource.Item(posRowGrid).row(4) * GridDatos.DataSource.Item(posRowGrid).row(2)
+            CalculaTotal()
+        End If
+
+        ' Usuario teclea un -(109), disminuye la cantidad.
+        If e.KeyCode = 109 Then
+            If GridDatos.DataSource.Item(posRowGrid).row(2) > 1 Then
+                GridDatos.DataSource.Item(posRowGrid).row(2) -= 1
+                GridDatos.DataSource.Item(posRowGrid).row(5) = GridDatos.DataSource.Item(posRowGrid).row(4) * GridDatos.DataSource.Item(posRowGrid).row(2)
+                CalculaTotal()
+            End If
+        End If
+    End Sub
+#End Region
+
 #Region "  Rutina: imprimeTicket  "
     Private Sub imprimeTicket(ByVal totalVentaR As Double, _
                              ByVal recibidoR As Double, _
@@ -692,6 +774,18 @@ Public Class ModuloVentas
         ticket.PrintTicket(ObjRet.DS.Tables(0).Rows(0).Item(0).ToString.Trim)
 
 
+    End Sub
+#End Region
+
+#Region "  Evento: GridDatos - PAINT  (Calcula el tamaño de la última columna para ajustarse el tamaño del grid.)  "
+    Private Sub GridDatos_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles GridDatos.Paint
+        Dim sizeColumns As Integer
+        For n As Integer = 0 To GridDatos.Columns.Count - 2
+            sizeColumns += GridDatos.Columns(n).Width
+        Next
+
+        Dim sizeGrid As Integer = GridDatos.Size.Width - sizeColumns - 5
+        GridDatos.Columns.SetWidth(9, sizeGrid)
     End Sub
 #End Region
 

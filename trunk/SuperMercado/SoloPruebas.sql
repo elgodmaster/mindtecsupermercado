@@ -191,6 +191,7 @@ exec grabar111 'V1=1|V2=1|V3=150.50|V4=ninguno|', '', '', ''
 exec grabar112 'V1=1|V2=1|V3=1.5|V4=|', '', '', ''
 exec grabar112 'V1=1|V2=1|V3=150.5|V4=asalté un banco, tío|', '', '', ''
 exec grabar120 'V1=123|V2=ADMIN|','','',''
+exec grabar122 'V1=ADDMIN|V2=Administrador|V3=12345|V4=ADMINISTRADOR|V5=tester00|','','',''
 exec grabar124 'V1=1|V2=2|V3=108|V4=50|V5=RFCCLIENTE|','','',''
 exec grabar126 'V1=2|V2=10.00|V3=95|','','',''
 exec grabar130 'V1=LEI196402|V2=1|V3=FAC002|V4=44.50','','',''
@@ -215,7 +216,7 @@ exec consulta121 '','','',''
 exec consulta122 'V1=cajero|','','',''
 exec Consulta122b 'V1=admin|','','',''
 exec consulta123 '','','',''
-exec consulta124 'V1=Lindor|','','',''
+exec consulta124 'V1=ADMIN|','','',''
 exec consulta127 'V1=51|', '', '', ''
 exec consulta128 'V1=|', '', '', ''
 exec consulta129 '','','',''
@@ -357,9 +358,9 @@ values ('admin', 'Administrador', '12345', 1, 1)
 select * from SMercado_Seguridad..Permisos
 
 select * from usuarios
-insert into Permisos
+insert into SMercado_Seguridad..Permisos 
 values( 
-'administrador',
+'ADMINISTRADOR',
 1,
 1,
 1,
@@ -389,8 +390,11 @@ values(
 1,
 1
 )
-select * from SMercado_Seguridad..Usuarios 
+select * from SMercado_Seguridad..Usuarios
 select * from SMercado_Seguridad..Permisos  
+
+update SMercado_Seguridad..Usuarios 
+set idPermiso = 1  
 
 Insert SMercado_Seguridad..Usuarios
 values('lindor', '418563', 'Lindor Valdez Mario Alberto', 2, 1)
@@ -447,6 +451,8 @@ add constraint uc_usuarios unique (nombreUsuario)
 
 Alter table SMercado_Seguridad..permisos
 add constraint uc_permisos unique (nomPermiso)
+
+select * from SMercado_Seguridad..Permisos 
 
 insert SMercado..Cat_departamentos  values ('-SIN DEPARTAMENTO-')
 
@@ -518,5 +524,7 @@ truncate table SMercado..Entradas
 truncate table SMercado..Entrada_detalles
 truncate table SMercado..salidas
 truncate table SMercado..salida_detalles
+
+Select * from SMercado_Seguridad..Usuarios 
 
 

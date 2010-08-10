@@ -77,25 +77,25 @@ Public Class Cat_Productos
         If resul = Windows.Forms.DialogResult.Yes Then
             grabar129()
 
-            If lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|") <> "OK" Then
-                MessageBox.Show("El código especificado se encuentra en uso.", " Productos", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            If lConsulta.ObtenerValor("2R", ObjRet.sResultado, "|") = "OK" Then
+                MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False), " Productos", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                ocultarBotonesEditar()
+                ocultarGroupBox()
+
+                keyCodigo.Clear()
+                keyCodigo.Focus()
+            Else
+                MessageBox.Show("El código especificado se encuentra en uso.", " Productos", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 codigo.SelectAll()
                 codigo.Focus()
                 Return
             End If
-
-            ocultarBotonesEditar()
-            ocultarGroupBox()
-
-            keyCodigo.Clear()
-            keyCodigo.Focus()
-
         End If
 
         Label13.Visible = True
         existencia.Visible = True
         Nuevo.Visible = True
-
     End Sub
 #End Region
 
@@ -129,6 +129,10 @@ Public Class Cat_Productos
         GroupBox1.Visible = False
         GroupBox2.Visible = False
         GroupBox3.Visible = False
+
+        keyCodigo.Enabled = True
+        keyCodigo.Clear()
+        keyCodigo.Focus()
     End Sub
 #End Region
 
@@ -137,6 +141,8 @@ Public Class Cat_Productos
         GroupBox1.Visible = True
         GroupBox2.Visible = True
         GroupBox3.Visible = True
+
+        keyCodigo.Enabled = False
     End Sub
 #End Region
 
@@ -354,6 +360,7 @@ Public Class Cat_Productos
     End Sub
 #End Region
 
+#Region "  Carga de COMBOBOX  "
     Private Sub unidad_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles unidad.Enter
         loadComboBox(False, 1)
     End Sub
@@ -369,4 +376,6 @@ Public Class Cat_Productos
     Private Sub marca_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles marca.Enter
         loadComboBox(False, 3)
     End Sub
+#End Region
+    
 End Class

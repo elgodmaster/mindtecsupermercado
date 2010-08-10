@@ -47,11 +47,12 @@ Partial Class Usuarios
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Usuarios))
-        Me.labelResul = New System.Windows.Forms.Label
         Me.textBoxUsuario = New System.Windows.Forms.TextBox
         Me.Label1 = New System.Windows.Forms.Label
         Me.Label4 = New System.Windows.Forms.Label
         Me.GroupBoxDatos = New System.Windows.Forms.GroupBox
+        Me.txtUsuario = New System.Windows.Forms.TextBox
+        Me.Label5 = New System.Windows.Forms.Label
         Me.TextBoxNombreCompleto = New System.Windows.Forms.TextBox
         Me.TextBoxContraseña = New System.Windows.Forms.TextBox
         Me.Label3 = New System.Windows.Forms.Label
@@ -101,8 +102,6 @@ Partial Class Usuarios
         Me.Grabar = New System.Windows.Forms.ToolStripButton
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip
         Me.Barra = New System.Windows.Forms.PictureBox
-        Me.Label5 = New System.Windows.Forms.Label
-        Me.txtUsuario = New System.Windows.Forms.TextBox
         Me.GroupBoxDatos.SuspendLayout()
         Me.GroupBoxConfiguracion.SuspendLayout()
         Me.GroupBoxSeguridad.SuspendLayout()
@@ -114,16 +113,6 @@ Partial Class Usuarios
         Me.AbonarToolStrip.SuspendLayout()
         CType(Me.Barra, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'labelResul
-        '
-        Me.labelResul.AutoSize = True
-        Me.labelResul.Location = New System.Drawing.Point(288, 98)
-        Me.labelResul.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.labelResul.Name = "labelResul"
-        Me.labelResul.Size = New System.Drawing.Size(130, 14)
-        Me.labelResul.TabIndex = 309
-        Me.labelResul.Text = "Nombre del usuario" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
         'textBoxUsuario
         '
@@ -179,6 +168,29 @@ Partial Class Usuarios
         Me.GroupBoxDatos.TabIndex = 310
         Me.GroupBoxDatos.TabStop = False
         Me.GroupBoxDatos.Text = " DATOS "
+        '
+        'txtUsuario
+        '
+        Me.txtUsuario.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtUsuario.Location = New System.Drawing.Point(144, 22)
+        Me.txtUsuario.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.txtUsuario.MaxLength = 50
+        Me.txtUsuario.Name = "txtUsuario"
+        Me.txtUsuario.Size = New System.Drawing.Size(349, 22)
+        Me.txtUsuario.TabIndex = 331
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.BackColor = System.Drawing.Color.Transparent
+        Me.Label5.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.Label5.Location = New System.Drawing.Point(16, 25)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(60, 14)
+        Me.Label5.TabIndex = 330
+        Me.Label5.Text = "Usuario:"
         '
         'TextBoxNombreCompleto
         '
@@ -769,6 +781,7 @@ Partial Class Usuarios
         Me.Limpiar.Name = "Limpiar"
         Me.Limpiar.Size = New System.Drawing.Size(43, 45)
         Me.Limpiar.Text = "Limpiar los campos"
+        Me.Limpiar.Visible = False
         '
         'Grabar
         '
@@ -779,6 +792,7 @@ Partial Class Usuarios
         Me.Grabar.Name = "Grabar"
         Me.Grabar.Size = New System.Drawing.Size(36, 45)
         Me.Grabar.Text = "Guardar los cambios"
+        Me.Grabar.Visible = False
         '
         'StatusStrip1
         '
@@ -801,29 +815,6 @@ Partial Class Usuarios
         Me.Barra.TabIndex = 308
         Me.Barra.TabStop = False
         '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.BackColor = System.Drawing.Color.Transparent
-        Me.Label5.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label5.Location = New System.Drawing.Point(16, 25)
-        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(60, 14)
-        Me.Label5.TabIndex = 330
-        Me.Label5.Text = "Usuario:"
-        '
-        'txtUsuario
-        '
-        Me.txtUsuario.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtUsuario.Location = New System.Drawing.Point(144, 22)
-        Me.txtUsuario.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
-        Me.txtUsuario.MaxLength = 50
-        Me.txtUsuario.Name = "txtUsuario"
-        Me.txtUsuario.Size = New System.Drawing.Size(349, 22)
-        Me.txtUsuario.TabIndex = 331
-        '
         'Usuarios
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 14.0!)
@@ -841,7 +832,6 @@ Partial Class Usuarios
         Me.Controls.Add(Me.GroupBoxReportes)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.GroupBoxDatos)
-        Me.Controls.Add(Me.labelResul)
         Me.Controls.Add(Me.Barra)
         Me.Controls.Add(Me.textBoxUsuario)
         Me.Controls.Add(Me.Label1)
@@ -874,7 +864,6 @@ Partial Class Usuarios
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents labelResul As System.Windows.Forms.Label
     Friend WithEvents Barra As System.Windows.Forms.PictureBox
     Friend WithEvents textBoxUsuario As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
