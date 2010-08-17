@@ -249,7 +249,7 @@
         Dim nSuma As Double = 0.0
         For i As Integer = 0 To DataGrid1.Rows.Count - 3
 
-            nSuma += DataGrid1.DataSource.Item(i).row(13)
+            nSuma += DataGrid1.DataSource.Item(i).row(14)
             'If Not IsDBNull(pDt.Rows.Item(pColumna)) Then
             '    nSuma += pDt.Rows.Item(pColumna)
             'End If

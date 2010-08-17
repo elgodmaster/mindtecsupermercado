@@ -13,7 +13,7 @@ AS
 BEGIN
   Set NoCount On
   ------------------------------------------
-  ---Catalogo de clientes
+  --Catalogo de clientes
   ------------------------------------------
 
   --Variables de Trabajo
@@ -93,7 +93,7 @@ BEGIN
    Begin
      Select @Desc1 = IsNull(NombreFiscal,'')
      From SMercado..Cat_Clientes (NoLock)
-     Where IdCliente  = @Valor1
+     Where codigo  = @Valor1
 
 	 Select @Registro = @@RowCount	 
    End
@@ -121,7 +121,7 @@ BEGIN
      From SMercado..Cat_Clientes a (NoLock)
      Left Join SMercado..Cat_EstadosdelaRepublica b (NoLock) On b.IdEstado = a.IdEstado
      Left Join SMercado..Cat_Ciudades c (NoLock) On c.IdCiudad = a.IdCiudad And c.IdEstado = a.IdEstado 
-     Where IdCliente  = @Valor1
+     Where a.Codigo   = @Valor1
 
 	 Select @Registro = @@RowCount	 
    End
@@ -148,11 +148,49 @@ BEGIN
      From SMercado..Cat_Clientes a (NoLock)
      Left Join SMercado..Cat_EstadosdelaRepublica b (NoLock) On b.IdEstado = a.IdEstado
      Left Join SMercado..Cat_Ciudades c (NoLock) On c.IdCiudad = a.IdCiudad And c.IdEstado = a.IdEstado 
-     Where IdCliente = @Valor1
+     Where a.Codigo  = @Valor1
+
+	 Select @Registro = @@RowCount	 
+   End
+   
+    If @Validar = 4
+   Begin
+     Select @Desc1 = IsNull(NombreFiscal,'')
+     From SMercado..Cat_Clientes (NoLock)
+     Where Codigo = @Valor1
 
 	 Select @Registro = @@RowCount	 
    End
   -- Enviar Resultado 
+   If @Validar = 5
+   Begin
+     Select @Desc1  = IsNull(a.NombreFiscal,''),
+            @Desc2  = IsNull(a.RFC,''),
+            @Desc3  = IsNull(a.Colonia,''),
+            @Desc4  = IsNull(a.Direccion,''),
+            @Desc5  = IsNull(a.Cp,''),
+            @Desc6  = IsNull(b.Descripcion,''),
+            @Desc7  = IsNull(c.Descripcion,''),
+            @Desc8  = IsNull(a.Telefono1,''),
+            @Desc9  = IsNull(a.Extencion1,''),
+            @Desc10 = IsNull(a.Telefono2,''),
+            @Desc11 = IsNull(a.Extencion2,''),
+            @Desc12 = IsNull(a.Cel1,''),
+            @Desc13 = IsNull(a.Cel2,''),
+            @Desc14 = IsNull(a.Fax,''),
+            @Desc15 = IsNull(a.Email,''),
+            @Desc16 = IsNull(a.LimiteCredito, '0'),
+            @Desc17 = IsNull(a.Adeudo, '0'),
+            @Desc18 = IsNull(a.Codigo, '0')
+                  
+     From SMercado..Cat_Clientes a (NoLock)
+     Left Join SMercado..Cat_EstadosdelaRepublica b (NoLock) On b.IdEstado = a.IdEstado
+     Left Join SMercado..Cat_Ciudades c (NoLock) On c.IdCiudad = a.IdCiudad And c.IdEstado = a.IdEstado 
+     Where a.IdCliente    = @Valor1
+
+	 Select @Registro = @@RowCount	 
+   End
+
 
   If @Registro = 0
    Begin
@@ -164,6 +202,10 @@ BEGIN
          Select @Resul = '2R=OK|'
 	  If @Validar = 3
          Select @Resul = '2R=ERROR|2M=No exite el codigo del cliente|'
+      If @Validar = 4
+         Select @Resul = '2R=ERROR|2M=No esta registrado el codigo del cliente|'
+      If @Validar = 5 
+         Select @Resul = '2R=OK|'   
    End
   Else
     Begin
@@ -186,6 +228,16 @@ BEGIN
                          '|V11=' + @Desc11 + '|V12=' + @Desc12 + '|V13=' + @Desc13 + '|V14=' + @Desc14 + '|V15=' + @Desc15 + '|V16=' + @Desc16 + 
                          '|V17=' + @Desc17 + '|V18=' + @Desc18 
         End
+      If @Validar = 4
+         Select @Resul = '2R=OK|'
+      If @Validar = 5
+        Begin 
+         Select @Resul = '2R=OK|V1=' + @Desc1 + '|V2=' + @Desc2 + '|V3=' + @Desc3 + '|V4=' + @Desc4 + '|V5=' + @Desc5 + '|V6=' + @Desc6 +
+                         '|V7=' + @Desc7 + '|V8=' + @Desc8 + '|V9=' + @Desc9 + '|V10=' + @Desc10 + 
+                         '|V11=' + @Desc11 + '|V12=' + @Desc12 + '|V13=' + @Desc13 + '|V14=' + @Desc14 + '|V15=' + @Desc15 + '|V16=' + @Desc16 + 
+                         '|V17=' + @Desc17 + '|V18=' + @Desc18 
+                         
+        End   
     End
   Set NoCount OFF
   Select resultado = @Resul 

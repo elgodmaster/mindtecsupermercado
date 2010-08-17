@@ -101,6 +101,22 @@ BEGIN
        Select @Resul = '2R=ERROR|2M=Registre el número de venta para continuar|'
        Return
      End
+     
+     Select * From Smercado..ventas
+     Where idVenta=@Valor1
+     If @@Rowcount = 0
+     Begin
+      Select @Resul = '2R=ERROR|2M=El Numero de venta no esta registrado|'
+       Return
+     End
+     
+     Select * From SMercado..Ventas 
+     Where Factura= 0 and IdVenta = @Valor1 
+     If @@ROWCOUNT = 0 
+     Begin
+      Select @Resul = '2R=ERROR|2M=La venta ya fue facturada|'
+       Return
+     End
    End
 
   If @Validar = 7 
@@ -205,7 +221,7 @@ BEGIN
      Select IsNull(IdVenta,0),
             IsNull(Fecha,0)            
      From Smercado..Ventas
-     Where idTipoCambio <> 10000
+     Where idTipoCambio <> 10000 And Factura = 0 
    End 
 
   If @Validar = 6 
@@ -220,7 +236,8 @@ BEGIN
 	 From SMercado..Venta_Detalles a (NoLock)
 	 Left Join Smercado..Cat_Productos b (NoLock) On b.Codigo = a.idProducto
 	 Left Join SMercado..Cat_Unidades c (NoLock) On b.IdUnidad = c.IdUnidad 
-	 Where a.IdVenta = @Valor1
+	 Left Join SMercado..Ventas d (NoLock) On a.IdVenta = d.IdVenta 
+	 Where a.IdVenta = @Valor1 and d.Factura = 0 
 	 group by a.IdProducto,a.Descripcion,a.cantidad,c.Descripcion,a.PrecioUni,a.Descuento 
 	 Select @Registro = @@RowCount
    End

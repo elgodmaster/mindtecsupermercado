@@ -14,6 +14,31 @@ Partial Class Entradas
         End Try
     End Sub
 
+    'Para el control de una sola instancia por formulario.
+#Region "  Modificación del constructor  "
+    ' En esta constructora es que cambio la propiedad Public por la propiedad Private
+    Private Sub New()
+        MyBase.New()
+        'This call is required by the Windows Form Designer.
+        InitializeComponent()
+        'Add any initialization after the InitializeComponent() call
+    End Sub
+
+    Private Shared ChildInstance As Entradas = Nothing
+
+    'controla que sólo exista una instancia del formulario.
+
+    Public Shared Function Instance() As Entradas
+        If ChildInstance Is Nothing OrElse ChildInstance.IsDisposed = True Then
+            ChildInstance = New Entradas
+        End If
+        ChildInstance.BringToFront()
+
+        Return ChildInstance
+    End Function
+#End Region
+
+
     'Requerido por el Diseñador de Windows Forms
     Private components As System.ComponentModel.IContainer
 
@@ -36,8 +61,7 @@ Partial Class Entradas
         '
         'DataGrid1
         '
-        Me.DataGrid1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                    Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.DataGrid1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DataGrid1.BackColor = System.Drawing.Color.Transparent
         Me.DataGrid1.DeleteQuestionMessage = "Are you sure to delete all the selected rows?"
