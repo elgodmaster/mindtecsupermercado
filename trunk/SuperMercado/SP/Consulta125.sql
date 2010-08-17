@@ -191,18 +191,18 @@ BEGIN
       If @Validar = 7
       Begin
         --Seleccionar el nuevo ID
-       Select @Desc1 = Isnull(Min(IsNull(Nocotizacion,0)),0)
+       Select @Desc1 = Isnull(Min(id),0)
        From Smercado..Cotizaciones (NoLock)
-       Where Len(RTrim(LTrim(iva))) = 100                   
+       Where iva = 100                   
   
        If @Desc1 = 0
         Begin
-          Insert SMercado..Cotizaciones(Iva) 
-          Values(100)
+          Insert SMercado..Cotizaciones(Iva,Fecha,IdCliente,IdTipoCambio,NoCotizacion,IdUsuario ) 
+          Values(100,'','','','','')
         
-       Select @Desc1 = Isnull(Min(IsNull(IdMarca,0)),0)
-       From SMercado..Cat_Marcas(NoLock)
-       Where Len(RTrim(LTrim(Descripcion))) = 0    
+       Select @Desc1 = Isnull(Min(IsNull(id,0)),0)
+       From Smercado..Cotizaciones (NoLock)
+       Where iva = 100   
        
        Select @Registro = 1   
         End

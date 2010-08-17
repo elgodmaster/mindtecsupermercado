@@ -559,4 +559,31 @@ Public Class Principal
     End Sub
 #End Region
 
+    Private Sub EntradasToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EntradasToolStripMenuItem.Click
+        Dim consul_entrada As Entradas = Entradas.Instance
+        consul_entrada.MdiParent = Me
+        consul_entrada.WindowState = FormWindowState.Maximized
+
+        consul_entrada.StartPosition = FormStartPosition.CenterScreen
+        consul_entrada.Show()
+
+    End Sub
+
+    Private Sub SalidasToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SalidasToolStripMenuItem.Click
+        Dim consul_salida As Salidas = Salidas.Instance
+        consul_salida.MdiParent = Me
+        consul_salida.WindowState = FormWindowState.Maximized
+
+        consul_salida.StartPosition = FormStartPosition.CenterScreen
+        consul_salida.Show()
+    End Sub
+
+    Private Sub ExistenciaToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExistenciaToolStripMenuItem.Click
+        Dim consul_existencia As Existencias = Existencias.Instance
+        consul_existencia.MdiParent = Me
+        consul_existencia.WindowState = FormWindowState.Maximized
+
+        consul_existencia.StartPosition = FormStartPosition.CenterScreen
+        consul_existencia.Show()
+    End Sub
 End Class

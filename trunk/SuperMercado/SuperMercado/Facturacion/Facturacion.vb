@@ -259,6 +259,8 @@ Public Class Facturacion
         If ObjRet.bOk Then
             Dim nuevo As Grid = New Grid(ObjRet.DS)
             txtNoFactura.Text = nuevo.resultado
+        Else
+            MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
         End If
     End Sub
 
@@ -466,7 +468,7 @@ Public Class Facturacion
         Next
 
         If SubTotal = 0 Then
-            Me.Grabar.Visible = False
+            'Me.Grabar.Visible = False
             Me.RadioCotizacion.Enabled = True
             Me.RadioVenta.Enabled = True
             Me.TxtIva.Enabled = True
@@ -729,9 +731,8 @@ Public Class Facturacion
         End If
     End Sub
 #End Region
-
    
-
+#Region " Venta "
     Private Sub CodigoVenta_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles CodigoVenta.KeyDown
         Select Case e.KeyCode
             Case Keys.F2
@@ -741,15 +742,21 @@ Public Class Facturacion
                 If lConsulta Is Nothing Then lConsulta = New ClsConsultas
                 ObjRet = lConsulta.LlamarCaja(Caja, "6", Parametros)
                 If ObjRet.bOk Then
+                    ''Llenar Grid
                     If Not ObjRet.DS Is DBNull.Value Then
                         If Not ObjRet.DS.Tables Is DBNull.Value Then
                             If ObjRet.DS.Tables.Count > 0 Then
-                                For i As Integer = 0 To ObjRet.DS.Tables(0).Rows.Count - 1
-                                    DsDatos.Tables("Table").ImportRow(ObjRet.DS.Tables(0).Rows(i))
+                                For i As Integer = 0 To ObjRet.DS.Tables(2).Rows.Count - 1
+                                    DsDatos.Tables("Table").ImportRow(ObjRet.DS.Tables(2).Rows(i))
                                 Next
                                 DsDatos.Tables("Table").AcceptChanges()
                                 DsView = DsDatos.Tables(0).DefaultView
-                                Grabar.Visible = True
+                                CalculaTotal()
+                                Txt_Cantidad.Enabled = False
+                                Txt_CodigoProducto.Enabled = False
+                                chbGenerar.Checked = False
+
+                                Descuento.Enabled = False
                             End If
                         End If
                     End If
@@ -762,6 +769,9 @@ Public Class Facturacion
         End Select
     End Sub
 
+#End Region
+
+#Region " Cotizacion "
     Private Sub CodigoCotizacion_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles CodigoCotizacion.KeyDown
         Select Case e.KeyCode
             Case Keys.F2
@@ -808,6 +818,9 @@ Public Class Facturacion
         End Select
     End Sub
 
+#End Region
+
+#Region " Eliminar "
     Private Sub Eliminar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Eliminar.Click
         Caja = "Eliminar119" : Parametros = "V1=" & Me.txtNoFactura.Text & "|"
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
@@ -821,4 +834,7 @@ Public Class Facturacion
 
         End If
     End Sub
+
+#End Region
+
 End Class

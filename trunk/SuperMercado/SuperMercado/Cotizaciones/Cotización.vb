@@ -66,7 +66,7 @@ Public Class Cotización
                 'Servicios
                 Caja = "Consulta105" : Parametros = "V1=" & Me.CodigoCliente.Text
                 If lConsulta Is Nothing Then lConsulta = New ClsConsultas
-                ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
+                ObjRet = lConsulta.LlamarCaja(Caja, "4", Parametros)
                 'Estatus
                 If ObjRet.bOk Then
                     Caja = "Consulta105" : Parametros = "V1=" & Me.CodigoCliente.Text
@@ -524,6 +524,9 @@ Public Class Cotización
         TxtIva.Enabled = True
         Me.btnAceptar.Enabled = True
         Me.txtNoCotizacion.Enabled = True
+        Me.Nuevo.Visible = True
+        Me.CodigoCliente.Enabled = True
+        Me.dtpFecha.Enabled = True
         Me.Impresion.Visible = False
         Me.Grabar.Visible = False
         Eliminar.Visible = False
@@ -612,6 +615,7 @@ Public Class Cotización
                     'Estatus
                     If ObjRet.bOk Then
                         MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
+                        Excelazo()
                         LimpiarPantalla()
                     Else
                         MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
@@ -644,7 +648,7 @@ Public Class Cotización
     Private Sub Eliminar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Eliminar.Click
         Caja = "Eliminar125" : Parametros = "V1=" & Me.txtNoCotizacion.Text & "|"
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
-        ObjRet = lConsulta.LlamarCaja(Caja, "", Parametros, DsDatos)
+        ObjRet = lConsulta.LlamarCaja(Caja, "0", Parametros, DsDatos)
         'Estatus
         If ObjRet.bOk Then
             MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))

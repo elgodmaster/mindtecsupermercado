@@ -53,8 +53,6 @@ Partial Class Facturacion
         Me.CodigoVenta = New System.Windows.Forms.TextBox
         Me.Factura = New System.Windows.Forms.TabControl
         Me.TabPage1 = New System.Windows.Forms.TabPage
-        Me.Descuento = New System.Windows.Forms.Button
-        Me.Agregar = New System.Windows.Forms.Button
         Me.GridDatos = New SourceGrid.DataGrid
         Me.Label14 = New System.Windows.Forms.Label
         Me.Txt_Cantidad = New System.Windows.Forms.TextBox
@@ -92,26 +90,28 @@ Partial Class Facturacion
         Me.lblNombreCliente = New System.Windows.Forms.Label
         Me.Label5 = New System.Windows.Forms.Label
         Me.LblNombres = New System.Windows.Forms.Label
-        Me.Barra = New System.Windows.Forms.PictureBox
-        Me.btnAceptar = New System.Windows.Forms.Button
         Me.Label4 = New System.Windows.Forms.Label
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip
+        Me.Label6 = New System.Windows.Forms.Label
+        Me.txtNoFactura = New System.Windows.Forms.TextBox
+        Me.PiePagina = New System.Windows.Forms.StatusStrip
+        Me.MensajePiePagina = New System.Windows.Forms.ToolStripStatusLabel
+        Me.Descuento = New System.Windows.Forms.Button
+        Me.Agregar = New System.Windows.Forms.Button
+        Me.Barra = New System.Windows.Forms.PictureBox
+        Me.btnAceptar = New System.Windows.Forms.Button
         Me.Limpiar = New System.Windows.Forms.ToolStripButton
         Me.Grabar = New System.Windows.Forms.ToolStripButton
         Me.Nuevo = New System.Windows.Forms.ToolStripButton
         Me.Eliminar = New System.Windows.Forms.ToolStripButton
         Me.Impresion = New System.Windows.Forms.ToolStripButton
-        Me.Label6 = New System.Windows.Forms.Label
-        Me.txtNoFactura = New System.Windows.Forms.TextBox
-        Me.PiePagina = New System.Windows.Forms.StatusStrip
-        Me.MensajePiePagina = New System.Windows.Forms.ToolStripStatusLabel
         Me.GroupBox1.SuspendLayout()
         Me.Factura.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBoxDatosCliente.SuspendLayout()
-        CType(Me.Barra, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
         Me.PiePagina.SuspendLayout()
+        CType(Me.Barra, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupBox1
@@ -205,32 +205,6 @@ Partial Class Facturacion
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Factura"
         Me.TabPage1.UseVisualStyleBackColor = True
-        '
-        'Descuento
-        '
-        Me.Descuento.BackgroundImage = CType(resources.GetObject("Descuento.BackgroundImage"), System.Drawing.Image)
-        Me.Descuento.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.Descuento.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Descuento.Location = New System.Drawing.Point(873, 2)
-        Me.Descuento.Name = "Descuento"
-        Me.Descuento.Size = New System.Drawing.Size(67, 31)
-        Me.Descuento.TabIndex = 352
-        Me.Descuento.Text = "F7"
-        Me.Descuento.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Descuento.UseVisualStyleBackColor = True
-        '
-        'Agregar
-        '
-        Me.Agregar.BackgroundImage = CType(resources.GetObject("Agregar.BackgroundImage"), System.Drawing.Image)
-        Me.Agregar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.Agregar.Location = New System.Drawing.Point(804, 2)
-        Me.Agregar.Name = "Agregar"
-        Me.Agregar.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Agregar.Size = New System.Drawing.Size(64, 31)
-        Me.Agregar.TabIndex = 2
-        Me.Agregar.Text = "F5"
-        Me.Agregar.TextAlign = System.Drawing.ContentAlignment.BottomRight
-        Me.Agregar.UseVisualStyleBackColor = True
         '
         'GridDatos
         '
@@ -652,6 +626,91 @@ Partial Class Facturacion
         Me.LblNombres.TabIndex = 268
         Me.LblNombres.Text = "Nombre:"
         '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.BackColor = System.Drawing.Color.Transparent
+        Me.Label4.Font = New System.Drawing.Font("Verdana", 12.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(10, 60)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(80, 20)
+        Me.Label4.TabIndex = 325
+        Me.Label4.Text = "Factura"
+        '
+        'ToolStrip1
+        '
+        Me.ToolStrip1.AutoSize = False
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Limpiar, Me.Grabar, Me.Nuevo, Me.Eliminar, Me.Impresion})
+        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.ToolStrip1.Name = "ToolStrip1"
+        Me.ToolStrip1.Size = New System.Drawing.Size(1008, 48)
+        Me.ToolStrip1.TabIndex = 324
+        Me.ToolStrip1.Text = "ToolStrip1"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.BackColor = System.Drawing.Color.Transparent
+        Me.Label6.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Location = New System.Drawing.Point(12, 92)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(137, 14)
+        Me.Label6.TabIndex = 328
+        Me.Label6.Text = "Numero De Factura: "
+        '
+        'txtNoFactura
+        '
+        Me.txtNoFactura.BackColor = System.Drawing.SystemColors.Info
+        Me.txtNoFactura.Location = New System.Drawing.Point(155, 88)
+        Me.txtNoFactura.Name = "txtNoFactura"
+        Me.txtNoFactura.Size = New System.Drawing.Size(115, 23)
+        Me.txtNoFactura.TabIndex = 0
+        '
+        'PiePagina
+        '
+        Me.PiePagina.BackColor = System.Drawing.SystemColors.Info
+        Me.PiePagina.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PiePagina.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MensajePiePagina})
+        Me.PiePagina.Location = New System.Drawing.Point(0, 686)
+        Me.PiePagina.Name = "PiePagina"
+        Me.PiePagina.Size = New System.Drawing.Size(1008, 22)
+        Me.PiePagina.SizingGrip = False
+        Me.PiePagina.TabIndex = 329
+        Me.PiePagina.Text = "StatusStrip1"
+        '
+        'MensajePiePagina
+        '
+        Me.MensajePiePagina.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MensajePiePagina.Name = "MensajePiePagina"
+        Me.MensajePiePagina.Size = New System.Drawing.Size(150, 17)
+        Me.MensajePiePagina.Text = "ToolStripStatusLabel1"
+        '
+        'Descuento
+        '
+        Me.Descuento.BackgroundImage = CType(resources.GetObject("Descuento.BackgroundImage"), System.Drawing.Image)
+        Me.Descuento.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.Descuento.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Descuento.Location = New System.Drawing.Point(873, 2)
+        Me.Descuento.Name = "Descuento"
+        Me.Descuento.Size = New System.Drawing.Size(67, 31)
+        Me.Descuento.TabIndex = 352
+        Me.Descuento.Text = "F7"
+        Me.Descuento.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Descuento.UseVisualStyleBackColor = True
+        '
+        'Agregar
+        '
+        Me.Agregar.BackgroundImage = CType(resources.GetObject("Agregar.BackgroundImage"), System.Drawing.Image)
+        Me.Agregar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.Agregar.Location = New System.Drawing.Point(804, 2)
+        Me.Agregar.Name = "Agregar"
+        Me.Agregar.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.Agregar.Size = New System.Drawing.Size(64, 31)
+        Me.Agregar.TabIndex = 2
+        Me.Agregar.Text = "F5"
+        Me.Agregar.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        Me.Agregar.UseVisualStyleBackColor = True
+        '
         'Barra
         '
         Me.Barra.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
@@ -676,27 +735,6 @@ Partial Class Facturacion
         Me.btnAceptar.TabIndex = 1
         Me.btnAceptar.Text = "Aceptar"
         Me.btnAceptar.UseVisualStyleBackColor = False
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.BackColor = System.Drawing.Color.Transparent
-        Me.Label4.Font = New System.Drawing.Font("Verdana", 12.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(10, 60)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(80, 20)
-        Me.Label4.TabIndex = 325
-        Me.Label4.Text = "Factura"
-        '
-        'ToolStrip1
-        '
-        Me.ToolStrip1.AutoSize = False
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Limpiar, Me.Grabar, Me.Nuevo, Me.Eliminar, Me.Impresion})
-        Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1008, 48)
-        Me.ToolStrip1.TabIndex = 324
-        Me.ToolStrip1.Text = "ToolStrip1"
         '
         'Limpiar
         '
@@ -749,44 +787,6 @@ Partial Class Facturacion
         Me.Impresion.Size = New System.Drawing.Size(52, 45)
         Me.Impresion.Text = "Imprimir"
         '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.BackColor = System.Drawing.Color.Transparent
-        Me.Label6.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(12, 92)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(137, 14)
-        Me.Label6.TabIndex = 328
-        Me.Label6.Text = "Numero De Factura: "
-        '
-        'txtNoFactura
-        '
-        Me.txtNoFactura.BackColor = System.Drawing.SystemColors.Info
-        Me.txtNoFactura.Location = New System.Drawing.Point(155, 88)
-        Me.txtNoFactura.Name = "txtNoFactura"
-        Me.txtNoFactura.Size = New System.Drawing.Size(115, 23)
-        Me.txtNoFactura.TabIndex = 0
-        '
-        'PiePagina
-        '
-        Me.PiePagina.BackColor = System.Drawing.SystemColors.Info
-        Me.PiePagina.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.PiePagina.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MensajePiePagina})
-        Me.PiePagina.Location = New System.Drawing.Point(0, 686)
-        Me.PiePagina.Name = "PiePagina"
-        Me.PiePagina.Size = New System.Drawing.Size(1008, 22)
-        Me.PiePagina.SizingGrip = False
-        Me.PiePagina.TabIndex = 329
-        Me.PiePagina.Text = "StatusStrip1"
-        '
-        'MensajePiePagina
-        '
-        Me.MensajePiePagina.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MensajePiePagina.Name = "MensajePiePagina"
-        Me.MensajePiePagina.Size = New System.Drawing.Size(150, 17)
-        Me.MensajePiePagina.Text = "ToolStripStatusLabel1"
-        '
         'Facturacion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -812,11 +812,11 @@ Partial Class Facturacion
         Me.TabPage1.PerformLayout()
         Me.GroupBoxDatosCliente.ResumeLayout(False)
         Me.GroupBoxDatosCliente.PerformLayout()
-        CType(Me.Barra, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
         Me.PiePagina.ResumeLayout(False)
         Me.PiePagina.PerformLayout()
+        CType(Me.Barra, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

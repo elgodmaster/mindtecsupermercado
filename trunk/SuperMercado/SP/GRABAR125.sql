@@ -102,8 +102,14 @@ BEGIN
 	 
   If @Registro = 0
     Begin
-     Insert SMercado..Cotizaciones(NoCotizacion,IdCliente,Fecha,IVA,IdUsuario,IdTipoCambio)
-     Values (@Valor1,@Valor3,@Valor2,@Valor4,@Valor5,@Valor6)
+     Update  SMercado..Cotizaciones Set
+     NoCotizacion = @Valor1,
+     IdCliente    = @Valor3,
+     Fecha        = @Valor2,
+     IVA          = @Valor4,
+     IdUsuario    = @Valor5,
+     IdTipoCambio = @Valor6
+     Where id = @Valor1
     End
      Else
     Begin

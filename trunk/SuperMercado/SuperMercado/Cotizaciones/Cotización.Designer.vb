@@ -48,13 +48,6 @@ Partial Class Cotización
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Cotización))
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip
-        Me.Limpiar = New System.Windows.Forms.ToolStripButton
-        Me.Grabar = New System.Windows.Forms.ToolStripButton
-        Me.Nuevo = New System.Windows.Forms.ToolStripButton
-        Me.Eliminar = New System.Windows.Forms.ToolStripButton
-        Me.Impresion = New System.Windows.Forms.ToolStripButton
-        Me.Barra = New System.Windows.Forms.PictureBox
-        Me.btnAceptar = New System.Windows.Forms.Button
         Me.Label4 = New System.Windows.Forms.Label
         Me.Label6 = New System.Windows.Forms.Label
         Me.txtNoCotizacion = New System.Windows.Forms.TextBox
@@ -81,8 +74,6 @@ Partial Class Cotización
         Me.Labelfecha = New System.Windows.Forms.Label
         Me.Cotiza = New System.Windows.Forms.TabControl
         Me.TabPage1 = New System.Windows.Forms.TabPage
-        Me.Descuento = New System.Windows.Forms.Button
-        Me.Agregar = New System.Windows.Forms.Button
         Me.GridDatos = New SourceGrid.DataGrid
         Me.Label14 = New System.Windows.Forms.Label
         Me.Txt_Cantidad = New System.Windows.Forms.TextBox
@@ -96,11 +87,20 @@ Partial Class Cotización
         Me.LIVA = New System.Windows.Forms.Label
         Me.LNETO = New System.Windows.Forms.Label
         Me.TabPage2 = New System.Windows.Forms.TabPage
+        Me.Descuento = New System.Windows.Forms.Button
+        Me.Agregar = New System.Windows.Forms.Button
+        Me.Barra = New System.Windows.Forms.PictureBox
+        Me.btnAceptar = New System.Windows.Forms.Button
+        Me.Limpiar = New System.Windows.Forms.ToolStripButton
+        Me.Grabar = New System.Windows.Forms.ToolStripButton
+        Me.Nuevo = New System.Windows.Forms.ToolStripButton
+        Me.Eliminar = New System.Windows.Forms.ToolStripButton
+        Me.Impresion = New System.Windows.Forms.ToolStripButton
         Me.ToolStrip1.SuspendLayout()
-        CType(Me.Barra, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBoxDatosCliente.SuspendLayout()
         Me.Cotiza.SuspendLayout()
         Me.TabPage1.SuspendLayout()
+        CType(Me.Barra, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ToolStrip1
@@ -112,82 +112,6 @@ Partial Class Cotización
         Me.ToolStrip1.Size = New System.Drawing.Size(1008, 48)
         Me.ToolStrip1.TabIndex = 325
         Me.ToolStrip1.Text = "ToolStrip1"
-        '
-        'Limpiar
-        '
-        Me.Limpiar.AutoSize = False
-        Me.Limpiar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.Limpiar.Image = CType(resources.GetObject("Limpiar.Image"), System.Drawing.Image)
-        Me.Limpiar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.Limpiar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.Limpiar.Name = "Limpiar"
-        Me.Limpiar.Size = New System.Drawing.Size(43, 45)
-        Me.Limpiar.Text = "Limpiar"
-        '
-        'Grabar
-        '
-        Me.Grabar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.Grabar.Image = CType(resources.GetObject("Grabar.Image"), System.Drawing.Image)
-        Me.Grabar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.Grabar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.Grabar.Name = "Grabar"
-        Me.Grabar.Size = New System.Drawing.Size(36, 45)
-        Me.Grabar.Text = "Grabar"
-        '
-        'Nuevo
-        '
-        Me.Nuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.Nuevo.Image = CType(resources.GetObject("Nuevo.Image"), System.Drawing.Image)
-        Me.Nuevo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.Nuevo.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.Nuevo.Name = "Nuevo"
-        Me.Nuevo.Size = New System.Drawing.Size(36, 45)
-        Me.Nuevo.Text = "Nuevo"
-        '
-        'Eliminar
-        '
-        Me.Eliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.Eliminar.Image = CType(resources.GetObject("Eliminar.Image"), System.Drawing.Image)
-        Me.Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.Eliminar.Name = "Eliminar"
-        Me.Eliminar.Size = New System.Drawing.Size(38, 45)
-        Me.Eliminar.Text = "Eliminar"
-        '
-        'Impresion
-        '
-        Me.Impresion.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.Impresion.Image = CType(resources.GetObject("Impresion.Image"), System.Drawing.Image)
-        Me.Impresion.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.Impresion.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.Impresion.Name = "Impresion"
-        Me.Impresion.Size = New System.Drawing.Size(52, 45)
-        Me.Impresion.Text = "Imprimir"
-        '
-        'Barra
-        '
-        Me.Barra.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Barra.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.Barra.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Barra.Location = New System.Drawing.Point(-1, 118)
-        Me.Barra.Name = "Barra"
-        Me.Barra.Size = New System.Drawing.Size(1024, 4)
-        Me.Barra.TabIndex = 332
-        Me.Barra.TabStop = False
-        '
-        'btnAceptar
-        '
-        Me.btnAceptar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnAceptar.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.btnAceptar.BackgroundImage = CType(resources.GetObject("btnAceptar.BackgroundImage"), System.Drawing.Image)
-        Me.btnAceptar.Font = New System.Drawing.Font("Verdana", 8.0!)
-        Me.btnAceptar.Location = New System.Drawing.Point(898, 85)
-        Me.btnAceptar.Name = "btnAceptar"
-        Me.btnAceptar.Size = New System.Drawing.Size(80, 25)
-        Me.btnAceptar.TabIndex = 330
-        Me.btnAceptar.Text = "Aceptar"
-        Me.btnAceptar.UseVisualStyleBackColor = False
         '
         'Label4
         '
@@ -493,32 +417,6 @@ Partial Class Cotización
         Me.TabPage1.Text = "Cotización"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
-        'Descuento
-        '
-        Me.Descuento.BackgroundImage = CType(resources.GetObject("Descuento.BackgroundImage"), System.Drawing.Image)
-        Me.Descuento.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.Descuento.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Descuento.Location = New System.Drawing.Point(873, 2)
-        Me.Descuento.Name = "Descuento"
-        Me.Descuento.Size = New System.Drawing.Size(67, 31)
-        Me.Descuento.TabIndex = 352
-        Me.Descuento.Text = "F7"
-        Me.Descuento.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Descuento.UseVisualStyleBackColor = True
-        '
-        'Agregar
-        '
-        Me.Agregar.BackgroundImage = CType(resources.GetObject("Agregar.BackgroundImage"), System.Drawing.Image)
-        Me.Agregar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.Agregar.Location = New System.Drawing.Point(804, 2)
-        Me.Agregar.Name = "Agregar"
-        Me.Agregar.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Agregar.Size = New System.Drawing.Size(64, 31)
-        Me.Agregar.TabIndex = 2
-        Me.Agregar.Text = "F5"
-        Me.Agregar.TextAlign = System.Drawing.ContentAlignment.BottomRight
-        Me.Agregar.UseVisualStyleBackColor = True
-        '
         'GridDatos
         '
         Me.GridDatos.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
@@ -668,6 +566,108 @@ Partial Class Cotización
         Me.TabPage2.Text = "TabPage2"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
+        'Descuento
+        '
+        Me.Descuento.BackgroundImage = CType(resources.GetObject("Descuento.BackgroundImage"), System.Drawing.Image)
+        Me.Descuento.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.Descuento.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Descuento.Location = New System.Drawing.Point(873, 2)
+        Me.Descuento.Name = "Descuento"
+        Me.Descuento.Size = New System.Drawing.Size(67, 31)
+        Me.Descuento.TabIndex = 352
+        Me.Descuento.Text = "F7"
+        Me.Descuento.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Descuento.UseVisualStyleBackColor = True
+        '
+        'Agregar
+        '
+        Me.Agregar.BackgroundImage = CType(resources.GetObject("Agregar.BackgroundImage"), System.Drawing.Image)
+        Me.Agregar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.Agregar.Location = New System.Drawing.Point(804, 2)
+        Me.Agregar.Name = "Agregar"
+        Me.Agregar.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.Agregar.Size = New System.Drawing.Size(64, 31)
+        Me.Agregar.TabIndex = 2
+        Me.Agregar.Text = "F5"
+        Me.Agregar.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        Me.Agregar.UseVisualStyleBackColor = True
+        '
+        'Barra
+        '
+        Me.Barra.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Barra.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.Barra.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Barra.Location = New System.Drawing.Point(-1, 118)
+        Me.Barra.Name = "Barra"
+        Me.Barra.Size = New System.Drawing.Size(1024, 4)
+        Me.Barra.TabIndex = 332
+        Me.Barra.TabStop = False
+        '
+        'btnAceptar
+        '
+        Me.btnAceptar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnAceptar.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.btnAceptar.BackgroundImage = CType(resources.GetObject("btnAceptar.BackgroundImage"), System.Drawing.Image)
+        Me.btnAceptar.Font = New System.Drawing.Font("Verdana", 8.0!)
+        Me.btnAceptar.Location = New System.Drawing.Point(898, 85)
+        Me.btnAceptar.Name = "btnAceptar"
+        Me.btnAceptar.Size = New System.Drawing.Size(80, 25)
+        Me.btnAceptar.TabIndex = 330
+        Me.btnAceptar.Text = "Aceptar"
+        Me.btnAceptar.UseVisualStyleBackColor = False
+        '
+        'Limpiar
+        '
+        Me.Limpiar.AutoSize = False
+        Me.Limpiar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.Limpiar.Image = CType(resources.GetObject("Limpiar.Image"), System.Drawing.Image)
+        Me.Limpiar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.Limpiar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.Limpiar.Name = "Limpiar"
+        Me.Limpiar.Size = New System.Drawing.Size(43, 45)
+        Me.Limpiar.Text = "Limpiar"
+        '
+        'Grabar
+        '
+        Me.Grabar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.Grabar.Image = CType(resources.GetObject("Grabar.Image"), System.Drawing.Image)
+        Me.Grabar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.Grabar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.Grabar.Name = "Grabar"
+        Me.Grabar.Size = New System.Drawing.Size(36, 45)
+        Me.Grabar.Text = "Grabar"
+        '
+        'Nuevo
+        '
+        Me.Nuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.Nuevo.Image = CType(resources.GetObject("Nuevo.Image"), System.Drawing.Image)
+        Me.Nuevo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.Nuevo.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.Nuevo.Name = "Nuevo"
+        Me.Nuevo.Size = New System.Drawing.Size(36, 45)
+        Me.Nuevo.Text = "Nuevo"
+        '
+        'Eliminar
+        '
+        Me.Eliminar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.Eliminar.Image = CType(resources.GetObject("Eliminar.Image"), System.Drawing.Image)
+        Me.Eliminar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.Eliminar.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.Eliminar.Name = "Eliminar"
+        Me.Eliminar.Size = New System.Drawing.Size(38, 45)
+        Me.Eliminar.Text = "Eliminar"
+        '
+        'Impresion
+        '
+        Me.Impresion.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.Impresion.Image = CType(resources.GetObject("Impresion.Image"), System.Drawing.Image)
+        Me.Impresion.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.Impresion.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.Impresion.Name = "Impresion"
+        Me.Impresion.Size = New System.Drawing.Size(52, 45)
+        Me.Impresion.Text = "Imprimir"
+        '
         'Cotización
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 14.0!)
@@ -691,12 +691,12 @@ Partial Class Cotización
         Me.Text = "Cotización"
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
-        CType(Me.Barra, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBoxDatosCliente.ResumeLayout(False)
         Me.GroupBoxDatosCliente.PerformLayout()
         Me.Cotiza.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
+        CType(Me.Barra, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
