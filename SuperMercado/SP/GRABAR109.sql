@@ -91,7 +91,7 @@ BEGIN
         Return
       End
 
-     --obtenemos el valor
+     --Obtenemos el valor
      Exec Emulador_SepararCadena 'V1', @Resul2, '|', @Desc1 Output
      If LEN(LTrim(RTrim(@Desc1))) = 0 
       Begin
@@ -145,28 +145,28 @@ END
       Return 
 	End   
 	
-	Select @Desc0 = idEntrada 
-	From SMercado..Entradas 
-	Where idEntrada = @Valor1 And foliofactura = 0
-	Select  @Registro = @@ROWCOUNT 
+	--Select @Desc0 = idEntrada 
+	--From SMercado..Entradas 
+	--Where idEntrada = @Valor1 And foliofactura = 0
+	--Select  @Registro = @@ROWCOUNT 
 	
 -- Inicia la TRANSACCIÓN --
 Begin Tran Grabar109
 	
-	If @Registro = 0
-	Begin
+	--If @Registro = 0
+	--Begin
 	Insert SMercado..Entradas(fecha,idUsuario,folioFactura,IdProveedor)
 	Values (@Valor2,@Valor3,@Valor4,@Valor5)
-	End
-	 Else
-	  Begin
-	  Update SMercado..Entradas 
-       Set Fecha = @Valor2,
-           IdUsuario = @Valor3,
-           folioFactura = @Valor4,
-           IdProveedor = @Valor5 
-        Where idEntrada=@Valor1 
-	  End
+	--End
+	-- Else
+	--  Begin
+	--  Update SMercado..Entradas 
+ --      Set Fecha = @Valor2,
+ --          IdUsuario = @Valor3,
+ --          folioFactura = @Valor4,
+ --          IdProveedor = @Valor5 
+ --       Where idEntrada=@Valor1 
+	--  End
 	 
 SET @Error = @@ERROR
 --Si ocurre un error almacenamos su código en @Error
@@ -176,10 +176,10 @@ SET @Error = @@ERROR
 IF (@Error<>0) GOTO TratarError
 
 -----------------------------------------------------     --Leer XML     -----------------------------------------------------     
---Validación de dataset 
+-- Validación de dataset 
 Declare @idoc int    
 Exec sp_xml_preparedocument @idoc OUTPUT, @DataSet     
-SELECT  C7  = @Valor1,    --FoliEntrada                 
+SELECT  C7  = @Valor1,    --FolioEntrada                 
         C1  = C1,    --IdProducto
         C2  = C2,    --Descripcion producto                       
         C3  = C3,     --Cantidad 
@@ -217,12 +217,22 @@ IF (@error<>0) GOTO TratarError
 	   
 SET @error = @@ERROR 
 IF (@error<>0) GOTO TratarError
+
+ Select @totalDineroCaja = (Select CC.dineroActual  
+							From SMercado..Caja_Corte CC
+							Where CC.usuario  = @Valor3 and
+							CC.fecha = CONVERT(date, GETDATE()) )
+							
+SET @error = @@ERROR 
+IF (@error<>0) GOTO TratarError
 	 
 -- Termina la TRANSACCIÓN --
 Commit Tran Grabar109
-
+ 
   -- Enviar Resultado
-  Select @Resul='2R=OK|2M=Se grabó correctamente.|' 
+  Select @Resul='2R=OK|2M=Pago realizado exitosamente.' + CHAR(13) + CHAR(13) + 
+					  'Dinero actual en caja: $ ' + CONVERT(char, @totalDineroCaja) + CHAR(13) +
+					  'Pago realizado:           $ ' + CONVERT(char, @totalPago)  
   
   TratarError:
 --Si ha ocurrido algún error llegamos hasta aquí

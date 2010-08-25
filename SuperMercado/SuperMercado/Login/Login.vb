@@ -231,7 +231,7 @@ Public Class Login
     Private Sub textBoxPassword_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles textBoxPassword.KeyPress
         If e.KeyChar = ChrW(Keys.Enter) Then
             e.Handled = True
-            buttonAceptar.Focus()
+            buttonAceptar.PerformClick()
         End If
     End Sub
 

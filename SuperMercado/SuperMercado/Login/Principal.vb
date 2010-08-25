@@ -42,7 +42,8 @@ Public Class Principal
 #Region "  Menú Ventas  "
     Private Sub ModuloDeVentasToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ModuloDeVentasToolStripMenuItem.Click
         Dim mventas As ModuloVentas = ModuloVentas.Instance
-        Mventas.MdiParent = Me
+        mventas.MdiParent = Me
+        mventas.myPrincipal = Me
         Mventas.WindowState = FormWindowState.Maximized
 
         Mventas.StartPosition = FormStartPosition.CenterParent
@@ -299,7 +300,7 @@ Public Class Principal
 #End Region
 
 #Region "  Rutina: restriccionPermisos  "
-    Private Sub restriccionPermisos(ByVal nombreUsuarioR As String)
+    Public Sub restriccionPermisos(ByVal nombreUsuarioR As String)
         Caja = "Consulta122b" : Parametros = "V1=" & nombreUsuarioR + "|"
         ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
 
@@ -552,7 +553,7 @@ Public Class Principal
 #End Region
 
 #Region "  Rutina: cerrarVentanasHijas  "
-    Private Sub cerrarVentanasHijas()
+    Public Sub cerrarVentanasHijas()
         For i As Integer = 0 To Me.MdiChildren.Length - 1
             Me.MdiChildren(0).Close()
         Next

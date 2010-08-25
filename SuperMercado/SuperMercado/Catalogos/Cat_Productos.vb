@@ -71,6 +71,18 @@ Public Class Cat_Productos
             Return
         End If
 
+        If costoCompra.Value <= 0 Then
+            MessageBox.Show("El costo de compra de un producto debe ser mayor a $0.00", " Productos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            costoCompra.Select(0, 10)
+            costoCompra.Focus()
+        End If
+
+        If precioVenta.Value <= 0 Then
+            MessageBox.Show("El precio de venta de un producto debe ser mayor a $0.00", " Productos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            precioVenta.Select(0, 10)
+            precioVenta.Focus()
+        End If
+
         Dim resul As DialogResult
         resul = MessageBox.Show("¿Desea guardar los cambios realizados?", " SMercado", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
@@ -102,6 +114,12 @@ Public Class Cat_Productos
 #Region "  Rutina: calcularPrecioVenta  "
     Sub calcularPrecioVenta()
         precioVenta.Value = ((ganancia.Value) / 100 + 1) * costoCompra.Value
+    End Sub
+#End Region
+
+#Region "  Rutina: calcularGanancia  "
+    Sub calcularGanancia()
+        ganancia.Value = 100 * (precioVenta.Value / costoCompra.Value - 1)
     End Sub
 #End Region
 
@@ -292,12 +310,6 @@ Public Class Cat_Productos
     End Sub
 #End Region
 
-#Region "  Evento: ganancia - KEY UP  "
-    Private Sub ganancia_KeyUp(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles ganancia.KeyUp
-        calcularPrecioVenta()
-    End Sub
-#End Region
-
 #Region "  Cambio de controles con ENTER  "
     Private Sub descripcion_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles descripcion.KeyPress
         If e.KeyChar = ChrW(Keys.Enter) Then
@@ -375,6 +387,20 @@ Public Class Cat_Productos
 
     Private Sub marca_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles marca.Enter
         loadComboBox(False, 3)
+    End Sub
+#End Region
+    
+#Region "  Evento: Ganancia - LEAVE  "
+    Private Sub ganancia_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ganancia.Leave
+        calcularPrecioVenta()
+    End Sub
+#End Region
+    
+#Region "  Evento: PrecioVenta - LEAVE  "
+    Private Sub precioVenta_Leave(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles precioVenta.Leave
+        If precioVenta.Value > costoCompra.Value Then
+            calcularGanancia()
+        End If
     End Sub
 #End Region
     

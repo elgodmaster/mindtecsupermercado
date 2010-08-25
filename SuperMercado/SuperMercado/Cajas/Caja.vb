@@ -39,6 +39,8 @@
         ' Ventas
         CreardsDatosVentas()
         ConfiguraGridDatosVentas()
+
+        btnHacerCorte.PerformClick()
     End Sub
 #End Region
 
@@ -123,13 +125,13 @@
         ventasTotal = Decimal.Parse(ObjRet.DS.Tables(3).Rows(0).Item(3))
         totEnt = sumEnt + dinIni + ventasTotal
 
-        If sumEnt = 0 And sumSal = 0 Then
-            MessageBox.Show("No se han registrado entradas o salidas.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        ElseIf sumEnt = 0 Then
-            MessageBox.Show("No se han registrado entradas.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        ElseIf sumSal = 0 Then
-            MessageBox.Show("No se han registrado salidas.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        End If
+        'If sumEnt = 0 And sumSal = 0 Then
+        '    MessageBox.Show("No se han registrado entradas o salidas.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        'ElseIf sumEnt = 0 Then
+        '    MessageBox.Show("No se han registrado entradas.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        'ElseIf sumSal = 0 Then
+        '    MessageBox.Show("No se han registrado salidas.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        'End If
 
         lblTotEnt.Text = "$ " & totEnt
 

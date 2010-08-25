@@ -77,6 +77,7 @@ Public Class Cat_Proveedores
         GridDatosPROVEEDORES.DeleteRowsWithDeleteKey = False
         GridDatosPROVEEDORES.DeleteQuestionMessage = Nothing
         GridDatosPROVEEDORES.SelectionMode = SourceGrid.GridSelectionMode.Row
+        GridDatosPROVEEDORES.HorizontalScroll.Visible = False
 
         ' Renglon encabezado
 
@@ -125,20 +126,19 @@ Public Class Cat_Proveedores
         'gcolorRow esta declarada en el moduloGeneral
 
         'vistas
-        Dim viewCenter As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        Dim viewCenter As CellBackColorAlternate = New CellBackColorAlternate(Color.White, gColorRow)
         viewCenter.Font = New Font("Verdana", 8, FontStyle.Regular)
-        'viewCenter.Border = DevAge.Drawing.RectangleBorder.NoBorder
+        viewCenter.Border = DevAge.Drawing.RectangleBorder.NoBorder
         viewCenter.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
 
-
-        Dim viewIzquierda As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        Dim viewIzquierda As CellBackColorAlternate = New CellBackColorAlternate(Color.White, gColorRow)
         viewIzquierda.Font = New Font("Verdana", 8, FontStyle.Regular)
-        'viewIzquierda.Border = DevAge.Drawing.RectangleBorder.NoBorder
+        viewIzquierda.Border = DevAge.Drawing.RectangleBorder.NoBorder
         viewIzquierda.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleLeft
 
-        Dim viewDerecha As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        Dim viewDerecha As CellBackColorAlternate = New CellBackColorAlternate(Color.White, gColorRow)
         viewDerecha.Font = New Font("Verdana", 8, FontStyle.Regular)
-        'viewDerecha.Border = DevAge.Drawing.RectangleBorder.NoBorder
+        viewDerecha.Border = DevAge.Drawing.RectangleBorder.NoBorder
         viewDerecha.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleRight
 
         Dim myfont As New Font("Verdana", 8, FontStyle.Regular)
@@ -274,18 +274,23 @@ Public Class Cat_Proveedores
         Dim border As DevAge.Drawing.RectangleBorder = New DevAge.Drawing.RectangleBorder(New DevAge.Drawing.BorderLine(Color.Black), New DevAge.Drawing.BorderLine(Color.Black))
         'gcolorRow esta declarada en el moduloGeneral
 
+
+
         'vistas
-        Dim viewCenter As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        Dim viewCenter As CellBackColorAlternate = New CellBackColorAlternate(Color.White, gColorRow)
         viewCenter.Font = New Font("Verdana", 8, FontStyle.Regular)
         viewCenter.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
+        viewCenter.Border = DevAge.Drawing.RectangleBorder.NoBorder
 
-        Dim viewIzquierda As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        Dim viewIzquierda As CellBackColorAlternate = New CellBackColorAlternate(Color.White, gColorRow)
         viewIzquierda.Font = New Font("Verdana", 8, FontStyle.Regular)
         viewIzquierda.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleLeft
+        viewIzquierda.Border = DevAge.Drawing.RectangleBorder.NoBorder
 
-        Dim viewDerecha As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        Dim viewDerecha As CellBackColorAlternate = New CellBackColorAlternate(Color.White, gColorRow)
         viewDerecha.Font = New Font("Verdana", 8, FontStyle.Regular)
         viewDerecha.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleRight
+        viewDerecha.Border = DevAge.Drawing.RectangleBorder.NoBorder
 
         Dim myfont As New Font("Verdana", 8, FontStyle.Regular)
 
@@ -429,17 +434,20 @@ Public Class Cat_Proveedores
         'gcolorRow esta declarada en el moduloGeneral
 
         'vistas
-        Dim viewCenter As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        Dim viewCenter As CellBackColorAlternate = New CellBackColorAlternate(Color.White, gColorRow)
         viewCenter.Font = New Font("Verdana", 8, FontStyle.Regular)
         viewCenter.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
+        viewCenter.Border = DevAge.Drawing.RectangleBorder.NoBorder
 
-        Dim viewIzquierda As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        Dim viewIzquierda As CellBackColorAlternate = New CellBackColorAlternate(Color.White, gColorRow)
         viewIzquierda.Font = New Font("Verdana", 8, FontStyle.Regular)
         viewIzquierda.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleLeft
+        viewIzquierda.Border = DevAge.Drawing.RectangleBorder.NoBorder
 
-        Dim viewDerecha As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        Dim viewDerecha As CellBackColorAlternate = New CellBackColorAlternate(Color.White, gColorRow)
         viewDerecha.Font = New Font("Verdana", 8, FontStyle.Regular)
         viewDerecha.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleRight
+        viewDerecha.Border = DevAge.Drawing.RectangleBorder.NoBorder
 
         Dim myfont As New Font("Verdana", 8, FontStyle.Regular)
 

@@ -95,17 +95,17 @@ Public Class InventarioSalidas
         noBorder.SetColor(Color.White)
 
         'vistas
-        Dim viewCenter As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        Dim viewCenter As CellBackColorAlternate = New CellBackColorAlternate(Color.White, gColorRow)
         viewCenter.Font = New Font("Verdana", 11, FontStyle.Bold)
         viewCenter.Border = noBorder
         viewCenter.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
 
-        Dim viewLeft As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        Dim viewLeft As CellBackColorAlternate = New CellBackColorAlternate(Color.White, gColorRow)
         viewLeft.Font = New Font("Verdana", 11, FontStyle.Bold)
         viewLeft.Border = noBorder
         viewLeft.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleLeft
 
-        Dim viewRight As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        Dim viewRight As CellBackColorAlternate = New CellBackColorAlternate(Color.White, gColorRow)
         viewRight.Font = New Font("Verdana", 11, FontStyle.Bold)
         viewRight.Border = noBorder
         viewRight.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleRight

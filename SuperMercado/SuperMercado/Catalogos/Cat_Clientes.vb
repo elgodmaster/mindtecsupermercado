@@ -64,6 +64,7 @@ Public Class Cat_Clientes
         GridDatosCLIENTES.DeleteRowsWithDeleteKey = False
         GridDatosCLIENTES.DeleteQuestionMessage = Nothing
         GridDatosCLIENTES.SelectionMode = SourceGrid.GridSelectionMode.Row
+        GridDatosCLIENTES.HorizontalScroll.Visible = False
 
         ' Renglon encabezado
 
@@ -112,19 +113,26 @@ Public Class Cat_Clientes
         Dim border As DevAge.Drawing.RectangleBorder = New DevAge.Drawing.RectangleBorder(New DevAge.Drawing.BorderLine(Color.White), New DevAge.Drawing.BorderLine(Color.White))
         'gcolorRow esta declarada en el moduloGeneral
 
+        Dim noBorder As New DevAge.Drawing.RectangleBorder
+        noBorder.SetColor(Color.Transparent)
+
         'vistas
-        Dim viewCenter As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        Dim viewCenter As CellBackColorAlternate = New CellBackColorAlternate(Color.White, gColorRow)
         viewCenter.Font = New Font("Verdana", 8, FontStyle.Regular)
         viewCenter.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
+        viewCenter.Border = noBorder
+        
 
-
-        Dim viewIzquierda As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        Dim viewIzquierda As CellBackColorAlternate = New CellBackColorAlternate(Color.White, gColorRow)
         viewIzquierda.Font = New Font("Verdana", 8, FontStyle.Regular)
         viewIzquierda.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleLeft
+        viewIzquierda.Border = noBorder
 
-        Dim viewDerecha As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        Dim viewDerecha As CellBackColorAlternate = New CellBackColorAlternate(Color.White, gColorRow)
         viewDerecha.Font = New Font("Verdana", 8, FontStyle.Regular)
         viewDerecha.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleRight
+        viewDerecha.Border = noBorder
+
 
         Dim myfont As New Font("Verdana", 8, FontStyle.Regular)
 
@@ -140,7 +148,7 @@ Public Class Cat_Clientes
         'Crear columnas
         Dim GridColumn As SourceGrid.DataGridColumn
 
-        GridColumn = GridDatosCLIENTES.Columns.Add("C1", "ID", EditorCustom)
+        GridColumn = GridDatosCLIENTES.Columns.Add("C7", "Código", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
         GridColumn.DataCell.View = viewCenter
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
@@ -168,7 +176,7 @@ Public Class Cat_Clientes
         GridColumn = GridDatosCLIENTES.Columns.Add("C6", "E-Mail", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
         GridColumn.DataCell.View = viewIzquierda
-        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
+        GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.EnableStretch
 
         GridColumn = GridDatosCLIENTES.Columns.Add("C8", " ", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
@@ -268,18 +276,24 @@ Public Class Cat_Clientes
         Dim border As DevAge.Drawing.RectangleBorder = New DevAge.Drawing.RectangleBorder(New DevAge.Drawing.BorderLine(Color.Black), New DevAge.Drawing.BorderLine(Color.Black))
         'gcolorRow esta declarada en el moduloGeneral
 
+        Dim noBorder As New DevAge.Drawing.RectangleBorder
+        noBorder.SetColor(Color.Transparent)
+
         'vistas
-        Dim viewCenter As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        Dim viewCenter As CellBackColorAlternate = New CellBackColorAlternate(Color.White, gColorRow)
         viewCenter.Font = New Font("Verdana", 8, FontStyle.Regular)
         viewCenter.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
+        viewCenter.Border = noBorder
 
-        Dim viewIzquierda As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        Dim viewIzquierda As CellBackColorAlternate = New CellBackColorAlternate(Color.White, gColorRow)
         viewIzquierda.Font = New Font("Verdana", 8, FontStyle.Regular)
         viewIzquierda.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleLeft
+        viewIzquierda.Border = noBorder
 
-        Dim viewDerecha As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        Dim viewDerecha As CellBackColorAlternate = New CellBackColorAlternate(Color.White, gColorRow)
         viewDerecha.Font = New Font("Verdana", 8, FontStyle.Regular)
         viewDerecha.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleRight
+        viewDerecha.Border = noBorder
 
         Dim myfont As New Font("Verdana", 8, FontStyle.Regular)
 
@@ -376,6 +390,7 @@ Public Class Cat_Clientes
         GridDatosCartera.DeleteRowsWithDeleteKey = False
         GridDatosCartera.DeleteQuestionMessage = Nothing
 
+
         ' Renglon encabezado
 
         GridDatosCartera.Columns.Insert(0, SourceGrid.DataGridColumn.CreateRowHeader(GridDatosCartera))
@@ -391,7 +406,6 @@ Public Class Cat_Clientes
         cColorHeader = Color.FromArgb(CType(CType(216, Byte), Integer), CType(CType(204, Byte), Integer), CType(CType(168, Byte), Integer))
 
         'Vista columna encabezado
-
 
         Dim viewcolumnheader As SourceGrid.Cells.Views.ColumnHeader = New SourceGrid.Cells.Views.ColumnHeader
         Dim backheader As DevAge.Drawing.VisualElements.ColumnHeader = New DevAge.Drawing.VisualElements.ColumnHeader
@@ -432,19 +446,19 @@ Public Class Cat_Clientes
         Dim cColorHeader As Color
         cColorHeader = Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(243, Byte), Integer), CType(CType(247, Byte), Integer))
 
-        Dim viewCenter As CellBackColorAlternate = New CellBackColorAlternate(Color.Transparent, Color.Transparent)
+        Dim viewCenter As CellBackColorAlternate = New CellBackColorAlternate(Color.Transparent, gColorRow)
         viewCenter.Font = New Font("Verdana", 8, FontStyle.Regular)
         viewCenter.Background = backheader
         viewCenter.Border = noBorder
         viewCenter.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
 
-        Dim viewIzquierda As CellBackColorAlternate = New CellBackColorAlternate(Color.Transparent, Color.Transparent)
+        Dim viewIzquierda As CellBackColorAlternate = New CellBackColorAlternate(Color.Transparent, gColorRow)
         viewIzquierda.Font = New Font("Verdana", 8, FontStyle.Regular)
         viewIzquierda.Background = backheader
         viewIzquierda.Border = noBorder
         viewIzquierda.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleLeft
 
-        Dim viewDerecha As CellBackColorAlternate = New CellBackColorAlternate(Color.Transparent, Color.Transparent)
+        Dim viewDerecha As CellBackColorAlternate = New CellBackColorAlternate(Color.Transparent, gColorRow)
         viewDerecha.Font = New Font("Verdana", 8, FontStyle.Regular)
         viewDerecha.Background = backheader
         viewDerecha.Border = noBorder
@@ -500,7 +514,8 @@ Public Class Cat_Clientes
         GridDatosCartera.Columns.SetWidth(3, 450)
         GridDatosCartera.Columns.SetWidth(4, 100)
         GridDatosCartera.Columns.SetWidth(5, 100)
-        GridDatosCartera.Columns.SetWidth(6, 100)
+        'GridDatosCartera.Columns.SetWidth(6, 100)
+        GridDatosCartera.Columns(6).Visible = False
 
     End Sub
 
@@ -629,7 +644,7 @@ Public Class Cat_Clientes
         lblTotalCartera.Visible = True
 
         Dim n As Integer = 0
-        Dim total As Decimal
+        Dim total As Decimal = 100
         For n = 0 To GridDatosCartera.DataSource.Count - 1
             total += GridDatosCartera.DataSource.Item(n).row(3)
         Next
@@ -918,10 +933,10 @@ Public Class Cat_Clientes
 #Region "  Rutina: consulta105  "
     Sub consulta105()
 
-        Caja = "Consulta105" : Parametros = "V1=" & idCliente.Trim
+        Caja = "Consulta105" : Parametros = "V1=" & codigo.Trim & "|"
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
         ' Validar igual a cinco para un correcto funcionamiento.
-        ObjRet = lConsulta.LlamarCaja(Caja, "5", Parametros)
+        ObjRet = lConsulta.LlamarCaja(Caja, "3", Parametros)
         If ObjRet.bOk Then
 
             'Asignar
@@ -1016,6 +1031,7 @@ Public Class Cat_Clientes
 
 #Region "  Rutina: consulta139  "
     Sub consulta139()
+        'Actualiza el grid: Cartera
         dsDatosCartera.Tables(0).Clear()
 
         Caja = "Consulta139" : Parametros = "V1=" + textBoxCliente.Text.Trim & "|"
@@ -1121,9 +1137,9 @@ Public Class Cat_Clientes
         textBoxCliente.Enabled = False
         Dim nom As String
 
-        nom = dsDatosClientes.Tables(0).Rows(posRowClientes).Item(1).ToString
-        idCliente = dsDatosClientes.Tables(0).Rows(posRowClientes).Item(0).ToString
-        codigo = dsDatosClientes.Tables(0).Rows(posRowClientes).Item(6).ToString
+        nom = GridDatosCLIENTES.DataSource.Item(posRowClientes).row(1)
+        idCliente = GridDatosCLIENTES.DataSource.Item(posRowClientes).row(0)
+        codigo = GridDatosCLIENTES.DataSource.Item(posRowClientes).row(6)
 
         textBoxCliente.Text = nom.Trim
 
@@ -1151,9 +1167,9 @@ Public Class Cat_Clientes
         textBoxCliente.Enabled = False
         Dim nom As String
 
-        nom = dsDatosCartera.Tables(0).Rows(posRowCartera).Item(0).ToString
-        idCliente = dsDatosCartera.Tables(0).Rows(posRowCartera).Item(5).ToString
-        codigo = dsDatosCartera.Tables(0).Rows(posRowCartera).Item(6).ToString
+        nom = GridDatosCartera.DataSource.Item(posRowCartera).row(0)
+        idCliente = GridDatosCartera.DataSource.Item(posRowCartera).row(5)
+        codigo = GridDatosCartera.DataSource.Item(posRowCartera).row(6)
 
         textBoxCliente.Text = nom.Trim
 
@@ -1295,7 +1311,6 @@ Public Class Cat_Clientes
     End Sub
 #End Region
 
-
 #Region "  Evento: GridDatosCLIENTES - PAINT  (Calcula el tamaño de la última columna para ajustarse el tamaño del grid.)  "
     Private Sub GridDatos_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles GridDatosCLIENTES.Paint
         Dim sizeColumns As Integer
@@ -1327,11 +1342,10 @@ Public Class Cat_Clientes
             sizeColumns += GridDatosCartera.Columns(n).Width
         Next
 
-        Dim sizeGrid As Integer = GridDatosCartera.Size.Width - sizeColumns - 5
+        Dim sizeGrid As Integer = GridDatosCartera.Size.Width - sizeColumns - 20
         GridDatosCartera.Columns.SetWidth(6, sizeGrid)
     End Sub
 #End Region
-
 
 End Class
 

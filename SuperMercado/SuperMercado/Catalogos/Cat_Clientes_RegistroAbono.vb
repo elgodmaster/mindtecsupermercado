@@ -84,7 +84,7 @@ Public Class Cat_Clientes_RegistroAbono
             deudaActualizada = 0
         End Try
 
-        Caja = "Consulta105" : Parametros = "V1=" & idCliente.Trim
+        Caja = "Consulta105" : Parametros = "V1=" & codigo.Trim
         ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
 
         lblSaldoActual.Text = "$ " & lConsulta.ObtenerValor("V17", ObjRet.sResultado, "|")
