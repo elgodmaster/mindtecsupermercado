@@ -48,28 +48,8 @@ Partial Class ModuloVentas
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ModuloVentas))
-        Me.label16 = New System.Windows.Forms.Label
-        Me.Borrar = New System.Windows.Forms.Button
-        Me.groupBox2 = New System.Windows.Forms.GroupBox
-        Me.groupBox1 = New System.Windows.Forms.GroupBox
-        Me.GroupBoxPagos = New System.Windows.Forms.GroupBox
-        Me.Btn_Factura = New System.Windows.Forms.Button
-        Me.Btn_Credito = New System.Windows.Forms.Button
-        Me.Btn_Efectivo = New System.Windows.Forms.Button
-        Me.LblCambio = New System.Windows.Forms.Label
-        Me.Label6 = New System.Windows.Forms.Label
-        Me.Label5 = New System.Windows.Forms.Label
-        Me.Txt_Pago = New System.Windows.Forms.TextBox
-        Me.LblTotal = New System.Windows.Forms.Label
-        Me.LblIva = New System.Windows.Forms.Label
-        Me.LblSubTotal = New System.Windows.Forms.Label
-        Me.label4 = New System.Windows.Forms.Label
-        Me.label3 = New System.Windows.Forms.Label
-        Me.label2 = New System.Windows.Forms.Label
-        Me.CancelarVenta = New System.Windows.Forms.Button
-        Me.AceptarVenta = New System.Windows.Forms.Button
+        Me.CantidadNumericUpDown = New System.Windows.Forms.NumericUpDown
         Me.GridDatos = New SourceGrid.DataGrid
-        Me.Descuento = New System.Windows.Forms.Button
         Me.Agregar = New System.Windows.Forms.Button
         Me.Codigo_Producto = New System.Windows.Forms.TextBox
         Me.label1 = New System.Windows.Forms.Label
@@ -79,308 +59,73 @@ Partial Class ModuloVentas
         Me.toolStripButton4 = New System.Windows.Forms.ToolStripButton
         Me.toolStripButton5 = New System.Windows.Forms.ToolStripButton
         Me.toolStripButton6 = New System.Windows.Forms.ToolStripButton
-        Me.label15 = New System.Windows.Forms.Label
-        Me.label14 = New System.Windows.Forms.Label
-        Me.panel1 = New System.Windows.Forms.Panel
         Me.panel2 = New System.Windows.Forms.Panel
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.lblFecha = New System.Windows.Forms.Label
+        Me.GroupBoxPagos = New System.Windows.Forms.GroupBox
+        Me.LblCambio = New System.Windows.Forms.Label
+        Me.NumericUpDownPago = New System.Windows.Forms.NumericUpDown
+        Me.Btn_Factura = New System.Windows.Forms.Button
+        Me.Btn_Credito = New System.Windows.Forms.Button
+        Me.Btn_Efectivo = New System.Windows.Forms.Button
+        Me.Label6 = New System.Windows.Forms.Label
+        Me.Label5 = New System.Windows.Forms.Label
+        Me.groupBox1 = New System.Windows.Forms.GroupBox
+        Me.LblTotal = New System.Windows.Forms.Label
+        Me.LblIva = New System.Windows.Forms.Label
+        Me.LblSubTotal = New System.Windows.Forms.Label
+        Me.label4 = New System.Windows.Forms.Label
+        Me.label3 = New System.Windows.Forms.Label
+        Me.label2 = New System.Windows.Forms.Label
+        Me.CancelarVenta = New System.Windows.Forms.Button
+        Me.AceptarVenta = New System.Windows.Forms.Button
         Me.lblhora = New System.Windows.Forms.Label
-        Me.CantidadNumericUpDown = New System.Windows.Forms.NumericUpDown
-        Me.groupBox2.SuspendLayout()
-        Me.groupBox1.SuspendLayout()
-        Me.GroupBoxPagos.SuspendLayout()
-        Me.toolStrip1.SuspendLayout()
-        Me.panel1.SuspendLayout()
+        Me.lblFecha = New System.Windows.Forms.Label
+        Me.label16 = New System.Windows.Forms.Label
         CType(Me.CantidadNumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.toolStrip1.SuspendLayout()
+        Me.GroupBoxPagos.SuspendLayout()
+        CType(Me.NumericUpDownPago, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.groupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
-        'label16
+        'CantidadNumericUpDown
         '
-        Me.label16.AutoSize = True
-        Me.label16.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.label16.Location = New System.Drawing.Point(469, 14)
-        Me.label16.Name = "label16"
-        Me.label16.Size = New System.Drawing.Size(57, 13)
-        Me.label16.TabIndex = 25
-        Me.label16.Text = "Cantidad"
-        '
-        'Borrar
-        '
-        Me.Borrar.BackgroundImage = CType(resources.GetObject("Borrar.BackgroundImage"), System.Drawing.Image)
-        Me.Borrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.Borrar.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Borrar.Location = New System.Drawing.Point(838, 29)
-        Me.Borrar.Name = "Borrar"
-        Me.Borrar.Size = New System.Drawing.Size(95, 31)
-        Me.Borrar.TabIndex = 4
-        Me.Borrar.Text = "F3"
-        Me.Borrar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Borrar.UseVisualStyleBackColor = True
-        '
-        'groupBox2
-        '
-        Me.groupBox2.Controls.Add(Me.groupBox1)
-        Me.groupBox2.Controls.Add(Me.CantidadNumericUpDown)
-        Me.groupBox2.Controls.Add(Me.CancelarVenta)
-        Me.groupBox2.Controls.Add(Me.AceptarVenta)
-        Me.groupBox2.Controls.Add(Me.GridDatos)
-        Me.groupBox2.Controls.Add(Me.label16)
-        Me.groupBox2.Controls.Add(Me.Borrar)
-        Me.groupBox2.Controls.Add(Me.Descuento)
-        Me.groupBox2.Controls.Add(Me.Agregar)
-        Me.groupBox2.Controls.Add(Me.Codigo_Producto)
-        Me.groupBox2.Controls.Add(Me.label1)
-        Me.groupBox2.Location = New System.Drawing.Point(58, 192)
-        Me.groupBox2.Name = "groupBox2"
-        Me.groupBox2.Size = New System.Drawing.Size(938, 510)
-        Me.groupBox2.TabIndex = 26
-        Me.groupBox2.TabStop = False
-        Me.groupBox2.Text = "Detalle de la venta"
-        '
-        'groupBox1
-        '
-        Me.groupBox1.BackColor = System.Drawing.Color.Transparent
-        Me.groupBox1.Controls.Add(Me.GroupBoxPagos)
-        Me.groupBox1.Controls.Add(Me.LblTotal)
-        Me.groupBox1.Controls.Add(Me.LblIva)
-        Me.groupBox1.Controls.Add(Me.LblSubTotal)
-        Me.groupBox1.Controls.Add(Me.label4)
-        Me.groupBox1.Controls.Add(Me.label3)
-        Me.groupBox1.Controls.Add(Me.label2)
-        Me.groupBox1.ForeColor = System.Drawing.Color.Black
-        Me.groupBox1.Location = New System.Drawing.Point(15, 358)
-        Me.groupBox1.Name = "groupBox1"
-        Me.groupBox1.Size = New System.Drawing.Size(709, 127)
-        Me.groupBox1.TabIndex = 31
-        Me.groupBox1.TabStop = False
-        Me.groupBox1.Text = "Detalle de importe"
-        '
-        'GroupBoxPagos
-        '
-        Me.GroupBoxPagos.Controls.Add(Me.Btn_Factura)
-        Me.GroupBoxPagos.Controls.Add(Me.Btn_Credito)
-        Me.GroupBoxPagos.Controls.Add(Me.Btn_Efectivo)
-        Me.GroupBoxPagos.Controls.Add(Me.LblCambio)
-        Me.GroupBoxPagos.Controls.Add(Me.Label6)
-        Me.GroupBoxPagos.Controls.Add(Me.Label5)
-        Me.GroupBoxPagos.Controls.Add(Me.Txt_Pago)
-        Me.GroupBoxPagos.Location = New System.Drawing.Point(344, 5)
-        Me.GroupBoxPagos.Name = "GroupBoxPagos"
-        Me.GroupBoxPagos.Size = New System.Drawing.Size(357, 116)
-        Me.GroupBoxPagos.TabIndex = 12
-        Me.GroupBoxPagos.TabStop = False
-        Me.GroupBoxPagos.Text = "Forma de pago"
-        Me.GroupBoxPagos.Visible = False
-        '
-        'Btn_Factura
-        '
-        Me.Btn_Factura.BackgroundImage = CType(resources.GetObject("Btn_Factura.BackgroundImage"), System.Drawing.Image)
-        Me.Btn_Factura.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.Btn_Factura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Btn_Factura.Location = New System.Drawing.Point(279, 79)
-        Me.Btn_Factura.Name = "Btn_Factura"
-        Me.Btn_Factura.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Btn_Factura.Size = New System.Drawing.Size(57, 31)
-        Me.Btn_Factura.TabIndex = 3
-        Me.Btn_Factura.Text = "F9"
-        Me.Btn_Factura.TextAlign = System.Drawing.ContentAlignment.BottomRight
-        Me.Btn_Factura.UseVisualStyleBackColor = True
-        '
-        'Btn_Credito
-        '
-        Me.Btn_Credito.BackgroundImage = CType(resources.GetObject("Btn_Credito.BackgroundImage"), System.Drawing.Image)
-        Me.Btn_Credito.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.Btn_Credito.Location = New System.Drawing.Point(279, 30)
-        Me.Btn_Credito.Name = "Btn_Credito"
-        Me.Btn_Credito.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Btn_Credito.Size = New System.Drawing.Size(57, 31)
-        Me.Btn_Credito.TabIndex = 2
-        Me.Btn_Credito.Text = "F9"
-        Me.Btn_Credito.TextAlign = System.Drawing.ContentAlignment.BottomRight
-        Me.Btn_Credito.UseVisualStyleBackColor = True
-        '
-        'Btn_Efectivo
-        '
-        Me.Btn_Efectivo.BackgroundImage = CType(resources.GetObject("Btn_Efectivo.BackgroundImage"), System.Drawing.Image)
-        Me.Btn_Efectivo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.Btn_Efectivo.Location = New System.Drawing.Point(216, 30)
-        Me.Btn_Efectivo.Name = "Btn_Efectivo"
-        Me.Btn_Efectivo.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Btn_Efectivo.Size = New System.Drawing.Size(57, 31)
-        Me.Btn_Efectivo.TabIndex = 1
-        Me.Btn_Efectivo.Text = "F8"
-        Me.Btn_Efectivo.TextAlign = System.Drawing.ContentAlignment.BottomRight
-        Me.Btn_Efectivo.UseVisualStyleBackColor = True
-        '
-        'LblCambio
-        '
-        Me.LblCambio.AutoSize = True
-        Me.LblCambio.Font = New System.Drawing.Font("Verdana", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblCambio.Location = New System.Drawing.Point(118, 68)
-        Me.LblCambio.Name = "LblCambio"
-        Me.LblCambio.Size = New System.Drawing.Size(44, 18)
-        Me.LblCambio.TabIndex = 15
-        Me.LblCambio.Text = "0.00"
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Verdana", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(-1, 68)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(116, 18)
-        Me.Label6.TabIndex = 14
-        Me.Label6.Text = "Cambio/Feria"
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Verdana", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(53, 36)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(57, 18)
-        Me.Label5.TabIndex = 13
-        Me.Label5.Text = "Recibí"
-        '
-        'Txt_Pago
-        '
-        Me.Txt_Pago.Font = New System.Drawing.Font("Verdana", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Txt_Pago.Location = New System.Drawing.Point(113, 32)
-        Me.Txt_Pago.Name = "Txt_Pago"
-        Me.Txt_Pago.Size = New System.Drawing.Size(100, 27)
-        Me.Txt_Pago.TabIndex = 0
-        Me.Txt_Pago.Text = "0.00"
-        '
-        'LblTotal
-        '
-        Me.LblTotal.AutoSize = True
-        Me.LblTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblTotal.ForeColor = System.Drawing.Color.Black
-        Me.LblTotal.Location = New System.Drawing.Point(138, 96)
-        Me.LblTotal.Name = "LblTotal"
-        Me.LblTotal.Size = New System.Drawing.Size(60, 24)
-        Me.LblTotal.TabIndex = 5
-        Me.LblTotal.Text = "$0.00"
-        '
-        'LblIva
-        '
-        Me.LblIva.AutoSize = True
-        Me.LblIva.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblIva.ForeColor = System.Drawing.Color.Black
-        Me.LblIva.Location = New System.Drawing.Point(155, 60)
-        Me.LblIva.Name = "LblIva"
-        Me.LblIva.Size = New System.Drawing.Size(39, 13)
-        Me.LblIva.TabIndex = 4
-        Me.LblIva.Text = "$0.00"
-        '
-        'LblSubTotal
-        '
-        Me.LblSubTotal.AutoSize = True
-        Me.LblSubTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblSubTotal.ForeColor = System.Drawing.Color.Black
-        Me.LblSubTotal.Location = New System.Drawing.Point(155, 28)
-        Me.LblSubTotal.Name = "LblSubTotal"
-        Me.LblSubTotal.Size = New System.Drawing.Size(39, 13)
-        Me.LblSubTotal.TabIndex = 3
-        Me.LblSubTotal.Text = "$0.00"
-        '
-        'label4
-        '
-        Me.label4.AutoSize = True
-        Me.label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.label4.Location = New System.Drawing.Point(24, 96)
-        Me.label4.Name = "label4"
-        Me.label4.Size = New System.Drawing.Size(62, 24)
-        Me.label4.TabIndex = 2
-        Me.label4.Text = "Total:"
-        '
-        'label3
-        '
-        Me.label3.AutoSize = True
-        Me.label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.label3.Location = New System.Drawing.Point(55, 60)
-        Me.label3.Name = "label3"
-        Me.label3.Size = New System.Drawing.Size(31, 13)
-        Me.label3.TabIndex = 1
-        Me.label3.Text = "IVA:"
-        '
-        'label2
-        '
-        Me.label2.AutoSize = True
-        Me.label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.label2.Location = New System.Drawing.Point(28, 28)
-        Me.label2.Name = "label2"
-        Me.label2.Size = New System.Drawing.Size(58, 13)
-        Me.label2.TabIndex = 0
-        Me.label2.Text = "Subtotal:"
-        '
-        'CancelarVenta
-        '
-        Me.CancelarVenta.Enabled = False
-        Me.CancelarVenta.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CancelarVenta.Image = CType(resources.GetObject("CancelarVenta.Image"), System.Drawing.Image)
-        Me.CancelarVenta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.CancelarVenta.Location = New System.Drawing.Point(838, 363)
-        Me.CancelarVenta.Name = "CancelarVenta"
-        Me.CancelarVenta.Size = New System.Drawing.Size(87, 51)
-        Me.CancelarVenta.TabIndex = 7
-        Me.CancelarVenta.Text = "F12"
-        Me.CancelarVenta.TextAlign = System.Drawing.ContentAlignment.BottomRight
-        Me.CancelarVenta.UseVisualStyleBackColor = True
-        '
-        'AceptarVenta
-        '
-        Me.AceptarVenta.Enabled = False
-        Me.AceptarVenta.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.AceptarVenta.Image = CType(resources.GetObject("AceptarVenta.Image"), System.Drawing.Image)
-        Me.AceptarVenta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.AceptarVenta.Location = New System.Drawing.Point(730, 363)
-        Me.AceptarVenta.Name = "AceptarVenta"
-        Me.AceptarVenta.Size = New System.Drawing.Size(87, 51)
-        Me.AceptarVenta.TabIndex = 6
-        Me.AceptarVenta.Text = "    F10"
-        Me.AceptarVenta.TextAlign = System.Drawing.ContentAlignment.BottomRight
-        Me.AceptarVenta.UseVisualStyleBackColor = True
+        Me.CantidadNumericUpDown.DecimalPlaces = 2
+        Me.CantidadNumericUpDown.Font = New System.Drawing.Font("Verdana", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CantidadNumericUpDown.Location = New System.Drawing.Point(421, 27)
+        Me.CantidadNumericUpDown.Maximum = New Decimal(New Integer() {-1593835521, 466537709, 54210, 0})
+        Me.CantidadNumericUpDown.MaximumSize = New System.Drawing.Size(96, 0)
+        Me.CantidadNumericUpDown.Name = "CantidadNumericUpDown"
+        Me.CantidadNumericUpDown.Size = New System.Drawing.Size(96, 31)
+        Me.CantidadNumericUpDown.TabIndex = 1
+        Me.CantidadNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'GridDatos
         '
-        Me.GridDatos.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.GridDatos.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+                    Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GridDatos.BackColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.GridDatos.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GridDatos.DeleteQuestionMessage = ""
         Me.GridDatos.DeleteRowsWithDeleteKey = False
         Me.GridDatos.FixedRows = 1
-        Me.GridDatos.Location = New System.Drawing.Point(7, 83)
+        Me.GridDatos.Location = New System.Drawing.Point(65, 62)
         Me.GridDatos.Name = "GridDatos"
         Me.GridDatos.SelectionMode = SourceGrid.GridSelectionMode.Row
-        Me.GridDatos.Size = New System.Drawing.Size(925, 259)
+        Me.GridDatos.Size = New System.Drawing.Size(572, 583)
         Me.GridDatos.TabIndex = 5
         Me.GridDatos.TabStop = True
         Me.GridDatos.ToolTipText = ""
-        '
-        'Descuento
-        '
-        Me.Descuento.BackgroundImage = CType(resources.GetObject("Descuento.BackgroundImage"), System.Drawing.Image)
-        Me.Descuento.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.Descuento.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Descuento.Location = New System.Drawing.Point(737, 28)
-        Me.Descuento.Name = "Descuento"
-        Me.Descuento.Size = New System.Drawing.Size(95, 31)
-        Me.Descuento.TabIndex = 3
-        Me.Descuento.Text = "F7"
-        Me.Descuento.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Descuento.UseVisualStyleBackColor = True
         '
         'Agregar
         '
         Me.Agregar.BackgroundImage = CType(resources.GetObject("Agregar.BackgroundImage"), System.Drawing.Image)
         Me.Agregar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.Agregar.Location = New System.Drawing.Point(557, 29)
+        Me.Agregar.Location = New System.Drawing.Point(523, 25)
         Me.Agregar.Name = "Agregar"
         Me.Agregar.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Agregar.Size = New System.Drawing.Size(57, 31)
+        Me.Agregar.Size = New System.Drawing.Size(66, 31)
         Me.Agregar.TabIndex = 2
         Me.Agregar.Text = "F5"
         Me.Agregar.TextAlign = System.Drawing.ContentAlignment.BottomRight
@@ -388,21 +133,21 @@ Partial Class ModuloVentas
         '
         'Codigo_Producto
         '
-        Me.Codigo_Producto.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Codigo_Producto.Location = New System.Drawing.Point(184, 30)
+        Me.Codigo_Producto.Font = New System.Drawing.Font("Verdana", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Codigo_Producto.Location = New System.Drawing.Point(150, 27)
         Me.Codigo_Producto.Name = "Codigo_Producto"
-        Me.Codigo_Producto.Size = New System.Drawing.Size(272, 29)
+        Me.Codigo_Producto.Size = New System.Drawing.Size(272, 31)
         Me.Codigo_Producto.TabIndex = 0
         '
         'label1
         '
         Me.label1.AutoSize = True
-        Me.label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.label1.Location = New System.Drawing.Point(12, 34)
+        Me.label1.Font = New System.Drawing.Font("Verdana", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.label1.Location = New System.Drawing.Point(61, 30)
         Me.label1.Name = "label1"
-        Me.label1.Size = New System.Drawing.Size(166, 18)
+        Me.label1.Size = New System.Drawing.Size(86, 23)
         Me.label1.TabIndex = 6
-        Me.label1.Text = "Código del producto:"
+        Me.label1.Text = "Código:"
         '
         'toolStrip1
         '
@@ -465,44 +210,14 @@ Partial Class ModuloVentas
         Me.toolStripButton6.Size = New System.Drawing.Size(50, 36)
         Me.toolStripButton6.Text = "Salir"
         '
-        'label15
-        '
-        Me.label15.AutoSize = True
-        Me.label15.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.label15.Location = New System.Drawing.Point(6, 151)
-        Me.label15.Name = "label15"
-        Me.label15.Size = New System.Drawing.Size(292, 24)
-        Me.label15.TabIndex = 25
-        Me.label15.Text = "2 cafes chicos por solo $14.50"
-        '
-        'label14
-        '
-        Me.label14.AutoSize = True
-        Me.label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.label14.Location = New System.Drawing.Point(58, 9)
-        Me.label14.Name = "label14"
-        Me.label14.Size = New System.Drawing.Size(207, 29)
-        Me.label14.TabIndex = 24
-        Me.label14.Text = "PROMOCIONES"
-        '
-        'panel1
-        '
-        Me.panel1.BackgroundImage = CType(resources.GetObject("panel1.BackgroundImage"), System.Drawing.Image)
-        Me.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.panel1.Controls.Add(Me.label15)
-        Me.panel1.Controls.Add(Me.label14)
-        Me.panel1.Location = New System.Drawing.Point(692, 6)
-        Me.panel1.Name = "panel1"
-        Me.panel1.Size = New System.Drawing.Size(302, 182)
-        Me.panel1.TabIndex = 28
-        '
         'panel2
         '
+        Me.panel2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.panel2.BackgroundImage = CType(resources.GetObject("panel2.BackgroundImage"), System.Drawing.Image)
         Me.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.panel2.Location = New System.Drawing.Point(85, 33)
+        Me.panel2.Location = New System.Drawing.Point(679, 25)
         Me.panel2.Name = "panel2"
-        Me.panel2.Size = New System.Drawing.Size(429, 151)
+        Me.panel2.Size = New System.Drawing.Size(312, 118)
         Me.panel2.TabIndex = 29
         '
         'Timer1
@@ -510,40 +225,253 @@ Partial Class ModuloVentas
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 1000
         '
-        'lblFecha
+        'GroupBoxPagos
         '
-        Me.lblFecha.AutoEllipsis = True
-        Me.lblFecha.BackColor = System.Drawing.Color.Transparent
-        Me.lblFecha.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblFecha.Location = New System.Drawing.Point(87, 6)
-        Me.lblFecha.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.lblFecha.Name = "lblFecha"
-        Me.lblFecha.Size = New System.Drawing.Size(254, 24)
-        Me.lblFecha.TabIndex = 340
-        Me.lblFecha.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.GroupBoxPagos.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GroupBoxPagos.Controls.Add(Me.LblCambio)
+        Me.GroupBoxPagos.Controls.Add(Me.NumericUpDownPago)
+        Me.GroupBoxPagos.Controls.Add(Me.Btn_Factura)
+        Me.GroupBoxPagos.Controls.Add(Me.Btn_Credito)
+        Me.GroupBoxPagos.Controls.Add(Me.Btn_Efectivo)
+        Me.GroupBoxPagos.Controls.Add(Me.Label6)
+        Me.GroupBoxPagos.Controls.Add(Me.Label5)
+        Me.GroupBoxPagos.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBoxPagos.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.GroupBoxPagos.Location = New System.Drawing.Point(679, 520)
+        Me.GroupBoxPagos.Name = "GroupBoxPagos"
+        Me.GroupBoxPagos.Size = New System.Drawing.Size(312, 125)
+        Me.GroupBoxPagos.TabIndex = 352
+        Me.GroupBoxPagos.TabStop = False
+        Me.GroupBoxPagos.Text = " Forma de pago "
+        Me.GroupBoxPagos.Visible = False
+        '
+        'LblCambio
+        '
+        Me.LblCambio.AutoSize = True
+        Me.LblCambio.Font = New System.Drawing.Font("Verdana", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblCambio.Location = New System.Drawing.Point(119, 78)
+        Me.LblCambio.Name = "LblCambio"
+        Me.LblCambio.Size = New System.Drawing.Size(53, 23)
+        Me.LblCambio.TabIndex = 15
+        Me.LblCambio.Text = "0.00"
+        '
+        'NumericUpDownPago
+        '
+        Me.NumericUpDownPago.DecimalPlaces = 2
+        Me.NumericUpDownPago.Font = New System.Drawing.Font("Verdana", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NumericUpDownPago.Location = New System.Drawing.Point(119, 33)
+        Me.NumericUpDownPago.Maximum = New Decimal(New Integer() {-1304428545, 434162106, 542, 0})
+        Me.NumericUpDownPago.Name = "NumericUpDownPago"
+        Me.NumericUpDownPago.Size = New System.Drawing.Size(100, 31)
+        Me.NumericUpDownPago.TabIndex = 354
+        '
+        'Btn_Factura
+        '
+        Me.Btn_Factura.BackgroundImage = CType(resources.GetObject("Btn_Factura.BackgroundImage"), System.Drawing.Image)
+        Me.Btn_Factura.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.Btn_Factura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Btn_Factura.Location = New System.Drawing.Point(237, 89)
+        Me.Btn_Factura.Name = "Btn_Factura"
+        Me.Btn_Factura.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.Btn_Factura.Size = New System.Drawing.Size(57, 31)
+        Me.Btn_Factura.TabIndex = 3
+        Me.Btn_Factura.Text = "F9"
+        Me.Btn_Factura.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        Me.Btn_Factura.UseVisualStyleBackColor = True
+        '
+        'Btn_Credito
+        '
+        Me.Btn_Credito.BackgroundImage = CType(resources.GetObject("Btn_Credito.BackgroundImage"), System.Drawing.Image)
+        Me.Btn_Credito.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.Btn_Credito.Location = New System.Drawing.Point(237, 52)
+        Me.Btn_Credito.Name = "Btn_Credito"
+        Me.Btn_Credito.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.Btn_Credito.Size = New System.Drawing.Size(57, 31)
+        Me.Btn_Credito.TabIndex = 2
+        Me.Btn_Credito.Text = "F9"
+        Me.Btn_Credito.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        Me.Btn_Credito.UseVisualStyleBackColor = True
+        '
+        'Btn_Efectivo
+        '
+        Me.Btn_Efectivo.BackgroundImage = CType(resources.GetObject("Btn_Efectivo.BackgroundImage"), System.Drawing.Image)
+        Me.Btn_Efectivo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.Btn_Efectivo.Location = New System.Drawing.Point(237, 15)
+        Me.Btn_Efectivo.Name = "Btn_Efectivo"
+        Me.Btn_Efectivo.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.Btn_Efectivo.Size = New System.Drawing.Size(57, 31)
+        Me.Btn_Efectivo.TabIndex = 1
+        Me.Btn_Efectivo.Text = "F8"
+        Me.Btn_Efectivo.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        Me.Btn_Efectivo.UseVisualStyleBackColor = True
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Verdana", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Location = New System.Drawing.Point(6, 78)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(110, 23)
+        Me.Label6.TabIndex = 14
+        Me.Label6.Text = "Cambio: $"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Verdana", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Location = New System.Drawing.Point(20, 35)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(96, 23)
+        Me.Label5.TabIndex = 13
+        Me.Label5.Text = "Recibí: $"
+        '
+        'groupBox1
+        '
+        Me.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.groupBox1.BackColor = System.Drawing.Color.Transparent
+        Me.groupBox1.Controls.Add(Me.LblTotal)
+        Me.groupBox1.Controls.Add(Me.LblIva)
+        Me.groupBox1.Controls.Add(Me.LblSubTotal)
+        Me.groupBox1.Controls.Add(Me.label4)
+        Me.groupBox1.Controls.Add(Me.label3)
+        Me.groupBox1.Controls.Add(Me.label2)
+        Me.groupBox1.Font = New System.Drawing.Font("Verdana", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.groupBox1.ForeColor = System.Drawing.Color.Black
+        Me.groupBox1.Location = New System.Drawing.Point(679, 191)
+        Me.groupBox1.Name = "groupBox1"
+        Me.groupBox1.Size = New System.Drawing.Size(312, 213)
+        Me.groupBox1.TabIndex = 353
+        Me.groupBox1.TabStop = False
+        Me.groupBox1.Text = " Detalle de importe "
+        '
+        'LblTotal
+        '
+        Me.LblTotal.AutoSize = True
+        Me.LblTotal.Font = New System.Drawing.Font("Verdana", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblTotal.ForeColor = System.Drawing.Color.Black
+        Me.LblTotal.Location = New System.Drawing.Point(170, 150)
+        Me.LblTotal.Name = "LblTotal"
+        Me.LblTotal.Size = New System.Drawing.Size(72, 23)
+        Me.LblTotal.TabIndex = 5
+        Me.LblTotal.Text = "$ 0.00"
+        '
+        'LblIva
+        '
+        Me.LblIva.AutoSize = True
+        Me.LblIva.Font = New System.Drawing.Font("Verdana", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblIva.ForeColor = System.Drawing.Color.Black
+        Me.LblIva.Location = New System.Drawing.Point(170, 101)
+        Me.LblIva.Name = "LblIva"
+        Me.LblIva.Size = New System.Drawing.Size(72, 23)
+        Me.LblIva.TabIndex = 4
+        Me.LblIva.Text = "$ 0.00"
+        '
+        'LblSubTotal
+        '
+        Me.LblSubTotal.AutoSize = True
+        Me.LblSubTotal.Font = New System.Drawing.Font("Verdana", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblSubTotal.ForeColor = System.Drawing.Color.Black
+        Me.LblSubTotal.Location = New System.Drawing.Point(170, 53)
+        Me.LblSubTotal.Name = "LblSubTotal"
+        Me.LblSubTotal.Size = New System.Drawing.Size(72, 23)
+        Me.LblSubTotal.TabIndex = 3
+        Me.LblSubTotal.Text = "$ 0.00"
+        '
+        'label4
+        '
+        Me.label4.AutoSize = True
+        Me.label4.Font = New System.Drawing.Font("Verdana", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.label4.Location = New System.Drawing.Point(71, 150)
+        Me.label4.Name = "label4"
+        Me.label4.Size = New System.Drawing.Size(67, 23)
+        Me.label4.TabIndex = 2
+        Me.label4.Text = "Total:"
+        '
+        'label3
+        '
+        Me.label3.AutoSize = True
+        Me.label3.Font = New System.Drawing.Font("Verdana", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.label3.Location = New System.Drawing.Point(85, 101)
+        Me.label3.Name = "label3"
+        Me.label3.Size = New System.Drawing.Size(53, 23)
+        Me.label3.TabIndex = 1
+        Me.label3.Text = "IVA:"
+        '
+        'label2
+        '
+        Me.label2.AutoSize = True
+        Me.label2.Font = New System.Drawing.Font("Verdana", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.label2.Location = New System.Drawing.Point(39, 53)
+        Me.label2.Name = "label2"
+        Me.label2.Size = New System.Drawing.Size(99, 23)
+        Me.label2.TabIndex = 0
+        Me.label2.Text = "Subtotal:"
+        '
+        'CancelarVenta
+        '
+        Me.CancelarVenta.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.CancelarVenta.Enabled = False
+        Me.CancelarVenta.Font = New System.Drawing.Font("Verdana", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CancelarVenta.Image = CType(resources.GetObject("CancelarVenta.Image"), System.Drawing.Image)
+        Me.CancelarVenta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.CancelarVenta.Location = New System.Drawing.Point(904, 442)
+        Me.CancelarVenta.Name = "CancelarVenta"
+        Me.CancelarVenta.Size = New System.Drawing.Size(87, 51)
+        Me.CancelarVenta.TabIndex = 351
+        Me.CancelarVenta.Text = "F12"
+        Me.CancelarVenta.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        Me.CancelarVenta.UseVisualStyleBackColor = True
+        '
+        'AceptarVenta
+        '
+        Me.AceptarVenta.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.AceptarVenta.Enabled = False
+        Me.AceptarVenta.Font = New System.Drawing.Font("Verdana", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.AceptarVenta.Image = CType(resources.GetObject("AceptarVenta.Image"), System.Drawing.Image)
+        Me.AceptarVenta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.AceptarVenta.Location = New System.Drawing.Point(811, 442)
+        Me.AceptarVenta.Name = "AceptarVenta"
+        Me.AceptarVenta.Size = New System.Drawing.Size(87, 51)
+        Me.AceptarVenta.TabIndex = 350
+        Me.AceptarVenta.Text = "    F11"
+        Me.AceptarVenta.TextAlign = System.Drawing.ContentAlignment.BottomRight
+        Me.AceptarVenta.UseVisualStyleBackColor = True
         '
         'lblhora
         '
+        Me.lblhora.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.lblhora.AutoEllipsis = True
         Me.lblhora.BackColor = System.Drawing.Color.Transparent
         Me.lblhora.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblhora.Location = New System.Drawing.Point(404, 6)
+        Me.lblhora.Location = New System.Drawing.Point(382, 675)
         Me.lblhora.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblhora.Name = "lblhora"
         Me.lblhora.Size = New System.Drawing.Size(110, 24)
-        Me.lblhora.TabIndex = 349
+        Me.lblhora.TabIndex = 351
         Me.lblhora.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'CantidadNumericUpDown
+        'lblFecha
         '
-        Me.CantidadNumericUpDown.DecimalPlaces = 2
-        Me.CantidadNumericUpDown.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CantidadNumericUpDown.Location = New System.Drawing.Point(455, 30)
-        Me.CantidadNumericUpDown.Maximum = New Decimal(New Integer() {1215752191, 23, 0, 0})
-        Me.CantidadNumericUpDown.MaximumSize = New System.Drawing.Size(96, 0)
-        Me.CantidadNumericUpDown.Name = "CantidadNumericUpDown"
-        Me.CantidadNumericUpDown.Size = New System.Drawing.Size(96, 29)
-        Me.CantidadNumericUpDown.TabIndex = 1
+        Me.lblFecha.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.lblFecha.AutoEllipsis = True
+        Me.lblFecha.BackColor = System.Drawing.Color.Transparent
+        Me.lblFecha.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFecha.Location = New System.Drawing.Point(65, 675)
+        Me.lblFecha.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblFecha.Name = "lblFecha"
+        Me.lblFecha.Size = New System.Drawing.Size(254, 24)
+        Me.lblFecha.TabIndex = 350
+        Me.lblFecha.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'label16
+        '
+        Me.label16.AutoSize = True
+        Me.label16.Font = New System.Drawing.Font("Verdana", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.label16.Location = New System.Drawing.Point(431, 8)
+        Me.label16.Name = "label16"
+        Me.label16.Size = New System.Drawing.Size(73, 16)
+        Me.label16.TabIndex = 25
+        Me.label16.Text = "Cantidad"
         '
         'ModuloVentas
         '
@@ -551,36 +479,37 @@ Partial Class ModuloVentas
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1008, 708)
         Me.Controls.Add(Me.lblhora)
+        Me.Controls.Add(Me.GroupBoxPagos)
         Me.Controls.Add(Me.lblFecha)
+        Me.Controls.Add(Me.groupBox1)
+        Me.Controls.Add(Me.CancelarVenta)
+        Me.Controls.Add(Me.CantidadNumericUpDown)
         Me.Controls.Add(Me.panel2)
-        Me.Controls.Add(Me.panel1)
+        Me.Controls.Add(Me.AceptarVenta)
         Me.Controls.Add(Me.toolStrip1)
-        Me.Controls.Add(Me.groupBox2)
+        Me.Controls.Add(Me.GridDatos)
+        Me.Controls.Add(Me.label16)
+        Me.Controls.Add(Me.label1)
+        Me.Controls.Add(Me.Codigo_Producto)
+        Me.Controls.Add(Me.Agregar)
         Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.HelpButton = True
         Me.KeyPreview = True
         Me.Name = "ModuloVentas"
         Me.Text = "ModuloVentas"
-        Me.groupBox2.ResumeLayout(False)
-        Me.groupBox2.PerformLayout()
-        Me.groupBox1.ResumeLayout(False)
-        Me.groupBox1.PerformLayout()
-        Me.GroupBoxPagos.ResumeLayout(False)
-        Me.GroupBoxPagos.PerformLayout()
+        CType(Me.CantidadNumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         Me.toolStrip1.ResumeLayout(False)
         Me.toolStrip1.PerformLayout()
-        Me.panel1.ResumeLayout(False)
-        Me.panel1.PerformLayout()
-        CType(Me.CantidadNumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBoxPagos.ResumeLayout(False)
+        Me.GroupBoxPagos.PerformLayout()
+        CType(Me.NumericUpDownPago, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.groupBox1.ResumeLayout(False)
+        Me.groupBox1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Private WithEvents label16 As System.Windows.Forms.Label
-    Private WithEvents Borrar As System.Windows.Forms.Button
-    Private WithEvents groupBox2 As System.Windows.Forms.GroupBox
-    Private WithEvents Descuento As System.Windows.Forms.Button
     Private WithEvents Agregar As System.Windows.Forms.Button
     Private WithEvents Codigo_Producto As System.Windows.Forms.TextBox
     Private WithEvents label1 As System.Windows.Forms.Label
@@ -590,10 +519,15 @@ Partial Class ModuloVentas
     Private WithEvents toolStripButton4 As System.Windows.Forms.ToolStripButton
     Private WithEvents toolStripButton5 As System.Windows.Forms.ToolStripButton
     Private WithEvents toolStripButton6 As System.Windows.Forms.ToolStripButton
-    Private WithEvents label15 As System.Windows.Forms.Label
-    Private WithEvents label14 As System.Windows.Forms.Label
-    Private WithEvents panel1 As System.Windows.Forms.Panel
     Friend WithEvents GridDatos As SourceGrid.DataGrid
+    Private WithEvents panel2 As System.Windows.Forms.Panel
+    Friend WithEvents Timer1 As System.Windows.Forms.Timer
+    Friend WithEvents CantidadNumericUpDown As System.Windows.Forms.NumericUpDown
+    Friend WithEvents GroupBoxPagos As System.Windows.Forms.GroupBox
+    Private WithEvents Btn_Factura As System.Windows.Forms.Button
+    Private WithEvents Btn_Credito As System.Windows.Forms.Button
+    Private WithEvents Btn_Efectivo As System.Windows.Forms.Button
+    Friend WithEvents Label5 As System.Windows.Forms.Label
     Private WithEvents groupBox1 As System.Windows.Forms.GroupBox
     Private WithEvents LblTotal As System.Windows.Forms.Label
     Private WithEvents LblIva As System.Windows.Forms.Label
@@ -603,17 +537,10 @@ Partial Class ModuloVentas
     Private WithEvents label2 As System.Windows.Forms.Label
     Private WithEvents CancelarVenta As System.Windows.Forms.Button
     Private WithEvents AceptarVenta As System.Windows.Forms.Button
-    Private WithEvents panel2 As System.Windows.Forms.Panel
-    Friend WithEvents Timer1 As System.Windows.Forms.Timer
-    Friend WithEvents lblFecha As System.Windows.Forms.Label
-    Friend WithEvents lblhora As System.Windows.Forms.Label
-    Friend WithEvents GroupBoxPagos As System.Windows.Forms.GroupBox
-    Private WithEvents Btn_Credito As System.Windows.Forms.Button
-    Private WithEvents Btn_Efectivo As System.Windows.Forms.Button
-    Friend WithEvents Label5 As System.Windows.Forms.Label
-    Friend WithEvents Txt_Pago As System.Windows.Forms.TextBox
-    Private WithEvents Btn_Factura As System.Windows.Forms.Button
     Friend WithEvents LblCambio As System.Windows.Forms.Label
     Friend WithEvents Label6 As System.Windows.Forms.Label
-    Friend WithEvents CantidadNumericUpDown As System.Windows.Forms.NumericUpDown
+    Friend WithEvents lblhora As System.Windows.Forms.Label
+    Friend WithEvents lblFecha As System.Windows.Forms.Label
+    Private WithEvents label16 As System.Windows.Forms.Label
+    Friend WithEvents NumericUpDownPago As System.Windows.Forms.NumericUpDown
 End Class

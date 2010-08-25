@@ -200,7 +200,7 @@ exec consulta100 '','','',''
 -- Categorías
 exec consulta101 '','','',''
 exec consulta104 '','','',''
-exec consulta105 'V1=1|','','','2'
+exec consulta105 'V1=2|','','','3'
 exec consulta106 'V1=PROVEEDOR1|', '', '', '2'
 exec Consulta110 'V1=admin|','','',''
 exec consulta111 'V1=ADMIN|','','',''
@@ -223,7 +223,7 @@ exec consulta129 '','','',''
 exec consulta130 'V1=SEMAIVEN|','','',''
 exec consulta131 'V1=7|', '','',''
 exec Consulta136 'V1=1|', '', '', ''
-exec Consulta139 'V1=DON|','','','' 
+exec Consulta139 'V1=|','','','' 
 exec consulta140 '','','',''
 
 select * from SMercado..Cat_Productos 
@@ -526,5 +526,8 @@ truncate table SMercado..salidas
 truncate table SMercado..salida_detalles
 
 Select * from SMercado_Seguridad..Usuarios 
+
+Select * From SMercado..Ventas 
+order by fecha DESC
 
 

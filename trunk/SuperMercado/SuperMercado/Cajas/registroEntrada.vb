@@ -84,8 +84,8 @@ Public Class registroEntrada
             total = dinIni + sumEnt + ventasTotal - sumSal
 
             If total >= montoPorDefecto Then
-                MessageBox.Show("La cantidad actual en la caja es: $" & total & vbCrLf & _
-                            "La cantidad máxima a tener en caja es: $" & montoPorDefecto & vbCrLf & _
+                MessageBox.Show("La cantidad actual en la caja es: " & FormatCurrency(total) & vbCrLf & _
+                            "La cantidad máxima a tener en caja es: " & FormatCurrency(montoPorDefecto) & vbCrLf & _
                             vbCrLf & "Se le sugiere que haga el corte en caja.", "Información", _
                             MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If

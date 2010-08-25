@@ -280,6 +280,24 @@
     <Compile Include="Inventario\Movimiento_Salidas.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Inventario\ReportesInventario\Entradas.Designer.vb">
+      <DependentUpon>Entradas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Inventario\ReportesInventario\Entradas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Inventario\ReportesInventario\Existencias.Designer.vb">
+      <DependentUpon>Existencias.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Inventario\ReportesInventario\Existencias.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Inventario\ReportesInventario\Salidas.Designer.vb">
+      <DependentUpon>Salidas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Inventario\ReportesInventario\Salidas.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Login\inicial.Designer.vb">
       <DependentUpon>inicial.vb</DependentUpon>
     </Compile>
@@ -450,6 +468,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Inventario\Movimiento_Salidas.resx">
       <DependentUpon>Movimiento_Salidas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventario\ReportesInventario\Entradas.resx">
+      <DependentUpon>Entradas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventario\ReportesInventario\Existencias.resx">
+      <DependentUpon>Existencias.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventario\ReportesInventario\Salidas.resx">
+      <DependentUpon>Salidas.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\inicial.resx">
       <DependentUpon>inicial.vb</DependentUpon>

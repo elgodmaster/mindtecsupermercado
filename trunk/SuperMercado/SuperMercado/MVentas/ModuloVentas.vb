@@ -12,6 +12,7 @@ Public Class ModuloVentas
     Dim ObjRet As CRetorno
     Dim IdVenta As Integer
     Dim TotalVenta As Double = 0
+    Public myPrincipal As Principal
 #End Region
 
 #Region " Eventos Principales "
@@ -33,6 +34,8 @@ Public Class ModuloVentas
                 '    GroupBoxPagos.Visible = True
                 '    AceptarVenta.Enabled = False
                 '    Txt_Pago.Focus()
+            Case Keys.F11
+                AceptarVenta.PerformClick()
             Case Keys.F12
                 CancelarVenta.PerformClick()
         End Select
@@ -61,7 +64,6 @@ Public Class ModuloVentas
 #End Region
 
 #Region "  Grid Datos  "
-
     Sub CrearDsDatos()
         'Creando Datatable  con tipo de dato
         Dim dt As DataTable
@@ -144,22 +146,23 @@ Public Class ModuloVentas
         noBorder.SetColor(Color.Transparent)
 
         'vistas
-        Dim viewCenter As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
-        viewCenter.Font = New Font("Verdana", 11, FontStyle.Bold)
+        Dim viewCenter As CellBackColorAlternate = New CellBackColorAlternate(Color.White, gColorRow)
+        viewCenter.Font = New Font("Verdana", 15, FontStyle.Regular)
         viewCenter.Border = noBorder
         viewCenter.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
 
-        Dim viewLeft As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
-        viewLeft.Font = New Font("Verdana", 11, FontStyle.Bold)
+
+        Dim viewLeft As CellBackColorAlternate = New CellBackColorAlternate(Color.White, gColorRow)
+        viewLeft.Font = New Font("Verdana", 15, FontStyle.Regular)
         viewLeft.Border = noBorder
         viewLeft.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleLeft
 
-        Dim viewRight As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
-        viewRight.Font = New Font("Verdana", 11, FontStyle.Bold)
+        Dim viewRight As CellBackColorAlternate = New CellBackColorAlternate(Color.White, gColorRow)
+        viewRight.Font = New Font("Verdana", 15, FontStyle.Regular)
         viewRight.Border = noBorder
         viewRight.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleRight
 
-        Dim myfont As New Font("Verdana", 12, FontStyle.Regular)
+        Dim myfont As New Font("Verdana", 15, FontStyle.Regular)
 
         'Eventos
 
@@ -194,7 +197,7 @@ Public Class ModuloVentas
         GridColumn.DataCell.View = viewLeft
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
-        GridColumn = GridDatos.Columns.Add("C3", "Cantidad", EditorCustom)
+        GridColumn = GridDatos.Columns.Add("C3", "Cant.", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
         GridColumn.DataCell.View = viewCenter
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
@@ -204,12 +207,12 @@ Public Class ModuloVentas
         GridColumn.DataCell.View = viewCenter
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.EnableStretch
 
-        GridColumn = GridDatos.Columns.Add("C5", "Precio Unitario", EditorCustom)
+        GridColumn = GridDatos.Columns.Add("C5", "P. U.", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
         GridColumn.DataCell.View = viewCenter
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.MinimumSize
 
-        GridColumn = GridDatos.Columns.Add("C6", "Precio Total", EditorCustom)
+        GridColumn = GridDatos.Columns.Add("C6", "Total", EditorCustom)
         GridColumn.DataCell.AddController(gridKeydown)
         GridColumn.DataCell.View = viewCenter
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.EnableAutoSize
@@ -230,12 +233,12 @@ Public Class ModuloVentas
         GridColumn.AutoSizeMode = SourceGrid.AutoSizeMode.None
 
         GridDatos.Columns(0).Visible = False
-        GridDatos.Columns.SetWidth(1, 150)
-        GridDatos.Columns.SetWidth(2, 300)
-        GridDatos.Columns.SetWidth(3, 100)
-        GridDatos.Columns.SetWidth(4, 100)
-        GridDatos.Columns.SetWidth(5, 100)
-        GridDatos.Columns.SetWidth(6, 150)
+        GridDatos.Columns(1).Visible = False
+        GridDatos.Columns.SetWidth(2, 310)
+        GridDatos.Columns.SetWidth(3, 60)
+        GridDatos.Columns(4).Visible = False
+        GridDatos.Columns.SetWidth(5, 85)
+        GridDatos.Columns.SetWidth(6, 85)
         GridDatos.Columns.SetWidth(7, 0)
         GridDatos.Columns.SetWidth(8, 0)
         GridDatos.Columns.SetWidth(9, 10)
@@ -329,6 +332,14 @@ Public Class ModuloVentas
 
 #End Region
 
+#Region "  Aceptar Venta  "
+    Private Sub AceptarVenta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AceptarVenta.Click
+        GroupBoxPagos.Visible = True
+        NumericUpDownPago.Select(0, 10)
+        NumericUpDownPago.Focus()
+    End Sub
+#End Region
+
 #Region " Codigo Producto"
     Private Sub Codigo_Producto_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Codigo_Producto.KeyDown
         Select Case e.KeyCode
@@ -336,10 +347,15 @@ Public Class ModuloVentas
                 CatalogoProductos()
             Case Keys.Enter
                 CajaProductos()
-            Case Keys.F10
-                GroupBoxPagos.Visible = True
-                AceptarVenta.Enabled = False
-                Txt_Pago.Focus()
+            Case Keys.Down
+                If GridDatos.Rows.Count - 1 = 0 Then
+                    Exit Sub
+                End If
+                GridDatos.Select()
+                GridDatos.Selection.SelectRow(1, True)
+            Case Keys.Right
+                CantidadNumericUpDown.Select(0, 10)
+                CantidadNumericUpDown.Focus()
         End Select
     End Sub
 #End Region
@@ -467,11 +483,11 @@ Public Class ModuloVentas
         Me.DsDatos.AcceptChanges()
         Codigo_Producto.Text = ""
         CantidadNumericUpDown.Value = 0
-        LblIva.Text = "$0.00"
-        LblSubTotal.Text = "$0.00"
-        LblTotal.Text = "0.00"
+        LblIva.Text = "$ 0.00"
+        LblSubTotal.Text = "$ 0.00"
+        LblTotal.Text = "$ 0.00"
         Me.LblCambio.Text = "0.00"
-        Me.Txt_Pago.Text = "0.00"
+        Me.NumericUpDownPago.Value = 0
         Me.GroupBoxPagos.Visible = False
         AceptarVenta.Enabled = False
         CancelarVenta.Enabled = False
@@ -498,19 +514,13 @@ Public Class ModuloVentas
     End Sub
 #End Region
 
-#Region " Aceptar Venta "
-    Private Sub AceptarVenta_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AceptarVenta.Click
-        Me.GroupBoxPagos.Visible = True
-        Me.AceptarVenta.Enabled = False
-        Me.Txt_Pago.Focus()
-    End Sub
-#End Region
-
 #Region " Cantidad "
     Private Sub TxtCantidad_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles CantidadNumericUpDown.KeyDown
         Select Case e.KeyCode
             Case Keys.Enter
                 CajaProductos()
+            Case Keys.Left
+                Codigo_Producto.Focus()
         End Select
     End Sub
 
@@ -531,7 +541,7 @@ Public Class ModuloVentas
 #End Region
 
 #Region " Descuento "
-    Private Sub Descuento_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Descuento.Click
+    Private Sub Descuento_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim grid As SourceGrid.DataGrid = GridDatos
         Dim rows() As Object = grid.SelectedDataRows
         Dim row As DataRowView = Nothing
@@ -558,7 +568,7 @@ Public Class ModuloVentas
 #End Region
 
 #Region " Recibí TXT_PAGO "
-    Private Sub Txt_Pago_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles Txt_Pago.KeyPress
+    Private Sub Txt_Pago_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
         Dim KeyAscii As Short = CShort(Asc(e.KeyChar))
         KeyAscii = CShort(SoloNumeros(KeyAscii))
         If KeyAscii = 0 Then
@@ -575,7 +585,7 @@ Public Class ModuloVentas
         Dim Total As String = ""
         Total = Mid(Me.LblTotal.Text, 2, Len(Me.LblTotal.Text))
         TotalVenta = Double.Parse(Total)
-        RecibiPago = Double.Parse(Me.Txt_Pago.Text)
+        RecibiPago = NumericUpDownPago.Value
 
         If TotalVenta <= RecibiPago Then
             Faltante = RecibiPago - TotalVenta
@@ -597,10 +607,10 @@ Public Class ModuloVentas
             'Estatus
             If ObjRet.bOk Then
                 If Faltante = 0.0 Then
-                    MessageBox.Show("Gracias Por Su Compra, Vuelva pronto", "SuperMercado")
+                    MessageBox.Show("Gracias por su compra, ¡vuelva pronto!", "SuperMercado")
                     LimpiarPantalla()
                 Else
-                    MessageBox.Show("Su Cambio es de" & FormatCurrency(Faltante))
+                    MessageBox.Show("Su Cambio es de " & FormatCurrency(Faltante))
                     LimpiarPantalla()
                 End If
                 'imprimeTicket(TotalVenta, RecibiPago, Faltante)
@@ -613,10 +623,9 @@ Public Class ModuloVentas
             MessageBox.Show("No se a realizado el pago, hace falta" & FormatCurrency(Faltante))
         End If
 
-
+        checkLimiteCaja()
 
     End Sub
-
 #End Region
 
 #Region " Boton Credito "
@@ -651,7 +660,7 @@ Public Class ModuloVentas
 #End Region
 
 #Region "  Botón ELIMINAR PRODUCTO  "
-    Private Sub ButtonEliminar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Borrar.Click
+    Private Sub eliminarProducto()
         If posRowGrid() < 0 Then
             Return
         End If
@@ -710,6 +719,27 @@ Public Class ModuloVentas
                 GridDatos.DataSource.Item(posRowGrid).row(5) = GridDatos.DataSource.Item(posRowGrid).row(4) * GridDatos.DataSource.Item(posRowGrid).row(2)
                 CalculaTotal()
             End If
+        End If
+
+        If e.KeyCode = Keys.Delete Then
+            eliminarProducto()
+        End If
+
+        If e.KeyCode = Keys.Up Then
+            Dim pos As Integer = posRowGrid() + 1
+            If GridDatos.Selection.IsSelectedCell(New SourceGrid.Position(1, 1)) Then
+                Codigo_Producto.Focus()
+                GridDatos.Selection.SelectRow(pos, False)
+            Else
+                GridDatos.Selection.SelectRow(pos - 1, True)
+                GridDatos.Selection.SelectRow(pos, False)
+            End If
+        End If
+
+        If e.KeyCode = Keys.Down Then
+            Dim pos As Integer = posRowGrid() + 1
+            GridDatos.Selection.SelectRow(pos + 1, True)
+            GridDatos.Selection.SelectRow(pos, False)
         End If
     End Sub
 #End Region
@@ -784,9 +814,91 @@ Public Class ModuloVentas
             sizeColumns += GridDatos.Columns(n).Width
         Next
 
-        Dim sizeGrid As Integer = GridDatos.Size.Width - sizeColumns - 5
+        Dim sizeGrid As Integer = GridDatos.Size.Width - sizeColumns - 4
         GridDatos.Columns.SetWidth(9, sizeGrid)
     End Sub
 #End Region
 
+#Region "  Rutina: checkLimiteCaja  "
+    Sub checkLimiteCaja()
+        ' CONFIGURACION_CAJA
+        ' Si está activado un monto máximo por defecto se sugiere
+        ' que se haga el corte.
+        Caja = "Consulta112" : Parametros = ""
+        If lConsulta Is Nothing Then lConsulta = New ClsConsultas
+        ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
+
+        Dim activadoMontoMaximo As Boolean
+        Dim montoPorDefecto As Decimal
+        activadoMontoMaximo = ObjRet.DS.Tables(0).Rows(0).Item(3)
+        montoPorDefecto = ObjRet.DS.Tables(0).Rows(0).Item(4)
+
+        If activadoMontoMaximo Then
+            ' Se llama a al consulta111 conocer el total de dinero
+            ' acumulado.
+
+            Caja = "consulta111" : Parametros = "V1=" & idUsuario & "|"
+            ObjRet = lConsulta.LlamarCaja(Caja, "1", Parametros)
+
+            Dim sumEnt As Decimal
+            Dim sumSal As Decimal
+            Dim dinIni As Decimal
+            Dim total As Decimal
+            Dim ventasTotal As Decimal
+
+            sumEnt = Decimal.Parse(ObjRet.DS.Tables(3).Rows(0).Item(1))
+            sumSal = Decimal.Parse(ObjRet.DS.Tables(3).Rows(0).Item(2))
+            dinIni = Decimal.Parse(ObjRet.DS.Tables(3).Rows(0).Item(0))
+            ventasTotal = Decimal.Parse(ObjRet.DS.Tables(3).Rows(0).Item(3))
+            total = dinIni + sumEnt + ventasTotal - sumSal
+
+            If total >= montoPorDefecto Then
+                MessageBox.Show("La cantidad actual en la caja es: " & FormatCurrency(total) & vbCrLf & _
+                            "La cantidad máxima a tener en caja es: " & FormatCurrency(montoPorDefecto) & vbCrLf & _
+                            vbCrLf & "Se le sugiere que haga el corte en caja.", "Información", _
+                            MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
+        End If
+    End Sub
+#End Region
+    
+#Region "  Botón SALIR  "
+    Private Sub toolStripButton6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles toolStripButton6.Click
+        Dim result As DialogResult
+        result = MessageBox.Show("Está a punto de cerrar la aplicación. Todas las ventanas se cerrarán y cualquier información que no haya guardado se perderá. ¿Desea continuar?", " Cerrar la aplicación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If result = Windows.Forms.DialogResult.Yes Then
+            End
+        Else
+            Return
+        End If
+    End Sub
+#End Region
+
+#Region "  Botón CERRAR SESIÓN  "
+    Private Sub toolStripButton5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles toolStripButton5.Click
+        Dim result As DialogResult
+        result = MessageBox.Show("Está a punto de cerrar su sesión. Todas las ventanas se cerrarán y cualquier información que no haya guardado se perderá. ¿Desea continuar?", " Cerrar sesión", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If result = Windows.Forms.DialogResult.Yes Then
+            myPrincipal.cerrarVentanasHijas()
+            Me.myPrincipal.Visible = False
+            myPrincipal.Login()
+            myPrincipal.restriccionPermisos(usuario)
+        Else
+            Return
+        End If
+    End Sub
+#End Region
+
+#Region "  Botón HACER CORTE  "
+    Private Sub toolStripButton4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles toolStripButton4.Click
+        'Caja
+        Dim objCaja As Caja = objCaja.Instance
+        objCaja.MdiParent = Me.myPrincipal
+        objCaja.WindowState = FormWindowState.Maximized
+
+        objCaja.StartPosition = FormStartPosition.CenterScreen
+        objCaja.Show()
+    End Sub
+#End Region
+    
 End Class

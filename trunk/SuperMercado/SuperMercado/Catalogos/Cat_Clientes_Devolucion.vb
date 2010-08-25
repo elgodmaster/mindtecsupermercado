@@ -155,9 +155,7 @@
 
 #Region "  Botón Aceptar  "
     Private Sub ButtonAceptar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonAceptar.Click
-
         pos = objDetalleVenta.posRow()
-  
 
         totalArt = objDetalleVenta.dsDatosDetalle.Tables(0).Rows(pos).Item(1)
         idCuentaDetalle = objDetalleVenta.dsDatosDetalle.Tables(0).Rows(pos).Item(5)
@@ -249,7 +247,7 @@
             End If
         End If
 
-        Caja = "Consulta105" : Parametros = "V1=" & idCliente.Trim & "|"
+        Caja = "Consulta105" : Parametros = "V1=" & codigo.Trim & "|"
         ObjRet = lConsulta.LlamarCaja(Caja, "2", Parametros)
 
         If lConsulta.ObtenerValor("V17", ObjRet.sResultado, "|") = "" Then

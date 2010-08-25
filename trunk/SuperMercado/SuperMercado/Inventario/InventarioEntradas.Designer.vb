@@ -283,11 +283,11 @@ Partial Class InventarioEntradas
         Me.ButtonEfectivo.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.ButtonEfectivo.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ButtonEfectivo.Image = Global.SuperMercado.My.Resources.Resources.coins
-        Me.ButtonEfectivo.Location = New System.Drawing.Point(248, 301)
+        Me.ButtonEfectivo.Location = New System.Drawing.Point(276, 301)
         Me.ButtonEfectivo.Name = "ButtonEfectivo"
-        Me.ButtonEfectivo.Size = New System.Drawing.Size(172, 36)
+        Me.ButtonEfectivo.Size = New System.Drawing.Size(197, 36)
         Me.ButtonEfectivo.TabIndex = 254
-        Me.ButtonEfectivo.Text = " Pagar con efectivo"
+        Me.ButtonEfectivo.Text = " Pagar con efectivo - F7"
         Me.ButtonEfectivo.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.ButtonEfectivo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.ButtonEfectivo.UseVisualStyleBackColor = True
@@ -310,11 +310,11 @@ Partial Class InventarioEntradas
         Me.ButtonEliminar.ForeColor = System.Drawing.Color.DarkRed
         Me.ButtonEliminar.Image = Global.SuperMercado.My.Resources.Resources.basket_delete
         Me.ButtonEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.ButtonEliminar.Location = New System.Drawing.Point(824, 15)
+        Me.ButtonEliminar.Location = New System.Drawing.Point(791, 15)
         Me.ButtonEliminar.Name = "ButtonEliminar"
-        Me.ButtonEliminar.Size = New System.Drawing.Size(112, 30)
+        Me.ButtonEliminar.Size = New System.Drawing.Size(145, 30)
         Me.ButtonEliminar.TabIndex = 252
-        Me.ButtonEliminar.Text = " Eliminar"
+        Me.ButtonEliminar.Text = " Eliminar - F12"
         Me.ButtonEliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.ButtonEliminar.UseVisualStyleBackColor = True
         '
@@ -335,9 +335,9 @@ Partial Class InventarioEntradas
         Me.Button1.Image = Global.SuperMercado.My.Resources.Resources.book_add
         Me.Button1.Location = New System.Drawing.Point(8, 301)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(234, 36)
+        Me.Button1.Size = New System.Drawing.Size(262, 36)
         Me.Button1.TabIndex = 249
-        Me.Button1.Text = " Agregar a cuentas por pagar"
+        Me.Button1.Text = " Agregar a cuentas por pagar - F5"
         Me.Button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.Button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.Button1.UseVisualStyleBackColor = True

@@ -117,17 +117,20 @@
         'gcolorRow esta declarada en el moduloGeneral
 
         'vistas
-        Dim viewCenter As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        Dim viewCenter As CellBackColorAlternate = New CellBackColorAlternate(Color.White, gColorRow)
         viewCenter.Font = New Font("Verdana", 8, FontStyle.Regular)
         viewCenter.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
+        viewCenter.Border = DevAge.Drawing.RectangleBorder.NoBorder
 
-        Dim viewIzquierda As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        Dim viewIzquierda As CellBackColorAlternate = New CellBackColorAlternate(Color.White, gColorRow)
         viewIzquierda.Font = New Font("Verdana", 8, FontStyle.Regular)
         viewIzquierda.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleLeft
+        viewIzquierda.Border = DevAge.Drawing.RectangleBorder.NoBorder
 
-        Dim viewDerecha As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        Dim viewDerecha As CellBackColorAlternate = New CellBackColorAlternate(Color.White, gColorRow)
         viewDerecha.Font = New Font("Verdana", 8, FontStyle.Regular)
         viewDerecha.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleRight
+        viewDerecha.Border = DevAge.Drawing.RectangleBorder.NoBorder
         Dim myfont As New Font("Verdana", 8, FontStyle.Regular)
 
         'Eventos

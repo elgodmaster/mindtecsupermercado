@@ -911,8 +911,7 @@ Partial Class Cat_Clientes
         Me.GridDatosCartera.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
                     Or System.Windows.Forms.AnchorStyles.Left) _
                     Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GridDatosCartera.BackColor = System.Drawing.Color.Transparent
-        Me.GridDatosCartera.BackgroundImage = Global.SuperMercado.My.Resources.Resources.carteraClientesBackground
+        Me.GridDatosCartera.BackColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.GridDatosCartera.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.GridDatosCartera.DeleteQuestionMessage = ""
         Me.GridDatosCartera.DeleteRowsWithDeleteKey = False

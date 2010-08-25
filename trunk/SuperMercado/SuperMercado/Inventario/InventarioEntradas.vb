@@ -13,7 +13,7 @@ Public Class InventarioEntradas
     Dim ObjRet As CRetorno
     Dim identrada As String
     Dim TotalEntrada As Double = 0
-
+    Dim inputTotalEntrada As String
     Dim numFolioEntrada As String = ""
 
 #End Region
@@ -101,17 +101,17 @@ Public Class InventarioEntradas
         noBorder.SetColor(Color.Transparent)
 
         'vistas
-        Dim viewCenter As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        Dim viewCenter As CellBackColorAlternate = New CellBackColorAlternate(Color.White, gColorRow)
         viewCenter.Font = New Font("Verdana", 11, FontStyle.Bold)
         viewCenter.Border = noBorder
         viewCenter.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
 
-        Dim viewLeft As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        Dim viewLeft As CellBackColorAlternate = New CellBackColorAlternate(Color.White, gColorRow)
         viewLeft.Font = New Font("Verdana", 11, FontStyle.Bold)
         viewLeft.Border = noBorder
         viewLeft.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleLeft
 
-        Dim viewRight As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        Dim viewRight As CellBackColorAlternate = New CellBackColorAlternate(Color.White, gColorRow)
         viewRight.Font = New Font("Verdana", 11, FontStyle.Bold)
         viewRight.Border = noBorder
         viewRight.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleRight
@@ -208,10 +208,16 @@ Public Class InventarioEntradas
                 Cerrar()
             Case Keys.F4
                 Limpiar.PerformClick()
+            Case Keys.F5
+                Button1.PerformClick()
             Case Keys.F6
 
+            Case Keys.F7
+                ButtonEfectivo.PerformClick()
             Case Keys.F9
                 Grabar.PerformClick()
+            Case Keys.F12
+                ButtonEliminar.PerformClick()
         End Select
     End Sub
 #End Region
@@ -413,6 +419,7 @@ Public Class InventarioEntradas
         Next
 
         lblTotal.Text = FormatCurrency(TotalEntrada.ToString)
+        inputTotalEntrada = TotalEntrada
         TotalEntrada = 0
 
     End Sub
@@ -652,7 +659,7 @@ Public Class InventarioEntradas
                                           "|V3=" & idUsuario & _
                                           "|V4=" & Me.txtFactura.Text.Trim & _
                                           "|V5=" & Me.CodigoProveedor.Text.Trim & _
-                                          "|V6=" & total & "|"
+                                          "|V6=" & inputTotalEntrada & "|"
         If lConsulta Is Nothing Then lConsulta = New ClsConsultas
 
         ' Segundo parámetro, "Validar", es igual a dos. De esa forma se hace un
@@ -769,6 +776,9 @@ Public Class InventarioEntradas
         ObjRet = lConsulta.LlamarCaja(Caja, "0", Parametros)
         If ObjRet.bOk Then
             Dim nuevo As Grid = New Grid(ObjRet.DS)
+            If nuevo.resultado = "" Then
+                Exit Sub
+            End If
             Txt_CodigoProducto.Text = nuevo.resultado
             SendKeys.Send("{ENTER}")
         End If

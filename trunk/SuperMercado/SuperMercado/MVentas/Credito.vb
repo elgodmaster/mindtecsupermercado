@@ -11,7 +11,7 @@ Public Class Credito
     Dim Total As Double
     Dim DsDatosCuenta As DataSet
     Dim IdCuenta As Integer
-    Dim Cventa As ModuloVentas = ModuloVentas.Instance
+    Dim Cventa As ModuloVentas
 
     Dim codigo As String
 #End Region
@@ -66,6 +66,7 @@ Public Class Credito
         If ObjRet.bOk Then
             MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
             Total = 0
+            Me.Cventa.LimpiarPantalla()
             Me.Close()
         Else
             MessageBox.Show(lConsulta.ObtenerValor("2M", ObjRet.sResultado, "|", False))
@@ -100,9 +101,9 @@ Public Class Credito
         idCliente = ObjRet2.DS.Tables(0).Rows(pos).Item(0).ToString
         codigo = ObjRet2.DS.Tables(0).Rows(pos).Item(6).ToString
 
-        Caja = "Consulta105" : Parametros = "V1=" & idCliente & "|"
+        Caja = "Consulta105" : Parametros = "V1=" & codigo & "|"
         ' Validar cinco para obtener los datos del cliente.
-        ObjRet = lConsulta.LlamarCaja(Caja, "5", Parametros)
+        ObjRet = lConsulta.LlamarCaja(Caja, "3", Parametros)
     End Sub
 #End Region
 
@@ -114,4 +115,28 @@ Public Class Credito
     End Sub
 #End Region
 
+#Region "  Evento: ComboBoxNombreCliente - TEXT CHANGED  "
+    Private Sub ComboBoxNombreCliente_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ComboBoxNombreCliente.TextChanged
+        consulta105()
+
+        textBoxCodigo.Text = lConsulta.ObtenerValor("V18", ObjRet.sResultado, "|")
+        TextBoxCP.Text = lConsulta.ObtenerValor("V5", ObjRet.sResultado, "|")
+        TextBoxDireccion.Text = lConsulta.ObtenerValor("V4", ObjRet.sResultado, "|")
+        TextBoxRFC.Text = lConsulta.ObtenerValor("V2", ObjRet.sResultado, "|")
+        TextBoxTelefono.Text = lConsulta.ObtenerValor("V8", ObjRet.sResultado, "|")
+    End Sub
+#End Region
+    
+#Region "  Evento: ComboBoxNombreCliente - SELECTED INDEX CHANGED  "
+    Private Sub ComboBoxNombreCliente_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ComboBoxNombreCliente.SelectedIndexChanged
+        consulta105()
+
+        textBoxCodigo.Text = lConsulta.ObtenerValor("V18", ObjRet.sResultado, "|")
+        TextBoxCP.Text = lConsulta.ObtenerValor("V5", ObjRet.sResultado, "|")
+        TextBoxDireccion.Text = lConsulta.ObtenerValor("V4", ObjRet.sResultado, "|")
+        TextBoxRFC.Text = lConsulta.ObtenerValor("V2", ObjRet.sResultado, "|")
+        TextBoxTelefono.Text = lConsulta.ObtenerValor("V8", ObjRet.sResultado, "|")
+    End Sub
+#End Region
+    
 End Class

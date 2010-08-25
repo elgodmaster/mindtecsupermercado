@@ -327,7 +327,7 @@ Partial Class Cat_Productos
         '
         Me.costoCompra.DecimalPlaces = 2
         Me.costoCompra.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.costoCompra.Location = New System.Drawing.Point(157, 31)
+        Me.costoCompra.Location = New System.Drawing.Point(157, 28)
         Me.costoCompra.Maximum = New Decimal(New Integer() {1316134911, 2328, 0, 0})
         Me.costoCompra.Name = "costoCompra"
         Me.costoCompra.Size = New System.Drawing.Size(120, 22)
@@ -359,7 +359,7 @@ Partial Class Cat_Productos
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label8.Location = New System.Drawing.Point(16, 31)
+        Me.Label8.Location = New System.Drawing.Point(16, 30)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(135, 14)
         Me.Label8.TabIndex = 235
@@ -388,7 +388,7 @@ Partial Class Cat_Productos
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label11.Location = New System.Drawing.Point(482, 32)
+        Me.Label11.Location = New System.Drawing.Point(477, 35)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(20, 14)
         Me.Label11.TabIndex = 238
@@ -399,7 +399,7 @@ Partial Class Cat_Productos
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label10.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label10.Location = New System.Drawing.Point(311, 32)
+        Me.Label10.Location = New System.Drawing.Point(311, 30)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(70, 14)
         Me.Label10.TabIndex = 237
@@ -408,7 +408,7 @@ Partial Class Cat_Productos
         'ganancia
         '
         Me.ganancia.Font = New System.Drawing.Font("Verdana", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ganancia.Location = New System.Drawing.Point(392, 30)
+        Me.ganancia.Location = New System.Drawing.Point(387, 28)
         Me.ganancia.Maximum = New Decimal(New Integer() {999999, 0, 0, 0})
         Me.ganancia.Name = "ganancia"
         Me.ganancia.Size = New System.Drawing.Size(84, 22)

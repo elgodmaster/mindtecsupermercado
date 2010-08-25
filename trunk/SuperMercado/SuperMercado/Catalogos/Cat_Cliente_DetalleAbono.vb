@@ -122,18 +122,24 @@
         Dim border As DevAge.Drawing.RectangleBorder = New DevAge.Drawing.RectangleBorder(New DevAge.Drawing.BorderLine(Color.Black), New DevAge.Drawing.BorderLine(Color.Black))
         'gcolorRow esta declarada en el moduloGeneral
 
+        Dim noBorder As New DevAge.Drawing.RectangleBorder
+        noBorder.SetColor(Color.Transparent)
+
         'vistas
-        Dim viewCenter As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        Dim viewCenter As CellBackColorAlternate = New CellBackColorAlternate(Color.White, gColorRow)
         viewCenter.Font = New Font("Verdana", 8, FontStyle.Regular)
         viewCenter.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter
+        viewCenter.Border = noBorder
 
-        Dim viewIzquierda As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        Dim viewIzquierda As CellBackColorAlternate = New CellBackColorAlternate(Color.White, gColorRow)
         viewIzquierda.Font = New Font("Verdana", 8, FontStyle.Regular)
         viewIzquierda.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleLeft
+        viewIzquierda.Border = noBorder
 
-        Dim viewDerecha As CellBackColorAlternate = New CellBackColorAlternate(Color.White, Color.White)
+        Dim viewDerecha As CellBackColorAlternate = New CellBackColorAlternate(Color.White, gColorRow)
         viewDerecha.Font = New Font("Verdana", 8, FontStyle.Regular)
         viewDerecha.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleRight
+        viewDerecha.Border = noBorder
         Dim myfont As New Font("Verdana", 8, FontStyle.Regular)
 
         'Eventos
