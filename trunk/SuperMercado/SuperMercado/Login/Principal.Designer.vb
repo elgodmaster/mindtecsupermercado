@@ -26,7 +26,7 @@ Partial Class Principal
         Me.DevolucionesToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
         Me.DevoluciónToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
         Me.ReportesToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
-        Me.ProductosToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem
+        Me.Rep_Productos = New System.Windows.Forms.ToolStripMenuItem
         Me.EntradasDeProductosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.SalidasDeProductosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.ClientesToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem
@@ -35,6 +35,12 @@ Partial Class Principal
         Me.VentasToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem
         Me.RetirosDeEfectivoToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
         Me.DepositosDeEfectivoToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
+        Me.Ventanas = New System.Windows.Forms.ToolStripMenuItem
+        Me.SalirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.CerrarSesiónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.CambiarDeUsuarioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.SalirToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
+        Me.CotizacionesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.catálogosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.MenuDepartamentos = New System.Windows.Forms.ToolStripMenuItem
         Me.MenuCategorias = New System.Windows.Forms.ToolStripMenuItem
@@ -51,6 +57,9 @@ Partial Class Principal
         Me.EntradasToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
         Me.SalidasToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
         Me.consultasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.EntradasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.SalidasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.ExistenciaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.cajaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.corteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.EntradasToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem
@@ -62,14 +71,6 @@ Partial Class Principal
         Me.CajaToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
         Me.ReportesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.TicketsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.Ventanas = New System.Windows.Forms.ToolStripMenuItem
-        Me.SalirToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.CerrarSesiónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.CambiarDeUsuarioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.SalirToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
-        Me.EntradasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.SalidasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.ExistenciaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -110,16 +111,16 @@ Partial Class Principal
         '
         'ReportesToolStripMenuItem1
         '
-        Me.ReportesToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ProductosToolStripMenuItem3, Me.EntradasDeProductosToolStripMenuItem, Me.SalidasDeProductosToolStripMenuItem, Me.ClientesToolStripMenuItem3, Me.ProveedoresToolStripMenuItem3, Me.FacturasToolStripMenuItem1, Me.VentasToolStripMenuItem3, Me.RetirosDeEfectivoToolStripMenuItem1, Me.DepositosDeEfectivoToolStripMenuItem1})
+        Me.ReportesToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Rep_Productos, Me.EntradasDeProductosToolStripMenuItem, Me.SalidasDeProductosToolStripMenuItem, Me.ClientesToolStripMenuItem3, Me.ProveedoresToolStripMenuItem3, Me.FacturasToolStripMenuItem1, Me.VentasToolStripMenuItem3, Me.RetirosDeEfectivoToolStripMenuItem1, Me.DepositosDeEfectivoToolStripMenuItem1, Me.CotizacionesToolStripMenuItem})
         Me.ReportesToolStripMenuItem1.Name = "ReportesToolStripMenuItem1"
         Me.ReportesToolStripMenuItem1.Size = New System.Drawing.Size(65, 20)
         Me.ReportesToolStripMenuItem1.Text = "Reportes"
         '
-        'ProductosToolStripMenuItem3
+        'Rep_Productos
         '
-        Me.ProductosToolStripMenuItem3.Name = "ProductosToolStripMenuItem3"
-        Me.ProductosToolStripMenuItem3.Size = New System.Drawing.Size(192, 22)
-        Me.ProductosToolStripMenuItem3.Text = "Productos"
+        Me.Rep_Productos.Name = "Rep_Productos"
+        Me.Rep_Productos.Size = New System.Drawing.Size(192, 22)
+        Me.Rep_Productos.Text = "Productos"
         '
         'EntradasDeProductosToolStripMenuItem
         '
@@ -168,6 +169,43 @@ Partial Class Principal
         Me.DepositosDeEfectivoToolStripMenuItem1.Name = "DepositosDeEfectivoToolStripMenuItem1"
         Me.DepositosDeEfectivoToolStripMenuItem1.Size = New System.Drawing.Size(192, 22)
         Me.DepositosDeEfectivoToolStripMenuItem1.Text = "Depositos de efectivo"
+        '
+        'Ventanas
+        '
+        Me.Ventanas.Name = "Ventanas"
+        Me.Ventanas.Size = New System.Drawing.Size(67, 20)
+        Me.Ventanas.Text = "Ventanas"
+        '
+        'SalirToolStripMenuItem
+        '
+        Me.SalirToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CerrarSesiónToolStripMenuItem, Me.CambiarDeUsuarioToolStripMenuItem, Me.SalirToolStripMenuItem1})
+        Me.SalirToolStripMenuItem.Name = "SalirToolStripMenuItem"
+        Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(53, 20)
+        Me.SalirToolStripMenuItem.Text = "Sesión"
+        '
+        'CerrarSesiónToolStripMenuItem
+        '
+        Me.CerrarSesiónToolStripMenuItem.Name = "CerrarSesiónToolStripMenuItem"
+        Me.CerrarSesiónToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
+        Me.CerrarSesiónToolStripMenuItem.Text = "Cerrar sesión"
+        '
+        'CambiarDeUsuarioToolStripMenuItem
+        '
+        Me.CambiarDeUsuarioToolStripMenuItem.Name = "CambiarDeUsuarioToolStripMenuItem"
+        Me.CambiarDeUsuarioToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
+        Me.CambiarDeUsuarioToolStripMenuItem.Text = "Cambiar de usuario"
+        '
+        'SalirToolStripMenuItem1
+        '
+        Me.SalirToolStripMenuItem1.Name = "SalirToolStripMenuItem1"
+        Me.SalirToolStripMenuItem1.Size = New System.Drawing.Size(177, 22)
+        Me.SalirToolStripMenuItem1.Text = "Salir del sistema"
+        '
+        'CotizacionesToolStripMenuItem
+        '
+        Me.CotizacionesToolStripMenuItem.Name = "CotizacionesToolStripMenuItem"
+        Me.CotizacionesToolStripMenuItem.Size = New System.Drawing.Size(192, 22)
+        Me.CotizacionesToolStripMenuItem.Text = "Cotizaciones"
         '
         'catálogosToolStripMenuItem
         '
@@ -251,7 +289,7 @@ Partial Class Principal
         '
         Me.movimientosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EntradasToolStripMenuItem1, Me.SalidasToolStripMenuItem1})
         Me.movimientosToolStripMenuItem.Name = "movimientosToolStripMenuItem"
-        Me.movimientosToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.movimientosToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
         Me.movimientosToolStripMenuItem.Text = "Movimientos"
         '
         'EntradasToolStripMenuItem1
@@ -270,8 +308,26 @@ Partial Class Principal
         '
         Me.consultasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EntradasToolStripMenuItem, Me.SalidasToolStripMenuItem, Me.ExistenciaToolStripMenuItem})
         Me.consultasToolStripMenuItem.Name = "consultasToolStripMenuItem"
-        Me.consultasToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.consultasToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
         Me.consultasToolStripMenuItem.Text = "Consultas"
+        '
+        'EntradasToolStripMenuItem
+        '
+        Me.EntradasToolStripMenuItem.Name = "EntradasToolStripMenuItem"
+        Me.EntradasToolStripMenuItem.Size = New System.Drawing.Size(125, 22)
+        Me.EntradasToolStripMenuItem.Text = "Entradas"
+        '
+        'SalidasToolStripMenuItem
+        '
+        Me.SalidasToolStripMenuItem.Name = "SalidasToolStripMenuItem"
+        Me.SalidasToolStripMenuItem.Size = New System.Drawing.Size(125, 22)
+        Me.SalidasToolStripMenuItem.Text = "Salidas"
+        '
+        'ExistenciaToolStripMenuItem
+        '
+        Me.ExistenciaToolStripMenuItem.Name = "ExistenciaToolStripMenuItem"
+        Me.ExistenciaToolStripMenuItem.Size = New System.Drawing.Size(125, 22)
+        Me.ExistenciaToolStripMenuItem.Text = "Existencia"
         '
         'cajaToolStripMenuItem
         '
@@ -284,19 +340,19 @@ Partial Class Principal
         'corteToolStripMenuItem
         '
         Me.corteToolStripMenuItem.Name = "corteToolStripMenuItem"
-        Me.corteToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.corteToolStripMenuItem.Size = New System.Drawing.Size(119, 22)
         Me.corteToolStripMenuItem.Text = "Corte"
         '
         'EntradasToolStripMenuItem2
         '
         Me.EntradasToolStripMenuItem2.Name = "EntradasToolStripMenuItem2"
-        Me.EntradasToolStripMenuItem2.Size = New System.Drawing.Size(152, 22)
+        Me.EntradasToolStripMenuItem2.Size = New System.Drawing.Size(119, 22)
         Me.EntradasToolStripMenuItem2.Text = "Entradas"
         '
         'SalidasToolStripMenuItem2
         '
         Me.SalidasToolStripMenuItem2.Name = "SalidasToolStripMenuItem2"
-        Me.SalidasToolStripMenuItem2.Size = New System.Drawing.Size(152, 22)
+        Me.SalidasToolStripMenuItem2.Size = New System.Drawing.Size(119, 22)
         Me.SalidasToolStripMenuItem2.Text = "Salidas"
         '
         'SeguridadToolStripMenuItem1
@@ -345,55 +401,6 @@ Partial Class Principal
         Me.TicketsToolStripMenuItem.Size = New System.Drawing.Size(120, 22)
         Me.TicketsToolStripMenuItem.Text = "Tickets"
         '
-        'Ventanas
-        '
-        Me.Ventanas.Name = "Ventanas"
-        Me.Ventanas.Size = New System.Drawing.Size(67, 20)
-        Me.Ventanas.Text = "Ventanas"
-        '
-        'SalirToolStripMenuItem
-        '
-        Me.SalirToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CerrarSesiónToolStripMenuItem, Me.CambiarDeUsuarioToolStripMenuItem, Me.SalirToolStripMenuItem1})
-        Me.SalirToolStripMenuItem.Name = "SalirToolStripMenuItem"
-        Me.SalirToolStripMenuItem.Size = New System.Drawing.Size(53, 20)
-        Me.SalirToolStripMenuItem.Text = "Sesión"
-        '
-        'CerrarSesiónToolStripMenuItem
-        '
-        Me.CerrarSesiónToolStripMenuItem.Name = "CerrarSesiónToolStripMenuItem"
-        Me.CerrarSesiónToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
-        Me.CerrarSesiónToolStripMenuItem.Text = "Cerrar sesión"
-        '
-        'CambiarDeUsuarioToolStripMenuItem
-        '
-        Me.CambiarDeUsuarioToolStripMenuItem.Name = "CambiarDeUsuarioToolStripMenuItem"
-        Me.CambiarDeUsuarioToolStripMenuItem.Size = New System.Drawing.Size(177, 22)
-        Me.CambiarDeUsuarioToolStripMenuItem.Text = "Cambiar de usuario"
-        '
-        'SalirToolStripMenuItem1
-        '
-        Me.SalirToolStripMenuItem1.Name = "SalirToolStripMenuItem1"
-        Me.SalirToolStripMenuItem1.Size = New System.Drawing.Size(177, 22)
-        Me.SalirToolStripMenuItem1.Text = "Salir del sistema"
-        '
-        'EntradasToolStripMenuItem
-        '
-        Me.EntradasToolStripMenuItem.Name = "EntradasToolStripMenuItem"
-        Me.EntradasToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.EntradasToolStripMenuItem.Text = "Entradas"
-        '
-        'SalidasToolStripMenuItem
-        '
-        Me.SalidasToolStripMenuItem.Name = "SalidasToolStripMenuItem"
-        Me.SalidasToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.SalidasToolStripMenuItem.Text = "Salidas"
-        '
-        'ExistenciaToolStripMenuItem
-        '
-        Me.ExistenciaToolStripMenuItem.Name = "ExistenciaToolStripMenuItem"
-        Me.ExistenciaToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.ExistenciaToolStripMenuItem.Text = "Existencia"
-        '
         'Principal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -416,7 +423,7 @@ Partial Class Principal
     Friend WithEvents DevolucionesToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents DevoluciónToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ReportesToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ProductosToolStripMenuItem3 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents Rep_Productos As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents EntradasDeProductosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SalidasDeProductosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents VentasToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
@@ -461,5 +468,6 @@ Partial Class Principal
     Friend WithEvents EntradasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SalidasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ExistenciaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents CotizacionesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

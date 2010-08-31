@@ -320,9 +320,9 @@ Public Class Principal
         End If
 
         If ObjRet.DS.Tables(0).Rows(0).Item(0) = "0" Then
-            ProductosToolStripMenuItem3.Visible = False
+            Rep_Productos.Visible = False
         Else
-            ProductosToolStripMenuItem3.Visible = True
+            Rep_Productos.Visible = True
         End If
 
         If ObjRet.DS.Tables(0).Rows(0).Item(1) = "0" Then
@@ -586,5 +586,41 @@ Public Class Principal
 
         consul_existencia.StartPosition = FormStartPosition.CenterScreen
         consul_existencia.Show()
+    End Sub
+
+    Private Sub Rep_Productos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Rep_Productos.Click
+        Dim ReporteProductos As New Rep_Productos
+        ReporteProductos.MdiParent = Me
+        ReporteProductos.WindowState = FormWindowState.Maximized
+
+        ReporteProductos.StartPosition = FormStartPosition.CenterScreen
+        ReporteProductos.Show()
+    End Sub
+
+    Private Sub ProveedoresToolStripMenuItem3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ProveedoresToolStripMenuItem3.Click
+        Dim ReporteProveedores As New Rep_Proveedores
+        ReporteProveedores.MdiParent = Me
+        ReporteProveedores.WindowState = FormWindowState.Maximized
+
+        ReporteProveedores.StartPosition = FormStartPosition.CenterScreen
+        ReporteProveedores.Show()
+    End Sub
+
+    Private Sub CotizacionesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CotizacionesToolStripMenuItem.Click
+        Dim Reportecotizaciones As New Rep_Cotizaciones
+        Reportecotizaciones.MdiParent = Me
+        Reportecotizaciones.WindowState = FormWindowState.Maximized
+
+        Reportecotizaciones.StartPosition = FormStartPosition.CenterScreen
+        Reportecotizaciones.Show()
+    End Sub
+
+    Private Sub FacturasToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles FacturasToolStripMenuItem1.Click
+        Dim ReporteFacturas As New Rep_Facturas
+        ReporteFacturas.MdiParent = Me
+        ReporteFacturas.WindowState = FormWindowState.Maximized
+
+        ReporteFacturas.StartPosition = FormStartPosition.CenterScreen
+        ReporteFacturas.Show()
     End Sub
 End Class
