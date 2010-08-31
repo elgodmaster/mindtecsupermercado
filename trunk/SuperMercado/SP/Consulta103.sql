@@ -250,22 +250,14 @@ BEGIN
 	 Select @Registro = @@RowCount	 
    End
 
---  If @Validar = 3 
---    Begin 
---     Select @Desc1 = Convert(Double,@Valor1)
---     Select @Desc2 = Convert(Double,@Valor2)
---           
---
---
---
---                 CostoCompra = Double.Parse(Me.TxtCostoCompra.Text)
---                    Flete = 0 + Double.Parse(Me.TxtFlete.Text)
---                    Margen = 0 + Double.Parse(Me.TxtMargen.Text)
---                    Flete = (Flete / 100) + 1
---                    Margen = 1 - (Margen / 100)
---                    CostoVenta = (CostoCompra * Flete) / Margen
---                    Me.TxtCostoVenta.Text = CostoVenta
---    End
+ If @Validar = 3
+   Begin
+    Select @Desc1 = IsNull(a.Descripcion,'')
+    From SMercado..Cat_Productos a(NoLock)
+    Where a.Codigo = @Valor1
+
+	 Select @Registro = @@RowCount	 
+   End
 
   If @Registro = 0
    Begin
@@ -275,6 +267,8 @@ BEGIN
          Select @Resul = '2R=OK|'
       If @Validar = 2
          Select @Resul = '2R=OK|'
+      If @Validar = 3
+         Select @Resul = '2R=ERROR|2M=No esta registrado el codigo del producto'
    End
   Else
     Begin
@@ -286,6 +280,8 @@ BEGIN
          Select @Resul = '2R=OK|V1=' + @Desc1 + '|V2=' + @Desc2 + '|V3=' + @Desc3 + '|V4=' + @Desc4 + '|V5=' + @Desc5 + '|V6=' + @Desc6 +
                          '|V7=' + @Desc7 + '|V8=' + @Desc8 + '|V9=' + @Desc9 + '|V10=' + @Desc10 + '|V11=' + @Desc11 + '|V12=' + @Desc12 + 
                          '|V13=' + @Desc13 + '|V14=' + @Desc14 + '|V15=' + @Desc15 + '|'  
+      If @Validar = 3
+         Select @Resul = '2R=OK|V1=' + @Desc1 + '|'
     End
 
   Set NoCount OFF
